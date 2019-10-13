@@ -1,13 +1,5 @@
 namespace Fable.Plotly.Generator
 
-
-
-
-
-
-
-
-
 [<AutoOpen>]
 module Utils =
 

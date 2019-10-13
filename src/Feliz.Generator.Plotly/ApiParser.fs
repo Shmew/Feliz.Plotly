@@ -1,6 +1,5 @@
 namespace Fable.Plotly.Generator
 
-open System.IO
 open FSharp.Data
 open FSharp.Data.JsonExtensions
 open Domain
