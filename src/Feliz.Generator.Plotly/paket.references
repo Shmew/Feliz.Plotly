@@ -1,0 +1,5 @@
+﻿group Generator
+    Fake.IO.FileSystem
+    FSharp.Core
+    FSharp.Data
+    File: plot-schema.json Schema

@@ -1,0 +1,62 @@
+version 5.216.0
+
+framework: auto-detect
+
+source https://nuget.org/api/v2
+source https://api.nuget.org/v3/index.json
+
+group Plotly
+	source https://nuget.org/api/v2
+	source https://api.nuget.org/v3/index.json
+
+    nuget Fable.Core ~> 3.1
+    nuget Fable.Browser.Dom ~> 1.1
+    nuget Feliz ~> 0.57
+    nuget FSharp.Core ~> 4.7
+
+group Generator
+    source https://nuget.org/api/v2
+	source https://api.nuget.org/v3/index.json
+
+    nuget Fake.IO.FileSystem ~> 5.16
+    nuget FSharp.Core ~> 4.7
+    nuget FSharp.Data ~> 3.3
+    github plotly/plotly.js:bead43ff7d5cbcedfd2bf29c25cf01b1b4074df9 dist/plot-schema.json
+
+group Testing
+	source https://nuget.org/api/v2
+	source https://api.nuget.org/v3/index.json
+
+	nuget Expecto ~> 8.11
+	nuget Expecto.BenchmarkDotNet ~> 8.11
+	nuget Expecto.FsCheck ~> 8.11
+	nuget Expecto.TestResults ~> 8.10
+	nuget Foq ~> 1.8
+	nuget FSharp.Core ~> 4.7
+	nuget FSharp.Data ~> 3.1
+
+group Tooling
+	source https://nuget.org/api/v2
+	source https://api.nuget.org/v3/index.json
+
+	nuget Fake.IO.FileSystem ~> 5.16
+	nuget FSharp.Core ~> 4.7
+	nuget FSharpLint.Core ~> 0.12
+
+	clitool dotnet-fable ~> 2.0
+	clitool dotnet-fake ~> 5.16
+
+group FakeBuild
+	source https://api.nuget.org/v3/index.json
+
+	nuget Fake.Core.Target ~> 5.16
+	nuget Fake.Core.ReleaseNotes ~> 5.16
+	nuget Fake.DotNet.AssemblyInfoFile ~> 5.16
+	nuget Fake.DotNet.Cli ~> 5.16
+	nuget Fake.DotNet.FSFormatting ~> 5.16
+	nuget Fake.DotNet.MSBuild ~> 5.16
+	nuget Fake.DotNet.Paket ~> 5.16
+	nuget Fake.IO.FileSystem ~> 5.16
+	nuget Fake.Tools.Git ~> 5.16
+	nuget FSharpLint.Core ~> 0.12
+	nuget Fantomas ~> 3.0.0

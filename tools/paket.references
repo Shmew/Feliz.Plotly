@@ -1,0 +1,6 @@
+group Tooling
+	Fake.IO.FileSystem
+	FSharp.Core
+	FSharpLint.Core
+	dotnet-fable
+	dotnet-fake

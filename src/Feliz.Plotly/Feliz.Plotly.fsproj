@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Schema\**" />
+    <EmbeddedResource Remove="Test\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Colors.fs" />
+    <Compile Include="Bindings.fs" />
+    <Compile Include="Types.fs" />
+    <Compile Include="Interop.fs" />
+    <Compile Include="Props\Config.fs" />
+    <Compile Include="Props\Data.fs" />
+    <Compile Include="Props\Layout.fs" />
+    <Compile Include="Plotly.fs" />
+    <None Include="paket.references" />
+    <None Include="paket.template" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <NpmDependencies>
+      <NpmPackage Name="plotly.js" Version="gte 1.5 lt 2" ResolutionStrategy="max" />
+      <NpmPackage Name="react-plotly.js" Version="gte 2.3 lt 3" ResolutionStrategy="max" />
+    </NpmDependencies>
+  </PropertyGroup>
+  
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

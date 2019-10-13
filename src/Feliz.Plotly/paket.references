@@ -1,0 +1,5 @@
+﻿group Plotly
+    Fable.Core
+    Fable.Browser.Dom
+    Feliz
+    FSharp.Core
