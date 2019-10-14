@@ -41,6 +41,18 @@ module Render =
             |> emptStringToNone
             |> List.singleton
 
+        let compPropsForComponent (comp: Component) =
+            comp.Props
+            |> List.choose (fun p ->
+                if p.Components.IsEmpty then None
+                else Some [ p.Components ])
+            |> (List.concat >> List.concat)
+
+        let buildCompLine comp overload =
+            singleComponentOverload comp
+                ((comp.MethodName |> String.upperFirst)
+                 |> sprintf "mk%sAttr") overload
+
         let regularNonExtensionPropsForComponent (comp: Component) indentLevel =
             let propsAndRegularNonExtensionOverloads =
                 comp.Props
@@ -49,14 +61,27 @@ module Render =
                     if regularNonExtensionOverloads.IsEmpty then None
                     else Some(p, regularNonExtensionOverloads))
 
-            if propsAndRegularNonExtensionOverloads.IsEmpty then
-                []
-            else
+            let compProps = compPropsForComponent comp
+
+            match propsAndRegularNonExtensionOverloads.IsEmpty, compProps.IsEmpty with
+            | true, true -> []
+            | false, true ->
+                [ "[<Erase>]" |> indent indentLevel
+                  sprintf "type %s = " comp.MethodName |> indent indentLevel
+                  for comp in compProps do
+                      for overload in comp.Overloads do
+                          yield! buildCompLine comp overload |> List.map (indent (indentLevel + 1))
+                  ]
+            | _ ->
                 let allOverloadsAreInline =
                     propsAndRegularNonExtensionOverloads
                     |> List.forall (fun (_, os) -> os |> List.forall (fun o -> o.IsInline))
                 [ if allOverloadsAreInline then "[<Erase>]" |> indent indentLevel
                   sprintf "type %s =" comp.MethodName |> indent indentLevel
+
+                  for comp in compProps do
+                      for overload in comp.Overloads do
+                          yield! buildCompLine comp overload |> List.map (indent (indentLevel + 1))
 
                   for prop, overloads in propsAndRegularNonExtensionOverloads do
                       for overload in overloads do
@@ -120,13 +145,6 @@ module Render =
                         yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
                     "" ]
 
-        let compPropsForComponent (comp: Component) =
-            comp.Props
-            |> List.choose (fun p ->
-                if p.Components.IsEmpty then None
-                else Some [ p.Components ])
-            |> (List.concat >> List.concat)
-
         let getCompStrList comp indentLevel =
             comp.Overloads
             |> List.collect (fun overload ->
@@ -176,14 +194,9 @@ module Render =
             |> List.distinct
 
         let buildComponentsForComponent (comps: Component list) =
-            let buildLine comp overload =
-                singleComponentOverload comp
-                    ((comp.MethodName |> String.upperFirst)
-                     |> sprintf "mk%sAttr") overload
-
             comps
             |> getComponents
-            |> List.collect (fun c -> c.Overloads |> List.collect (buildLine c))
+            |> List.collect (fun c -> c.Overloads |> List.collect (buildCompLine c))
             |> List.map (indent 1)
 
         let buildInterfaces (comps: Component list) =
@@ -252,21 +265,21 @@ module Render =
               ""
               yield! api.ComponentsPrelude
               ""
-          "[<Erase>]"
-          sprintf "type %s =" api.ComponentContainerTypeName
-          yield! GetLines.buildComponentsForComponent api.Components
-          for doc, cont in api.TypePostlude do
-              if doc
-                 |> String.IsNullOrEmpty
-                 |> not
-              then
-                  doc
-                  |> String.prefix "/// "
-                  |> String.trim
-                  |> indent 1
-              cont |> indent 1
-          ""
-          if api.Bindings.Length > 0 then
+          if not api.TypePostlude.IsEmpty then
+              "[<Erase>]"
+              sprintf "type %s =" api.ComponentContainerTypeName
+              for doc, cont in api.TypePostlude do
+                  if doc
+                     |> String.IsNullOrEmpty
+                     |> not
+                  then
+                      doc
+                      |> String.prefix "/// "
+                      |> String.trim
+                      |> indent 1
+                  cont |> indent 1
+              ""
+          if not api.Bindings.IsEmpty then
               "[<Erase>]"
               sprintf "type %s =" api.ComponentContainerName
               for (docs, binding) in api.Bindings do
