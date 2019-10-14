@@ -4,10 +4,7 @@
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
-  <ItemGroup>
-    <EmbeddedResource Remove="Schema\**" />
-    <EmbeddedResource Remove="Test\**" />
-  </ItemGroup>
+
   <ItemGroup>
     <Compile Include="Colors.fs" />
     <Compile Include="Bindings.fs" />
@@ -21,6 +18,10 @@
     <None Include="paket.template" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="*.fsproj; *.fs; *.js;" PackagePath="fable\" />
+  </ItemGroup>
+  
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="plotly.js" Version="gte 1.5 lt 2" ResolutionStrategy="max" />
