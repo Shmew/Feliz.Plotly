@@ -144,7 +144,7 @@ module ParserUtils =
 module rec ApiParser =
     open ParserUtils
 
-    let parseProp propName (jVal: JsonValue): Prop =
+    let parseProp componentName propName (jVal: JsonValue): Prop =
         let propMethodName =
             propName
             |> trimJson
@@ -183,14 +183,14 @@ module rec ApiParser =
                     |> replaceAddSymbol
                     |> prefixUnderscoreOrNegativeToNumbers
                     |> appendApostropheToReservedKeywords
-                EnumPropOverload.create methodName v)
+                EnumPropOverload.create methodName v )
 
         let nestedComponents =
             match propName, propType with
-            | "transforms", ValType.Component -> [ parseComponent propName schema?transforms ]
+            | "transforms", ValType.Component -> [ parseComponent componentName propName schema?transforms ]
             | "type", ValType.Component -> []
             | "role", ValType.Component -> []
-            | _, ValType.Component -> [ parseComponent propName jVal ]
+            | _, ValType.Component -> [ parseComponent componentName propName jVal ]
             | _ -> []
 
         let addRegularOverloads prop = (prop, propOverloads) ||> Seq.fold (flip Prop.addRegularOverload)
@@ -201,11 +201,12 @@ module rec ApiParser =
 
         Prop.create propName propMethodName
         |> Prop.setDocs (getDocs jVal)
+        |> Prop.addParentComponentName componentName
         |> addRegularOverloads
         |> addEnumOverloads
         |> addComponents
 
-    let parseComponent componentName (jVal: JsonValue) =
+    let parseComponent (parentCompName: string) (componentName: string) (jVal: JsonValue) =
         let skipComp = [ "_deprecated"; "items"; "_isSubplotObj" ]
 
         let chunkAttributes (props: (string * JsonValue) []) =
@@ -225,19 +226,20 @@ module rec ApiParser =
             jVal.Properties
             |> Array.filter (fun (name, _) -> List.contains name skipComp |> not)
             |> chunkAttributes
-            |> Array.map (fun p -> p ||> parseProp)
+            |> Array.map (fun p -> p ||> parseProp componentName)
 
         let addProps comp = (comp, props) ||> Array.fold (flip Component.addProp)
 
         Component.create componentName
         |> Component.setDocs (getDocs jVal)
+        |> Component.addParentComponentName parentCompName
         |> addProps
 
     let parseApi() =
         let components =
-            [ schema?config |> parseComponent "config"
-              schema?layout |> parseComponent "layout"
-              schema?traces |> parseComponent "data" ]
+            [ schema?config |> parseComponent "Plot" "config"
+              schema?layout |> parseComponent "Plot" "layout"
+              schema?traces |> parseComponent "Plot" "data" ]
 
         let addAllComponents api = (api, components) ||> List.fold (flip ComponentApi.addComponent)
 

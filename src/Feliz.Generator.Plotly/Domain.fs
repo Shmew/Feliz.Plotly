@@ -84,7 +84,8 @@ module rec Domain =
           /// The prop overloads.
           EnumOverloads: EnumPropOverload list
           /// Components within the prop
-          Components: Component list }
+          Components: Component list
+          ParentComponentName: string }
 
     module Prop =
         /// Creates a prop with the specified native API name and method name and no
@@ -95,7 +96,8 @@ module rec Domain =
               MethodName = methodName
               RegularOverloads = []
               EnumOverloads = []
-              Components = [] }
+              Components = []
+              ParentComponentName = "Plot" }
 
         /// Sets the prop's doc lines.
         let setDocs docLines (prop: Prop) = { prop with DocLines = docLines }
@@ -107,6 +109,8 @@ module rec Domain =
         let addEnumOverload overload prop = { prop with EnumOverloads = prop.EnumOverloads @ [ overload ] }
 
         let addComponent comp (prop: Prop) = { prop with Components = prop.Components @ [ comp ] }
+
+        let addParentComponentName (name: string) (prop: Prop) = { prop with ParentComponentName = (name |> String.upperFirst) }
 
         /// Indicates whether all regular prop overloads are inline.
         let allRegularOverloadsAreInline prop = prop.RegularOverloads |> List.forall (fun o -> o.IsInline)
@@ -128,7 +132,7 @@ module rec Domain =
                 IsInline = true }
               { ParamsCode = sprintf "(properties: (bool * I%sProperty list) list)" (name |> String.upperFirst)
                 PropsCode = "(properties |> Bindings.Internal.withConditionals)"
-                IsInline = false } ]
+                IsInline = false  } ]
 
         /// Creates an inline component overload with the specified code for params
         /// and props expression.
@@ -150,7 +154,8 @@ module rec Domain =
           /// The overloads used to create the component.
           Overloads: ComponentOverload list
           /// The component's props.
-          Props: Prop list }
+          Props: Prop list
+          ParentComponentName: string }
 
     module Component =
         /// Creates a component with the specified method name and import path, no
@@ -161,7 +166,8 @@ module rec Domain =
               MethodName = methodName
               ImportSelector = None
               Overloads = ComponentOverload.defaults methodName
-              Props = [] }
+              Props = []
+              ParentComponentName = "Plot" }
 
         /// Sets the import selector of the component.
         let setImportSelector selector comp = { comp with ImportSelector = Some selector }
@@ -181,6 +187,8 @@ module rec Domain =
 
         /// Indicates whether all components have only inline overloads.
         let hasOnlyInlineOverloads comp = comp.Overloads |> List.forall (fun o -> o.IsInline)
+
+        let addParentComponentName (name: string) (comp: Component) = { comp with ParentComponentName = (name |> String.upperFirst) }
 
     type ComponentApi =
         { /// The namespace for the API.

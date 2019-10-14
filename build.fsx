@@ -4,11 +4,13 @@
 #nowarn "0213"
 #r "paket: groupref FakeBuild //"
 #load "./tools/FSharpLint.fs"
+#load "./tools/Web.fs"
 #load "./.fake/build.fsx/intellisense.fsx"
 
 open Fake.Core
 open Fake.Core.TargetOperators
 open Fake.DotNet
+open Fake.JavaScript
 open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
@@ -16,6 +18,7 @@ open Fake.Tools
 open Fantomas.FakeHelpers
 open Fantomas.FormatConfig
 open Tools.Linting
+open Tools.Web
 open System
 open System.IO
 
@@ -26,6 +29,9 @@ let project = "Feliz.Plotly"
 // Short summary of the project
 // (used as description in AssemblyInfo and as a short summary for NuGet package)
 let summary = "Fable bindings written in the Feliz-style for plotly.js"
+
+// Author(s) of the project
+let author = "Cody Johnson"
 
 // File system information
 let solutionFile = "Feliz.Plotly.sln"
@@ -63,7 +69,9 @@ let fsTestGlob = __SOURCE_DIRECTORY__ @@ "tests/**/*.fs"
 let bin        = __SOURCE_DIRECTORY__ @@ "bin"
 let temp       = __SOURCE_DIRECTORY__ @@ "temp"
 let objFolder  = __SOURCE_DIRECTORY__ @@ "obj"
-let dist       = __SOURCE_DIRECTORY__ @@ "dist"
+let pub        = __SOURCE_DIRECTORY__ @@ "public"
+let genGlob    = __SOURCE_DIRECTORY__ @@ "src/**/*.Generator.*.fsproj"
+let libGlob    = __SOURCE_DIRECTORY__ @@ "src/**/*.fsproj"
 
 let foldExcludeGlobs (g: IGlobbingPattern) (d: string) = g -- d
 let foldIncludeGlobs (g: IGlobbingPattern) (d: string) = g ++ d
@@ -94,6 +102,22 @@ let setCmd f args =
 
 let configuration() =
     FakeVar.getOrDefault "configuration" "Release"
+
+let getEnvFromAllOrNone (s: string) =
+    let envOpt (envVar: string) =
+        if String.isNullOrEmpty envVar then None
+        else Some(envVar)
+
+    let procVar = Environment.GetEnvironmentVariable(s) |> envOpt
+    let userVar = Environment.GetEnvironmentVariable(s, EnvironmentVariableTarget.User) |> envOpt
+    let machVar = Environment.GetEnvironmentVariable(s, EnvironmentVariableTarget.Machine) |> envOpt
+
+    match procVar,userVar,machVar with
+    | Some(v), _, _
+    | _, Some(v), _
+    | _, _, Some(v)
+        -> Some(v)
+    | _ -> None
 
 // --------------------------------------------------------------------------------------
 // Set configuration mode based on target
@@ -140,7 +164,8 @@ Target.create "AssemblyInfo" <| fun _ ->
 // src folder to support multiple project outputs
 
 Target.create "CopyBinaries" <| fun _ ->
-    !! srcGlob
+    !! libGlob
+    -- genGlob
     -- (__SOURCE_DIRECTORY__ @@ "src/**/*.shproj")
     |> Seq.map (fun f -> ((Path.getDirectory f) @@ "bin" @@ configuration(), "bin" @@ (Path.GetFileNameWithoutExtension f)))
     |> Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
@@ -157,14 +182,23 @@ Target.create "Clean" <| fun _ ->
         ++ (__SOURCE_DIRECTORY__  @@ "src/**/bin")
         ++ (__SOURCE_DIRECTORY__  @@ "src/**/obj")
         |> Seq.toList
-        |> List.append [bin; temp; objFolder; dist]
+        |> List.append [bin; temp; objFolder]
         |> Shell.cleanDirs
-    TaskRunner.runWithRetries clean 99
+    TaskRunner.runWithRetries clean 10
 
 Target.create "CleanDocs" <| fun _ ->
     let clean() =
-        Shell.cleanDirs ["docs"]
-    TaskRunner.runWithRetries clean 99
+        Shell.rm <| pub @@ "bundle.js"
+        Shell.rm <| pub @@ "bundle.js.map"
+
+    TaskRunner.runWithRetries clean 10
+
+Target.create "CopyMarkdowns" <| fun _ ->
+    [ pub @@ "Plotly/README.md", __SOURCE_DIRECTORY__ @@ "README.md"
+      pub @@ "Plotly/RELEASE_NOTES.md", __SOURCE_DIRECTORY__ @@ "RELEASE_NOTES.md" ]
+    |> List.iter (fun (target, source) -> Shell.copyFile target source)
+
+Target.create "PrepDocs" ignore
 
 Target.create "PostBuildClean" <| fun _ ->
     let clean() =
@@ -176,13 +210,13 @@ Target.create "PostBuildClean" <| fun _ ->
             >> (fun fL -> fL |> List.map (fun f -> Directory.EnumerateDirectories(f) |> Seq.toList)))
         |> (Seq.concat >> Seq.concat)
         |> Seq.iter Directory.delete
-    TaskRunner.runWithRetries clean 99
+    TaskRunner.runWithRetries clean 10
 
 Target.create "PostPublishClean" <| fun _ ->
     let clean() =
         !! (__SOURCE_DIRECTORY__ @@ "src/**/bin" @@ configuration() @@ "/**/publish")
         |> Seq.iter Directory.delete
-    TaskRunner.runWithRetries clean 99
+    TaskRunner.runWithRetries clean 10
 
 // --------------------------------------------------------------------------------------
 // Restore tasks
@@ -194,8 +228,30 @@ let restoreSolution () =
 Target.create "Restore" <| fun _ ->
     TaskRunner.runWithRetries restoreSolution 5
 
+Target.create "YarnInstall" <| fun _ ->
+    let setParams (defaults:Yarn.YarnParams) =
+        { defaults with
+            Yarn.YarnParams.YarnFilePath = (__SOURCE_DIRECTORY__ @@ "packages/tooling/Yarnpkg.Yarn/content/bin/yarn.cmd")
+        }
+    Yarn.install setParams
+
 // --------------------------------------------------------------------------------------
 // Build tasks
+
+Target.create "RunGenerators" <| fun _ ->
+    Trace.trace "Running generators..."
+    !! genGlob
+    |> List.ofSeq
+    |> List.iter (fun proj ->
+        let runArgs = sprintf "-c %s --no-restore -p %s" (configuration()) proj
+        
+        Trace.tracefn "Running dotnet command: %s" runArgs
+        
+        DotNet.exec id "run" runArgs
+        |> fun p ->
+            if p.ExitCode <> 0 then
+                p.Errors |> Seq.iter Trace.traceError
+                failwithf "Failed with exitcode %d" p.ExitCode)
 
 Target.create "Build" <| fun _ ->
     let setParams (defaults:MSBuildParams) =
@@ -212,8 +268,10 @@ Target.create "Build" <| fun _ ->
                     "DependsOnNETStandard", "true"
                 ]
          }
-    restoreSolution()
-    MSBuild.build setParams solutionFile
+    !! libGlob
+    -- genGlob
+    |> List.ofSeq
+    |> List.iter (MSBuild.build setParams)
 
 // --------------------------------------------------------------------------------------
 // Publish net core applications
@@ -236,9 +294,8 @@ Target.create "PublishDotNet" <| fun _ ->
             }
         MSBuild.build setParams project
 
-    !! srcGlob
-    -- (__SOURCE_DIRECTORY__ @@ "src/**/*.shproj")
-    -- (__SOURCE_DIRECTORY__ @@ "src/**/*.vbproj")
+    !! libGlob
+    -- genGlob
     |> Seq.map
         ((fun f -> (((Path.getDirectory f) @@ "bin" @@ configuration()), f) )
         >>
@@ -321,7 +378,67 @@ Target.create "LoadScripts" <| fun _ ->
     |> ignore
 
 // --------------------------------------------------------------------------------------
-// Build NuGet package
+// Update package.json version & name    
+
+Target.create "PackageJson" <| fun _ ->
+    let setValues (current: Json.JsonPackage) =
+        { current with
+            Name = Str.toKebabCase project |> Some
+            Version = release.NugetVersion |> Some
+            Description = summary |> Some
+            Homepage = repo |> Some
+            Repository = 
+                { Json.RepositoryValue.Type = "git" |> Some
+                  Json.RepositoryValue.Url = repo |> Some
+                  Json.RepositoryValue.Directory = None }
+                |> Some
+            Bugs = 
+                { Json.BugsValue.Url = 
+                    @"https://github.com/Shmew/Feliz.Plotly/issues/new/choose" |> Some } |> Some
+            License = "MIT" |> Some
+            Author = author |> Some
+            Private = true |> Some }
+    
+    Json.setJsonPkg setValues
+
+// --------------------------------------------------------------------------------------
+// Documentation targets
+
+Target.createFinal "KillProcess" <| fun _ ->
+    Process.killAllByName "node.exe"
+    Process.killAllByName "Node.js"
+
+Target.create "Start" <| fun _ ->
+    let buildApp = async { Yarn.exec "start" id }
+    let launchBrowser =
+        let url = "http://localhost:8080"
+        async {
+            do! Async.Sleep 15000
+            try
+                if Environment.isLinux then
+                    Shell.Exec(
+                        sprintf "URL=\"%s\"; xdg-open $URL ||\
+                            sensible-browser $URL || x-www-browser $URL || gnome-open $URL" url)
+                    |> ignore
+                else Shell.Exec("open", args = url) |> ignore
+            with _ -> failwith "Opening browser failed."
+        }
+
+    Target.activateFinal "KillProcess"
+
+    [ buildApp; launchBrowser ]
+    |> Async.Parallel
+    |> Async.RunSynchronously
+    |> ignore
+
+Target.create "DemoRaw" <| fun _ ->
+    Yarn.exec "compile-demo-raw" id
+
+Target.create "PublishDocs" <| fun _ ->
+    Yarn.exec "publish-docs" id
+
+// --------------------------------------------------------------------------------------
+// Build and release NuGet targets
 
 Target.create "NuGet" <| fun _ ->
     Paket.pack(fun p ->
@@ -332,6 +449,15 @@ Target.create "NuGet" <| fun _ ->
             ProjectUrl = repo
             MinimumFromLockFile = true
             IncludeReferencedProjects = true })
+
+Target.create "NuGetPublish" <| fun _ ->
+    Paket.push(fun p ->
+        { p with
+            ApiKey = 
+                match getEnvFromAllOrNone "NUGET_KEY" with
+                | Some key -> key
+                | None -> failwith "The NuGet API key must be set in a NUGET_KEY environment variable"
+            WorkingDir = bin })
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
@@ -362,10 +488,14 @@ Target.create "GitTag" <| fun _ ->
 Target.create "All" ignore
 Target.create "Dev" ignore
 Target.create "Release" ignore
+Target.create "Publish" ignore
 
 "Clean"
   ==> "AssemblyInfo"
   ==> "Restore"
+  ==> "PackageJson"
+  ==> "YarnInstall"
+  ==> "RunGenerators"
   ==> "Build"
   ==> "PostBuildClean" 
   ==> "CopyBinaries"
@@ -393,16 +523,36 @@ Target.create "Release" ignore
   ==> "GitPush"
   ?=> "GitTag"
 
-"All" <== ["Lint"; "Format"; "RunTests"; "CopyBinaries" ]
+"All" <== ["Lint"; "RunTests"; "CopyBinaries" ]
+
+"CleanDocs"
+  ==> "CopyMarkdowns"
+  ==> "PrepDocs"
 
 "All"
  ==> "NuGet"
+ ==> "NuGetPublish"
+ ==> "PublishDocs"
+
+"PrepDocs" ==> "PublishDocs"
+
+"All" 
+  ==> "PrepDocs"
+  ==> "DemoRaw"
+
+"All" 
+  ==> "PrepDocs"
+  ==> "Start"
+
+"All" ==> "PublishDocs"
 
 "ConfigDebug" ?=> "Clean"
 "ConfigRelease" ?=> "Clean"
 
-"Dev" <== ["All"; "ConfigDebug"]
+"Dev" <== ["All"; "ConfigDebug"; "Start"]
 
 "Release" <== ["All"; "NuGet"; "ConfigRelease"]
+
+"Publish" <== ["Release"; "NuGetPublish"; "PublishDocs"]
 
 Target.runOrDefaultWithArguments "Dev"

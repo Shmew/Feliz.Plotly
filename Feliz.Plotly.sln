@@ -4,6 +4,7 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B98-5CED-492C-A5B7-A5B4F73CF142}"
 	ProjectSection(SolutionItems) = preProject
+		Nuget.Config = Nuget.Config
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
 		paket.references = paket.references
@@ -41,6 +42,27 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.Plotly", "src\Feliz.P
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.Generator.Plotly", "src\Feliz.Generator.Plotly\Feliz.Generator.Plotly.fsproj", "{0E698120-F0AE-476D-858A-0DF55EACC584}"
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "App", "docs\App.fsproj", "{0A840E11-9EE5-4088-ADA9-D01DABCBF57B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "public", "public", "{CABBED80-2F75-4DFE-8F77-7F7FDFDC8008}"
+	ProjectSection(SolutionItems) = preProject
+		public\github-gist.css = public\github-gist.css
+		public\index.html = public\index.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plotly", "Plotly", "{C3F9583A-523B-4835-B6BC-CD8FFD2178E3}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Installation.md = public\Plotly\Installation.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7F29BFE8-02B3-4763-838C-3D8228334B4B}"
+	ProjectSection(SolutionItems) = preProject
+		.yarnrc = .yarnrc
+		package.json = package.json
+		publish.js = publish.js
+		webpack.config.js = webpack.config.js
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,12 +81,17 @@ Global
 		{0E698120-F0AE-476D-858A-0DF55EACC584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E698120-F0AE-476D-858A-0DF55EACC584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E698120-F0AE-476D-858A-0DF55EACC584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A840E11-9EE5-4088-ADA9-D01DABCBF57B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A840E11-9EE5-4088-ADA9-D01DABCBF57B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A840E11-9EE5-4088-ADA9-D01DABCBF57B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A840E11-9EE5-4088-ADA9-D01DABCBF57B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B} = {55637037-300B-4FA5-8D14-B2CECCCD4B0D}
+		{C3F9583A-523B-4835-B6BC-CD8FFD2178E3} = {CABBED80-2F75-4DFE-8F77-7F7FDFDC8008}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

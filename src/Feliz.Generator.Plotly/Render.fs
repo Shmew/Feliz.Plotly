@@ -23,7 +23,7 @@ module Render =
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
             let bodyCode =
                 match propOverload.BodyCode with
-                | ValueExprOnly expr -> sprintf "Interop.mkPlotAttr \"%s\" %s" prop.RealPropName expr
+                | ValueExprOnly expr -> sprintf "Interop.mk%sAttr \"%s\" %s" prop.ParentComponentName prop.RealPropName expr
                 | CustomBody code -> code
             sprintf "static member %s%s %s = %s"
                 (if propOverload.IsInline then "inline "
@@ -32,12 +32,12 @@ module Render =
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropEnumOverload (prop: Prop) (propOverload: EnumPropOverload) =
-            sprintf "static member %s%s %s= Interop.mkPlotAttr \"%s\" %s"
+            sprintf "static member %s%s %s= Interop.mk%sAttr \"%s\" %s"
                 (if propOverload.IsInline then "inline "
                  else "") propOverload.MethodName
                 (match propOverload.ParamsCode with
                  | Some s -> s + " "
-                 | None -> "") prop.RealPropName propOverload.ValueCode
+                 | None -> "") prop.ParentComponentName prop.RealPropName propOverload.ValueCode
             |> emptStringToNone
             |> List.singleton
 
@@ -131,7 +131,7 @@ module Render =
             comp.Overloads
             |> List.collect (fun overload ->
                 singleComponentOverload comp
-                    (comp.MethodName
+                    (comp.ParentComponentName
                      |> String.upperFirst
                      |> sprintf "mk%sAttr") overload
                 |> List.map (indent (indentLevel + 1)))
@@ -160,15 +160,14 @@ module Render =
             let compComps = compPropsForComponent comp |> List.collect (subComponentsForComponent actualDepth)
 
             if depth = 0 then []
-            else getCompStrList comp 1
+            else [ comp ]
             |> List.append compComps
 
-        let private getComponentNames (comps: Component list) =
+        let private getComponentsDistinct (comps: Component list) =
             comps
-            |> List.collect compPropsForComponent
+            |> List.collect (subComponentsForComponent 0)
             |> List.append comps
-            |> List.map (fun comp -> comp.MethodName |> String.upperFirst)
-            |> List.distinct
+            |> List.distinctBy (fun c -> c.MethodName)
 
         let private getComponents (comps: Component list) =
             comps
@@ -179,8 +178,7 @@ module Render =
         let buildComponentsForComponent (comps: Component list) =
             let buildLine comp overload =
                 singleComponentOverload comp
-                    (comp.MethodName
-                     |> String.upperFirst
+                    ((comp.MethodName |> String.upperFirst)
                      |> sprintf "mk%sAttr") overload
 
             comps
@@ -189,21 +187,21 @@ module Render =
             |> List.map (indent 1)
 
         let buildInterfaces (comps: Component list) =
-            let interfaceStr s =
-                [ sprintf "type I%sProperty = interface end" s
+            let interfaceStr (comp: Component) =
+                [ sprintf "type I%sProperty = interface end" (comp.MethodName |> String.upperFirst)
                   "" ]
 
             comps
-            |> getComponentNames
+            |> getComponentsDistinct
             |> List.collect interfaceStr
 
         let buildInterops (comps: Component list) =
-            let interopStr s =
-                sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" s s
+            let interopStr (comp: Component) =
+                sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" (comp.MethodName |> String.upperFirst) comp.ParentComponentName
                 |> indent 1
 
             comps
-            |> getComponentNames
+            |> getComponentsDistinct
             |> List.map interopStr
 
     let interopDocument (api: ComponentApi) =

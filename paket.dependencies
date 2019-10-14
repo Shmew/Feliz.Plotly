@@ -1,9 +1,6 @@
-version 5.216.0
+version 5.224.0
 
 framework: auto-detect
-
-source https://nuget.org/api/v2
-source https://api.nuget.org/v3/index.json
 
 group Plotly
 	source https://nuget.org/api/v2
@@ -18,10 +15,25 @@ group Generator
     source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
-    nuget Fake.IO.FileSystem ~> 5.16
+    nuget Fake.IO.FileSystem ~> 5.17
     nuget FSharp.Core ~> 4.7
     nuget FSharp.Data ~> 3.3
+    
     github plotly/plotly.js:bead43ff7d5cbcedfd2bf29c25cf01b1b4074df9 dist/plot-schema.json
+
+group Docs
+    source https://nuget.org/api/v2
+	source https://api.nuget.org/v3/index.json
+
+    nuget Fable.Core ~> 3.1
+    nuget Fable.Elmish.React ~> 3.0
+    nuget Fable.SimpleHttp ~> 2.6
+    nuget Feliz ~> 0.57
+    nuget Feliz.Router ~> 1.4
+    nuget FSharp.Core ~> 4.7
+    nuget Zanaptak.TypedCssClasses ~> 0.2
+
+    github Zaid-Ajaj/Feliz Feliz.Markdown/Markdown.fs
 
 group Testing
 	source https://nuget.org/api/v2
@@ -39,24 +51,29 @@ group Tooling
 	source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
-	nuget Fake.IO.FileSystem ~> 5.16
+	nuget Fake.IO.FileSystem ~> 5.17
 	nuget FSharp.Core ~> 4.7
+    nuget FSharp.Json ~> 0.3
 	nuget FSharpLint.Core ~> 0.12
+    nuget Yarnpkg.Yarn ~> 1.15
 
 	clitool dotnet-fable ~> 2.0
-	clitool dotnet-fake ~> 5.16
+	clitool dotnet-fake ~> 5.17
 
 group FakeBuild
 	source https://api.nuget.org/v3/index.json
 
-	nuget Fake.Core.Target ~> 5.16
-	nuget Fake.Core.ReleaseNotes ~> 5.16
-	nuget Fake.DotNet.AssemblyInfoFile ~> 5.16
-	nuget Fake.DotNet.Cli ~> 5.16
-	nuget Fake.DotNet.FSFormatting ~> 5.16
-	nuget Fake.DotNet.MSBuild ~> 5.16
-	nuget Fake.DotNet.Paket ~> 5.16
-	nuget Fake.IO.FileSystem ~> 5.16
-	nuget Fake.Tools.Git ~> 5.16
+	nuget Fake.Core.Target ~> 5.17
+	nuget Fake.Core.ReleaseNotes ~> 5.17
+	nuget Fake.DotNet.AssemblyInfoFile ~> 5.17
+	nuget Fake.DotNet.Cli ~> 5.17
+	nuget Fake.DotNet.FSFormatting ~> 5.17
+	nuget Fake.DotNet.MSBuild ~> 5.17
+	nuget Fake.DotNet.Paket ~> 5.17
+	nuget Fake.IO.FileSystem ~> 5.17
+    nuget Fake.JavaScript.Yarn ~> 5.17
+	nuget Fake.JavaScript.Npm ~> 5.17
+	nuget Fake.Tools.Git ~> 5.17
+    nuget FSharp.Json ~> 0.3
 	nuget FSharpLint.Core ~> 0.12
 	nuget Fantomas ~> 3.0.0

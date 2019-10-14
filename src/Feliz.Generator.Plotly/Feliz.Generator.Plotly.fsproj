@@ -10,8 +10,8 @@
       <Link>Schema/plot-schema.json</Link>
     </Content>
     <Compile Include="Utils.fs" />
-    <Compile Include="Domain.fs" />
     <Compile Include="Common.fs" />
+    <Compile Include="Domain.fs" />
     <Compile Include="Render.fs" />
     <Compile Include="ApiParser.fs" />
     <Compile Include="Program.fs" />
