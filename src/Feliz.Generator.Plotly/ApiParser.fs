@@ -193,12 +193,11 @@ module rec ApiParser =
                 EnumPropOverload.create methodName v)
 
         let nestedComponents =
+            let skipTypes = [ "type"; "meta"; "categories"; "role"; "editType"; "animatable"; "role"; "editType" ]
             match propName, propType with
             | "transforms", ValType.Component ->
                 [ parseComponent (componentTree @ [ propName ]) propName schema?transforms ]
-            | "type", ValType.Component -> []
-            | "role", ValType.Component -> []
-            | "editType", ValType.Component -> []
+            | t, ValType.Component when List.contains t skipTypes -> []
             | _, ValType.Component -> [ parseComponent (componentTree @ [ propName ]) propName jVal ]
             | _ -> []
 
@@ -245,6 +244,24 @@ module rec ApiParser =
         |> Component.setDocs (getDocs jVal)
         |> Component.addParentComponentTree parentTree
         |> addProps
+        |> fun comp ->
+            match comp.ParentNameTree.Head = "Data" && comp.ParentNameTree.Length = 2, jVal.TryGetProperty("type") with
+            | true, Some t ->
+                let traceType = t.AsString()
+                let propsCodes =
+                    [ sprintf "(createObj !!(properties @ [ Interop.mkData%sAttr \"type\" \"%s\" ]))" (traceType |> String.upperFirst) componentName
+                      sprintf "(properties @ [ (true, [ Interop.mkData%sAttr \"type\" \"%s\" ]) ] |> Bindings.Internal.withConditionals)" (traceType |> String.upperFirst) componentName ]
+
+                let paramFuns =
+                    [ sprintf "(properties: I%sProperty list)";
+                      sprintf "(properties: (bool * I%sProperty list) list)" ]
+
+                comp.Overloads 
+                |> List.map2 ComponentOverload.setPropsCode propsCodes
+                |> List.map2 ComponentOverload.setParamFun paramFuns
+                |> List.map (ComponentOverload.setSkipAttr true)
+                |> fun overloads -> { comp with Overloads = overloads }
+            | _ -> comp
 
     let parseApi() =
         let components =
@@ -260,9 +277,9 @@ module rec ApiParser =
 
         let typePostlude =
             [ "Create the plotly data sets",
-              "static member inline data (properties: #IDataProperty list) = Interop.mkPlotAttr \"data\" (createObj !!properties)"
+              "static member inline data (properties: #IDataProperty list) : IPlotProperty = unbox (properties |> Array.ofList)"
               "Create the plotly data sets",
-              "static member data (properties: (bool * IDataProperty list) list) = Interop.mkPlotAttr \"data\" (properties |> Bindings.Internal.withConditionals)"
+              "static member data (properties: (bool * IDataProperty list) list)  : IPlotProperty = unbox (properties |> Bindings.Internal.withConditionalsAsArray)"
               "Create the plotly config",
               "static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr \"config\" (createObj !!properties)"
               "Create the plotly config",

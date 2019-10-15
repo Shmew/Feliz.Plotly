@@ -11,7 +11,14 @@ module rec Bindings =
         let plotly: obj = importAll "plotly.js"
         let plotFactory: obj -> obj = importDefault "react-plotly.js/factory.js"
         let plotComponent = plotFactory plotly
-        let createPlot props: ReactElement = ReactBindings.React.createElement (plotComponent, props, [])
+        let createPlot props: ReactElement = 
+            ReactBindings.React.createElement (plotComponent, props, [])
+
+        let withConditionalsAsArray (properties: (bool * 'a list) list) =
+            properties
+            |> List.filter fst
+            |> List.collect snd
+            |> Array.ofList
 
         let withConditionals (properties: (bool * 'a list) list) =
             properties

@@ -62,7 +62,7 @@ let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
     | f when f.EndsWith("vbproj") -> Vbproj
     | f when f.EndsWith("shproj") -> Shproj
     | _                           -> failwith (sprintf "Project file %s not supported. Unknown project type." projFileName)
-
+    
 let srcGlob    = __SOURCE_DIRECTORY__ @@ "src/**/*.??proj"
 let fsSrcGlob  = __SOURCE_DIRECTORY__ @@ "src/**/*.fs"
 let fsTestGlob = __SOURCE_DIRECTORY__ @@ "tests/**/*.fs"

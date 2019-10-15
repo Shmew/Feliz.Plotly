@@ -53,6 +53,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plotly", "Plotly", "{C3F9583A-523B-4835-B6BC-CD8FFD2178E3}"
 	ProjectSection(SolutionItems) = preProject
 		public\Plotly\Installation.md = public\Plotly\Installation.md
+		public\Plotly\Scatter\ScatterChart.md = public\Plotly\Scatter\ScatterChart.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7F29BFE8-02B3-4763-838C-3D8228334B4B}"
@@ -61,6 +62,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7F29BFE8-02B
 		package.json = package.json
 		publish.js = publish.js
 		webpack.config.js = webpack.config.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scatter", "Scatter", "{AB994CC4-9A55-4156-9D53-E08C67F09B25}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Scatter\ScatterChart.md = public\Plotly\Scatter\ScatterChart.md
 	EndProjectSection
 EndProject
 Global
@@ -92,6 +98,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B} = {55637037-300B-4FA5-8D14-B2CECCCD4B0D}
 		{C3F9583A-523B-4835-B6BC-CD8FFD2178E3} = {CABBED80-2F75-4DFE-8F77-7F7FDFDC8008}
+		{AB994CC4-9A55-4156-9D53-E08C67F09B25} = {C3F9583A-523B-4835-B6BC-CD8FFD2178E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

@@ -123,27 +123,41 @@ module rec Domain =
           /// or `[ prop.children (Html.text text) ]`.
           PropsCode: string
           /// Whether the member is inline.
-          IsInline: bool }
+          IsInline: bool
+          /// Whether the attribute should produce an attribute for a higher level component
+          SkipAttr: bool }
 
     module ComponentOverload =
         /// A default overload that accepts and passes a list of props.
-        let defaults name =
+        let defaults =
             [ { ParamFun = sprintf "(properties: #I%sProperty list)"
                 PropsCode = "(createObj !!properties)"
-                IsInline = true }
+                IsInline = true 
+                SkipAttr = false }
               { ParamFun = sprintf "(properties: (bool * I%sProperty list) list)"
                 PropsCode = "(properties |> Bindings.Internal.withConditionals)"
-                IsInline = false } ]
+                IsInline = false
+                SkipAttr = false } ]
 
         /// Creates an inline component overload with the specified code for params
         /// and props expression.
         let create paramFun propsCode =
             { ParamFun = paramFun
               PropsCode = propsCode
-              IsInline = true }
+              IsInline = true 
+              SkipAttr = false }
 
         /// Sets whether the overload is inline.
         let setInline isInline (overload: ComponentOverload) = { overload with IsInline = isInline }
+
+        /// Sets the overload parameter function
+        let setParamFun paramFun (overload: ComponentOverload) = { overload with ParamFun = paramFun }
+
+        /// Sets the overload props code
+        let setPropsCode propsCode (overload: ComponentOverload) = { overload with PropsCode = propsCode }
+
+        /// Sets if the component should produce an attribute for a higher level component
+        let setSkipAttr b (overload: ComponentOverload) = { overload with SkipAttr = b }
 
     type Component =
         { /// The doc lines for the component, without leading ///.
@@ -166,7 +180,7 @@ module rec Domain =
             { DocLines = []
               MethodName = methodName
               ImportSelector = None
-              Overloads = ComponentOverload.defaults methodName
+              Overloads = ComponentOverload.defaults
               Props = []
               ParentNameTree = [] }
 

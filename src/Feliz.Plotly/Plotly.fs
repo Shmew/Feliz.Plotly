@@ -13,9 +13,9 @@ open Feliz
 [<Erase>]
 type plot =
     /// Create the plotly data sets
-    static member inline data (properties: #IDataProperty list) = Interop.mkPlotAttr "data" (createObj !!properties)
+    static member inline data (properties: #IDataProperty list) : IPlotProperty = unbox (properties |> Array.ofList)
     /// Create the plotly data sets
-    static member data (properties: (bool * IDataProperty list) list) = Interop.mkPlotAttr "data" (properties |> Bindings.Internal.withConditionals)
+    static member data (properties: (bool * IDataProperty list) list)  : IPlotProperty = unbox (properties |> Bindings.Internal.withConditionalsAsArray)
     /// Create the plotly config
     static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr "config" (createObj !!properties)
     /// Create the plotly config

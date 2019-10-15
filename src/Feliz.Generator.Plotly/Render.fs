@@ -19,11 +19,18 @@ module Render =
                 | treeL -> treeL
                 |> String.concat ""
 
-            sprintf "static member %s%s %s = Interop.mk%sAttr \"%s\" %s"
-                (if compOverload.IsInline then "inline "
-                 else "") comp.MethodName
-                (baseInterface + (comp.MethodName |> String.upperFirst) |> compOverload.ParamFun) baseInterface
-                comp.MethodName compOverload.PropsCode |> List.singleton
+            if compOverload.SkipAttr then
+                sprintf "static member %s%s %s = Interop.mk%sAttr \"%s\" %s"
+                    (if compOverload.IsInline then "inline "
+                     else "") comp.MethodName
+                    (baseInterface + (comp.MethodName |> String.upperFirst) |> compOverload.ParamFun) baseInterface
+                    (baseInterface |> String.lowerFirst) compOverload.PropsCode |> List.singleton
+            else
+                sprintf "static member %s%s %s = Interop.mk%sAttr \"%s\" %s"
+                    (if compOverload.IsInline then "inline "
+                     else "") comp.MethodName
+                    (baseInterface + (comp.MethodName |> String.upperFirst) |> compOverload.ParamFun) baseInterface
+                    comp.MethodName compOverload.PropsCode |> List.singleton
 
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
@@ -248,8 +255,7 @@ module Render =
                     |> String.concat ""
                     |> fun prop ->
                         sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" prop
-                            (if comp.ParentNameTree.IsEmpty then "Plot"
-                             else comp.ParentNameTree |> String.concat "")
+                            (comp.ParentNameTree |> String.concat "")
 
                 let interopPropStr (prop: Prop) =
                     let enumAttrs =
