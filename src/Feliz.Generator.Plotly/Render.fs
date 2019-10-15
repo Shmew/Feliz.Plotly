@@ -71,7 +71,7 @@ module Render =
 
         let buildCompLine comp overload = singleComponentOverload comp overload
 
-        let regularNonExtensionPropsForComponent (comp: Component) indentLevel = /// Making HoverlabelHoverlabel for example on the buildCompLine part, needs to be ScatterHoverlabelAttr
+        let regularNonExtensionPropsForComponent (comp: Component) indentLevel =
             let propsAndRegularNonExtensionOverloads =
                 comp.Props
                 |> List.choose (fun p ->
@@ -210,7 +210,7 @@ module Render =
                 let interfacePropStr (prop: Prop) =
                     let enumAttrs =
                         if not prop.EnumOverloads.IsEmpty then
-                            prop.ParentNameTree //@ [ prop.RealPropName |> String.upperFirst ]
+                            prop.ParentNameTree
                             |> (List.rev
                                 >> List.tail
                                 >> List.rev
@@ -254,7 +254,7 @@ module Render =
                 let interopPropStr (prop: Prop) =
                     let enumAttrs =
                         if not prop.EnumOverloads.IsEmpty then
-                            prop.ParentNameTree //@ [ prop.RealPropName |> String.upperFirst ]
+                            prop.ParentNameTree
                             |> (List.rev
                                 >> List.tail
                                 >> List.rev
@@ -341,7 +341,7 @@ module Render =
               ""
           if not api.TypePostlude.IsEmpty then
               "[<Erase>]"
-              sprintf "type %s =" api.ComponentContainerTypeName
+              sprintf "type %s =" (api.ComponentContainerTypeName |> String.lowerFirst)
               for doc, cont in api.TypePostlude do
                   if doc
                      |> String.IsNullOrEmpty

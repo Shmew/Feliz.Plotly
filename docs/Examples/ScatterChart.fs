@@ -21,49 +21,50 @@ let yData =
 //      colors.rgb(49,130,189)
 //      colors.rgb(189,189,189) ]
 
-Plotly.plot [
-    Plot.data [
-        data.scatter [
-            data.scatter.line [
-                data.scatter.line.color (colors.rgb(67, 67, 67))
-                data.scatter.line.width 2.    
-            ]
-            data.scatter.x <| xData.[0]
-            data.scatter.y <| yData.[0]
-            // need to implement implicit scatter type I think
-            data.scatter.mode [ "lines" ]
-        ]
-    ]
-    Plot.layout [
-        layout.xaxis [
-            layout.xaxis.showline true
-            layout.xaxis.showgrid false
-            layout.xaxis.showticklabels true
-            layout.xaxis.linecolor <| colors.rgb(204,204,204)
-            layout.xaxis.linewidth 2
-            layout.xaxis.ticks.outside
-            layout.xaxis.tickcolor <| colors.rgb(204,204,204)
-            layout.xaxis.tickwidth 2
-            layout.xaxis.tickfont [
-                layout.xaxis.tickfont.color <| colors.rgb(82,82,82)
-                layout.xaxis.tickfont.family "Arial"
-                layout.xaxis.tickfont.size 12
+let chart () =
+    Plotly.plot [
+        plot.data [
+            data.scatter [
+                data.scatter.line [
+                    data.scatter.line.color (colors.rgb(67, 67, 67))
+                    data.scatter.line.width 2. 
+                ]
+                data.scatter.x [ yield! xData.[0] ]
+                data.scatter.y [ yield! yData.[0] ]
+                // need to implement implicit scatter type I think
+                data.scatter.mode [ "lines" ]
             ]
         ]
-        layout.yaxis [
-            layout.yaxis.showgrid false
-            layout.yaxis.zeroline false
-            layout.yaxis.showline false
-            layout.yaxis.showticklabels false
+        plot.layout [
+            layout.xaxis [
+                layout.xaxis.showline true
+                layout.xaxis.showgrid false
+                layout.xaxis.showticklabels true
+                layout.xaxis.linecolor <| colors.rgb(204,204,204)
+                layout.xaxis.linewidth 2
+                layout.xaxis.ticks.outside
+                layout.xaxis.tickcolor <| colors.rgb(204,204,204)
+                layout.xaxis.tickwidth 2
+                layout.xaxis.tickfont [
+                    layout.xaxis.tickfont.color <| colors.rgb(82,82,82)
+                    layout.xaxis.tickfont.family "Arial"
+                    layout.xaxis.tickfont.size 12
+                ]
+            ]
+            layout.yaxis [
+                layout.yaxis.showgrid false
+                layout.yaxis.zeroline false
+                layout.yaxis.showline false
+                layout.yaxis.showticklabels false
+            ]
+            layout.margin [
+                layout.margin.l 100
+                layout.margin.r 20
+                layout.margin.t 100
+            ]
+            layout.showlegend false
+            layout.height 400
+            layout.width 1300
+            layout.autosize false
         ]
-        layout.margin [
-            layout.margin.l 100
-            layout.margin.r 20
-            layout.margin.t 100
-        ]
-        layout.showlegend false
-        layout.height 400
-        layout.width 1300
-        layout.autosize false
     ]
-]

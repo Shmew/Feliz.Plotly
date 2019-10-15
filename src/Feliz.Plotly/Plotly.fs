@@ -11,7 +11,7 @@ open Fable.React
 open Feliz
 
 [<Erase>]
-type Plot =
+type plot =
     /// Create the plotly data sets
     static member inline data (properties: #IDataProperty list) = Interop.mkPlotAttr "data" (createObj !!properties)
     /// Create the plotly data sets
