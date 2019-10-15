@@ -12,8 +12,8 @@ open Feliz
 
 [<Erase>]
 type config =
-    static member inline edits (properties: #IEditsProperty list) = Interop.mkEditsAttr "edits" (createObj !!properties)
-    static member edits (properties: (bool * IEditsProperty list) list) = Interop.mkEditsAttr "edits" (properties |> Bindings.Internal.withConditionals)
+    static member inline edits (properties: #IConfigEditsProperty list) = Interop.mkConfigAttr "edits" (createObj !!properties)
+    static member edits (properties: (bool * IConfigEditsProperty list) list) = Interop.mkConfigAttr "edits" (properties |> Bindings.Internal.withConditionals)
     /// Determines whether the graphs are interactive or not. If *false*, no interactivity, for export or image generation.
     static member inline staticPlot (value: bool) = Interop.mkConfigAttr "staticPlot" value
     /// Sets base URL for the 'Edit in Chart Studio' (aka sendDataToCloud) mode bar button and the showLink/sendData on-graph link
@@ -216,5 +216,25 @@ module config =
         static member inline false' = Interop.mkConfigAttr "displayModeBar" false
 
     [<Erase>]
-    type edits = 
+    type edits =
+        /// Determines if the main anchor of the annotation is editable. The main anchor corresponds to the text (if no arrow) or the arrow (which drags the whole thing leaving the arrow length & direction unchanged).
+        static member inline annotationPosition (value: bool) = Interop.mkConfigEditsAttr "annotationPosition" value
+        /// Has only an effect for annotations with arrows. Enables changing the length and direction of the arrow.
+        static member inline annotationTail (value: bool) = Interop.mkConfigEditsAttr "annotationTail" value
+        /// Enables editing annotation text.
+        static member inline annotationText (value: bool) = Interop.mkConfigEditsAttr "annotationText" value
+        /// Enables editing axis title text.
+        static member inline axisTitleText (value: bool) = Interop.mkConfigEditsAttr "axisTitleText" value
+        /// Enables moving colorbars.
+        static member inline colorbarPosition (value: bool) = Interop.mkConfigEditsAttr "colorbarPosition" value
+        /// Enables editing colorbar title text.
+        static member inline colorbarTitleText (value: bool) = Interop.mkConfigEditsAttr "colorbarTitleText" value
+        /// Enables moving the legend.
+        static member inline legendPosition (value: bool) = Interop.mkConfigEditsAttr "legendPosition" value
+        /// Enables editing the trace name fields from the legend
+        static member inline legendText (value: bool) = Interop.mkConfigEditsAttr "legendText" value
+        /// Enables moving shapes.
+        static member inline shapePosition (value: bool) = Interop.mkConfigEditsAttr "shapePosition" value
+        /// Enables editing the global layout title.
+        static member inline titleText (value: bool) = Interop.mkConfigEditsAttr "titleText" value
 

@@ -141,10 +141,17 @@ module ParserUtils =
             | ValType.String -> [ stringStr ]
             | ValType.Component -> []
 
+        let isPrimative (vType: ValType) =
+            match vType with
+            | ValType.Enumerated
+            | ValType.EnumeratedWithCustom
+            | ValType.Component -> false
+            | _ -> true
+
 module rec ApiParser =
     open ParserUtils
 
-    let parseProp componentName propName (jVal: JsonValue): Prop =
+    let parseProp componentTree propName (jVal: JsonValue) =
         let propMethodName =
             propName
             |> trimJson
@@ -183,14 +190,16 @@ module rec ApiParser =
                     |> replaceAddSymbol
                     |> prefixUnderscoreOrNegativeToNumbers
                     |> appendApostropheToReservedKeywords
-                EnumPropOverload.create methodName v )
+                EnumPropOverload.create methodName v)
 
         let nestedComponents =
             match propName, propType with
-            | "transforms", ValType.Component -> [ parseComponent componentName propName schema?transforms ]
+            | "transforms", ValType.Component ->
+                [ parseComponent (componentTree @ [ propName ]) propName schema?transforms ]
             | "type", ValType.Component -> []
             | "role", ValType.Component -> []
-            | _, ValType.Component -> [ parseComponent componentName propName jVal ]
+            | "editType", ValType.Component -> []
+            | _, ValType.Component -> [ parseComponent (componentTree @ [ propName ]) propName jVal ]
             | _ -> []
 
         let addRegularOverloads prop = (prop, propOverloads) ||> Seq.fold (flip Prop.addRegularOverload)
@@ -201,12 +210,14 @@ module rec ApiParser =
 
         Prop.create propName propMethodName
         |> Prop.setDocs (getDocs jVal)
-        |> Prop.addParentComponentName componentName
+        |> Prop.addParentComponentTree
+            (if propType |> ValType.isPrimative then componentTree
+             else (componentTree @ [ propName ]))
         |> addRegularOverloads
         |> addEnumOverloads
         |> addComponents
 
-    let parseComponent (parentCompName: string) (componentName: string) (jVal: JsonValue) =
+    let parseComponent (parentTree: string list) (componentName: string) (jVal: JsonValue) =
         let skipComp = [ "_deprecated"; "items"; "_isSubplotObj" ]
 
         let chunkAttributes (props: (string * JsonValue) []) =
@@ -226,20 +237,20 @@ module rec ApiParser =
             jVal.Properties
             |> Array.filter (fun (name, _) -> List.contains name skipComp |> not)
             |> chunkAttributes
-            |> Array.map (fun p -> p ||> parseProp componentName)
+            |> Array.map (fun p -> p ||> parseProp parentTree)
 
         let addProps comp = (comp, props) ||> Array.fold (flip Component.addProp)
 
         Component.create componentName
         |> Component.setDocs (getDocs jVal)
-        |> Component.addParentComponentName parentCompName
+        |> Component.addParentComponentTree parentTree
         |> addProps
 
     let parseApi() =
         let components =
-            [ schema?config |> parseComponent "Plot" "config"
-              schema?layout |> parseComponent "Plot" "layout"
-              schema?traces |> parseComponent "Plot" "data" ]
+            [ schema?config |> parseComponent [ "Config" ] "config"
+              schema?layout |> parseComponent [ "Layout" ] "layout"
+              schema?traces |> parseComponent [ "Data" ] "data" ]
 
         let addAllComponents api = (api, components) ||> List.fold (flip ComponentApi.addComponent)
 
@@ -248,7 +259,19 @@ module rec ApiParser =
               "static member inline plot (props: #IPlotProperty list) : ReactElement = Bindings.Internal.createPlot (createObj !!props)" ]
 
         let typePostlude =
-            [ "When provided, causes the plot to update when the revision is incremented.",
+            [ "Create the plotly data sets",
+              "static member inline data (properties: #IDataProperty list) = Interop.mkPlotAttr \"data\" (createObj !!properties)"
+              "Create the plotly data sets",
+              "static member data (properties: (bool * IDataProperty list) list) = Interop.mkPlotAttr \"data\" (properties |> Bindings.Internal.withConditionals)"
+              "Create the plotly config",
+              "static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr \"config\" (createObj !!properties)"
+              "Create the plotly config",
+              "static member config (properties: (bool * IConfigProperty list) list) = Interop.mkPlotAttr \"config\" (properties |> Bindings.Internal.withConditionals)"
+              "Create the plotly layout",
+              "static member inline layout (properties: #ILayoutProperty list) = Interop.mkPlotAttr \"layout\" (createObj !!properties)"
+              "Create the plotly layout",
+              "static member layout (properties: (bool * ILayoutProperty list) list) = Interop.mkPlotAttr \"layout\" (properties |> Bindings.Internal.withConditionals)"
+              "When provided, causes the plot to update when the revision is incremented.",
               "static member inline revision (value: int) = Interop.mkPlotAttr \"revision\" value"
               "When provided, causes the plot to update when the revision is incremented.",
               "static member inline revision (value: float) = Interop.mkPlotAttr \"revision\" value"

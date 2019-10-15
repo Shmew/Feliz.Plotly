@@ -268,6 +268,8 @@ Target.create "Build" <| fun _ ->
                     "DependsOnNETStandard", "true"
                 ]
          }
+    restoreSolution()
+
     !! libGlob
     -- genGlob
     |> List.ofSeq

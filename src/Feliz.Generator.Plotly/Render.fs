@@ -8,22 +8,31 @@ module Render =
     let indent numLevels = String.indent 4 numLevels
 
     module GetLines =
-        /// static member inline data (properties: #IDataProperty list) = Interop.mkPlotAttr "Data" (createObj !!properties)
-
         /// Gets the code lines for the implementation of a single component overload.
         /// Does not include docs.
-        let singleComponentOverload (comp: Component) (interopFun: string) (compOverload: ComponentOverload) =
-            sprintf "static member %s%s %s = Interop.%s \"%s\" %s"
+        let singleComponentOverload (comp: Component) (compOverload: ComponentOverload) =
+            let baseInterface =
+                comp.ParentNameTree
+                |> List.filter (fun s -> s <> (comp.MethodName |> String.upperFirst))
+                |> function
+                | treeL when treeL.IsEmpty -> [ "Plot" ]
+                | treeL -> treeL
+                |> String.concat ""
+
+            sprintf "static member %s%s %s = Interop.mk%sAttr \"%s\" %s"
                 (if compOverload.IsInline then "inline "
-                 else "") comp.MethodName compOverload.ParamsCode interopFun comp.MethodName compOverload.PropsCode
-            |> List.singleton
+                 else "") comp.MethodName
+                (baseInterface + (comp.MethodName |> String.upperFirst) |> compOverload.ParamFun) baseInterface
+                comp.MethodName compOverload.PropsCode |> List.singleton
 
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
             let bodyCode =
                 match propOverload.BodyCode with
-                | ValueExprOnly expr -> sprintf "Interop.mk%sAttr \"%s\" %s" prop.ParentComponentName prop.RealPropName expr
+                | ValueExprOnly expr ->
+                    sprintf "Interop.mk%sAttr \"%s\" %s" (prop.ParentNameTree |> String.concat "") prop.RealPropName
+                        expr
                 | CustomBody code -> code
             sprintf "static member %s%s %s = %s"
                 (if propOverload.IsInline then "inline "
@@ -32,28 +41,37 @@ module Render =
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropEnumOverload (prop: Prop) (propOverload: EnumPropOverload) =
+            let baseInterface =
+                prop.ParentNameTree
+                |> List.filter (fun s -> s <> (prop.MethodName |> String.upperFirst))
+                |> function
+                | treeL when treeL.Length > 2 ->
+                    treeL
+                    |> (List.rev
+                        >> List.tail
+                        >> List.rev)
+                | treeL -> treeL
+                |> String.concat ""
+
             sprintf "static member %s%s %s= Interop.mk%sAttr \"%s\" %s"
                 (if propOverload.IsInline then "inline "
                  else "") propOverload.MethodName
                 (match propOverload.ParamsCode with
                  | Some s -> s + " "
-                 | None -> "") prop.ParentComponentName prop.RealPropName propOverload.ValueCode
+                 | None -> "") baseInterface prop.RealPropName propOverload.ValueCode
             |> emptStringToNone
             |> List.singleton
 
-        let compPropsForComponent (comp: Component) =
+        let getCompProps (comp: Component) =
             comp.Props
             |> List.choose (fun p ->
                 if p.Components.IsEmpty then None
                 else Some [ p.Components ])
             |> (List.concat >> List.concat)
 
-        let buildCompLine comp overload =
-            singleComponentOverload comp
-                ((comp.MethodName |> String.upperFirst)
-                 |> sprintf "mk%sAttr") overload
+        let buildCompLine comp overload = singleComponentOverload comp overload
 
-        let regularNonExtensionPropsForComponent (comp: Component) indentLevel =
+        let regularNonExtensionPropsForComponent (comp: Component) indentLevel = /// Making HoverlabelHoverlabel for example on the buildCompLine part, needs to be ScatterHoverlabelAttr
             let propsAndRegularNonExtensionOverloads =
                 comp.Props
                 |> List.choose (fun p ->
@@ -61,17 +79,16 @@ module Render =
                     if regularNonExtensionOverloads.IsEmpty then None
                     else Some(p, regularNonExtensionOverloads))
 
-            let compProps = compPropsForComponent comp
+            let compProps = getCompProps comp
 
             match propsAndRegularNonExtensionOverloads.IsEmpty, compProps.IsEmpty with
             | true, true -> []
-            | false, true ->
+            | true, false ->
                 [ "[<Erase>]" |> indent indentLevel
                   sprintf "type %s = " comp.MethodName |> indent indentLevel
                   for comp in compProps do
                       for overload in comp.Overloads do
-                          yield! buildCompLine comp overload |> List.map (indent (indentLevel + 1))
-                  ]
+                          yield! buildCompLine comp overload |> List.map (indent (indentLevel + 1)) ]
             | _ ->
                 let allOverloadsAreInline =
                     propsAndRegularNonExtensionOverloads
@@ -147,19 +164,14 @@ module Render =
 
         let getCompStrList comp indentLevel =
             comp.Overloads
-            |> List.collect (fun overload ->
-                singleComponentOverload comp
-                    (comp.ParentComponentName
-                     |> String.upperFirst
-                     |> sprintf "mk%sAttr") overload
-                |> List.map (indent (indentLevel + 1)))
+            |> List.collect
+                (fun overload -> singleComponentOverload comp overload |> List.map (indent (indentLevel + 1)))
 
         let rec propsForComponent indentStart (comp: Component) =
             let regularProps = regularNonExtensionPropsForComponent comp indentStart
             let regularExtensionProps = regularExtensionPropsForComponent comp indentStart
             let enumProps = enumPropsForComponent comp indentStart
-
-            let compProps = compPropsForComponent comp |> List.collect (propsForComponent (indentStart + 1))
+            let compProps = getCompProps comp |> List.collect (propsForComponent (indentStart + 1))
 
             [ if not regularProps.IsEmpty then
                 yield! regularProps
@@ -175,47 +187,110 @@ module Render =
         let rec subComponentsForComponent depth (comp: Component) =
             let actualDepth = depth + 1
 
-            let compComps = compPropsForComponent comp |> List.collect (subComponentsForComponent actualDepth)
+            let compComps = getCompProps comp |> List.collect (subComponentsForComponent actualDepth)
 
             if depth = 0 then []
             else [ comp ]
             |> List.append compComps
 
-        let private getComponentsDistinct (comps: Component list) =
+        let private getComponentsDistinctParentAndMethod (comps: Component list) =
             comps
             |> List.collect (subComponentsForComponent 0)
             |> List.append comps
-            |> List.distinctBy (fun c -> c.MethodName)
-
-        let private getComponents (comps: Component list) =
-            comps
-            |> List.collect compPropsForComponent
-            |> List.append comps
-            |> List.distinct
-
-        let buildComponentsForComponent (comps: Component list) =
-            comps
-            |> getComponents
-            |> List.collect (fun c -> c.Overloads |> List.collect (buildCompLine c))
-            |> List.map (indent 1)
+            |> List.distinctBy (fun c -> ((c.ParentNameTree |> String.concat ""), c.MethodName))
 
         let buildInterfaces (comps: Component list) =
-            let interfaceStr (comp: Component) =
-                [ sprintf "type I%sProperty = interface end" (comp.MethodName |> String.upperFirst)
-                  "" ]
+            let buildInterfaceStrs (comp: Component) =
+                let interfaceCompStr (comp: Component) =
+                    comp.ParentNameTree
+                    |> List.distinct
+                    |> String.concat ""
+                    |> sprintf "type I%sProperty = interface end"
+
+                let interfacePropStr (prop: Prop) =
+                    let enumAttrs =
+                        if not prop.EnumOverloads.IsEmpty then
+                            prop.ParentNameTree //@ [ prop.RealPropName |> String.upperFirst ]
+                            |> (List.rev
+                                >> List.tail
+                                >> List.rev
+                                >> String.concat "")
+                            |> List.singleton
+                        else
+                            []
+
+                    let regularAttrs =
+                        if not prop.RegularOverloads.IsEmpty then
+                            prop.ParentNameTree
+                            |> String.concat ""
+                            |> List.singleton
+                        else
+                            []
+
+                    enumAttrs @ regularAttrs |> List.map (sprintf "type I%sProperty = interface end")
+
+
+                [ yield! comp.Props |> List.collect interfacePropStr
+                  interfaceCompStr comp ]
+                |> List.map (indent 1)
 
             comps
-            |> getComponentsDistinct
-            |> List.collect interfaceStr
+            |> getComponentsDistinctParentAndMethod
+            |> List.collect buildInterfaceStrs
+            |> List.distinct
+            |> List.sort
 
         let buildInterops (comps: Component list) =
-            let interopStr (comp: Component) =
-                sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" (comp.MethodName |> String.upperFirst) comp.ParentComponentName
-                |> indent 1
+            let buildInteropStrs (comp: Component) =
+                let interopCompStr (comp: Component) =
+                    comp.ParentNameTree @ [ comp.MethodName |> String.upperFirst ]
+                    |> List.distinct
+                    |> String.concat ""
+                    |> fun prop ->
+                        sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" prop
+                            (if comp.ParentNameTree.IsEmpty then "Plot"
+                             else comp.ParentNameTree |> String.concat "")
+
+                let interopPropStr (prop: Prop) =
+                    let enumAttrs =
+                        if not prop.EnumOverloads.IsEmpty then
+                            prop.ParentNameTree //@ [ prop.RealPropName |> String.upperFirst ]
+                            |> (List.rev
+                                >> List.tail
+                                >> List.rev
+                                >> String.concat "")
+                            |> fun prop ->
+                                sprintf
+                                    "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
+                                    prop prop
+                            |> List.singleton
+                        else
+                            []
+
+                    let regularAttrs =
+                        if not prop.RegularOverloads.IsEmpty then
+                            prop.ParentNameTree
+                            |> String.concat ""
+                            |> fun prop ->
+                                sprintf
+                                    "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
+                                    prop prop
+                            |> List.singleton
+                        else
+                            []
+
+                    enumAttrs @ regularAttrs
+
+
+                [ yield! comp.Props |> List.collect interopPropStr
+                  interopCompStr comp ]
+                |> List.map (indent 1)
 
             comps
-            |> getComponentsDistinct
-            |> List.map interopStr
+            |> getComponentsDistinctParentAndMethod
+            |> List.collect buildInteropStrs
+            |> List.distinct
+            |> List.sort
 
     let interopDocument (api: ComponentApi) =
         [ sprintf "namespace %s" api.Namespace
@@ -240,8 +315,7 @@ module Render =
           "////////////////////////////////*)"
           ""
           sprintf "type I%sProperty = interface end" api.ComponentContainerTypeName
-          ""
-          yield! GetLines.buildInterfaces api.Components
+          yield! (GetLines.buildInterfaces api.Components |> List.distinct)
           "" ]
         |> String.concat Environment.NewLine
 

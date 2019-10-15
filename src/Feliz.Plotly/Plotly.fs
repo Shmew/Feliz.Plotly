@@ -12,6 +12,18 @@ open Feliz
 
 [<Erase>]
 type Plot =
+    /// Create the plotly data sets
+    static member inline data (properties: #IDataProperty list) = Interop.mkPlotAttr "data" (createObj !!properties)
+    /// Create the plotly data sets
+    static member data (properties: (bool * IDataProperty list) list) = Interop.mkPlotAttr "data" (properties |> Bindings.Internal.withConditionals)
+    /// Create the plotly config
+    static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr "config" (createObj !!properties)
+    /// Create the plotly config
+    static member config (properties: (bool * IConfigProperty list) list) = Interop.mkPlotAttr "config" (properties |> Bindings.Internal.withConditionals)
+    /// Create the plotly layout
+    static member inline layout (properties: #ILayoutProperty list) = Interop.mkPlotAttr "layout" (createObj !!properties)
+    /// Create the plotly layout
+    static member layout (properties: (bool * ILayoutProperty list) list) = Interop.mkPlotAttr "layout" (properties |> Bindings.Internal.withConditionals)
     /// When provided, causes the plot to update when the revision is incremented.
     static member inline revision (value: int) = Interop.mkPlotAttr "revision" value
     /// When provided, causes the plot to update when the revision is incremented.

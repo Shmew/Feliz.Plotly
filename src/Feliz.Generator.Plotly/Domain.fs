@@ -85,7 +85,7 @@ module rec Domain =
           EnumOverloads: EnumPropOverload list
           /// Components within the prop
           Components: Component list
-          ParentComponentName: string }
+          ParentNameTree: string list }
 
     module Prop =
         /// Creates a prop with the specified native API name and method name and no
@@ -97,7 +97,7 @@ module rec Domain =
               RegularOverloads = []
               EnumOverloads = []
               Components = []
-              ParentComponentName = "Plot" }
+              ParentNameTree = [] }
 
         /// Sets the prop's doc lines.
         let setDocs docLines (prop: Prop) = { prop with DocLines = docLines }
@@ -110,14 +110,15 @@ module rec Domain =
 
         let addComponent comp (prop: Prop) = { prop with Components = prop.Components @ [ comp ] }
 
-        let addParentComponentName (name: string) (prop: Prop) = { prop with ParentComponentName = (name |> String.upperFirst) }
+        let addParentComponentTree (tree: string list) (prop: Prop) =
+            { prop with ParentNameTree = prop.ParentNameTree @ (tree |> List.map String.upperFirst) }
 
         /// Indicates whether all regular prop overloads are inline.
         let allRegularOverloadsAreInline prop = prop.RegularOverloads |> List.forall (fun o -> o.IsInline)
 
     type ComponentOverload =
         { /// The code for the method parameters, e.g. `props` or `(text: string)`.
-          ParamsCode: string
+          ParamFun: string -> string
           /// The expression for the props passed to the created element, e.g. `props`
           /// or `[ prop.children (Html.text text) ]`.
           PropsCode: string
@@ -127,17 +128,17 @@ module rec Domain =
     module ComponentOverload =
         /// A default overload that accepts and passes a list of props.
         let defaults name =
-            [ { ParamsCode = sprintf "(properties: #I%sProperty list)" (name |> String.upperFirst)
+            [ { ParamFun = sprintf "(properties: #I%sProperty list)"
                 PropsCode = "(createObj !!properties)"
                 IsInline = true }
-              { ParamsCode = sprintf "(properties: (bool * I%sProperty list) list)" (name |> String.upperFirst)
+              { ParamFun = sprintf "(properties: (bool * I%sProperty list) list)"
                 PropsCode = "(properties |> Bindings.Internal.withConditionals)"
-                IsInline = false  } ]
+                IsInline = false } ]
 
         /// Creates an inline component overload with the specified code for params
         /// and props expression.
-        let create paramsCode propsCode =
-            { ParamsCode = paramsCode
+        let create paramFun propsCode =
+            { ParamFun = paramFun
               PropsCode = propsCode
               IsInline = true }
 
@@ -155,7 +156,7 @@ module rec Domain =
           Overloads: ComponentOverload list
           /// The component's props.
           Props: Prop list
-          ParentComponentName: string }
+          ParentNameTree: string list }
 
     module Component =
         /// Creates a component with the specified method name and import path, no
@@ -167,7 +168,7 @@ module rec Domain =
               ImportSelector = None
               Overloads = ComponentOverload.defaults methodName
               Props = []
-              ParentComponentName = "Plot" }
+              ParentNameTree = [] }
 
         /// Sets the import selector of the component.
         let setImportSelector selector comp = { comp with ImportSelector = Some selector }
@@ -178,17 +179,14 @@ module rec Domain =
         /// Adds the specified overload to the component.
         let addOverload overload comp = { comp with Overloads = comp.Overloads @ [ overload ] }
 
-        /// Removes the default overload that accepts a list of props.
-        let removeDefaultOverload comp =
-            { comp with Overloads = comp.Overloads |> List.except (ComponentOverload.defaults comp.MethodName) }
-
         /// Adds the specified prop to the component.
         let addProp prop comp = { comp with Props = comp.Props @ [ prop ] }
 
         /// Indicates whether all components have only inline overloads.
         let hasOnlyInlineOverloads comp = comp.Overloads |> List.forall (fun o -> o.IsInline)
 
-        let addParentComponentName (name: string) (comp: Component) = { comp with ParentComponentName = (name |> String.upperFirst) }
+        let addParentComponentTree (tree: string list) (comp: Component) =
+            { comp with ParentNameTree = comp.ParentNameTree @ (tree |> List.map String.upperFirst) }
 
     type ComponentApi =
         { /// The namespace for the API.

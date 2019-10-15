@@ -21,24 +21,19 @@ let yData =
 //      colors.rgb(49,130,189)
 //      colors.rgb(189,189,189) ]
 
-let data =
+Plotly.plot [
     Plot.data [
-        Plot.scatter [
-            data.scatter.line.color <| colors.rgb(67, 67, 67)
-            data.scatter.line.width 2.
+        data.scatter [
+            data.scatter.line [
+                data.scatter.line.color (colors.rgb(67, 67, 67))
+                data.scatter.line.width 2.    
+            ]
             data.scatter.x <| xData.[0]
             data.scatter.y <| yData.[0]
             // need to implement implicit scatter type I think
             data.scatter.mode [ "lines" ]
-            
-            data.scatter.marker
-            data.scatter.line [
-                
-            ]
         ]
     ]
-
-let layout =
     Plot.layout [
         layout.xaxis [
             layout.xaxis.showline true
@@ -64,16 +59,11 @@ let layout =
         layout.margin [
             layout.margin.l 100
             layout.margin.r 20
-            layout.margin t 100
+            layout.margin.t 100
         ]
-        layout.annotations //?
         layout.showlegend false
         layout.height 400
         layout.width 1300
         layout.autosize false
     ]
-
-Plotly.plot [
-    data
-    layout
 ]
