@@ -178,8 +178,6 @@ type layout =
     static member inline meta (value: float) = Interop.mkLayoutAttr "meta" value
     /// Assigns extra meta information that can be used in various `text` attributes. Attributes such as the graph, axis and colorbar `title.text`, annotation `text` `trace.name` in legend items, `rangeselector`, `updatemenus` and `sliders` `label` text all support `meta`. One can access `meta` fields using template strings: `%{meta[i]}` where `i` is the index of the `meta` item in question. `meta` can also be an object for example `{key: value}` which can be accessed %{meta[key]}.
     static member inline meta (values: seq<float>) = Interop.mkLayoutAttr "meta" values
-    /// Determines the mode of single click interactions. *event* is the default value and emits the `plotly_click` event. In addition this mode emits the `plotly_selected` event in drag modes *lasso* and *select*, but with no event data attached (kept for compatibility reasons). The *select* flag enables selecting single data points via click. This mode also supports persistent selections, meaning that pressing Shift while clicking, adds to / subtracts from an existing selection. *select* with `hovermode`: *x* can be confusing, consider explicitly setting `hovermode`: *closest* when using this feature. Selection events are sent accordingly as long as *event* flag is set as well. When the *event* flag is missing, `plotly_click` and `plotly_selected` events are not fired.
-    static member inline clickmode (values: seq<string>) = Interop.mkLayoutAttr "clickmode" values
     /// Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff, 0 means no looking for data). This is only a real distance for hovering on point-like objects, like scatter points. For area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside, but these objects will not supersede hover on point-like objects in case of conflict.
     static member inline hoverdistance (value: int) = Interop.mkLayoutAttr "hoverdistance" value
     /// Sets the default distance (in pixels) to look for data to draw spikelines to (-1 means no cutoff, 0 means no looking for data). As with hoverdistance, distance does not apply to area-like objects. In addition, some objects can be hovered on but will not generate spikelines, such as scatter fills.
@@ -192,49 +190,57 @@ type layout =
     static member inline metasrc (value: string) = Interop.mkLayoutAttr "metasrc" value
 
 module layout =
+    /// Determines the mode of single click interactions. *event* is the default value and emits the `plotly_click` event. In addition this mode emits the `plotly_selected` event in drag modes *lasso* and *select*, but with no event data attached (kept for compatibility reasons). The *select* flag enables selecting single data points via click. This mode also supports persistent selections, meaning that pressing Shift while clicking, adds to / subtracts from an existing selection. *select* with `hovermode`: *x* can be confusing, consider explicitly setting `hovermode`: *closest* when using this feature. Selection events are sent accordingly as long as *event* flag is set as well. When the *event* flag is missing, `plotly_click` and `plotly_selected` events are not fired.
+    [<Erase>]
+    type clickmode =
+        static member inline none = Interop.mkLayoutAttr "clickmode" "none"
+        static member inline event = Interop.mkLayoutAttr "clickmode" "event"
+        static member inline select = Interop.mkLayoutAttr "clickmode" "select"
+        static member inline selectAndEvent = Interop.mkLayoutAttr "clickmode" "select+event"
+
     /// Determines the mode of drag interactions. *select* and *lasso* apply only to scatter traces with markers or text. *orbit* and *turntable* apply only to 3D scenes.
     [<Erase>]
     type dragmode =
-        static member inline zoom = Interop.mkLayoutAttr "dragmode" "zoom"
-        static member inline pan = Interop.mkLayoutAttr "dragmode" "pan"
-        static member inline select = Interop.mkLayoutAttr "dragmode" "select"
         static member inline lasso = Interop.mkLayoutAttr "dragmode" "lasso"
         static member inline orbit = Interop.mkLayoutAttr "dragmode" "orbit"
+        static member inline pan = Interop.mkLayoutAttr "dragmode" "pan"
+        static member inline select = Interop.mkLayoutAttr "dragmode" "select"
         static member inline turntable = Interop.mkLayoutAttr "dragmode" "turntable"
-        static member inline false' = Interop.mkLayoutAttr "dragmode" false
+        static member inline zoom = Interop.mkLayoutAttr "dragmode" "zoom"
+        static member inline false' = Interop.mkLayoutAttr "dragmode" "false"
 
     /// Determines the mode of hover interactions. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation` value) for plots based on cartesian coordinates. For anything else the default value is *closest*.
     [<Erase>]
     type hovermode =
+        static member inline closest = Interop.mkLayoutAttr "hovermode" "closest"
         static member inline x = Interop.mkLayoutAttr "hovermode" "x"
         static member inline y = Interop.mkLayoutAttr "hovermode" "y"
-        static member inline closest = Interop.mkLayoutAttr "hovermode" "closest"
-        static member inline false' = Interop.mkLayoutAttr "hovermode" false
+        static member inline false' = Interop.mkLayoutAttr "hovermode" "false"
 
     /// When \"dragmode\" is set to \"select\", this limits the selection of the drag to horizontal, vertical or diagonal. \"h\" only allows horizontal selection, \"v\" only vertical, \"d\" only diagonal and \"any\" sets no limit.
     [<Erase>]
     type selectdirection =
+        static member inline any = Interop.mkLayoutAttr "selectdirection" "any"
+        static member inline d = Interop.mkLayoutAttr "selectdirection" "d"
         static member inline h = Interop.mkLayoutAttr "selectdirection" "h"
         static member inline v = Interop.mkLayoutAttr "selectdirection" "v"
-        static member inline d = Interop.mkLayoutAttr "selectdirection" "d"
-        static member inline any = Interop.mkLayoutAttr "selectdirection" "any"
 
     /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
     [<Erase>]
     type calendar =
-        static member inline gregorian = Interop.mkLayoutAttr "calendar" "gregorian"
         static member inline chinese = Interop.mkLayoutAttr "calendar" "chinese"
         static member inline coptic = Interop.mkLayoutAttr "calendar" "coptic"
         static member inline discworld = Interop.mkLayoutAttr "calendar" "discworld"
         static member inline ethiopian = Interop.mkLayoutAttr "calendar" "ethiopian"
+        static member inline gregorian = Interop.mkLayoutAttr "calendar" "gregorian"
         static member inline hebrew = Interop.mkLayoutAttr "calendar" "hebrew"
         static member inline islamic = Interop.mkLayoutAttr "calendar" "islamic"
+        static member inline jalali = Interop.mkLayoutAttr "calendar" "jalali"
         static member inline julian = Interop.mkLayoutAttr "calendar" "julian"
         static member inline mayan = Interop.mkLayoutAttr "calendar" "mayan"
         static member inline nanakshahi = Interop.mkLayoutAttr "calendar" "nanakshahi"
         static member inline nepali = Interop.mkLayoutAttr "calendar" "nepali"
         static member inline persian = Interop.mkLayoutAttr "calendar" "persian"
-        static member inline jalali = Interop.mkLayoutAttr "calendar" "jalali"
         static member inline taiwan = Interop.mkLayoutAttr "calendar" "taiwan"
         static member inline thai = Interop.mkLayoutAttr "calendar" "thai"
         static member inline ummalqura = Interop.mkLayoutAttr "calendar" "ummalqura"
@@ -289,17 +295,17 @@ module layout =
         [<Erase>]
         type xanchor =
             static member inline auto = Interop.mkLayoutTitleAttr "xanchor" "auto"
-            static member inline left = Interop.mkLayoutTitleAttr "xanchor" "left"
             static member inline center = Interop.mkLayoutTitleAttr "xanchor" "center"
+            static member inline left = Interop.mkLayoutTitleAttr "xanchor" "left"
             static member inline right = Interop.mkLayoutTitleAttr "xanchor" "right"
 
         /// Sets the title's vertical alignment with respect to its y position. *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y and *middle* means that the title's midline is at y. *auto* divides `yref` by three and calculates the `yanchor` value automatically based on the value of `y`.
         [<Erase>]
         type yanchor =
             static member inline auto = Interop.mkLayoutTitleAttr "yanchor" "auto"
-            static member inline top = Interop.mkLayoutTitleAttr "yanchor" "top"
-            static member inline middle = Interop.mkLayoutTitleAttr "yanchor" "middle"
             static member inline bottom = Interop.mkLayoutTitleAttr "yanchor" "bottom"
+            static member inline middle = Interop.mkLayoutTitleAttr "yanchor" "middle"
+            static member inline top = Interop.mkLayoutTitleAttr "yanchor" "top"
 
         [<Erase>]
         type font =
@@ -386,8 +392,8 @@ module layout =
         /// Sets the orientation of the modebar.
         [<Erase>]
         type orientation =
-            static member inline v = Interop.mkLayoutModebarAttr "orientation" "v"
             static member inline h = Interop.mkLayoutModebarAttr "orientation" "h"
+            static member inline v = Interop.mkLayoutModebarAttr "orientation" "v"
 
     [<Erase>]
     type transition =
@@ -402,42 +408,42 @@ module layout =
         /// The easing function used for the transition
         [<Erase>]
         type easing =
-            static member inline linear = Interop.mkLayoutTransitionAttr "easing" "linear"
-            static member inline quad = Interop.mkLayoutTransitionAttr "easing" "quad"
-            static member inline cubic = Interop.mkLayoutTransitionAttr "easing" "cubic"
-            static member inline sin = Interop.mkLayoutTransitionAttr "easing" "sin"
-            static member inline exp = Interop.mkLayoutTransitionAttr "easing" "exp"
-            static member inline circle = Interop.mkLayoutTransitionAttr "easing" "circle"
-            static member inline elastic = Interop.mkLayoutTransitionAttr "easing" "elastic"
             static member inline back = Interop.mkLayoutTransitionAttr "easing" "back"
-            static member inline bounce = Interop.mkLayoutTransitionAttr "easing" "bounce"
-            static member inline linearIn = Interop.mkLayoutTransitionAttr "easing" "linear-in"
-            static member inline quadIn = Interop.mkLayoutTransitionAttr "easing" "quad-in"
-            static member inline cubicIn = Interop.mkLayoutTransitionAttr "easing" "cubic-in"
-            static member inline sinIn = Interop.mkLayoutTransitionAttr "easing" "sin-in"
-            static member inline expIn = Interop.mkLayoutTransitionAttr "easing" "exp-in"
-            static member inline circleIn = Interop.mkLayoutTransitionAttr "easing" "circle-in"
-            static member inline elasticIn = Interop.mkLayoutTransitionAttr "easing" "elastic-in"
             static member inline backIn = Interop.mkLayoutTransitionAttr "easing" "back-in"
-            static member inline bounceIn = Interop.mkLayoutTransitionAttr "easing" "bounce-in"
-            static member inline linearOut = Interop.mkLayoutTransitionAttr "easing" "linear-out"
-            static member inline quadOut = Interop.mkLayoutTransitionAttr "easing" "quad-out"
-            static member inline cubicOut = Interop.mkLayoutTransitionAttr "easing" "cubic-out"
-            static member inline sinOut = Interop.mkLayoutTransitionAttr "easing" "sin-out"
-            static member inline expOut = Interop.mkLayoutTransitionAttr "easing" "exp-out"
-            static member inline circleOut = Interop.mkLayoutTransitionAttr "easing" "circle-out"
-            static member inline elasticOut = Interop.mkLayoutTransitionAttr "easing" "elastic-out"
-            static member inline backOut = Interop.mkLayoutTransitionAttr "easing" "back-out"
-            static member inline bounceOut = Interop.mkLayoutTransitionAttr "easing" "bounce-out"
-            static member inline linearInOut = Interop.mkLayoutTransitionAttr "easing" "linear-in-out"
-            static member inline quadInOut = Interop.mkLayoutTransitionAttr "easing" "quad-in-out"
-            static member inline cubicInOut = Interop.mkLayoutTransitionAttr "easing" "cubic-in-out"
-            static member inline sinInOut = Interop.mkLayoutTransitionAttr "easing" "sin-in-out"
-            static member inline expInOut = Interop.mkLayoutTransitionAttr "easing" "exp-in-out"
-            static member inline circleInOut = Interop.mkLayoutTransitionAttr "easing" "circle-in-out"
-            static member inline elasticInOut = Interop.mkLayoutTransitionAttr "easing" "elastic-in-out"
             static member inline backInOut = Interop.mkLayoutTransitionAttr "easing" "back-in-out"
+            static member inline backOut = Interop.mkLayoutTransitionAttr "easing" "back-out"
+            static member inline bounce = Interop.mkLayoutTransitionAttr "easing" "bounce"
+            static member inline bounceIn = Interop.mkLayoutTransitionAttr "easing" "bounce-in"
             static member inline bounceInOut = Interop.mkLayoutTransitionAttr "easing" "bounce-in-out"
+            static member inline bounceOut = Interop.mkLayoutTransitionAttr "easing" "bounce-out"
+            static member inline circle = Interop.mkLayoutTransitionAttr "easing" "circle"
+            static member inline circleIn = Interop.mkLayoutTransitionAttr "easing" "circle-in"
+            static member inline circleInOut = Interop.mkLayoutTransitionAttr "easing" "circle-in-out"
+            static member inline circleOut = Interop.mkLayoutTransitionAttr "easing" "circle-out"
+            static member inline cubic = Interop.mkLayoutTransitionAttr "easing" "cubic"
+            static member inline cubicIn = Interop.mkLayoutTransitionAttr "easing" "cubic-in"
+            static member inline cubicInOut = Interop.mkLayoutTransitionAttr "easing" "cubic-in-out"
+            static member inline cubicOut = Interop.mkLayoutTransitionAttr "easing" "cubic-out"
+            static member inline elastic = Interop.mkLayoutTransitionAttr "easing" "elastic"
+            static member inline elasticIn = Interop.mkLayoutTransitionAttr "easing" "elastic-in"
+            static member inline elasticInOut = Interop.mkLayoutTransitionAttr "easing" "elastic-in-out"
+            static member inline elasticOut = Interop.mkLayoutTransitionAttr "easing" "elastic-out"
+            static member inline exp = Interop.mkLayoutTransitionAttr "easing" "exp"
+            static member inline expIn = Interop.mkLayoutTransitionAttr "easing" "exp-in"
+            static member inline expInOut = Interop.mkLayoutTransitionAttr "easing" "exp-in-out"
+            static member inline expOut = Interop.mkLayoutTransitionAttr "easing" "exp-out"
+            static member inline linear = Interop.mkLayoutTransitionAttr "easing" "linear"
+            static member inline linearIn = Interop.mkLayoutTransitionAttr "easing" "linear-in"
+            static member inline linearInOut = Interop.mkLayoutTransitionAttr "easing" "linear-in-out"
+            static member inline linearOut = Interop.mkLayoutTransitionAttr "easing" "linear-out"
+            static member inline quad = Interop.mkLayoutTransitionAttr "easing" "quad"
+            static member inline quadIn = Interop.mkLayoutTransitionAttr "easing" "quad-in"
+            static member inline quadInOut = Interop.mkLayoutTransitionAttr "easing" "quad-in-out"
+            static member inline quadOut = Interop.mkLayoutTransitionAttr "easing" "quad-out"
+            static member inline sin = Interop.mkLayoutTransitionAttr "easing" "sin"
+            static member inline sinIn = Interop.mkLayoutTransitionAttr "easing" "sin-in"
+            static member inline sinInOut = Interop.mkLayoutTransitionAttr "easing" "sin-in-out"
+            static member inline sinOut = Interop.mkLayoutTransitionAttr "easing" "sin-out"
 
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make both traces and layout change.
         [<Erase>]
@@ -460,9 +466,9 @@ module layout =
         /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
         [<Erase>]
         type align =
+            static member inline auto = Interop.mkLayoutHoverlabelAttr "align" "auto"
             static member inline left = Interop.mkLayoutHoverlabelAttr "align" "left"
             static member inline right = Interop.mkLayoutHoverlabelAttr "align" "right"
-            static member inline auto = Interop.mkLayoutHoverlabelAttr "align" "auto"
 
         [<Erase>]
         type font =
@@ -495,28 +501,28 @@ module layout =
         /// Is the first row the top or the bottom? Note that columns are always enumerated from left to right.
         [<Erase>]
         type roworder =
-            static member inline topToBottom = Interop.mkLayoutGridAttr "roworder" "top to bottom"
             static member inline bottomToTop = Interop.mkLayoutGridAttr "roworder" "bottom to top"
+            static member inline topToBottom = Interop.mkLayoutGridAttr "roworder" "top to bottom"
 
         /// If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can generate defaults using consecutive axis IDs, in two ways: *coupled* gives one x axis per column and one y axis per row. *independent* uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`.
         [<Erase>]
         type pattern =
-            static member inline independent = Interop.mkLayoutGridAttr "pattern" "independent"
             static member inline coupled = Interop.mkLayoutGridAttr "pattern" "coupled"
+            static member inline independent = Interop.mkLayoutGridAttr "pattern" "independent"
 
         /// Sets where the x axis labels and titles go. *bottom* means the very bottom of the grid. *bottom plot* is the lowest plot that each x axis is used in. *top* and *top plot* are similar.
         [<Erase>]
         type xside =
-            static member inline bottom = Interop.mkLayoutGridAttr "xside" "bottom"
             static member inline bottomPlot = Interop.mkLayoutGridAttr "xside" "bottom plot"
+            static member inline bottom = Interop.mkLayoutGridAttr "xside" "bottom"
             static member inline topPlot = Interop.mkLayoutGridAttr "xside" "top plot"
             static member inline top = Interop.mkLayoutGridAttr "xside" "top"
 
         /// Sets where the y axis labels and titles go. *left* means the very left edge of the grid. *left plot* is the leftmost plot that each y axis is used in. *right* and *right plot* are similar.
         [<Erase>]
         type yside =
-            static member inline left = Interop.mkLayoutGridAttr "yside" "left"
             static member inline leftPlot = Interop.mkLayoutGridAttr "yside" "left plot"
+            static member inline left = Interop.mkLayoutGridAttr "yside" "left"
             static member inline rightPlot = Interop.mkLayoutGridAttr "yside" "right plot"
             static member inline right = Interop.mkLayoutGridAttr "yside" "right"
 
@@ -639,8 +645,6 @@ module layout =
         static member inline spikethickness (value: float) = Interop.mkLayoutXaxisAttr "spikethickness" value
         /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
         static member inline spikedash (value: string) = Interop.mkLayoutXaxisAttr "spikedash" value
-        /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
-        static member inline spikemode (values: seq<string>) = Interop.mkLayoutXaxisAttr "spikemode" values
         /// Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
         static member inline tickangle (value: int) = Interop.mkLayoutXaxisAttr "tickangle" value
         /// Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
@@ -735,76 +739,87 @@ module layout =
         [<Erase>]
         type type' =
             static member inline dash = Interop.mkLayoutXaxisAttr "type" "-"
+            static member inline category = Interop.mkLayoutXaxisAttr "type" "category"
+            static member inline date = Interop.mkLayoutXaxisAttr "type" "date"
             static member inline linear = Interop.mkLayoutXaxisAttr "type" "linear"
             static member inline log = Interop.mkLayoutXaxisAttr "type" "log"
-            static member inline date = Interop.mkLayoutXaxisAttr "type" "date"
-            static member inline category = Interop.mkLayoutXaxisAttr "type" "category"
             static member inline multicategory = Interop.mkLayoutXaxisAttr "type" "multicategory"
 
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         [<Erase>]
         type autorange =
-            static member inline true' = Interop.mkLayoutXaxisAttr "autorange" true
-            static member inline false' = Interop.mkLayoutXaxisAttr "autorange" false
             static member inline reversed = Interop.mkLayoutXaxisAttr "autorange" "reversed"
+            static member inline false' = Interop.mkLayoutXaxisAttr "autorange" "false"
+            static member inline true' = Interop.mkLayoutXaxisAttr "autorange" "true"
 
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
         [<Erase>]
         type rangemode =
+            static member inline nonnegative = Interop.mkLayoutXaxisAttr "rangemode" "nonnegative"
             static member inline normal = Interop.mkLayoutXaxisAttr "rangemode" "normal"
             static member inline tozero = Interop.mkLayoutXaxisAttr "rangemode" "tozero"
-            static member inline nonnegative = Interop.mkLayoutXaxisAttr "rangemode" "nonnegative"
 
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
         [<Erase>]
         type constrain =
-            static member inline range = Interop.mkLayoutXaxisAttr "constrain" "range"
             static member inline domain = Interop.mkLayoutXaxisAttr "constrain" "domain"
+            static member inline range = Interop.mkLayoutXaxisAttr "constrain" "range"
 
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines which direction we push the originally specified plot area. Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default), and *bottom* for y axes.
         [<Erase>]
         type constraintoward =
-            static member inline left = Interop.mkLayoutXaxisAttr "constraintoward" "left"
+            static member inline bottom = Interop.mkLayoutXaxisAttr "constraintoward" "bottom"
             static member inline center = Interop.mkLayoutXaxisAttr "constraintoward" "center"
+            static member inline left = Interop.mkLayoutXaxisAttr "constraintoward" "left"
+            static member inline middle = Interop.mkLayoutXaxisAttr "constraintoward" "middle"
             static member inline right = Interop.mkLayoutXaxisAttr "constraintoward" "right"
             static member inline top = Interop.mkLayoutXaxisAttr "constraintoward" "top"
-            static member inline middle = Interop.mkLayoutXaxisAttr "constraintoward" "middle"
-            static member inline bottom = Interop.mkLayoutXaxisAttr "constraintoward" "bottom"
 
         /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
         [<Erase>]
         type tickmode =
+            static member inline array = Interop.mkLayoutXaxisAttr "tickmode" "array"
             static member inline auto = Interop.mkLayoutXaxisAttr "tickmode" "auto"
             static member inline linear = Interop.mkLayoutXaxisAttr "tickmode" "linear"
-            static member inline array = Interop.mkLayoutXaxisAttr "tickmode" "array"
 
         /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
         [<Erase>]
         type ticks =
-            static member inline outside = Interop.mkLayoutXaxisAttr "ticks" "outside"
-            static member inline inside = Interop.mkLayoutXaxisAttr "ticks" "inside"
             static member inline none = Interop.mkLayoutXaxisAttr "ticks" ""
+            static member inline inside = Interop.mkLayoutXaxisAttr "ticks" "inside"
+            static member inline outside = Interop.mkLayoutXaxisAttr "ticks" "outside"
 
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels. Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*, ticks and grid lines are drawn half a category to the left/bottom of labels.
         [<Erase>]
         type tickson =
-            static member inline labels = Interop.mkLayoutXaxisAttr "tickson" "labels"
             static member inline boundaries = Interop.mkLayoutXaxisAttr "tickson" "boundaries"
+            static member inline labels = Interop.mkLayoutXaxisAttr "tickson" "labels"
 
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         [<Erase>]
         type mirror =
-            static member inline true' = Interop.mkLayoutXaxisAttr "mirror" true
-            static member inline ticks = Interop.mkLayoutXaxisAttr "mirror" "ticks"
-            static member inline false' = Interop.mkLayoutXaxisAttr "mirror" false
             static member inline all = Interop.mkLayoutXaxisAttr "mirror" "all"
             static member inline allticks = Interop.mkLayoutXaxisAttr "mirror" "allticks"
+            static member inline ticks = Interop.mkLayoutXaxisAttr "mirror" "ticks"
+            static member inline false' = Interop.mkLayoutXaxisAttr "mirror" "false"
+            static member inline true' = Interop.mkLayoutXaxisAttr "mirror" "true"
+
+        /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
+        [<Erase>]
+        type spikemode =
+            static member inline across = Interop.mkLayoutXaxisAttr "spikemode" "across"
+            static member inline acrossAndToaxis = Interop.mkLayoutXaxisAttr "spikemode" "across+toaxis"
+            static member inline marker = Interop.mkLayoutXaxisAttr "spikemode" "marker"
+            static member inline markerAndAcross = Interop.mkLayoutXaxisAttr "spikemode" "marker+across"
+            static member inline markerAndAcrossToaxis = Interop.mkLayoutXaxisAttr "spikemode" "marker+across+toaxis"
+            static member inline markerAndToaxis = Interop.mkLayoutXaxisAttr "spikemode" "marker+toaxis"
+            static member inline toaxis = Interop.mkLayoutXaxisAttr "spikemode" "toaxis"
 
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
         [<Erase>]
         type spikesnap =
-            static member inline data = Interop.mkLayoutXaxisAttr "spikesnap" "data"
             static member inline cursor = Interop.mkLayoutXaxisAttr "spikesnap" "cursor"
+            static member inline data = Interop.mkLayoutXaxisAttr "spikesnap" "data"
 
         /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
         [<Erase>]
@@ -833,12 +848,12 @@ module layout =
         /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         [<Erase>]
         type exponentformat =
-            static member inline none = Interop.mkLayoutXaxisAttr "exponentformat" "none"
-            static member inline e = Interop.mkLayoutXaxisAttr "exponentformat" "e"
-            static member inline E = Interop.mkLayoutXaxisAttr "exponentformat" "E"
-            static member inline power = Interop.mkLayoutXaxisAttr "exponentformat" "power"
-            static member inline SI = Interop.mkLayoutXaxisAttr "exponentformat" "SI"
             static member inline B = Interop.mkLayoutXaxisAttr "exponentformat" "B"
+            static member inline E = Interop.mkLayoutXaxisAttr "exponentformat" "E"
+            static member inline SI = Interop.mkLayoutXaxisAttr "exponentformat" "SI"
+            static member inline e = Interop.mkLayoutXaxisAttr "exponentformat" "e"
+            static member inline none = Interop.mkLayoutXaxisAttr "exponentformat" "none"
+            static member inline power = Interop.mkLayoutXaxisAttr "exponentformat" "power"
 
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         [<Erase>]
@@ -848,10 +863,10 @@ module layout =
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
         [<Erase>]
         type side =
-            static member inline top = Interop.mkLayoutXaxisAttr "side" "top"
             static member inline bottom = Interop.mkLayoutXaxisAttr "side" "bottom"
             static member inline left = Interop.mkLayoutXaxisAttr "side" "left"
             static member inline right = Interop.mkLayoutXaxisAttr "side" "right"
+            static member inline top = Interop.mkLayoutXaxisAttr "side" "top"
 
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         [<Erase>]
@@ -867,39 +882,39 @@ module layout =
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
         [<Erase>]
         type categoryorder =
-            static member inline trace = Interop.mkLayoutXaxisAttr "categoryorder" "trace"
+            static member inline array = Interop.mkLayoutXaxisAttr "categoryorder" "array"
             static member inline categoryAscending = Interop.mkLayoutXaxisAttr "categoryorder" "category ascending"
             static member inline categoryDescending = Interop.mkLayoutXaxisAttr "categoryorder" "category descending"
-            static member inline array = Interop.mkLayoutXaxisAttr "categoryorder" "array"
-            static member inline totalAscending = Interop.mkLayoutXaxisAttr "categoryorder" "total ascending"
-            static member inline totalDescending = Interop.mkLayoutXaxisAttr "categoryorder" "total descending"
-            static member inline minAscending = Interop.mkLayoutXaxisAttr "categoryorder" "min ascending"
-            static member inline minDescending = Interop.mkLayoutXaxisAttr "categoryorder" "min descending"
             static member inline maxAscending = Interop.mkLayoutXaxisAttr "categoryorder" "max ascending"
             static member inline maxDescending = Interop.mkLayoutXaxisAttr "categoryorder" "max descending"
-            static member inline sumAscending = Interop.mkLayoutXaxisAttr "categoryorder" "sum ascending"
-            static member inline sumDescending = Interop.mkLayoutXaxisAttr "categoryorder" "sum descending"
             static member inline meanAscending = Interop.mkLayoutXaxisAttr "categoryorder" "mean ascending"
             static member inline meanDescending = Interop.mkLayoutXaxisAttr "categoryorder" "mean descending"
             static member inline medianAscending = Interop.mkLayoutXaxisAttr "categoryorder" "median ascending"
             static member inline medianDescending = Interop.mkLayoutXaxisAttr "categoryorder" "median descending"
+            static member inline minAscending = Interop.mkLayoutXaxisAttr "categoryorder" "min ascending"
+            static member inline minDescending = Interop.mkLayoutXaxisAttr "categoryorder" "min descending"
+            static member inline sumAscending = Interop.mkLayoutXaxisAttr "categoryorder" "sum ascending"
+            static member inline sumDescending = Interop.mkLayoutXaxisAttr "categoryorder" "sum descending"
+            static member inline totalAscending = Interop.mkLayoutXaxisAttr "categoryorder" "total ascending"
+            static member inline totalDescending = Interop.mkLayoutXaxisAttr "categoryorder" "total descending"
+            static member inline trace = Interop.mkLayoutXaxisAttr "categoryorder" "trace"
 
         /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
         [<Erase>]
         type calendar =
-            static member inline gregorian = Interop.mkLayoutXaxisAttr "calendar" "gregorian"
             static member inline chinese = Interop.mkLayoutXaxisAttr "calendar" "chinese"
             static member inline coptic = Interop.mkLayoutXaxisAttr "calendar" "coptic"
             static member inline discworld = Interop.mkLayoutXaxisAttr "calendar" "discworld"
             static member inline ethiopian = Interop.mkLayoutXaxisAttr "calendar" "ethiopian"
+            static member inline gregorian = Interop.mkLayoutXaxisAttr "calendar" "gregorian"
             static member inline hebrew = Interop.mkLayoutXaxisAttr "calendar" "hebrew"
             static member inline islamic = Interop.mkLayoutXaxisAttr "calendar" "islamic"
+            static member inline jalali = Interop.mkLayoutXaxisAttr "calendar" "jalali"
             static member inline julian = Interop.mkLayoutXaxisAttr "calendar" "julian"
             static member inline mayan = Interop.mkLayoutXaxisAttr "calendar" "mayan"
             static member inline nanakshahi = Interop.mkLayoutXaxisAttr "calendar" "nanakshahi"
             static member inline nepali = Interop.mkLayoutXaxisAttr "calendar" "nepali"
             static member inline persian = Interop.mkLayoutXaxisAttr "calendar" "persian"
-            static member inline jalali = Interop.mkLayoutXaxisAttr "calendar" "jalali"
             static member inline taiwan = Interop.mkLayoutXaxisAttr "calendar" "taiwan"
             static member inline thai = Interop.mkLayoutXaxisAttr "calendar" "thai"
             static member inline ummalqura = Interop.mkLayoutXaxisAttr "calendar" "ummalqura"
@@ -1011,17 +1026,17 @@ module layout =
             [<Erase>]
             type xanchor =
                 static member inline auto = Interop.mkLayoutXaxisAttr "xanchor" "auto"
-                static member inline left = Interop.mkLayoutXaxisAttr "xanchor" "left"
                 static member inline center = Interop.mkLayoutXaxisAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutXaxisAttr "xanchor" "left"
                 static member inline right = Interop.mkLayoutXaxisAttr "xanchor" "right"
 
             /// Sets the range selector's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
             [<Erase>]
             type yanchor =
                 static member inline auto = Interop.mkLayoutXaxisAttr "yanchor" "auto"
-                static member inline top = Interop.mkLayoutXaxisAttr "yanchor" "top"
-                static member inline middle = Interop.mkLayoutXaxisAttr "yanchor" "middle"
                 static member inline bottom = Interop.mkLayoutXaxisAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutXaxisAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutXaxisAttr "yanchor" "top"
 
             [<Erase>]
             type font =
@@ -1137,8 +1152,6 @@ module layout =
         static member inline spikethickness (value: float) = Interop.mkLayoutYaxisAttr "spikethickness" value
         /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
         static member inline spikedash (value: string) = Interop.mkLayoutYaxisAttr "spikedash" value
-        /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
-        static member inline spikemode (values: seq<string>) = Interop.mkLayoutYaxisAttr "spikemode" values
         /// Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
         static member inline tickangle (value: int) = Interop.mkLayoutYaxisAttr "tickangle" value
         /// Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
@@ -1233,76 +1246,87 @@ module layout =
         [<Erase>]
         type type' =
             static member inline dash = Interop.mkLayoutYaxisAttr "type" "-"
+            static member inline category = Interop.mkLayoutYaxisAttr "type" "category"
+            static member inline date = Interop.mkLayoutYaxisAttr "type" "date"
             static member inline linear = Interop.mkLayoutYaxisAttr "type" "linear"
             static member inline log = Interop.mkLayoutYaxisAttr "type" "log"
-            static member inline date = Interop.mkLayoutYaxisAttr "type" "date"
-            static member inline category = Interop.mkLayoutYaxisAttr "type" "category"
             static member inline multicategory = Interop.mkLayoutYaxisAttr "type" "multicategory"
 
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         [<Erase>]
         type autorange =
-            static member inline true' = Interop.mkLayoutYaxisAttr "autorange" true
-            static member inline false' = Interop.mkLayoutYaxisAttr "autorange" false
             static member inline reversed = Interop.mkLayoutYaxisAttr "autorange" "reversed"
+            static member inline false' = Interop.mkLayoutYaxisAttr "autorange" "false"
+            static member inline true' = Interop.mkLayoutYaxisAttr "autorange" "true"
 
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
         [<Erase>]
         type rangemode =
+            static member inline nonnegative = Interop.mkLayoutYaxisAttr "rangemode" "nonnegative"
             static member inline normal = Interop.mkLayoutYaxisAttr "rangemode" "normal"
             static member inline tozero = Interop.mkLayoutYaxisAttr "rangemode" "tozero"
-            static member inline nonnegative = Interop.mkLayoutYaxisAttr "rangemode" "nonnegative"
 
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
         [<Erase>]
         type constrain =
-            static member inline range = Interop.mkLayoutYaxisAttr "constrain" "range"
             static member inline domain = Interop.mkLayoutYaxisAttr "constrain" "domain"
+            static member inline range = Interop.mkLayoutYaxisAttr "constrain" "range"
 
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines which direction we push the originally specified plot area. Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default), and *bottom* for y axes.
         [<Erase>]
         type constraintoward =
-            static member inline left = Interop.mkLayoutYaxisAttr "constraintoward" "left"
+            static member inline bottom = Interop.mkLayoutYaxisAttr "constraintoward" "bottom"
             static member inline center = Interop.mkLayoutYaxisAttr "constraintoward" "center"
+            static member inline left = Interop.mkLayoutYaxisAttr "constraintoward" "left"
+            static member inline middle = Interop.mkLayoutYaxisAttr "constraintoward" "middle"
             static member inline right = Interop.mkLayoutYaxisAttr "constraintoward" "right"
             static member inline top = Interop.mkLayoutYaxisAttr "constraintoward" "top"
-            static member inline middle = Interop.mkLayoutYaxisAttr "constraintoward" "middle"
-            static member inline bottom = Interop.mkLayoutYaxisAttr "constraintoward" "bottom"
 
         /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
         [<Erase>]
         type tickmode =
+            static member inline array = Interop.mkLayoutYaxisAttr "tickmode" "array"
             static member inline auto = Interop.mkLayoutYaxisAttr "tickmode" "auto"
             static member inline linear = Interop.mkLayoutYaxisAttr "tickmode" "linear"
-            static member inline array = Interop.mkLayoutYaxisAttr "tickmode" "array"
 
         /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
         [<Erase>]
         type ticks =
-            static member inline outside = Interop.mkLayoutYaxisAttr "ticks" "outside"
-            static member inline inside = Interop.mkLayoutYaxisAttr "ticks" "inside"
             static member inline none = Interop.mkLayoutYaxisAttr "ticks" ""
+            static member inline inside = Interop.mkLayoutYaxisAttr "ticks" "inside"
+            static member inline outside = Interop.mkLayoutYaxisAttr "ticks" "outside"
 
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels. Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*, ticks and grid lines are drawn half a category to the left/bottom of labels.
         [<Erase>]
         type tickson =
-            static member inline labels = Interop.mkLayoutYaxisAttr "tickson" "labels"
             static member inline boundaries = Interop.mkLayoutYaxisAttr "tickson" "boundaries"
+            static member inline labels = Interop.mkLayoutYaxisAttr "tickson" "labels"
 
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         [<Erase>]
         type mirror =
-            static member inline true' = Interop.mkLayoutYaxisAttr "mirror" true
-            static member inline ticks = Interop.mkLayoutYaxisAttr "mirror" "ticks"
-            static member inline false' = Interop.mkLayoutYaxisAttr "mirror" false
             static member inline all = Interop.mkLayoutYaxisAttr "mirror" "all"
             static member inline allticks = Interop.mkLayoutYaxisAttr "mirror" "allticks"
+            static member inline ticks = Interop.mkLayoutYaxisAttr "mirror" "ticks"
+            static member inline false' = Interop.mkLayoutYaxisAttr "mirror" "false"
+            static member inline true' = Interop.mkLayoutYaxisAttr "mirror" "true"
+
+        /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
+        [<Erase>]
+        type spikemode =
+            static member inline across = Interop.mkLayoutYaxisAttr "spikemode" "across"
+            static member inline acrossAndToaxis = Interop.mkLayoutYaxisAttr "spikemode" "across+toaxis"
+            static member inline marker = Interop.mkLayoutYaxisAttr "spikemode" "marker"
+            static member inline markerAndAcross = Interop.mkLayoutYaxisAttr "spikemode" "marker+across"
+            static member inline markerAndAcrossToaxis = Interop.mkLayoutYaxisAttr "spikemode" "marker+across+toaxis"
+            static member inline markerAndToaxis = Interop.mkLayoutYaxisAttr "spikemode" "marker+toaxis"
+            static member inline toaxis = Interop.mkLayoutYaxisAttr "spikemode" "toaxis"
 
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
         [<Erase>]
         type spikesnap =
-            static member inline data = Interop.mkLayoutYaxisAttr "spikesnap" "data"
             static member inline cursor = Interop.mkLayoutYaxisAttr "spikesnap" "cursor"
+            static member inline data = Interop.mkLayoutYaxisAttr "spikesnap" "data"
 
         /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
         [<Erase>]
@@ -1331,12 +1355,12 @@ module layout =
         /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         [<Erase>]
         type exponentformat =
-            static member inline none = Interop.mkLayoutYaxisAttr "exponentformat" "none"
-            static member inline e = Interop.mkLayoutYaxisAttr "exponentformat" "e"
-            static member inline E = Interop.mkLayoutYaxisAttr "exponentformat" "E"
-            static member inline power = Interop.mkLayoutYaxisAttr "exponentformat" "power"
-            static member inline SI = Interop.mkLayoutYaxisAttr "exponentformat" "SI"
             static member inline B = Interop.mkLayoutYaxisAttr "exponentformat" "B"
+            static member inline E = Interop.mkLayoutYaxisAttr "exponentformat" "E"
+            static member inline SI = Interop.mkLayoutYaxisAttr "exponentformat" "SI"
+            static member inline e = Interop.mkLayoutYaxisAttr "exponentformat" "e"
+            static member inline none = Interop.mkLayoutYaxisAttr "exponentformat" "none"
+            static member inline power = Interop.mkLayoutYaxisAttr "exponentformat" "power"
 
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         [<Erase>]
@@ -1346,10 +1370,10 @@ module layout =
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
         [<Erase>]
         type side =
-            static member inline top = Interop.mkLayoutYaxisAttr "side" "top"
             static member inline bottom = Interop.mkLayoutYaxisAttr "side" "bottom"
             static member inline left = Interop.mkLayoutYaxisAttr "side" "left"
             static member inline right = Interop.mkLayoutYaxisAttr "side" "right"
+            static member inline top = Interop.mkLayoutYaxisAttr "side" "top"
 
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         [<Erase>]
@@ -1365,39 +1389,39 @@ module layout =
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
         [<Erase>]
         type categoryorder =
-            static member inline trace = Interop.mkLayoutYaxisAttr "categoryorder" "trace"
+            static member inline array = Interop.mkLayoutYaxisAttr "categoryorder" "array"
             static member inline categoryAscending = Interop.mkLayoutYaxisAttr "categoryorder" "category ascending"
             static member inline categoryDescending = Interop.mkLayoutYaxisAttr "categoryorder" "category descending"
-            static member inline array = Interop.mkLayoutYaxisAttr "categoryorder" "array"
-            static member inline totalAscending = Interop.mkLayoutYaxisAttr "categoryorder" "total ascending"
-            static member inline totalDescending = Interop.mkLayoutYaxisAttr "categoryorder" "total descending"
-            static member inline minAscending = Interop.mkLayoutYaxisAttr "categoryorder" "min ascending"
-            static member inline minDescending = Interop.mkLayoutYaxisAttr "categoryorder" "min descending"
             static member inline maxAscending = Interop.mkLayoutYaxisAttr "categoryorder" "max ascending"
             static member inline maxDescending = Interop.mkLayoutYaxisAttr "categoryorder" "max descending"
-            static member inline sumAscending = Interop.mkLayoutYaxisAttr "categoryorder" "sum ascending"
-            static member inline sumDescending = Interop.mkLayoutYaxisAttr "categoryorder" "sum descending"
             static member inline meanAscending = Interop.mkLayoutYaxisAttr "categoryorder" "mean ascending"
             static member inline meanDescending = Interop.mkLayoutYaxisAttr "categoryorder" "mean descending"
             static member inline medianAscending = Interop.mkLayoutYaxisAttr "categoryorder" "median ascending"
             static member inline medianDescending = Interop.mkLayoutYaxisAttr "categoryorder" "median descending"
+            static member inline minAscending = Interop.mkLayoutYaxisAttr "categoryorder" "min ascending"
+            static member inline minDescending = Interop.mkLayoutYaxisAttr "categoryorder" "min descending"
+            static member inline sumAscending = Interop.mkLayoutYaxisAttr "categoryorder" "sum ascending"
+            static member inline sumDescending = Interop.mkLayoutYaxisAttr "categoryorder" "sum descending"
+            static member inline totalAscending = Interop.mkLayoutYaxisAttr "categoryorder" "total ascending"
+            static member inline totalDescending = Interop.mkLayoutYaxisAttr "categoryorder" "total descending"
+            static member inline trace = Interop.mkLayoutYaxisAttr "categoryorder" "trace"
 
         /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
         [<Erase>]
         type calendar =
-            static member inline gregorian = Interop.mkLayoutYaxisAttr "calendar" "gregorian"
             static member inline chinese = Interop.mkLayoutYaxisAttr "calendar" "chinese"
             static member inline coptic = Interop.mkLayoutYaxisAttr "calendar" "coptic"
             static member inline discworld = Interop.mkLayoutYaxisAttr "calendar" "discworld"
             static member inline ethiopian = Interop.mkLayoutYaxisAttr "calendar" "ethiopian"
+            static member inline gregorian = Interop.mkLayoutYaxisAttr "calendar" "gregorian"
             static member inline hebrew = Interop.mkLayoutYaxisAttr "calendar" "hebrew"
             static member inline islamic = Interop.mkLayoutYaxisAttr "calendar" "islamic"
+            static member inline jalali = Interop.mkLayoutYaxisAttr "calendar" "jalali"
             static member inline julian = Interop.mkLayoutYaxisAttr "calendar" "julian"
             static member inline mayan = Interop.mkLayoutYaxisAttr "calendar" "mayan"
             static member inline nanakshahi = Interop.mkLayoutYaxisAttr "calendar" "nanakshahi"
             static member inline nepali = Interop.mkLayoutYaxisAttr "calendar" "nepali"
             static member inline persian = Interop.mkLayoutYaxisAttr "calendar" "persian"
-            static member inline jalali = Interop.mkLayoutYaxisAttr "calendar" "jalali"
             static member inline taiwan = Interop.mkLayoutYaxisAttr "calendar" "taiwan"
             static member inline thai = Interop.mkLayoutYaxisAttr "calendar" "thai"
             static member inline ummalqura = Interop.mkLayoutYaxisAttr "calendar" "ummalqura"
@@ -1610,16 +1634,16 @@ module layout =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutTernaryAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutTernaryAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutTernaryAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -1648,12 +1672,12 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutTernaryAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
@@ -1820,16 +1844,16 @@ module layout =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutTernaryAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutTernaryAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutTernaryAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -1858,12 +1882,12 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutTernaryAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
@@ -2030,16 +2054,16 @@ module layout =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutTernaryAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutTernaryAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutTernaryAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -2068,12 +2092,12 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutTernaryAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
@@ -2158,16 +2182,16 @@ module layout =
         [<Erase>]
         type dragmode =
             static member inline orbit = Interop.mkLayoutSceneAttr "dragmode" "orbit"
+            static member inline pan = Interop.mkLayoutSceneAttr "dragmode" "pan"
             static member inline turntable = Interop.mkLayoutSceneAttr "dragmode" "turntable"
             static member inline zoom = Interop.mkLayoutSceneAttr "dragmode" "zoom"
-            static member inline pan = Interop.mkLayoutSceneAttr "dragmode" "pan"
-            static member inline false' = Interop.mkLayoutSceneAttr "dragmode" false
+            static member inline false' = Interop.mkLayoutSceneAttr "dragmode" "false"
 
         /// Determines the mode of hover interactions for this scene.
         [<Erase>]
         type hovermode =
             static member inline closest = Interop.mkLayoutSceneAttr "hovermode" "closest"
-            static member inline false' = Interop.mkLayoutSceneAttr "hovermode" false
+            static member inline false' = Interop.mkLayoutSceneAttr "hovermode" "false"
 
         [<Erase>]
         type camera = 
@@ -2218,8 +2242,8 @@ module layout =
                 /// Sets the projection type. The projection type could be either *perspective* or *orthographic*. The default is *perspective*.
                 [<Erase>]
                 type type' =
-                    static member inline perspective = Interop.mkLayoutSceneCameraProjectionAttr "type" "perspective"
                     static member inline orthographic = Interop.mkLayoutSceneCameraProjectionAttr "type" "orthographic"
+                    static member inline perspective = Interop.mkLayoutSceneCameraProjectionAttr "type" "perspective"
 
         [<Erase>]
         type domain =
@@ -2410,68 +2434,68 @@ module layout =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
                 static member inline categoryAscending = Interop.mkLayoutSceneAttr "categoryorder" "category ascending"
                 static member inline categoryDescending = Interop.mkLayoutSceneAttr "categoryorder" "category descending"
-                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
-                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
-                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
                 static member inline maxAscending = Interop.mkLayoutSceneAttr "categoryorder" "max ascending"
                 static member inline maxDescending = Interop.mkLayoutSceneAttr "categoryorder" "max descending"
-                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
                 static member inline meanAscending = Interop.mkLayoutSceneAttr "categoryorder" "mean ascending"
                 static member inline meanDescending = Interop.mkLayoutSceneAttr "categoryorder" "mean descending"
                 static member inline medianAscending = Interop.mkLayoutSceneAttr "categoryorder" "median ascending"
                 static member inline medianDescending = Interop.mkLayoutSceneAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
 
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             [<Erase>]
             type type' =
                 static member inline dash = Interop.mkLayoutSceneXaxisAttr "type" "-"
+                static member inline category = Interop.mkLayoutSceneXaxisAttr "type" "category"
+                static member inline date = Interop.mkLayoutSceneXaxisAttr "type" "date"
                 static member inline linear = Interop.mkLayoutSceneXaxisAttr "type" "linear"
                 static member inline log = Interop.mkLayoutSceneXaxisAttr "type" "log"
-                static member inline date = Interop.mkLayoutSceneXaxisAttr "type" "date"
-                static member inline category = Interop.mkLayoutSceneXaxisAttr "type" "category"
 
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline true' = Interop.mkLayoutSceneAttr "autorange" true
-                static member inline false' = Interop.mkLayoutSceneAttr "autorange" false
                 static member inline reversed = Interop.mkLayoutSceneAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutSceneAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutSceneAttr "autorange" "true"
 
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             [<Erase>]
             type rangemode =
+                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
                 static member inline normal = Interop.mkLayoutSceneAttr "rangemode" "normal"
                 static member inline tozero = Interop.mkLayoutSceneAttr "rangemode" "tozero"
-                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutSceneAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutSceneAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutSceneAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
 
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             [<Erase>]
             type mirror =
-                static member inline true' = Interop.mkLayoutSceneAttr "mirror" true
-                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
-                static member inline false' = Interop.mkLayoutSceneAttr "mirror" false
                 static member inline all = Interop.mkLayoutSceneAttr "mirror" "all"
                 static member inline allticks = Interop.mkLayoutSceneAttr "mirror" "allticks"
+                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
+                static member inline false' = Interop.mkLayoutSceneAttr "mirror" "false"
+                static member inline true' = Interop.mkLayoutSceneAttr "mirror" "true"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -2500,29 +2524,29 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutSceneAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
 
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
                 static member inline chinese = Interop.mkLayoutSceneAttr "calendar" "chinese"
                 static member inline coptic = Interop.mkLayoutSceneAttr "calendar" "coptic"
                 static member inline discworld = Interop.mkLayoutSceneAttr "calendar" "discworld"
                 static member inline ethiopian = Interop.mkLayoutSceneAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
                 static member inline hebrew = Interop.mkLayoutSceneAttr "calendar" "hebrew"
                 static member inline islamic = Interop.mkLayoutSceneAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
                 static member inline julian = Interop.mkLayoutSceneAttr "calendar" "julian"
                 static member inline mayan = Interop.mkLayoutSceneAttr "calendar" "mayan"
                 static member inline nanakshahi = Interop.mkLayoutSceneAttr "calendar" "nanakshahi"
                 static member inline nepali = Interop.mkLayoutSceneAttr "calendar" "nepali"
                 static member inline persian = Interop.mkLayoutSceneAttr "calendar" "persian"
-                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
                 static member inline taiwan = Interop.mkLayoutSceneAttr "calendar" "taiwan"
                 static member inline thai = Interop.mkLayoutSceneAttr "calendar" "thai"
                 static member inline ummalqura = Interop.mkLayoutSceneAttr "calendar" "ummalqura"
@@ -2710,68 +2734,68 @@ module layout =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
                 static member inline categoryAscending = Interop.mkLayoutSceneAttr "categoryorder" "category ascending"
                 static member inline categoryDescending = Interop.mkLayoutSceneAttr "categoryorder" "category descending"
-                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
-                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
-                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
                 static member inline maxAscending = Interop.mkLayoutSceneAttr "categoryorder" "max ascending"
                 static member inline maxDescending = Interop.mkLayoutSceneAttr "categoryorder" "max descending"
-                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
                 static member inline meanAscending = Interop.mkLayoutSceneAttr "categoryorder" "mean ascending"
                 static member inline meanDescending = Interop.mkLayoutSceneAttr "categoryorder" "mean descending"
                 static member inline medianAscending = Interop.mkLayoutSceneAttr "categoryorder" "median ascending"
                 static member inline medianDescending = Interop.mkLayoutSceneAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
 
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             [<Erase>]
             type type' =
                 static member inline dash = Interop.mkLayoutSceneYaxisAttr "type" "-"
+                static member inline category = Interop.mkLayoutSceneYaxisAttr "type" "category"
+                static member inline date = Interop.mkLayoutSceneYaxisAttr "type" "date"
                 static member inline linear = Interop.mkLayoutSceneYaxisAttr "type" "linear"
                 static member inline log = Interop.mkLayoutSceneYaxisAttr "type" "log"
-                static member inline date = Interop.mkLayoutSceneYaxisAttr "type" "date"
-                static member inline category = Interop.mkLayoutSceneYaxisAttr "type" "category"
 
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline true' = Interop.mkLayoutSceneAttr "autorange" true
-                static member inline false' = Interop.mkLayoutSceneAttr "autorange" false
                 static member inline reversed = Interop.mkLayoutSceneAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutSceneAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutSceneAttr "autorange" "true"
 
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             [<Erase>]
             type rangemode =
+                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
                 static member inline normal = Interop.mkLayoutSceneAttr "rangemode" "normal"
                 static member inline tozero = Interop.mkLayoutSceneAttr "rangemode" "tozero"
-                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutSceneAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutSceneAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutSceneAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
 
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             [<Erase>]
             type mirror =
-                static member inline true' = Interop.mkLayoutSceneAttr "mirror" true
-                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
-                static member inline false' = Interop.mkLayoutSceneAttr "mirror" false
                 static member inline all = Interop.mkLayoutSceneAttr "mirror" "all"
                 static member inline allticks = Interop.mkLayoutSceneAttr "mirror" "allticks"
+                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
+                static member inline false' = Interop.mkLayoutSceneAttr "mirror" "false"
+                static member inline true' = Interop.mkLayoutSceneAttr "mirror" "true"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -2800,29 +2824,29 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutSceneAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
 
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
                 static member inline chinese = Interop.mkLayoutSceneAttr "calendar" "chinese"
                 static member inline coptic = Interop.mkLayoutSceneAttr "calendar" "coptic"
                 static member inline discworld = Interop.mkLayoutSceneAttr "calendar" "discworld"
                 static member inline ethiopian = Interop.mkLayoutSceneAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
                 static member inline hebrew = Interop.mkLayoutSceneAttr "calendar" "hebrew"
                 static member inline islamic = Interop.mkLayoutSceneAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
                 static member inline julian = Interop.mkLayoutSceneAttr "calendar" "julian"
                 static member inline mayan = Interop.mkLayoutSceneAttr "calendar" "mayan"
                 static member inline nanakshahi = Interop.mkLayoutSceneAttr "calendar" "nanakshahi"
                 static member inline nepali = Interop.mkLayoutSceneAttr "calendar" "nepali"
                 static member inline persian = Interop.mkLayoutSceneAttr "calendar" "persian"
-                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
                 static member inline taiwan = Interop.mkLayoutSceneAttr "calendar" "taiwan"
                 static member inline thai = Interop.mkLayoutSceneAttr "calendar" "thai"
                 static member inline ummalqura = Interop.mkLayoutSceneAttr "calendar" "ummalqura"
@@ -3010,68 +3034,68 @@ module layout =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
                 static member inline categoryAscending = Interop.mkLayoutSceneAttr "categoryorder" "category ascending"
                 static member inline categoryDescending = Interop.mkLayoutSceneAttr "categoryorder" "category descending"
-                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
-                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
-                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
                 static member inline maxAscending = Interop.mkLayoutSceneAttr "categoryorder" "max ascending"
                 static member inline maxDescending = Interop.mkLayoutSceneAttr "categoryorder" "max descending"
-                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
                 static member inline meanAscending = Interop.mkLayoutSceneAttr "categoryorder" "mean ascending"
                 static member inline meanDescending = Interop.mkLayoutSceneAttr "categoryorder" "mean descending"
                 static member inline medianAscending = Interop.mkLayoutSceneAttr "categoryorder" "median ascending"
                 static member inline medianDescending = Interop.mkLayoutSceneAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
 
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             [<Erase>]
             type type' =
                 static member inline dash = Interop.mkLayoutSceneZaxisAttr "type" "-"
+                static member inline category = Interop.mkLayoutSceneZaxisAttr "type" "category"
+                static member inline date = Interop.mkLayoutSceneZaxisAttr "type" "date"
                 static member inline linear = Interop.mkLayoutSceneZaxisAttr "type" "linear"
                 static member inline log = Interop.mkLayoutSceneZaxisAttr "type" "log"
-                static member inline date = Interop.mkLayoutSceneZaxisAttr "type" "date"
-                static member inline category = Interop.mkLayoutSceneZaxisAttr "type" "category"
 
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline true' = Interop.mkLayoutSceneAttr "autorange" true
-                static member inline false' = Interop.mkLayoutSceneAttr "autorange" false
                 static member inline reversed = Interop.mkLayoutSceneAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutSceneAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutSceneAttr "autorange" "true"
 
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             [<Erase>]
             type rangemode =
+                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
                 static member inline normal = Interop.mkLayoutSceneAttr "rangemode" "normal"
                 static member inline tozero = Interop.mkLayoutSceneAttr "rangemode" "tozero"
-                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutSceneAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutSceneAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutSceneAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
 
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             [<Erase>]
             type mirror =
-                static member inline true' = Interop.mkLayoutSceneAttr "mirror" true
-                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
-                static member inline false' = Interop.mkLayoutSceneAttr "mirror" false
                 static member inline all = Interop.mkLayoutSceneAttr "mirror" "all"
                 static member inline allticks = Interop.mkLayoutSceneAttr "mirror" "allticks"
+                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
+                static member inline false' = Interop.mkLayoutSceneAttr "mirror" "false"
+                static member inline true' = Interop.mkLayoutSceneAttr "mirror" "true"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -3100,29 +3124,29 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutSceneAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
 
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
                 static member inline chinese = Interop.mkLayoutSceneAttr "calendar" "chinese"
                 static member inline coptic = Interop.mkLayoutSceneAttr "calendar" "coptic"
                 static member inline discworld = Interop.mkLayoutSceneAttr "calendar" "discworld"
                 static member inline ethiopian = Interop.mkLayoutSceneAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
                 static member inline hebrew = Interop.mkLayoutSceneAttr "calendar" "hebrew"
                 static member inline islamic = Interop.mkLayoutSceneAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
                 static member inline julian = Interop.mkLayoutSceneAttr "calendar" "julian"
                 static member inline mayan = Interop.mkLayoutSceneAttr "calendar" "mayan"
                 static member inline nanakshahi = Interop.mkLayoutSceneAttr "calendar" "nanakshahi"
                 static member inline nepali = Interop.mkLayoutSceneAttr "calendar" "nepali"
                 static member inline persian = Interop.mkLayoutSceneAttr "calendar" "persian"
-                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
                 static member inline taiwan = Interop.mkLayoutSceneAttr "calendar" "taiwan"
                 static member inline thai = Interop.mkLayoutSceneAttr "calendar" "thai"
                 static member inline ummalqura = Interop.mkLayoutSceneAttr "calendar" "ummalqura"
@@ -3242,19 +3266,19 @@ module layout =
         /// Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
         [<Erase>]
         type resolution =
-            static member inline _110 = Interop.mkLayoutGeoAttr "resolution" 110
-            static member inline _50 = Interop.mkLayoutGeoAttr "resolution" 50
+            static member inline _110 = Interop.mkLayoutGeoAttr "resolution" "110"
+            static member inline _50 = Interop.mkLayoutGeoAttr "resolution" "50"
 
         /// Set the scope of the map.
         [<Erase>]
         type scope =
-            static member inline world = Interop.mkLayoutGeoAttr "scope" "world"
-            static member inline usa = Interop.mkLayoutGeoAttr "scope" "usa"
-            static member inline europe = Interop.mkLayoutGeoAttr "scope" "europe"
-            static member inline asia = Interop.mkLayoutGeoAttr "scope" "asia"
             static member inline africa = Interop.mkLayoutGeoAttr "scope" "africa"
+            static member inline asia = Interop.mkLayoutGeoAttr "scope" "asia"
+            static member inline europe = Interop.mkLayoutGeoAttr "scope" "europe"
             static member inline northAmerica = Interop.mkLayoutGeoAttr "scope" "north america"
             static member inline southAmerica = Interop.mkLayoutGeoAttr "scope" "south america"
+            static member inline usa = Interop.mkLayoutGeoAttr "scope" "usa"
+            static member inline world = Interop.mkLayoutGeoAttr "scope" "world"
 
         [<Erase>]
         type domain =
@@ -3288,28 +3312,28 @@ module layout =
             /// Sets the projection type.
             [<Erase>]
             type type' =
-                static member inline equirectangular = Interop.mkLayoutGeoProjectionAttr "type" "equirectangular"
-                static member inline mercator = Interop.mkLayoutGeoProjectionAttr "type" "mercator"
-                static member inline orthographic = Interop.mkLayoutGeoProjectionAttr "type" "orthographic"
-                static member inline naturalEarth = Interop.mkLayoutGeoProjectionAttr "type" "natural earth"
-                static member inline kavrayskiy7 = Interop.mkLayoutGeoProjectionAttr "type" "kavrayskiy7"
-                static member inline miller = Interop.mkLayoutGeoProjectionAttr "type" "miller"
-                static member inline robinson = Interop.mkLayoutGeoProjectionAttr "type" "robinson"
-                static member inline eckert4 = Interop.mkLayoutGeoProjectionAttr "type" "eckert4"
+                static member inline aitoff = Interop.mkLayoutGeoProjectionAttr "type" "aitoff"
+                static member inline albersUsa = Interop.mkLayoutGeoProjectionAttr "type" "albers usa"
                 static member inline azimuthalEqualArea = Interop.mkLayoutGeoProjectionAttr "type" "azimuthal equal area"
                 static member inline azimuthalEquidistant = Interop.mkLayoutGeoProjectionAttr "type" "azimuthal equidistant"
-                static member inline conicEqualArea = Interop.mkLayoutGeoProjectionAttr "type" "conic equal area"
                 static member inline conicConformal = Interop.mkLayoutGeoProjectionAttr "type" "conic conformal"
+                static member inline conicEqualArea = Interop.mkLayoutGeoProjectionAttr "type" "conic equal area"
                 static member inline conicEquidistant = Interop.mkLayoutGeoProjectionAttr "type" "conic equidistant"
+                static member inline eckert4 = Interop.mkLayoutGeoProjectionAttr "type" "eckert4"
+                static member inline equirectangular = Interop.mkLayoutGeoProjectionAttr "type" "equirectangular"
                 static member inline gnomonic = Interop.mkLayoutGeoProjectionAttr "type" "gnomonic"
-                static member inline stereographic = Interop.mkLayoutGeoProjectionAttr "type" "stereographic"
-                static member inline mollweide = Interop.mkLayoutGeoProjectionAttr "type" "mollweide"
                 static member inline hammer = Interop.mkLayoutGeoProjectionAttr "type" "hammer"
-                static member inline transverseMercator = Interop.mkLayoutGeoProjectionAttr "type" "transverse mercator"
-                static member inline albersUsa = Interop.mkLayoutGeoProjectionAttr "type" "albers usa"
-                static member inline winkelTripel = Interop.mkLayoutGeoProjectionAttr "type" "winkel tripel"
-                static member inline aitoff = Interop.mkLayoutGeoProjectionAttr "type" "aitoff"
+                static member inline kavrayskiy7 = Interop.mkLayoutGeoProjectionAttr "type" "kavrayskiy7"
+                static member inline mercator = Interop.mkLayoutGeoProjectionAttr "type" "mercator"
+                static member inline miller = Interop.mkLayoutGeoProjectionAttr "type" "miller"
+                static member inline mollweide = Interop.mkLayoutGeoProjectionAttr "type" "mollweide"
+                static member inline naturalEarth = Interop.mkLayoutGeoProjectionAttr "type" "natural earth"
+                static member inline orthographic = Interop.mkLayoutGeoProjectionAttr "type" "orthographic"
+                static member inline robinson = Interop.mkLayoutGeoProjectionAttr "type" "robinson"
                 static member inline sinusoidal = Interop.mkLayoutGeoProjectionAttr "type" "sinusoidal"
+                static member inline stereographic = Interop.mkLayoutGeoProjectionAttr "type" "stereographic"
+                static member inline transverseMercator = Interop.mkLayoutGeoProjectionAttr "type" "transverse mercator"
+                static member inline winkelTripel = Interop.mkLayoutGeoProjectionAttr "type" "winkel tripel"
 
             [<Erase>]
             type rotation =
@@ -3676,44 +3700,44 @@ module layout =
             [<Erase>]
             type type' =
                 static member inline dash = Interop.mkLayoutPolarRadialaxisAttr "type" "-"
+                static member inline category = Interop.mkLayoutPolarRadialaxisAttr "type" "category"
+                static member inline date = Interop.mkLayoutPolarRadialaxisAttr "type" "date"
                 static member inline linear = Interop.mkLayoutPolarRadialaxisAttr "type" "linear"
                 static member inline log = Interop.mkLayoutPolarRadialaxisAttr "type" "log"
-                static member inline date = Interop.mkLayoutPolarRadialaxisAttr "type" "date"
-                static member inline category = Interop.mkLayoutPolarRadialaxisAttr "type" "category"
 
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline true' = Interop.mkLayoutPolarAttr "autorange" true
-                static member inline false' = Interop.mkLayoutPolarAttr "autorange" false
                 static member inline reversed = Interop.mkLayoutPolarAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutPolarAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutPolarAttr "autorange" "true"
 
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. If *normal*, the range is computed in relation to the extrema of the input data (same behavior as for cartesian axes).
             [<Erase>]
             type rangemode =
-                static member inline tozero = Interop.mkLayoutPolarAttr "rangemode" "tozero"
                 static member inline nonnegative = Interop.mkLayoutPolarAttr "rangemode" "nonnegative"
                 static member inline normal = Interop.mkLayoutPolarAttr "rangemode" "normal"
+                static member inline tozero = Interop.mkLayoutPolarAttr "rangemode" "tozero"
 
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline trace = Interop.mkLayoutPolarAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutPolarAttr "categoryorder" "array"
                 static member inline categoryAscending = Interop.mkLayoutPolarAttr "categoryorder" "category ascending"
                 static member inline categoryDescending = Interop.mkLayoutPolarAttr "categoryorder" "category descending"
-                static member inline array = Interop.mkLayoutPolarAttr "categoryorder" "array"
-                static member inline totalAscending = Interop.mkLayoutPolarAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutPolarAttr "categoryorder" "total descending"
-                static member inline minAscending = Interop.mkLayoutPolarAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutPolarAttr "categoryorder" "min descending"
                 static member inline maxAscending = Interop.mkLayoutPolarAttr "categoryorder" "max ascending"
                 static member inline maxDescending = Interop.mkLayoutPolarAttr "categoryorder" "max descending"
-                static member inline sumAscending = Interop.mkLayoutPolarAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutPolarAttr "categoryorder" "sum descending"
                 static member inline meanAscending = Interop.mkLayoutPolarAttr "categoryorder" "mean ascending"
                 static member inline meanDescending = Interop.mkLayoutPolarAttr "categoryorder" "mean descending"
                 static member inline medianAscending = Interop.mkLayoutPolarAttr "categoryorder" "median ascending"
                 static member inline medianDescending = Interop.mkLayoutPolarAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutPolarAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutPolarAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutPolarAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutPolarAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutPolarAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutPolarAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutPolarAttr "categoryorder" "trace"
 
             /// Determines on which side of radial axis line the tick and tick labels appear.
             [<Erase>]
@@ -3724,16 +3748,16 @@ module layout =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutPolarAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutPolarAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutPolarAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutPolarAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutPolarAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutPolarAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutPolarAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutPolarAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutPolarAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -3762,12 +3786,12 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutPolarAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutPolarAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutPolarAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutPolarAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutPolarAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutPolarAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutPolarAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutPolarAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutPolarAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutPolarAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutPolarAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
@@ -3778,19 +3802,19 @@ module layout =
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline gregorian = Interop.mkLayoutPolarAttr "calendar" "gregorian"
                 static member inline chinese = Interop.mkLayoutPolarAttr "calendar" "chinese"
                 static member inline coptic = Interop.mkLayoutPolarAttr "calendar" "coptic"
                 static member inline discworld = Interop.mkLayoutPolarAttr "calendar" "discworld"
                 static member inline ethiopian = Interop.mkLayoutPolarAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutPolarAttr "calendar" "gregorian"
                 static member inline hebrew = Interop.mkLayoutPolarAttr "calendar" "hebrew"
                 static member inline islamic = Interop.mkLayoutPolarAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutPolarAttr "calendar" "jalali"
                 static member inline julian = Interop.mkLayoutPolarAttr "calendar" "julian"
                 static member inline mayan = Interop.mkLayoutPolarAttr "calendar" "mayan"
                 static member inline nanakshahi = Interop.mkLayoutPolarAttr "calendar" "nanakshahi"
                 static member inline nepali = Interop.mkLayoutPolarAttr "calendar" "nepali"
                 static member inline persian = Interop.mkLayoutPolarAttr "calendar" "persian"
-                static member inline jalali = Interop.mkLayoutPolarAttr "calendar" "jalali"
                 static member inline taiwan = Interop.mkLayoutPolarAttr "calendar" "taiwan"
                 static member inline thai = Interop.mkLayoutPolarAttr "calendar" "thai"
                 static member inline ummalqura = Interop.mkLayoutPolarAttr "calendar" "ummalqura"
@@ -3969,54 +3993,54 @@ module layout =
             [<Erase>]
             type type' =
                 static member inline dash = Interop.mkLayoutPolarAngularaxisAttr "type" "-"
-                static member inline linear = Interop.mkLayoutPolarAngularaxisAttr "type" "linear"
                 static member inline category = Interop.mkLayoutPolarAngularaxisAttr "type" "category"
+                static member inline linear = Interop.mkLayoutPolarAngularaxisAttr "type" "linear"
 
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline trace = Interop.mkLayoutPolarAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutPolarAttr "categoryorder" "array"
                 static member inline categoryAscending = Interop.mkLayoutPolarAttr "categoryorder" "category ascending"
                 static member inline categoryDescending = Interop.mkLayoutPolarAttr "categoryorder" "category descending"
-                static member inline array = Interop.mkLayoutPolarAttr "categoryorder" "array"
-                static member inline totalAscending = Interop.mkLayoutPolarAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutPolarAttr "categoryorder" "total descending"
-                static member inline minAscending = Interop.mkLayoutPolarAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutPolarAttr "categoryorder" "min descending"
                 static member inline maxAscending = Interop.mkLayoutPolarAttr "categoryorder" "max ascending"
                 static member inline maxDescending = Interop.mkLayoutPolarAttr "categoryorder" "max descending"
-                static member inline sumAscending = Interop.mkLayoutPolarAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutPolarAttr "categoryorder" "sum descending"
                 static member inline meanAscending = Interop.mkLayoutPolarAttr "categoryorder" "mean ascending"
                 static member inline meanDescending = Interop.mkLayoutPolarAttr "categoryorder" "mean descending"
                 static member inline medianAscending = Interop.mkLayoutPolarAttr "categoryorder" "median ascending"
                 static member inline medianDescending = Interop.mkLayoutPolarAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutPolarAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutPolarAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutPolarAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutPolarAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutPolarAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutPolarAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutPolarAttr "categoryorder" "trace"
 
             /// Sets the format unit of the formatted *theta* values. Has an effect only when `angularaxis.type` is *linear*.
             [<Erase>]
             type thetaunit =
-                static member inline radians = Interop.mkLayoutPolarAttr "thetaunit" "radians"
                 static member inline degrees = Interop.mkLayoutPolarAttr "thetaunit" "degrees"
+                static member inline radians = Interop.mkLayoutPolarAttr "thetaunit" "radians"
 
             /// Sets the direction corresponding to positive angles.
             [<Erase>]
             type direction =
-                static member inline counterclockwise = Interop.mkLayoutPolarAttr "direction" "counterclockwise"
                 static member inline clockwise = Interop.mkLayoutPolarAttr "direction" "clockwise"
+                static member inline counterclockwise = Interop.mkLayoutPolarAttr "direction" "counterclockwise"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutPolarAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutPolarAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutPolarAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutPolarAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutPolarAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutPolarAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutPolarAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutPolarAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutPolarAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -4045,12 +4069,12 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutPolarAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutPolarAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutPolarAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutPolarAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutPolarAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutPolarAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutPolarAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutPolarAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutPolarAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutPolarAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutPolarAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
@@ -4156,8 +4180,6 @@ module layout =
         static member inline borderwidth (value: int) = Interop.mkLayoutLegendAttr "borderwidth" value
         /// Sets the width (in px) of the border enclosing the legend.
         static member inline borderwidth (value: float) = Interop.mkLayoutLegendAttr "borderwidth" value
-        /// Determines the order at which the legend items are displayed. If *normal*, the items are displayed top-to-bottom in the same order as the input data. If *reversed*, the items are displayed in the opposite order as *normal*. If *grouped*, the items are displayed in groups (when a trace `legendgroup` is provided). if *grouped+reversed*, the items are displayed in the opposite order as *grouped*.
-        static member inline traceorder (values: seq<string>) = Interop.mkLayoutLegendAttr "traceorder" values
         /// Sets the amount of vertical space (in px) between legend groups.
         static member inline tracegroupgap (value: int) = Interop.mkLayoutLegendAttr "tracegroupgap" value
         /// Sets the amount of vertical space (in px) between legend groups.
@@ -4191,51 +4213,59 @@ module layout =
         /// Sets the orientation of the legend.
         [<Erase>]
         type orientation =
-            static member inline v = Interop.mkLayoutLegendAttr "orientation" "v"
             static member inline h = Interop.mkLayoutLegendAttr "orientation" "h"
+            static member inline v = Interop.mkLayoutLegendAttr "orientation" "v"
+
+        /// Determines the order at which the legend items are displayed. If *normal*, the items are displayed top-to-bottom in the same order as the input data. If *reversed*, the items are displayed in the opposite order as *normal*. If *grouped*, the items are displayed in groups (when a trace `legendgroup` is provided). if *grouped+reversed*, the items are displayed in the opposite order as *grouped*.
+        [<Erase>]
+        type traceorder =
+            static member inline normal = Interop.mkLayoutLegendAttr "traceorder" "normal"
+            static member inline grouped = Interop.mkLayoutLegendAttr "traceorder" "grouped"
+            static member inline groupedAndReversed = Interop.mkLayoutLegendAttr "traceorder" "grouped+reversed"
+            static member inline reversed = Interop.mkLayoutLegendAttr "traceorder" "reversed"
 
         /// Determines if the legend items symbols scale with their corresponding *trace* attributes or remain *constant* independent of the symbol size on the graph.
         [<Erase>]
         type itemsizing =
-            static member inline trace = Interop.mkLayoutLegendAttr "itemsizing" "trace"
             static member inline constant = Interop.mkLayoutLegendAttr "itemsizing" "constant"
+            static member inline trace = Interop.mkLayoutLegendAttr "itemsizing" "trace"
 
         /// Determines the behavior on legend item click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item click interactions.
         [<Erase>]
         type itemclick =
             static member inline toggle = Interop.mkLayoutLegendAttr "itemclick" "toggle"
             static member inline toggleothers = Interop.mkLayoutLegendAttr "itemclick" "toggleothers"
-            static member inline false' = Interop.mkLayoutLegendAttr "itemclick" false
+            static member inline false' = Interop.mkLayoutLegendAttr "itemclick" "false"
 
         /// Determines the behavior on legend item double-click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item double-click interactions.
         [<Erase>]
         type itemdoubleclick =
             static member inline toggle = Interop.mkLayoutLegendAttr "itemdoubleclick" "toggle"
             static member inline toggleothers = Interop.mkLayoutLegendAttr "itemdoubleclick" "toggleothers"
-            static member inline false' = Interop.mkLayoutLegendAttr "itemdoubleclick" false
+            static member inline false' = Interop.mkLayoutLegendAttr "itemdoubleclick" "false"
 
         /// Sets the legend's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the legend. Value *auto* anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.
         [<Erase>]
         type xanchor =
             static member inline auto = Interop.mkLayoutLegendAttr "xanchor" "auto"
-            static member inline left = Interop.mkLayoutLegendAttr "xanchor" "left"
             static member inline center = Interop.mkLayoutLegendAttr "xanchor" "center"
+            static member inline left = Interop.mkLayoutLegendAttr "xanchor" "left"
             static member inline right = Interop.mkLayoutLegendAttr "xanchor" "right"
 
         /// Sets the legend's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the legend. Value *auto* anchors legends at their bottom for `y` values less than or equal to 1/3, anchors legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with respect to their middle otherwise.
         [<Erase>]
         type yanchor =
             static member inline auto = Interop.mkLayoutLegendAttr "yanchor" "auto"
-            static member inline top = Interop.mkLayoutLegendAttr "yanchor" "top"
-            static member inline middle = Interop.mkLayoutLegendAttr "yanchor" "middle"
             static member inline bottom = Interop.mkLayoutLegendAttr "yanchor" "bottom"
+            static member inline middle = Interop.mkLayoutLegendAttr "yanchor" "middle"
+            static member inline top = Interop.mkLayoutLegendAttr "yanchor" "top"
 
         /// Sets the vertical alignment of the symbols with respect to their associated text.
         [<Erase>]
         type valign =
-            static member inline top = Interop.mkLayoutLegendAttr "valign" "top"
-            static member inline middle = Interop.mkLayoutLegendAttr "valign" "middle"
             static member inline bottom = Interop.mkLayoutLegendAttr "valign" "bottom"
+            static member inline middle = Interop.mkLayoutLegendAttr "valign" "middle"
+            static member inline top = Interop.mkLayoutLegendAttr "valign" "top"
 
         [<Erase>]
         type font =
@@ -4427,30 +4457,30 @@ module layout =
             /// Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
             [<Erase>]
             type xanchor =
-                static member inline left = Interop.mkLayoutColoraxisAttr "xanchor" "left"
                 static member inline center = Interop.mkLayoutColoraxisAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutColoraxisAttr "xanchor" "left"
                 static member inline right = Interop.mkLayoutColoraxisAttr "xanchor" "right"
 
             /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
             [<Erase>]
             type yanchor =
-                static member inline top = Interop.mkLayoutColoraxisAttr "yanchor" "top"
-                static member inline middle = Interop.mkLayoutColoraxisAttr "yanchor" "middle"
                 static member inline bottom = Interop.mkLayoutColoraxisAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutColoraxisAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutColoraxisAttr "yanchor" "top"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
+                static member inline array = Interop.mkLayoutColoraxisAttr "tickmode" "array"
                 static member inline auto = Interop.mkLayoutColoraxisAttr "tickmode" "auto"
                 static member inline linear = Interop.mkLayoutColoraxisAttr "tickmode" "linear"
-                static member inline array = Interop.mkLayoutColoraxisAttr "tickmode" "array"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline outside = Interop.mkLayoutColoraxisAttr "ticks" "outside"
-                static member inline inside = Interop.mkLayoutColoraxisAttr "ticks" "inside"
                 static member inline none = Interop.mkLayoutColoraxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutColoraxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutColoraxisAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
@@ -4471,12 +4501,12 @@ module layout =
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline none = Interop.mkLayoutColoraxisAttr "exponentformat" "none"
-                static member inline e = Interop.mkLayoutColoraxisAttr "exponentformat" "e"
-                static member inline E = Interop.mkLayoutColoraxisAttr "exponentformat" "E"
-                static member inline power = Interop.mkLayoutColoraxisAttr "exponentformat" "power"
-                static member inline SI = Interop.mkLayoutColoraxisAttr "exponentformat" "SI"
                 static member inline B = Interop.mkLayoutColoraxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutColoraxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutColoraxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutColoraxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutColoraxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutColoraxisAttr "exponentformat" "power"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
@@ -4507,9 +4537,9 @@ module layout =
                 /// Determines the location of color bar's title with respect to the color bar. Note that the title's location used to be set by the now deprecated `titleside` attribute.
                 [<Erase>]
                 type side =
+                    static member inline bottom = Interop.mkLayoutColoraxisColorbarAttr "side" "bottom"
                     static member inline right = Interop.mkLayoutColoraxisColorbarAttr "side" "right"
                     static member inline top = Interop.mkLayoutColoraxisColorbarAttr "side" "top"
-                    static member inline bottom = Interop.mkLayoutColoraxisColorbarAttr "side" "bottom"
 
                 [<Erase>]
                 type font =

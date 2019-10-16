@@ -44,6 +44,7 @@ module ParserUtils =
         | DataArray
         | Enumerated
         | EnumeratedWithCustom
+        | FlagList
         | InfoArray of ValType
         | Int
         | List of ValType
@@ -76,6 +77,7 @@ module ParserUtils =
                 | ValType.Number -> [ intSeqStr; floatSeqStr ]
                 | ValType.String -> [ stringSeqStr ]
                 | ValType.Enumerated -> []
+                | ValType.FlagList -> []
                 | ValType.Any -> [ boolSeqStr; intSeqStr; floatSeqStr; stringSeqStr ]
                 | s ->
                     printfn "%s" (s.ToString())
@@ -109,7 +111,7 @@ module ParserUtils =
                 | "colorscale" -> ValType.List ValType.String
                 | "data_array" -> ValType.DataArray
                 | "enumerated" -> ValType.Enumerated
-                | "flaglist" -> ValType.List ValType.String
+                | "flaglist" -> ValType.FlagList
                 | "info_array" ->
                     if jVal?items.AsArray().Length < 1 then jVal?items
                     else jVal?items.AsArray().[0]
@@ -129,6 +131,7 @@ module ParserUtils =
             | ValType.DataArray -> [ boolSeqStr; stringSeqStr; intSeqStr; floatSeqStr ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedWithCustom -> [ stringStr ]
+            | ValType.FlagList -> []
             | ValType.InfoArray vt ->
                 match vt with
                 | ValType.List vtPrim -> vtPrim
@@ -145,6 +148,7 @@ module ParserUtils =
             match vType with
             | ValType.Enumerated
             | ValType.EnumeratedWithCustom
+            | ValType.FlagList
             | ValType.Component -> false
             | _ -> true
 
@@ -165,32 +169,45 @@ module rec ApiParser =
         let propOverloads = ValType.getOverloadStrings propType |> List.map (fun s -> s ||> RegularPropOverload.create)
 
         let enumOverloads =
-            if propType = ValType.Enumerated then
+            match propType with
+            | ValType.Enumerated ->
                 jVal?values.AsArray()
                 |> Array.map JsonValue.asString
                 |> List.ofArray
-            elif propType = ValType.EnumeratedWithCustom then
+            | ValType.EnumeratedWithCustom ->
                 jVal?values.AsArray()
                 |> Array.choose (fun j ->
                     match j |> JsonValue.asString with
                     | s when String.containsRegex s -> None
                     | s -> Some s)
                 |> List.ofArray
-            else
-                []
+            | ValType.FlagList ->
+                let flagCombinations =
+                    jVal?flags.AsArray()
+                    |> List.ofArray
+                    |> List.allCombinations
+                    |> List.map (List.map (JsonValue.asString >> trimJson) >> (String.concat "+"))
+                let extras =
+                    match jVal.TryGetProperty("extras") with
+                    | Some extras -> extras.AsArray() |> List.ofArray |> List.map (JsonValue.asString)
+                    | None -> []
+
+                extras @ flagCombinations
+            | _ -> []
+            |> List.sort
             |> List.map (fun v ->
                 let methodName =
                     v
                     |> emptStringToNone
                     |> trimJson
+                    |> replaceAddSymbol
                     |> fixMethodNameOperators propMethodName
                     |> dashStringToDash
                     |> spaceCaseTokebabCase
                     |> kebabCaseToCamelCase
-                    |> replaceAddSymbol
                     |> prefixUnderscoreOrNegativeToNumbers
                     |> appendApostropheToReservedKeywords
-                EnumPropOverload.create methodName v)
+                EnumPropOverload.create methodName (sprintf "\"%s\"" (trimJson v)))
 
         let nestedComponents =
             let skipTypes = [ "type"; "meta"; "categories"; "role"; "editType"; "animatable"; "role"; "editType" ]

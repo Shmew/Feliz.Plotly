@@ -59,6 +59,15 @@ module Utils =
             |> List.skipWhile ((=) "")
             |> List.rev
 
+        let allCombinations list =
+            let rec comb accList elemList =
+                match elemList with
+                | h::t ->
+                    let next = [h]::List.map (fun el -> h::el) accList @ accList
+                    comb next t
+                | _ -> accList
+            comb [] list
+
     module Seq =
         let trimEmptyLines list =
             list

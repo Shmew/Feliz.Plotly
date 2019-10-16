@@ -53,7 +53,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plotly", "Plotly", "{C3F9583A-523B-4835-B6BC-CD8FFD2178E3}"
 	ProjectSection(SolutionItems) = preProject
 		public\Plotly\Installation.md = public\Plotly\Installation.md
-		public\Plotly\Scatter\ScatterChart.md = public\Plotly\Scatter\ScatterChart.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7F29BFE8-02B3-4763-838C-3D8228334B4B}"

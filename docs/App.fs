@@ -210,13 +210,10 @@ let sidebar (state: State) dispatch =
             menuList [
                 menuItem "Overview" [ ]
                 menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
-                menuItem "Syntax" [ Urls.Plotly; Urls.Syntax ]
-                menuItem "Conditionals" [ Urls.Plotly; Urls.ConditionalStyling ]
                 menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
                 nestedMenuList "Examples" [
                     nestedMenuList "Standard" [
                         menuItem "Scatter Chart" [ Urls.Plotly; Urls.Charts; Urls.ScatterChart ]
-                        menuItem "Line Chart" [ Urls.Plotly; Urls.Charts; Urls.LineChart ]
                     ]
                 ]
             ]
@@ -224,7 +221,7 @@ let sidebar (state: State) dispatch =
     ]
 
 let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
-let contributing = sprintf "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/public/Contributing.md"
+let contributing = sprintf "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/master/public/Feliz/Contributing.md"
 
 let content state dispatch =
     match state.CurrentPath with
@@ -232,7 +229,6 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Overview; ] -> loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> loadMarkdown [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> loadMarkdown [ contributing ]
-    | [ Urls.Plotly; Urls.ConditionalStyling ] -> loadMarkdown [ "Plotly"; "ConditionalStyling.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.ScatterChart ] -> loadMarkdown [ "Plotly"; "Scatter"; "ScatterChart.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
@@ -241,7 +237,7 @@ let main state dispatch =
         prop.className [ Bulma.Tile; Bulma.IsAncestor ]
         prop.children [
             Html.div [
-                prop.className [ Bulma.Tile; Bulma.Is3 ]
+                prop.className [ Bulma.Tile; Bulma.Is2 ]
                 prop.children [ sidebar state dispatch ]
             ]
 
