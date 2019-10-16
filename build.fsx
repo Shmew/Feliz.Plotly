@@ -525,7 +525,7 @@ Target.create "Publish" ignore
 
 "Restore" ==> "LoadScripts"
 
-"Clean" 
+"All"
   ==> "GitPush"
   ?=> "GitTag"
 
