@@ -27,6 +27,8 @@ build/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+[Pp]ublic/*bundle.js*
+[Pp]ublic/*.md
 
 # Exclude doc generation and logs
 docsrc/content/license.md

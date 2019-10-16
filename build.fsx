@@ -188,8 +188,12 @@ Target.create "Clean" <| fun _ ->
 
 Target.create "CleanDocs" <| fun _ ->
     let clean() =
-        Shell.rm <| pub @@ "bundle.js"
-        Shell.rm <| pub @@ "bundle.js.map"
+        !! (pub @@ "*.md")
+        ++ (pub @@ "*bundle.*")
+        ++ (pub @@ "**/README.md")
+        ++ (pub @@ "**/RELEASE_NOTES.md")
+        |> List.ofSeq
+        |> List.iter Shell.rm
 
     TaskRunner.runWithRetries clean 10
 
@@ -534,7 +538,6 @@ Target.create "Publish" ignore
 "All"
  ==> "NuGet"
  ==> "NuGetPublish"
- ==> "PublishDocs"
 
 "PrepDocs" ==> "PublishDocs"
 
