@@ -277,9 +277,9 @@ module rec ApiParser =
 
         let typePostlude =
             [ "Create the plotly data sets",
-              "static member inline data (properties: #IDataProperty list) : IPlotProperty = unbox (properties |> Array.ofList)"
+              "static member inline data (properties: #IDataProperty list) = Bindings.Internal.extractData properties"
               "Create the plotly data sets",
-              "static member data (properties: (bool * IDataProperty list) list)  : IPlotProperty = unbox (properties |> Bindings.Internal.withConditionalsAsArray)"
+              "static member data (properties: (bool * IDataProperty list) list)  = Bindings.Internal.extractDataConditionals properties"
               "Create the plotly config",
               "static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr \"config\" (createObj !!properties)"
               "Create the plotly config",

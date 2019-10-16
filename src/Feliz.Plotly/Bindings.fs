@@ -14,11 +14,21 @@ module rec Bindings =
         let createPlot props: ReactElement = 
             ReactBindings.React.createElement (plotComponent, props, [])
 
-        let withConditionalsAsArray (properties: (bool * 'a list) list) =
+        let getKV value : string * obj = unbox value
+
+        let extractData (properties: #IDataProperty list) =
+            properties 
+            |> List.map (getKV >> snd) 
+            |> ResizeArray 
+            |> Interop.mkPlotAttr "data"
+
+        let extractDataConditionals (properties: (bool * 'a list) list) =
             properties
             |> List.filter fst
             |> List.collect snd
-            |> Array.ofList
+            |> unbox
+            |> extractData
+            |> Interop.mkPlotAttr "data"
 
         let withConditionals (properties: (bool * 'a list) list) =
             properties
