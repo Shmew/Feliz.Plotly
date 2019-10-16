@@ -29,7 +29,8 @@ let update msg state =
     | UrlChanged segments -> { state with CurrentPath = segments }
 
 let samples = 
-    [ "plotly-chart-scatterchart", Samples.ScatterChart.chart() ]
+    [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
+      "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart() ]
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -212,8 +213,9 @@ let sidebar (state: State) dispatch =
                 menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
                 menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
                 nestedMenuList "Examples" [
-                    nestedMenuList "Standard" [
-                        menuItem "Scatter Chart" [ Urls.Plotly; Urls.Charts; Urls.ScatterChart ]
+                    nestedMenuList "Scatter" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.Basic ]
+                        menuItem "Data Labels Hover" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsHover ]
                     ]
                 ]
             ]
@@ -229,7 +231,8 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Overview; ] -> loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> loadMarkdown [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> loadMarkdown [ contributing ]
-    | [ Urls.Plotly; Urls.Charts; Urls.ScatterChart ] -> loadMarkdown [ "Plotly"; "Scatter"; "ScatterChart.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsHover ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsHover.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

@@ -40,17 +40,17 @@ module ParserUtils =
     [<RequireQualifiedAccess>]
     type ValType =
         | Any
-        | Bool
+        | Bool of bool
         | DataArray
         | Enumerated
         | EnumeratedWithCustom
         | FlagList
         | InfoArray of ValType
-        | Int
+        | Int of bool
         | List of ValType
-        | Number
+        | Number of bool
         | NumList of ValType
-        | String
+        | String of bool
         | Component
 
     [<RequireQualifiedAccess>]
@@ -72,10 +72,10 @@ module ParserUtils =
 
             let getPrimativeOverloadSeq =
                 function
-                | ValType.Bool -> [ boolSeqStr ]
-                | ValType.Int -> [ intSeqStr ]
-                | ValType.Number -> [ intSeqStr; floatSeqStr ]
-                | ValType.String -> [ stringSeqStr ]
+                | ValType.Bool _ -> [ boolSeqStr ]
+                | ValType.Int _ -> [ intSeqStr ]
+                | ValType.Number _ -> [ intSeqStr; floatSeqStr ]
+                | ValType.String _ -> [ stringSeqStr ]
                 | ValType.Enumerated -> []
                 | ValType.FlagList -> []
                 | ValType.Any -> [ boolSeqStr; intSeqStr; floatSeqStr; stringSeqStr ]
@@ -94,21 +94,26 @@ module ParserUtils =
 
                 jVal?valType.AsString() = "enumerated" && jValHasRegex
 
+            let isArrayOk =
+                match jVal.TryGetProperty("arrayOk") with
+                | Some arrOk -> arrOk.AsBoolean()
+                | None -> false
+
             match propName, hasValType with
-            | "scaleanchor", true -> ValType.String
+            | "scaleanchor", true -> ValType.String isArrayOk
             | "overlaying", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
             | "anchor", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
-            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String
+            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String isArrayOk
             | _, true ->
                 match jVal?valType
                       |> JsonValue.asString
                       |> fun s -> s.Trim('"') with
-                | "angle" -> ValType.Number
+                | "angle" -> ValType.Number isArrayOk
                 | "any" -> ValType.Any
-                | "boolean" -> ValType.Bool
-                | "color" -> ValType.String
-                | "colorlist" -> ValType.List ValType.String
-                | "colorscale" -> ValType.List ValType.String
+                | "boolean" -> ValType.Bool isArrayOk
+                | "color" -> ValType.String isArrayOk
+                | "colorlist" -> ValType.String false |> ValType.List 
+                | "colorscale" -> ValType.String false |> ValType.List
                 | "data_array" -> ValType.DataArray
                 | "enumerated" -> ValType.Enumerated
                 | "flaglist" -> ValType.FlagList
@@ -117,17 +122,17 @@ module ParserUtils =
                     else jVal?items.AsArray().[0]
                     |> getType propName
                     |> ValType.InfoArray
-                | "integer" -> ValType.Int
-                | "number" -> ValType.Number
-                | "string" -> ValType.String
-                | "subplotid" -> ValType.List ValType.String
+                | "integer" -> ValType.Int isArrayOk
+                | "number" -> ValType.Number isArrayOk
+                | "string" -> ValType.String isArrayOk
+                | "subplotid" -> ValType.String false |> ValType.List 
                 | _ -> ValType.Any
             | _ -> ValType.Component
 
-        let getOverloadStrings =
-            function
+        let getOverloadStrings (vType: ValType) =
+            match vType with
             | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
-            | ValType.Bool -> [ boolStr ]
+            | ValType.Bool b -> [ boolStr; if b then boolSeqStr ]
             | ValType.DataArray -> [ boolSeqStr; stringSeqStr; intSeqStr; floatSeqStr ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedWithCustom -> [ stringStr ]
@@ -137,11 +142,11 @@ module ParserUtils =
                 | ValType.List vtPrim -> vtPrim
                 | _ -> vt
                 |> getPrimativeOverloadSeq
-            | ValType.Int -> [ intStr ]
+            | ValType.Int b -> [ intStr; if b then intSeqStr ]
             | ValType.List vt -> getPrimativeOverloadSeq vt
-            | ValType.Number -> [ intStr; floatStr ]
+            | ValType.Number b -> [ intStr; floatStr; if b then yield! [intSeqStr; floatSeqStr] ]
             | ValType.NumList vt -> getPrimativeOverloadSeq vt
-            | ValType.String -> [ stringStr ]
+            | ValType.String b -> [ stringStr; if b then stringSeqStr ]
             | ValType.Component -> []
 
         let isPrimative (vType: ValType) =
