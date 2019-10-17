@@ -6,6 +6,8 @@
   <ItemGroup>
     <Compile Include="Plotly\Examples\Scatter\Basic.fs" />
     <Compile Include="Plotly\Examples\Scatter\DataLabelsHover.fs" />
+    <Compile Include="Plotly\Examples\Scatter\DataLabelsOnPlot.fs" />
+    <Compile Include="Plotly\Examples\Scatter\ColorDimension.fs" />
     <Compile Include="..\paket-files\docs\Zaid-Ajaj\Feliz\Feliz.Markdown\Markdown.fs">
       <Paket>True</Paket>
       <Link>Feliz.Markdown/Markdown.fs</Link>

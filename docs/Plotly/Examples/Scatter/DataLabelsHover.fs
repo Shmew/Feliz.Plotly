@@ -3,7 +3,6 @@ module Samples.Scatter.DataLabelsHover
 
 open Feliz
 open Feliz.Plotly
-open Fable.Core.Experimental
 
 let chart () =
     Plotly.plot [

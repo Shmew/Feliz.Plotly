@@ -8,7 +8,6 @@ open Fable.SimpleHttp
 open Feliz.Router
 open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Core.Experimental
 open Zanaptak.TypedCssClasses
 
 type Bulma = CssClasses<"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css", Naming.PascalCase>
@@ -30,7 +29,9 @@ let update msg state =
 
 let samples = 
     [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
-      "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart() ]
+      "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
+      "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
+      "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart() ]
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -216,6 +217,8 @@ let sidebar (state: State) dispatch =
                     nestedMenuList "Scatter" [
                         menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.Basic ]
                         menuItem "Data Labels Hover" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsHover ]
+                        menuItem "Data Labels On Plot" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsOnPlot ]
+                        menuItem "Color Dimension" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.ColorDimension ]
                     ]
                 ]
             ]
@@ -233,6 +236,8 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Contributing ] -> loadMarkdown [ contributing ]
     | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "Basic.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsHover ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsHover.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsOnPlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsOnPlot.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.ColorDimension ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "ColorDimension.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

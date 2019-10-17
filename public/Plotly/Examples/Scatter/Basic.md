@@ -8,7 +8,6 @@ module Samples.Scatter.Basic
 
 open Feliz
 open Feliz.Plotly
-open Fable.Core.Experimental
 
 let chart () =
     Plotly.plot [
