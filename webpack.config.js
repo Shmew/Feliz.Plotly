@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var CONFIG = {
@@ -31,13 +30,6 @@ var CONFIG = {
 var isProduction = !process.argv.find(v => v.indexOf('webpack-dev-server') !== -1);
 console.log('Bundling for ' + (isProduction ? 'production' : 'development') + '...');
 
-var commonPlugins = [
-    new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: resolve(CONFIG.indexHtmlTemplate)
-    })
-];
-
 module.exports = {
     entry: resolve(CONFIG.fsharpEntry),
     output: {
@@ -45,22 +37,10 @@ module.exports = {
         filename: 'bundle.js',
     },
     mode: isProduction ? 'production' : 'development',
-    devtool: isProduction ? 'source-map' : 'eval-source-map',
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    },
+    devtool: isProduction ? false : 'eval-source-map',
     plugins: isProduction ?
-        commonPlugins.concat([
-            new CopyWebpackPlugin([{ from: resolve(CONFIG.assetsDir) }])
-        ])
-        : commonPlugins.concat([
-            new webpack.HotModuleReplacementPlugin()
-        ]),
-    resolve: {
-        symlinks: false
-    },
+        [ new CopyWebpackPlugin([{ from: resolve(CONFIG.assetsDir) }]) ]
+        : [new webpack.HotModuleReplacementPlugin() ],
     devServer: {
         contentBase: CONFIG.outputDir,
         hot: true,
