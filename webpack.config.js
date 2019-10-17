@@ -1,14 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var CONFIG = {
-    // The tags to include the generated JS and CSS will be automatically injected in the HTML template
-    // See https://github.com/jantimon/html-webpack-plugin
-    indexHtmlTemplate: './public/index.html',
     fsharpEntry: 'docs/App.fsproj',
     outputDir: 'public',
-    assetsDir: 'public/Plotly',
     devServerPort: 8080,
     // Use babel-preset-env to generate JS compatible with most-used browsers.
     // More info at https://babeljs.io/docs/en/next/babel-preset-env.html
@@ -38,9 +33,7 @@ module.exports = {
     },
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? false : 'eval-source-map',
-    plugins: isProduction ?
-        [ new CopyWebpackPlugin([{ from: resolve(CONFIG.assetsDir) }]) ]
-        : [new webpack.HotModuleReplacementPlugin() ],
+    plugins: isProduction ? [] : [ new webpack.HotModuleReplacementPlugin() ],
     devServer: {
         contentBase: CONFIG.outputDir,
         hot: true,
