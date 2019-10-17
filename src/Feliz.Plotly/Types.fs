@@ -4,7 +4,11 @@ namespace Feliz.Plotly
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
 
-type IPlotProperty = interface end
+open System.ComponentModel
+
+[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]
+module Types =
+    type IPlotProperty = interface end
     type IConfigEditsProperty = interface end
     type IConfigProperty = interface end
     type IDataAggregateProperty = interface end

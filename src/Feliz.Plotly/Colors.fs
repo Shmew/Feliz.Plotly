@@ -7,16 +7,16 @@ module colors =
     let hsl (hue: float, saturation: float, lightness: float) = 
         sprintf "hsl(%s,%s%c,%s%c)" (unbox<string> hue) (unbox<string> saturation) '%' (unbox<string> lightness) '%'
 
-type ColorScale =
-    /// Scales colors in order equally
-    | Sequential
-    /// Scales colors in reverse order equally
-    | SequentialMinus
-    /// Scales color around divergence point
-    | Diverging of float
-
 module ColorScales =
     open Feliz.colors
+
+    type ColorScale =
+        /// Scales colors in order equally
+        | Sequential
+        /// Scales colors in reverse order equally
+        | SequentialMinus
+        /// Scales color around divergence point
+        | Diverging of float
 
     /// TODO
     let custom (scale: ColorScale) (colors: string list) =

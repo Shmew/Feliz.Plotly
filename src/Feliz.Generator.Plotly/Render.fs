@@ -347,9 +347,7 @@ module Render =
           "/// THIS FILE IS AUTO-GENERATED //"
           "////////////////////////////////*)"
           ""
-          "open System.ComponentModel"
-          ""
-          "[<RequireQualifiedAccess; EditorBrowsable(EditorBrowsableState.Never)>]"
+          "[<RequireQualifiedAccess>]"
           "module Interop ="
           sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
               api.ComponentContainerTypeName api.ComponentContainerTypeName |> indent 1
@@ -364,7 +362,11 @@ module Render =
           "/// THIS FILE IS AUTO-GENERATED //"
           "////////////////////////////////*)"
           ""
-          sprintf "type I%sProperty = interface end" api.ComponentContainerTypeName
+          "open System.ComponentModel"
+          ""
+          "[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]"
+          "module Types ="
+          sprintf "type I%sProperty = interface end" api.ComponentContainerTypeName |> indent 1
           yield! (GetLines.buildInterfaces api.Components |> List.distinct)
           "" ]
         |> String.concat Environment.NewLine
