@@ -37,126 +37,6 @@ module ParserUtils =
         |> List.map (fun s -> s.Trim().Trim('"'))
         |> List.filter (fun s -> s <> "")
 
-    [<RequireQualifiedAccess>]
-    type ValType =
-        | Any
-        | Bool of bool
-        | DataArray
-        | Enumerated
-        | EnumeratedWithCustom
-        | FlagList
-        | InfoArray of ValType
-        | Int of bool
-        | List of ValType
-        | Number of bool
-        | NumList of ValType
-        | String of bool
-        | Component
-
-    [<RequireQualifiedAccess>]
-    type PropType =
-        | Val of ValType
-        | Component of PropType list
-
-    module ValType =
-        [<AutoOpen>]
-        module private Impl =
-            let boolStr = "(value: bool)", "value"
-            let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
-            let stringStr = "(value: string)", "value"
-            let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
-            let intStr = "(value: int)", "value"
-            let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
-            let floatStr = "(value: float)", "value"
-            let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
-
-            let getPrimativeOverloadSeq =
-                function
-                | ValType.Bool _ -> [ boolSeqStr ]
-                | ValType.Int _ -> [ intSeqStr ]
-                | ValType.Number _ -> [ intSeqStr; floatSeqStr ]
-                | ValType.String _ -> [ stringSeqStr ]
-                | ValType.Enumerated -> []
-                | ValType.FlagList -> []
-                | ValType.Any -> [ boolSeqStr; intSeqStr; floatSeqStr; stringSeqStr ]
-                | s ->
-                    printfn "%s" (s.ToString())
-                    [ "(value: TODO)", "value" ]
-
-        let rec getType propName (jVal: JsonValue) =
-            let hasValType = jVal.TryGetProperty("valType").IsSome
-
-            let isEnumeratedWithCustom() =
-                let jValHasRegex =
-                    jVal?values.AsArray()
-                    |> Array.filter (fun s -> s.AsString() |> String.containsRegex)
-                    |> Array.length > 1
-
-                jVal?valType.AsString() = "enumerated" && jValHasRegex
-
-            let isArrayOk =
-                match jVal.TryGetProperty("arrayOk") with
-                | Some arrOk -> arrOk.AsBoolean()
-                | None -> false
-
-            match propName, hasValType with
-            | "scaleanchor", true -> ValType.String isArrayOk
-            | "overlaying", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
-            | "anchor", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
-            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String isArrayOk
-            | _, true ->
-                match jVal?valType
-                      |> JsonValue.asString
-                      |> fun s -> s.Trim('"') with
-                | "angle" -> ValType.Number isArrayOk
-                | "any" -> ValType.Any
-                | "boolean" -> ValType.Bool isArrayOk
-                | "color" -> ValType.String isArrayOk
-                | "colorlist" -> ValType.String false |> ValType.List 
-                | "colorscale" -> ValType.String false |> ValType.List
-                | "data_array" -> ValType.DataArray
-                | "enumerated" -> ValType.Enumerated
-                | "flaglist" -> ValType.FlagList
-                | "info_array" ->
-                    if jVal?items.AsArray().Length < 1 then jVal?items
-                    else jVal?items.AsArray().[0]
-                    |> getType propName
-                    |> ValType.InfoArray
-                | "integer" -> ValType.Int isArrayOk
-                | "number" -> ValType.Number isArrayOk
-                | "string" -> ValType.String isArrayOk
-                | "subplotid" -> ValType.String false |> ValType.List 
-                | _ -> ValType.Any
-            | _ -> ValType.Component
-
-        let getOverloadStrings (vType: ValType) =
-            match vType with
-            | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
-            | ValType.Bool b -> [ boolStr; if b then boolSeqStr ]
-            | ValType.DataArray -> [ boolSeqStr; stringSeqStr; intSeqStr; floatSeqStr ]
-            | ValType.Enumerated -> []
-            | ValType.EnumeratedWithCustom -> [ stringStr ]
-            | ValType.FlagList -> []
-            | ValType.InfoArray vt ->
-                match vt with
-                | ValType.List vtPrim -> vtPrim
-                | _ -> vt
-                |> getPrimativeOverloadSeq
-            | ValType.Int b -> [ intStr; if b then intSeqStr ]
-            | ValType.List vt -> getPrimativeOverloadSeq vt
-            | ValType.Number b -> [ intStr; floatStr; if b then yield! [intSeqStr; floatSeqStr] ]
-            | ValType.NumList vt -> getPrimativeOverloadSeq vt
-            | ValType.String b -> [ stringStr; if b then stringSeqStr ]
-            | ValType.Component -> []
-
-        let isPrimative (vType: ValType) =
-            match vType with
-            | ValType.Enumerated
-            | ValType.EnumeratedWithCustom
-            | ValType.FlagList
-            | ValType.Component -> false
-            | _ -> true
-
 module rec ApiParser =
     open ParserUtils
 
@@ -175,10 +55,12 @@ module rec ApiParser =
 
         let enumOverloads =
             match propType with
-            | ValType.Enumerated ->
-                jVal?values.AsArray()
-                |> Array.map JsonValue.asString
-                |> List.ofArray
+            | ValType.Enumerated
+            | ValType.EnumeratedArray
+                ->
+                    jVal?values.AsArray()
+                    |> Array.map JsonValue.asString
+                    |> List.ofArray
             | ValType.EnumeratedWithCustom ->
                 jVal?values.AsArray()
                 |> Array.choose (fun j ->
@@ -229,7 +111,7 @@ module rec ApiParser =
 
         let addComponents prop = (prop, nestedComponents) ||> Seq.fold (flip Prop.addComponent)
 
-        Prop.create propName propMethodName
+        Prop.create propType propName propMethodName
         |> Prop.setDocs (getDocs jVal)
         |> Prop.addParentComponentTree
             (if propType |> ValType.isPrimative then componentTree
@@ -272,7 +154,7 @@ module rec ApiParser =
                 let traceType = t.AsString()
                 let propsCodes =
                     [ sprintf "(createObj !!(properties @ [ Interop.mkData%sAttr \"type\" \"%s\" ]))" (traceType |> String.upperFirst) componentName
-                      sprintf "(properties @ [ (true, [ Interop.mkData%sAttr \"type\" \"%s\" ]) ] |> Bindings.Internal.withConditionals)" (traceType |> String.upperFirst) componentName ]
+                      sprintf "(properties @ [ (true, [ Interop.mkData%sAttr \"type\" \"%s\" ]) ] |> Bindings.withConditionals)" (traceType |> String.upperFirst) componentName ]
 
                 let paramFuns =
                     [ sprintf "(properties: I%sProperty list)";
@@ -295,21 +177,21 @@ module rec ApiParser =
 
         let bindings =
             [ "Create a Plotly plot component.",
-              "static member inline plot (props: #IPlotProperty list) : ReactElement = Bindings.Internal.createPlot (createObj !!props)" ]
+              "static member inline plot (props: #IPlotProperty list) : ReactElement = Bindings.createPlot (createObj !!props)" ]
 
         let typePostlude =
             [ "Create the plotly data sets",
-              "static member inline data (properties: #IDataProperty list) = Bindings.Internal.extractData properties"
+              "static member inline data (properties: #IDataProperty list) = Bindings.extractData properties"
               "Create the plotly data sets",
-              "static member data (properties: (bool * IDataProperty list) list)  = Bindings.Internal.extractDataConditionals properties"
+              "static member data (properties: (bool * IDataProperty list) list)  = Bindings.extractDataConditionals properties"
               "Create the plotly config",
               "static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr \"config\" (createObj !!properties)"
               "Create the plotly config",
-              "static member config (properties: (bool * IConfigProperty list) list) = Interop.mkPlotAttr \"config\" (properties |> Bindings.Internal.withConditionals)"
+              "static member config (properties: (bool * IConfigProperty list) list) = Interop.mkPlotAttr \"config\" (properties |> Bindings.withConditionals)"
               "Create the plotly layout",
               "static member inline layout (properties: #ILayoutProperty list) = Interop.mkPlotAttr \"layout\" (createObj !!properties)"
               "Create the plotly layout",
-              "static member layout (properties: (bool * ILayoutProperty list) list) = Interop.mkPlotAttr \"layout\" (properties |> Bindings.Internal.withConditionals)"
+              "static member layout (properties: (bool * ILayoutProperty list) list) = Interop.mkPlotAttr \"layout\" (properties |> Bindings.withConditionals)"
               "When provided, causes the plot to update when the revision is incremented.",
               "static member inline revision (value: int) = Interop.mkPlotAttr \"revision\" value"
               "When provided, causes the plot to update when the revision is incremented.",
@@ -329,7 +211,7 @@ module rec ApiParser =
               "Styles the <div> into which the plot is rendered",
               "static member inline style (properties: #IStyleAttribute list) = Interop.mkAttr \"style\" (createObj !!properties)"
               "Styles the <div> into which the plot is rendered",
-              "static member style (properties: (bool * IStyleAttribute list) list) = Interop.mkAttr \"style\" (properties |> Bindings.Internal.withConditionals)"
+              "static member style (properties: (bool * IStyleAttribute list) list) = Interop.mkAttr \"style\" (properties |> Bindings.withConditionals)"
               "Assign the graph div to window.gd for debugging",
               "static member inline debug (value: bool) = Interop.mkPlotAttr \"debug\" value"
               "When true, adds a call to Plotly.Plot.resize() as a window.resize event handler",

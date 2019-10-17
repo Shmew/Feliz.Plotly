@@ -31,7 +31,8 @@ let samples =
     [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
       "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
       "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
-      "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart() ]
+      "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart()
+      "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart() ]
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -220,6 +221,9 @@ let sidebar (state: State) dispatch =
                         menuItem "Data Labels On Plot" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsOnPlot ]
                         menuItem "Color Dimension" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.ColorDimension ]
                     ]
+                    nestedMenuList "Bubble" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.Basic ]
+                    ]
                 ]
             ]
         ]
@@ -238,6 +242,7 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsHover ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsHover.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsOnPlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsOnPlot.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.ColorDimension ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "ColorDimension.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "Basic.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

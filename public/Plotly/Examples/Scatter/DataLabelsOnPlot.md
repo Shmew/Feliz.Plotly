@@ -13,7 +13,7 @@ let chart () =
     Plotly.plot [
         plot.data [
             data.scatter [
-                scatter.x [ 1; 2; 3; 4; 5]
+                scatter.x [ 1; 2; 3; 4; 5 ]
                 scatter.y [ 1; 6; 3; 6; 1 ]
                 scatter.mode.textAndMarkers
                 scatter.name "Team A"

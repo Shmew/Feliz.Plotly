@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Bubble\Basic.fs" />
+    <Compile Include="Plotly\Examples\Bubble\MarkerSizeAndColor.fs" />
+    <Compile Include="Plotly\Examples\Bubble\HoverText.fs" />
+    <Compile Include="Plotly\Examples\Bubble\SizeScaling.fs" />
+    <Compile Include="Plotly\Examples\Bubble\MarkerSizeColorAndSymbolArray.fs" />
     <Compile Include="Plotly\Examples\Scatter\Basic.fs" />
     <Compile Include="Plotly\Examples\Scatter\DataLabelsHover.fs" />
     <Compile Include="Plotly\Examples\Scatter\DataLabelsOnPlot.fs" />

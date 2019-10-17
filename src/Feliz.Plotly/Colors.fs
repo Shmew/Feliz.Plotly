@@ -1,5 +1,13 @@
 namespace Feliz.Plotly
 
+open Fable.Core
+open System.ComponentModel
+
+module colors =
+    let hsl (hue: float, saturation: float, lightness: float) = 
+        sprintf "hsl(%s,%s%c,%s%c)" (unbox<string> hue) (unbox<string> saturation) '%' (unbox<string> lightness) '%'
+
+[<Erase>]
 type ColorScale =
     /// Scales colors in order equally
     | Sequential

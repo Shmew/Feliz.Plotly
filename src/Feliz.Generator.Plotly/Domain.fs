@@ -72,6 +72,143 @@ module rec Domain =
         /// Sets whether the overload is inline.
         let setInline isInline (overload: EnumPropOverload) = { overload with IsInline = isInline }
 
+    [<RequireQualifiedAccess>]
+    type ValType =
+        | Any
+        | Bool of bool
+        | ColorArray
+        | DataArray
+        | Enumerated
+        | EnumeratedArray
+        | EnumeratedWithCustom
+        | FlagList
+        | InfoArray of ValType
+        | Int of bool
+        | List of ValType
+        | Number of bool
+        | NumList of ValType
+        | String of bool
+        | Component
+
+    [<RequireQualifiedAccess>]
+    type PropType =
+        | Val of ValType
+        | Component of PropType list
+
+    module ValType =
+        open FSharp.Data
+        open FSharp.Data.JsonExtensions
+
+        [<AutoOpen>]
+        module private Impl =
+            let boolStr = "(value: bool)", "value"
+            let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
+            let stringStr = "(value: string)", "value"
+            let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
+            let intStr = "(value: int)", "value"
+            let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
+            let floatStr = "(value: float)", "value"
+            let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
+
+            let getPrimativeOverloadSeq =
+                function
+                | ValType.Bool _ -> [ boolSeqStr ]
+                | ValType.Int _ -> [ intSeqStr ]
+                | ValType.Number _ -> [ intSeqStr; floatSeqStr ]
+                | ValType.String _ -> [ stringSeqStr ]
+                | ValType.Enumerated -> []
+                | ValType.FlagList -> []
+                | ValType.Any -> [ boolSeqStr; intSeqStr; floatSeqStr; stringSeqStr ]
+                | s ->
+                    printfn "%s" (s.ToString())
+                    [ "(value: TODO)", "value" ]
+
+        let rec getType propName (jVal: JsonValue) =
+            let hasValType = jVal.TryGetProperty("valType").IsSome
+
+            let isEnumeratedWithCustom() =
+                let jValHasRegex =
+                    jVal?values.AsArray()
+                    |> Array.filter (fun s -> s.AsString() |> String.containsRegex)
+                    |> Array.length > 1
+
+                jVal?valType.AsString() = "enumerated" && jValHasRegex
+
+            let isArrayOk =
+                match jVal.TryGetProperty("arrayOk") with
+                | Some arrOk -> arrOk.AsBoolean()
+                | None -> false
+
+            let isNumArrayOk =
+                match jVal.TryGetProperty("description") with
+                | Some desc when desc.AsString().Contains("array of numbers") -> true
+                | _ -> false
+
+            match propName, hasValType with
+            | "scaleanchor", true -> ValType.String isArrayOk
+            | "overlaying", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
+            | "anchor", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
+            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String isArrayOk
+            | _, true ->
+                match jVal?valType
+                      |> JsonValue.asString
+                      |> fun s -> s.Trim('"') with
+                | "angle" -> ValType.Number isArrayOk
+                | "any" -> ValType.Any
+                | "boolean" -> ValType.Bool isArrayOk
+                | "color" -> 
+                    match isArrayOk && isNumArrayOk with
+                    | true -> ValType.ColorArray
+                    | false -> ValType.String isArrayOk
+                | "colorlist" -> ValType.String false |> ValType.List 
+                | "colorscale" -> ValType.String false |> ValType.List
+                | "data_array" -> ValType.DataArray
+                | "enumerated" -> 
+                    if isArrayOk then ValType.EnumeratedArray
+                    else ValType.Enumerated
+                | "flaglist" -> ValType.FlagList
+                | "info_array" ->
+                    if jVal?items.AsArray().Length < 1 then jVal?items
+                    else jVal?items.AsArray().[0]
+                    |> getType propName
+                    |> ValType.InfoArray
+                | "integer" -> ValType.Int isArrayOk
+                | "number" -> ValType.Number isArrayOk
+                | "string" -> ValType.String isArrayOk
+                | "subplotid" -> ValType.String false |> ValType.List 
+                | _ -> ValType.Any
+            | _ -> ValType.Component
+
+        let getOverloadStrings (vType: ValType) =
+            match vType with
+            | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
+            | ValType.Bool b -> [ boolStr; if b then boolSeqStr ]
+            | ValType.ColorArray -> [ stringStr; stringSeqStr; intSeqStr; floatSeqStr ]
+            | ValType.DataArray -> [ boolSeqStr; stringSeqStr; intSeqStr; floatSeqStr ]
+            | ValType.Enumerated -> []
+            | ValType.EnumeratedArray -> []
+            | ValType.EnumeratedWithCustom -> [ stringStr ]
+            | ValType.FlagList -> []
+            | ValType.InfoArray vt ->
+                match vt with
+                | ValType.List vtPrim -> vtPrim
+                | _ -> vt
+                |> getPrimativeOverloadSeq
+            | ValType.Int b -> [ intStr; if b then intSeqStr ]
+            | ValType.List vt -> getPrimativeOverloadSeq vt
+            | ValType.Number b -> [ intStr; floatStr; if b then yield! [intSeqStr; floatSeqStr] ]
+            | ValType.NumList vt -> getPrimativeOverloadSeq vt
+            | ValType.String b -> [ stringStr; if b then stringSeqStr ]
+            | ValType.Component -> []
+
+        let isPrimative (vType: ValType) =
+            match vType with
+            | ValType.Enumerated
+            | ValType.EnumeratedWithCustom
+            | ValType.FlagList
+            | ValType.Component -> false
+            | _ -> true
+
     type Prop =
         { /// The doc lines for the prop, without leading ///.
           DocLines: string list
@@ -85,19 +222,21 @@ module rec Domain =
           EnumOverloads: EnumPropOverload list
           /// Components within the prop
           Components: Component list
-          ParentNameTree: string list }
+          ParentNameTree: string list
+          PropType: ValType }
 
     module Prop =
         /// Creates a prop with the specified native API name and method name and no
         /// docs or overloads.
-        let create realPropName methodName =
+        let create propType realPropName methodName =
             { DocLines = []
               RealPropName = realPropName
               MethodName = methodName
               RegularOverloads = []
               EnumOverloads = []
               Components = []
-              ParentNameTree = [] }
+              ParentNameTree = []
+              PropType = propType }
 
         /// Sets the prop's doc lines.
         let setDocs docLines (prop: Prop) = { prop with DocLines = docLines }
@@ -135,7 +274,7 @@ module rec Domain =
                 IsInline = true 
                 SkipAttr = false }
               { ParamFun = sprintf "(properties: (bool * I%sProperty list) list)"
-                PropsCode = "(properties |> Bindings.Internal.withConditionals)"
+                PropsCode = "(properties |> Bindings.withConditionals)"
                 IsInline = false
                 SkipAttr = false } ]
 

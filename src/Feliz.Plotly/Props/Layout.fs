@@ -13,53 +13,53 @@ open Feliz
 [<Erase>]
 type layout =
     static member inline font (properties: #ILayoutFontProperty list) = Interop.mkLayoutAttr "font" (createObj !!properties)
-    static member font (properties: (bool * ILayoutFontProperty list) list) = Interop.mkLayoutAttr "font" (properties |> Bindings.Internal.withConditionals)
+    static member font (properties: (bool * ILayoutFontProperty list) list) = Interop.mkLayoutAttr "font" (properties |> Bindings.withConditionals)
     static member inline title (properties: #ILayoutTitleProperty list) = Interop.mkLayoutAttr "title" (createObj !!properties)
-    static member title (properties: (bool * ILayoutTitleProperty list) list) = Interop.mkLayoutAttr "title" (properties |> Bindings.Internal.withConditionals)
+    static member title (properties: (bool * ILayoutTitleProperty list) list) = Interop.mkLayoutAttr "title" (properties |> Bindings.withConditionals)
     static member inline margin (properties: #ILayoutMarginProperty list) = Interop.mkLayoutAttr "margin" (createObj !!properties)
-    static member margin (properties: (bool * ILayoutMarginProperty list) list) = Interop.mkLayoutAttr "margin" (properties |> Bindings.Internal.withConditionals)
+    static member margin (properties: (bool * ILayoutMarginProperty list) list) = Interop.mkLayoutAttr "margin" (properties |> Bindings.withConditionals)
     static member inline modebar (properties: #ILayoutModebarProperty list) = Interop.mkLayoutAttr "modebar" (createObj !!properties)
-    static member modebar (properties: (bool * ILayoutModebarProperty list) list) = Interop.mkLayoutAttr "modebar" (properties |> Bindings.Internal.withConditionals)
+    static member modebar (properties: (bool * ILayoutModebarProperty list) list) = Interop.mkLayoutAttr "modebar" (properties |> Bindings.withConditionals)
     static member inline transition (properties: #ILayoutTransitionProperty list) = Interop.mkLayoutAttr "transition" (createObj !!properties)
-    static member transition (properties: (bool * ILayoutTransitionProperty list) list) = Interop.mkLayoutAttr "transition" (properties |> Bindings.Internal.withConditionals)
+    static member transition (properties: (bool * ILayoutTransitionProperty list) list) = Interop.mkLayoutAttr "transition" (properties |> Bindings.withConditionals)
     static member inline hoverlabel (properties: #ILayoutHoverlabelProperty list) = Interop.mkLayoutAttr "hoverlabel" (createObj !!properties)
-    static member hoverlabel (properties: (bool * ILayoutHoverlabelProperty list) list) = Interop.mkLayoutAttr "hoverlabel" (properties |> Bindings.Internal.withConditionals)
+    static member hoverlabel (properties: (bool * ILayoutHoverlabelProperty list) list) = Interop.mkLayoutAttr "hoverlabel" (properties |> Bindings.withConditionals)
     static member inline grid (properties: #ILayoutGridProperty list) = Interop.mkLayoutAttr "grid" (createObj !!properties)
-    static member grid (properties: (bool * ILayoutGridProperty list) list) = Interop.mkLayoutAttr "grid" (properties |> Bindings.Internal.withConditionals)
+    static member grid (properties: (bool * ILayoutGridProperty list) list) = Interop.mkLayoutAttr "grid" (properties |> Bindings.withConditionals)
     static member inline xaxis (properties: #ILayoutXaxisProperty list) = Interop.mkLayoutAttr "xaxis" (createObj !!properties)
-    static member xaxis (properties: (bool * ILayoutXaxisProperty list) list) = Interop.mkLayoutAttr "xaxis" (properties |> Bindings.Internal.withConditionals)
+    static member xaxis (properties: (bool * ILayoutXaxisProperty list) list) = Interop.mkLayoutAttr "xaxis" (properties |> Bindings.withConditionals)
     static member inline yaxis (properties: #ILayoutYaxisProperty list) = Interop.mkLayoutAttr "yaxis" (createObj !!properties)
-    static member yaxis (properties: (bool * ILayoutYaxisProperty list) list) = Interop.mkLayoutAttr "yaxis" (properties |> Bindings.Internal.withConditionals)
+    static member yaxis (properties: (bool * ILayoutYaxisProperty list) list) = Interop.mkLayoutAttr "yaxis" (properties |> Bindings.withConditionals)
     static member inline ternary (properties: #ILayoutTernaryProperty list) = Interop.mkLayoutAttr "ternary" (createObj !!properties)
-    static member ternary (properties: (bool * ILayoutTernaryProperty list) list) = Interop.mkLayoutAttr "ternary" (properties |> Bindings.Internal.withConditionals)
+    static member ternary (properties: (bool * ILayoutTernaryProperty list) list) = Interop.mkLayoutAttr "ternary" (properties |> Bindings.withConditionals)
     static member inline scene (properties: #ILayoutSceneProperty list) = Interop.mkLayoutAttr "scene" (createObj !!properties)
-    static member scene (properties: (bool * ILayoutSceneProperty list) list) = Interop.mkLayoutAttr "scene" (properties |> Bindings.Internal.withConditionals)
+    static member scene (properties: (bool * ILayoutSceneProperty list) list) = Interop.mkLayoutAttr "scene" (properties |> Bindings.withConditionals)
     static member inline geo (properties: #ILayoutGeoProperty list) = Interop.mkLayoutAttr "geo" (createObj !!properties)
-    static member geo (properties: (bool * ILayoutGeoProperty list) list) = Interop.mkLayoutAttr "geo" (properties |> Bindings.Internal.withConditionals)
+    static member geo (properties: (bool * ILayoutGeoProperty list) list) = Interop.mkLayoutAttr "geo" (properties |> Bindings.withConditionals)
     static member inline mapbox (properties: #ILayoutMapboxProperty list) = Interop.mkLayoutAttr "mapbox" (createObj !!properties)
-    static member mapbox (properties: (bool * ILayoutMapboxProperty list) list) = Interop.mkLayoutAttr "mapbox" (properties |> Bindings.Internal.withConditionals)
+    static member mapbox (properties: (bool * ILayoutMapboxProperty list) list) = Interop.mkLayoutAttr "mapbox" (properties |> Bindings.withConditionals)
     static member inline polar (properties: #ILayoutPolarProperty list) = Interop.mkLayoutAttr "polar" (createObj !!properties)
-    static member polar (properties: (bool * ILayoutPolarProperty list) list) = Interop.mkLayoutAttr "polar" (properties |> Bindings.Internal.withConditionals)
+    static member polar (properties: (bool * ILayoutPolarProperty list) list) = Interop.mkLayoutAttr "polar" (properties |> Bindings.withConditionals)
     static member inline radialaxis (properties: #ILayoutRadialaxisProperty list) = Interop.mkLayoutAttr "radialaxis" (createObj !!properties)
-    static member radialaxis (properties: (bool * ILayoutRadialaxisProperty list) list) = Interop.mkLayoutAttr "radialaxis" (properties |> Bindings.Internal.withConditionals)
+    static member radialaxis (properties: (bool * ILayoutRadialaxisProperty list) list) = Interop.mkLayoutAttr "radialaxis" (properties |> Bindings.withConditionals)
     static member inline angularaxis (properties: #ILayoutAngularaxisProperty list) = Interop.mkLayoutAttr "angularaxis" (createObj !!properties)
-    static member angularaxis (properties: (bool * ILayoutAngularaxisProperty list) list) = Interop.mkLayoutAttr "angularaxis" (properties |> Bindings.Internal.withConditionals)
+    static member angularaxis (properties: (bool * ILayoutAngularaxisProperty list) list) = Interop.mkLayoutAttr "angularaxis" (properties |> Bindings.withConditionals)
     static member inline legend (properties: #ILayoutLegendProperty list) = Interop.mkLayoutAttr "legend" (createObj !!properties)
-    static member legend (properties: (bool * ILayoutLegendProperty list) list) = Interop.mkLayoutAttr "legend" (properties |> Bindings.Internal.withConditionals)
+    static member legend (properties: (bool * ILayoutLegendProperty list) list) = Interop.mkLayoutAttr "legend" (properties |> Bindings.withConditionals)
     static member inline annotations (properties: #ILayoutAnnotationsProperty list) = Interop.mkLayoutAttr "annotations" (createObj !!properties)
-    static member annotations (properties: (bool * ILayoutAnnotationsProperty list) list) = Interop.mkLayoutAttr "annotations" (properties |> Bindings.Internal.withConditionals)
+    static member annotations (properties: (bool * ILayoutAnnotationsProperty list) list) = Interop.mkLayoutAttr "annotations" (properties |> Bindings.withConditionals)
     static member inline shapes (properties: #ILayoutShapesProperty list) = Interop.mkLayoutAttr "shapes" (createObj !!properties)
-    static member shapes (properties: (bool * ILayoutShapesProperty list) list) = Interop.mkLayoutAttr "shapes" (properties |> Bindings.Internal.withConditionals)
+    static member shapes (properties: (bool * ILayoutShapesProperty list) list) = Interop.mkLayoutAttr "shapes" (properties |> Bindings.withConditionals)
     static member inline images (properties: #ILayoutImagesProperty list) = Interop.mkLayoutAttr "images" (createObj !!properties)
-    static member images (properties: (bool * ILayoutImagesProperty list) list) = Interop.mkLayoutAttr "images" (properties |> Bindings.Internal.withConditionals)
+    static member images (properties: (bool * ILayoutImagesProperty list) list) = Interop.mkLayoutAttr "images" (properties |> Bindings.withConditionals)
     static member inline updatemenus (properties: #ILayoutUpdatemenusProperty list) = Interop.mkLayoutAttr "updatemenus" (createObj !!properties)
-    static member updatemenus (properties: (bool * ILayoutUpdatemenusProperty list) list) = Interop.mkLayoutAttr "updatemenus" (properties |> Bindings.Internal.withConditionals)
+    static member updatemenus (properties: (bool * ILayoutUpdatemenusProperty list) list) = Interop.mkLayoutAttr "updatemenus" (properties |> Bindings.withConditionals)
     static member inline sliders (properties: #ILayoutSlidersProperty list) = Interop.mkLayoutAttr "sliders" (createObj !!properties)
-    static member sliders (properties: (bool * ILayoutSlidersProperty list) list) = Interop.mkLayoutAttr "sliders" (properties |> Bindings.Internal.withConditionals)
+    static member sliders (properties: (bool * ILayoutSlidersProperty list) list) = Interop.mkLayoutAttr "sliders" (properties |> Bindings.withConditionals)
     static member inline colorscale (properties: #ILayoutColorscaleProperty list) = Interop.mkLayoutAttr "colorscale" (createObj !!properties)
-    static member colorscale (properties: (bool * ILayoutColorscaleProperty list) list) = Interop.mkLayoutAttr "colorscale" (properties |> Bindings.Internal.withConditionals)
+    static member colorscale (properties: (bool * ILayoutColorscaleProperty list) list) = Interop.mkLayoutAttr "colorscale" (properties |> Bindings.withConditionals)
     static member inline coloraxis (properties: #ILayoutColoraxisProperty list) = Interop.mkLayoutAttr "coloraxis" (createObj !!properties)
-    static member coloraxis (properties: (bool * ILayoutColoraxisProperty list) list) = Interop.mkLayoutAttr "coloraxis" (properties |> Bindings.Internal.withConditionals)
+    static member coloraxis (properties: (bool * ILayoutColoraxisProperty list) list) = Interop.mkLayoutAttr "coloraxis" (properties |> Bindings.withConditionals)
     /// Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.
     static member inline autosize (value: bool) = Interop.mkLayoutAttr "autosize" value
     /// Sets the plot's width (in px).
@@ -255,7 +255,7 @@ module layout =
     [<Erase>]
     type font =
         static member inline description (properties: #ILayoutFontDescriptionProperty list) = Interop.mkLayoutFontAttr "description" (createObj !!properties)
-        static member description (properties: (bool * ILayoutFontDescriptionProperty list) list) = Interop.mkLayoutFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+        static member description (properties: (bool * ILayoutFontDescriptionProperty list) list) = Interop.mkLayoutFontAttr "description" (properties |> Bindings.withConditionals)
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         static member inline family (value: string) = Interop.mkLayoutFontAttr "family" value
         static member inline size (value: int) = Interop.mkLayoutFontAttr "size" value
@@ -265,9 +265,9 @@ module layout =
     [<Erase>]
     type title =
         static member inline font (properties: #ILayoutTitleFontProperty list) = Interop.mkLayoutTitleAttr "font" (createObj !!properties)
-        static member font (properties: (bool * ILayoutTitleFontProperty list) list) = Interop.mkLayoutTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+        static member font (properties: (bool * ILayoutTitleFontProperty list) list) = Interop.mkLayoutTitleAttr "font" (properties |> Bindings.withConditionals)
         static member inline pad (properties: #ILayoutTitlePadProperty list) = Interop.mkLayoutTitleAttr "pad" (createObj !!properties)
-        static member pad (properties: (bool * ILayoutTitlePadProperty list) list) = Interop.mkLayoutTitleAttr "pad" (properties |> Bindings.Internal.withConditionals)
+        static member pad (properties: (bool * ILayoutTitlePadProperty list) list) = Interop.mkLayoutTitleAttr "pad" (properties |> Bindings.withConditionals)
         /// Sets the plot's title. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
         static member inline text (value: string) = Interop.mkLayoutTitleAttr "text" value
         /// Sets the x position with respect to `xref` in normalized coordinates from *0* (left) to *1* (right).
@@ -312,7 +312,7 @@ module layout =
         [<Erase>]
         type font =
             static member inline description (properties: #ILayoutTitleFontDescriptionProperty list) = Interop.mkLayoutTitleFontAttr "description" (createObj !!properties)
-            static member description (properties: (bool * ILayoutTitleFontDescriptionProperty list) list) = Interop.mkLayoutTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+            static member description (properties: (bool * ILayoutTitleFontDescriptionProperty list) list) = Interop.mkLayoutTitleFontAttr "description" (properties |> Bindings.withConditionals)
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             static member inline family (value: string) = Interop.mkLayoutTitleFontAttr "family" value
             static member inline size (value: int) = Interop.mkLayoutTitleFontAttr "size" value
@@ -322,7 +322,7 @@ module layout =
         [<Erase>]
         type pad =
             static member inline description (properties: #ILayoutTitlePadDescriptionProperty list) = Interop.mkLayoutTitlePadAttr "description" (createObj !!properties)
-            static member description (properties: (bool * ILayoutTitlePadDescriptionProperty list) list) = Interop.mkLayoutTitlePadAttr "description" (properties |> Bindings.Internal.withConditionals)
+            static member description (properties: (bool * ILayoutTitlePadDescriptionProperty list) list) = Interop.mkLayoutTitlePadAttr "description" (properties |> Bindings.withConditionals)
             /// The amount of padding (in px) along the top of the component.
             static member inline t (value: int) = Interop.mkLayoutTitlePadAttr "t" value
             /// The amount of padding (in px) along the top of the component.
@@ -401,7 +401,7 @@ module layout =
     [<Erase>]
     type transition =
         static member inline description (properties: #ILayoutTransitionDescriptionProperty list) = Interop.mkLayoutTransitionAttr "description" (createObj !!properties)
-        static member description (properties: (bool * ILayoutTransitionDescriptionProperty list) list) = Interop.mkLayoutTransitionAttr "description" (properties |> Bindings.Internal.withConditionals)
+        static member description (properties: (bool * ILayoutTransitionDescriptionProperty list) list) = Interop.mkLayoutTransitionAttr "description" (properties |> Bindings.withConditionals)
         /// The duration of the transition, in milliseconds. If equal to zero, updates are synchronous.
         static member inline duration (value: int) = Interop.mkLayoutTransitionAttr "duration" value
         /// The duration of the transition, in milliseconds. If equal to zero, updates are synchronous.
@@ -458,7 +458,7 @@ module layout =
     [<Erase>]
     type hoverlabel =
         static member inline font (properties: #ILayoutHoverlabelFontProperty list) = Interop.mkLayoutHoverlabelAttr "font" (createObj !!properties)
-        static member font (properties: (bool * ILayoutHoverlabelFontProperty list) list) = Interop.mkLayoutHoverlabelAttr "font" (properties |> Bindings.Internal.withConditionals)
+        static member font (properties: (bool * ILayoutHoverlabelFontProperty list) list) = Interop.mkLayoutHoverlabelAttr "font" (properties |> Bindings.withConditionals)
         /// Sets the background color of all hover labels on graph
         static member inline bgcolor (value: string) = Interop.mkLayoutHoverlabelAttr "bgcolor" value
         /// Sets the border color of all hover labels on graph.
@@ -478,7 +478,7 @@ module layout =
         [<Erase>]
         type font =
             static member inline description (properties: #ILayoutHoverlabelFontDescriptionProperty list) = Interop.mkLayoutHoverlabelFontAttr "description" (createObj !!properties)
-            static member description (properties: (bool * ILayoutHoverlabelFontDescriptionProperty list) list) = Interop.mkLayoutHoverlabelFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+            static member description (properties: (bool * ILayoutHoverlabelFontDescriptionProperty list) list) = Interop.mkLayoutHoverlabelFontAttr "description" (properties |> Bindings.withConditionals)
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             static member inline family (value: string) = Interop.mkLayoutHoverlabelFontAttr "family" value
             static member inline size (value: int) = Interop.mkLayoutHoverlabelFontAttr "size" value
@@ -488,7 +488,7 @@ module layout =
     [<Erase>]
     type grid =
         static member inline domain (properties: #ILayoutGridDomainProperty list) = Interop.mkLayoutGridAttr "domain" (createObj !!properties)
-        static member domain (properties: (bool * ILayoutGridDomainProperty list) list) = Interop.mkLayoutGridAttr "domain" (properties |> Bindings.Internal.withConditionals)
+        static member domain (properties: (bool * ILayoutGridDomainProperty list) list) = Interop.mkLayoutGridAttr "domain" (properties |> Bindings.withConditionals)
         /// The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.
         static member inline rows (value: int) = Interop.mkLayoutGridAttr "rows" value
         /// The number of columns in the grid. If you provide a 2D `subplots` array, the length of its longest row is used as the default. If you give an `xaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.
@@ -546,15 +546,15 @@ module layout =
     [<Erase>]
     type xaxis =
         static member inline title (properties: #ILayoutXaxisTitleProperty list) = Interop.mkLayoutXaxisAttr "title" (createObj !!properties)
-        static member title (properties: (bool * ILayoutXaxisTitleProperty list) list) = Interop.mkLayoutXaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+        static member title (properties: (bool * ILayoutXaxisTitleProperty list) list) = Interop.mkLayoutXaxisAttr "title" (properties |> Bindings.withConditionals)
         static member inline tickfont (properties: #ILayoutXaxisTickfontProperty list) = Interop.mkLayoutXaxisAttr "tickfont" (createObj !!properties)
-        static member tickfont (properties: (bool * ILayoutXaxisTickfontProperty list) list) = Interop.mkLayoutXaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+        static member tickfont (properties: (bool * ILayoutXaxisTickfontProperty list) list) = Interop.mkLayoutXaxisAttr "tickfont" (properties |> Bindings.withConditionals)
         static member inline tickformatstops (properties: #ILayoutXaxisTickformatstopsProperty list) = Interop.mkLayoutXaxisAttr "tickformatstops" (createObj !!properties)
-        static member tickformatstops (properties: (bool * ILayoutXaxisTickformatstopsProperty list) list) = Interop.mkLayoutXaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+        static member tickformatstops (properties: (bool * ILayoutXaxisTickformatstopsProperty list) list) = Interop.mkLayoutXaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
         static member inline rangeslider (properties: #ILayoutXaxisRangesliderProperty list) = Interop.mkLayoutXaxisAttr "rangeslider" (createObj !!properties)
-        static member rangeslider (properties: (bool * ILayoutXaxisRangesliderProperty list) list) = Interop.mkLayoutXaxisAttr "rangeslider" (properties |> Bindings.Internal.withConditionals)
+        static member rangeslider (properties: (bool * ILayoutXaxisRangesliderProperty list) list) = Interop.mkLayoutXaxisAttr "rangeslider" (properties |> Bindings.withConditionals)
         static member inline rangeselector (properties: #ILayoutXaxisRangeselectorProperty list) = Interop.mkLayoutXaxisAttr "rangeselector" (createObj !!properties)
-        static member rangeselector (properties: (bool * ILayoutXaxisRangeselectorProperty list) list) = Interop.mkLayoutXaxisAttr "rangeselector" (properties |> Bindings.Internal.withConditionals)
+        static member rangeselector (properties: (bool * ILayoutXaxisRangeselectorProperty list) list) = Interop.mkLayoutXaxisAttr "rangeselector" (properties |> Bindings.withConditionals)
         /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
         static member inline visible (value: bool) = Interop.mkLayoutXaxisAttr "visible" value
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
@@ -929,7 +929,7 @@ module layout =
         [<Erase>]
         type title =
             static member inline font (properties: #ILayoutXaxisTitleFontProperty list) = Interop.mkLayoutXaxisTitleAttr "font" (createObj !!properties)
-            static member font (properties: (bool * ILayoutXaxisTitleFontProperty list) list) = Interop.mkLayoutXaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+            static member font (properties: (bool * ILayoutXaxisTitleFontProperty list) list) = Interop.mkLayoutXaxisTitleAttr "font" (properties |> Bindings.withConditionals)
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             static member inline text (value: string) = Interop.mkLayoutXaxisTitleAttr "text" value
 
@@ -938,7 +938,7 @@ module layout =
             [<Erase>]
             type font =
                 static member inline description (properties: #ILayoutXaxisTitleFontDescriptionProperty list) = Interop.mkLayoutXaxisTitleFontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutXaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutXaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutXaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutXaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutXaxisTitleFontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutXaxisTitleFontAttr "size" value
@@ -948,7 +948,7 @@ module layout =
         [<Erase>]
         type tickfont =
             static member inline description (properties: #ILayoutXaxisTickfontDescriptionProperty list) = Interop.mkLayoutXaxisTickfontAttr "description" (createObj !!properties)
-            static member description (properties: (bool * ILayoutXaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutXaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+            static member description (properties: (bool * ILayoutXaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutXaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             static member inline family (value: string) = Interop.mkLayoutXaxisTickfontAttr "family" value
             static member inline size (value: int) = Interop.mkLayoutXaxisTickfontAttr "size" value
@@ -958,7 +958,7 @@ module layout =
         [<Erase>]
         type rangeslider =
             static member inline yaxis (properties: #ILayoutXaxisRangesliderYaxisProperty list) = Interop.mkLayoutXaxisRangesliderAttr "yaxis" (createObj !!properties)
-            static member yaxis (properties: (bool * ILayoutXaxisRangesliderYaxisProperty list) list) = Interop.mkLayoutXaxisRangesliderAttr "yaxis" (properties |> Bindings.Internal.withConditionals)
+            static member yaxis (properties: (bool * ILayoutXaxisRangesliderYaxisProperty list) list) = Interop.mkLayoutXaxisRangesliderAttr "yaxis" (properties |> Bindings.withConditionals)
             /// Sets the background color of the range slider.
             static member inline bgcolor (value: string) = Interop.mkLayoutXaxisRangesliderAttr "bgcolor" value
             /// Sets the border color of the range slider.
@@ -1000,16 +1000,16 @@ module layout =
                 /// Determines whether or not the range of this axis in the rangeslider use the same value than in the main plot when zooming in/out. If *auto*, the autorange will be used. If *fixed*, the `range` is used. If *match*, the current range of the corresponding y-axis on the main subplot is used.
                 [<Erase>]
                 type rangemode =
-                    static member inline auto = Interop.mkLayoutXaxisRangesliderAttr "rangemode" "auto"
-                    static member inline fixed' = Interop.mkLayoutXaxisRangesliderAttr "rangemode" "fixed"
-                    static member inline match' = Interop.mkLayoutXaxisRangesliderAttr "rangemode" "match"
+                    static member inline auto = Interop.mkLayoutXaxisRangesliderYaxisAttr "rangemode" "auto"
+                    static member inline fixed' = Interop.mkLayoutXaxisRangesliderYaxisAttr "rangemode" "fixed"
+                    static member inline match' = Interop.mkLayoutXaxisRangesliderYaxisAttr "rangemode" "match"
 
         [<Erase>]
         type rangeselector =
             static member inline buttons (properties: #ILayoutXaxisRangeselectorButtonsProperty list) = Interop.mkLayoutXaxisRangeselectorAttr "buttons" (createObj !!properties)
-            static member buttons (properties: (bool * ILayoutXaxisRangeselectorButtonsProperty list) list) = Interop.mkLayoutXaxisRangeselectorAttr "buttons" (properties |> Bindings.Internal.withConditionals)
+            static member buttons (properties: (bool * ILayoutXaxisRangeselectorButtonsProperty list) list) = Interop.mkLayoutXaxisRangeselectorAttr "buttons" (properties |> Bindings.withConditionals)
             static member inline font (properties: #ILayoutXaxisRangeselectorFontProperty list) = Interop.mkLayoutXaxisRangeselectorAttr "font" (createObj !!properties)
-            static member font (properties: (bool * ILayoutXaxisRangeselectorFontProperty list) list) = Interop.mkLayoutXaxisRangeselectorAttr "font" (properties |> Bindings.Internal.withConditionals)
+            static member font (properties: (bool * ILayoutXaxisRangeselectorFontProperty list) list) = Interop.mkLayoutXaxisRangeselectorAttr "font" (properties |> Bindings.withConditionals)
             /// Determines whether or not this range selector is visible. Note that range selectors are only available for x axes of `type` set to or auto-typed to *date*.
             static member inline visible (value: bool) = Interop.mkLayoutXaxisRangeselectorAttr "visible" value
             /// Sets the x position (in normalized coordinates) of the range selector.
@@ -1036,23 +1036,23 @@ module layout =
             /// Sets the range selector's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
             [<Erase>]
             type xanchor =
-                static member inline auto = Interop.mkLayoutXaxisAttr "xanchor" "auto"
-                static member inline center = Interop.mkLayoutXaxisAttr "xanchor" "center"
-                static member inline left = Interop.mkLayoutXaxisAttr "xanchor" "left"
-                static member inline right = Interop.mkLayoutXaxisAttr "xanchor" "right"
+                static member inline auto = Interop.mkLayoutXaxisRangeselectorAttr "xanchor" "auto"
+                static member inline center = Interop.mkLayoutXaxisRangeselectorAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutXaxisRangeselectorAttr "xanchor" "left"
+                static member inline right = Interop.mkLayoutXaxisRangeselectorAttr "xanchor" "right"
 
             /// Sets the range selector's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
             [<Erase>]
             type yanchor =
-                static member inline auto = Interop.mkLayoutXaxisAttr "yanchor" "auto"
-                static member inline bottom = Interop.mkLayoutXaxisAttr "yanchor" "bottom"
-                static member inline middle = Interop.mkLayoutXaxisAttr "yanchor" "middle"
-                static member inline top = Interop.mkLayoutXaxisAttr "yanchor" "top"
+                static member inline auto = Interop.mkLayoutXaxisRangeselectorAttr "yanchor" "auto"
+                static member inline bottom = Interop.mkLayoutXaxisRangeselectorAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutXaxisRangeselectorAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutXaxisRangeselectorAttr "yanchor" "top"
 
             [<Erase>]
             type font =
                 static member inline description (properties: #ILayoutXaxisRangeselectorFontDescriptionProperty list) = Interop.mkLayoutXaxisRangeselectorFontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutXaxisRangeselectorFontDescriptionProperty list) list) = Interop.mkLayoutXaxisRangeselectorFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutXaxisRangeselectorFontDescriptionProperty list) list) = Interop.mkLayoutXaxisRangeselectorFontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutXaxisRangeselectorFontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutXaxisRangeselectorFontAttr "size" value
@@ -1062,11 +1062,11 @@ module layout =
     [<Erase>]
     type yaxis =
         static member inline title (properties: #ILayoutYaxisTitleProperty list) = Interop.mkLayoutYaxisAttr "title" (createObj !!properties)
-        static member title (properties: (bool * ILayoutYaxisTitleProperty list) list) = Interop.mkLayoutYaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+        static member title (properties: (bool * ILayoutYaxisTitleProperty list) list) = Interop.mkLayoutYaxisAttr "title" (properties |> Bindings.withConditionals)
         static member inline tickfont (properties: #ILayoutYaxisTickfontProperty list) = Interop.mkLayoutYaxisAttr "tickfont" (createObj !!properties)
-        static member tickfont (properties: (bool * ILayoutYaxisTickfontProperty list) list) = Interop.mkLayoutYaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+        static member tickfont (properties: (bool * ILayoutYaxisTickfontProperty list) list) = Interop.mkLayoutYaxisAttr "tickfont" (properties |> Bindings.withConditionals)
         static member inline tickformatstops (properties: #ILayoutYaxisTickformatstopsProperty list) = Interop.mkLayoutYaxisAttr "tickformatstops" (createObj !!properties)
-        static member tickformatstops (properties: (bool * ILayoutYaxisTickformatstopsProperty list) list) = Interop.mkLayoutYaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+        static member tickformatstops (properties: (bool * ILayoutYaxisTickformatstopsProperty list) list) = Interop.mkLayoutYaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
         /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
         static member inline visible (value: bool) = Interop.mkLayoutYaxisAttr "visible" value
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
@@ -1441,7 +1441,7 @@ module layout =
         [<Erase>]
         type title =
             static member inline font (properties: #ILayoutYaxisTitleFontProperty list) = Interop.mkLayoutYaxisTitleAttr "font" (createObj !!properties)
-            static member font (properties: (bool * ILayoutYaxisTitleFontProperty list) list) = Interop.mkLayoutYaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+            static member font (properties: (bool * ILayoutYaxisTitleFontProperty list) list) = Interop.mkLayoutYaxisTitleAttr "font" (properties |> Bindings.withConditionals)
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             static member inline text (value: string) = Interop.mkLayoutYaxisTitleAttr "text" value
 
@@ -1450,7 +1450,7 @@ module layout =
             [<Erase>]
             type font =
                 static member inline description (properties: #ILayoutYaxisTitleFontDescriptionProperty list) = Interop.mkLayoutYaxisTitleFontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutYaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutYaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutYaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutYaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutYaxisTitleFontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutYaxisTitleFontAttr "size" value
@@ -1460,7 +1460,7 @@ module layout =
         [<Erase>]
         type tickfont =
             static member inline description (properties: #ILayoutYaxisTickfontDescriptionProperty list) = Interop.mkLayoutYaxisTickfontAttr "description" (createObj !!properties)
-            static member description (properties: (bool * ILayoutYaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutYaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+            static member description (properties: (bool * ILayoutYaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutYaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             static member inline family (value: string) = Interop.mkLayoutYaxisTickfontAttr "family" value
             static member inline size (value: int) = Interop.mkLayoutYaxisTickfontAttr "size" value
@@ -1470,13 +1470,13 @@ module layout =
     [<Erase>]
     type ternary =
         static member inline domain (properties: #ILayoutTernaryDomainProperty list) = Interop.mkLayoutTernaryAttr "domain" (createObj !!properties)
-        static member domain (properties: (bool * ILayoutTernaryDomainProperty list) list) = Interop.mkLayoutTernaryAttr "domain" (properties |> Bindings.Internal.withConditionals)
+        static member domain (properties: (bool * ILayoutTernaryDomainProperty list) list) = Interop.mkLayoutTernaryAttr "domain" (properties |> Bindings.withConditionals)
         static member inline aaxis (properties: #ILayoutTernaryAaxisProperty list) = Interop.mkLayoutTernaryAttr "aaxis" (createObj !!properties)
-        static member aaxis (properties: (bool * ILayoutTernaryAaxisProperty list) list) = Interop.mkLayoutTernaryAttr "aaxis" (properties |> Bindings.Internal.withConditionals)
+        static member aaxis (properties: (bool * ILayoutTernaryAaxisProperty list) list) = Interop.mkLayoutTernaryAttr "aaxis" (properties |> Bindings.withConditionals)
         static member inline baxis (properties: #ILayoutTernaryBaxisProperty list) = Interop.mkLayoutTernaryAttr "baxis" (createObj !!properties)
-        static member baxis (properties: (bool * ILayoutTernaryBaxisProperty list) list) = Interop.mkLayoutTernaryAttr "baxis" (properties |> Bindings.Internal.withConditionals)
+        static member baxis (properties: (bool * ILayoutTernaryBaxisProperty list) list) = Interop.mkLayoutTernaryAttr "baxis" (properties |> Bindings.withConditionals)
         static member inline caxis (properties: #ILayoutTernaryCaxisProperty list) = Interop.mkLayoutTernaryAttr "caxis" (createObj !!properties)
-        static member caxis (properties: (bool * ILayoutTernaryCaxisProperty list) list) = Interop.mkLayoutTernaryAttr "caxis" (properties |> Bindings.Internal.withConditionals)
+        static member caxis (properties: (bool * ILayoutTernaryCaxisProperty list) list) = Interop.mkLayoutTernaryAttr "caxis" (properties |> Bindings.withConditionals)
         /// Set the background color of the subplot
         static member inline bgcolor (value: string) = Interop.mkLayoutTernaryAttr "bgcolor" value
         /// The number each triplet should sum to, and the maximum range of each axis
@@ -1520,11 +1520,11 @@ module layout =
         [<Erase>]
         type aaxis =
             static member inline title (properties: #ILayoutTernaryAaxisTitleProperty list) = Interop.mkLayoutTernaryAaxisAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutTernaryAaxisTitleProperty list) list) = Interop.mkLayoutTernaryAaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutTernaryAaxisTitleProperty list) list) = Interop.mkLayoutTernaryAaxisAttr "title" (properties |> Bindings.withConditionals)
             static member inline tickfont (properties: #ILayoutTernaryAaxisTickfontProperty list) = Interop.mkLayoutTernaryAaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutTernaryAaxisTickfontProperty list) list) = Interop.mkLayoutTernaryAaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutTernaryAaxisTickfontProperty list) list) = Interop.mkLayoutTernaryAaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutTernaryAaxisTickformatstopsProperty list) = Interop.mkLayoutTernaryAaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutTernaryAaxisTickformatstopsProperty list) list) = Interop.mkLayoutTernaryAaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutTernaryAaxisTickformatstopsProperty list) list) = Interop.mkLayoutTernaryAaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
             static member inline color (value: string) = Interop.mkLayoutTernaryAaxisAttr "color" value
             /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
@@ -1649,61 +1649,61 @@ module layout =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutTernaryAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutTernaryAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutTernaryAaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutTernaryAaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutTernaryAaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutTernaryAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutTernaryAaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutTernaryAaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutTernaryAaxisAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutTernaryAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutTernaryAaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutTernaryAaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutTernaryAaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutTernaryAaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutTernaryAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutTernaryAaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutTernaryAaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutTernaryAaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutTernaryAaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutTernaryAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutTernaryAaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutTernaryAaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutTernaryAaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutTernaryAaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutTernaryAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutTernaryAaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutTernaryAaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutTernaryAaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutTernaryAaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutTernaryAaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutTernaryAaxisAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
             type layer =
-                static member inline aboveTraces = Interop.mkLayoutTernaryAttr "layer" "above traces"
-                static member inline belowTraces = Interop.mkLayoutTernaryAttr "layer" "below traces"
+                static member inline aboveTraces = Interop.mkLayoutTernaryAaxisAttr "layer" "above traces"
+                static member inline belowTraces = Interop.mkLayoutTernaryAaxisAttr "layer" "below traces"
 
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutTernaryAaxisTitleFontProperty list) = Interop.mkLayoutTernaryAaxisTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutTernaryAaxisTitleFontProperty list) list) = Interop.mkLayoutTernaryAaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutTernaryAaxisTitleFontProperty list) list) = Interop.mkLayoutTernaryAaxisTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutTernaryAaxisTitleAttr "text" value
 
@@ -1712,7 +1712,7 @@ module layout =
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutTernaryAaxisTitleFontDescriptionProperty list) = Interop.mkLayoutTernaryAaxisTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutTernaryAaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutTernaryAaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutTernaryAaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutTernaryAaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutTernaryAaxisTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutTernaryAaxisTitleFontAttr "size" value
@@ -1722,7 +1722,7 @@ module layout =
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutTernaryAaxisTickfontDescriptionProperty list) = Interop.mkLayoutTernaryAaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutTernaryAaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutTernaryAaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutTernaryAaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutTernaryAaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutTernaryAaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutTernaryAaxisTickfontAttr "size" value
@@ -1732,11 +1732,11 @@ module layout =
         [<Erase>]
         type baxis =
             static member inline title (properties: #ILayoutTernaryBaxisTitleProperty list) = Interop.mkLayoutTernaryBaxisAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutTernaryBaxisTitleProperty list) list) = Interop.mkLayoutTernaryBaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutTernaryBaxisTitleProperty list) list) = Interop.mkLayoutTernaryBaxisAttr "title" (properties |> Bindings.withConditionals)
             static member inline tickfont (properties: #ILayoutTernaryBaxisTickfontProperty list) = Interop.mkLayoutTernaryBaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutTernaryBaxisTickfontProperty list) list) = Interop.mkLayoutTernaryBaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutTernaryBaxisTickfontProperty list) list) = Interop.mkLayoutTernaryBaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutTernaryBaxisTickformatstopsProperty list) = Interop.mkLayoutTernaryBaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutTernaryBaxisTickformatstopsProperty list) list) = Interop.mkLayoutTernaryBaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutTernaryBaxisTickformatstopsProperty list) list) = Interop.mkLayoutTernaryBaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
             static member inline color (value: string) = Interop.mkLayoutTernaryBaxisAttr "color" value
             /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
@@ -1861,61 +1861,61 @@ module layout =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutTernaryAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutTernaryAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutTernaryBaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutTernaryBaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutTernaryBaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutTernaryAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutTernaryBaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutTernaryBaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutTernaryBaxisAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutTernaryAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutTernaryBaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutTernaryBaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutTernaryBaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutTernaryBaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutTernaryAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutTernaryBaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutTernaryBaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutTernaryBaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutTernaryBaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutTernaryAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutTernaryBaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutTernaryBaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutTernaryBaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutTernaryBaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutTernaryAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutTernaryBaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutTernaryBaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutTernaryBaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutTernaryBaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutTernaryBaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutTernaryBaxisAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
             type layer =
-                static member inline aboveTraces = Interop.mkLayoutTernaryAttr "layer" "above traces"
-                static member inline belowTraces = Interop.mkLayoutTernaryAttr "layer" "below traces"
+                static member inline aboveTraces = Interop.mkLayoutTernaryBaxisAttr "layer" "above traces"
+                static member inline belowTraces = Interop.mkLayoutTernaryBaxisAttr "layer" "below traces"
 
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutTernaryBaxisTitleFontProperty list) = Interop.mkLayoutTernaryBaxisTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutTernaryBaxisTitleFontProperty list) list) = Interop.mkLayoutTernaryBaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutTernaryBaxisTitleFontProperty list) list) = Interop.mkLayoutTernaryBaxisTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutTernaryBaxisTitleAttr "text" value
 
@@ -1924,7 +1924,7 @@ module layout =
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutTernaryBaxisTitleFontDescriptionProperty list) = Interop.mkLayoutTernaryBaxisTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutTernaryBaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutTernaryBaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutTernaryBaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutTernaryBaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutTernaryBaxisTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutTernaryBaxisTitleFontAttr "size" value
@@ -1934,7 +1934,7 @@ module layout =
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutTernaryBaxisTickfontDescriptionProperty list) = Interop.mkLayoutTernaryBaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutTernaryBaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutTernaryBaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutTernaryBaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutTernaryBaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutTernaryBaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutTernaryBaxisTickfontAttr "size" value
@@ -1944,11 +1944,11 @@ module layout =
         [<Erase>]
         type caxis =
             static member inline title (properties: #ILayoutTernaryCaxisTitleProperty list) = Interop.mkLayoutTernaryCaxisAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutTernaryCaxisTitleProperty list) list) = Interop.mkLayoutTernaryCaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutTernaryCaxisTitleProperty list) list) = Interop.mkLayoutTernaryCaxisAttr "title" (properties |> Bindings.withConditionals)
             static member inline tickfont (properties: #ILayoutTernaryCaxisTickfontProperty list) = Interop.mkLayoutTernaryCaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutTernaryCaxisTickfontProperty list) list) = Interop.mkLayoutTernaryCaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutTernaryCaxisTickfontProperty list) list) = Interop.mkLayoutTernaryCaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutTernaryCaxisTickformatstopsProperty list) = Interop.mkLayoutTernaryCaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutTernaryCaxisTickformatstopsProperty list) list) = Interop.mkLayoutTernaryCaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutTernaryCaxisTickformatstopsProperty list) list) = Interop.mkLayoutTernaryCaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
             static member inline color (value: string) = Interop.mkLayoutTernaryCaxisAttr "color" value
             /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
@@ -2073,61 +2073,61 @@ module layout =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutTernaryAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutTernaryAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutTernaryAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutTernaryCaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutTernaryCaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutTernaryCaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutTernaryAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutTernaryAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutTernaryAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutTernaryCaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutTernaryCaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutTernaryCaxisAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutTernaryAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutTernaryCaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutTernaryCaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutTernaryCaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutTernaryCaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutTernaryAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutTernaryCaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutTernaryCaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutTernaryCaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutTernaryCaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutTernaryAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutTernaryAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutTernaryAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutTernaryAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutTernaryCaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutTernaryCaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutTernaryCaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutTernaryCaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutTernaryAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutTernaryAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutTernaryAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutTernaryAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutTernaryAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutTernaryAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutTernaryCaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutTernaryCaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutTernaryCaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutTernaryCaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutTernaryCaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutTernaryCaxisAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
             type layer =
-                static member inline aboveTraces = Interop.mkLayoutTernaryAttr "layer" "above traces"
-                static member inline belowTraces = Interop.mkLayoutTernaryAttr "layer" "below traces"
+                static member inline aboveTraces = Interop.mkLayoutTernaryCaxisAttr "layer" "above traces"
+                static member inline belowTraces = Interop.mkLayoutTernaryCaxisAttr "layer" "below traces"
 
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutTernaryCaxisTitleFontProperty list) = Interop.mkLayoutTernaryCaxisTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutTernaryCaxisTitleFontProperty list) list) = Interop.mkLayoutTernaryCaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutTernaryCaxisTitleFontProperty list) list) = Interop.mkLayoutTernaryCaxisTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutTernaryCaxisTitleAttr "text" value
 
@@ -2136,7 +2136,7 @@ module layout =
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutTernaryCaxisTitleFontDescriptionProperty list) = Interop.mkLayoutTernaryCaxisTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutTernaryCaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutTernaryCaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutTernaryCaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutTernaryCaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutTernaryCaxisTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutTernaryCaxisTitleFontAttr "size" value
@@ -2146,7 +2146,7 @@ module layout =
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutTernaryCaxisTickfontDescriptionProperty list) = Interop.mkLayoutTernaryCaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutTernaryCaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutTernaryCaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutTernaryCaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutTernaryCaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutTernaryCaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutTernaryCaxisTickfontAttr "size" value
@@ -2156,21 +2156,21 @@ module layout =
     [<Erase>]
     type scene =
         static member inline _arrayAttrRegexps (properties: #ILayoutScene_arrayAttrRegexpsProperty list) = Interop.mkLayoutSceneAttr "_arrayAttrRegexps" (createObj !!properties)
-        static member _arrayAttrRegexps (properties: (bool * ILayoutScene_arrayAttrRegexpsProperty list) list) = Interop.mkLayoutSceneAttr "_arrayAttrRegexps" (properties |> Bindings.Internal.withConditionals)
+        static member _arrayAttrRegexps (properties: (bool * ILayoutScene_arrayAttrRegexpsProperty list) list) = Interop.mkLayoutSceneAttr "_arrayAttrRegexps" (properties |> Bindings.withConditionals)
         static member inline camera (properties: #ILayoutSceneCameraProperty list) = Interop.mkLayoutSceneAttr "camera" (createObj !!properties)
-        static member camera (properties: (bool * ILayoutSceneCameraProperty list) list) = Interop.mkLayoutSceneAttr "camera" (properties |> Bindings.Internal.withConditionals)
+        static member camera (properties: (bool * ILayoutSceneCameraProperty list) list) = Interop.mkLayoutSceneAttr "camera" (properties |> Bindings.withConditionals)
         static member inline domain (properties: #ILayoutSceneDomainProperty list) = Interop.mkLayoutSceneAttr "domain" (createObj !!properties)
-        static member domain (properties: (bool * ILayoutSceneDomainProperty list) list) = Interop.mkLayoutSceneAttr "domain" (properties |> Bindings.Internal.withConditionals)
+        static member domain (properties: (bool * ILayoutSceneDomainProperty list) list) = Interop.mkLayoutSceneAttr "domain" (properties |> Bindings.withConditionals)
         static member inline aspectratio (properties: #ILayoutSceneAspectratioProperty list) = Interop.mkLayoutSceneAttr "aspectratio" (createObj !!properties)
-        static member aspectratio (properties: (bool * ILayoutSceneAspectratioProperty list) list) = Interop.mkLayoutSceneAttr "aspectratio" (properties |> Bindings.Internal.withConditionals)
+        static member aspectratio (properties: (bool * ILayoutSceneAspectratioProperty list) list) = Interop.mkLayoutSceneAttr "aspectratio" (properties |> Bindings.withConditionals)
         static member inline xaxis (properties: #ILayoutSceneXaxisProperty list) = Interop.mkLayoutSceneAttr "xaxis" (createObj !!properties)
-        static member xaxis (properties: (bool * ILayoutSceneXaxisProperty list) list) = Interop.mkLayoutSceneAttr "xaxis" (properties |> Bindings.Internal.withConditionals)
+        static member xaxis (properties: (bool * ILayoutSceneXaxisProperty list) list) = Interop.mkLayoutSceneAttr "xaxis" (properties |> Bindings.withConditionals)
         static member inline yaxis (properties: #ILayoutSceneYaxisProperty list) = Interop.mkLayoutSceneAttr "yaxis" (createObj !!properties)
-        static member yaxis (properties: (bool * ILayoutSceneYaxisProperty list) list) = Interop.mkLayoutSceneAttr "yaxis" (properties |> Bindings.Internal.withConditionals)
+        static member yaxis (properties: (bool * ILayoutSceneYaxisProperty list) list) = Interop.mkLayoutSceneAttr "yaxis" (properties |> Bindings.withConditionals)
         static member inline zaxis (properties: #ILayoutSceneZaxisProperty list) = Interop.mkLayoutSceneAttr "zaxis" (createObj !!properties)
-        static member zaxis (properties: (bool * ILayoutSceneZaxisProperty list) list) = Interop.mkLayoutSceneAttr "zaxis" (properties |> Bindings.Internal.withConditionals)
+        static member zaxis (properties: (bool * ILayoutSceneZaxisProperty list) list) = Interop.mkLayoutSceneAttr "zaxis" (properties |> Bindings.withConditionals)
         static member inline annotations (properties: #ILayoutSceneAnnotationsProperty list) = Interop.mkLayoutSceneAttr "annotations" (createObj !!properties)
-        static member annotations (properties: (bool * ILayoutSceneAnnotationsProperty list) list) = Interop.mkLayoutSceneAttr "annotations" (properties |> Bindings.Internal.withConditionals)
+        static member annotations (properties: (bool * ILayoutSceneAnnotationsProperty list) list) = Interop.mkLayoutSceneAttr "annotations" (properties |> Bindings.withConditionals)
         static member inline bgcolor (value: string) = Interop.mkLayoutSceneAttr "bgcolor" value
         /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
         static member inline uirevision (value: bool) = Interop.mkLayoutSceneAttr "uirevision" value
@@ -2217,20 +2217,20 @@ module layout =
         [<Erase>]
         type camera = 
             static member inline up (properties: #ILayoutSceneCameraUpProperty list) = Interop.mkLayoutSceneCameraAttr "up" (createObj !!properties)
-            static member up (properties: (bool * ILayoutSceneCameraUpProperty list) list) = Interop.mkLayoutSceneCameraAttr "up" (properties |> Bindings.Internal.withConditionals)
+            static member up (properties: (bool * ILayoutSceneCameraUpProperty list) list) = Interop.mkLayoutSceneCameraAttr "up" (properties |> Bindings.withConditionals)
             static member inline center (properties: #ILayoutSceneCameraCenterProperty list) = Interop.mkLayoutSceneCameraAttr "center" (createObj !!properties)
-            static member center (properties: (bool * ILayoutSceneCameraCenterProperty list) list) = Interop.mkLayoutSceneCameraAttr "center" (properties |> Bindings.Internal.withConditionals)
+            static member center (properties: (bool * ILayoutSceneCameraCenterProperty list) list) = Interop.mkLayoutSceneCameraAttr "center" (properties |> Bindings.withConditionals)
             static member inline eye (properties: #ILayoutSceneCameraEyeProperty list) = Interop.mkLayoutSceneCameraAttr "eye" (createObj !!properties)
-            static member eye (properties: (bool * ILayoutSceneCameraEyeProperty list) list) = Interop.mkLayoutSceneCameraAttr "eye" (properties |> Bindings.Internal.withConditionals)
+            static member eye (properties: (bool * ILayoutSceneCameraEyeProperty list) list) = Interop.mkLayoutSceneCameraAttr "eye" (properties |> Bindings.withConditionals)
             static member inline projection (properties: #ILayoutSceneCameraProjectionProperty list) = Interop.mkLayoutSceneCameraAttr "projection" (createObj !!properties)
-            static member projection (properties: (bool * ILayoutSceneCameraProjectionProperty list) list) = Interop.mkLayoutSceneCameraAttr "projection" (properties |> Bindings.Internal.withConditionals)
+            static member projection (properties: (bool * ILayoutSceneCameraProjectionProperty list) list) = Interop.mkLayoutSceneCameraAttr "projection" (properties |> Bindings.withConditionals)
 
         [<AutoOpen>]
         module camera =
             [<Erase>]
             type up =
                 static member inline description (properties: #ILayoutSceneCameraUpDescriptionProperty list) = Interop.mkLayoutSceneCameraUpAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutSceneCameraUpDescriptionProperty list) list) = Interop.mkLayoutSceneCameraUpAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutSceneCameraUpDescriptionProperty list) list) = Interop.mkLayoutSceneCameraUpAttr "description" (properties |> Bindings.withConditionals)
                 static member inline x (value: int) = Interop.mkLayoutSceneCameraUpAttr "x" value
                 static member inline x (value: float) = Interop.mkLayoutSceneCameraUpAttr "x" value
                 static member inline y (value: int) = Interop.mkLayoutSceneCameraUpAttr "y" value
@@ -2241,7 +2241,7 @@ module layout =
             [<Erase>]
             type center =
                 static member inline description (properties: #ILayoutSceneCameraCenterDescriptionProperty list) = Interop.mkLayoutSceneCameraCenterAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutSceneCameraCenterDescriptionProperty list) list) = Interop.mkLayoutSceneCameraCenterAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutSceneCameraCenterDescriptionProperty list) list) = Interop.mkLayoutSceneCameraCenterAttr "description" (properties |> Bindings.withConditionals)
                 static member inline x (value: int) = Interop.mkLayoutSceneCameraCenterAttr "x" value
                 static member inline x (value: float) = Interop.mkLayoutSceneCameraCenterAttr "x" value
                 static member inline y (value: int) = Interop.mkLayoutSceneCameraCenterAttr "y" value
@@ -2252,7 +2252,7 @@ module layout =
             [<Erase>]
             type eye =
                 static member inline description (properties: #ILayoutSceneCameraEyeDescriptionProperty list) = Interop.mkLayoutSceneCameraEyeAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutSceneCameraEyeDescriptionProperty list) list) = Interop.mkLayoutSceneCameraEyeAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutSceneCameraEyeDescriptionProperty list) list) = Interop.mkLayoutSceneCameraEyeAttr "description" (properties |> Bindings.withConditionals)
                 static member inline x (value: int) = Interop.mkLayoutSceneCameraEyeAttr "x" value
                 static member inline x (value: float) = Interop.mkLayoutSceneCameraEyeAttr "x" value
                 static member inline y (value: int) = Interop.mkLayoutSceneCameraEyeAttr "y" value
@@ -2286,9 +2286,9 @@ module layout =
         [<Erase>]
         type aspectratio =
             static member inline impliedEdits (properties: #ILayoutSceneAspectratioImpliedEditsProperty list) = Interop.mkLayoutSceneAspectratioAttr "impliedEdits" (createObj !!properties)
-            static member impliedEdits (properties: (bool * ILayoutSceneAspectratioImpliedEditsProperty list) list) = Interop.mkLayoutSceneAspectratioAttr "impliedEdits" (properties |> Bindings.Internal.withConditionals)
+            static member impliedEdits (properties: (bool * ILayoutSceneAspectratioImpliedEditsProperty list) list) = Interop.mkLayoutSceneAspectratioAttr "impliedEdits" (properties |> Bindings.withConditionals)
             static member inline description (properties: #ILayoutSceneAspectratioDescriptionProperty list) = Interop.mkLayoutSceneAspectratioAttr "description" (createObj !!properties)
-            static member description (properties: (bool * ILayoutSceneAspectratioDescriptionProperty list) list) = Interop.mkLayoutSceneAspectratioAttr "description" (properties |> Bindings.Internal.withConditionals)
+            static member description (properties: (bool * ILayoutSceneAspectratioDescriptionProperty list) list) = Interop.mkLayoutSceneAspectratioAttr "description" (properties |> Bindings.withConditionals)
             static member inline x (value: int) = Interop.mkLayoutSceneAspectratioAttr "x" value
             static member inline x (value: float) = Interop.mkLayoutSceneAspectratioAttr "x" value
             static member inline y (value: int) = Interop.mkLayoutSceneAspectratioAttr "y" value
@@ -2301,16 +2301,16 @@ module layout =
             [<Erase>]
             type impliedEdits = 
                 static member inline aspectmode (properties: #ILayoutSceneAspectratioImpliedEditsAspectmodeProperty list) = Interop.mkLayoutSceneAspectratioImpliedEditsAttr "aspectmode" (createObj !!properties)
-                static member aspectmode (properties: (bool * ILayoutSceneAspectratioImpliedEditsAspectmodeProperty list) list) = Interop.mkLayoutSceneAspectratioImpliedEditsAttr "aspectmode" (properties |> Bindings.Internal.withConditionals)
+                static member aspectmode (properties: (bool * ILayoutSceneAspectratioImpliedEditsAspectmodeProperty list) list) = Interop.mkLayoutSceneAspectratioImpliedEditsAttr "aspectmode" (properties |> Bindings.withConditionals)
 
         [<Erase>]
         type xaxis =
             static member inline title (properties: #ILayoutSceneXaxisTitleProperty list) = Interop.mkLayoutSceneXaxisAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutSceneXaxisTitleProperty list) list) = Interop.mkLayoutSceneXaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutSceneXaxisTitleProperty list) list) = Interop.mkLayoutSceneXaxisAttr "title" (properties |> Bindings.withConditionals)
             static member inline tickfont (properties: #ILayoutSceneXaxisTickfontProperty list) = Interop.mkLayoutSceneXaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutSceneXaxisTickfontProperty list) list) = Interop.mkLayoutSceneXaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutSceneXaxisTickfontProperty list) list) = Interop.mkLayoutSceneXaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutSceneXaxisTickformatstopsProperty list) = Interop.mkLayoutSceneXaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutSceneXaxisTickformatstopsProperty list) list) = Interop.mkLayoutSceneXaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutSceneXaxisTickformatstopsProperty list) list) = Interop.mkLayoutSceneXaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             static member inline visible (value: bool) = Interop.mkLayoutSceneXaxisAttr "visible" value
             /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
@@ -2459,22 +2459,22 @@ module layout =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
-                static member inline categoryAscending = Interop.mkLayoutSceneAttr "categoryorder" "category ascending"
-                static member inline categoryDescending = Interop.mkLayoutSceneAttr "categoryorder" "category descending"
-                static member inline maxAscending = Interop.mkLayoutSceneAttr "categoryorder" "max ascending"
-                static member inline maxDescending = Interop.mkLayoutSceneAttr "categoryorder" "max descending"
-                static member inline meanAscending = Interop.mkLayoutSceneAttr "categoryorder" "mean ascending"
-                static member inline meanDescending = Interop.mkLayoutSceneAttr "categoryorder" "mean descending"
-                static member inline medianAscending = Interop.mkLayoutSceneAttr "categoryorder" "median ascending"
-                static member inline medianDescending = Interop.mkLayoutSceneAttr "categoryorder" "median descending"
-                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
-                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
-                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
-                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutSceneXaxisAttr "categoryorder" "array"
+                static member inline categoryAscending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "category ascending"
+                static member inline categoryDescending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "category descending"
+                static member inline maxAscending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "max ascending"
+                static member inline maxDescending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "max descending"
+                static member inline meanAscending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "mean ascending"
+                static member inline meanDescending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "mean descending"
+                static member inline medianAscending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "median ascending"
+                static member inline medianDescending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutSceneXaxisAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutSceneXaxisAttr "categoryorder" "trace"
 
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             [<Erase>]
@@ -2488,98 +2488,98 @@ module layout =
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline reversed = Interop.mkLayoutSceneAttr "autorange" "reversed"
-                static member inline false' = Interop.mkLayoutSceneAttr "autorange" "false"
-                static member inline true' = Interop.mkLayoutSceneAttr "autorange" "true"
+                static member inline reversed = Interop.mkLayoutSceneXaxisAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutSceneXaxisAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutSceneXaxisAttr "autorange" "true"
 
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             [<Erase>]
             type rangemode =
-                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
-                static member inline normal = Interop.mkLayoutSceneAttr "rangemode" "normal"
-                static member inline tozero = Interop.mkLayoutSceneAttr "rangemode" "tozero"
+                static member inline nonnegative = Interop.mkLayoutSceneXaxisAttr "rangemode" "nonnegative"
+                static member inline normal = Interop.mkLayoutSceneXaxisAttr "rangemode" "normal"
+                static member inline tozero = Interop.mkLayoutSceneXaxisAttr "rangemode" "tozero"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutSceneAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutSceneAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutSceneXaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutSceneXaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutSceneXaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutSceneAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutSceneXaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutSceneXaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutSceneXaxisAttr "ticks" "outside"
 
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             [<Erase>]
             type mirror =
-                static member inline all = Interop.mkLayoutSceneAttr "mirror" "all"
-                static member inline allticks = Interop.mkLayoutSceneAttr "mirror" "allticks"
-                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
-                static member inline false' = Interop.mkLayoutSceneAttr "mirror" "false"
-                static member inline true' = Interop.mkLayoutSceneAttr "mirror" "true"
+                static member inline all = Interop.mkLayoutSceneXaxisAttr "mirror" "all"
+                static member inline allticks = Interop.mkLayoutSceneXaxisAttr "mirror" "allticks"
+                static member inline ticks = Interop.mkLayoutSceneXaxisAttr "mirror" "ticks"
+                static member inline false' = Interop.mkLayoutSceneXaxisAttr "mirror" "false"
+                static member inline true' = Interop.mkLayoutSceneXaxisAttr "mirror" "true"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutSceneAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutSceneXaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutSceneXaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutSceneXaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutSceneXaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutSceneAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutSceneXaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutSceneXaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutSceneXaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutSceneXaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutSceneAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutSceneXaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutSceneXaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutSceneXaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutSceneXaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutSceneAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutSceneXaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutSceneXaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutSceneXaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutSceneXaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutSceneXaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutSceneXaxisAttr "exponentformat" "power"
 
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline chinese = Interop.mkLayoutSceneAttr "calendar" "chinese"
-                static member inline coptic = Interop.mkLayoutSceneAttr "calendar" "coptic"
-                static member inline discworld = Interop.mkLayoutSceneAttr "calendar" "discworld"
-                static member inline ethiopian = Interop.mkLayoutSceneAttr "calendar" "ethiopian"
-                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
-                static member inline hebrew = Interop.mkLayoutSceneAttr "calendar" "hebrew"
-                static member inline islamic = Interop.mkLayoutSceneAttr "calendar" "islamic"
-                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
-                static member inline julian = Interop.mkLayoutSceneAttr "calendar" "julian"
-                static member inline mayan = Interop.mkLayoutSceneAttr "calendar" "mayan"
-                static member inline nanakshahi = Interop.mkLayoutSceneAttr "calendar" "nanakshahi"
-                static member inline nepali = Interop.mkLayoutSceneAttr "calendar" "nepali"
-                static member inline persian = Interop.mkLayoutSceneAttr "calendar" "persian"
-                static member inline taiwan = Interop.mkLayoutSceneAttr "calendar" "taiwan"
-                static member inline thai = Interop.mkLayoutSceneAttr "calendar" "thai"
-                static member inline ummalqura = Interop.mkLayoutSceneAttr "calendar" "ummalqura"
+                static member inline chinese = Interop.mkLayoutSceneXaxisAttr "calendar" "chinese"
+                static member inline coptic = Interop.mkLayoutSceneXaxisAttr "calendar" "coptic"
+                static member inline discworld = Interop.mkLayoutSceneXaxisAttr "calendar" "discworld"
+                static member inline ethiopian = Interop.mkLayoutSceneXaxisAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutSceneXaxisAttr "calendar" "gregorian"
+                static member inline hebrew = Interop.mkLayoutSceneXaxisAttr "calendar" "hebrew"
+                static member inline islamic = Interop.mkLayoutSceneXaxisAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutSceneXaxisAttr "calendar" "jalali"
+                static member inline julian = Interop.mkLayoutSceneXaxisAttr "calendar" "julian"
+                static member inline mayan = Interop.mkLayoutSceneXaxisAttr "calendar" "mayan"
+                static member inline nanakshahi = Interop.mkLayoutSceneXaxisAttr "calendar" "nanakshahi"
+                static member inline nepali = Interop.mkLayoutSceneXaxisAttr "calendar" "nepali"
+                static member inline persian = Interop.mkLayoutSceneXaxisAttr "calendar" "persian"
+                static member inline taiwan = Interop.mkLayoutSceneXaxisAttr "calendar" "taiwan"
+                static member inline thai = Interop.mkLayoutSceneXaxisAttr "calendar" "thai"
+                static member inline ummalqura = Interop.mkLayoutSceneXaxisAttr "calendar" "ummalqura"
 
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutSceneXaxisTitleFontProperty list) = Interop.mkLayoutSceneXaxisTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutSceneXaxisTitleFontProperty list) list) = Interop.mkLayoutSceneXaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutSceneXaxisTitleFontProperty list) list) = Interop.mkLayoutSceneXaxisTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutSceneXaxisTitleAttr "text" value
 
@@ -2588,7 +2588,7 @@ module layout =
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutSceneXaxisTitleFontDescriptionProperty list) = Interop.mkLayoutSceneXaxisTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutSceneXaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutSceneXaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutSceneXaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutSceneXaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutSceneXaxisTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutSceneXaxisTitleFontAttr "size" value
@@ -2598,7 +2598,7 @@ module layout =
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutSceneXaxisTickfontDescriptionProperty list) = Interop.mkLayoutSceneXaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutSceneXaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutSceneXaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutSceneXaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutSceneXaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutSceneXaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutSceneXaxisTickfontAttr "size" value
@@ -2608,11 +2608,11 @@ module layout =
         [<Erase>]
         type yaxis =
             static member inline title (properties: #ILayoutSceneYaxisTitleProperty list) = Interop.mkLayoutSceneYaxisAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutSceneYaxisTitleProperty list) list) = Interop.mkLayoutSceneYaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutSceneYaxisTitleProperty list) list) = Interop.mkLayoutSceneYaxisAttr "title" (properties |> Bindings.withConditionals)
             static member inline tickfont (properties: #ILayoutSceneYaxisTickfontProperty list) = Interop.mkLayoutSceneYaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutSceneYaxisTickfontProperty list) list) = Interop.mkLayoutSceneYaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutSceneYaxisTickfontProperty list) list) = Interop.mkLayoutSceneYaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutSceneYaxisTickformatstopsProperty list) = Interop.mkLayoutSceneYaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutSceneYaxisTickformatstopsProperty list) list) = Interop.mkLayoutSceneYaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutSceneYaxisTickformatstopsProperty list) list) = Interop.mkLayoutSceneYaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             static member inline visible (value: bool) = Interop.mkLayoutSceneYaxisAttr "visible" value
             /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
@@ -2761,22 +2761,22 @@ module layout =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
-                static member inline categoryAscending = Interop.mkLayoutSceneAttr "categoryorder" "category ascending"
-                static member inline categoryDescending = Interop.mkLayoutSceneAttr "categoryorder" "category descending"
-                static member inline maxAscending = Interop.mkLayoutSceneAttr "categoryorder" "max ascending"
-                static member inline maxDescending = Interop.mkLayoutSceneAttr "categoryorder" "max descending"
-                static member inline meanAscending = Interop.mkLayoutSceneAttr "categoryorder" "mean ascending"
-                static member inline meanDescending = Interop.mkLayoutSceneAttr "categoryorder" "mean descending"
-                static member inline medianAscending = Interop.mkLayoutSceneAttr "categoryorder" "median ascending"
-                static member inline medianDescending = Interop.mkLayoutSceneAttr "categoryorder" "median descending"
-                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
-                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
-                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
-                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutSceneYaxisAttr "categoryorder" "array"
+                static member inline categoryAscending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "category ascending"
+                static member inline categoryDescending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "category descending"
+                static member inline maxAscending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "max ascending"
+                static member inline maxDescending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "max descending"
+                static member inline meanAscending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "mean ascending"
+                static member inline meanDescending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "mean descending"
+                static member inline medianAscending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "median ascending"
+                static member inline medianDescending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutSceneYaxisAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutSceneYaxisAttr "categoryorder" "trace"
 
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             [<Erase>]
@@ -2790,98 +2790,98 @@ module layout =
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline reversed = Interop.mkLayoutSceneAttr "autorange" "reversed"
-                static member inline false' = Interop.mkLayoutSceneAttr "autorange" "false"
-                static member inline true' = Interop.mkLayoutSceneAttr "autorange" "true"
+                static member inline reversed = Interop.mkLayoutSceneYaxisAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutSceneYaxisAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutSceneYaxisAttr "autorange" "true"
 
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             [<Erase>]
             type rangemode =
-                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
-                static member inline normal = Interop.mkLayoutSceneAttr "rangemode" "normal"
-                static member inline tozero = Interop.mkLayoutSceneAttr "rangemode" "tozero"
+                static member inline nonnegative = Interop.mkLayoutSceneYaxisAttr "rangemode" "nonnegative"
+                static member inline normal = Interop.mkLayoutSceneYaxisAttr "rangemode" "normal"
+                static member inline tozero = Interop.mkLayoutSceneYaxisAttr "rangemode" "tozero"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutSceneAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutSceneAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutSceneYaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutSceneYaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutSceneYaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutSceneAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutSceneYaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutSceneYaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutSceneYaxisAttr "ticks" "outside"
 
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             [<Erase>]
             type mirror =
-                static member inline all = Interop.mkLayoutSceneAttr "mirror" "all"
-                static member inline allticks = Interop.mkLayoutSceneAttr "mirror" "allticks"
-                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
-                static member inline false' = Interop.mkLayoutSceneAttr "mirror" "false"
-                static member inline true' = Interop.mkLayoutSceneAttr "mirror" "true"
+                static member inline all = Interop.mkLayoutSceneYaxisAttr "mirror" "all"
+                static member inline allticks = Interop.mkLayoutSceneYaxisAttr "mirror" "allticks"
+                static member inline ticks = Interop.mkLayoutSceneYaxisAttr "mirror" "ticks"
+                static member inline false' = Interop.mkLayoutSceneYaxisAttr "mirror" "false"
+                static member inline true' = Interop.mkLayoutSceneYaxisAttr "mirror" "true"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutSceneAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutSceneYaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutSceneYaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutSceneYaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutSceneYaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutSceneAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutSceneYaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutSceneYaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutSceneYaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutSceneYaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutSceneAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutSceneYaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutSceneYaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutSceneYaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutSceneYaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutSceneAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutSceneYaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutSceneYaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutSceneYaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutSceneYaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutSceneYaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutSceneYaxisAttr "exponentformat" "power"
 
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline chinese = Interop.mkLayoutSceneAttr "calendar" "chinese"
-                static member inline coptic = Interop.mkLayoutSceneAttr "calendar" "coptic"
-                static member inline discworld = Interop.mkLayoutSceneAttr "calendar" "discworld"
-                static member inline ethiopian = Interop.mkLayoutSceneAttr "calendar" "ethiopian"
-                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
-                static member inline hebrew = Interop.mkLayoutSceneAttr "calendar" "hebrew"
-                static member inline islamic = Interop.mkLayoutSceneAttr "calendar" "islamic"
-                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
-                static member inline julian = Interop.mkLayoutSceneAttr "calendar" "julian"
-                static member inline mayan = Interop.mkLayoutSceneAttr "calendar" "mayan"
-                static member inline nanakshahi = Interop.mkLayoutSceneAttr "calendar" "nanakshahi"
-                static member inline nepali = Interop.mkLayoutSceneAttr "calendar" "nepali"
-                static member inline persian = Interop.mkLayoutSceneAttr "calendar" "persian"
-                static member inline taiwan = Interop.mkLayoutSceneAttr "calendar" "taiwan"
-                static member inline thai = Interop.mkLayoutSceneAttr "calendar" "thai"
-                static member inline ummalqura = Interop.mkLayoutSceneAttr "calendar" "ummalqura"
+                static member inline chinese = Interop.mkLayoutSceneYaxisAttr "calendar" "chinese"
+                static member inline coptic = Interop.mkLayoutSceneYaxisAttr "calendar" "coptic"
+                static member inline discworld = Interop.mkLayoutSceneYaxisAttr "calendar" "discworld"
+                static member inline ethiopian = Interop.mkLayoutSceneYaxisAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutSceneYaxisAttr "calendar" "gregorian"
+                static member inline hebrew = Interop.mkLayoutSceneYaxisAttr "calendar" "hebrew"
+                static member inline islamic = Interop.mkLayoutSceneYaxisAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutSceneYaxisAttr "calendar" "jalali"
+                static member inline julian = Interop.mkLayoutSceneYaxisAttr "calendar" "julian"
+                static member inline mayan = Interop.mkLayoutSceneYaxisAttr "calendar" "mayan"
+                static member inline nanakshahi = Interop.mkLayoutSceneYaxisAttr "calendar" "nanakshahi"
+                static member inline nepali = Interop.mkLayoutSceneYaxisAttr "calendar" "nepali"
+                static member inline persian = Interop.mkLayoutSceneYaxisAttr "calendar" "persian"
+                static member inline taiwan = Interop.mkLayoutSceneYaxisAttr "calendar" "taiwan"
+                static member inline thai = Interop.mkLayoutSceneYaxisAttr "calendar" "thai"
+                static member inline ummalqura = Interop.mkLayoutSceneYaxisAttr "calendar" "ummalqura"
 
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutSceneYaxisTitleFontProperty list) = Interop.mkLayoutSceneYaxisTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutSceneYaxisTitleFontProperty list) list) = Interop.mkLayoutSceneYaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutSceneYaxisTitleFontProperty list) list) = Interop.mkLayoutSceneYaxisTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutSceneYaxisTitleAttr "text" value
 
@@ -2890,7 +2890,7 @@ module layout =
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutSceneYaxisTitleFontDescriptionProperty list) = Interop.mkLayoutSceneYaxisTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutSceneYaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutSceneYaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutSceneYaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutSceneYaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutSceneYaxisTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutSceneYaxisTitleFontAttr "size" value
@@ -2900,7 +2900,7 @@ module layout =
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutSceneYaxisTickfontDescriptionProperty list) = Interop.mkLayoutSceneYaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutSceneYaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutSceneYaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutSceneYaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutSceneYaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutSceneYaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutSceneYaxisTickfontAttr "size" value
@@ -2910,11 +2910,11 @@ module layout =
         [<Erase>]
         type zaxis =
             static member inline title (properties: #ILayoutSceneZaxisTitleProperty list) = Interop.mkLayoutSceneZaxisAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutSceneZaxisTitleProperty list) list) = Interop.mkLayoutSceneZaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutSceneZaxisTitleProperty list) list) = Interop.mkLayoutSceneZaxisAttr "title" (properties |> Bindings.withConditionals)
             static member inline tickfont (properties: #ILayoutSceneZaxisTickfontProperty list) = Interop.mkLayoutSceneZaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutSceneZaxisTickfontProperty list) list) = Interop.mkLayoutSceneZaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutSceneZaxisTickfontProperty list) list) = Interop.mkLayoutSceneZaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutSceneZaxisTickformatstopsProperty list) = Interop.mkLayoutSceneZaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutSceneZaxisTickformatstopsProperty list) list) = Interop.mkLayoutSceneZaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutSceneZaxisTickformatstopsProperty list) list) = Interop.mkLayoutSceneZaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             static member inline visible (value: bool) = Interop.mkLayoutSceneZaxisAttr "visible" value
             /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
@@ -3063,22 +3063,22 @@ module layout =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline array = Interop.mkLayoutSceneAttr "categoryorder" "array"
-                static member inline categoryAscending = Interop.mkLayoutSceneAttr "categoryorder" "category ascending"
-                static member inline categoryDescending = Interop.mkLayoutSceneAttr "categoryorder" "category descending"
-                static member inline maxAscending = Interop.mkLayoutSceneAttr "categoryorder" "max ascending"
-                static member inline maxDescending = Interop.mkLayoutSceneAttr "categoryorder" "max descending"
-                static member inline meanAscending = Interop.mkLayoutSceneAttr "categoryorder" "mean ascending"
-                static member inline meanDescending = Interop.mkLayoutSceneAttr "categoryorder" "mean descending"
-                static member inline medianAscending = Interop.mkLayoutSceneAttr "categoryorder" "median ascending"
-                static member inline medianDescending = Interop.mkLayoutSceneAttr "categoryorder" "median descending"
-                static member inline minAscending = Interop.mkLayoutSceneAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutSceneAttr "categoryorder" "min descending"
-                static member inline sumAscending = Interop.mkLayoutSceneAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutSceneAttr "categoryorder" "sum descending"
-                static member inline totalAscending = Interop.mkLayoutSceneAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutSceneAttr "categoryorder" "total descending"
-                static member inline trace = Interop.mkLayoutSceneAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutSceneZaxisAttr "categoryorder" "array"
+                static member inline categoryAscending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "category ascending"
+                static member inline categoryDescending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "category descending"
+                static member inline maxAscending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "max ascending"
+                static member inline maxDescending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "max descending"
+                static member inline meanAscending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "mean ascending"
+                static member inline meanDescending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "mean descending"
+                static member inline medianAscending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "median ascending"
+                static member inline medianDescending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutSceneZaxisAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutSceneZaxisAttr "categoryorder" "trace"
 
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             [<Erase>]
@@ -3092,98 +3092,98 @@ module layout =
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline reversed = Interop.mkLayoutSceneAttr "autorange" "reversed"
-                static member inline false' = Interop.mkLayoutSceneAttr "autorange" "false"
-                static member inline true' = Interop.mkLayoutSceneAttr "autorange" "true"
+                static member inline reversed = Interop.mkLayoutSceneZaxisAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutSceneZaxisAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutSceneZaxisAttr "autorange" "true"
 
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             [<Erase>]
             type rangemode =
-                static member inline nonnegative = Interop.mkLayoutSceneAttr "rangemode" "nonnegative"
-                static member inline normal = Interop.mkLayoutSceneAttr "rangemode" "normal"
-                static member inline tozero = Interop.mkLayoutSceneAttr "rangemode" "tozero"
+                static member inline nonnegative = Interop.mkLayoutSceneZaxisAttr "rangemode" "nonnegative"
+                static member inline normal = Interop.mkLayoutSceneZaxisAttr "rangemode" "normal"
+                static member inline tozero = Interop.mkLayoutSceneZaxisAttr "rangemode" "tozero"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutSceneAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutSceneAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutSceneAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutSceneZaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutSceneZaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutSceneZaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutSceneAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutSceneAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutSceneAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutSceneZaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutSceneZaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutSceneZaxisAttr "ticks" "outside"
 
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             [<Erase>]
             type mirror =
-                static member inline all = Interop.mkLayoutSceneAttr "mirror" "all"
-                static member inline allticks = Interop.mkLayoutSceneAttr "mirror" "allticks"
-                static member inline ticks = Interop.mkLayoutSceneAttr "mirror" "ticks"
-                static member inline false' = Interop.mkLayoutSceneAttr "mirror" "false"
-                static member inline true' = Interop.mkLayoutSceneAttr "mirror" "true"
+                static member inline all = Interop.mkLayoutSceneZaxisAttr "mirror" "all"
+                static member inline allticks = Interop.mkLayoutSceneZaxisAttr "mirror" "allticks"
+                static member inline ticks = Interop.mkLayoutSceneZaxisAttr "mirror" "ticks"
+                static member inline false' = Interop.mkLayoutSceneZaxisAttr "mirror" "false"
+                static member inline true' = Interop.mkLayoutSceneZaxisAttr "mirror" "true"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutSceneAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutSceneZaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutSceneZaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutSceneZaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutSceneZaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutSceneAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutSceneZaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutSceneZaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutSceneZaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutSceneZaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutSceneAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutSceneAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutSceneAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutSceneAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutSceneZaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutSceneZaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutSceneZaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutSceneZaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutSceneAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutSceneAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutSceneAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutSceneAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutSceneAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutSceneAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutSceneZaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutSceneZaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutSceneZaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutSceneZaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutSceneZaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutSceneZaxisAttr "exponentformat" "power"
 
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline chinese = Interop.mkLayoutSceneAttr "calendar" "chinese"
-                static member inline coptic = Interop.mkLayoutSceneAttr "calendar" "coptic"
-                static member inline discworld = Interop.mkLayoutSceneAttr "calendar" "discworld"
-                static member inline ethiopian = Interop.mkLayoutSceneAttr "calendar" "ethiopian"
-                static member inline gregorian = Interop.mkLayoutSceneAttr "calendar" "gregorian"
-                static member inline hebrew = Interop.mkLayoutSceneAttr "calendar" "hebrew"
-                static member inline islamic = Interop.mkLayoutSceneAttr "calendar" "islamic"
-                static member inline jalali = Interop.mkLayoutSceneAttr "calendar" "jalali"
-                static member inline julian = Interop.mkLayoutSceneAttr "calendar" "julian"
-                static member inline mayan = Interop.mkLayoutSceneAttr "calendar" "mayan"
-                static member inline nanakshahi = Interop.mkLayoutSceneAttr "calendar" "nanakshahi"
-                static member inline nepali = Interop.mkLayoutSceneAttr "calendar" "nepali"
-                static member inline persian = Interop.mkLayoutSceneAttr "calendar" "persian"
-                static member inline taiwan = Interop.mkLayoutSceneAttr "calendar" "taiwan"
-                static member inline thai = Interop.mkLayoutSceneAttr "calendar" "thai"
-                static member inline ummalqura = Interop.mkLayoutSceneAttr "calendar" "ummalqura"
+                static member inline chinese = Interop.mkLayoutSceneZaxisAttr "calendar" "chinese"
+                static member inline coptic = Interop.mkLayoutSceneZaxisAttr "calendar" "coptic"
+                static member inline discworld = Interop.mkLayoutSceneZaxisAttr "calendar" "discworld"
+                static member inline ethiopian = Interop.mkLayoutSceneZaxisAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutSceneZaxisAttr "calendar" "gregorian"
+                static member inline hebrew = Interop.mkLayoutSceneZaxisAttr "calendar" "hebrew"
+                static member inline islamic = Interop.mkLayoutSceneZaxisAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutSceneZaxisAttr "calendar" "jalali"
+                static member inline julian = Interop.mkLayoutSceneZaxisAttr "calendar" "julian"
+                static member inline mayan = Interop.mkLayoutSceneZaxisAttr "calendar" "mayan"
+                static member inline nanakshahi = Interop.mkLayoutSceneZaxisAttr "calendar" "nanakshahi"
+                static member inline nepali = Interop.mkLayoutSceneZaxisAttr "calendar" "nepali"
+                static member inline persian = Interop.mkLayoutSceneZaxisAttr "calendar" "persian"
+                static member inline taiwan = Interop.mkLayoutSceneZaxisAttr "calendar" "taiwan"
+                static member inline thai = Interop.mkLayoutSceneZaxisAttr "calendar" "thai"
+                static member inline ummalqura = Interop.mkLayoutSceneZaxisAttr "calendar" "ummalqura"
 
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutSceneZaxisTitleFontProperty list) = Interop.mkLayoutSceneZaxisTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutSceneZaxisTitleFontProperty list) list) = Interop.mkLayoutSceneZaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutSceneZaxisTitleFontProperty list) list) = Interop.mkLayoutSceneZaxisTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutSceneZaxisTitleAttr "text" value
 
@@ -3192,7 +3192,7 @@ module layout =
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutSceneZaxisTitleFontDescriptionProperty list) = Interop.mkLayoutSceneZaxisTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutSceneZaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutSceneZaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutSceneZaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutSceneZaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutSceneZaxisTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutSceneZaxisTitleFontAttr "size" value
@@ -3202,7 +3202,7 @@ module layout =
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutSceneZaxisTickfontDescriptionProperty list) = Interop.mkLayoutSceneZaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutSceneZaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutSceneZaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutSceneZaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutSceneZaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutSceneZaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutSceneZaxisTickfontAttr "size" value
@@ -3212,15 +3212,15 @@ module layout =
     [<Erase>]
     type geo =
         static member inline domain (properties: #ILayoutGeoDomainProperty list) = Interop.mkLayoutGeoAttr "domain" (createObj !!properties)
-        static member domain (properties: (bool * ILayoutGeoDomainProperty list) list) = Interop.mkLayoutGeoAttr "domain" (properties |> Bindings.Internal.withConditionals)
+        static member domain (properties: (bool * ILayoutGeoDomainProperty list) list) = Interop.mkLayoutGeoAttr "domain" (properties |> Bindings.withConditionals)
         static member inline projection (properties: #ILayoutGeoProjectionProperty list) = Interop.mkLayoutGeoAttr "projection" (createObj !!properties)
-        static member projection (properties: (bool * ILayoutGeoProjectionProperty list) list) = Interop.mkLayoutGeoAttr "projection" (properties |> Bindings.Internal.withConditionals)
+        static member projection (properties: (bool * ILayoutGeoProjectionProperty list) list) = Interop.mkLayoutGeoAttr "projection" (properties |> Bindings.withConditionals)
         static member inline center (properties: #ILayoutGeoCenterProperty list) = Interop.mkLayoutGeoAttr "center" (createObj !!properties)
-        static member center (properties: (bool * ILayoutGeoCenterProperty list) list) = Interop.mkLayoutGeoAttr "center" (properties |> Bindings.Internal.withConditionals)
+        static member center (properties: (bool * ILayoutGeoCenterProperty list) list) = Interop.mkLayoutGeoAttr "center" (properties |> Bindings.withConditionals)
         static member inline lonaxis (properties: #ILayoutGeoLonaxisProperty list) = Interop.mkLayoutGeoAttr "lonaxis" (createObj !!properties)
-        static member lonaxis (properties: (bool * ILayoutGeoLonaxisProperty list) list) = Interop.mkLayoutGeoAttr "lonaxis" (properties |> Bindings.Internal.withConditionals)
+        static member lonaxis (properties: (bool * ILayoutGeoLonaxisProperty list) list) = Interop.mkLayoutGeoAttr "lonaxis" (properties |> Bindings.withConditionals)
         static member inline lataxis (properties: #ILayoutGeoLataxisProperty list) = Interop.mkLayoutGeoAttr "lataxis" (createObj !!properties)
-        static member lataxis (properties: (bool * ILayoutGeoLataxisProperty list) list) = Interop.mkLayoutGeoAttr "lataxis" (properties |> Bindings.Internal.withConditionals)
+        static member lataxis (properties: (bool * ILayoutGeoLataxisProperty list) list) = Interop.mkLayoutGeoAttr "lataxis" (properties |> Bindings.withConditionals)
         /// Sets whether or not the coastlines are drawn.
         static member inline showcoastlines (value: bool) = Interop.mkLayoutGeoAttr "showcoastlines" value
         /// Sets the coastline color.
@@ -3329,7 +3329,7 @@ module layout =
         [<Erase>]
         type projection =
             static member inline rotation (properties: #ILayoutGeoProjectionRotationProperty list) = Interop.mkLayoutGeoProjectionAttr "rotation" (createObj !!properties)
-            static member rotation (properties: (bool * ILayoutGeoProjectionRotationProperty list) list) = Interop.mkLayoutGeoProjectionAttr "rotation" (properties |> Bindings.Internal.withConditionals)
+            static member rotation (properties: (bool * ILayoutGeoProjectionRotationProperty list) list) = Interop.mkLayoutGeoProjectionAttr "rotation" (properties |> Bindings.withConditionals)
             /// For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
             static member inline parallels (values: seq<int>) = Interop.mkLayoutGeoProjectionAttr "parallels" (values |> Array.ofSeq)
             /// For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
@@ -3442,13 +3442,13 @@ module layout =
     [<Erase>]
     type mapbox =
         static member inline _arrayAttrRegexps (properties: #ILayoutMapbox_arrayAttrRegexpsProperty list) = Interop.mkLayoutMapboxAttr "_arrayAttrRegexps" (createObj !!properties)
-        static member _arrayAttrRegexps (properties: (bool * ILayoutMapbox_arrayAttrRegexpsProperty list) list) = Interop.mkLayoutMapboxAttr "_arrayAttrRegexps" (properties |> Bindings.Internal.withConditionals)
+        static member _arrayAttrRegexps (properties: (bool * ILayoutMapbox_arrayAttrRegexpsProperty list) list) = Interop.mkLayoutMapboxAttr "_arrayAttrRegexps" (properties |> Bindings.withConditionals)
         static member inline domain (properties: #ILayoutMapboxDomainProperty list) = Interop.mkLayoutMapboxAttr "domain" (createObj !!properties)
-        static member domain (properties: (bool * ILayoutMapboxDomainProperty list) list) = Interop.mkLayoutMapboxAttr "domain" (properties |> Bindings.Internal.withConditionals)
+        static member domain (properties: (bool * ILayoutMapboxDomainProperty list) list) = Interop.mkLayoutMapboxAttr "domain" (properties |> Bindings.withConditionals)
         static member inline center (properties: #ILayoutMapboxCenterProperty list) = Interop.mkLayoutMapboxAttr "center" (createObj !!properties)
-        static member center (properties: (bool * ILayoutMapboxCenterProperty list) list) = Interop.mkLayoutMapboxAttr "center" (properties |> Bindings.Internal.withConditionals)
+        static member center (properties: (bool * ILayoutMapboxCenterProperty list) list) = Interop.mkLayoutMapboxAttr "center" (properties |> Bindings.withConditionals)
         static member inline layers (properties: #ILayoutMapboxLayersProperty list) = Interop.mkLayoutMapboxAttr "layers" (createObj !!properties)
-        static member layers (properties: (bool * ILayoutMapboxLayersProperty list) list) = Interop.mkLayoutMapboxAttr "layers" (properties |> Bindings.Internal.withConditionals)
+        static member layers (properties: (bool * ILayoutMapboxLayersProperty list) list) = Interop.mkLayoutMapboxAttr "layers" (properties |> Bindings.withConditionals)
         /// Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.
         static member inline accesstoken (value: string) = Interop.mkLayoutMapboxAttr "accesstoken" value
         /// Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`.  These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token  Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option.  Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec  The built-in plotly.js styles objects are: open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner, stamen-watercolor  The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets  Mapbox style URLs are of the form: mapbox://mapbox.mapbox-<name>-<version>
@@ -3527,11 +3527,11 @@ module layout =
     [<Erase>]
     type polar =
         static member inline domain (properties: #ILayoutPolarDomainProperty list) = Interop.mkLayoutPolarAttr "domain" (createObj !!properties)
-        static member domain (properties: (bool * ILayoutPolarDomainProperty list) list) = Interop.mkLayoutPolarAttr "domain" (properties |> Bindings.Internal.withConditionals)
+        static member domain (properties: (bool * ILayoutPolarDomainProperty list) list) = Interop.mkLayoutPolarAttr "domain" (properties |> Bindings.withConditionals)
         static member inline radialaxis (properties: #ILayoutPolarRadialaxisProperty list) = Interop.mkLayoutPolarAttr "radialaxis" (createObj !!properties)
-        static member radialaxis (properties: (bool * ILayoutPolarRadialaxisProperty list) list) = Interop.mkLayoutPolarAttr "radialaxis" (properties |> Bindings.Internal.withConditionals)
+        static member radialaxis (properties: (bool * ILayoutPolarRadialaxisProperty list) list) = Interop.mkLayoutPolarAttr "radialaxis" (properties |> Bindings.withConditionals)
         static member inline angularaxis (properties: #ILayoutPolarAngularaxisProperty list) = Interop.mkLayoutPolarAttr "angularaxis" (createObj !!properties)
-        static member angularaxis (properties: (bool * ILayoutPolarAngularaxisProperty list) list) = Interop.mkLayoutPolarAttr "angularaxis" (properties |> Bindings.Internal.withConditionals)
+        static member angularaxis (properties: (bool * ILayoutPolarAngularaxisProperty list) list) = Interop.mkLayoutPolarAttr "angularaxis" (properties |> Bindings.withConditionals)
         /// Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
         static member inline sector (values: seq<int>) = Interop.mkLayoutPolarAttr "sector" (values |> Array.ofSeq)
         /// Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
@@ -3585,11 +3585,11 @@ module layout =
         [<Erase>]
         type radialaxis =
             static member inline title (properties: #ILayoutPolarRadialaxisTitleProperty list) = Interop.mkLayoutPolarRadialaxisAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutPolarRadialaxisTitleProperty list) list) = Interop.mkLayoutPolarRadialaxisAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutPolarRadialaxisTitleProperty list) list) = Interop.mkLayoutPolarRadialaxisAttr "title" (properties |> Bindings.withConditionals)
             static member inline tickfont (properties: #ILayoutPolarRadialaxisTickfontProperty list) = Interop.mkLayoutPolarRadialaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutPolarRadialaxisTickfontProperty list) list) = Interop.mkLayoutPolarRadialaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutPolarRadialaxisTickfontProperty list) list) = Interop.mkLayoutPolarRadialaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutPolarRadialaxisTickformatstopsProperty list) = Interop.mkLayoutPolarRadialaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutPolarRadialaxisTickformatstopsProperty list) list) = Interop.mkLayoutPolarRadialaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutPolarRadialaxisTickformatstopsProperty list) list) = Interop.mkLayoutPolarRadialaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             static member inline visible (value: bool) = Interop.mkLayoutPolarRadialaxisAttr "visible" value
             /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
@@ -3743,121 +3743,121 @@ module layout =
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             [<Erase>]
             type autorange =
-                static member inline reversed = Interop.mkLayoutPolarAttr "autorange" "reversed"
-                static member inline false' = Interop.mkLayoutPolarAttr "autorange" "false"
-                static member inline true' = Interop.mkLayoutPolarAttr "autorange" "true"
+                static member inline reversed = Interop.mkLayoutPolarRadialaxisAttr "autorange" "reversed"
+                static member inline false' = Interop.mkLayoutPolarRadialaxisAttr "autorange" "false"
+                static member inline true' = Interop.mkLayoutPolarRadialaxisAttr "autorange" "true"
 
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. If *normal*, the range is computed in relation to the extrema of the input data (same behavior as for cartesian axes).
             [<Erase>]
             type rangemode =
-                static member inline nonnegative = Interop.mkLayoutPolarAttr "rangemode" "nonnegative"
-                static member inline normal = Interop.mkLayoutPolarAttr "rangemode" "normal"
-                static member inline tozero = Interop.mkLayoutPolarAttr "rangemode" "tozero"
+                static member inline nonnegative = Interop.mkLayoutPolarRadialaxisAttr "rangemode" "nonnegative"
+                static member inline normal = Interop.mkLayoutPolarRadialaxisAttr "rangemode" "normal"
+                static member inline tozero = Interop.mkLayoutPolarRadialaxisAttr "rangemode" "tozero"
 
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline array = Interop.mkLayoutPolarAttr "categoryorder" "array"
-                static member inline categoryAscending = Interop.mkLayoutPolarAttr "categoryorder" "category ascending"
-                static member inline categoryDescending = Interop.mkLayoutPolarAttr "categoryorder" "category descending"
-                static member inline maxAscending = Interop.mkLayoutPolarAttr "categoryorder" "max ascending"
-                static member inline maxDescending = Interop.mkLayoutPolarAttr "categoryorder" "max descending"
-                static member inline meanAscending = Interop.mkLayoutPolarAttr "categoryorder" "mean ascending"
-                static member inline meanDescending = Interop.mkLayoutPolarAttr "categoryorder" "mean descending"
-                static member inline medianAscending = Interop.mkLayoutPolarAttr "categoryorder" "median ascending"
-                static member inline medianDescending = Interop.mkLayoutPolarAttr "categoryorder" "median descending"
-                static member inline minAscending = Interop.mkLayoutPolarAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutPolarAttr "categoryorder" "min descending"
-                static member inline sumAscending = Interop.mkLayoutPolarAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutPolarAttr "categoryorder" "sum descending"
-                static member inline totalAscending = Interop.mkLayoutPolarAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutPolarAttr "categoryorder" "total descending"
-                static member inline trace = Interop.mkLayoutPolarAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "array"
+                static member inline categoryAscending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "category ascending"
+                static member inline categoryDescending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "category descending"
+                static member inline maxAscending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "max ascending"
+                static member inline maxDescending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "max descending"
+                static member inline meanAscending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "mean ascending"
+                static member inline meanDescending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "mean descending"
+                static member inline medianAscending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "median ascending"
+                static member inline medianDescending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutPolarRadialaxisAttr "categoryorder" "trace"
 
             /// Determines on which side of radial axis line the tick and tick labels appear.
             [<Erase>]
             type side =
-                static member inline clockwise = Interop.mkLayoutPolarAttr "side" "clockwise"
-                static member inline counterclockwise = Interop.mkLayoutPolarAttr "side" "counterclockwise"
+                static member inline clockwise = Interop.mkLayoutPolarRadialaxisAttr "side" "clockwise"
+                static member inline counterclockwise = Interop.mkLayoutPolarRadialaxisAttr "side" "counterclockwise"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutPolarAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutPolarAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutPolarAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutPolarRadialaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutPolarRadialaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutPolarRadialaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutPolarAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutPolarAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutPolarAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutPolarRadialaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutPolarRadialaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutPolarRadialaxisAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutPolarAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutPolarAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutPolarAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutPolarAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutPolarRadialaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutPolarRadialaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutPolarRadialaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutPolarRadialaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutPolarAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutPolarAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutPolarAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutPolarAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutPolarRadialaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutPolarRadialaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutPolarRadialaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutPolarRadialaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutPolarAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutPolarAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutPolarAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutPolarAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutPolarRadialaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutPolarRadialaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutPolarRadialaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutPolarRadialaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutPolarAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutPolarAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutPolarAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutPolarAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutPolarAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutPolarAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutPolarRadialaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutPolarRadialaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutPolarRadialaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutPolarRadialaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutPolarRadialaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutPolarRadialaxisAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
             type layer =
-                static member inline aboveTraces = Interop.mkLayoutPolarAttr "layer" "above traces"
-                static member inline belowTraces = Interop.mkLayoutPolarAttr "layer" "below traces"
+                static member inline aboveTraces = Interop.mkLayoutPolarRadialaxisAttr "layer" "above traces"
+                static member inline belowTraces = Interop.mkLayoutPolarRadialaxisAttr "layer" "below traces"
 
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
             [<Erase>]
             type calendar =
-                static member inline chinese = Interop.mkLayoutPolarAttr "calendar" "chinese"
-                static member inline coptic = Interop.mkLayoutPolarAttr "calendar" "coptic"
-                static member inline discworld = Interop.mkLayoutPolarAttr "calendar" "discworld"
-                static member inline ethiopian = Interop.mkLayoutPolarAttr "calendar" "ethiopian"
-                static member inline gregorian = Interop.mkLayoutPolarAttr "calendar" "gregorian"
-                static member inline hebrew = Interop.mkLayoutPolarAttr "calendar" "hebrew"
-                static member inline islamic = Interop.mkLayoutPolarAttr "calendar" "islamic"
-                static member inline jalali = Interop.mkLayoutPolarAttr "calendar" "jalali"
-                static member inline julian = Interop.mkLayoutPolarAttr "calendar" "julian"
-                static member inline mayan = Interop.mkLayoutPolarAttr "calendar" "mayan"
-                static member inline nanakshahi = Interop.mkLayoutPolarAttr "calendar" "nanakshahi"
-                static member inline nepali = Interop.mkLayoutPolarAttr "calendar" "nepali"
-                static member inline persian = Interop.mkLayoutPolarAttr "calendar" "persian"
-                static member inline taiwan = Interop.mkLayoutPolarAttr "calendar" "taiwan"
-                static member inline thai = Interop.mkLayoutPolarAttr "calendar" "thai"
-                static member inline ummalqura = Interop.mkLayoutPolarAttr "calendar" "ummalqura"
+                static member inline chinese = Interop.mkLayoutPolarRadialaxisAttr "calendar" "chinese"
+                static member inline coptic = Interop.mkLayoutPolarRadialaxisAttr "calendar" "coptic"
+                static member inline discworld = Interop.mkLayoutPolarRadialaxisAttr "calendar" "discworld"
+                static member inline ethiopian = Interop.mkLayoutPolarRadialaxisAttr "calendar" "ethiopian"
+                static member inline gregorian = Interop.mkLayoutPolarRadialaxisAttr "calendar" "gregorian"
+                static member inline hebrew = Interop.mkLayoutPolarRadialaxisAttr "calendar" "hebrew"
+                static member inline islamic = Interop.mkLayoutPolarRadialaxisAttr "calendar" "islamic"
+                static member inline jalali = Interop.mkLayoutPolarRadialaxisAttr "calendar" "jalali"
+                static member inline julian = Interop.mkLayoutPolarRadialaxisAttr "calendar" "julian"
+                static member inline mayan = Interop.mkLayoutPolarRadialaxisAttr "calendar" "mayan"
+                static member inline nanakshahi = Interop.mkLayoutPolarRadialaxisAttr "calendar" "nanakshahi"
+                static member inline nepali = Interop.mkLayoutPolarRadialaxisAttr "calendar" "nepali"
+                static member inline persian = Interop.mkLayoutPolarRadialaxisAttr "calendar" "persian"
+                static member inline taiwan = Interop.mkLayoutPolarRadialaxisAttr "calendar" "taiwan"
+                static member inline thai = Interop.mkLayoutPolarRadialaxisAttr "calendar" "thai"
+                static member inline ummalqura = Interop.mkLayoutPolarRadialaxisAttr "calendar" "ummalqura"
 
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutPolarRadialaxisTitleFontProperty list) = Interop.mkLayoutPolarRadialaxisTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutPolarRadialaxisTitleFontProperty list) list) = Interop.mkLayoutPolarRadialaxisTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutPolarRadialaxisTitleFontProperty list) list) = Interop.mkLayoutPolarRadialaxisTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutPolarRadialaxisTitleAttr "text" value
 
@@ -3866,7 +3866,7 @@ module layout =
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutPolarRadialaxisTitleFontDescriptionProperty list) = Interop.mkLayoutPolarRadialaxisTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutPolarRadialaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutPolarRadialaxisTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutPolarRadialaxisTitleFontDescriptionProperty list) list) = Interop.mkLayoutPolarRadialaxisTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutPolarRadialaxisTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutPolarRadialaxisTitleFontAttr "size" value
@@ -3876,7 +3876,7 @@ module layout =
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutPolarRadialaxisTickfontDescriptionProperty list) = Interop.mkLayoutPolarRadialaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutPolarRadialaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutPolarRadialaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutPolarRadialaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutPolarRadialaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutPolarRadialaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutPolarRadialaxisTickfontAttr "size" value
@@ -3886,9 +3886,9 @@ module layout =
         [<Erase>]
         type angularaxis =
             static member inline tickfont (properties: #ILayoutPolarAngularaxisTickfontProperty list) = Interop.mkLayoutPolarAngularaxisAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutPolarAngularaxisTickfontProperty list) list) = Interop.mkLayoutPolarAngularaxisAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutPolarAngularaxisTickfontProperty list) list) = Interop.mkLayoutPolarAngularaxisAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutPolarAngularaxisTickformatstopsProperty list) = Interop.mkLayoutPolarAngularaxisAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutPolarAngularaxisTickformatstopsProperty list) list) = Interop.mkLayoutPolarAngularaxisAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutPolarAngularaxisTickformatstopsProperty list) list) = Interop.mkLayoutPolarAngularaxisAttr "tickformatstops" (properties |> Bindings.withConditionals)
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             static member inline visible (value: bool) = Interop.mkLayoutPolarAngularaxisAttr "visible" value
             /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -4036,93 +4036,93 @@ module layout =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
             type categoryorder =
-                static member inline array = Interop.mkLayoutPolarAttr "categoryorder" "array"
-                static member inline categoryAscending = Interop.mkLayoutPolarAttr "categoryorder" "category ascending"
-                static member inline categoryDescending = Interop.mkLayoutPolarAttr "categoryorder" "category descending"
-                static member inline maxAscending = Interop.mkLayoutPolarAttr "categoryorder" "max ascending"
-                static member inline maxDescending = Interop.mkLayoutPolarAttr "categoryorder" "max descending"
-                static member inline meanAscending = Interop.mkLayoutPolarAttr "categoryorder" "mean ascending"
-                static member inline meanDescending = Interop.mkLayoutPolarAttr "categoryorder" "mean descending"
-                static member inline medianAscending = Interop.mkLayoutPolarAttr "categoryorder" "median ascending"
-                static member inline medianDescending = Interop.mkLayoutPolarAttr "categoryorder" "median descending"
-                static member inline minAscending = Interop.mkLayoutPolarAttr "categoryorder" "min ascending"
-                static member inline minDescending = Interop.mkLayoutPolarAttr "categoryorder" "min descending"
-                static member inline sumAscending = Interop.mkLayoutPolarAttr "categoryorder" "sum ascending"
-                static member inline sumDescending = Interop.mkLayoutPolarAttr "categoryorder" "sum descending"
-                static member inline totalAscending = Interop.mkLayoutPolarAttr "categoryorder" "total ascending"
-                static member inline totalDescending = Interop.mkLayoutPolarAttr "categoryorder" "total descending"
-                static member inline trace = Interop.mkLayoutPolarAttr "categoryorder" "trace"
+                static member inline array = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "array"
+                static member inline categoryAscending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "category ascending"
+                static member inline categoryDescending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "category descending"
+                static member inline maxAscending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "max ascending"
+                static member inline maxDescending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "max descending"
+                static member inline meanAscending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "mean ascending"
+                static member inline meanDescending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "mean descending"
+                static member inline medianAscending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "median ascending"
+                static member inline medianDescending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "median descending"
+                static member inline minAscending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "min ascending"
+                static member inline minDescending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "min descending"
+                static member inline sumAscending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "sum ascending"
+                static member inline sumDescending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "sum descending"
+                static member inline totalAscending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "total ascending"
+                static member inline totalDescending = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "total descending"
+                static member inline trace = Interop.mkLayoutPolarAngularaxisAttr "categoryorder" "trace"
 
             /// Sets the format unit of the formatted *theta* values. Has an effect only when `angularaxis.type` is *linear*.
             [<Erase>]
             type thetaunit =
-                static member inline degrees = Interop.mkLayoutPolarAttr "thetaunit" "degrees"
-                static member inline radians = Interop.mkLayoutPolarAttr "thetaunit" "radians"
+                static member inline degrees = Interop.mkLayoutPolarAngularaxisAttr "thetaunit" "degrees"
+                static member inline radians = Interop.mkLayoutPolarAngularaxisAttr "thetaunit" "radians"
 
             /// Sets the direction corresponding to positive angles.
             [<Erase>]
             type direction =
-                static member inline clockwise = Interop.mkLayoutPolarAttr "direction" "clockwise"
-                static member inline counterclockwise = Interop.mkLayoutPolarAttr "direction" "counterclockwise"
+                static member inline clockwise = Interop.mkLayoutPolarAngularaxisAttr "direction" "clockwise"
+                static member inline counterclockwise = Interop.mkLayoutPolarAngularaxisAttr "direction" "counterclockwise"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutPolarAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutPolarAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutPolarAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutPolarAngularaxisAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutPolarAngularaxisAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutPolarAngularaxisAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutPolarAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutPolarAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutPolarAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutPolarAngularaxisAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutPolarAngularaxisAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutPolarAngularaxisAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutPolarAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutPolarAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutPolarAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutPolarAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutPolarAngularaxisAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutPolarAngularaxisAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutPolarAngularaxisAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutPolarAngularaxisAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutPolarAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutPolarAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutPolarAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutPolarAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutPolarAngularaxisAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutPolarAngularaxisAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutPolarAngularaxisAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutPolarAngularaxisAttr "showticksuffix" "none"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutPolarAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutPolarAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutPolarAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutPolarAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutPolarAngularaxisAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutPolarAngularaxisAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutPolarAngularaxisAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutPolarAngularaxisAttr "showexponent" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutPolarAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutPolarAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutPolarAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutPolarAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutPolarAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutPolarAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutPolarAngularaxisAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutPolarAngularaxisAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutPolarAngularaxisAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutPolarAngularaxisAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutPolarAngularaxisAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutPolarAngularaxisAttr "exponentformat" "power"
 
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             [<Erase>]
             type layer =
-                static member inline aboveTraces = Interop.mkLayoutPolarAttr "layer" "above traces"
-                static member inline belowTraces = Interop.mkLayoutPolarAttr "layer" "below traces"
+                static member inline aboveTraces = Interop.mkLayoutPolarAngularaxisAttr "layer" "above traces"
+                static member inline belowTraces = Interop.mkLayoutPolarAngularaxisAttr "layer" "below traces"
 
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutPolarAngularaxisTickfontDescriptionProperty list) = Interop.mkLayoutPolarAngularaxisTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutPolarAngularaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutPolarAngularaxisTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutPolarAngularaxisTickfontDescriptionProperty list) list) = Interop.mkLayoutPolarAngularaxisTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutPolarAngularaxisTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutPolarAngularaxisTickfontAttr "size" value
@@ -4210,7 +4210,7 @@ module layout =
     [<Erase>]
     type legend =
         static member inline font (properties: #ILayoutLegendFontProperty list) = Interop.mkLayoutLegendAttr "font" (createObj !!properties)
-        static member font (properties: (bool * ILayoutLegendFontProperty list) list) = Interop.mkLayoutLegendAttr "font" (properties |> Bindings.Internal.withConditionals)
+        static member font (properties: (bool * ILayoutLegendFontProperty list) list) = Interop.mkLayoutLegendAttr "font" (properties |> Bindings.withConditionals)
         /// Sets the legend background color.
         static member inline bgcolor (value: string) = Interop.mkLayoutLegendAttr "bgcolor" value
         /// Sets the color of the border enclosing the legend.
@@ -4310,7 +4310,7 @@ module layout =
         [<Erase>]
         type font =
             static member inline description (properties: #ILayoutLegendFontDescriptionProperty list) = Interop.mkLayoutLegendFontAttr "description" (createObj !!properties)
-            static member description (properties: (bool * ILayoutLegendFontDescriptionProperty list) list) = Interop.mkLayoutLegendFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+            static member description (properties: (bool * ILayoutLegendFontDescriptionProperty list) list) = Interop.mkLayoutLegendFontAttr "description" (properties |> Bindings.withConditionals)
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             static member inline family (value: string) = Interop.mkLayoutLegendFontAttr "family" value
             static member inline size (value: int) = Interop.mkLayoutLegendFontAttr "size" value
@@ -4329,9 +4329,9 @@ module layout =
     [<Erase>]
     type coloraxis =
         static member inline description (properties: #ILayoutColoraxisDescriptionProperty list) = Interop.mkLayoutColoraxisAttr "description" (createObj !!properties)
-        static member description (properties: (bool * ILayoutColoraxisDescriptionProperty list) list) = Interop.mkLayoutColoraxisAttr "description" (properties |> Bindings.Internal.withConditionals)
+        static member description (properties: (bool * ILayoutColoraxisDescriptionProperty list) list) = Interop.mkLayoutColoraxisAttr "description" (properties |> Bindings.withConditionals)
         static member inline colorbar (properties: #ILayoutColoraxisColorbarProperty list) = Interop.mkLayoutColoraxisAttr "colorbar" (createObj !!properties)
-        static member colorbar (properties: (bool * ILayoutColoraxisColorbarProperty list) list) = Interop.mkLayoutColoraxisAttr "colorbar" (properties |> Bindings.Internal.withConditionals)
+        static member colorbar (properties: (bool * ILayoutColoraxisColorbarProperty list) list) = Interop.mkLayoutColoraxisAttr "colorbar" (properties |> Bindings.withConditionals)
         /// Determines whether or not the color domain is computed with respect to the input data (here corresponding trace color array(s)) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
         static member inline cauto (value: bool) = Interop.mkLayoutColoraxisAttr "cauto" value
         /// Sets the lower bound of the color domain. Value should have the same units as corresponding trace color array(s) and if set, `cmax` must be set as well.
@@ -4360,11 +4360,11 @@ module layout =
         [<Erase>]
         type colorbar =
             static member inline tickfont (properties: #ILayoutColoraxisColorbarTickfontProperty list) = Interop.mkLayoutColoraxisColorbarAttr "tickfont" (createObj !!properties)
-            static member tickfont (properties: (bool * ILayoutColoraxisColorbarTickfontProperty list) list) = Interop.mkLayoutColoraxisColorbarAttr "tickfont" (properties |> Bindings.Internal.withConditionals)
+            static member tickfont (properties: (bool * ILayoutColoraxisColorbarTickfontProperty list) list) = Interop.mkLayoutColoraxisColorbarAttr "tickfont" (properties |> Bindings.withConditionals)
             static member inline tickformatstops (properties: #ILayoutColoraxisColorbarTickformatstopsProperty list) = Interop.mkLayoutColoraxisColorbarAttr "tickformatstops" (createObj !!properties)
-            static member tickformatstops (properties: (bool * ILayoutColoraxisColorbarTickformatstopsProperty list) list) = Interop.mkLayoutColoraxisColorbarAttr "tickformatstops" (properties |> Bindings.Internal.withConditionals)
+            static member tickformatstops (properties: (bool * ILayoutColoraxisColorbarTickformatstopsProperty list) list) = Interop.mkLayoutColoraxisColorbarAttr "tickformatstops" (properties |> Bindings.withConditionals)
             static member inline title (properties: #ILayoutColoraxisColorbarTitleProperty list) = Interop.mkLayoutColoraxisColorbarAttr "title" (createObj !!properties)
-            static member title (properties: (bool * ILayoutColoraxisColorbarTitleProperty list) list) = Interop.mkLayoutColoraxisColorbarAttr "title" (properties |> Bindings.Internal.withConditionals)
+            static member title (properties: (bool * ILayoutColoraxisColorbarTitleProperty list) list) = Interop.mkLayoutColoraxisColorbarAttr "title" (properties |> Bindings.withConditionals)
             /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
             static member inline thickness (value: int) = Interop.mkLayoutColoraxisColorbarAttr "thickness" value
             /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
@@ -4487,81 +4487,81 @@ module layout =
             /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
             [<Erase>]
             type thicknessmode =
-                static member inline fraction = Interop.mkLayoutColoraxisAttr "thicknessmode" "fraction"
-                static member inline pixels = Interop.mkLayoutColoraxisAttr "thicknessmode" "pixels"
+                static member inline fraction = Interop.mkLayoutColoraxisColorbarAttr "thicknessmode" "fraction"
+                static member inline pixels = Interop.mkLayoutColoraxisColorbarAttr "thicknessmode" "pixels"
 
             /// Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of plot *fraction* or in *pixels. Use `len` to set the value.
             [<Erase>]
             type lenmode =
-                static member inline fraction = Interop.mkLayoutColoraxisAttr "lenmode" "fraction"
-                static member inline pixels = Interop.mkLayoutColoraxisAttr "lenmode" "pixels"
+                static member inline fraction = Interop.mkLayoutColoraxisColorbarAttr "lenmode" "fraction"
+                static member inline pixels = Interop.mkLayoutColoraxisColorbarAttr "lenmode" "pixels"
 
             /// Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
             [<Erase>]
             type xanchor =
-                static member inline center = Interop.mkLayoutColoraxisAttr "xanchor" "center"
-                static member inline left = Interop.mkLayoutColoraxisAttr "xanchor" "left"
-                static member inline right = Interop.mkLayoutColoraxisAttr "xanchor" "right"
+                static member inline center = Interop.mkLayoutColoraxisColorbarAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutColoraxisColorbarAttr "xanchor" "left"
+                static member inline right = Interop.mkLayoutColoraxisColorbarAttr "xanchor" "right"
 
             /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
             [<Erase>]
             type yanchor =
-                static member inline bottom = Interop.mkLayoutColoraxisAttr "yanchor" "bottom"
-                static member inline middle = Interop.mkLayoutColoraxisAttr "yanchor" "middle"
-                static member inline top = Interop.mkLayoutColoraxisAttr "yanchor" "top"
+                static member inline bottom = Interop.mkLayoutColoraxisColorbarAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutColoraxisColorbarAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutColoraxisColorbarAttr "yanchor" "top"
 
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
             type tickmode =
-                static member inline array = Interop.mkLayoutColoraxisAttr "tickmode" "array"
-                static member inline auto = Interop.mkLayoutColoraxisAttr "tickmode" "auto"
-                static member inline linear = Interop.mkLayoutColoraxisAttr "tickmode" "linear"
+                static member inline array = Interop.mkLayoutColoraxisColorbarAttr "tickmode" "array"
+                static member inline auto = Interop.mkLayoutColoraxisColorbarAttr "tickmode" "auto"
+                static member inline linear = Interop.mkLayoutColoraxisColorbarAttr "tickmode" "linear"
 
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             [<Erase>]
             type ticks =
-                static member inline none = Interop.mkLayoutColoraxisAttr "ticks" ""
-                static member inline inside = Interop.mkLayoutColoraxisAttr "ticks" "inside"
-                static member inline outside = Interop.mkLayoutColoraxisAttr "ticks" "outside"
+                static member inline none = Interop.mkLayoutColoraxisColorbarAttr "ticks" ""
+                static member inline inside = Interop.mkLayoutColoraxisColorbarAttr "ticks" "inside"
+                static member inline outside = Interop.mkLayoutColoraxisColorbarAttr "ticks" "outside"
 
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
             [<Erase>]
             type showtickprefix =
-                static member inline all = Interop.mkLayoutColoraxisAttr "showtickprefix" "all"
-                static member inline first = Interop.mkLayoutColoraxisAttr "showtickprefix" "first"
-                static member inline last = Interop.mkLayoutColoraxisAttr "showtickprefix" "last"
-                static member inline none = Interop.mkLayoutColoraxisAttr "showtickprefix" "none"
+                static member inline all = Interop.mkLayoutColoraxisColorbarAttr "showtickprefix" "all"
+                static member inline first = Interop.mkLayoutColoraxisColorbarAttr "showtickprefix" "first"
+                static member inline last = Interop.mkLayoutColoraxisColorbarAttr "showtickprefix" "last"
+                static member inline none = Interop.mkLayoutColoraxisColorbarAttr "showtickprefix" "none"
 
             /// Same as `showtickprefix` but for tick suffixes.
             [<Erase>]
             type showticksuffix =
-                static member inline all = Interop.mkLayoutColoraxisAttr "showticksuffix" "all"
-                static member inline first = Interop.mkLayoutColoraxisAttr "showticksuffix" "first"
-                static member inline last = Interop.mkLayoutColoraxisAttr "showticksuffix" "last"
-                static member inline none = Interop.mkLayoutColoraxisAttr "showticksuffix" "none"
+                static member inline all = Interop.mkLayoutColoraxisColorbarAttr "showticksuffix" "all"
+                static member inline first = Interop.mkLayoutColoraxisColorbarAttr "showticksuffix" "first"
+                static member inline last = Interop.mkLayoutColoraxisColorbarAttr "showticksuffix" "last"
+                static member inline none = Interop.mkLayoutColoraxisColorbarAttr "showticksuffix" "none"
 
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             [<Erase>]
             type exponentformat =
-                static member inline B = Interop.mkLayoutColoraxisAttr "exponentformat" "B"
-                static member inline E = Interop.mkLayoutColoraxisAttr "exponentformat" "E"
-                static member inline SI = Interop.mkLayoutColoraxisAttr "exponentformat" "SI"
-                static member inline e = Interop.mkLayoutColoraxisAttr "exponentformat" "e"
-                static member inline none = Interop.mkLayoutColoraxisAttr "exponentformat" "none"
-                static member inline power = Interop.mkLayoutColoraxisAttr "exponentformat" "power"
+                static member inline B = Interop.mkLayoutColoraxisColorbarAttr "exponentformat" "B"
+                static member inline E = Interop.mkLayoutColoraxisColorbarAttr "exponentformat" "E"
+                static member inline SI = Interop.mkLayoutColoraxisColorbarAttr "exponentformat" "SI"
+                static member inline e = Interop.mkLayoutColoraxisColorbarAttr "exponentformat" "e"
+                static member inline none = Interop.mkLayoutColoraxisColorbarAttr "exponentformat" "none"
+                static member inline power = Interop.mkLayoutColoraxisColorbarAttr "exponentformat" "power"
 
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             [<Erase>]
             type showexponent =
-                static member inline all = Interop.mkLayoutColoraxisAttr "showexponent" "all"
-                static member inline first = Interop.mkLayoutColoraxisAttr "showexponent" "first"
-                static member inline last = Interop.mkLayoutColoraxisAttr "showexponent" "last"
-                static member inline none = Interop.mkLayoutColoraxisAttr "showexponent" "none"
+                static member inline all = Interop.mkLayoutColoraxisColorbarAttr "showexponent" "all"
+                static member inline first = Interop.mkLayoutColoraxisColorbarAttr "showexponent" "first"
+                static member inline last = Interop.mkLayoutColoraxisColorbarAttr "showexponent" "last"
+                static member inline none = Interop.mkLayoutColoraxisColorbarAttr "showexponent" "none"
 
             [<Erase>]
             type tickfont =
                 static member inline description (properties: #ILayoutColoraxisColorbarTickfontDescriptionProperty list) = Interop.mkLayoutColoraxisColorbarTickfontAttr "description" (createObj !!properties)
-                static member description (properties: (bool * ILayoutColoraxisColorbarTickfontDescriptionProperty list) list) = Interop.mkLayoutColoraxisColorbarTickfontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                static member description (properties: (bool * ILayoutColoraxisColorbarTickfontDescriptionProperty list) list) = Interop.mkLayoutColoraxisColorbarTickfontAttr "description" (properties |> Bindings.withConditionals)
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 static member inline family (value: string) = Interop.mkLayoutColoraxisColorbarTickfontAttr "family" value
                 static member inline size (value: int) = Interop.mkLayoutColoraxisColorbarTickfontAttr "size" value
@@ -4571,7 +4571,7 @@ module layout =
             [<Erase>]
             type title =
                 static member inline font (properties: #ILayoutColoraxisColorbarTitleFontProperty list) = Interop.mkLayoutColoraxisColorbarTitleAttr "font" (createObj !!properties)
-                static member font (properties: (bool * ILayoutColoraxisColorbarTitleFontProperty list) list) = Interop.mkLayoutColoraxisColorbarTitleAttr "font" (properties |> Bindings.Internal.withConditionals)
+                static member font (properties: (bool * ILayoutColoraxisColorbarTitleFontProperty list) list) = Interop.mkLayoutColoraxisColorbarTitleAttr "font" (properties |> Bindings.withConditionals)
                 /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutColoraxisColorbarTitleAttr "text" value
 
@@ -4580,14 +4580,14 @@ module layout =
                 /// Determines the location of color bar's title with respect to the color bar. Note that the title's location used to be set by the now deprecated `titleside` attribute.
                 [<Erase>]
                 type side =
-                    static member inline bottom = Interop.mkLayoutColoraxisColorbarAttr "side" "bottom"
-                    static member inline right = Interop.mkLayoutColoraxisColorbarAttr "side" "right"
-                    static member inline top = Interop.mkLayoutColoraxisColorbarAttr "side" "top"
+                    static member inline bottom = Interop.mkLayoutColoraxisColorbarTitleAttr "side" "bottom"
+                    static member inline right = Interop.mkLayoutColoraxisColorbarTitleAttr "side" "right"
+                    static member inline top = Interop.mkLayoutColoraxisColorbarTitleAttr "side" "top"
 
                 [<Erase>]
                 type font =
                     static member inline description (properties: #ILayoutColoraxisColorbarTitleFontDescriptionProperty list) = Interop.mkLayoutColoraxisColorbarTitleFontAttr "description" (createObj !!properties)
-                    static member description (properties: (bool * ILayoutColoraxisColorbarTitleFontDescriptionProperty list) list) = Interop.mkLayoutColoraxisColorbarTitleFontAttr "description" (properties |> Bindings.Internal.withConditionals)
+                    static member description (properties: (bool * ILayoutColoraxisColorbarTitleFontDescriptionProperty list) list) = Interop.mkLayoutColoraxisColorbarTitleFontAttr "description" (properties |> Bindings.withConditionals)
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     static member inline family (value: string) = Interop.mkLayoutColoraxisColorbarTitleFontAttr "family" value
                     static member inline size (value: int) = Interop.mkLayoutColoraxisColorbarTitleFontAttr "size" value

@@ -73,6 +73,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scatter", "Scatter", "{F1E4
 		public\Plotly\Examples\Scatter\DataLabelsOnPlot.md = public\Plotly\Examples\Scatter\DataLabelsOnPlot.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bubble", "Bubble", "{DA5CD959-6F1C-4139-B59E-EB5637A4925C}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Bubble\Basic.md = public\Plotly\Examples\Bubble\Basic.md
+		public\Plotly\Examples\Bubble\HoverText.md = public\Plotly\Examples\Bubble\HoverText.md
+		public\Plotly\Examples\Bubble\MarkerSizeAndColor.md = public\Plotly\Examples\Bubble\MarkerSizeAndColor.md
+		public\Plotly\Examples\Bubble\MarkerSizeColorAndSymbolArray.md = public\Plotly\Examples\Bubble\MarkerSizeColorAndSymbolArray.md
+		public\Plotly\Examples\Bubble\SizeScaling.md = public\Plotly\Examples\Bubble\SizeScaling.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +113,7 @@ Global
 		{C3F9583A-523B-4835-B6BC-CD8FFD2178E3} = {CABBED80-2F75-4DFE-8F77-7F7FDFDC8008}
 		{AB994CC4-9A55-4156-9D53-E08C67F09B25} = {C3F9583A-523B-4835-B6BC-CD8FFD2178E3}
 		{F1E4DF8B-5D61-4605-A06C-51F24DEAA73D} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{DA5CD959-6F1C-4139-B59E-EB5637A4925C} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

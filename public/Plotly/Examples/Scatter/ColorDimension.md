@@ -17,7 +17,7 @@ let chart () =
                 scatter.mode.markers
                 scatter.marker [
                     scatter.marker.size 40
-                    scatter.marker.color ([0..39] |> List.map string) // TODO: Accept ints and floats for color field?
+                    scatter.marker.color [0..39]
                 ]
             ]
         ]
@@ -27,5 +27,4 @@ let chart () =
             ]
         ]
     ]
-
 ```

@@ -45,27 +45,25 @@ module Render =
                 (if propOverload.IsInline then "inline "
                  else "") prop.MethodName propOverload.ParamsCode bodyCode |> List.singleton
 
+        let private enumBaseInterface (prop: Prop) =
+            prop.ParentNameTree
+            |> function
+            | tree when tree.Length = 2 -> 
+                tree |> List.filter (fun s -> s <> (prop.MethodName |> String.upperFirst))
+            | tree when tree.Length > 2 && prop.PropType <> ValType.EnumeratedArray ->
+                tree |> (List.rev >> List.tail >> List.rev)
+            | tree -> tree
+            |> String.concat ""
+
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropEnumOverload (prop: Prop) (propOverload: EnumPropOverload) =
-            let baseInterface =
-                prop.ParentNameTree
-                |> List.filter (fun s -> s <> (prop.MethodName |> String.upperFirst))
-                |> function
-                | treeL when treeL.Length > 2 ->
-                    treeL
-                    |> (List.rev
-                        >> List.tail
-                        >> List.rev)
-                | treeL -> treeL
-                |> String.concat ""
-
             sprintf "static member %s%s %s= Interop.mk%sAttr \"%s\" %s"
                 (if propOverload.IsInline then "inline "
                  else "") propOverload.MethodName
                 (match propOverload.ParamsCode with
                  | Some s -> s + " "
-                 | None -> "") baseInterface prop.RealPropName propOverload.ValueCode
+                 | None -> "") (enumBaseInterface prop) prop.RealPropName propOverload.ValueCode
             |> emptStringToNone
             |> List.singleton
 
@@ -151,7 +149,15 @@ module Render =
             if propsAndEnumOverloads.IsEmpty then
                 []
             else
-                [ for prop, overloads in propsAndEnumOverloads do
+                [ for prop, _ in propsAndEnumOverloads do
+                    if prop.PropType = ValType.EnumeratedArray then
+                        let baseInterface = if indentLevel > 1 then prop.ParentNameTree |> String.concat "" else enumBaseInterface prop
+                        sprintf "/// Use a list of enumerated values" |> indent (indentLevel + 1)
+                        sprintf "let inline %ss (properties: #I%sProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mk%sAttr \"%s\""
+                            prop.MethodName baseInterface baseInterface prop.RealPropName
+                        |> indent (indentLevel + 1)
+                        ""
+                  for prop, overloads in propsAndEnumOverloads do
                     let allOverloadsAreInline = overloads |> List.forall (fun o -> o.IsInline)
                     yield! prop.DocLines
                            |> List.map
