@@ -1,4 +1,4 @@
-# Feliz.Plotly (pre-alpha) [![Nuget](https://img.shields.io/nuget/v/Feliz.Plotly.svg?maxAge=0&colorB=brightgreen)](https://www.nuget.org/packages/Feliz.Plotly)
+# Feliz.Plotly (alpha) [![Nuget](https://img.shields.io/nuget/v/Feliz.Plotly.svg?maxAge=0&colorB=brightgreen)](https://www.nuget.org/packages/Feliz.Plotly)
 
 Fable bindings for [plotly.js](https://github.com/plotly/plotly.js) with [Feliz](https://github.com/Zaid-Ajaj/Feliz) style api for use within React applications.
 
