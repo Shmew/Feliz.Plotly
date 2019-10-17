@@ -7,15 +7,19 @@ dotnet add package Feliz.Plotly
 # paket
 paket add Feliz.Plotly --project ./project/path
 ```
-Then you need to install the corresponding npm dependencies. In case of Feliz.Plotly, it is `plotly.js` and `react-plotly.js`
+Then you need to install the corresponding npm dependencies. In case of Feliz.Plotly, it is `react`, `react-dom`, `plotly.js`, and `react-plotly.js`
 ```bash
-npm install plotly.js@1.5.0
-npm install react-plotly.js@2.3.0
+npm install react
+npm install react-dom
+npm install plotly.js
+npm install react-plotly.js
 
 ___
 
-yarn add plotly.js@1.5.0
-yarn add react-plotly.js@2.3.0
+yarn add react
+yarn add react-dom
+yarn add plotly.js
+yarn add react-plotly.js
 ```
 
 ### Use Femto
