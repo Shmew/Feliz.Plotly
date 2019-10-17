@@ -13,7 +13,7 @@ let chart () =
     Plotly.plot [
         plot.data [
             data.scatter [
-                scatter.x [ 1; 2; 3; 4]
+                scatter.x [ 1; 2; 3; 4 ]
                 scatter.y [ 10; 15; 13; 17 ]
                 scatter.mode.markers
             ]

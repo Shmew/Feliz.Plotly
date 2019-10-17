@@ -12,3 +12,7 @@
 
 ### 0.1.1 - Thursday, October 17, 2019
 * Fixed seq primative inputs
+
+### 0.2.0 - Thursday, October 17, 2019
+* Added support for enum arrays
+* Made very nested types usable
