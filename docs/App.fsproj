@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Examples\Scatter\Basic.fs" />
-    <Compile Include="Examples\Scatter\DataLabelsHover.fs" />
+    <Compile Include="Plotly\Examples\Scatter\Basic.fs" />
+    <Compile Include="Plotly\Examples\Scatter\DataLabelsHover.fs" />
     <Compile Include="..\paket-files\docs\Zaid-Ajaj\Feliz\Feliz.Markdown\Markdown.fs">
       <Paket>True</Paket>
       <Link>Feliz.Markdown/Markdown.fs</Link>

@@ -68,6 +68,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scatter", "Scatter", "{F1E4DF8B-5D61-4605-A06C-51F24DEAA73D}"
 	ProjectSection(SolutionItems) = preProject
 		public\Plotly\Examples\Scatter\Basic.md = public\Plotly\Examples\Scatter\Basic.md
+		public\Plotly\Examples\Scatter\DataLabelsHover.md = public\Plotly\Examples\Scatter\DataLabelsHover.md
 	EndProjectSection
 EndProject
 Global

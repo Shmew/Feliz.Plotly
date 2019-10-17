@@ -20,13 +20,13 @@ type Highlight =
 
 type State = { CurrentPath : string list }
 
-let init() = { CurrentPath = [ ] }
+let init () = { CurrentPath = [ ] }, Cmd.none
 
 type Msg = UrlChanged of string list
 
 let update msg state =
     match msg with
-    | UrlChanged segments -> { state with CurrentPath = segments }
+    | UrlChanged segments -> { state with CurrentPath = segments }, Cmd.none
 
 let samples = 
     [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
@@ -263,7 +263,7 @@ let render (state: State) dispatch =
         Router.application application
     ]
 
-Program.mkSimple init update render
+Program.mkProgram init update render
 |> Program.withReactSynchronous "root"
 |> Program.withConsoleTrace
 |> Program.run
