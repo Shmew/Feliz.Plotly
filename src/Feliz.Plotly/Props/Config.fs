@@ -49,19 +49,19 @@ type config =
     /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (value: bool) = Interop.mkConfigAttr "showSources" value
     /// Adds a source-displaying function to show sources on the resulting graphs.
-    static member inline showSources (values: seq<bool>) = Interop.mkConfigAttr "showSources" values
+    static member inline showSources (values: seq<bool>) = Interop.mkConfigAttr "showSources" (values |> Array.ofSeq)
     /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (value: string) = Interop.mkConfigAttr "showSources" value
     /// Adds a source-displaying function to show sources on the resulting graphs.
-    static member inline showSources (values: seq<string>) = Interop.mkConfigAttr "showSources" values
+    static member inline showSources (values: seq<string>) = Interop.mkConfigAttr "showSources" (values |> Array.ofSeq)
     /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (value: int) = Interop.mkConfigAttr "showSources" value
     /// Adds a source-displaying function to show sources on the resulting graphs.
-    static member inline showSources (values: seq<int>) = Interop.mkConfigAttr "showSources" values
+    static member inline showSources (values: seq<int>) = Interop.mkConfigAttr "showSources" (values |> Array.ofSeq)
     /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (value: float) = Interop.mkConfigAttr "showSources" value
     /// Adds a source-displaying function to show sources on the resulting graphs.
-    static member inline showSources (values: seq<float>) = Interop.mkConfigAttr "showSources" values
+    static member inline showSources (values: seq<float>) = Interop.mkConfigAttr "showSources" (values |> Array.ofSeq)
     /// Should we include a ModeBar button, labeled \"Edit in Chart Studio\", that sends this chart to plot.ly or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0 this button was included by default, now it is opt-in using this flag. Note that this button can (depending on `plotlyServerURL`) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click \"Save\".
     static member inline showSendToCloud (value: bool) = Interop.mkConfigAttr "showSendToCloud" value
     /// Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned, only `showEditInChartStudio` will be honored.
@@ -69,67 +69,67 @@ type config =
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
     static member inline modeBarButtonsToRemove (value: bool) = Interop.mkConfigAttr "modeBarButtonsToRemove" value
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
-    static member inline modeBarButtonsToRemove (values: seq<bool>) = Interop.mkConfigAttr "modeBarButtonsToRemove" values
+    static member inline modeBarButtonsToRemove (values: seq<bool>) = Interop.mkConfigAttr "modeBarButtonsToRemove" (values |> Array.ofSeq)
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
     static member inline modeBarButtonsToRemove (value: string) = Interop.mkConfigAttr "modeBarButtonsToRemove" value
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
-    static member inline modeBarButtonsToRemove (values: seq<string>) = Interop.mkConfigAttr "modeBarButtonsToRemove" values
+    static member inline modeBarButtonsToRemove (values: seq<string>) = Interop.mkConfigAttr "modeBarButtonsToRemove" (values |> Array.ofSeq)
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
     static member inline modeBarButtonsToRemove (value: int) = Interop.mkConfigAttr "modeBarButtonsToRemove" value
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
-    static member inline modeBarButtonsToRemove (values: seq<int>) = Interop.mkConfigAttr "modeBarButtonsToRemove" values
+    static member inline modeBarButtonsToRemove (values: seq<int>) = Interop.mkConfigAttr "modeBarButtonsToRemove" (values |> Array.ofSeq)
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
     static member inline modeBarButtonsToRemove (value: float) = Interop.mkConfigAttr "modeBarButtonsToRemove" value
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
-    static member inline modeBarButtonsToRemove (values: seq<float>) = Interop.mkConfigAttr "modeBarButtonsToRemove" values
+    static member inline modeBarButtonsToRemove (values: seq<float>) = Interop.mkConfigAttr "modeBarButtonsToRemove" (values |> Array.ofSeq)
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
     static member inline modeBarButtonsToAdd (value: bool) = Interop.mkConfigAttr "modeBarButtonsToAdd" value
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
-    static member inline modeBarButtonsToAdd (values: seq<bool>) = Interop.mkConfigAttr "modeBarButtonsToAdd" values
+    static member inline modeBarButtonsToAdd (values: seq<bool>) = Interop.mkConfigAttr "modeBarButtonsToAdd" (values |> Array.ofSeq)
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
     static member inline modeBarButtonsToAdd (value: string) = Interop.mkConfigAttr "modeBarButtonsToAdd" value
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
-    static member inline modeBarButtonsToAdd (values: seq<string>) = Interop.mkConfigAttr "modeBarButtonsToAdd" values
+    static member inline modeBarButtonsToAdd (values: seq<string>) = Interop.mkConfigAttr "modeBarButtonsToAdd" (values |> Array.ofSeq)
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
     static member inline modeBarButtonsToAdd (value: int) = Interop.mkConfigAttr "modeBarButtonsToAdd" value
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
-    static member inline modeBarButtonsToAdd (values: seq<int>) = Interop.mkConfigAttr "modeBarButtonsToAdd" values
+    static member inline modeBarButtonsToAdd (values: seq<int>) = Interop.mkConfigAttr "modeBarButtonsToAdd" (values |> Array.ofSeq)
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
     static member inline modeBarButtonsToAdd (value: float) = Interop.mkConfigAttr "modeBarButtonsToAdd" value
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
-    static member inline modeBarButtonsToAdd (values: seq<float>) = Interop.mkConfigAttr "modeBarButtonsToAdd" values
+    static member inline modeBarButtonsToAdd (values: seq<float>) = Interop.mkConfigAttr "modeBarButtonsToAdd" (values |> Array.ofSeq)
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
     static member inline modeBarButtons (value: bool) = Interop.mkConfigAttr "modeBarButtons" value
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
-    static member inline modeBarButtons (values: seq<bool>) = Interop.mkConfigAttr "modeBarButtons" values
+    static member inline modeBarButtons (values: seq<bool>) = Interop.mkConfigAttr "modeBarButtons" (values |> Array.ofSeq)
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
     static member inline modeBarButtons (value: string) = Interop.mkConfigAttr "modeBarButtons" value
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
-    static member inline modeBarButtons (values: seq<string>) = Interop.mkConfigAttr "modeBarButtons" values
+    static member inline modeBarButtons (values: seq<string>) = Interop.mkConfigAttr "modeBarButtons" (values |> Array.ofSeq)
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
     static member inline modeBarButtons (value: int) = Interop.mkConfigAttr "modeBarButtons" value
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
-    static member inline modeBarButtons (values: seq<int>) = Interop.mkConfigAttr "modeBarButtons" values
+    static member inline modeBarButtons (values: seq<int>) = Interop.mkConfigAttr "modeBarButtons" (values |> Array.ofSeq)
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
     static member inline modeBarButtons (value: float) = Interop.mkConfigAttr "modeBarButtons" value
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
-    static member inline modeBarButtons (values: seq<float>) = Interop.mkConfigAttr "modeBarButtons" values
+    static member inline modeBarButtons (values: seq<float>) = Interop.mkConfigAttr "modeBarButtons" (values |> Array.ofSeq)
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
     static member inline toImageButtonOptions (value: bool) = Interop.mkConfigAttr "toImageButtonOptions" value
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
-    static member inline toImageButtonOptions (values: seq<bool>) = Interop.mkConfigAttr "toImageButtonOptions" values
+    static member inline toImageButtonOptions (values: seq<bool>) = Interop.mkConfigAttr "toImageButtonOptions" (values |> Array.ofSeq)
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
     static member inline toImageButtonOptions (value: string) = Interop.mkConfigAttr "toImageButtonOptions" value
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
-    static member inline toImageButtonOptions (values: seq<string>) = Interop.mkConfigAttr "toImageButtonOptions" values
+    static member inline toImageButtonOptions (values: seq<string>) = Interop.mkConfigAttr "toImageButtonOptions" (values |> Array.ofSeq)
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
     static member inline toImageButtonOptions (value: int) = Interop.mkConfigAttr "toImageButtonOptions" value
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
-    static member inline toImageButtonOptions (values: seq<int>) = Interop.mkConfigAttr "toImageButtonOptions" values
+    static member inline toImageButtonOptions (values: seq<int>) = Interop.mkConfigAttr "toImageButtonOptions" (values |> Array.ofSeq)
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
     static member inline toImageButtonOptions (value: float) = Interop.mkConfigAttr "toImageButtonOptions" value
     /// Statically override options for toImage modebar button allowed keys are format, filename, width, height, scale see ../components/modebar/buttons.js
-    static member inline toImageButtonOptions (values: seq<float>) = Interop.mkConfigAttr "toImageButtonOptions" values
+    static member inline toImageButtonOptions (values: seq<float>) = Interop.mkConfigAttr "toImageButtonOptions" (values |> Array.ofSeq)
     /// Determines whether or not the plotly logo is displayed on the end of the mode bar.
     static member inline displaylogo (value: bool) = Interop.mkConfigAttr "displaylogo" value
     /// watermark the images with the company's logo
@@ -141,19 +141,19 @@ type config =
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: bool) = Interop.mkConfigAttr "setBackground" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
-    static member inline setBackground (values: seq<bool>) = Interop.mkConfigAttr "setBackground" values
+    static member inline setBackground (values: seq<bool>) = Interop.mkConfigAttr "setBackground" (values |> Array.ofSeq)
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: string) = Interop.mkConfigAttr "setBackground" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
-    static member inline setBackground (values: seq<string>) = Interop.mkConfigAttr "setBackground" values
+    static member inline setBackground (values: seq<string>) = Interop.mkConfigAttr "setBackground" (values |> Array.ofSeq)
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: int) = Interop.mkConfigAttr "setBackground" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
-    static member inline setBackground (values: seq<int>) = Interop.mkConfigAttr "setBackground" values
+    static member inline setBackground (values: seq<int>) = Interop.mkConfigAttr "setBackground" (values |> Array.ofSeq)
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: float) = Interop.mkConfigAttr "setBackground" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
-    static member inline setBackground (values: seq<float>) = Interop.mkConfigAttr "setBackground" values
+    static member inline setBackground (values: seq<float>) = Interop.mkConfigAttr "setBackground" (values |> Array.ofSeq)
     /// Set the URL to topojson used in geo charts. By default, the topojson files are fetched from cdn.plot.ly. For example, set this option to: <path-to-plotly.js>/dist/topojson/ to render geographical feature using the topojson files that ship with the plotly.js module.
     static member inline topojsonURL (value: string) = Interop.mkConfigAttr "topojsonURL" value
     /// Mapbox access token (required to plot mapbox trace types) If using an Mapbox Atlas server, set this option to '' so that plotly.js won't attempt to authenticate to the public Mapbox server.
@@ -165,37 +165,37 @@ type config =
     /// Set global transform to be applied to all traces with no specification needed
     static member inline globalTransforms (value: bool) = Interop.mkConfigAttr "globalTransforms" value
     /// Set global transform to be applied to all traces with no specification needed
-    static member inline globalTransforms (values: seq<bool>) = Interop.mkConfigAttr "globalTransforms" values
+    static member inline globalTransforms (values: seq<bool>) = Interop.mkConfigAttr "globalTransforms" (values |> Array.ofSeq)
     /// Set global transform to be applied to all traces with no specification needed
     static member inline globalTransforms (value: string) = Interop.mkConfigAttr "globalTransforms" value
     /// Set global transform to be applied to all traces with no specification needed
-    static member inline globalTransforms (values: seq<string>) = Interop.mkConfigAttr "globalTransforms" values
+    static member inline globalTransforms (values: seq<string>) = Interop.mkConfigAttr "globalTransforms" (values |> Array.ofSeq)
     /// Set global transform to be applied to all traces with no specification needed
     static member inline globalTransforms (value: int) = Interop.mkConfigAttr "globalTransforms" value
     /// Set global transform to be applied to all traces with no specification needed
-    static member inline globalTransforms (values: seq<int>) = Interop.mkConfigAttr "globalTransforms" values
+    static member inline globalTransforms (values: seq<int>) = Interop.mkConfigAttr "globalTransforms" (values |> Array.ofSeq)
     /// Set global transform to be applied to all traces with no specification needed
     static member inline globalTransforms (value: float) = Interop.mkConfigAttr "globalTransforms" value
     /// Set global transform to be applied to all traces with no specification needed
-    static member inline globalTransforms (values: seq<float>) = Interop.mkConfigAttr "globalTransforms" values
+    static member inline globalTransforms (values: seq<float>) = Interop.mkConfigAttr "globalTransforms" (values |> Array.ofSeq)
     /// Which localization should we use? Should be a string like 'en' or 'en-US'.
     static member inline locale (value: string) = Interop.mkConfigAttr "locale" value
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
     static member inline locales (value: bool) = Interop.mkConfigAttr "locales" value
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
-    static member inline locales (values: seq<bool>) = Interop.mkConfigAttr "locales" values
+    static member inline locales (values: seq<bool>) = Interop.mkConfigAttr "locales" (values |> Array.ofSeq)
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
     static member inline locales (value: string) = Interop.mkConfigAttr "locales" value
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
-    static member inline locales (values: seq<string>) = Interop.mkConfigAttr "locales" values
+    static member inline locales (values: seq<string>) = Interop.mkConfigAttr "locales" (values |> Array.ofSeq)
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
     static member inline locales (value: int) = Interop.mkConfigAttr "locales" value
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
-    static member inline locales (values: seq<int>) = Interop.mkConfigAttr "locales" values
+    static member inline locales (values: seq<int>) = Interop.mkConfigAttr "locales" (values |> Array.ofSeq)
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
     static member inline locales (value: float) = Interop.mkConfigAttr "locales" value
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
-    static member inline locales (values: seq<float>) = Interop.mkConfigAttr "locales" values
+    static member inline locales (values: seq<float>) = Interop.mkConfigAttr "locales" (values |> Array.ofSeq)
 
 [<AutoOpen>]
 module config =

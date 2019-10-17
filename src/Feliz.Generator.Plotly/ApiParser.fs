@@ -62,13 +62,13 @@ module ParserUtils =
         [<AutoOpen>]
         module private Impl =
             let boolStr = "(value: bool)", "value"
-            let boolSeqStr = "(values: seq<bool>)", "values"
+            let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
             let stringStr = "(value: string)", "value"
-            let stringSeqStr = "(values: seq<string>)", "values"
+            let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
             let intStr = "(value: int)", "value"
-            let intSeqStr = "(values: seq<int>)", "values"
+            let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
             let floatStr = "(value: float)", "value"
-            let floatSeqStr = "(values: seq<float>)", "values"
+            let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
 
             let getPrimativeOverloadSeq =
                 function

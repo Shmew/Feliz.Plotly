@@ -9,3 +9,6 @@
 
 ### 0.1.0 - Thursday, October 17, 2019
 * Fixed nested properties not being accessible, reduced required verbosity of syntax
+
+### 0.1.1 - Thursday, October 17, 2019
+* Fixed seq primative inputs
