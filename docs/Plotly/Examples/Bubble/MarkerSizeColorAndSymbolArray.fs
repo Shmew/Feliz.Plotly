@@ -53,13 +53,13 @@ let chart () =
                 scatter.marker [
                     scatter.marker.size 18
                     scatter.marker.line [
-                        scatter.marker.line.color [
+                        marker.line.color [
                             colors.rgb(120, 120, 120)
                             colors.rgb(120, 120, 120)
                             colors.red
                             colors.rgb(120, 120, 120)
                         ]
-                        scatter.marker.line.width [2; 2; 6; 2]
+                        marker.line.width [2; 2; 6; 2]
                     ]
                 ]
             ]

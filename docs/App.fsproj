@@ -5,8 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Plotly\Examples\Bubble\Basic.fs" />
-    <Compile Include="Plotly\Examples\Bubble\MarkerSizeAndColor.fs" />
     <Compile Include="Plotly\Examples\Bubble\HoverText.fs" />
+    <Compile Include="Plotly\Examples\Bubble\MarkerSizeAndColor.fs" />
     <Compile Include="Plotly\Examples\Bubble\SizeScaling.fs" />
     <Compile Include="Plotly\Examples\Bubble\MarkerSizeColorAndSymbolArray.fs" />
     <Compile Include="Plotly\Examples\Scatter\Basic.fs" />

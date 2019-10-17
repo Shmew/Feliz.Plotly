@@ -1,8 +1,8 @@
-# Feliz.Plotly - Line and Scatter Plot
+# Feliz.Plotly - Bubble Charts
 
 Taken from [Plotly - Bubble Charts](https://plot.ly/javascript/bubble-charts/)
 
-```fsharp:plotly-chart-bubble-basic
+```fsharp:plotly-chart-bubble-hovertext
 [<RequireQualifiedAccess>]
 module Samples.Bubble.HoverText
 

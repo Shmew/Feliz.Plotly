@@ -32,7 +32,11 @@ let samples =
       "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
       "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
       "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart()
-      "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart() ]
+      "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart()
+      "plotly-chart-bubble-hovertext", Samples.Bubble.HoverText.chart()
+      "plotly-chart-bubble-markersizeandcolor", Samples.Bubble.MarkerSizeAndColor.chart()
+      "plotly-chart-bubble-sizescaling", Samples.Bubble.SizeScaling.chart()
+      "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart() ]
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -223,6 +227,10 @@ let sidebar (state: State) dispatch =
                     ]
                     nestedMenuList "Bubble" [
                         menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.Basic ]
+                        menuItem "HoverText" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.HoverText ]
+                        menuItem "Marker Size and Color" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeAndColor ]
+                        menuItem "Size Scaling" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.SizeScaling ]
+                        menuItem "Marker Size Color and Symbol Array" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ]
                     ]
                 ]
             ]
@@ -243,6 +251,10 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsOnPlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsOnPlot.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.ColorDimension ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "ColorDimension.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.HoverText ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "HoverText.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeAndColor ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeAndColor.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.SizeScaling ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "SizeScaling.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeColorAndSymbolArray.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

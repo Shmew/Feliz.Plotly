@@ -8,29 +8,51 @@ module Render =
     let indent numLevels = String.indent 4 numLevels
 
     module GetLines =
+        let private trimTreeToHead (threshold: int) (tree: string list) =
+            match tree with
+            | tree when tree.Length > threshold ->
+                tree.Head |> List.singleton
+            | tree -> tree
+
         /// Gets the code lines for the implementation of a single component overload.
         /// Does not include docs.
         let singleComponentOverload (comp: Component) (compOverload: ComponentOverload) =
-            let baseInterface =
+            let filterMethod (tree: string list) =
+                tree |> List.filter ((<>) (comp.MethodName |> String.upperFirst))
+
+            let baseInterfaceTree =
                 comp.ParentNameTree
-                |> List.filter (fun s -> s <> (comp.MethodName |> String.upperFirst))
                 |> function
-                | treeL when treeL.IsEmpty -> [ "Plot" ]
-                | treeL -> treeL
+                | tree when tree.IsEmpty -> [ "Plot" ]
+                | tree -> tree
+                |> List.distinct
+
+            let baseInterface =
+                baseInterfaceTree
+                |> trimTreeToHead 3
                 |> String.concat ""
 
+            let attrStr =
+                if (comp.ParentNameTree |> filterMethod) = [ "Data" ] then "Data"
+                elif baseInterfaceTree.Length > 1 then 
+                    baseInterfaceTree |> filterMethod |> trimTreeToHead 3 |> String.concat ""
+                else baseInterface
+
             if compOverload.SkipAttr then
+                comp.ParentNameTree
+                |> filterMethod
+                |> function
+                | tree when tree.IsEmpty -> [ "Plot" ]
+                | tree -> tree
+                |> List.last
+                |> String.lowerFirst
+            else comp.MethodName
+            |> fun inputAttr ->
                 sprintf "static member %s%s %s = Interop.mk%sAttr \"%s\" %s"
                     (if compOverload.IsInline then "inline "
                      else "") comp.MethodName
-                    (baseInterface + (comp.MethodName |> String.upperFirst) |> compOverload.ParamFun) baseInterface
-                    (baseInterface |> String.lowerFirst) compOverload.PropsCode |> List.singleton
-            else
-                sprintf "static member %s%s %s = Interop.mk%sAttr \"%s\" %s"
-                    (if compOverload.IsInline then "inline "
-                     else "") comp.MethodName
-                    (baseInterface + (comp.MethodName |> String.upperFirst) |> compOverload.ParamFun) baseInterface
-                    comp.MethodName compOverload.PropsCode |> List.singleton
+                    (baseInterface |> compOverload.ParamFun) attrStr
+                    inputAttr compOverload.PropsCode |> List.singleton
 
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
@@ -38,7 +60,7 @@ module Render =
             let bodyCode =
                 match propOverload.BodyCode with
                 | ValueExprOnly expr ->
-                    sprintf "Interop.mk%sAttr \"%s\" %s" (prop.ParentNameTree |> String.concat "") prop.RealPropName
+                    sprintf "Interop.mk%sAttr \"%s\" %s" (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "") prop.RealPropName
                         expr
                 | CustomBody code -> code
             sprintf "static member %s%s %s = %s"
@@ -47,6 +69,7 @@ module Render =
 
         let private enumBaseInterface (prop: Prop) =
             prop.ParentNameTree
+            |> trimTreeToHead 4
             |> function
             | tree when tree.Length = 2 -> 
                 tree |> List.filter (fun s -> s <> (prop.MethodName |> String.upperFirst))
@@ -151,7 +174,7 @@ module Render =
             else
                 [ for prop, _ in propsAndEnumOverloads do
                     if prop.PropType = ValType.EnumeratedArray then
-                        let baseInterface = if indentLevel > 1 then prop.ParentNameTree |> String.concat "" else enumBaseInterface prop
+                        let baseInterface = if indentLevel > 1 then prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "" else enumBaseInterface prop
                         sprintf "/// Use a list of enumerated values" |> indent (indentLevel + 1)
                         sprintf "let inline %ss (properties: #I%sProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mk%sAttr \"%s\""
                             prop.MethodName baseInterface baseInterface prop.RealPropName
@@ -213,22 +236,30 @@ module Render =
             |> List.append comps
             |> List.distinctBy (fun c -> ((c.ParentNameTree |> String.concat ""), c.MethodName))
 
+        let private firstLastTree (threshold: int) (parentTree: string list) =
+            if parentTree.Length > threshold then
+                [ parentTree.Head; parentTree |> List.last ]
+            else parentTree
+
         let buildInterfaces (comps: Component list) =
             let buildInterfaceStrs (comp: Component) =
                 let interfaceCompStr (comp: Component) =
                     comp.ParentNameTree
                     |> List.distinct
+                    |> firstLastTree 3
                     |> String.concat ""
                     |> sprintf "type I%sProperty = interface end"
 
                 let interfacePropStr (prop: Prop) =
                     let enumAttrs =
                         if not prop.EnumOverloads.IsEmpty then
-                            prop.ParentNameTree
-                            |> (List.rev
-                                >> List.tail
-                                >> List.rev
-                                >> String.concat "")
+                            if prop.ParentNameTree.Length <= 4 then
+                                prop.ParentNameTree
+                                |> (List.rev
+                                    >> List.tail
+                                    >> List.rev)
+                            else prop.ParentNameTree
+                            |> (firstLastTree 4 >> String.concat "")
                             |> List.singleton
                         else
                             []
@@ -236,6 +267,7 @@ module Render =
                     let regularAttrs =
                         if not prop.RegularOverloads.IsEmpty then
                             prop.ParentNameTree
+                            |> firstLastTree 4
                             |> String.concat ""
                             |> List.singleton
                         else
@@ -259,19 +291,22 @@ module Render =
                 let interopCompStr (comp: Component) =
                     comp.ParentNameTree @ [ comp.MethodName |> String.upperFirst ]
                     |> List.distinct
+                    |> firstLastTree 3
                     |> String.concat ""
                     |> fun prop ->
-                        sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" prop
-                            (comp.ParentNameTree |> String.concat "")
+                        sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" 
+                            prop prop
 
                 let interopPropStr (prop: Prop) =
                     let enumAttrs =
                         if not prop.EnumOverloads.IsEmpty then
-                            prop.ParentNameTree
-                            |> (List.rev
-                                >> List.tail
-                                >> List.rev
-                                >> String.concat "")
+                            if prop.ParentNameTree.Length <= 4 then
+                                prop.ParentNameTree
+                                |> (List.rev
+                                    >> List.tail
+                                    >> List.rev)
+                            else prop.ParentNameTree
+                            |> (firstLastTree 4 >> String.concat "")
                             |> fun prop ->
                                 sprintf
                                     "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
@@ -283,7 +318,7 @@ module Render =
                     let regularAttrs =
                         if not prop.RegularOverloads.IsEmpty then
                             prop.ParentNameTree
-                            |> String.concat ""
+                            |> (firstLastTree 4 >> String.concat "")
                             |> fun prop ->
                                 sprintf
                                     "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
