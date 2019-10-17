@@ -4,7 +4,9 @@ namespace Feliz.Plotly
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
 
-[<RequireQualifiedAccess>]
+open System.ComponentModel
+
+[<RequireQualifiedAccess; EditorBrowsable(EditorBrowsableState.Never)>]
 module Interop =
     let inline mkPlotAttr (key: string) (value: obj) : IPlotProperty = unbox (key, value)
     let inline mkConfigAttr (key: string) (value: obj) : IConfigProperty = unbox (key, value)

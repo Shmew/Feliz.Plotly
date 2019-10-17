@@ -187,6 +187,7 @@ module Render =
                   yield! regularExtensionProps
                   ""
               if enumProps.Length + compProps.Length > 0 then
+                  sprintf "[<AutoOpen>]" |> indent indentStart
                   sprintf "module %s =" comp.MethodName |> indent indentStart
               yield! enumProps
               yield! compProps ]
@@ -305,7 +306,9 @@ module Render =
           "/// THIS FILE IS AUTO-GENERATED //"
           "////////////////////////////////*)"
           ""
-          "[<RequireQualifiedAccess>]"
+          "open System.ComponentModel"
+          ""
+          "[<RequireQualifiedAccess; EditorBrowsable(EditorBrowsableState.Never)>]"
           "module Interop ="
           sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
               api.ComponentContainerTypeName api.ComponentContainerTypeName |> indent 1

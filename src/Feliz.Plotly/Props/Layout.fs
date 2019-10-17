@@ -189,6 +189,7 @@ type layout =
     /// Sets the source reference on plot.ly for  meta .
     static member inline metasrc (value: string) = Interop.mkLayoutAttr "metasrc" value
 
+[<AutoOpen>]
 module layout =
     /// Determines the mode of single click interactions. *event* is the default value and emits the `plotly_click` event. In addition this mode emits the `plotly_selected` event in drag modes *lasso* and *select*, but with no event data attached (kept for compatibility reasons). The *select* flag enables selecting single data points via click. This mode also supports persistent selections, meaning that pressing Shift while clicking, adds to / subtracts from an existing selection. *select* with `hovermode`: *x* can be confusing, consider explicitly setting `hovermode`: *closest* when using this feature. Selection events are sent accordingly as long as *event* flag is set as well. When the *event* flag is missing, `plotly_click` and `plotly_selected` events are not fired.
     [<Erase>]
@@ -278,6 +279,7 @@ module layout =
         /// Sets the y position with respect to `yref` in normalized coordinates from *0* (bottom) to *1* (top). *auto* places the baseline of the title onto the vertical center of the top margin.
         static member inline y (value: float) = Interop.mkLayoutTitleAttr "y" value
 
+    [<AutoOpen>]
     module title =
         /// Sets the container `x` refers to. *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting area only.
         [<Erase>]
@@ -388,6 +390,7 @@ module layout =
         /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.
         static member inline uirevision (values: seq<float>) = Interop.mkLayoutModebarAttr "uirevision" values
 
+    [<AutoOpen>]
     module modebar =
         /// Sets the orientation of the modebar.
         [<Erase>]
@@ -404,6 +407,7 @@ module layout =
         /// The duration of the transition, in milliseconds. If equal to zero, updates are synchronous.
         static member inline duration (value: float) = Interop.mkLayoutTransitionAttr "duration" value
 
+    [<AutoOpen>]
     module transition =
         /// The easing function used for the transition
         [<Erase>]
@@ -462,6 +466,7 @@ module layout =
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
         static member inline namelength (value: int) = Interop.mkLayoutHoverlabelAttr "namelength" value
 
+    [<AutoOpen>]
     module hoverlabel =
         /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
         [<Erase>]
@@ -497,6 +502,7 @@ module layout =
         /// Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.
         static member inline ygap (value: float) = Interop.mkLayoutGridAttr "ygap" value
 
+    [<AutoOpen>]
     module grid =
         /// Is the first row the top or the bottom? Note that columns are always enumerated from left to right.
         [<Erase>]
@@ -734,6 +740,7 @@ module layout =
         /// Sets the source reference on plot.ly for  categoryarray .
         static member inline categoryarraysrc (value: string) = Interop.mkLayoutXaxisAttr "categoryarraysrc" value
 
+    [<AutoOpen>]
     module xaxis =
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         [<Erase>]
@@ -926,6 +933,7 @@ module layout =
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             static member inline text (value: string) = Interop.mkLayoutXaxisTitleAttr "text" value
 
+        [<AutoOpen>]
         module title =
             [<Erase>]
             type font =
@@ -974,6 +982,7 @@ module layout =
             /// Determines whether or not the range slider will be visible. If visible, perpendicular axes will be set to `fixedrange`
             static member inline visible (value: bool) = Interop.mkLayoutXaxisRangesliderAttr "visible" value
 
+        [<AutoOpen>]
         module rangeslider =
             [<Erase>]
             type yaxis =
@@ -986,6 +995,7 @@ module layout =
                 /// Sets the range of this axis for the rangeslider.
                 static member inline range (values: seq<string>) = Interop.mkLayoutXaxisRangesliderYaxisAttr "range" values
 
+            [<AutoOpen>]
             module yaxis =
                 /// Determines whether or not the range of this axis in the rangeslider use the same value than in the main plot when zooming in/out. If *auto*, the autorange will be used. If *fixed*, the `range` is used. If *match*, the current range of the corresponding y-axis on the main subplot is used.
                 [<Erase>]
@@ -1021,6 +1031,7 @@ module layout =
             /// Sets the width (in px) of the border enclosing the range selector.
             static member inline borderwidth (value: float) = Interop.mkLayoutXaxisRangeselectorAttr "borderwidth" value
 
+        [<AutoOpen>]
         module rangeselector =
             /// Sets the range selector's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
             [<Erase>]
@@ -1241,6 +1252,7 @@ module layout =
         /// Sets the source reference on plot.ly for  categoryarray .
         static member inline categoryarraysrc (value: string) = Interop.mkLayoutYaxisAttr "categoryarraysrc" value
 
+    [<AutoOpen>]
     module yaxis =
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         [<Erase>]
@@ -1433,6 +1445,7 @@ module layout =
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             static member inline text (value: string) = Interop.mkLayoutYaxisTitleAttr "text" value
 
+        [<AutoOpen>]
         module title =
             [<Erase>]
             type font =
@@ -1487,6 +1500,7 @@ module layout =
         /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
         static member inline uirevision (values: seq<float>) = Interop.mkLayoutTernaryAttr "uirevision" values
 
+    [<AutoOpen>]
     module ternary =
         [<Erase>]
         type domain =
@@ -1630,6 +1644,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutTernaryAaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module aaxis =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
@@ -1692,6 +1707,7 @@ module layout =
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutTernaryAaxisTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 [<Erase>]
                 type font =
@@ -1840,6 +1856,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutTernaryBaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module baxis =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
@@ -1902,6 +1919,7 @@ module layout =
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutTernaryBaxisTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 [<Erase>]
                 type font =
@@ -2050,6 +2068,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutTernaryCaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module caxis =
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
             [<Erase>]
@@ -2112,6 +2131,7 @@ module layout =
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutTernaryCaxisTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 [<Erase>]
                 type font =
@@ -2169,6 +2189,7 @@ module layout =
         /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
         static member inline uirevision (values: seq<float>) = Interop.mkLayoutSceneAttr "uirevision" values
 
+    [<AutoOpen>]
     module scene =
         /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges. If *data*, this scene's axes are drawn in proportion with the axes' ranges. If *manual*, this scene's axes are drawn in proportion with the input of *aspectratio* (the default behavior if *aspectratio* is provided). If *auto*, this scene's axes are drawn using the results of *data* except when one axis is more than four times the size of the two others, where in that case the results of *cube* are used.
         [<Erase>]
@@ -2204,6 +2225,7 @@ module layout =
             static member inline projection (properties: #ILayoutSceneCameraProjectionProperty list) = Interop.mkLayoutSceneCameraAttr "projection" (createObj !!properties)
             static member projection (properties: (bool * ILayoutSceneCameraProjectionProperty list) list) = Interop.mkLayoutSceneCameraAttr "projection" (properties |> Bindings.Internal.withConditionals)
 
+        [<AutoOpen>]
         module camera =
             [<Erase>]
             type up =
@@ -2238,6 +2260,7 @@ module layout =
                 static member inline z (value: int) = Interop.mkLayoutSceneCameraEyeAttr "z" value
                 static member inline z (value: float) = Interop.mkLayoutSceneCameraEyeAttr "z" value
 
+            [<AutoOpen>]
             module projection =
                 /// Sets the projection type. The projection type could be either *perspective* or *orthographic*. The default is *perspective*.
                 [<Erase>]
@@ -2273,6 +2296,7 @@ module layout =
             static member inline z (value: int) = Interop.mkLayoutSceneAspectratioAttr "z" value
             static member inline z (value: float) = Interop.mkLayoutSceneAspectratioAttr "z" value
 
+        [<AutoOpen>]
         module aspectratio =
             [<Erase>]
             type impliedEdits = 
@@ -2430,6 +2454,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutSceneXaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module xaxis =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
@@ -2558,6 +2583,7 @@ module layout =
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutSceneXaxisTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 [<Erase>]
                 type font =
@@ -2730,6 +2756,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutSceneYaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module yaxis =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
@@ -2858,6 +2885,7 @@ module layout =
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutSceneYaxisTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 [<Erase>]
                 type font =
@@ -3030,6 +3058,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutSceneZaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module zaxis =
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             [<Erase>]
@@ -3158,6 +3187,7 @@ module layout =
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutSceneZaxisTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 [<Erase>]
                 type font =
@@ -3262,6 +3292,7 @@ module layout =
         /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
         static member inline uirevision (values: seq<float>) = Interop.mkLayoutGeoAttr "uirevision" values
 
+    [<AutoOpen>]
     module geo =
         /// Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
         [<Erase>]
@@ -3308,6 +3339,7 @@ module layout =
             /// Zooms in or out on the map view. A scale of *1* corresponds to the largest zoom level that fits the map's lon and lat ranges.
             static member inline scale (value: float) = Interop.mkLayoutGeoProjectionAttr "scale" value
 
+        [<AutoOpen>]
         module projection =
             /// Sets the projection type.
             [<Erase>]
@@ -3464,6 +3496,7 @@ module layout =
         /// Controls persistence of user-driven changes in the view: `center`, `zoom`, `bearing`, `pitch`. Defaults to `layout.uirevision`.
         static member inline uirevision (values: seq<float>) = Interop.mkLayoutMapboxAttr "uirevision" values
 
+    [<AutoOpen>]
     module mapbox =
         [<Erase>]
         type domain =
@@ -3526,6 +3559,7 @@ module layout =
         /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
         static member inline uirevision (values: seq<float>) = Interop.mkLayoutPolarAttr "uirevision" values
 
+    [<AutoOpen>]
     module polar =
         /// Determines if the radial axis grid lines and angular axis line are drawn as *circular* sectors or as *linear* (polygon) sectors. Has an effect only when the angular axis has `type` *category*. Note that `radialaxis.angle` is snapped to the angle of the closest vertex when `gridshape` is *circular* (so that radial axis scale is the same as the data scale).
         [<Erase>]
@@ -3695,6 +3729,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutPolarRadialaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module radialaxis =
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             [<Erase>]
@@ -3826,6 +3861,7 @@ module layout =
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutPolarRadialaxisTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 [<Erase>]
                 type font =
@@ -3988,6 +4024,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutPolarAngularaxisAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module angularaxis =
             /// Sets the angular axis type. If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category, use `period` to set the number of integer coordinates around polar axis.
             [<Erase>]
@@ -4125,6 +4162,7 @@ module layout =
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Determines whether or not this axis will be visible.
         static member inline visible (value: bool) = Interop.mkLayoutRadialaxisAttr "visible" value
 
+    [<AutoOpen>]
     module radialaxis =
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Sets the orientation (from the paper perspective) of the radial axis tick labels.
         [<Erase>]
@@ -4161,6 +4199,7 @@ module layout =
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Determines whether or not this axis will be visible.
         static member inline visible (value: bool) = Interop.mkLayoutAngularaxisAttr "visible" value
 
+    [<AutoOpen>]
     module angularaxis =
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Sets the orientation (from the paper perspective) of the angular axis tick labels.
         [<Erase>]
@@ -4209,6 +4248,7 @@ module layout =
         /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
         static member inline uirevision (values: seq<float>) = Interop.mkLayoutLegendAttr "uirevision" values
 
+    [<AutoOpen>]
     module legend =
         /// Sets the orientation of the legend.
         [<Erase>]
@@ -4315,6 +4355,7 @@ module layout =
         /// Determines whether or not a colorbar is displayed for this trace.
         static member inline showscale (value: bool) = Interop.mkLayoutColoraxisAttr "showscale" value
 
+    [<AutoOpen>]
     module coloraxis =
         [<Erase>]
         type colorbar =
@@ -4441,6 +4482,7 @@ module layout =
             /// Sets the source reference on plot.ly for  ticktext .
             static member inline ticktextsrc (value: string) = Interop.mkLayoutColoraxisColorbarAttr "ticktextsrc" value
 
+        [<AutoOpen>]
         module colorbar =
             /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
             [<Erase>]
@@ -4533,6 +4575,7 @@ module layout =
                 /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 static member inline text (value: string) = Interop.mkLayoutColoraxisColorbarTitleAttr "text" value
 
+            [<AutoOpen>]
             module title =
                 /// Determines the location of color bar's title with respect to the color bar. Note that the title's location used to be set by the now deprecated `titleside` attribute.
                 [<Erase>]
