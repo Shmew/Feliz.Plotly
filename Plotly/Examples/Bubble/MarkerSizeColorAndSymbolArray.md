@@ -14,9 +14,9 @@ let desiredMaximumMarkerSize = 40.
 let size = [ 400.; 600.; 800.; 1000. ]
 let sizeRef = 
     size 
-    |> (List.max 
-        >> ((*) 2.) 
-        >> (fun res -> res / Math.Pow(desiredMaximumMarkerSize,2.)))
+    |> List.max
+    |> fun x -> x * 2.0
+    |> fun res ->  res / Math.Pow(desiredMaximumMarkerSize, 2.0)
 
 let chart () =
     Plotly.plot [
@@ -53,7 +53,7 @@ let chart () =
             ]
             data.scatter [
                 scatter.x [ 1; 2; 3; 4 ]
-                scatter.y [ 12; 13; 14; 16 ]
+                scatter.y [ 12; 13; 14; 15 ]
                 scatter.mode.markers
                 scatter.marker [
                     scatter.marker.size 18

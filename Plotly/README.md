@@ -4,6 +4,8 @@ Fable bindings for [plotly.js](https://github.com/plotly/plotly.js) with [Feliz]
 
 Lets you build visualizations in an easy, discoverable, and safe fashion.
 
+See the full documentation with live examples: [https://shmew.github.io/Feliz.Plotly](https://shmew.github.io/Feliz.Plotly/)
+
 A quick look:
 
 ```fs
