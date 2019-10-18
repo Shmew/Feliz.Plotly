@@ -24,8 +24,6 @@
   
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="react" Version="&gt;= 16.8.0" ResolutionStrategy="max"/>
-      <NpmPackage Name="react-dom" Version="&gt;= 16.8.0" ResolutionStrategy="max"/>
       <NpmPackage Name="plotly.js" Version="gte 1.5 lt 2" ResolutionStrategy="max" />
       <NpmPackage Name="react-plotly.js" Version="gte 2.3 lt 3" ResolutionStrategy="max" />
     </NpmDependencies>
