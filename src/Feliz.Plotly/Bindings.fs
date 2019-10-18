@@ -1,11 +1,8 @@
 namespace Feliz.Plotly
 
 module Bindings =
-    open Browser.Types
     open Fable.Core.JsInterop
-    open Fable.Core
     open Fable.React
-    open System
 
     let plotly: obj = importAll "plotly.js"
     let plotFactory: obj -> obj = importDefault "react-plotly.js/factory.js"

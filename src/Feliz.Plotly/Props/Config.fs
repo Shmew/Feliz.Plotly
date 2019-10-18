@@ -4,8 +4,6 @@ namespace Feliz.Plotly
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
 
-open System
-open Browser.Types
 open Fable.Core
 open Fable.Core.JsInterop
 open Feliz

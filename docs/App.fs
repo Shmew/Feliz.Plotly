@@ -36,7 +36,13 @@ let samples =
       "plotly-chart-bubble-hovertext", Samples.Bubble.HoverText.chart()
       "plotly-chart-bubble-markersizeandcolor", Samples.Bubble.MarkerSizeAndColor.chart()
       "plotly-chart-bubble-sizescaling", Samples.Bubble.SizeScaling.chart()
-      "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart() ]
+      "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart()
+      "plotly-chart-dot-basic", Samples.Dot.Basic.chart()
+      "plotly-chart-line-basic", Samples.Line.Basic.chart()
+      "plotly-chart-line-namedlineandscatter", Samples.Line.NamedLineAndScatter.chart()
+      "plotly-chart-line-lineandscatterstyling", Samples.Line.LineAndScatterStyling.chart()
+      "plotly-chart-line-stylinglineplot", Samples.Line.StylingLinePlot.chart()
+      "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart() ]
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -232,6 +238,16 @@ let sidebar (state: State) dispatch =
                         menuItem "Size Scaling" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.SizeScaling ]
                         menuItem "Marker Size Color and Symbol Array" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ]
                     ]
+                    nestedMenuList "Dot" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Dot; Urls.Basic ]
+                    ]
+                    nestedMenuList "Line" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.Basic ]
+                        menuItem "Named Line And Scatter" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.NamedLineAndScatter ]
+                        menuItem "Line And Scatter Styling" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineAndScatterStyling ]
+                        menuItem "Styling Line Plot" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.StylingLinePlot ]
+                        menuItem "Colored And Styled Scatter" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ColoredAndStyledScatter ]
+                    ]
                 ]
             ]
         ]
@@ -255,6 +271,12 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeAndColor ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeAndColor.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.SizeScaling ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "SizeScaling.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeColorAndSymbolArray.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Dot; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Dot" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.NamedLineAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "NamedLineAndScatter.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineAndScatterStyling ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineAndScatterStyling.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.StylingLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "StylingLinePlot.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ColoredAndStyledScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ColoredAndStyledScatter.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

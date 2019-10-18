@@ -48,7 +48,7 @@ let chart () =
             ]
             data.scatter [
                 scatter.x [ 1; 2; 3; 4 ]
-                scatter.y [ 12; 13; 14; 16 ]
+                scatter.y [ 12; 13; 14; 15 ]
                 scatter.mode.markers
                 scatter.marker [
                     scatter.marker.size 18

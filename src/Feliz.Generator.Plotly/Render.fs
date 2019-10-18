@@ -28,15 +28,20 @@ module Render =
                 |> List.distinct
 
             let baseInterface =
+                //match baseInterfaceTree with
+                //| "Layout"::_ -> baseInterfaceTree |> trimTreeToHead 2 // Temp workaround due to conflicting namespace between scene module and layout.xaxis modules for shared namespaces
+                //| _ -> baseInterfaceTree |> trimTreeToHead 3
                 baseInterfaceTree
                 |> trimTreeToHead 3
                 |> String.concat ""
 
             let attrStr =
-                if (comp.ParentNameTree |> filterMethod) = [ "Data" ] then "Data"
-                elif baseInterfaceTree.Length > 1 then 
-                    baseInterfaceTree |> filterMethod |> trimTreeToHead 3 |> String.concat ""
-                else baseInterface
+                match (comp.ParentNameTree |> filterMethod) with
+                | [ s ] -> s
+                | _ ->
+                    if baseInterfaceTree.Length > 1 then 
+                        baseInterfaceTree |> filterMethod |> trimTreeToHead 3 |> String.concat ""
+                    else baseInterface
 
             if compOverload.SkipAttr then
                 comp.ParentNameTree
@@ -429,8 +434,6 @@ module Render =
               "/// THIS FILE IS AUTO-GENERATED //"
               "////////////////////////////////*)"
               ""
-              "open System"
-              "open Browser.Types"
               "open Fable.Core"
               "open Fable.Core.JsInterop"
               "open Feliz"
