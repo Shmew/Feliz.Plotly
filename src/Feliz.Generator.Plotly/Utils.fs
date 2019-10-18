@@ -14,10 +14,13 @@ module Utils =
         /// Converts the first character to uppercase.
         let upperFirst (s: string) = s.Substring(0, 1).ToUpper() + s.Substring(1)
 
+        /// Adds a prefix to the given string
         let prefix (prefix: string) s = prefix + s
 
+        /// Indents a string based on `spacesPerLevel` and `numLevels`
         let indent spacesPerLevel numLevels = prefix (String.replicate (numLevels * spacesPerLevel) " ")
 
+        /// Returns `true` if the input string is likely a Regular Expression
         let containsRegex (s: string) =
             [ "/"; "\\"; "$"; "^"; "|"; "["; "]" ]
             |> List.filter (fun c -> s.Contains(c))

@@ -5,14 +5,22 @@ module Render =
     open Utils
     open Domain
 
+    /// Indents a string with 4 spaces per `numLevels` given
     let indent numLevels = String.indent 4 numLevels
 
     module GetLines =
+        /// Returns the head of a string list if the length is over the threshold
         let private trimTreeToHead (threshold: int) (tree: string list) =
             match tree with
             | tree when tree.Length > threshold ->
                 tree.Head |> List.singleton
             | tree -> tree
+
+        /// Returns the head and tail of a string list as a new list if the length is over the threshold
+        let private firstLastTree (threshold: int) (parentTree: string list) =
+            if parentTree.Length > threshold then
+                [ parentTree.Head; parentTree |> List.last ]
+            else parentTree
 
         /// Gets the code lines for the implementation of a single component overload.
         /// Does not include docs.
@@ -28,9 +36,6 @@ module Render =
                 |> List.distinct
 
             let baseInterface =
-                //match baseInterfaceTree with
-                //| "Layout"::_ -> baseInterfaceTree |> trimTreeToHead 2 // Temp workaround due to conflicting namespace between scene module and layout.xaxis modules for shared namespaces
-                //| _ -> baseInterfaceTree |> trimTreeToHead 3
                 baseInterfaceTree
                 |> trimTreeToHead 3
                 |> String.concat ""
@@ -72,7 +77,8 @@ module Render =
                 (if propOverload.IsInline then "inline "
                  else "") prop.MethodName propOverload.ParamsCode bodyCode |> List.singleton
 
-        let private enumBaseInterface (prop: Prop) =
+        /// Builds the base interface for enumerable props
+        let enumBaseInterface (prop: Prop) =
             prop.ParentNameTree
             |> trimTreeToHead 4
             |> function
@@ -95,6 +101,7 @@ module Render =
             |> emptStringToNone
             |> List.singleton
 
+        /// Gets all props within a `Component`
         let getCompProps (comp: Component) =
             comp.Props
             |> List.choose (fun p ->
@@ -102,8 +109,7 @@ module Render =
                 else Some [ p.Components ])
             |> (List.concat >> List.concat)
 
-        let buildCompLine comp overload = singleComponentOverload comp overload
-
+        /// Builds non-extension prop strings for a given component
         let regularNonExtensionPropsForComponent (comp: Component) indentLevel =
             let propsAndRegularNonExtensionOverloads =
                 comp.Props
@@ -121,7 +127,7 @@ module Render =
                   sprintf "type %s = " comp.MethodName |> indent indentLevel
                   for comp in compProps do
                       for overload in comp.Overloads do
-                          yield! buildCompLine comp overload |> List.map (indent (indentLevel + 1)) ]
+                          yield! singleComponentOverload comp overload |> List.map (indent (indentLevel + 1)) ]
             | _ ->
                 let allOverloadsAreInline =
                     propsAndRegularNonExtensionOverloads
@@ -131,7 +137,7 @@ module Render =
 
                   for comp in compProps do
                       for overload in comp.Overloads do
-                          yield! buildCompLine comp overload |> List.map (indent (indentLevel + 1))
+                          yield! singleComponentOverload comp overload |> List.map (indent (indentLevel + 1))
 
                   for prop, overloads in propsAndRegularNonExtensionOverloads do
                       for overload in overloads do
@@ -142,6 +148,7 @@ module Render =
                                       >> indent (indentLevel + 1))
                           yield! singlePropRegularOverload prop overload |> List.map (indent (indentLevel + 1)) ]
 
+        /// Builds extension prop strings for a component
         let regularExtensionPropsForComponent (comp: Component) indentLevel =
             let propsAndRegularExtensionOverloads =
                 comp.Props
@@ -167,6 +174,7 @@ module Render =
                                       >> indent (indentLevel + 2))
                           yield! singlePropRegularOverload prop overload |> List.map (indent (indentLevel + 2)) ]
 
+        /// Builds enumeration prop strings for a component
         let enumPropsForComponent (comp: Component) indentLevel =
             let propsAndEnumOverloads =
                 comp.Props
@@ -203,11 +211,7 @@ module Render =
                         yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
                     "" ]
 
-        let getCompStrList comp indentLevel =
-            comp.Overloads
-            |> List.collect
-                (fun overload -> singleComponentOverload comp overload |> List.map (indent (indentLevel + 1)))
-
+        /// Gets all prop strings for a component
         let rec propsForComponent indentStart (comp: Component) =
             let regularProps = regularNonExtensionPropsForComponent comp indentStart
             let regularExtensionProps = regularExtensionPropsForComponent comp indentStart
@@ -226,6 +230,7 @@ module Render =
               yield! enumProps
               yield! compProps ]
 
+        /// Gets all component strings for a component
         let rec subComponentsForComponent depth (comp: Component) =
             let actualDepth = depth + 1
 
@@ -235,17 +240,14 @@ module Render =
             else [ comp ]
             |> List.append compComps
 
+        /// Gets all distict components within a component list based on the `ParentNameTree` and method name
         let private getComponentsDistinctParentAndMethod (comps: Component list) =
             comps
             |> List.collect (subComponentsForComponent 0)
             |> List.append comps
             |> List.distinctBy (fun c -> ((c.ParentNameTree |> String.concat ""), c.MethodName))
 
-        let private firstLastTree (threshold: int) (parentTree: string list) =
-            if parentTree.Length > threshold then
-                [ parentTree.Head; parentTree |> List.last ]
-            else parentTree
-
+        /// Builds the interface strings from a `Component list`
         let buildInterfaces (comps: Component list) =
             let buildInterfaceStrs (comp: Component) =
                 let interfaceCompStr (comp: Component) =
@@ -291,6 +293,7 @@ module Render =
             |> List.distinct
             |> List.sort
 
+        /// Builds the interop strings from a `Component list`
         let buildInterops (comps: Component list) =
             let buildInteropStrs (comp: Component) =
                 let interopCompStr (comp: Component) =
@@ -345,6 +348,7 @@ module Render =
             |> List.distinct
             |> List.sort
 
+    /// Generate the interop file
     let interopDocument (api: ComponentApi) =
         [ sprintf "namespace %s" api.Namespace
           ""
@@ -360,6 +364,7 @@ module Render =
           "" ]
         |> String.concat Environment.NewLine
 
+    /// Generate the interfaces type file
     let typesDocument (api: ComponentApi) =
         [ sprintf "namespace %s" api.Namespace
           ""
@@ -376,6 +381,7 @@ module Render =
           "" ]
         |> String.concat Environment.NewLine
 
+    /// Generate the base level Plotly component file
     let componentDocument (api: ComponentApi) =
         [ sprintf "namespace %s" api.Namespace
           ""
@@ -426,6 +432,7 @@ module Render =
               "" ]
         |> String.concat Environment.NewLine
 
+    /// Builds the props documents with chunking if enabled
     let propsDocument (chunk: bool) (api: ComponentApi) =
         let buildDoc (comps: Component list) =
             [ sprintf "namespace %s" api.Namespace

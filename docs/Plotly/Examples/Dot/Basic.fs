@@ -96,8 +96,8 @@ let chart () =
             layout.showlegend false
             layout.height 600
             layout.width 600
-            layout.paper_bgcolor (colors.rgb(254, 247, 234))
-            layout.plot_bgcolor (colors.rgb(254, 247, 234))
+            layout.paperBgcolor (colors.rgb(254, 247, 234))
+            layout.plotBgcolor (colors.rgb(254, 247, 234))
             layout.hovermode.closest
         ]
     ]

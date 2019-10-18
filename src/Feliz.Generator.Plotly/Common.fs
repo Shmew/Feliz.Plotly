@@ -2,17 +2,33 @@ namespace Fable.Plotly.Generator
 
 [<AutoOpen>]
 module Common =
+    /// Trims outer white space and " characters
     let trimJson (s: string) = s.Trim().Trim('"')
 
     let spaceCaseTokebabCase (s: string) = s.Replace(' ', '-')
 
+    /// Returns "dash" when the string is "-"
     let dashStringToDash (s: string) =
         if s = "-" then "dash"
         else s
 
+    /// Returns "none" when the input string is `""`
     let emptStringToNone (s: string) =
         if s = "\"\"" then "none"
         else s
+
+    let snakeCaseToCamelCase (s: string) =
+        let pieces =
+            s.Split('_')
+            |> Seq.trimEmptyLines
+            |> Array.ofSeq
+        if pieces.Length > 1 then
+            pieces
+            |> Array.iteri (fun i piece ->
+                if i > 0 then pieces.[i] <- piece.Substring(0, 1).ToUpper() + piece.Substring(1))
+            pieces |> String.concat ""
+        else
+            s
 
     let kebabCaseToCamelCase (s: string) =
         let pieces =
@@ -27,6 +43,7 @@ module Common =
         else
             s
 
+    /// Prefixes an underscore to position numbers or "neg" to negative numbers
     let prefixUnderscoreOrNegativeToNumbers (s: string) =
         let isNegative (s: string) = (s |> Seq.head) = '-' && (s.Substring(1) |> Seq.forall System.Char.IsNumber)
         match s.Length > 0,
@@ -59,6 +76,7 @@ module Common =
         if reserved.Contains s then s + "'"
         else s
 
+    /// Converts operators to text
     let private transformOperations (s: string) =
         match s with
         | "=" -> "eq"
@@ -79,6 +97,7 @@ module Common =
         | "}{" -> "filterPresent"
         | _ -> s
 
+    /// Converts Plotly shape operators to text
     let private transformShape (s: string) =
         match s with
         | ">" -> "pointedRight"
@@ -88,12 +107,14 @@ module Common =
         | @"\\" -> "leftSlant"
         | _ -> s
 
+    /// Adjusts names with operators in them
     let fixMethodNameOperators methodName (s: string) =
         match methodName with
         | "edgeshape" -> transformShape s
         | "operation" -> transformOperations s
         | _ -> s
 
+    /// Replace + symbols with "And"
     let replaceAddSymbol (s: string) =
         let trimOuter = s.Trim('+')
         if trimOuter.Contains "+" then

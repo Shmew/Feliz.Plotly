@@ -17,18 +17,3 @@ module Bindings =
         |> List.map (getKV >> snd) 
         |> ResizeArray 
         |> Interop.mkPlotAttr "data"
-
-    let extractDataConditionals (properties: (bool * 'a list) list) =
-        properties
-        |> List.filter fst
-        |> List.collect snd
-        |> unbox
-        |> extractData
-        |> Interop.mkPlotAttr "data"
-
-    let withConditionals (properties: (bool * 'a list) list) =
-        properties
-        |> List.filter fst
-        |> List.collect snd
-        |> unbox
-        |> createObj

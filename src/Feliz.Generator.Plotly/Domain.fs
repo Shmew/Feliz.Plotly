@@ -123,6 +123,7 @@ module rec Domain =
                     printfn "%s" (s.ToString())
                     [ "(value: TODO)", "value" ]
 
+        /// Extracts the type of the prop recursively
         let rec getType propName (jVal: JsonValue) =
             let hasValType = jVal.TryGetProperty("valType").IsSome
 
@@ -179,6 +180,7 @@ module rec Domain =
                 | _ -> ValType.Any
             | _ -> ValType.Component
 
+        /// Returns a list of primative overloads for the `ValType`
         let getOverloadStrings (vType: ValType) =
             match vType with
             | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
@@ -222,7 +224,9 @@ module rec Domain =
           EnumOverloads: EnumPropOverload list
           /// Components within the prop
           Components: Component list
+          /// The list of parent components
           ParentNameTree: string list
+          /// The data type of the prop
           PropType: ValType }
 
     module Prop =
@@ -247,8 +251,10 @@ module rec Domain =
         /// Adds the specified enum value/overload to the prop.
         let addEnumOverload overload prop = { prop with EnumOverloads = prop.EnumOverloads @ [ overload ] }
 
+        /// Adds the specified component to the prop.
         let addComponent comp (prop: Prop) = { prop with Components = prop.Components @ [ comp ] }
 
+        /// Adds the specified component tree to the prop.
         let addParentComponentTree (tree: string list) (prop: Prop) =
             { prop with ParentNameTree = prop.ParentNameTree @ (tree |> List.map String.upperFirst) }
 
@@ -272,10 +278,6 @@ module rec Domain =
             [ { ParamFun = sprintf "(properties: #I%sProperty list)"
                 PropsCode = "(createObj !!properties)"
                 IsInline = true 
-                SkipAttr = false }
-              { ParamFun = sprintf "(properties: (bool * I%sProperty list) list)"
-                PropsCode = "(properties |> Bindings.withConditionals)"
-                IsInline = false
                 SkipAttr = false } ]
 
         /// Creates an inline component overload with the specified code for params
@@ -309,6 +311,7 @@ module rec Domain =
           Overloads: ComponentOverload list
           /// The component's props.
           Props: Prop list
+          /// The list of parent components
           ParentNameTree: string list }
 
     module Component =
@@ -338,6 +341,7 @@ module rec Domain =
         /// Indicates whether all components have only inline overloads.
         let hasOnlyInlineOverloads comp = comp.Overloads |> List.forall (fun o -> o.IsInline)
 
+        /// Add a component tree list
         let addParentComponentTree (tree: string list) (comp: Component) =
             { comp with ParentNameTree = comp.ParentNameTree @ (tree |> List.map String.upperFirst) }
 
@@ -356,6 +360,7 @@ module rec Domain =
           Components: Component list
           /// Bindings for the API.
           Bindings: (string * string) list
+          /// Lines to insert after the component definitions.
           TypePostlude: (string * string) list }
 
     module ComponentApi =

@@ -8,11 +8,13 @@ module ParserUtils =
     open Fake.IO
     open Fake.IO.FileSystemOperators
 
+    /// The Plotly.js schema
     let schema =
         File.readAsString (__SOURCE_DIRECTORY__ @@ "../../paket-files/generator/plotly/plotly.js/dist/plot-schema.json")
         |> JsonValue.Parse
 
-    let isObj (jVal: JsonValue) =
+    /// Returns `true` if the `JsonValue` is a component
+    let private isComp (jVal: JsonValue) =
         jVal
         |> JsonValue.tryGetProp "role"
         |> Option.map (JsonValue.asString >> ((=) "object"))
@@ -20,19 +22,22 @@ module ParserUtils =
         | Some b -> b
         | None -> false
 
-    let getObjDoc (jVal: JsonValue) =
+    /// Gets the description from the specified `JsonValue` when it is a component
+    let private getCompDoc (jVal: JsonValue) =
         jVal.TryGetProperty("meta")
         |> Option.bind (JsonValue.tryGetProp "description")
         |> Option.map JsonValue.asString
         |> Option.toList
 
-    let getPropDoc (jVal: JsonValue) =
+    /// Gets the description from the specified `JsonValue` when it is a prop
+    let private getPropDoc (jVal: JsonValue) =
         jVal.TryGetProperty("description")
         |> Option.map JsonValue.asString
         |> Option.toList
 
+    /// Gets the documentation of a specified `JsonValue`
     let getDocs (jVal: JsonValue) =
-        if isObj jVal then getObjDoc jVal
+        if isComp jVal then getCompDoc jVal
         else getPropDoc jVal
         |> List.map (fun s -> s.Trim().Trim('"'))
         |> List.filter (fun s -> s <> "")
@@ -40,12 +45,14 @@ module ParserUtils =
 module rec ApiParser =
     open ParserUtils
 
+    /// Parses a `JsonValue` with given information and returns a `Prop`
     let parseProp componentTree propName (jVal: JsonValue) =
         let propMethodName =
             propName
             |> trimJson
             |> spaceCaseTokebabCase
             |> kebabCaseToCamelCase
+            |> snakeCaseToCamelCase
             |> replaceAddSymbol
             |> appendApostropheToReservedKeywords
 
@@ -92,6 +99,7 @@ module rec ApiParser =
                     |> dashStringToDash
                     |> spaceCaseTokebabCase
                     |> kebabCaseToCamelCase
+                    |> snakeCaseToCamelCase
                     |> prefixUnderscoreOrNegativeToNumbers
                     |> appendApostropheToReservedKeywords
                 EnumPropOverload.create methodName (sprintf "\"%s\"" (trimJson v)))
@@ -120,6 +128,7 @@ module rec ApiParser =
         |> addEnumOverloads
         |> addComponents
 
+    /// Parses a `JsonValue` with given information and returns a `Component`
     let parseComponent (parentTree: string list) (componentName: string) (jVal: JsonValue) =
         let skipComp = [ "_deprecated"; "items"; "_isSubplotObj" ]
 
@@ -153,12 +162,10 @@ module rec ApiParser =
             | true, Some t ->
                 let traceType = t.AsString()
                 let propsCodes =
-                    [ sprintf "(createObj !!(properties @ [ Interop.mkData%sAttr \"type\" \"%s\" ]))" (traceType |> String.upperFirst) componentName
-                      sprintf "(properties @ [ (true, [ Interop.mkData%sAttr \"type\" \"%s\" ]) ] |> Bindings.withConditionals)" (traceType |> String.upperFirst) componentName ]
+                    [ sprintf "(createObj !!(properties @ [ Interop.mkData%sAttr \"type\" \"%s\" ]))" (traceType |> String.upperFirst) componentName ]
 
                 let paramFuns =
-                    [ sprintf "(properties: I%sProperty list)";
-                      sprintf "(properties: (bool * I%sProperty list) list)" ]
+                    [ sprintf "(properties: I%sProperty list)" ]
 
                 comp.Overloads 
                 |> List.map2 ComponentOverload.setPropsCode propsCodes
@@ -167,6 +174,7 @@ module rec ApiParser =
                 |> fun overloads -> { comp with Overloads = overloads }
             | _ -> comp
 
+    /// Parse the Plotly.js json schema
     let parseApi() =
         let components =
             [ schema?config |> parseComponent [ "Config" ] "config"
@@ -182,16 +190,10 @@ module rec ApiParser =
         let typePostlude =
             [ "Create the plotly data sets",
               "static member inline data (properties: #IDataProperty list) = Bindings.extractData properties"
-              "Create the plotly data sets",
-              "static member data (properties: (bool * IDataProperty list) list)  = Bindings.extractDataConditionals properties"
               "Create the plotly config",
               "static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr \"config\" (createObj !!properties)"
-              "Create the plotly config",
-              "static member config (properties: (bool * IConfigProperty list) list) = Interop.mkPlotAttr \"config\" (properties |> Bindings.withConditionals)"
               "Create the plotly layout",
               "static member inline layout (properties: #ILayoutProperty list) = Interop.mkPlotAttr \"layout\" (createObj !!properties)"
-              "Create the plotly layout",
-              "static member layout (properties: (bool * ILayoutProperty list) list) = Interop.mkPlotAttr \"layout\" (properties |> Bindings.withConditionals)"
               "When provided, causes the plot to update when the revision is incremented.",
               "static member inline revision (value: int) = Interop.mkPlotAttr \"revision\" value"
               "When provided, causes the plot to update when the revision is incremented.",
@@ -210,8 +212,6 @@ module rec ApiParser =
               "static member inline className (value: string) = Interop.mkPlotAttr \"className\" value"
               "Styles the <div> into which the plot is rendered",
               "static member inline style (properties: #IStyleAttribute list) = Interop.mkAttr \"style\" (createObj !!properties)"
-              "Styles the <div> into which the plot is rendered",
-              "static member style (properties: (bool * IStyleAttribute list) list) = Interop.mkAttr \"style\" (properties |> Bindings.withConditionals)"
               "Assign the graph div to window.gd for debugging",
               "static member inline debug (value: bool) = Interop.mkPlotAttr \"debug\" value"
               "When true, adds a call to Plotly.Plot.resize() as a window.resize event handler",

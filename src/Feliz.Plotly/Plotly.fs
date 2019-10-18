@@ -14,16 +14,10 @@ open Feliz
 type plot =
     /// Create the plotly data sets
     static member inline data (properties: #IDataProperty list) = Bindings.extractData properties
-    /// Create the plotly data sets
-    static member data (properties: (bool * IDataProperty list) list)  = Bindings.extractDataConditionals properties
     /// Create the plotly config
     static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr "config" (createObj !!properties)
-    /// Create the plotly config
-    static member config (properties: (bool * IConfigProperty list) list) = Interop.mkPlotAttr "config" (properties |> Bindings.withConditionals)
     /// Create the plotly layout
     static member inline layout (properties: #ILayoutProperty list) = Interop.mkPlotAttr "layout" (createObj !!properties)
-    /// Create the plotly layout
-    static member layout (properties: (bool * ILayoutProperty list) list) = Interop.mkPlotAttr "layout" (properties |> Bindings.withConditionals)
     /// When provided, causes the plot to update when the revision is incremented.
     static member inline revision (value: int) = Interop.mkPlotAttr "revision" value
     /// When provided, causes the plot to update when the revision is incremented.
@@ -42,8 +36,6 @@ type plot =
     static member inline className (value: string) = Interop.mkPlotAttr "className" value
     /// Styles the <div> into which the plot is rendered
     static member inline style (properties: #IStyleAttribute list) = Interop.mkAttr "style" (createObj !!properties)
-    /// Styles the <div> into which the plot is rendered
-    static member style (properties: (bool * IStyleAttribute list) list) = Interop.mkAttr "style" (properties |> Bindings.withConditionals)
     /// Assign the graph div to window.gd for debugging
     static member inline debug (value: bool) = Interop.mkPlotAttr "debug" value
     /// When true, adds a call to Plotly.Plot.resize() as a window.resize event handler

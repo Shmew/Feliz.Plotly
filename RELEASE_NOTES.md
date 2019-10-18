@@ -19,3 +19,8 @@
 
 ### 0.2.1 - Thursday, October 17, 2019
 * Cleaned up intellisense
+
+### 0.3.0 - Friday, October 18, 2019
+* Removed conditional overloads now that FSharp.Core supports implicit yields
+* Added more documentation to Plotly.Generator
+* Replaced instances of snake_case in the api with camelCase

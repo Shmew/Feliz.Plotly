@@ -11,7 +11,6 @@ open Feliz
 [<Erase>]
 type config =
     static member inline edits (properties: #IConfigEditsProperty list) = Interop.mkConfigAttr "edits" (createObj !!properties)
-    static member edits (properties: (bool * IConfigEditsProperty list) list) = Interop.mkConfigAttr "edits" (properties |> Bindings.withConditionals)
     /// Determines whether the graphs are interactive or not. If *false*, no interactivity, for export or image generation.
     static member inline staticPlot (value: bool) = Interop.mkConfigAttr "staticPlot" value
     /// Sets base URL for the 'Edit in Chart Studio' (aka sendDataToCloud) mode bar button and the showLink/sendData on-graph link
