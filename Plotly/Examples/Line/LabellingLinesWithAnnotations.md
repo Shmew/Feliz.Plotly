@@ -58,33 +58,33 @@ let data' =
 let dataAnnotations =
     [ 0 .. xData.Length-1 ]
     |> List.collect (fun i ->
-        [ layout.annotations [
-            layout.annotations.xref.paper
-            layout.annotations.y 0.05
-            layout.annotations.y yData.[i].Head
-            layout.annotations.xanchor.right
-            layout.annotations.yanchor.middle
-            layout.annotations.text (sprintf "%s %i%s" labels.[i] yData.[i].Head "%")
-            layout.annotations.font [
-                annotations.font.family "Arial"
-                annotations.font.size 16
-                annotations.font.color colors.black
+        [ layout.annotations.annotation [
+            annotation.xref.paper
+            annotation.x 0.05
+            annotation.y yData.[i].Head
+            annotation.xanchor.right
+            annotation.yanchor.middle
+            annotation.text (sprintf "%s %i%s" labels.[i] yData.[i].Head "%")
+            annotation.font [
+                annotation.font.family "Arial"
+                annotation.font.size 16
+                annotation.font.color colors.black
             ]
-            layout.annotations.showarrow false
+            annotation.showarrow false
           ]
-          layout.annotations [
-            layout.annotations.xref.paper
-            layout.annotations.x 0.95
-            layout.annotations.y yData.[i].[11]
-            layout.annotations.xanchor.left
-            layout.annotations.yanchor.middle
-            layout.annotations.text (sprintf "%i%s" yData.[i].[11] "%")
-            layout.annotations.font [
-                annotations.font.family "Arial"
-                annotations.font.size 16
-                annotations.font.color colors.black
+          layout.annotations.annotation [
+            annotation.xref.paper
+            annotation.x 0.95
+            annotation.y yData.[i].[11]
+            annotation.xanchor.left
+            annotation.yanchor.middle
+            annotation.text (sprintf "%i%s" yData.[i].[11] "%")
+            annotation.font [
+                annotation.font.family "Arial"
+                annotation.font.size 16
+                annotation.font.color colors.black
             ]
-            layout.annotations.showarrow false
+            annotation.showarrow false
           ]  
         ])
 
@@ -124,36 +124,38 @@ let chart () =
                 layout.margin.t 100
             ]
             layout.annotations [
-                layout.annotations.xref.paper
-                layout.annotations.yref.paper
-                layout.annotations.x 0.5
-                layout.annotations.y 1.2
-                layout.annotations.xanchor.center
-                layout.annotations.yanchor.middle
-                layout.annotations.text "Main Source for News"
-                layout.annotations.font [
-                    annotations.font.family "Arial"
-                    annotations.font.size 30
-                    annotations.font.color (colors.rgb(37, 37, 37))
+                layout.annotations.annotation [
+                    annotation.xref.paper
+                    annotation.yref.paper
+                    annotation.x 0.5
+                    annotation.y 1.05
+                    annotation.xanchor.center
+                    annotation.yanchor.bottom
+                    annotation.text "Main Source for News"
+                    annotation.font [
+                        annotation.font.family "Arial"
+                        annotation.font.size 30
+                        annotation.font.color (colors.rgb(37, 37, 37))
+                    ]
+                    annotation.showarrow false
                 ]
-                layout.annotations.showarrow false
-            ]
-            layout.annotations [
-                layout.annotations.xref.paper
-                layout.annotations.yref.paper
-                layout.annotations.x 0.5
-                layout.annotations.y -0.1
-                layout.annotations.xanchor.center
-                layout.annotations.yanchor.top
-                layout.annotations.text "Source: Pew Research Center & Storytelling with data"
-                layout.annotations.font [
-                    annotations.font.family "Arial"
-                    annotations.font.size 30
-                    annotations.font.color (colors.rgb(150, 150, 150))
+                layout.annotations.annotation [
+                    annotation.xref.paper
+                    annotation.yref.paper
+                    annotation.x 0.5
+                    annotation.y -0.1
+                    annotation.xanchor.center
+                    annotation.yanchor.top
+                    annotation.text "Source: Pew Research Center & Storytelling with data"
+                    annotation.font [
+                        annotation.font.family "Arial"
+                        annotation.font.size 12
+                        annotation.font.color (colors.rgb(150, 150, 150))
+                    ]
+                    annotation.showarrow false
                 ]
-                layout.annotations.showarrow false
+                yield! dataAnnotations
             ]
-            yield! dataAnnotations
         ]
     ]
 ```
