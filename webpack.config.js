@@ -1,7 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var CONFIG = {
+    indexHtmlTemplate: 'public/index.html',
     fsharpEntry: 'docs/App.fsproj',
     outputDir: 'public',
     devServerPort: 8080,
@@ -25,15 +27,26 @@ var CONFIG = {
 var isProduction = !process.argv.find(v => v.indexOf('webpack-dev-server') !== -1);
 console.log('Bundling for ' + (isProduction ? 'production' : 'development') + '...');
 
+var commonPlugins = [
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: resolve(CONFIG.indexHtmlTemplate)
+    })
+];
+
 module.exports = {
     entry: resolve(CONFIG.fsharpEntry),
     output: {
         path: resolve(CONFIG.outputDir),
-        filename: 'bundle.js',
+        filename: 'bundle.[hash].js',
     },
     mode: isProduction ? 'production' : 'development',
-    devtool: isProduction ? false : 'eval-source-map',
-    plugins: isProduction ? [] : [ new webpack.HotModuleReplacementPlugin() ],
+    devtool: isProduction ? 'source-map' : 'eval-source-map',
+    plugins: isProduction ?
+        commonPlugins.concat([])
+        : commonPlugins.concat([
+            new webpack.HotModuleReplacementPlugin()
+        ]),
     devServer: {
         contentBase: CONFIG.outputDir,
         hot: true,
