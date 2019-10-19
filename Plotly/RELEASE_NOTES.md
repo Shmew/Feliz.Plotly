@@ -24,3 +24,6 @@
 * Removed conditional overloads now that FSharp.Core supports implicit yields
 * Added more documentation to Plotly.Generator
 * Replaced instances of snake_case in the api with camelCase
+
+### 0.4.0 - Saturday, October 19, 2019
+* Fixed nested objects that then expected an array
