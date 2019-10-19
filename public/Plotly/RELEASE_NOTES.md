@@ -27,3 +27,6 @@
 
 ### 0.4.0 - Saturday, October 19, 2019
 * Fixed nested objects that then expected an array
+
+### 0.4.1 - Saturday, October 19, 2019
+* Fix package metadata

@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Description>Fable bindings written in the Feliz-style for plotly.js</Description>
+    <PackageLicenseUrl>https://github.com/Shmew/Feliz.Plotly/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>fsharp;fable;react;visualization;graph;chart</PackageTags>
+    <Authors>Zaid Ajaj</Authors>
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
@@ -15,7 +19,6 @@
     <Compile Include="Props\Layout.fs" />
     <Compile Include="Plotly.fs" />
     <None Include="paket.references" />
-    <None Include="paket.template" />
   </ItemGroup>
 
   <ItemGroup>
