@@ -2,6 +2,7 @@ module App
 
 open Elmish
 open Elmish.React
+open Fable.React
 open Feliz
 open Feliz.Markdown
 open Fable.SimpleHttp
@@ -17,15 +18,33 @@ type Highlight =
     static member inline highlight (properties: IReactProperty list) =
         Interop.reactApi.createElement(importDefault "react-highlight", createObj !!properties)
 
-type State = { CurrentPath : string list }
+type State = 
+    { CurrentPath : string list
+      CurrentTab: string option }
 
-let init () = { CurrentPath = [ ] }, Cmd.none
+let init () = 
+    { CurrentPath = [ ]
+      CurrentTab = None }, Cmd.none
 
-type Msg = UrlChanged of string list
+type Msg =
+    | TabToggled of string option
+    | UrlChanged of string list
 
 let update msg state =
     match msg with
-    | UrlChanged segments -> { state with CurrentPath = segments }, Cmd.none
+    | UrlChanged segments -> 
+        { state with CurrentPath = segments }, 
+        match state.CurrentTab with
+        | None when segments.Length > 2 -> 
+            segments 
+            |> List.tryItem(segments.Length - 2)
+            |> TabToggled
+            |> Cmd.ofMsg
+        | _ -> Cmd.none
+    | TabToggled tabOpt ->
+        match tabOpt with
+        | Some(tab) -> { state with CurrentTab = Some tab }, Cmd.none
+        | None -> { state with CurrentTab = None }, Cmd.none
 
 let samples = 
     [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
@@ -104,8 +123,11 @@ let codeBlockRenderer (codeProps: Markdown.ICodeProperties) =
 
 let renderMarkdown (path: string) (content: string) =
     Html.div [
-        prop.className Bulma.Content
-        prop.style [ style.width (length.percent 100); style.padding 20 ]
+        prop.className [ Bulma.Content; "scrollbar" ]
+        prop.style [ 
+            style.width (length.percent 100)
+            style.padding (0,20)
+        ]
         prop.children [
             if path.StartsWith "https://raw.githubusercontent.com" then
                 Html.h2 [
@@ -165,39 +187,47 @@ let loadMarkdown (path: string list) = loadMarkdown' {| path = path |}
 
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
-let nestedMenuList' = React.functionComponent <| fun (input: {| name: string; items: Fable.React.ReactElement list |}) ->
-    let (collapsed, setCollapsed) = React.useState(false)
+let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, elems: ReactElement list, dispatch) ->
+    let collapsed = 
+        match state.CurrentTab with
+        | Some tab -> tab = name
+        | None -> false
     Html.li [
         Html.anchor [
-            prop.onClick (fun _ -> setCollapsed(not collapsed))
+            prop.className Bulma.IsUnselectable
+            prop.onClick <| fun _ -> 
+                match collapsed with
+                | true -> dispatch <| TabToggled None
+                | false -> dispatch <| TabToggled (Some name)
             prop.children [
                 Html.i [
                     prop.style [ style.marginRight 10 ]
                     prop.className [
-                        true, FA.Fa;
-                        not collapsed, FA.FaAngleUp;
-                        collapsed, FA.FaAngleDown;
+                        FA.Fa
+                        if not collapsed then FA.FaAngleDown else FA.FaAngleUp
                     ]
                 ]
-                Html.span input.name
+                Html.span name
             ]
         ]
 
         Html.ul [
             prop.className Bulma.MenuList
-            prop.style [ collapsed, [ style.display.none ] ]
-            prop.children input.items
+            prop.style [ 
+                if not collapsed then yield! [ style.display.none ] 
+            ]
+            prop.children elems
         ]
-    ]
-
-let nestedMenuList (name: string) (items: Fable.React.ReactElement list) =
-    nestedMenuList' {| name = name; items = items |}
+    ]), memoizeWith = memoEqualsButFunctions)
 
 let sidebar (state: State) dispatch =
+    let nestedMenuList (name: string) (items: Fable.React.ReactElement list) =
+        nestedMenuList'(state, name, items, dispatch)
+
     // top level label
     let menuLabel (content: string) =
         Html.p [
-            prop.className Bulma.MenuLabel
+            prop.className [ Bulma.MenuLabel; Bulma.IsUnselectable ]
             prop.text content
         ]
 
@@ -205,6 +235,7 @@ let sidebar (state: State) dispatch =
     let menuList (items: Fable.React.ReactElement list) =
         Html.ul [
             prop.className Bulma.MenuList
+            prop.style [ style.width (length.percent 95) ]
             prop.children items
         ]
 
@@ -220,47 +251,54 @@ let sidebar (state: State) dispatch =
             ]
         ]
 
-    // the actual nav bar
-    Html.aside [
-        prop.className Bulma.Menu
-        prop.children [
-            menuLabel "Feliz.Plotly"
-            menuList [
-                menuItem "Overview" [ ]
-                menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
-                menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
-                nestedMenuList "Examples" [
+    let allItems =
+        Html.div [
+            prop.className "scrollbar"
+            prop.children [
+                menuList [
+                    menuItem "Overview" [ ]
+                    menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
+                    menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
+                    menuLabel "Examples"
                     nestedMenuList "Scatter" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.Basic ]
-                        menuItem "Data Labels Hover" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsHover ]
-                        menuItem "Data Labels On Plot" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsOnPlot ]
-                        menuItem "Color Dimension" [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.ColorDimension ]
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.Basic ]
+                        menuItem "Data Labels Hover" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsHover ]
+                        menuItem "Data Labels On Plot" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsOnPlot ]
+                        menuItem "Color Dimension" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.ColorDimension ]
                     ]
                     nestedMenuList "Bubble" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.Basic ]
-                        menuItem "HoverText" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.HoverText ]
-                        menuItem "Marker Size and Color" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeAndColor ]
-                        menuItem "Size Scaling" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.SizeScaling ]
-                        menuItem "Marker Size Color and Symbol Array" [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ]
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.Basic ]
+                        menuItem "HoverText" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.HoverText ]
+                        menuItem "Marker Size and Color" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeAndColor ]
+                        menuItem "Size Scaling" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.SizeScaling ]
+                        menuItem "Marker Size Color and Symbol Array" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ]
                     ]
                     nestedMenuList "Dot" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Dot; Urls.Basic ]
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Basic ]
                     ]
                     nestedMenuList "Line" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.Basic ]
-                        menuItem "Named Line And Scatter" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.NamedLineAndScatter ]
-                        menuItem "Line And Scatter Styling" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineAndScatterStyling ]
-                        menuItem "Styling Line Plot" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.StylingLinePlot ]
-                        menuItem "Colored And Styled Scatter" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ColoredAndStyledScatter ]
-                        menuItem "Line Shape Options Interpolation" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineShapeOptionsInterpolation ]
-                        menuItem "Graph And Axes Titles" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.GraphAndAxesTitles ]
-                        menuItem "Line Dash" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineDash ]
-                        menuItem "Connect Gaps Between Data" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ConnectGapsBetweenData ]
-                        menuItem "Labelling Lines With Annotations" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LabellingLinesWithAnnotations ]
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.Basic ]
+                        menuItem "Named Line And Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.NamedLineAndScatter ]
+                        menuItem "Line And Scatter Styling" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineAndScatterStyling ]
+                        menuItem "Styling Line Plot" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.StylingLinePlot ]
+                        menuItem "Colored And Styled Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ColoredAndStyledScatter ]
+                        menuItem "Line Shape Options Interpolation" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineShapeOptionsInterpolation ]
+                        menuItem "Graph And Axes Titles" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.GraphAndAxesTitles ]
+                        menuItem "Line Dash" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineDash ]
+                        menuItem "Connect Gaps Between Data" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ConnectGapsBetweenData ]
+                        menuItem "Labelling Lines With Annotations" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LabellingLinesWithAnnotations ]
                     ]
                 ]
             ]
         ]
+
+    // the actual nav bar
+    Html.aside [
+        prop.className Bulma.Menu
+        prop.style [
+            style.width (length.perc 100)
+        ]
+        prop.children [ menuLabel "Feliz.Plotly"; allItems ]
     ]
 
 let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
@@ -272,26 +310,26 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Overview; ] -> loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> loadMarkdown [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> loadMarkdown [ contributing ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsHover ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsHover.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.DataLabelsOnPlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsOnPlot.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Scatter; Urls.ColorDimension ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "ColorDimension.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.HoverText ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "HoverText.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeAndColor ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeAndColor.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.SizeScaling ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "SizeScaling.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeColorAndSymbolArray.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Dot; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Dot" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.NamedLineAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "NamedLineAndScatter.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineAndScatterStyling ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineAndScatterStyling.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.StylingLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "StylingLinePlot.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ColoredAndStyledScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ColoredAndStyledScatter.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineShapeOptionsInterpolation ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineShapeOptionsInterpolation.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.GraphAndAxesTitles ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "GraphAndAxesTitles.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineDash ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineDash.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ConnectGapsBetweenData ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ConnectGapsBetweenData.md" ]
-    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LabellingLinesWithAnnotations ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LabellingLinesWithAnnotations.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsHover ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsHover.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsOnPlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsOnPlot.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.ColorDimension ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "ColorDimension.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.HoverText ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "HoverText.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeAndColor ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeAndColor.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.SizeScaling ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "SizeScaling.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeColorAndSymbolArray.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Dot" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.NamedLineAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "NamedLineAndScatter.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineAndScatterStyling ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineAndScatterStyling.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.StylingLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "StylingLinePlot.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ColoredAndStyledScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ColoredAndStyledScatter.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineShapeOptionsInterpolation ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineShapeOptionsInterpolation.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.GraphAndAxesTitles ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "GraphAndAxesTitles.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineDash ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineDash.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ConnectGapsBetweenData ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ConnectGapsBetweenData.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LabellingLinesWithAnnotations ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LabellingLinesWithAnnotations.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =
@@ -305,6 +343,7 @@ let main state dispatch =
 
             Html.div [
                 prop.className Bulma.Tile
+                prop.style [ style.paddingTop 30 ]
                 prop.children [ content state dispatch ]
             ]
         ]
@@ -313,7 +352,9 @@ let main state dispatch =
 let render (state: State) dispatch =
     let application =
         Html.div [
-            prop.style [ style.padding 30 ]
+            prop.style [ 
+                style.padding 30
+            ]
             prop.children [ main state dispatch ]
         ]
 

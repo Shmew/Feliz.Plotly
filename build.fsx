@@ -119,6 +119,9 @@ let getEnvFromAllOrNone (s: string) =
         -> Some(v)
     | _ -> None
 
+// Set default
+FakeVar.set "configuration" "Release"
+
 // --------------------------------------------------------------------------------------
 // Set configuration mode based on target
 
