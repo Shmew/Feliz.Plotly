@@ -4,6 +4,9 @@ module Samples.Line.GraphAndAxesTitles
 open Feliz
 open Feliz.Plotly
 
+module xaxis = Plotly.layout.xaxis
+module yaxis = Plotly.layout.yaxis
+
 let chart () =
     Plotly.plot [
         plot.data [
@@ -21,6 +24,21 @@ let chart () =
                 scatter.x [ 1; 2; 3; 4 ]
                 scatter.y [ 12; 9; 15; 12 ]
                 scatter.mode.markersAndLines
+            ]
+        ]
+        plot.layout [
+            layout.title [
+                layout.title.text "Title of the Graph"
+            ]
+            layout.xaxis [
+                layout.xaxis.title [
+                    xaxis.title.text "x-axis title"
+                ]
+            ]
+            layout.yaxis [
+                layout.yaxis.title [
+                    yaxis.title.text "y-axis title"
+                ]
             ]
         ]
     ]

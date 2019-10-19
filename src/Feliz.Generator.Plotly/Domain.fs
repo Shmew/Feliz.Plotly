@@ -99,41 +99,37 @@ module rec Domain =
         open FSharp.Data
         open FSharp.Data.JsonExtensions
 
-        [<AutoOpen>]
-        module private Impl =
-            let boolStr = "(value: bool)", "value"
-            let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
-            let stringStr = "(value: string)", "value"
-            let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
-            let intStr = "(value: int)", "value"
-            let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
-            let floatStr = "(value: float)", "value"
-            let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
+        let boolStr = "(value: bool)", "value"
+        let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
+        let stringStr = "(value: string)", "value"
+        let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
+        let intStr = "(value: int)", "value"
+        let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
+        let floatStr = "(value: float)", "value"
+        let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
 
-            let getPrimativeOverloadSeq =
-                function
-                | ValType.Bool _ -> [ boolSeqStr ]
-                | ValType.Int _ -> [ intSeqStr ]
-                | ValType.Number _ -> [ intSeqStr; floatSeqStr ]
-                | ValType.String _ -> [ stringSeqStr ]
-                | ValType.Enumerated -> []
-                | ValType.FlagList -> []
-                | ValType.Any -> [ boolSeqStr; intSeqStr; floatSeqStr; stringSeqStr ]
-                | s ->
-                    printfn "%s" (s.ToString())
-                    [ "(value: TODO)", "value" ]
+        let getPrimativeOverloadSeq =
+            function
+            | ValType.Bool _ -> [ boolSeqStr ]
+            | ValType.Int _ -> [ intSeqStr ]
+            | ValType.Number _ -> [ intSeqStr; floatSeqStr ]
+            | ValType.String _ -> [ stringSeqStr ]
+            | ValType.Enumerated -> []
+            | ValType.EnumeratedWithCustom -> []
+            | ValType.FlagList -> []
+            | ValType.Any -> [ boolSeqStr; intSeqStr; floatSeqStr; stringSeqStr ]
+            | s ->
+                printfn "%s" (s.ToString())
+                [ "(value: TODO)", "value" ]
 
         /// Extracts the type of the prop recursively
         let rec getType propName (jVal: JsonValue) =
             let hasValType = jVal.TryGetProperty("valType").IsSome
 
             let isEnumeratedWithCustom() =
-                let jValHasRegex =
-                    jVal?values.AsArray()
-                    |> Array.filter (fun s -> s.AsString() |> String.containsRegex)
-                    |> Array.length > 1
-
-                jVal?valType.AsString() = "enumerated" && jValHasRegex
+                jVal?values.AsArray()
+                |> Array.filter (fun s -> s.AsString() |> String.containsRegex)
+                |> Array.length > 0
 
             let isArrayOk =
                 match jVal.TryGetProperty("arrayOk") with
@@ -147,8 +143,6 @@ module rec Domain =
 
             match propName, hasValType with
             | "scaleanchor", true -> ValType.String isArrayOk
-            | "overlaying", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
-            | "anchor", true when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
             | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String isArrayOk
             | _, true ->
                 match jVal?valType
@@ -164,9 +158,6 @@ module rec Domain =
                 | "colorlist" -> ValType.String false |> ValType.List 
                 | "colorscale" -> ValType.String false |> ValType.List
                 | "data_array" -> ValType.DataArray
-                | "enumerated" -> 
-                    if isArrayOk then ValType.EnumeratedArray
-                    else ValType.Enumerated
                 | "flaglist" -> ValType.FlagList
                 | "info_array" ->
                     if jVal?items.AsArray().Length < 1 then jVal?items
@@ -177,6 +168,11 @@ module rec Domain =
                 | "number" -> ValType.Number isArrayOk
                 | "string" -> ValType.String isArrayOk
                 | "subplotid" -> ValType.String false |> ValType.List 
+                | "enumerated" when isEnumeratedWithCustom() -> 
+                    ValType.EnumeratedWithCustom
+                | "enumerated" -> 
+                    if isArrayOk then ValType.EnumeratedArray
+                    else ValType.Enumerated
                 | _ -> ValType.Any
             | _ -> ValType.Component
 
@@ -189,7 +185,7 @@ module rec Domain =
             | ValType.DataArray -> [ boolSeqStr; stringSeqStr; intSeqStr; floatSeqStr ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedArray -> []
-            | ValType.EnumeratedWithCustom -> [ stringStr ]
+            | ValType.EnumeratedWithCustom -> []
             | ValType.FlagList -> []
             | ValType.InfoArray vt ->
                 match vt with

@@ -42,7 +42,12 @@ let samples =
       "plotly-chart-line-namedlineandscatter", Samples.Line.NamedLineAndScatter.chart()
       "plotly-chart-line-lineandscatterstyling", Samples.Line.LineAndScatterStyling.chart()
       "plotly-chart-line-stylinglineplot", Samples.Line.StylingLinePlot.chart()
-      "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart() ]
+      "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart()
+      "plotly-chart-line-lineshapeoptionsinterpolation", Samples.Line.LineShapeOptionsInterpolation.chart()
+      "plotly-chart-line-graphandaxestitles", Samples.Line.GraphAndAxesTitles.chart() 
+      "plotly-chart-line-linedash", Samples.Line.LineDash.chart() 
+      "plotly-chart-line-connectgapsbetweendata", Samples.Line.ConnectGapsBetweenData.chart() 
+      "plotly-chart-line-labellinglineswithannotations", Samples.Line.LabellingLinesWithAnnotations.chart() ]
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -247,6 +252,11 @@ let sidebar (state: State) dispatch =
                         menuItem "Line And Scatter Styling" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineAndScatterStyling ]
                         menuItem "Styling Line Plot" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.StylingLinePlot ]
                         menuItem "Colored And Styled Scatter" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ColoredAndStyledScatter ]
+                        menuItem "Line Shape Options Interpolation" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineShapeOptionsInterpolation ]
+                        menuItem "Graph And Axes Titles" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.GraphAndAxesTitles ]
+                        menuItem "Line Dash" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineDash ]
+                        menuItem "Connect Gaps Between Data" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ConnectGapsBetweenData ]
+                        menuItem "Labelling Lines With Annotations" [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LabellingLinesWithAnnotations ]
                     ]
                 ]
             ]
@@ -277,6 +287,11 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineAndScatterStyling ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineAndScatterStyling.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.StylingLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "StylingLinePlot.md" ]
     | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ColoredAndStyledScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ColoredAndStyledScatter.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineShapeOptionsInterpolation ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineShapeOptionsInterpolation.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.GraphAndAxesTitles ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "GraphAndAxesTitles.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LineDash ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineDash.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.ConnectGapsBetweenData ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ConnectGapsBetweenData.md" ]
+    | [ Urls.Plotly; Urls.Charts; Urls.Line; Urls.LabellingLinesWithAnnotations ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LabellingLinesWithAnnotations.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

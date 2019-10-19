@@ -8,19 +8,22 @@ let chart () =
     Plotly.plot [
         plot.data [
             data.scatter [
-                scatter.x [ 1; 2; 3; 4 ]
-                scatter.y [ 10; 15; 13; 17 ]
-                scatter.mode.markers
-            ]
-            data.scatter [
-                scatter.x [ 2; 3; 4; 5 ]
-                scatter.y [ 16; 5; 11; 9 ]
-                scatter.mode.lines
-            ]
-            data.scatter [
-                scatter.x [ 1; 2; 3; 4 ]
-                scatter.y [ 12; 9; 15; 12 ]
+                scatter.x [ 1 .. 8]
+                scatter.y [ 10; 15; 17; 14; 12; 10; 15 ]
                 scatter.mode.markersAndLines
+                scatter.connectgaps true
             ]
+            data.scatter [
+                scatter.x [ 1 .. 8 ]
+                scatter.y [ 16; 13; 10; 8; 11; 12 ]
+                scatter.mode.lines
+                scatter.connectgaps true
+            ]
+        ]
+        plot.layout [
+            layout.title [
+                layout.title.text "Connect the Gaps Between Data"
+            ]
+            layout.showlegend false
         ]
     ]

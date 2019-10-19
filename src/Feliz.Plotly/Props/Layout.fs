@@ -27,7 +27,7 @@ type layout =
     static member inline radialaxis (properties: #ILayoutRadialaxisProperty list) = Interop.mkLayoutAttr "radialaxis" (createObj !!properties)
     static member inline angularaxis (properties: #ILayoutAngularaxisProperty list) = Interop.mkLayoutAttr "angularaxis" (createObj !!properties)
     static member inline legend (properties: #ILayoutLegendProperty list) = Interop.mkLayoutAttr "legend" (createObj !!properties)
-    static member inline annotations (properties: #ILayoutAnnotationsProperty list) = Interop.mkLayoutAttr "annotations" (createObj !!properties)
+    static member inline annotations (properties: #ILayoutAnnotationsProperty list) = Interop.mkLayoutAttr "annotations" (properties |> Seq.map (Bindings.getKV >> snd) |> Array.ofSeq)
     static member inline shapes (properties: #ILayoutShapesProperty list) = Interop.mkLayoutAttr "shapes" (createObj !!properties)
     static member inline images (properties: #ILayoutImagesProperty list) = Interop.mkLayoutAttr "images" (createObj !!properties)
     static member inline updatemenus (properties: #ILayoutUpdatemenusProperty list) = Interop.mkLayoutAttr "updatemenus" (createObj !!properties)
@@ -657,10 +657,6 @@ module layout =
         static member inline dividerwidth (value: int) = Interop.mkLayoutXaxisAttr "dividerwidth" value
         /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
         static member inline dividerwidth (value: float) = Interop.mkLayoutXaxisAttr "dividerwidth" value
-        /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
-        static member inline anchor (value: string) = Interop.mkLayoutXaxisAnchorAttr "anchor" value
-        /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
-        static member inline overlaying (value: string) = Interop.mkLayoutXaxisOverlayingAttr "overlaying" value
         /// Sets the domain of this axis (in plot fraction).
         static member inline domain (values: seq<int>) = Interop.mkLayoutXaxisAttr "domain" (values |> Array.ofSeq)
         /// Sets the domain of this axis (in plot fraction).
@@ -826,6 +822,7 @@ module layout =
         [<Erase>]
         type anchor =
             static member inline free = Interop.mkLayoutXaxisAttr "anchor" "free"
+            static member inline custom (value: string) = Interop.mkLayoutXaxisAttr "anchor" value
 
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
         [<Erase>]
@@ -839,6 +836,7 @@ module layout =
         [<Erase>]
         type overlaying =
             static member inline free = Interop.mkLayoutXaxisAttr "overlaying" "free"
+            static member inline custom (value: string) = Interop.mkLayoutXaxisAttr "overlaying" value
 
         /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
         [<Erase>]
@@ -911,6 +909,31 @@ module layout =
             static member inline size (value: int) = Interop.mkLayoutXaxisTickfontAttr "size" value
             static member inline size (value: float) = Interop.mkLayoutXaxisTickfontAttr "size" value
             static member inline color (value: string) = Interop.mkLayoutXaxisTickfontAttr "color" value
+
+        [<Erase>]
+        type tickformatstops = 
+            static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutXaxisTickformatstopsAttr "tickformatstop" (createObj !!properties)
+
+        [<AutoOpen>]
+        module tickformatstops =
+            [<Erase>]
+            type tickformatstop =
+                /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// string - dtickformat for described zoom level, the same as *tickformat*
+                static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
 
         [<Erase>]
         type rangeslider =
@@ -1002,6 +1025,47 @@ module layout =
                 static member inline bottom = Interop.mkLayoutXaxisRangeselectorAttr "yanchor" "bottom"
                 static member inline middle = Interop.mkLayoutXaxisRangeselectorAttr "yanchor" "middle"
                 static member inline top = Interop.mkLayoutXaxisRangeselectorAttr "yanchor" "top"
+
+            [<Erase>]
+            type buttons = 
+                static member inline button (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "button" (createObj !!properties)
+
+            [<AutoOpen>]
+            module buttons =
+                [<Erase>]
+                type button =
+                    static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                    /// Determines whether or not this button is visible.
+                    static member inline visible (value: bool) = Interop.mkLayoutAttr "visible" value
+                    /// Sets the number of steps to take to update the range. Use with `step` to specify the update interval.
+                    static member inline count (value: int) = Interop.mkLayoutAttr "count" value
+                    /// Sets the number of steps to take to update the range. Use with `step` to specify the update interval.
+                    static member inline count (value: float) = Interop.mkLayoutAttr "count" value
+                    /// Sets the text label to appear on the button.
+                    static member inline label (value: string) = Interop.mkLayoutAttr "label" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
+                [<AutoOpen>]
+                module button =
+                    /// The unit of measurement that the `count` value will set the range by.
+                    [<Erase>]
+                    type step =
+                        static member inline all = Interop.mkLayoutAttr "step" "all"
+                        static member inline day = Interop.mkLayoutAttr "step" "day"
+                        static member inline hour = Interop.mkLayoutAttr "step" "hour"
+                        static member inline minute = Interop.mkLayoutAttr "step" "minute"
+                        static member inline month = Interop.mkLayoutAttr "step" "month"
+                        static member inline second = Interop.mkLayoutAttr "step" "second"
+                        static member inline year = Interop.mkLayoutAttr "step" "year"
+
+                    /// Sets the range update mode. If *backward*, the range update shifts the start of range back *count* times *step* milliseconds. If *todate*, the range update shifts the start of range back to the first timestamp from *count* times *step* milliseconds back. For example, with `step` set to *year* and `count` set to *1* the range update shifts the start of the range back to January 01 of the current year. Month and year *todate* are currently available only for the built-in (Gregorian) calendar.
+                    [<Erase>]
+                    type stepmode =
+                        static member inline backward = Interop.mkLayoutAttr "stepmode" "backward"
+                        static member inline todate = Interop.mkLayoutAttr "stepmode" "todate"
 
             [<Erase>]
             type font =
@@ -1159,10 +1223,6 @@ module layout =
         static member inline dividerwidth (value: int) = Interop.mkLayoutYaxisAttr "dividerwidth" value
         /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
         static member inline dividerwidth (value: float) = Interop.mkLayoutYaxisAttr "dividerwidth" value
-        /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
-        static member inline anchor (value: string) = Interop.mkLayoutYaxisAnchorAttr "anchor" value
-        /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
-        static member inline overlaying (value: string) = Interop.mkLayoutYaxisOverlayingAttr "overlaying" value
         /// Sets the domain of this axis (in plot fraction).
         static member inline domain (values: seq<int>) = Interop.mkLayoutYaxisAttr "domain" (values |> Array.ofSeq)
         /// Sets the domain of this axis (in plot fraction).
@@ -1328,6 +1388,7 @@ module layout =
         [<Erase>]
         type anchor =
             static member inline free = Interop.mkLayoutYaxisAttr "anchor" "free"
+            static member inline custom (value: string) = Interop.mkLayoutYaxisAttr "anchor" value
 
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
         [<Erase>]
@@ -1341,6 +1402,7 @@ module layout =
         [<Erase>]
         type overlaying =
             static member inline free = Interop.mkLayoutYaxisAttr "overlaying" "free"
+            static member inline custom (value: string) = Interop.mkLayoutYaxisAttr "overlaying" value
 
         /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
         [<Erase>]
@@ -1413,6 +1475,31 @@ module layout =
             static member inline size (value: int) = Interop.mkLayoutYaxisTickfontAttr "size" value
             static member inline size (value: float) = Interop.mkLayoutYaxisTickfontAttr "size" value
             static member inline color (value: string) = Interop.mkLayoutYaxisTickfontAttr "color" value
+
+        [<Erase>]
+        type tickformatstops = 
+            static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutYaxisTickformatstopsAttr "tickformatstop" (createObj !!properties)
+
+        [<AutoOpen>]
+        module tickformatstops =
+            [<Erase>]
+            type tickformatstop =
+                /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                /// string - dtickformat for described zoom level, the same as *tickformat*
+                static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
 
     [<Erase>]
     type ternary =
@@ -1666,6 +1753,31 @@ module layout =
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
         [<Erase>]
         type baxis =
             static member inline title (properties: #ILayoutProperty list) = Interop.mkLayoutTernaryBaxisAttr "title" (createObj !!properties)
@@ -1871,6 +1983,31 @@ module layout =
                 static member inline size (value: int) = Interop.mkLayoutAttr "size" value
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
 
         [<Erase>]
         type caxis =
@@ -2078,6 +2215,31 @@ module layout =
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
     [<Erase>]
     type scene =
         static member inline _arrayAttrRegexps (properties: #ILayoutScene_arrayAttrRegexpsProperty list) = Interop.mkLayoutSceneAttr "_arrayAttrRegexps" (createObj !!properties)
@@ -2087,7 +2249,7 @@ module layout =
         static member inline xaxis (properties: #ILayoutSceneXaxisProperty list) = Interop.mkLayoutSceneAttr "xaxis" (createObj !!properties)
         static member inline yaxis (properties: #ILayoutSceneYaxisProperty list) = Interop.mkLayoutSceneAttr "yaxis" (createObj !!properties)
         static member inline zaxis (properties: #ILayoutSceneZaxisProperty list) = Interop.mkLayoutSceneAttr "zaxis" (createObj !!properties)
-        static member inline annotations (properties: #ILayoutSceneAnnotationsProperty list) = Interop.mkLayoutSceneAttr "annotations" (createObj !!properties)
+        static member inline annotations (properties: #ILayoutSceneAnnotationsProperty list) = Interop.mkLayoutSceneAttr "annotations" (properties |> Seq.map (Bindings.getKV >> snd) |> Array.ofSeq)
         static member inline bgcolor (value: string) = Interop.mkLayoutSceneAttr "bgcolor" value
         /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
         static member inline uirevision (value: bool) = Interop.mkLayoutSceneAttr "uirevision" value
@@ -2506,6 +2668,31 @@ module layout =
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
         [<Erase>]
         type yaxis =
             static member inline title (properties: #ILayoutProperty list) = Interop.mkLayoutSceneYaxisAttr "title" (createObj !!properties)
@@ -2802,6 +2989,31 @@ module layout =
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
         [<Erase>]
         type zaxis =
             static member inline title (properties: #ILayoutProperty list) = Interop.mkLayoutSceneZaxisAttr "title" (createObj !!properties)
@@ -3097,6 +3309,242 @@ module layout =
                 static member inline size (value: int) = Interop.mkLayoutAttr "size" value
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
+        [<Erase>]
+        type annotations = 
+            static member inline annotation (properties: #ILayoutProperty list) = Interop.mkLayoutSceneAnnotationsAttr "annotation" (createObj !!properties)
+
+        [<AutoOpen>]
+        module annotations =
+            [<Erase>]
+            type annotation =
+                static member inline font (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "font" (createObj !!properties)
+                static member inline hoverlabel (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "hoverlabel" (createObj !!properties)
+                /// Determines whether or not this annotation is visible.
+                static member inline visible (value: bool) = Interop.mkLayoutAttr "visible" value
+                /// Sets the annotation's x position.
+                static member inline x (value: bool) = Interop.mkLayoutAttr "x" value
+                /// Sets the annotation's x position.
+                static member inline x (values: seq<bool>) = Interop.mkLayoutAttr "x" (values |> Array.ofSeq)
+                /// Sets the annotation's x position.
+                static member inline x (value: string) = Interop.mkLayoutAttr "x" value
+                /// Sets the annotation's x position.
+                static member inline x (values: seq<string>) = Interop.mkLayoutAttr "x" (values |> Array.ofSeq)
+                /// Sets the annotation's x position.
+                static member inline x (value: int) = Interop.mkLayoutAttr "x" value
+                /// Sets the annotation's x position.
+                static member inline x (values: seq<int>) = Interop.mkLayoutAttr "x" (values |> Array.ofSeq)
+                /// Sets the annotation's x position.
+                static member inline x (value: float) = Interop.mkLayoutAttr "x" value
+                /// Sets the annotation's x position.
+                static member inline x (values: seq<float>) = Interop.mkLayoutAttr "x" (values |> Array.ofSeq)
+                /// Sets the annotation's y position.
+                static member inline y (value: bool) = Interop.mkLayoutAttr "y" value
+                /// Sets the annotation's y position.
+                static member inline y (values: seq<bool>) = Interop.mkLayoutAttr "y" (values |> Array.ofSeq)
+                /// Sets the annotation's y position.
+                static member inline y (value: string) = Interop.mkLayoutAttr "y" value
+                /// Sets the annotation's y position.
+                static member inline y (values: seq<string>) = Interop.mkLayoutAttr "y" (values |> Array.ofSeq)
+                /// Sets the annotation's y position.
+                static member inline y (value: int) = Interop.mkLayoutAttr "y" value
+                /// Sets the annotation's y position.
+                static member inline y (values: seq<int>) = Interop.mkLayoutAttr "y" (values |> Array.ofSeq)
+                /// Sets the annotation's y position.
+                static member inline y (value: float) = Interop.mkLayoutAttr "y" value
+                /// Sets the annotation's y position.
+                static member inline y (values: seq<float>) = Interop.mkLayoutAttr "y" (values |> Array.ofSeq)
+                /// Sets the annotation's z position.
+                static member inline z (value: bool) = Interop.mkLayoutAttr "z" value
+                /// Sets the annotation's z position.
+                static member inline z (values: seq<bool>) = Interop.mkLayoutAttr "z" (values |> Array.ofSeq)
+                /// Sets the annotation's z position.
+                static member inline z (value: string) = Interop.mkLayoutAttr "z" value
+                /// Sets the annotation's z position.
+                static member inline z (values: seq<string>) = Interop.mkLayoutAttr "z" (values |> Array.ofSeq)
+                /// Sets the annotation's z position.
+                static member inline z (value: int) = Interop.mkLayoutAttr "z" value
+                /// Sets the annotation's z position.
+                static member inline z (values: seq<int>) = Interop.mkLayoutAttr "z" (values |> Array.ofSeq)
+                /// Sets the annotation's z position.
+                static member inline z (value: float) = Interop.mkLayoutAttr "z" value
+                /// Sets the annotation's z position.
+                static member inline z (values: seq<float>) = Interop.mkLayoutAttr "z" (values |> Array.ofSeq)
+                /// Sets the x component of the arrow tail about the arrow head (in pixels).
+                static member inline ax (value: int) = Interop.mkLayoutAttr "ax" value
+                /// Sets the x component of the arrow tail about the arrow head (in pixels).
+                static member inline ax (value: float) = Interop.mkLayoutAttr "ax" value
+                /// Sets the y component of the arrow tail about the arrow head (in pixels).
+                static member inline ay (value: int) = Interop.mkLayoutAttr "ay" value
+                /// Sets the y component of the arrow tail about the arrow head (in pixels).
+                static member inline ay (value: float) = Interop.mkLayoutAttr "ay" value
+                /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
+                static member inline xshift (value: int) = Interop.mkLayoutAttr "xshift" value
+                /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
+                static member inline xshift (value: float) = Interop.mkLayoutAttr "xshift" value
+                /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
+                static member inline yshift (value: int) = Interop.mkLayoutAttr "yshift" value
+                /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
+                static member inline yshift (value: float) = Interop.mkLayoutAttr "yshift" value
+                /// Sets the text associated with this annotation. Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
+                static member inline text (value: string) = Interop.mkLayoutAttr "text" value
+                /// Sets the angle at which the `text` is drawn with respect to the horizontal.
+                static member inline textangle (value: int) = Interop.mkLayoutAttr "textangle" value
+                /// Sets the angle at which the `text` is drawn with respect to the horizontal.
+                static member inline textangle (value: float) = Interop.mkLayoutAttr "textangle" value
+                /// Sets an explicit width for the text box. null (default) lets the text set the box width. Wider text will be clipped. There is no automatic wrapping; use <br> to start a new line.
+                static member inline width (value: int) = Interop.mkLayoutAttr "width" value
+                /// Sets an explicit width for the text box. null (default) lets the text set the box width. Wider text will be clipped. There is no automatic wrapping; use <br> to start a new line.
+                static member inline width (value: float) = Interop.mkLayoutAttr "width" value
+                /// Sets an explicit height for the text box. null (default) lets the text set the box height. Taller text will be clipped.
+                static member inline height (value: int) = Interop.mkLayoutAttr "height" value
+                /// Sets an explicit height for the text box. null (default) lets the text set the box height. Taller text will be clipped.
+                static member inline height (value: float) = Interop.mkLayoutAttr "height" value
+                /// Sets the opacity of the annotation (text + arrow).
+                static member inline opacity (value: int) = Interop.mkLayoutAttr "opacity" value
+                /// Sets the opacity of the annotation (text + arrow).
+                static member inline opacity (value: float) = Interop.mkLayoutAttr "opacity" value
+                /// Sets the background color of the annotation.
+                static member inline bgcolor (value: string) = Interop.mkLayoutAttr "bgcolor" value
+                /// Sets the color of the border enclosing the annotation `text`.
+                static member inline bordercolor (value: string) = Interop.mkLayoutAttr "bordercolor" value
+                /// Sets the padding (in px) between the `text` and the enclosing border.
+                static member inline borderpad (value: int) = Interop.mkLayoutAttr "borderpad" value
+                /// Sets the padding (in px) between the `text` and the enclosing border.
+                static member inline borderpad (value: float) = Interop.mkLayoutAttr "borderpad" value
+                /// Sets the width (in px) of the border enclosing the annotation `text`.
+                static member inline borderwidth (value: int) = Interop.mkLayoutAttr "borderwidth" value
+                /// Sets the width (in px) of the border enclosing the annotation `text`.
+                static member inline borderwidth (value: float) = Interop.mkLayoutAttr "borderwidth" value
+                /// Determines whether or not the annotation is drawn with an arrow. If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and `y` provided.
+                static member inline showarrow (value: bool) = Interop.mkLayoutAttr "showarrow" value
+                /// Sets the color of the annotation arrow.
+                static member inline arrowcolor (value: string) = Interop.mkLayoutAttr "arrowcolor" value
+                /// Sets the end annotation arrow head style.
+                static member inline arrowhead (value: int) = Interop.mkLayoutAttr "arrowhead" value
+                /// Sets the start annotation arrow head style.
+                static member inline startarrowhead (value: int) = Interop.mkLayoutAttr "startarrowhead" value
+                /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+                static member inline arrowsize (value: int) = Interop.mkLayoutAttr "arrowsize" value
+                /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+                static member inline arrowsize (value: float) = Interop.mkLayoutAttr "arrowsize" value
+                /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+                static member inline startarrowsize (value: int) = Interop.mkLayoutAttr "startarrowsize" value
+                /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+                static member inline startarrowsize (value: float) = Interop.mkLayoutAttr "startarrowsize" value
+                /// Sets the width (in px) of annotation arrow line.
+                static member inline arrowwidth (value: int) = Interop.mkLayoutAttr "arrowwidth" value
+                /// Sets the width (in px) of annotation arrow line.
+                static member inline arrowwidth (value: float) = Interop.mkLayoutAttr "arrowwidth" value
+                /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+                static member inline standoff (value: int) = Interop.mkLayoutAttr "standoff" value
+                /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+                static member inline standoff (value: float) = Interop.mkLayoutAttr "standoff" value
+                /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+                static member inline startstandoff (value: int) = Interop.mkLayoutAttr "startstandoff" value
+                /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+                static member inline startstandoff (value: float) = Interop.mkLayoutAttr "startstandoff" value
+                /// Sets text to appear when hovering over this annotation. If omitted or blank, no hover label will appear.
+                static member inline hovertext (value: string) = Interop.mkLayoutAttr "hovertext" value
+                /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. By default `captureevents` is *false* unless `hovertext` is provided. If you use the event `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
+                static member inline captureevents (value: bool) = Interop.mkLayoutAttr "captureevents" value
+                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
+            [<AutoOpen>]
+            module annotation =
+                /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the anchor is equivalent to *center* for data-referenced annotations or if there is an arrow, whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                [<Erase>]
+                type xanchor =
+                    static member inline auto = Interop.mkLayoutAttr "xanchor" "auto"
+                    static member inline center = Interop.mkLayoutAttr "xanchor" "center"
+                    static member inline left = Interop.mkLayoutAttr "xanchor" "left"
+                    static member inline right = Interop.mkLayoutAttr "xanchor" "right"
+
+                /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow, whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                [<Erase>]
+                type yanchor =
+                    static member inline auto = Interop.mkLayoutAttr "yanchor" "auto"
+                    static member inline bottom = Interop.mkLayoutAttr "yanchor" "bottom"
+                    static member inline middle = Interop.mkLayoutAttr "yanchor" "middle"
+                    static member inline top = Interop.mkLayoutAttr "yanchor" "top"
+
+                /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+                [<Erase>]
+                type align =
+                    static member inline center = Interop.mkLayoutAttr "align" "center"
+                    static member inline left = Interop.mkLayoutAttr "align" "left"
+                    static member inline right = Interop.mkLayoutAttr "align" "right"
+
+                /// Sets the vertical alignment of the `text` within the box. Has an effect only if an explicit height is set to override the text height.
+                [<Erase>]
+                type valign =
+                    static member inline bottom = Interop.mkLayoutAttr "valign" "bottom"
+                    static member inline middle = Interop.mkLayoutAttr "valign" "middle"
+                    static member inline top = Interop.mkLayoutAttr "valign" "top"
+
+                /// Sets the annotation arrow head position.
+                [<Erase>]
+                type arrowside =
+                    static member inline none = Interop.mkLayoutAttr "arrowside" "none"
+                    static member inline end' = Interop.mkLayoutAttr "arrowside" "end"
+                    static member inline start = Interop.mkLayoutAttr "arrowside" "start"
+                    static member inline startAndEnd = Interop.mkLayoutAttr "arrowside" "start+end"
+
+                [<Erase>]
+                type font =
+                    static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                    /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                    static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                    static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                    static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                    static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+                [<Erase>]
+                type hoverlabel =
+                    static member inline font (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "font" (createObj !!properties)
+                    /// Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
+                    static member inline bgcolor (value: string) = Interop.mkLayoutAttr "bgcolor" value
+                    /// Sets the border color of the hover label. By default uses either dark grey or white, for maximum contrast with `hoverlabel.bgcolor`.
+                    static member inline bordercolor (value: string) = Interop.mkLayoutAttr "bordercolor" value
+
+                [<AutoOpen>]
+                module hoverlabel =
+                    [<Erase>]
+                    type font =
+                        static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                        /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                        static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                        static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                        static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                        static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
     [<Erase>]
     type geo =
@@ -3402,6 +3850,168 @@ module layout =
             static member inline lat (value: int) = Interop.mkLayoutMapboxCenterAttr "lat" value
             /// Sets the latitude of the center of the map (in degrees North).
             static member inline lat (value: float) = Interop.mkLayoutMapboxCenterAttr "lat" value
+
+        [<Erase>]
+        type layers = 
+            static member inline layer (properties: #ILayoutProperty list) = Interop.mkLayoutMapboxLayersAttr "layer" (createObj !!properties)
+
+        [<AutoOpen>]
+        module layers =
+            [<Erase>]
+            type layer =
+                static member inline circle (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "circle" (createObj !!properties)
+                static member inline line (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "line" (createObj !!properties)
+                static member inline fill (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "fill" (createObj !!properties)
+                static member inline symbol (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "symbol" (createObj !!properties)
+                /// Determines whether this layer is displayed
+                static member inline visible (value: bool) = Interop.mkLayoutAttr "visible" value
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (value: bool) = Interop.mkLayoutAttr "source" value
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (values: seq<bool>) = Interop.mkLayoutAttr "source" (values |> Array.ofSeq)
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (value: string) = Interop.mkLayoutAttr "source" value
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (values: seq<string>) = Interop.mkLayoutAttr "source" (values |> Array.ofSeq)
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (value: int) = Interop.mkLayoutAttr "source" value
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (values: seq<int>) = Interop.mkLayoutAttr "source" (values |> Array.ofSeq)
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (value: float) = Interop.mkLayoutAttr "source" value
+                /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+                static member inline source (values: seq<float>) = Interop.mkLayoutAttr "source" (values |> Array.ofSeq)
+                /// Specifies the layer to use from a vector tile source (mapbox.layer.source-layer). Required for *vector* source type that supports multiple layers.
+                static member inline sourcelayer (value: string) = Interop.mkLayoutAttr "sourcelayer" value
+                /// Sets the attribution for this source.
+                static member inline sourceattribution (value: string) = Interop.mkLayoutAttr "sourceattribution" value
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (value: bool) = Interop.mkLayoutAttr "coordinates" value
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (values: seq<bool>) = Interop.mkLayoutAttr "coordinates" (values |> Array.ofSeq)
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (value: string) = Interop.mkLayoutAttr "coordinates" value
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (values: seq<string>) = Interop.mkLayoutAttr "coordinates" (values |> Array.ofSeq)
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (value: int) = Interop.mkLayoutAttr "coordinates" value
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (values: seq<int>) = Interop.mkLayoutAttr "coordinates" (values |> Array.ofSeq)
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (value: float) = Interop.mkLayoutAttr "coordinates" value
+                /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+                static member inline coordinates (values: seq<float>) = Interop.mkLayoutAttr "coordinates" (values |> Array.ofSeq)
+                /// Determines if the layer will be inserted before the layer with the specified ID. If omitted or set to '', the layer will be inserted above every existing layer.
+                static member inline below (value: string) = Interop.mkLayoutAttr "below" value
+                /// Sets the primary layer color. If `type` is *circle*, color corresponds to the circle color (mapbox.layer.paint.circle-color) If `type` is *line*, color corresponds to the line color (mapbox.layer.paint.line-color) If `type` is *fill*, color corresponds to the fill color (mapbox.layer.paint.fill-color) If `type` is *symbol*, color corresponds to the icon color (mapbox.layer.paint.icon-color)
+                static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+                /// Sets the opacity of the layer. If `type` is *circle*, opacity corresponds to the circle opacity (mapbox.layer.paint.circle-opacity) If `type` is *line*, opacity corresponds to the line opacity (mapbox.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity (mapbox.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text opacity (mapbox.layer.paint.text-opacity)
+                static member inline opacity (value: int) = Interop.mkLayoutAttr "opacity" value
+                /// Sets the opacity of the layer. If `type` is *circle*, opacity corresponds to the circle opacity (mapbox.layer.paint.circle-opacity) If `type` is *line*, opacity corresponds to the line opacity (mapbox.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity (mapbox.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text opacity (mapbox.layer.paint.text-opacity)
+                static member inline opacity (value: float) = Interop.mkLayoutAttr "opacity" value
+                /// Sets the minimum zoom level (mapbox.layer.minzoom). At zoom levels less than the minzoom, the layer will be hidden.
+                static member inline minzoom (value: int) = Interop.mkLayoutAttr "minzoom" value
+                /// Sets the minimum zoom level (mapbox.layer.minzoom). At zoom levels less than the minzoom, the layer will be hidden.
+                static member inline minzoom (value: float) = Interop.mkLayoutAttr "minzoom" value
+                /// Sets the maximum zoom level (mapbox.layer.maxzoom). At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
+                static member inline maxzoom (value: int) = Interop.mkLayoutAttr "maxzoom" value
+                /// Sets the maximum zoom level (mapbox.layer.maxzoom). At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
+                static member inline maxzoom (value: float) = Interop.mkLayoutAttr "maxzoom" value
+                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
+            [<AutoOpen>]
+            module layer =
+                /// Sets the source type for this layer, that is the type of the layer data.
+                [<Erase>]
+                type sourcetype =
+                    static member inline geojson = Interop.mkLayoutAttr "sourcetype" "geojson"
+                    static member inline image = Interop.mkLayoutAttr "sourcetype" "image"
+                    static member inline raster = Interop.mkLayoutAttr "sourcetype" "raster"
+                    static member inline vector = Interop.mkLayoutAttr "sourcetype" "vector"
+
+                /// Sets the layer type, that is the how the layer data set in `source` will be rendered With `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and *symbol*. but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With `sourcetype` set to *vector*, the following values are allowed:  *circle*, *line*, *fill* and *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
+                [<Erase>]
+                type type' =
+                    static member inline circle = Interop.mkLayoutAttr "type" "circle"
+                    static member inline fill = Interop.mkLayoutAttr "type" "fill"
+                    static member inline line = Interop.mkLayoutAttr "type" "line"
+                    static member inline raster = Interop.mkLayoutAttr "type" "raster"
+                    static member inline symbol = Interop.mkLayoutAttr "type" "symbol"
+
+                [<Erase>]
+                type circle =
+                    /// Sets the circle radius (mapbox.layer.paint.circle-radius). Has an effect only when `type` is set to *circle*.
+                    static member inline radius (value: int) = Interop.mkLayoutAttr "radius" value
+                    /// Sets the circle radius (mapbox.layer.paint.circle-radius). Has an effect only when `type` is set to *circle*.
+                    static member inline radius (value: float) = Interop.mkLayoutAttr "radius" value
+
+                [<Erase>]
+                type line =
+                    /// Sets the line width (mapbox.layer.paint.line-width). Has an effect only when `type` is set to *line*.
+                    static member inline width (value: int) = Interop.mkLayoutAttr "width" value
+                    /// Sets the line width (mapbox.layer.paint.line-width). Has an effect only when `type` is set to *line*.
+                    static member inline width (value: float) = Interop.mkLayoutAttr "width" value
+                    /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray). Has an effect only when `type` is set to *line*.
+                    static member inline dash (values: seq<bool>) = Interop.mkLayoutAttr "dash" (values |> Array.ofSeq)
+                    /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray). Has an effect only when `type` is set to *line*.
+                    static member inline dash (values: seq<string>) = Interop.mkLayoutAttr "dash" (values |> Array.ofSeq)
+                    /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray). Has an effect only when `type` is set to *line*.
+                    static member inline dash (values: seq<int>) = Interop.mkLayoutAttr "dash" (values |> Array.ofSeq)
+                    /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray). Has an effect only when `type` is set to *line*.
+                    static member inline dash (values: seq<float>) = Interop.mkLayoutAttr "dash" (values |> Array.ofSeq)
+                    /// Sets the source reference on plot.ly for  dash .
+                    static member inline dashsrc (value: string) = Interop.mkLayoutAttr "dashsrc" value
+
+                [<Erase>]
+                type fill =
+                    /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color). Has an effect only when `type` is set to *fill*.
+                    static member inline outlinecolor (value: string) = Interop.mkLayoutAttr "outlinecolor" value
+
+                [<Erase>]
+                type symbol =
+                    static member inline textfont (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "textfont" (createObj !!properties)
+                    /// Sets the symbol icon image (mapbox.layer.layout.icon-image). Full list: https://www.mapbox.com/maki-icons/
+                    static member inline icon (value: string) = Interop.mkLayoutAttr "icon" value
+                    /// Sets the symbol icon size (mapbox.layer.layout.icon-size). Has an effect only when `type` is set to *symbol*.
+                    static member inline iconsize (value: int) = Interop.mkLayoutAttr "iconsize" value
+                    /// Sets the symbol icon size (mapbox.layer.layout.icon-size). Has an effect only when `type` is set to *symbol*.
+                    static member inline iconsize (value: float) = Interop.mkLayoutAttr "iconsize" value
+                    /// Sets the symbol text (mapbox.layer.layout.text-field).
+                    static member inline text (value: string) = Interop.mkLayoutAttr "text" value
+
+                [<AutoOpen>]
+                module symbol =
+                    /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement). If `placement` is *point*, the label is placed where the geometry is located If `placement` is *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the label is placed on the center of the geometry
+                    [<Erase>]
+                    type placement =
+                        static member inline line = Interop.mkLayoutAttr "placement" "line"
+                        static member inline lineCenter = Interop.mkLayoutAttr "placement" "line-center"
+                        static member inline point = Interop.mkLayoutAttr "placement" "point"
+
+                    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+                    [<Erase>]
+                    type textposition =
+                        static member inline bottomCenter = Interop.mkLayoutAttr "textposition" "bottom center"
+                        static member inline bottomLeft = Interop.mkLayoutAttr "textposition" "bottom left"
+                        static member inline bottomRight = Interop.mkLayoutAttr "textposition" "bottom right"
+                        static member inline middleCenter = Interop.mkLayoutAttr "textposition" "middle center"
+                        static member inline middleLeft = Interop.mkLayoutAttr "textposition" "middle left"
+                        static member inline middleRight = Interop.mkLayoutAttr "textposition" "middle right"
+                        static member inline topCenter = Interop.mkLayoutAttr "textposition" "top center"
+                        static member inline topLeft = Interop.mkLayoutAttr "textposition" "top left"
+                        static member inline topRight = Interop.mkLayoutAttr "textposition" "top right"
+
+                    [<Erase>]
+                    type textfont =
+                        static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                        /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                        static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                        static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                        static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                        static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
     [<Erase>]
     type polar =
@@ -3753,6 +4363,31 @@ module layout =
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
         [<Erase>]
         type angularaxis =
             static member inline tickfont (properties: #ILayoutProperty list) = Interop.mkLayoutPolarAngularaxisAttr "tickfont" (createObj !!properties)
@@ -3996,6 +4631,31 @@ module layout =
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
     [<Erase>]
     type radialaxis =
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Defines the start and end point of this radial axis.
@@ -4181,6 +4841,933 @@ module layout =
             static member inline size (value: int) = Interop.mkLayoutLegendFontAttr "size" value
             static member inline size (value: float) = Interop.mkLayoutLegendFontAttr "size" value
             static member inline color (value: string) = Interop.mkLayoutLegendFontAttr "color" value
+
+    [<Erase>]
+    type annotations = 
+        static member inline annotation (properties: #ILayoutAnnotationsAnnotationProperty list) = Interop.mkLayoutAnnotationsAttr "annotation" (createObj !!properties)
+
+    [<AutoOpen>]
+    module annotations =
+        [<Erase>]
+        type annotation =
+            static member inline font (properties: #ILayoutProperty list) = Interop.mkLayoutAnnotationsAnnotationAttr "font" (createObj !!properties)
+            static member inline hoverlabel (properties: #ILayoutProperty list) = Interop.mkLayoutAnnotationsAnnotationAttr "hoverlabel" (createObj !!properties)
+            /// Determines whether or not this annotation is visible.
+            static member inline visible (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "visible" value
+            /// Sets the text associated with this annotation. Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
+            static member inline text (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "text" value
+            /// Sets the angle at which the `text` is drawn with respect to the horizontal.
+            static member inline textangle (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "textangle" value
+            /// Sets the angle at which the `text` is drawn with respect to the horizontal.
+            static member inline textangle (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "textangle" value
+            /// Sets an explicit width for the text box. null (default) lets the text set the box width. Wider text will be clipped. There is no automatic wrapping; use <br> to start a new line.
+            static member inline width (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "width" value
+            /// Sets an explicit width for the text box. null (default) lets the text set the box width. Wider text will be clipped. There is no automatic wrapping; use <br> to start a new line.
+            static member inline width (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "width" value
+            /// Sets an explicit height for the text box. null (default) lets the text set the box height. Taller text will be clipped.
+            static member inline height (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "height" value
+            /// Sets an explicit height for the text box. null (default) lets the text set the box height. Taller text will be clipped.
+            static member inline height (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "height" value
+            /// Sets the opacity of the annotation (text + arrow).
+            static member inline opacity (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "opacity" value
+            /// Sets the opacity of the annotation (text + arrow).
+            static member inline opacity (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "opacity" value
+            /// Sets the background color of the annotation.
+            static member inline bgcolor (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "bgcolor" value
+            /// Sets the color of the border enclosing the annotation `text`.
+            static member inline bordercolor (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "bordercolor" value
+            /// Sets the padding (in px) between the `text` and the enclosing border.
+            static member inline borderpad (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "borderpad" value
+            /// Sets the padding (in px) between the `text` and the enclosing border.
+            static member inline borderpad (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "borderpad" value
+            /// Sets the width (in px) of the border enclosing the annotation `text`.
+            static member inline borderwidth (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "borderwidth" value
+            /// Sets the width (in px) of the border enclosing the annotation `text`.
+            static member inline borderwidth (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "borderwidth" value
+            /// Determines whether or not the annotation is drawn with an arrow. If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and `y` provided.
+            static member inline showarrow (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "showarrow" value
+            /// Sets the color of the annotation arrow.
+            static member inline arrowcolor (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "arrowcolor" value
+            /// Sets the end annotation arrow head style.
+            static member inline arrowhead (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "arrowhead" value
+            /// Sets the start annotation arrow head style.
+            static member inline startarrowhead (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "startarrowhead" value
+            /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+            static member inline arrowsize (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "arrowsize" value
+            /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+            static member inline arrowsize (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "arrowsize" value
+            /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+            static member inline startarrowsize (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "startarrowsize" value
+            /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
+            static member inline startarrowsize (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "startarrowsize" value
+            /// Sets the width (in px) of annotation arrow line.
+            static member inline arrowwidth (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "arrowwidth" value
+            /// Sets the width (in px) of annotation arrow line.
+            static member inline arrowwidth (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "arrowwidth" value
+            /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+            static member inline standoff (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "standoff" value
+            /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+            static member inline standoff (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "standoff" value
+            /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+            static member inline startstandoff (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "startstandoff" value
+            /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` / `yshift` which moves everything by this amount.
+            static member inline startstandoff (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "startstandoff" value
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" value
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (values: seq<bool>) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" (values |> Array.ofSeq)
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" value
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (values: seq<string>) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" (values |> Array.ofSeq)
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" value
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (values: seq<int>) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" (values |> Array.ofSeq)
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" value
+            /// Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value.
+            static member inline ax (values: seq<float>) = Interop.mkLayoutAnnotationsAnnotationAttr "ax" (values |> Array.ofSeq)
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" value
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (values: seq<bool>) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" (values |> Array.ofSeq)
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" value
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (values: seq<string>) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" (values |> Array.ofSeq)
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" value
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (values: seq<int>) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" (values |> Array.ofSeq)
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" value
+            /// Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value.
+            static member inline ay (values: seq<float>) = Interop.mkLayoutAnnotationsAnnotationAttr "ay" (values |> Array.ofSeq)
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "x" value
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (values: seq<bool>) = Interop.mkLayoutAnnotationsAnnotationAttr "x" (values |> Array.ofSeq)
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "x" value
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (values: seq<string>) = Interop.mkLayoutAnnotationsAnnotationAttr "x" (values |> Array.ofSeq)
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "x" value
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (values: seq<int>) = Interop.mkLayoutAnnotationsAnnotationAttr "x" (values |> Array.ofSeq)
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "x" value
+            /// Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline x (values: seq<float>) = Interop.mkLayoutAnnotationsAnnotationAttr "x" (values |> Array.ofSeq)
+            /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
+            static member inline xshift (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "xshift" value
+            /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
+            static member inline xshift (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "xshift" value
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "y" value
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (values: seq<bool>) = Interop.mkLayoutAnnotationsAnnotationAttr "y" (values |> Array.ofSeq)
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "y" value
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (values: seq<string>) = Interop.mkLayoutAnnotationsAnnotationAttr "y" (values |> Array.ofSeq)
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "y" value
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (values: seq<int>) = Interop.mkLayoutAnnotationsAnnotationAttr "y" (values |> Array.ofSeq)
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "y" value
+            /// Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+            static member inline y (values: seq<float>) = Interop.mkLayoutAnnotationsAnnotationAttr "y" (values |> Array.ofSeq)
+            /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
+            static member inline yshift (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "yshift" value
+            /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
+            static member inline yshift (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "yshift" value
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" value
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (values: seq<bool>) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" (values |> Array.ofSeq)
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" value
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (values: seq<string>) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" (values |> Array.ofSeq)
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" value
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (values: seq<int>) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" (values |> Array.ofSeq)
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" value
+            /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+            static member inline xclick (values: seq<float>) = Interop.mkLayoutAnnotationsAnnotationAttr "xclick" (values |> Array.ofSeq)
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" value
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (values: seq<bool>) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" (values |> Array.ofSeq)
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" value
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (values: seq<string>) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" (values |> Array.ofSeq)
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (value: int) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" value
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (values: seq<int>) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" (values |> Array.ofSeq)
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (value: float) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" value
+            /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+            static member inline yclick (values: seq<float>) = Interop.mkLayoutAnnotationsAnnotationAttr "yclick" (values |> Array.ofSeq)
+            /// Sets text to appear when hovering over this annotation. If omitted or blank, no hover label will appear.
+            static member inline hovertext (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "hovertext" value
+            /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. By default `captureevents` is *false* unless `hovertext` is provided. If you use the event `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
+            static member inline captureevents (value: bool) = Interop.mkLayoutAnnotationsAnnotationAttr "captureevents" value
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+            static member inline name (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "name" value
+            /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+            static member inline templateitemname (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "templateitemname" value
+
+        [<AutoOpen>]
+        module annotation =
+            /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+            [<Erase>]
+            type align =
+                static member inline center = Interop.mkLayoutAnnotationsAnnotationAttr "align" "center"
+                static member inline left = Interop.mkLayoutAnnotationsAnnotationAttr "align" "left"
+                static member inline right = Interop.mkLayoutAnnotationsAnnotationAttr "align" "right"
+
+            /// Sets the vertical alignment of the `text` within the box. Has an effect only if an explicit height is set to override the text height.
+            [<Erase>]
+            type valign =
+                static member inline bottom = Interop.mkLayoutAnnotationsAnnotationAttr "valign" "bottom"
+                static member inline middle = Interop.mkLayoutAnnotationsAnnotationAttr "valign" "middle"
+                static member inline top = Interop.mkLayoutAnnotationsAnnotationAttr "valign" "top"
+
+            /// Sets the annotation arrow head position.
+            [<Erase>]
+            type arrowside =
+                static member inline none = Interop.mkLayoutAnnotationsAnnotationAttr "arrowside" "none"
+                static member inline end' = Interop.mkLayoutAnnotationsAnnotationAttr "arrowside" "end"
+                static member inline start = Interop.mkLayoutAnnotationsAnnotationAttr "arrowside" "start"
+                static member inline startAndEnd = Interop.mkLayoutAnnotationsAnnotationAttr "arrowside" "start+end"
+
+            /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ax` is a relative offset in pixels  from `x`. If set to an x axis id (e.g. *x* or *x2*), `ax` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
+            [<Erase>]
+            type axref =
+                static member inline pixel = Interop.mkLayoutAnnotationsAnnotationAttr "axref" "pixel"
+                static member inline custom (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "axref" value
+
+            /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ay` is a relative offset in pixels  from `y`. If set to a y axis id (e.g. *y* or *y2*), `ay` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
+            [<Erase>]
+            type ayref =
+                static member inline pixel = Interop.mkLayoutAnnotationsAnnotationAttr "ayref" "pixel"
+                static member inline custom (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "ayref" value
+
+            /// Sets the annotation's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
+            [<Erase>]
+            type xref =
+                static member inline paper = Interop.mkLayoutAnnotationsAnnotationAttr "xref" "paper"
+                static member inline custom (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "xref" value
+
+            /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the anchor is equivalent to *center* for data-referenced annotations or if there is an arrow, whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+            [<Erase>]
+            type xanchor =
+                static member inline auto = Interop.mkLayoutAnnotationsAnnotationAttr "xanchor" "auto"
+                static member inline center = Interop.mkLayoutAnnotationsAnnotationAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutAnnotationsAnnotationAttr "xanchor" "left"
+                static member inline right = Interop.mkLayoutAnnotationsAnnotationAttr "xanchor" "right"
+
+            /// Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where 0 (1) corresponds to the bottom (top).
+            [<Erase>]
+            type yref =
+                static member inline paper = Interop.mkLayoutAnnotationsAnnotationAttr "yref" "paper"
+                static member inline custom (value: string) = Interop.mkLayoutAnnotationsAnnotationAttr "yref" value
+
+            /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow, whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+            [<Erase>]
+            type yanchor =
+                static member inline auto = Interop.mkLayoutAnnotationsAnnotationAttr "yanchor" "auto"
+                static member inline bottom = Interop.mkLayoutAnnotationsAnnotationAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutAnnotationsAnnotationAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutAnnotationsAnnotationAttr "yanchor" "top"
+
+            /// Makes this annotation respond to clicks on the plot. If you click a data point that exactly matches the `x` and `y` values of this annotation, and it is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again to make it disappear, so if you click multiple points, you can show multiple annotations. In *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this annotation. If you need to show/hide this annotation in response to different `x` or `y` values, you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To label markers though, `standoff` is preferred over `xclick` and `yclick`.
+            [<Erase>]
+            type clicktoshow =
+                static member inline onoff = Interop.mkLayoutAnnotationsAnnotationAttr "clicktoshow" "onoff"
+                static member inline onout = Interop.mkLayoutAnnotationsAnnotationAttr "clicktoshow" "onout"
+                static member inline false' = Interop.mkLayoutAnnotationsAnnotationAttr "clicktoshow" "false"
+
+            [<Erase>]
+            type font =
+                static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+            [<Erase>]
+            type hoverlabel =
+                static member inline font (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "font" (createObj !!properties)
+                /// Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
+                static member inline bgcolor (value: string) = Interop.mkLayoutAttr "bgcolor" value
+                /// Sets the border color of the hover label. By default uses either dark grey or white, for maximum contrast with `hoverlabel.bgcolor`.
+                static member inline bordercolor (value: string) = Interop.mkLayoutAttr "bordercolor" value
+
+            [<AutoOpen>]
+            module hoverlabel =
+                [<Erase>]
+                type font =
+                    static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                    /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                    static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                    static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                    static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                    static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+    [<Erase>]
+    type shapes = 
+        static member inline shape (properties: #ILayoutShapesShapeProperty list) = Interop.mkLayoutShapesAttr "shape" (createObj !!properties)
+
+    [<AutoOpen>]
+    module shapes =
+        [<Erase>]
+        type shape =
+            static member inline line (properties: #ILayoutProperty list) = Interop.mkLayoutShapesShapeAttr "line" (createObj !!properties)
+            /// Determines whether or not this shape is visible.
+            static member inline visible (value: bool) = Interop.mkLayoutShapesShapeAttr "visible" value
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (value: bool) = Interop.mkLayoutShapesShapeAttr "xanchor" value
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (values: seq<bool>) = Interop.mkLayoutShapesShapeAttr "xanchor" (values |> Array.ofSeq)
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (value: string) = Interop.mkLayoutShapesShapeAttr "xanchor" value
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (values: seq<string>) = Interop.mkLayoutShapesShapeAttr "xanchor" (values |> Array.ofSeq)
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (value: int) = Interop.mkLayoutShapesShapeAttr "xanchor" value
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (values: seq<int>) = Interop.mkLayoutShapesShapeAttr "xanchor" (values |> Array.ofSeq)
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (value: float) = Interop.mkLayoutShapesShapeAttr "xanchor" value
+            /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+            static member inline xanchor (values: seq<float>) = Interop.mkLayoutShapesShapeAttr "xanchor" (values |> Array.ofSeq)
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (value: bool) = Interop.mkLayoutShapesShapeAttr "x0" value
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (values: seq<bool>) = Interop.mkLayoutShapesShapeAttr "x0" (values |> Array.ofSeq)
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (value: string) = Interop.mkLayoutShapesShapeAttr "x0" value
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (values: seq<string>) = Interop.mkLayoutShapesShapeAttr "x0" (values |> Array.ofSeq)
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (value: int) = Interop.mkLayoutShapesShapeAttr "x0" value
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (values: seq<int>) = Interop.mkLayoutShapesShapeAttr "x0" (values |> Array.ofSeq)
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (value: float) = Interop.mkLayoutShapesShapeAttr "x0" value
+            /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+            static member inline x0 (values: seq<float>) = Interop.mkLayoutShapesShapeAttr "x0" (values |> Array.ofSeq)
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (value: bool) = Interop.mkLayoutShapesShapeAttr "x1" value
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (values: seq<bool>) = Interop.mkLayoutShapesShapeAttr "x1" (values |> Array.ofSeq)
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (value: string) = Interop.mkLayoutShapesShapeAttr "x1" value
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (values: seq<string>) = Interop.mkLayoutShapesShapeAttr "x1" (values |> Array.ofSeq)
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (value: int) = Interop.mkLayoutShapesShapeAttr "x1" value
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (values: seq<int>) = Interop.mkLayoutShapesShapeAttr "x1" (values |> Array.ofSeq)
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (value: float) = Interop.mkLayoutShapesShapeAttr "x1" value
+            /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+            static member inline x1 (values: seq<float>) = Interop.mkLayoutShapesShapeAttr "x1" (values |> Array.ofSeq)
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (value: bool) = Interop.mkLayoutShapesShapeAttr "yanchor" value
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (values: seq<bool>) = Interop.mkLayoutShapesShapeAttr "yanchor" (values |> Array.ofSeq)
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (value: string) = Interop.mkLayoutShapesShapeAttr "yanchor" value
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (values: seq<string>) = Interop.mkLayoutShapesShapeAttr "yanchor" (values |> Array.ofSeq)
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (value: int) = Interop.mkLayoutShapesShapeAttr "yanchor" value
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (values: seq<int>) = Interop.mkLayoutShapesShapeAttr "yanchor" (values |> Array.ofSeq)
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (value: float) = Interop.mkLayoutShapesShapeAttr "yanchor" value
+            /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+            static member inline yanchor (values: seq<float>) = Interop.mkLayoutShapesShapeAttr "yanchor" (values |> Array.ofSeq)
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (value: bool) = Interop.mkLayoutShapesShapeAttr "y0" value
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (values: seq<bool>) = Interop.mkLayoutShapesShapeAttr "y0" (values |> Array.ofSeq)
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (value: string) = Interop.mkLayoutShapesShapeAttr "y0" value
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (values: seq<string>) = Interop.mkLayoutShapesShapeAttr "y0" (values |> Array.ofSeq)
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (value: int) = Interop.mkLayoutShapesShapeAttr "y0" value
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (values: seq<int>) = Interop.mkLayoutShapesShapeAttr "y0" (values |> Array.ofSeq)
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (value: float) = Interop.mkLayoutShapesShapeAttr "y0" value
+            /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+            static member inline y0 (values: seq<float>) = Interop.mkLayoutShapesShapeAttr "y0" (values |> Array.ofSeq)
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (value: bool) = Interop.mkLayoutShapesShapeAttr "y1" value
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (values: seq<bool>) = Interop.mkLayoutShapesShapeAttr "y1" (values |> Array.ofSeq)
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (value: string) = Interop.mkLayoutShapesShapeAttr "y1" value
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (values: seq<string>) = Interop.mkLayoutShapesShapeAttr "y1" (values |> Array.ofSeq)
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (value: int) = Interop.mkLayoutShapesShapeAttr "y1" value
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (values: seq<int>) = Interop.mkLayoutShapesShapeAttr "y1" (values |> Array.ofSeq)
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (value: float) = Interop.mkLayoutShapesShapeAttr "y1" value
+            /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+            static member inline y1 (values: seq<float>) = Interop.mkLayoutShapesShapeAttr "y1" (values |> Array.ofSeq)
+            /// For `type` *path* - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being *scaled* and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of *pixel* size mode. There are a few restrictions / quirks only absolute instructions, not relative. So the allowed segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry are relative. In the future we could consider supporting relative commands, but we would have to decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are smooth on linear axes may not be smooth on log, and vice versa. no chained \"polybezier\" commands - specify the segment type for each one. On category axes, values are numbers scaled to the serial numbers of categories because using the categories themselves there would be no way to describe fractional positions On data axes: because space and T are both normal components of path strings, we can't use either to separate date from time parts. Therefore we'll use underscore for this purpose: 2015-02-21_13:45:56.789
+            static member inline path (value: string) = Interop.mkLayoutShapesShapeAttr "path" value
+            /// Sets the opacity of the shape.
+            static member inline opacity (value: int) = Interop.mkLayoutShapesShapeAttr "opacity" value
+            /// Sets the opacity of the shape.
+            static member inline opacity (value: float) = Interop.mkLayoutShapesShapeAttr "opacity" value
+            /// Sets the color filling the shape's interior.
+            static member inline fillcolor (value: string) = Interop.mkLayoutShapesShapeAttr "fillcolor" value
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+            static member inline name (value: string) = Interop.mkLayoutShapesShapeAttr "name" value
+            /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+            static member inline templateitemname (value: string) = Interop.mkLayoutShapesShapeAttr "templateitemname" value
+
+        [<AutoOpen>]
+        module shape =
+            /// Specifies the shape type to be drawn. If *line*, a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing mode. If *circle*, a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) with respect to the axes' sizing mode. If *path*, draw a custom SVG path using `path`. with respect to the axes' sizing mode.
+            [<Erase>]
+            type type' =
+                static member inline circle = Interop.mkLayoutShapesShapeAttr "type" "circle"
+                static member inline line = Interop.mkLayoutShapesShapeAttr "type" "line"
+                static member inline path = Interop.mkLayoutShapesShapeAttr "type" "path"
+                static member inline rect = Interop.mkLayoutShapesShapeAttr "type" "rect"
+
+            /// Specifies whether shapes are drawn below or above traces.
+            [<Erase>]
+            type layer =
+                static member inline above = Interop.mkLayoutShapesShapeAttr "layer" "above"
+                static member inline below = Interop.mkLayoutShapesShapeAttr "layer" "below"
+
+            /// Sets the shape's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then you must convert the date to unix time in milliseconds.
+            [<Erase>]
+            type xref =
+                static member inline paper = Interop.mkLayoutShapesShapeAttr "xref" "paper"
+                static member inline custom (value: string) = Interop.mkLayoutShapesShapeAttr "xref" value
+
+            /// Sets the shapes's sizing mode along the x axis. If set to *scaled*, `x0`, `x1` and x coordinates within `path` refer to data values on the x axis or a fraction of the plot area's width (`xref` set to *paper*). If set to *pixel*, `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed width while maintaining a position relative to data or plot fraction.
+            [<Erase>]
+            type xsizemode =
+                static member inline pixel = Interop.mkLayoutShapesShapeAttr "xsizemode" "pixel"
+                static member inline scaled = Interop.mkLayoutShapesShapeAttr "xsizemode" "scaled"
+
+            /// Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
+            [<Erase>]
+            type yref =
+                static member inline paper = Interop.mkLayoutShapesShapeAttr "yref" "paper"
+                static member inline custom (value: string) = Interop.mkLayoutShapesShapeAttr "yref" value
+
+            /// Sets the shapes's sizing mode along the y axis. If set to *scaled*, `y0`, `y1` and y coordinates within `path` refer to data values on the y axis or a fraction of the plot area's height (`yref` set to *paper*). If set to *pixel*, `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height while maintaining a position relative to data or plot fraction.
+            [<Erase>]
+            type ysizemode =
+                static member inline pixel = Interop.mkLayoutShapesShapeAttr "ysizemode" "pixel"
+                static member inline scaled = Interop.mkLayoutShapesShapeAttr "ysizemode" "scaled"
+
+            [<Erase>]
+            type line =
+                /// Sets the line color.
+                static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+                /// Sets the line width (in px).
+                static member inline width (value: int) = Interop.mkLayoutAttr "width" value
+                /// Sets the line width (in px).
+                static member inline width (value: float) = Interop.mkLayoutAttr "width" value
+                /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
+                static member inline dash (value: string) = Interop.mkLayoutAttr "dash" value
+
+    [<Erase>]
+    type images = 
+        static member inline image (properties: #ILayoutImagesImageProperty list) = Interop.mkLayoutImagesAttr "image" (createObj !!properties)
+
+    [<AutoOpen>]
+    module images =
+        [<Erase>]
+        type image =
+            /// Determines whether or not this image is visible.
+            static member inline visible (value: bool) = Interop.mkLayoutImagesImageAttr "visible" value
+            /// Specifies the URL of the image to be used. The URL must be accessible from the domain where the plot code is run, and can be either relative or absolute.
+            static member inline source (value: string) = Interop.mkLayoutImagesImageAttr "source" value
+            /// Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width.
+            static member inline sizex (value: int) = Interop.mkLayoutImagesImageAttr "sizex" value
+            /// Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width.
+            static member inline sizex (value: float) = Interop.mkLayoutImagesImageAttr "sizex" value
+            /// Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height.
+            static member inline sizey (value: int) = Interop.mkLayoutImagesImageAttr "sizey" value
+            /// Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height.
+            static member inline sizey (value: float) = Interop.mkLayoutImagesImageAttr "sizey" value
+            /// Sets the opacity of the image.
+            static member inline opacity (value: int) = Interop.mkLayoutImagesImageAttr "opacity" value
+            /// Sets the opacity of the image.
+            static member inline opacity (value: float) = Interop.mkLayoutImagesImageAttr "opacity" value
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (value: bool) = Interop.mkLayoutImagesImageAttr "x" value
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (values: seq<bool>) = Interop.mkLayoutImagesImageAttr "x" (values |> Array.ofSeq)
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (value: string) = Interop.mkLayoutImagesImageAttr "x" value
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (values: seq<string>) = Interop.mkLayoutImagesImageAttr "x" (values |> Array.ofSeq)
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (value: int) = Interop.mkLayoutImagesImageAttr "x" value
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (values: seq<int>) = Interop.mkLayoutImagesImageAttr "x" (values |> Array.ofSeq)
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (value: float) = Interop.mkLayoutImagesImageAttr "x" value
+            /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+            static member inline x (values: seq<float>) = Interop.mkLayoutImagesImageAttr "x" (values |> Array.ofSeq)
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (value: bool) = Interop.mkLayoutImagesImageAttr "y" value
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (values: seq<bool>) = Interop.mkLayoutImagesImageAttr "y" (values |> Array.ofSeq)
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (value: string) = Interop.mkLayoutImagesImageAttr "y" value
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (values: seq<string>) = Interop.mkLayoutImagesImageAttr "y" (values |> Array.ofSeq)
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (value: int) = Interop.mkLayoutImagesImageAttr "y" value
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (values: seq<int>) = Interop.mkLayoutImagesImageAttr "y" (values |> Array.ofSeq)
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (value: float) = Interop.mkLayoutImagesImageAttr "y" value
+            /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+            static member inline y (values: seq<float>) = Interop.mkLayoutImagesImageAttr "y" (values |> Array.ofSeq)
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+            static member inline name (value: string) = Interop.mkLayoutImagesImageAttr "name" value
+            /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+            static member inline templateitemname (value: string) = Interop.mkLayoutImagesImageAttr "templateitemname" value
+
+        [<AutoOpen>]
+        module image =
+            /// Specifies whether images are drawn below or above traces. When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
+            [<Erase>]
+            type layer =
+                static member inline above = Interop.mkLayoutImagesImageAttr "layer" "above"
+                static member inline below = Interop.mkLayoutImagesImageAttr "layer" "below"
+
+            /// Specifies which dimension of the image to constrain.
+            [<Erase>]
+            type sizing =
+                static member inline contain = Interop.mkLayoutImagesImageAttr "sizing" "contain"
+                static member inline fill = Interop.mkLayoutImagesImageAttr "sizing" "fill"
+                static member inline stretch = Interop.mkLayoutImagesImageAttr "sizing" "stretch"
+
+            /// Sets the anchor for the x position
+            [<Erase>]
+            type xanchor =
+                static member inline center = Interop.mkLayoutImagesImageAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutImagesImageAttr "xanchor" "left"
+                static member inline right = Interop.mkLayoutImagesImageAttr "xanchor" "right"
+
+            /// Sets the anchor for the y position.
+            [<Erase>]
+            type yanchor =
+                static member inline bottom = Interop.mkLayoutImagesImageAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutImagesImageAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutImagesImageAttr "yanchor" "top"
+
+            /// Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set to *paper*, the `x` position refers to the distance from the left of plot in normalized coordinates where *0* (*1*) corresponds to the left (right).
+            [<Erase>]
+            type xref =
+                static member inline paper = Interop.mkLayoutImagesImageAttr "xref" "paper"
+                static member inline custom (value: string) = Interop.mkLayoutImagesImageAttr "xref" value
+
+            /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
+            [<Erase>]
+            type yref =
+                static member inline paper = Interop.mkLayoutImagesImageAttr "yref" "paper"
+                static member inline custom (value: string) = Interop.mkLayoutImagesImageAttr "yref" value
+
+    [<Erase>]
+    type updatemenus = 
+        static member inline updatemenu (properties: #ILayoutUpdatemenusUpdatemenuProperty list) = Interop.mkLayoutUpdatemenusAttr "updatemenu" (createObj !!properties)
+
+    [<AutoOpen>]
+    module updatemenus =
+        [<Erase>]
+        type updatemenu =
+            static member inline _arrayAttrRegexps (properties: #ILayoutProperty list) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "_arrayAttrRegexps" (createObj !!properties)
+            static member inline buttons (properties: #ILayoutProperty list) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "buttons" (createObj !!properties)
+            static member inline pad (properties: #ILayoutProperty list) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "pad" (createObj !!properties)
+            static member inline font (properties: #ILayoutProperty list) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "font" (createObj !!properties)
+            /// Determines whether or not the update menu is visible.
+            static member inline visible (value: bool) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "visible" value
+            /// Determines which button (by index starting from 0) is considered active.
+            static member inline active (value: int) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "active" value
+            /// Highlights active dropdown item or active button if true.
+            static member inline showactive (value: bool) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "showactive" value
+            /// Sets the x position (in normalized coordinates) of the update menu.
+            static member inline x (value: int) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "x" value
+            /// Sets the x position (in normalized coordinates) of the update menu.
+            static member inline x (value: float) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "x" value
+            /// Sets the y position (in normalized coordinates) of the update menu.
+            static member inline y (value: int) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "y" value
+            /// Sets the y position (in normalized coordinates) of the update menu.
+            static member inline y (value: float) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "y" value
+            /// Sets the background color of the update menu buttons.
+            static member inline bgcolor (value: string) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "bgcolor" value
+            /// Sets the color of the border enclosing the update menu.
+            static member inline bordercolor (value: string) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "bordercolor" value
+            /// Sets the width (in px) of the border enclosing the update menu.
+            static member inline borderwidth (value: int) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "borderwidth" value
+            /// Sets the width (in px) of the border enclosing the update menu.
+            static member inline borderwidth (value: float) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "borderwidth" value
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+            static member inline name (value: string) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "name" value
+            /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+            static member inline templateitemname (value: string) = Interop.mkLayoutUpdatemenusUpdatemenuAttr "templateitemname" value
+
+        [<AutoOpen>]
+        module updatemenu =
+            /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
+            [<Erase>]
+            type type' =
+                static member inline buttons = Interop.mkLayoutUpdatemenusUpdatemenuAttr "type" "buttons"
+                static member inline dropdown = Interop.mkLayoutUpdatemenusUpdatemenuAttr "type" "dropdown"
+
+            /// Determines the direction in which the buttons are laid out, whether in a dropdown menu or a row/column of buttons. For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order respectively.
+            [<Erase>]
+            type direction =
+                static member inline down = Interop.mkLayoutUpdatemenusUpdatemenuAttr "direction" "down"
+                static member inline left = Interop.mkLayoutUpdatemenusUpdatemenuAttr "direction" "left"
+                static member inline right = Interop.mkLayoutUpdatemenusUpdatemenuAttr "direction" "right"
+                static member inline up = Interop.mkLayoutUpdatemenusUpdatemenuAttr "direction" "up"
+
+            /// Sets the update menu's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+            [<Erase>]
+            type xanchor =
+                static member inline auto = Interop.mkLayoutUpdatemenusUpdatemenuAttr "xanchor" "auto"
+                static member inline center = Interop.mkLayoutUpdatemenusUpdatemenuAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutUpdatemenusUpdatemenuAttr "xanchor" "left"
+                static member inline right = Interop.mkLayoutUpdatemenusUpdatemenuAttr "xanchor" "right"
+
+            /// Sets the update menu's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+            [<Erase>]
+            type yanchor =
+                static member inline auto = Interop.mkLayoutUpdatemenusUpdatemenuAttr "yanchor" "auto"
+                static member inline bottom = Interop.mkLayoutUpdatemenusUpdatemenuAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutUpdatemenusUpdatemenuAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutUpdatemenusUpdatemenuAttr "yanchor" "top"
+
+            [<Erase>]
+            type buttons = 
+                static member inline button (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "button" (createObj !!properties)
+
+            [<AutoOpen>]
+            module buttons =
+                [<Erase>]
+                type button =
+                    /// Determines whether or not this button is visible.
+                    static member inline visible (value: bool) = Interop.mkLayoutAttr "visible" value
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+                    static member inline args (values: seq<bool>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+                    static member inline args (values: seq<int>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+                    static member inline args (values: seq<float>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+                    static member inline args (values: seq<string>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the text label to appear on the button.
+                    static member inline label (value: string) = Interop.mkLayoutAttr "label" value
+                    /// When true, the API method is executed. When false, all other behaviors are the same and command execution is skipped. This may be useful when hooking into, for example, the `plotly_buttonclicked` method and executing the API command manually without losing the benefit of the updatemenu automatically binding to the state of the plot through the specification of `method` and `args`.
+                    static member inline execute (value: bool) = Interop.mkLayoutAttr "execute" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
+                [<AutoOpen>]
+                module button =
+                    /// Sets the Plotly method to be called on click. If the `skip` method is used, the API updatemenu will function as normal but will perform no API calls and will not bind automatically to state updates. This may be used to create a component interface and attach to updatemenu events manually via JavaScript.
+                    [<Erase>]
+                    type method =
+                        static member inline animate = Interop.mkLayoutAttr "method" "animate"
+                        static member inline relayout = Interop.mkLayoutAttr "method" "relayout"
+                        static member inline restyle = Interop.mkLayoutAttr "method" "restyle"
+                        static member inline skip = Interop.mkLayoutAttr "method" "skip"
+                        static member inline update = Interop.mkLayoutAttr "method" "update"
+
+            [<Erase>]
+            type pad =
+                static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                /// The amount of padding (in px) along the top of the component.
+                static member inline t (value: int) = Interop.mkLayoutAttr "t" value
+                /// The amount of padding (in px) along the top of the component.
+                static member inline t (value: float) = Interop.mkLayoutAttr "t" value
+                /// The amount of padding (in px) on the right side of the component.
+                static member inline r (value: int) = Interop.mkLayoutAttr "r" value
+                /// The amount of padding (in px) on the right side of the component.
+                static member inline r (value: float) = Interop.mkLayoutAttr "r" value
+                /// The amount of padding (in px) along the bottom of the component.
+                static member inline b (value: int) = Interop.mkLayoutAttr "b" value
+                /// The amount of padding (in px) along the bottom of the component.
+                static member inline b (value: float) = Interop.mkLayoutAttr "b" value
+                /// The amount of padding (in px) on the left side of the component.
+                static member inline l (value: int) = Interop.mkLayoutAttr "l" value
+                /// The amount of padding (in px) on the left side of the component.
+                static member inline l (value: float) = Interop.mkLayoutAttr "l" value
+
+            [<Erase>]
+            type font =
+                static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+    [<Erase>]
+    type sliders = 
+        static member inline slider (properties: #ILayoutSlidersSliderProperty list) = Interop.mkLayoutSlidersAttr "slider" (createObj !!properties)
+
+    [<AutoOpen>]
+    module sliders =
+        [<Erase>]
+        type slider =
+            static member inline steps (properties: #ILayoutProperty list) = Interop.mkLayoutSlidersSliderAttr "steps" (createObj !!properties)
+            static member inline pad (properties: #ILayoutProperty list) = Interop.mkLayoutSlidersSliderAttr "pad" (createObj !!properties)
+            static member inline transition (properties: #ILayoutProperty list) = Interop.mkLayoutSlidersSliderAttr "transition" (createObj !!properties)
+            static member inline currentvalue (properties: #ILayoutProperty list) = Interop.mkLayoutSlidersSliderAttr "currentvalue" (createObj !!properties)
+            static member inline font (properties: #ILayoutProperty list) = Interop.mkLayoutSlidersSliderAttr "font" (createObj !!properties)
+            /// Determines whether or not the slider is visible.
+            static member inline visible (value: bool) = Interop.mkLayoutSlidersSliderAttr "visible" value
+            /// Determines which button (by index starting from 0) is considered active.
+            static member inline active (value: int) = Interop.mkLayoutSlidersSliderAttr "active" value
+            /// Determines which button (by index starting from 0) is considered active.
+            static member inline active (value: float) = Interop.mkLayoutSlidersSliderAttr "active" value
+            /// Sets the length of the slider This measure excludes the padding of both ends. That is, the slider's length is this length minus the padding on both ends.
+            static member inline len (value: int) = Interop.mkLayoutSlidersSliderAttr "len" value
+            /// Sets the length of the slider This measure excludes the padding of both ends. That is, the slider's length is this length minus the padding on both ends.
+            static member inline len (value: float) = Interop.mkLayoutSlidersSliderAttr "len" value
+            /// Sets the x position (in normalized coordinates) of the slider.
+            static member inline x (value: int) = Interop.mkLayoutSlidersSliderAttr "x" value
+            /// Sets the x position (in normalized coordinates) of the slider.
+            static member inline x (value: float) = Interop.mkLayoutSlidersSliderAttr "x" value
+            /// Sets the y position (in normalized coordinates) of the slider.
+            static member inline y (value: int) = Interop.mkLayoutSlidersSliderAttr "y" value
+            /// Sets the y position (in normalized coordinates) of the slider.
+            static member inline y (value: float) = Interop.mkLayoutSlidersSliderAttr "y" value
+            /// Sets the background color of the slider grip while dragging.
+            static member inline activebgcolor (value: string) = Interop.mkLayoutSlidersSliderAttr "activebgcolor" value
+            /// Sets the background color of the slider.
+            static member inline bgcolor (value: string) = Interop.mkLayoutSlidersSliderAttr "bgcolor" value
+            /// Sets the color of the border enclosing the slider.
+            static member inline bordercolor (value: string) = Interop.mkLayoutSlidersSliderAttr "bordercolor" value
+            /// Sets the width (in px) of the border enclosing the slider.
+            static member inline borderwidth (value: int) = Interop.mkLayoutSlidersSliderAttr "borderwidth" value
+            /// Sets the width (in px) of the border enclosing the slider.
+            static member inline borderwidth (value: float) = Interop.mkLayoutSlidersSliderAttr "borderwidth" value
+            /// Sets the length in pixels of step tick marks
+            static member inline ticklen (value: int) = Interop.mkLayoutSlidersSliderAttr "ticklen" value
+            /// Sets the length in pixels of step tick marks
+            static member inline ticklen (value: float) = Interop.mkLayoutSlidersSliderAttr "ticklen" value
+            /// Sets the color of the border enclosing the slider.
+            static member inline tickcolor (value: string) = Interop.mkLayoutSlidersSliderAttr "tickcolor" value
+            /// Sets the tick width (in px).
+            static member inline tickwidth (value: int) = Interop.mkLayoutSlidersSliderAttr "tickwidth" value
+            /// Sets the tick width (in px).
+            static member inline tickwidth (value: float) = Interop.mkLayoutSlidersSliderAttr "tickwidth" value
+            /// Sets the length in pixels of minor step tick marks
+            static member inline minorticklen (value: int) = Interop.mkLayoutSlidersSliderAttr "minorticklen" value
+            /// Sets the length in pixels of minor step tick marks
+            static member inline minorticklen (value: float) = Interop.mkLayoutSlidersSliderAttr "minorticklen" value
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+            static member inline name (value: string) = Interop.mkLayoutSlidersSliderAttr "name" value
+            /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+            static member inline templateitemname (value: string) = Interop.mkLayoutSlidersSliderAttr "templateitemname" value
+
+        [<AutoOpen>]
+        module slider =
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. Use `len` to set the value.
+            [<Erase>]
+            type lenmode =
+                static member inline fraction = Interop.mkLayoutSlidersSliderAttr "lenmode" "fraction"
+                static member inline pixels = Interop.mkLayoutSlidersSliderAttr "lenmode" "pixels"
+
+            /// Sets the slider's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+            [<Erase>]
+            type xanchor =
+                static member inline auto = Interop.mkLayoutSlidersSliderAttr "xanchor" "auto"
+                static member inline center = Interop.mkLayoutSlidersSliderAttr "xanchor" "center"
+                static member inline left = Interop.mkLayoutSlidersSliderAttr "xanchor" "left"
+                static member inline right = Interop.mkLayoutSlidersSliderAttr "xanchor" "right"
+
+            /// Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+            [<Erase>]
+            type yanchor =
+                static member inline auto = Interop.mkLayoutSlidersSliderAttr "yanchor" "auto"
+                static member inline bottom = Interop.mkLayoutSlidersSliderAttr "yanchor" "bottom"
+                static member inline middle = Interop.mkLayoutSlidersSliderAttr "yanchor" "middle"
+                static member inline top = Interop.mkLayoutSlidersSliderAttr "yanchor" "top"
+
+            [<Erase>]
+            type steps = 
+                static member inline step (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "step" (createObj !!properties)
+
+            [<AutoOpen>]
+            module steps =
+                [<Erase>]
+                type step =
+                    /// Determines whether or not this step is included in the slider.
+                    static member inline visible (value: bool) = Interop.mkLayoutAttr "visible" value
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+                    static member inline args (values: seq<bool>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+                    static member inline args (values: seq<int>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+                    static member inline args (values: seq<float>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+                    static member inline args (values: seq<string>) = Interop.mkLayoutAttr "args" (values |> Array.ofSeq)
+                    /// Sets the text label to appear on the slider
+                    static member inline label (value: string) = Interop.mkLayoutAttr "label" value
+                    /// Sets the value of the slider step, used to refer to the step programatically. Defaults to the slider label if not provided.
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When true, the API method is executed. When false, all other behaviors are the same and command execution is skipped. This may be useful when hooking into, for example, the `plotly_sliderchange` method and executing the API command manually without losing the benefit of the slider automatically binding to the state of the plot through the specification of `method` and `args`.
+                    static member inline execute (value: bool) = Interop.mkLayoutAttr "execute" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
+
+                [<AutoOpen>]
+                module step =
+                    /// Sets the Plotly method to be called when the slider value is changed. If the `skip` method is used, the API slider will function as normal but will perform no API calls and will not bind automatically to state updates. This may be used to create a component interface and attach to slider events manually via JavaScript.
+                    [<Erase>]
+                    type method =
+                        static member inline animate = Interop.mkLayoutAttr "method" "animate"
+                        static member inline relayout = Interop.mkLayoutAttr "method" "relayout"
+                        static member inline restyle = Interop.mkLayoutAttr "method" "restyle"
+                        static member inline skip = Interop.mkLayoutAttr "method" "skip"
+                        static member inline update = Interop.mkLayoutAttr "method" "update"
+
+            [<Erase>]
+            type pad =
+                static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                /// The amount of padding (in px) along the top of the component.
+                static member inline t (value: int) = Interop.mkLayoutAttr "t" value
+                /// The amount of padding (in px) along the top of the component.
+                static member inline t (value: float) = Interop.mkLayoutAttr "t" value
+                /// The amount of padding (in px) on the right side of the component.
+                static member inline r (value: int) = Interop.mkLayoutAttr "r" value
+                /// The amount of padding (in px) on the right side of the component.
+                static member inline r (value: float) = Interop.mkLayoutAttr "r" value
+                /// The amount of padding (in px) along the bottom of the component.
+                static member inline b (value: int) = Interop.mkLayoutAttr "b" value
+                /// The amount of padding (in px) along the bottom of the component.
+                static member inline b (value: float) = Interop.mkLayoutAttr "b" value
+                /// The amount of padding (in px) on the left side of the component.
+                static member inline l (value: int) = Interop.mkLayoutAttr "l" value
+                /// The amount of padding (in px) on the left side of the component.
+                static member inline l (value: float) = Interop.mkLayoutAttr "l" value
+
+            [<Erase>]
+            type transition =
+                /// Sets the duration of the slider transition
+                static member inline duration (value: int) = Interop.mkLayoutAttr "duration" value
+                /// Sets the duration of the slider transition
+                static member inline duration (value: float) = Interop.mkLayoutAttr "duration" value
+
+            [<AutoOpen>]
+            module transition =
+                /// Sets the easing function of the slider transition
+                [<Erase>]
+                type easing =
+                    static member inline back = Interop.mkLayoutAttr "easing" "back"
+                    static member inline backIn = Interop.mkLayoutAttr "easing" "back-in"
+                    static member inline backInOut = Interop.mkLayoutAttr "easing" "back-in-out"
+                    static member inline backOut = Interop.mkLayoutAttr "easing" "back-out"
+                    static member inline bounce = Interop.mkLayoutAttr "easing" "bounce"
+                    static member inline bounceIn = Interop.mkLayoutAttr "easing" "bounce-in"
+                    static member inline bounceInOut = Interop.mkLayoutAttr "easing" "bounce-in-out"
+                    static member inline bounceOut = Interop.mkLayoutAttr "easing" "bounce-out"
+                    static member inline circle = Interop.mkLayoutAttr "easing" "circle"
+                    static member inline circleIn = Interop.mkLayoutAttr "easing" "circle-in"
+                    static member inline circleInOut = Interop.mkLayoutAttr "easing" "circle-in-out"
+                    static member inline circleOut = Interop.mkLayoutAttr "easing" "circle-out"
+                    static member inline cubic = Interop.mkLayoutAttr "easing" "cubic"
+                    static member inline cubicIn = Interop.mkLayoutAttr "easing" "cubic-in"
+                    static member inline cubicInOut = Interop.mkLayoutAttr "easing" "cubic-in-out"
+                    static member inline cubicOut = Interop.mkLayoutAttr "easing" "cubic-out"
+                    static member inline elastic = Interop.mkLayoutAttr "easing" "elastic"
+                    static member inline elasticIn = Interop.mkLayoutAttr "easing" "elastic-in"
+                    static member inline elasticInOut = Interop.mkLayoutAttr "easing" "elastic-in-out"
+                    static member inline elasticOut = Interop.mkLayoutAttr "easing" "elastic-out"
+                    static member inline exp = Interop.mkLayoutAttr "easing" "exp"
+                    static member inline expIn = Interop.mkLayoutAttr "easing" "exp-in"
+                    static member inline expInOut = Interop.mkLayoutAttr "easing" "exp-in-out"
+                    static member inline expOut = Interop.mkLayoutAttr "easing" "exp-out"
+                    static member inline linear = Interop.mkLayoutAttr "easing" "linear"
+                    static member inline linearIn = Interop.mkLayoutAttr "easing" "linear-in"
+                    static member inline linearInOut = Interop.mkLayoutAttr "easing" "linear-in-out"
+                    static member inline linearOut = Interop.mkLayoutAttr "easing" "linear-out"
+                    static member inline quad = Interop.mkLayoutAttr "easing" "quad"
+                    static member inline quadIn = Interop.mkLayoutAttr "easing" "quad-in"
+                    static member inline quadInOut = Interop.mkLayoutAttr "easing" "quad-in-out"
+                    static member inline quadOut = Interop.mkLayoutAttr "easing" "quad-out"
+                    static member inline sin = Interop.mkLayoutAttr "easing" "sin"
+                    static member inline sinIn = Interop.mkLayoutAttr "easing" "sin-in"
+                    static member inline sinInOut = Interop.mkLayoutAttr "easing" "sin-in-out"
+                    static member inline sinOut = Interop.mkLayoutAttr "easing" "sin-out"
+
+            [<Erase>]
+            type currentvalue =
+                static member inline font (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "font" (createObj !!properties)
+                /// Shows the currently-selected value above the slider.
+                static member inline visible (value: bool) = Interop.mkLayoutAttr "visible" value
+                /// The amount of space, in pixels, between the current value label and the slider.
+                static member inline offset (value: int) = Interop.mkLayoutAttr "offset" value
+                /// The amount of space, in pixels, between the current value label and the slider.
+                static member inline offset (value: float) = Interop.mkLayoutAttr "offset" value
+                /// When currentvalue.visible is true, this sets the prefix of the label.
+                static member inline prefix (value: string) = Interop.mkLayoutAttr "prefix" value
+                /// When currentvalue.visible is true, this sets the suffix of the label.
+                static member inline suffix (value: string) = Interop.mkLayoutAttr "suffix" value
+
+            [<AutoOpen>]
+            module currentvalue =
+                /// The alignment of the value readout relative to the length of the slider.
+                [<Erase>]
+                type xanchor =
+                    static member inline center = Interop.mkLayoutAttr "xanchor" "center"
+                    static member inline left = Interop.mkLayoutAttr "xanchor" "left"
+                    static member inline right = Interop.mkLayoutAttr "xanchor" "right"
+
+                [<Erase>]
+                type font =
+                    static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                    /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                    static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                    static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                    static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                    static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+            [<Erase>]
+            type font =
+                static member inline description (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "description" (createObj !!properties)
+                /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+                static member inline family (value: string) = Interop.mkLayoutAttr "family" value
+                static member inline size (value: int) = Interop.mkLayoutAttr "size" value
+                static member inline size (value: float) = Interop.mkLayoutAttr "size" value
+                static member inline color (value: string) = Interop.mkLayoutAttr "color" value
 
     [<Erase>]
     type colorscale =
@@ -4426,6 +6013,31 @@ module layout =
                 static member inline size (value: int) = Interop.mkLayoutAttr "size" value
                 static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                 static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+            [<Erase>]
+            type tickformatstops = 
+                static member inline tickformatstop (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "tickformatstop" (createObj !!properties)
+
+            [<AutoOpen>]
+            module tickformatstops =
+                [<Erase>]
+                type tickformatstop =
+                    /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
+                    static member inline enabled (value: bool) = Interop.mkLayoutAttr "enabled" value
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<bool>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<int>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<float>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+                    static member inline dtickrange (values: seq<string>) = Interop.mkLayoutAttr "dtickrange" (values |> Array.ofSeq)
+                    /// string - dtickformat for described zoom level, the same as *tickformat*
+                    static member inline value (value: string) = Interop.mkLayoutAttr "value" value
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
+                    static member inline name (value: string) = Interop.mkLayoutAttr "name" value
+                    /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
+                    static member inline templateitemname (value: string) = Interop.mkLayoutAttr "templateitemname" value
 
             [<Erase>]
             type title =

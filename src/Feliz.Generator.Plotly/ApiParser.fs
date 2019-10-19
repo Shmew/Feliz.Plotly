@@ -70,10 +70,10 @@ module rec ApiParser =
                     |> List.ofArray
             | ValType.EnumeratedWithCustom ->
                 jVal?values.AsArray()
-                |> Array.choose (fun j ->
+                |> Array.map (fun j ->
                     match j |> JsonValue.asString with
-                    | s when String.containsRegex s -> None
-                    | s -> Some s)
+                    | s when String.containsRegex s -> "custom"
+                    | s -> s)
                 |> List.ofArray
             | ValType.FlagList ->
                 let flagCombinations =
@@ -102,10 +102,18 @@ module rec ApiParser =
                     |> snakeCaseToCamelCase
                     |> prefixUnderscoreOrNegativeToNumbers
                     |> appendApostropheToReservedKeywords
-                EnumPropOverload.create methodName (sprintf "\"%s\"" (trimJson v)))
+                
+                match propType with
+                | ValType.EnumeratedWithCustom when v = "custom" ->
+                    let paramsCode, valueCode = ValType.stringStr
+                    
+                    EnumPropOverload.create methodName valueCode
+                    |> EnumPropOverload.setParamsCode paramsCode
+                | _ -> EnumPropOverload.create methodName (sprintf "\"%s\"" (trimJson v)))
+            |> List.distinct
 
         let nestedComponents =
-            let skipTypes = [ "type"; "meta"; "categories"; "role"; "editType"; "animatable"; "role"; "editType" ]
+            let skipTypes = [ "type"; "meta"; "categories"; "role"; "editType"; "animatable"; "role"; "items"]
             match propName, propType with
             | "transforms", ValType.Component ->
                 [ parseComponent (componentTree @ [ propName ]) propName schema?transforms ]
@@ -130,15 +138,17 @@ module rec ApiParser =
 
     /// Parses a `JsonValue` with given information and returns a `Component`
     let parseComponent (parentTree: string list) (componentName: string) (jVal: JsonValue) =
-        let skipComp = [ "_deprecated"; "items"; "_isSubplotObj" ]
+        let skipComp = [ "_deprecated"; "_isSubplotObj" ]
+        let jumpComp = [ "attributes"; "layoutAttributes"; "items" ]
+        let jumpArrayComp = [ "annotations" ]
 
-        let chunkAttributes (props: (string * JsonValue) []) =
+        let jumpAttributes (props: (string * JsonValue) []) =
             props
             |> Array.collect
                 (Array.singleton
                  >> (fun prop ->
                  match prop |> Array.head with
-                 | attribs when (attribs |> fst) = "attributes" || (attribs |> fst) = "layoutAttributes" ->
+                 | attribs when List.contains (attribs |> fst) jumpComp ->
                      attribs
                      |> snd
                      |> fun j -> j.Properties
@@ -148,7 +158,7 @@ module rec ApiParser =
         let props =
             jVal.Properties
             |> Array.filter (fun (name, _) -> List.contains name skipComp |> not)
-            |> chunkAttributes
+            |> jumpAttributes
             |> Array.map (fun p -> p ||> parseProp parentTree)
 
         let addProps comp = (comp, props) ||> Array.fold (flip Component.addProp)
@@ -172,7 +182,15 @@ module rec ApiParser =
                 |> List.map2 ComponentOverload.setParamFun paramFuns
                 |> List.map (ComponentOverload.setSkipAttr true)
                 |> fun overloads -> { comp with Overloads = overloads }
-            | _ -> comp
+            | _ -> 
+                if List.contains componentName jumpArrayComp then
+                    let propsCode =
+                        [ "(properties |> Seq.map (Bindings.getKV >> snd) |> Array.ofSeq)" ]
+                    
+                    comp.Overloads
+                    |> List.map2 ComponentOverload.setPropsCode propsCode
+                    |> fun overloads -> { comp with Overloads = overloads }
+                else comp
 
     /// Parse the Plotly.js json schema
     let parseApi() =
