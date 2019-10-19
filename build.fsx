@@ -443,7 +443,7 @@ Target.create "Start" <| fun _ ->
 Target.create "DemoRaw" <| fun _ ->
     Yarn.exec "compile-demo-raw" id
 
-Target.create "PublishDocs" <| fun _ ->
+Target.create "PublishPages" <| fun _ ->
     Yarn.exec "publish-docs" id
 
 // --------------------------------------------------------------------------------------
@@ -471,25 +471,29 @@ Target.create "NuGetPublish" <| fun _ ->
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
-Target.create "GitPush" <| fun p ->
-    let msg =
-        p.Context.Arguments
-        |> List.choose (fun s ->
-            match s.StartsWith("--Msg=") with
-            | true -> Some(s.Substring 6)
-            | false -> None)
-        |> List.tryHead
-        |> function
-        | Some(s) -> s
-        | None -> (sprintf "Bump version to %s" release.NugetVersion)
-
+let gitPush msg =
     Git.Staging.stageAll ""
     Git.Commit.exec "" msg
     Git.Branches.push ""
 
+Target.create "GitPush" <| fun p ->
+    p.Context.Arguments
+    |> List.choose (fun s ->
+        match s.StartsWith("--Msg=") with
+        | true -> Some(s.Substring 6)
+        | false -> None)
+    |> List.tryHead
+    |> function
+    | Some(s) -> s
+    | None -> (sprintf "Bump version to %s" release.NugetVersion)
+    |> gitPush
+
 Target.create "GitTag" <| fun _ ->
     Git.Branches.tag "" release.NugetVersion
     Git.Branches.pushTag "" "origin" release.NugetVersion
+
+Target.create "PublishDocs" <| fun _ ->
+    gitPush "Publishing docs"
 
 // --------------------------------------------------------------------------------------
 // Run all targets by default. Invoke 'build -t <Target>' to override
@@ -542,7 +546,9 @@ Target.create "Publish" ignore
  ==> "NuGet"
  ==> "NuGetPublish"
 
-"PrepDocs" ==> "PublishDocs"
+"PrepDocs" 
+ ==> "PublishPages"
+ ==> "PublishDocs"
 
 "All" 
   ==> "PrepDocs"
@@ -552,7 +558,7 @@ Target.create "Publish" ignore
   ==> "PrepDocs"
   ==> "Start"
 
-"All" ==> "PublishDocs"
+"All" ==> "PublishPages"
 
 "ConfigDebug" ?=> "Clean"
 "ConfigRelease" ?=> "Clean"
@@ -561,6 +567,6 @@ Target.create "Publish" ignore
 
 "Release" <== ["All"; "NuGet"; "ConfigRelease"]
 
-"Publish" <== ["Release"; "ConfigRelease"; "NuGetPublish"; "PublishDocs"; "GitTag"; "GitPush" ]
+"Publish" <== ["Release"; "ConfigRelease"; "NuGetPublish"; "PublishPages"; "GitTag"; "GitPush" ]
 
 Target.runOrDefaultWithArguments "Dev"
