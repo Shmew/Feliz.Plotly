@@ -63,10 +63,23 @@ let samples =
       "plotly-chart-line-stylinglineplot", Samples.Line.StylingLinePlot.chart()
       "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart()
       "plotly-chart-line-lineshapeoptionsinterpolation", Samples.Line.LineShapeOptionsInterpolation.chart()
-      "plotly-chart-line-graphandaxestitles", Samples.Line.GraphAndAxesTitles.chart() 
-      "plotly-chart-line-linedash", Samples.Line.LineDash.chart() 
-      "plotly-chart-line-connectgapsbetweendata", Samples.Line.ConnectGapsBetweenData.chart() 
-      "plotly-chart-line-labellinglineswithannotations", Samples.Line.LabellingLinesWithAnnotations.chart() ]
+      "plotly-chart-line-graphandaxestitles", Samples.Line.GraphAndAxesTitles.chart()
+      "plotly-chart-line-linedash", Samples.Line.LineDash.chart()
+      "plotly-chart-line-connectgapsbetweendata", Samples.Line.ConnectGapsBetweenData.chart()
+      "plotly-chart-line-labellinglineswithannotations", Samples.Line.LabellingLinesWithAnnotations.chart()
+      "plotly-chart-bar-basic", Samples.Bar.Basic.chart()
+      "plotly-chart-bar-grouped", Samples.Bar.Grouped.chart()
+      "plotly-chart-bar-stacked", Samples.Bar.Stacked.chart()
+      "plotly-chart-bar-hovertext", Samples.Bar.HoverText.chart()
+      "plotly-chart-bar-directlabels", Samples.Bar.DirectLabels.chart()
+      "plotly-chart-bar-groupeddirectlabels", Samples.Bar.GroupedDirectLabels.chart()
+      "plotly-chart-bar-rotatedlabels", Samples.Bar.RotatedLabels.chart()
+      "plotly-chart-bar-colors", Samples.Bar.Colors.chart()
+      "plotly-chart-bar-widths", Samples.Bar.Widths.chart()
+      "plotly-chart-bar-base", Samples.Bar.Base.chart()
+      "plotly-chart-bar-coloredandstyled", Samples.Bar.ColoredAndStyled.chart()
+      "plotly-chart-bar-waterfall", Samples.Bar.Waterfall.chart()
+      "plotly-chart-bar-relativebarmode", Samples.Bar.RelativeBarmode.chart() ]
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -278,15 +291,30 @@ let sidebar (state: State) dispatch =
                     ]
                     nestedMenuList "Line" [
                         menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.Basic ]
-                        menuItem "Named Line And Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.NamedLineAndScatter ]
-                        menuItem "Line And Scatter Styling" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineAndScatterStyling ]
+                        menuItem "Named Line and Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.NamedLineAndScatter ]
+                        menuItem "Line and Scatter Styling" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineAndScatterStyling ]
                         menuItem "Styling Line Plot" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.StylingLinePlot ]
-                        menuItem "Colored And Styled Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ColoredAndStyledScatter ]
+                        menuItem "Colored and Styled Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ColoredAndStyledScatter ]
                         menuItem "Line Shape Options Interpolation" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineShapeOptionsInterpolation ]
-                        menuItem "Graph And Axes Titles" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.GraphAndAxesTitles ]
+                        menuItem "Graph and Axes Titles" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.GraphAndAxesTitles ]
                         menuItem "Line Dash" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineDash ]
                         menuItem "Connect Gaps Between Data" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ConnectGapsBetweenData ]
                         menuItem "Labelling Lines With Annotations" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LabellingLinesWithAnnotations ]
+                    ]
+                    nestedMenuList "Bar" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Basic ]
+                        menuItem "Grouped" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Grouped ]
+                        menuItem "Stacked" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Stacked ]
+                        menuItem "Hover Text" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.HoverText ]
+                        menuItem "Direct Labels" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.DirectLabels ]
+                        menuItem "Grouped Direct Labels" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.GroupedDirectLabels ]
+                        menuItem "Rotated Labels" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RotatedLabels ]
+                        menuItem "Colors" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Colors ]
+                        menuItem "Widths" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Widths ]
+                        menuItem "Base" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Base ]
+                        menuItem "Colored and Styled" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.ColoredAndStyled ]
+                        menuItem "Waterfall" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Waterfall ]
+                        menuItem "Relative Barmode" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RelativeBarmode ]
                     ]
                 ]
             ]
@@ -330,6 +358,19 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineDash ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineDash.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ConnectGapsBetweenData ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ConnectGapsBetweenData.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LabellingLinesWithAnnotations ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LabellingLinesWithAnnotations.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Grouped ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Grouped.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Stacked ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Stacked.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.HoverText ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "HoverText.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.DirectLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "DirectLabels.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.GroupedDirectLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "GroupedDirectLabels.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RotatedLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "RotatedLabels.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Colors ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Colors.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Widths ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Widths.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Base ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Base.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.ColoredAndStyled ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "ColoredAndStyled.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Waterfall ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Waterfall.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RelativeBarmode ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "RelativeBarmode.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

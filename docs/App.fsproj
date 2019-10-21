@@ -4,6 +4,19 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Bar\Basic.fs" />
+    <Compile Include="Plotly\Examples\Bar\Grouped.fs" />
+    <Compile Include="Plotly\Examples\Bar\Stacked.fs" />
+    <Compile Include="Plotly\Examples\Bar\HoverText.fs" />
+    <Compile Include="Plotly\Examples\Bar\DirectLabels.fs" />
+    <Compile Include="Plotly\Examples\Bar\GroupedDirectLabels.fs" />
+    <Compile Include="Plotly\Examples\Bar\RotatedLabels.fs" />
+    <Compile Include="Plotly\Examples\Bar\Colors.fs" />
+    <Compile Include="Plotly\Examples\Bar\Widths.fs" />
+    <Compile Include="Plotly\Examples\Bar\Base.fs" />
+    <Compile Include="Plotly\Examples\Bar\ColoredAndStyled.fs" />
+    <Compile Include="Plotly\Examples\Bar\Waterfall.fs" />
+    <Compile Include="Plotly\Examples\Bar\RelativeBarmode.fs" />
     <Compile Include="Plotly\Examples\Line\Basic.fs" />
     <Compile Include="Plotly\Examples\Line\NamedLineAndScatter.fs" />
     <Compile Include="Plotly\Examples\Line\LineAndScatterStyling.fs" />

@@ -27,13 +27,25 @@ type layout =
     static member inline radialaxis (properties: #ILayoutRadialaxisProperty list) = Interop.mkLayoutAttr "radialaxis" (createObj !!properties)
     static member inline angularaxis (properties: #ILayoutAngularaxisProperty list) = Interop.mkLayoutAttr "angularaxis" (createObj !!properties)
     static member inline legend (properties: #ILayoutLegendProperty list) = Interop.mkLayoutAttr "legend" (createObj !!properties)
-    static member inline annotations (properties: #ILayoutAnnotationsProperty list) = Interop.mkLayoutAttr "annotations" (properties |> Seq.map (Bindings.getKV >> snd) |> Array.ofSeq)
+    static member inline annotations (properties: #ILayoutAnnotationsProperty list) = Interop.mkLayoutAttr "annotations" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     static member inline shapes (properties: #ILayoutShapesProperty list) = Interop.mkLayoutAttr "shapes" (createObj !!properties)
     static member inline images (properties: #ILayoutImagesProperty list) = Interop.mkLayoutAttr "images" (createObj !!properties)
     static member inline updatemenus (properties: #ILayoutUpdatemenusProperty list) = Interop.mkLayoutAttr "updatemenus" (createObj !!properties)
     static member inline sliders (properties: #ILayoutSlidersProperty list) = Interop.mkLayoutAttr "sliders" (createObj !!properties)
     static member inline colorscale (properties: #ILayoutColorscaleProperty list) = Interop.mkLayoutAttr "colorscale" (createObj !!properties)
     static member inline coloraxis (properties: #ILayoutColoraxisProperty list) = Interop.mkLayoutAttr "coloraxis" (createObj !!properties)
+    static member inline bar (properties: #ILayoutBarProperty list) = Interop.mkLayoutAttr "bar" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline box (properties: #ILayoutBoxProperty list) = Interop.mkLayoutAttr "box" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline histogram (properties: #ILayoutHistogramProperty list) = Interop.mkLayoutAttr "histogram" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline violin (properties: #ILayoutViolinProperty list) = Interop.mkLayoutAttr "violin" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline funnel (properties: #ILayoutFunnelProperty list) = Interop.mkLayoutAttr "funnel" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline waterfall (properties: #ILayoutWaterfallProperty list) = Interop.mkLayoutAttr "waterfall" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline pie (properties: #ILayoutPieProperty list) = Interop.mkLayoutAttr "pie" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline sunburst (properties: #ILayoutSunburstProperty list) = Interop.mkLayoutAttr "sunburst" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline treemap (properties: #ILayoutTreemapProperty list) = Interop.mkLayoutAttr "treemap" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline funnelarea (properties: #ILayoutFunnelareaProperty list) = Interop.mkLayoutAttr "funnelarea" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline candlestick (properties: #ILayoutCandlestickProperty list) = Interop.mkLayoutAttr "candlestick" (createObj !!(properties |> List.map (Bindings.getKV)))
+    static member inline barpolar (properties: #ILayoutBarpolarProperty list) = Interop.mkLayoutAttr "barpolar" (createObj !!(properties |> List.map (Bindings.getKV)))
     /// Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.
     static member inline autosize (value: bool) = Interop.mkLayoutAttr "autosize" value
     /// Sets the plot's width (in px).
@@ -2249,7 +2261,7 @@ module layout =
         static member inline xaxis (properties: #ILayoutSceneXaxisProperty list) = Interop.mkLayoutSceneAttr "xaxis" (createObj !!properties)
         static member inline yaxis (properties: #ILayoutSceneYaxisProperty list) = Interop.mkLayoutSceneAttr "yaxis" (createObj !!properties)
         static member inline zaxis (properties: #ILayoutSceneZaxisProperty list) = Interop.mkLayoutSceneAttr "zaxis" (createObj !!properties)
-        static member inline annotations (properties: #ILayoutSceneAnnotationsProperty list) = Interop.mkLayoutSceneAttr "annotations" (properties |> Seq.map (Bindings.getKV >> snd) |> Array.ofSeq)
+        static member inline annotations (properties: #ILayoutSceneAnnotationsProperty list) = Interop.mkLayoutSceneAttr "annotations" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
         static member inline bgcolor (value: string) = Interop.mkLayoutSceneAttr "bgcolor" value
         /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
         static member inline uirevision (value: bool) = Interop.mkLayoutSceneAttr "uirevision" value
@@ -6062,4 +6074,219 @@ module layout =
                     static member inline size (value: int) = Interop.mkLayoutAttr "size" value
                     static member inline size (value: float) = Interop.mkLayoutAttr "size" value
                     static member inline color (value: string) = Interop.mkLayoutAttr "color" value
+
+    [<Erase>]
+    type bar =
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline bargap (value: int) = Interop.mkLayoutBarAttr "bargap" value
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline bargap (value: float) = Interop.mkLayoutBarAttr "bargap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline bargroupgap (value: int) = Interop.mkLayoutBarAttr "bargroupgap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline bargroupgap (value: float) = Interop.mkLayoutBarAttr "bargroupgap" value
+
+    [<AutoOpen>]
+    module bar =
+        /// Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked on top of one another, with negative values below the axis, positive values above With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+        [<Erase>]
+        type barmode =
+            static member inline group = Interop.mkLayoutBarAttr "barmode" "group"
+            static member inline overlay = Interop.mkLayoutBarAttr "barmode" "overlay"
+            static member inline relative = Interop.mkLayoutBarAttr "barmode" "relative"
+            static member inline stack = Interop.mkLayoutBarAttr "barmode" "stack"
+
+        /// Sets the normalization for bar traces on the graph. With *fraction*, the value of each bar is divided by the sum of all values at that location coordinate. *percent* is the same but multiplied by 100 to show percentages.
+        [<Erase>]
+        type barnorm =
+            static member inline none = Interop.mkLayoutBarAttr "barnorm" ""
+            static member inline fraction = Interop.mkLayoutBarAttr "barnorm" "fraction"
+            static member inline percent = Interop.mkLayoutBarAttr "barnorm" "percent"
+
+    [<Erase>]
+    type box =
+        /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. Has no effect on traces that have *width* set.
+        static member inline boxgap (value: int) = Interop.mkLayoutBoxAttr "boxgap" value
+        /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. Has no effect on traces that have *width* set.
+        static member inline boxgap (value: float) = Interop.mkLayoutBoxAttr "boxgap" value
+        /// Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have *width* set.
+        static member inline boxgroupgap (value: int) = Interop.mkLayoutBoxAttr "boxgroupgap" value
+        /// Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have *width* set.
+        static member inline boxgroupgap (value: float) = Interop.mkLayoutBoxAttr "boxgroupgap" value
+
+    [<AutoOpen>]
+    module box =
+        /// Determines how boxes at the same location coordinate are displayed on the graph. If *group*, the boxes are plotted next to one another centered around the shared location. If *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them multiple boxes. Has no effect on traces that have *width* set.
+        [<Erase>]
+        type boxmode =
+            static member inline group = Interop.mkLayoutBoxAttr "boxmode" "group"
+            static member inline overlay = Interop.mkLayoutBoxAttr "boxmode" "overlay"
+
+    [<Erase>]
+    type histogram =
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline bargap (value: int) = Interop.mkLayoutHistogramAttr "bargap" value
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline bargap (value: float) = Interop.mkLayoutHistogramAttr "bargap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline bargroupgap (value: int) = Interop.mkLayoutHistogramAttr "bargroupgap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline bargroupgap (value: float) = Interop.mkLayoutHistogramAttr "bargroupgap" value
+
+    [<AutoOpen>]
+    module histogram =
+        /// Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked on top of one another, with negative values below the axis, positive values above With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+        [<Erase>]
+        type barmode =
+            static member inline group = Interop.mkLayoutHistogramAttr "barmode" "group"
+            static member inline overlay = Interop.mkLayoutHistogramAttr "barmode" "overlay"
+            static member inline relative = Interop.mkLayoutHistogramAttr "barmode" "relative"
+            static member inline stack = Interop.mkLayoutHistogramAttr "barmode" "stack"
+
+        /// Sets the normalization for bar traces on the graph. With *fraction*, the value of each bar is divided by the sum of all values at that location coordinate. *percent* is the same but multiplied by 100 to show percentages.
+        [<Erase>]
+        type barnorm =
+            static member inline none = Interop.mkLayoutHistogramAttr "barnorm" ""
+            static member inline fraction = Interop.mkLayoutHistogramAttr "barnorm" "fraction"
+            static member inline percent = Interop.mkLayoutHistogramAttr "barnorm" "percent"
+
+    [<Erase>]
+    type violin =
+        /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. Has no effect on traces that have *width* set.
+        static member inline violingap (value: int) = Interop.mkLayoutViolinAttr "violingap" value
+        /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. Has no effect on traces that have *width* set.
+        static member inline violingap (value: float) = Interop.mkLayoutViolinAttr "violingap" value
+        /// Sets the gap (in plot fraction) between violins of the same location coordinate. Has no effect on traces that have *width* set.
+        static member inline violingroupgap (value: int) = Interop.mkLayoutViolinAttr "violingroupgap" value
+        /// Sets the gap (in plot fraction) between violins of the same location coordinate. Has no effect on traces that have *width* set.
+        static member inline violingroupgap (value: float) = Interop.mkLayoutViolinAttr "violingroupgap" value
+
+    [<AutoOpen>]
+    module violin =
+        /// Determines how violins at the same location coordinate are displayed on the graph. If *group*, the violins are plotted next to one another centered around the shared location. If *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them multiple violins. Has no effect on traces that have *width* set.
+        [<Erase>]
+        type violinmode =
+            static member inline group = Interop.mkLayoutViolinAttr "violinmode" "group"
+            static member inline overlay = Interop.mkLayoutViolinAttr "violinmode" "overlay"
+
+    [<Erase>]
+    type funnel =
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline funnelgap (value: int) = Interop.mkLayoutFunnelAttr "funnelgap" value
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline funnelgap (value: float) = Interop.mkLayoutFunnelAttr "funnelgap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline funnelgroupgap (value: int) = Interop.mkLayoutFunnelAttr "funnelgroupgap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline funnelgroupgap (value: float) = Interop.mkLayoutFunnelAttr "funnelgroupgap" value
+
+    [<AutoOpen>]
+    module funnel =
+        /// Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+        [<Erase>]
+        type funnelmode =
+            static member inline group = Interop.mkLayoutFunnelAttr "funnelmode" "group"
+            static member inline overlay = Interop.mkLayoutFunnelAttr "funnelmode" "overlay"
+            static member inline stack = Interop.mkLayoutFunnelAttr "funnelmode" "stack"
+
+    [<Erase>]
+    type waterfall =
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline waterfallgap (value: int) = Interop.mkLayoutWaterfallAttr "waterfallgap" value
+        /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+        static member inline waterfallgap (value: float) = Interop.mkLayoutWaterfallAttr "waterfallgap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline waterfallgroupgap (value: int) = Interop.mkLayoutWaterfallAttr "waterfallgroupgap" value
+        /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+        static member inline waterfallgroupgap (value: float) = Interop.mkLayoutWaterfallAttr "waterfallgroupgap" value
+
+    [<AutoOpen>]
+    module waterfall =
+        /// Determines how bars at the same location coordinate are displayed on the graph. With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+        [<Erase>]
+        type waterfallmode =
+            static member inline group = Interop.mkLayoutWaterfallAttr "waterfallmode" "group"
+            static member inline overlay = Interop.mkLayoutWaterfallAttr "waterfallmode" "overlay"
+
+    [<Erase>]
+    type pie =
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<bool>) = Interop.mkLayoutPieAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<string>) = Interop.mkLayoutPieAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<int>) = Interop.mkLayoutPieAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<float>) = Interop.mkLayoutPieAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
+        static member inline piecolorway (values: seq<string>) = Interop.mkLayoutPieAttr "piecolorway" (values |> Array.ofSeq)
+        /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+        static member inline extendpiecolors (value: bool) = Interop.mkLayoutPieAttr "extendpiecolors" value
+        /// Sets the source reference on plot.ly for  hiddenlabels .
+        static member inline hiddenlabelssrc (value: string) = Interop.mkLayoutPieAttr "hiddenlabelssrc" value
+
+    [<Erase>]
+    type sunburst =
+        /// Sets the default sunburst slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendsunburstcolors`.
+        static member inline sunburstcolorway (values: seq<string>) = Interop.mkLayoutSunburstAttr "sunburstcolorway" (values |> Array.ofSeq)
+        /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+        static member inline extendsunburstcolors (value: bool) = Interop.mkLayoutSunburstAttr "extendsunburstcolors" value
+
+    [<Erase>]
+    type treemap =
+        /// Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.
+        static member inline treemapcolorway (values: seq<string>) = Interop.mkLayoutTreemapAttr "treemapcolorway" (values |> Array.ofSeq)
+        /// If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+        static member inline extendtreemapcolors (value: bool) = Interop.mkLayoutTreemapAttr "extendtreemapcolors" value
+
+    [<Erase>]
+    type funnelarea =
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<bool>) = Interop.mkLayoutFunnelareaAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<string>) = Interop.mkLayoutFunnelareaAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<int>) = Interop.mkLayoutFunnelareaAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+        static member inline hiddenlabels (values: seq<float>) = Interop.mkLayoutFunnelareaAttr "hiddenlabels" (values |> Array.ofSeq)
+        /// Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.
+        static member inline funnelareacolorway (values: seq<string>) = Interop.mkLayoutFunnelareaAttr "funnelareacolorway" (values |> Array.ofSeq)
+        /// If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+        static member inline extendfunnelareacolors (value: bool) = Interop.mkLayoutFunnelareaAttr "extendfunnelareacolors" value
+        /// Sets the source reference on plot.ly for  hiddenlabels .
+        static member inline hiddenlabelssrc (value: string) = Interop.mkLayoutFunnelareaAttr "hiddenlabelssrc" value
+
+    [<Erase>]
+    type candlestick =
+        /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. Has no effect on traces that have *width* set.
+        static member inline boxgap (value: int) = Interop.mkLayoutCandlestickAttr "boxgap" value
+        /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. Has no effect on traces that have *width* set.
+        static member inline boxgap (value: float) = Interop.mkLayoutCandlestickAttr "boxgap" value
+        /// Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have *width* set.
+        static member inline boxgroupgap (value: int) = Interop.mkLayoutCandlestickAttr "boxgroupgap" value
+        /// Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have *width* set.
+        static member inline boxgroupgap (value: float) = Interop.mkLayoutCandlestickAttr "boxgroupgap" value
+
+    [<AutoOpen>]
+    module candlestick =
+        /// Determines how boxes at the same location coordinate are displayed on the graph. If *group*, the boxes are plotted next to one another centered around the shared location. If *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them multiple boxes. Has no effect on traces that have *width* set.
+        [<Erase>]
+        type boxmode =
+            static member inline group = Interop.mkLayoutCandlestickAttr "boxmode" "group"
+            static member inline overlay = Interop.mkLayoutCandlestickAttr "boxmode" "overlay"
+
+    [<Erase>]
+    type barpolar =
+        /// Sets the gap between bars of adjacent location coordinates. Values are unitless, they represent fractions of the minimum difference in bar positions in the data.
+        static member inline bargap (value: int) = Interop.mkLayoutBarpolarAttr "bargap" value
+        /// Sets the gap between bars of adjacent location coordinates. Values are unitless, they represent fractions of the minimum difference in bar positions in the data.
+        static member inline bargap (value: float) = Interop.mkLayoutBarpolarAttr "bargap" value
+
+    [<AutoOpen>]
+    module barpolar =
+        /// Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+        [<Erase>]
+        type barmode =
+            static member inline overlay = Interop.mkLayoutBarpolarAttr "barmode" "overlay"
+            static member inline stack = Interop.mkLayoutBarpolarAttr "barmode" "stack"
 

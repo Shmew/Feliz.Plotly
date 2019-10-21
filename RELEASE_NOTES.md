@@ -30,3 +30,6 @@
 
 ### 0.4.1 - Saturday, October 19, 2019
 * Fix package metadata
+
+### 0.5.0 - Monday, October 21, 2019
+* Added support for layout specific attributes

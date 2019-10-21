@@ -12,7 +12,7 @@ module ParserUtils =
     let schema =
         File.readAsString (__SOURCE_DIRECTORY__ @@ "../../paket-files/generator/plotly/plotly.js/dist/plot-schema.json")
         |> JsonValue.Parse
-
+    
     /// Returns `true` if the `JsonValue` is a component
     let private isComp (jVal: JsonValue) =
         jVal
@@ -41,6 +41,15 @@ module ParserUtils =
         else getPropDoc jVal
         |> List.map (fun s -> s.Trim().Trim('"'))
         |> List.filter (fun s -> s <> "")
+
+    let trimBypass (s: string) =
+        if s.EndsWith("_BYPASS") then s.Substring(0,s.Length-7)
+        else s
+
+    let trimBypassWith (s: string) trueFun falseFun =
+        if s.EndsWith("_BYPASS") then 
+            s.Substring(0,s.Length-7) |> trueFun
+        else falseFun s
 
 module rec ApiParser =
     open ParserUtils
@@ -138,65 +147,119 @@ module rec ApiParser =
 
     /// Parses a `JsonValue` with given information and returns a `Component`
     let parseComponent (parentTree: string list) (componentName: string) (jVal: JsonValue) =
-        let skipComp = [ "_deprecated"; "_isSubplotObj" ]
-        let jumpComp = [ "attributes"; "layoutAttributes"; "items" ]
+        let skipComp = [ "_deprecated"; "_isSubplotObj"; "layoutAttributes" ]
+        let jumpComp = [ "attributes"; "items" ]
+        let jumpCompIf = [ ("Layout", "layoutAttributes") ]
         let jumpArrayComp = [ "annotations" ]
+        let parentTree = parentTree |> List.map trimBypass
 
-        let jumpAttributes (props: (string * JsonValue) []) =
+        let filterAttributes (props: (string * JsonValue) []) =
+            let isJumpCompIf name =
+                List.contains name (jumpCompIf |> List.map snd) 
+                && List.contains parentTree.Head (jumpCompIf |> List.map fst)
+
             props
             |> Array.collect
                 (Array.singleton
                  >> (fun prop ->
                  match prop |> Array.head with
+                 | attribs when attribs |> fst |> isJumpCompIf  ->
+                        attribs
+                        |> snd
+                        |> fun j -> true, j.Properties
                  | attribs when List.contains (attribs |> fst) jumpComp ->
                      attribs
                      |> snd
-                     |> fun j -> j.Properties
-                 | _ -> prop)
-                 >> (Array.filter (fun p -> Array.contains (fst p) (skipComp |> Array.ofList) |> not)))
+                     |> fun j -> false, j.Properties
+                 | _ -> false, prop)
+                 >> (fun (bypassSkip,prop) -> 
+                    if bypassSkip then 
+                        prop
+                        |> Array.filter (fun p -> 
+                            Array.contains (fst p) 
+                                ((skipComp 
+                                 |> List.filter (fun skip -> List.contains skip (jumpCompIf |> List.map snd) |> not )) 
+                                 |> Array.ofList) 
+                            |> not)
+                    else
+                        prop 
+                        |> Array.filter (fun p -> Array.contains (fst p) (skipComp |> Array.ofList) |> not) ))
 
         let props =
             jVal.Properties
-            |> Array.filter (fun (name, _) -> List.contains name skipComp |> not)
-            |> jumpAttributes
+            |> filterAttributes
             |> Array.map (fun p -> p ||> parseProp parentTree)
 
         let addProps comp = (comp, props) ||> Array.fold (flip Component.addProp)
 
-        Component.create componentName
-        |> Component.setDocs (getDocs jVal)
-        |> Component.addParentComponentTree parentTree
-        |> addProps
-        |> fun comp ->
-            match comp.ParentNameTree.Head = "Data" && comp.ParentNameTree.Length = 2, jVal.TryGetProperty("type") with
-            | true, Some t ->
-                let traceType = t.AsString()
-                let propsCodes =
-                    [ sprintf "(createObj !!(properties @ [ Interop.mkData%sAttr \"type\" \"%s\" ]))" (traceType |> String.upperFirst) componentName ]
+        trimBypassWith componentName (fun compName ->
+            compName
+            |> Component.create
+            |> Component.setDocs (getDocs jVal)
+            |> Component.addParentComponentTree parentTree
+            |> addProps
+            |> fun comp ->
+                let propsCode =
+                    [ "(createObj !!(properties |> List.map (Bindings.getKV)))" ]
 
-                let paramFuns =
-                    [ sprintf "(properties: I%sProperty list)" ]
-
-                comp.Overloads 
-                |> List.map2 ComponentOverload.setPropsCode propsCodes
-                |> List.map2 ComponentOverload.setParamFun paramFuns
-                |> List.map (ComponentOverload.setSkipAttr true)
+                comp.Overloads
+                |> List.map2 ComponentOverload.setPropsCode propsCode
                 |> fun overloads -> { comp with Overloads = overloads }
-            | _ -> 
-                if List.contains componentName jumpArrayComp then
-                    let propsCode =
-                        [ "(properties |> Seq.map (Bindings.getKV >> snd) |> Array.ofSeq)" ]
+            )
+            (fun compName ->
+                Component.create compName
+                |> Component.setDocs (getDocs jVal)
+                |> Component.addParentComponentTree parentTree
+                |> addProps
+                |> fun comp ->
+                    match comp.ParentNameTree.Head = "Data" && comp.ParentNameTree.Length = 2, jVal.TryGetProperty("type") with
+                    | true, Some t ->
+                        let traceType = t.AsString()
+                        let propsCodes =
+                            [ sprintf "(createObj !!(properties @ [ Interop.mkData%sAttr \"type\" \"%s\" ]))" (traceType |> String.upperFirst) compName ]
+
+                        let paramFuns =
+                            [ sprintf "(properties: I%sProperty list)" ]
+
+                        comp.Overloads 
+                        |> List.map2 ComponentOverload.setPropsCode propsCodes
+                        |> List.map2 ComponentOverload.setParamFun paramFuns
+                        |> List.map (ComponentOverload.setSkipAttr true)
+                        |> fun overloads -> { comp with Overloads = overloads }
+                    | _ -> 
+                        if List.contains compName jumpArrayComp then
+                            let propsCode =
+                                [ "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)" ]
                     
-                    comp.Overloads
-                    |> List.map2 ComponentOverload.setPropsCode propsCode
-                    |> fun overloads -> { comp with Overloads = overloads }
-                else comp
+                            comp.Overloads
+                            |> List.map2 ComponentOverload.setPropsCode propsCode
+                            |> fun overloads -> { comp with Overloads = overloads }
+                        else comp)
+
+    let getAllAttributes (property: string) (parent: string) =
+        let rec getlayoutAttributes attribList parent (jVal: JsonValue) =
+            match jVal.TryGetProperty(property) with
+            | Some attrib -> [| parent ,attrib |]
+            | None ->
+                let nextJsonValues = jVal.Properties
+                Array.append attribList (Array.collect (fun (pName,j) -> getlayoutAttributes [||] pName j) nextJsonValues)
+
+        getlayoutAttributes [||] "" schema |> Array.distinct
+        |> Array.groupBy fst
+        |> Array.partition (fst >> ((=) parent))
+        ||> fun layoutJsonArr othersArr ->
+            let layoutJson = layoutJsonArr |> Array.collect (snd >> Array.collect (snd >> JsonExtensions.Properties))
+            let othersJson = othersArr |> Array.collect (snd >> Array.map (fun (name, j) -> sprintf "%s_BYPASS" name, j))
+
+            (property, (Array.append layoutJson othersJson |> JsonValue.Record))
+            |> Array.singleton
+        |> JsonValue.Record
 
     /// Parse the Plotly.js json schema
     let parseApi() =
         let components =
             [ schema?config |> parseComponent [ "Config" ] "config"
-              schema?layout |> parseComponent [ "Layout" ] "layout"
+              getAllAttributes "layoutAttributes" "layout" |> parseComponent [ "Layout" ] "layout"
               schema?traces |> parseComponent [ "Data" ] "data" ]
 
         let addAllComponents api = (api, components) ||> List.fold (flip ComponentApi.addComponent)
