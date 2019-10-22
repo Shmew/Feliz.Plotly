@@ -50,7 +50,6 @@ let chart () =
                         title.font.color (colors.rgb(107, 107, 107))
                     ]
                 ]
-                 
                 layout.yaxis.tickfont [ 
                     yaxis.tickfont.size 16
                     yaxis.tickfont.color (colors.rgb(107, 107, 107))
