@@ -49,10 +49,11 @@ let chart () =
                         title.font.size 16
                         title.font.color (colors.rgb(107, 107, 107))
                     ]
-                    //yaxis.tickfont [  // Having trouble resolving the namespace
-                    //    tickfont.size 16
-                    //    tickfont.color (colors.rgb(107, 107, 107))
-                    //]
+                ]
+                 
+                layout.yaxis.tickfont [ 
+                    yaxis.tickfont.size 16
+                    yaxis.tickfont.color (colors.rgb(107, 107, 107))
                 ]
             ]
             layout.legend [
