@@ -29,6 +29,13 @@ let [<Literal>] MarkerSizeColorAndSymbolArray = "MarkerSizeColorAndSymbolArray"
 // Dot Examples
 let [<Literal>] Dot = "Dot"
 
+// Filled Area Examples
+let [<Literal>] FilledArea = "FilledArea"
+let [<Literal>] OverlaidWithoutBoundary = "OverlaidWithoutBoundary"
+let [<Literal>] StackedArea = "StackedArea"
+let [<Literal>] NormalizedStackedArea = "NormalizedStackedArea"
+let [<Literal>] SelectHover = "SelectHover"
+
 // Line Examples
 let [<Literal>] Line = "Line"
 let [<Literal>] ColoredAndStyledScatter = "ColoredAndStyledScatter"

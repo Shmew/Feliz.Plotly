@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\FilledArea\Basic.fs" />
+    <Compile Include="Plotly\Examples\FilledArea\OverlaidWithoutBoundary.fs" />
+    <Compile Include="Plotly\Examples\FilledArea\StackedArea.fs" />
+    <Compile Include="Plotly\Examples\FilledArea\NormalizedStackedArea.fs" />
+    <Compile Include="Plotly\Examples\FilledArea\SelectHover.fs" />
     <Compile Include="Plotly\Examples\Bar\Basic.fs" />
     <Compile Include="Plotly\Examples\Bar\Grouped.fs" />
     <Compile Include="Plotly\Examples\Bar\Stacked.fs" />

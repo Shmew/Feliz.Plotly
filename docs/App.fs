@@ -47,39 +47,63 @@ let update msg state =
         | None -> { state with CurrentTab = None }, Cmd.none
 
 let samples = 
-    [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
-      "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
-      "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
-      "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart()
-      "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart()
-      "plotly-chart-bubble-hovertext", Samples.Bubble.HoverText.chart()
-      "plotly-chart-bubble-markersizeandcolor", Samples.Bubble.MarkerSizeAndColor.chart()
-      "plotly-chart-bubble-sizescaling", Samples.Bubble.SizeScaling.chart()
-      "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart()
-      "plotly-chart-dot-basic", Samples.Dot.Basic.chart()
-      "plotly-chart-line-basic", Samples.Line.Basic.chart()
-      "plotly-chart-line-namedlineandscatter", Samples.Line.NamedLineAndScatter.chart()
-      "plotly-chart-line-lineandscatterstyling", Samples.Line.LineAndScatterStyling.chart()
-      "plotly-chart-line-stylinglineplot", Samples.Line.StylingLinePlot.chart()
-      "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart()
-      "plotly-chart-line-lineshapeoptionsinterpolation", Samples.Line.LineShapeOptionsInterpolation.chart()
-      "plotly-chart-line-graphandaxestitles", Samples.Line.GraphAndAxesTitles.chart()
-      "plotly-chart-line-linedash", Samples.Line.LineDash.chart()
-      "plotly-chart-line-connectgapsbetweendata", Samples.Line.ConnectGapsBetweenData.chart()
-      "plotly-chart-line-labellinglineswithannotations", Samples.Line.LabellingLinesWithAnnotations.chart()
-      "plotly-chart-bar-basic", Samples.Bar.Basic.chart()
-      "plotly-chart-bar-grouped", Samples.Bar.Grouped.chart()
-      "plotly-chart-bar-stacked", Samples.Bar.Stacked.chart()
-      "plotly-chart-bar-hovertext", Samples.Bar.HoverText.chart()
-      "plotly-chart-bar-directlabels", Samples.Bar.DirectLabels.chart()
-      "plotly-chart-bar-groupeddirectlabels", Samples.Bar.GroupedDirectLabels.chart()
-      "plotly-chart-bar-rotatedlabels", Samples.Bar.RotatedLabels.chart()
-      "plotly-chart-bar-colors", Samples.Bar.Colors.chart()
-      "plotly-chart-bar-widths", Samples.Bar.Widths.chart()
-      "plotly-chart-bar-base", Samples.Bar.Base.chart()
-      "plotly-chart-bar-coloredandstyled", Samples.Bar.ColoredAndStyled.chart()
-      "plotly-chart-bar-waterfall", Samples.Bar.Waterfall.chart()
-      "plotly-chart-bar-relativebarmode", Samples.Bar.RelativeBarmode.chart() ]
+    let scatter =
+        [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
+          "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
+          "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
+          "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart() ]
+        
+    let bubble =
+        [ "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart()
+          "plotly-chart-bubble-hovertext", Samples.Bubble.HoverText.chart()
+          "plotly-chart-bubble-markersizeandcolor", Samples.Bubble.MarkerSizeAndColor.chart()
+          "plotly-chart-bubble-sizescaling", Samples.Bubble.SizeScaling.chart()
+          "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart() ]
+
+    let dot =
+        [ "plotly-chart-dot-basic", Samples.Dot.Basic.chart() ]
+
+    let line = 
+        [ "plotly-chart-line-basic", Samples.Line.Basic.chart()
+          "plotly-chart-line-namedlineandscatter", Samples.Line.NamedLineAndScatter.chart()
+          "plotly-chart-line-lineandscatterstyling", Samples.Line.LineAndScatterStyling.chart()
+          "plotly-chart-line-stylinglineplot", Samples.Line.StylingLinePlot.chart()
+          "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart()
+          "plotly-chart-line-lineshapeoptionsinterpolation", Samples.Line.LineShapeOptionsInterpolation.chart()
+          "plotly-chart-line-graphandaxestitles", Samples.Line.GraphAndAxesTitles.chart()
+          "plotly-chart-line-linedash", Samples.Line.LineDash.chart()
+          "plotly-chart-line-connectgapsbetweendata", Samples.Line.ConnectGapsBetweenData.chart()
+          "plotly-chart-line-labellinglineswithannotations", Samples.Line.LabellingLinesWithAnnotations.chart() ]
+
+    let bar =
+        [ "plotly-chart-bar-basic", Samples.Bar.Basic.chart()
+          "plotly-chart-bar-grouped", Samples.Bar.Grouped.chart()
+          "plotly-chart-bar-stacked", Samples.Bar.Stacked.chart()
+          "plotly-chart-bar-hovertext", Samples.Bar.HoverText.chart()
+          "plotly-chart-bar-directlabels", Samples.Bar.DirectLabels.chart()
+          "plotly-chart-bar-groupeddirectlabels", Samples.Bar.GroupedDirectLabels.chart()
+          "plotly-chart-bar-rotatedlabels", Samples.Bar.RotatedLabels.chart()
+          "plotly-chart-bar-colors", Samples.Bar.Colors.chart()
+          "plotly-chart-bar-widths", Samples.Bar.Widths.chart()
+          "plotly-chart-bar-base", Samples.Bar.Base.chart()
+          "plotly-chart-bar-coloredandstyled", Samples.Bar.ColoredAndStyled.chart()
+          "plotly-chart-bar-waterfall", Samples.Bar.Waterfall.chart()
+          "plotly-chart-bar-relativebarmode", Samples.Bar.RelativeBarmode.chart() ]
+
+    let filledArea =
+        [ "plotly-chart-filledarea-basic", Samples.FilledArea.Basic.chart()
+          "plotly-chart-filledarea-overlaidwithoutboundary", Samples.FilledArea.OverlaidWithoutBoundary.chart()
+          "plotly-chart-filledarea-stackedarea", Samples.FilledArea.StackedArea.chart()
+          "plotly-chart-filledarea-normalizedstackedarea", Samples.FilledArea.NormalizedStackedArea.chart()
+          "plotly-chart-filledarea-selecthover", Samples.FilledArea.SelectHover.chart() ]
+
+    [ scatter
+      bubble
+      dot
+      line
+      bar
+      filledArea ]
+    |> List.concat
 
 let githubPath (rawPath: string) =
     let parts = rawPath.Split('/')
@@ -316,6 +340,13 @@ let sidebar (state: State) dispatch =
                         menuItem "Waterfall" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Waterfall ]
                         menuItem "Relative Barmode" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RelativeBarmode ]
                     ]
+                    nestedMenuList "Filled Area" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.Basic ]
+                        menuItem "Overlaid Without Boundary" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.OverlaidWithoutBoundary ]
+                        menuItem "Stacked Area" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.StackedArea ]
+                        menuItem "Normalized Stacked Area" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.NormalizedStackedArea ]
+                        menuItem "Select Hover" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.SelectHover ]
+                    ]
                 ]
             ]
         ]
@@ -371,6 +402,11 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.ColoredAndStyled ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "ColoredAndStyled.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Waterfall ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Waterfall.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RelativeBarmode ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "RelativeBarmode.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.OverlaidWithoutBoundary ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "OverlaidWithoutBoundary.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.StackedArea ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "StackedArea.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.NormalizedStackedArea ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "NormalizedStackedArea.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.SelectHover ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "SelectHover.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =
