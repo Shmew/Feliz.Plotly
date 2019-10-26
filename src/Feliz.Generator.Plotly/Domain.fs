@@ -90,11 +90,6 @@ module rec Domain =
         | String of bool
         | Component
 
-    [<RequireQualifiedAccess>]
-    type PropType =
-        | Val of ValType
-        | Component of PropType list
-
     module ValType =
         open FSharp.Data
         open FSharp.Data.JsonExtensions
@@ -107,6 +102,7 @@ module rec Domain =
         let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
         let floatStr = "(value: float)", "value"
         let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
+        let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
 
         let getPrimativeOverloadSeq =
             function
@@ -177,7 +173,7 @@ module rec Domain =
             | _ -> ValType.Component
 
         /// Returns a list of primative overloads for the `ValType`
-        let getOverloadStrings (vType: ValType) =
+        let getOverloadStrings (compName: string) (vType: ValType) =
             match vType with
             | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
             | ValType.Bool b -> [ boolStr; if b then boolSeqStr ]
@@ -197,11 +193,12 @@ module rec Domain =
             | ValType.Number b -> [ intStr; floatStr; if b then yield! [intSeqStr; floatSeqStr] ]
             | ValType.NumList vt -> getPrimativeOverloadSeq vt
             | ValType.String b -> [ stringStr; if b then stringSeqStr ]
-            | ValType.Component -> []
+            | ValType.Component -> [ compStr compName ]
 
         let isPrimative (vType: ValType) =
             match vType with
             | ValType.Enumerated
+            | ValType.EnumeratedArray
             | ValType.EnumeratedWithCustom
             | ValType.FlagList
             | ValType.Component -> false
@@ -218,8 +215,6 @@ module rec Domain =
           RegularOverloads: RegularPropOverload list
           /// The prop overloads.
           EnumOverloads: EnumPropOverload list
-          /// Components within the prop
-          Components: Component list
           /// The list of parent components
           ParentNameTree: string list
           /// The data type of the prop
@@ -234,7 +229,6 @@ module rec Domain =
               MethodName = methodName
               RegularOverloads = []
               EnumOverloads = []
-              Components = []
               ParentNameTree = []
               PropType = propType }
 
@@ -246,9 +240,6 @@ module rec Domain =
 
         /// Adds the specified enum value/overload to the prop.
         let addEnumOverload overload prop = { prop with EnumOverloads = prop.EnumOverloads @ [ overload ] }
-
-        /// Adds the specified component to the prop.
-        let addComponent comp (prop: Prop) = { prop with Components = prop.Components @ [ comp ] }
 
         /// Adds the specified component tree to the prop.
         let addParentComponentTree (tree: string list) (prop: Prop) =

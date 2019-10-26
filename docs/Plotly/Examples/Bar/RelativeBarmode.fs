@@ -4,28 +4,25 @@ module Samples.Bar.RelativeBarmode
 open Feliz
 open Feliz.Plotly
 
-module xaxis = Plotly.layout.xaxis
-module yaxis = Plotly.layout.yaxis
-
 let chart () =
     Plotly.plot [
-        plot.data [
-            data.bar [
+        plot.traces [
+            traces.bar [
                 bar.x [ 1; 2; 3; 4 ]
                 bar.y [ 1; 4; 9; 16 ]
                 bar.name "Trace1"
             ]
-            data.bar [
+            traces.bar [
                 bar.x [ 1; 2; 3; 4 ]
                 bar.y [ 6.; -8.; -4.5; 8. ]
                 bar.name "Trace2"
             ]
-            data.bar [
+            traces.bar [
                 bar.x [ 1; 2; 3; 4 ]
                 bar.y [ -15.; -3.; 4.5; -8.]
                 bar.name "Trace3"
             ]
-            data.bar [
+            traces.bar [
                 bar.x [ 1; 2; 3; 4 ]
                 bar.y [ -1; 3; -3; -4 ]
                 bar.name "Trace4"
@@ -33,20 +30,18 @@ let chart () =
         ]
         plot.layout [
             layout.xaxis [
-                layout.xaxis.title [
-                    xaxis.title.text "X axis"
+                xaxis.title [
+                    title.text "X axis"
                 ]
             ]
             layout.yaxis [
-                layout.yaxis.title [
-                    yaxis.title.text "Y axis"
+                yaxis.title [
+                    title.text "Y axis"
                 ]
             ]
-            layout.bar [
-                layout.bar.barmode.relative
-            ]
+            layout.barmode.relative
             layout.title [
-                layout.title.text "Relative Barmode"
+                title.text "Relative Barmode"
             ]
         ]
     ]

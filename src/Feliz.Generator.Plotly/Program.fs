@@ -12,6 +12,8 @@ module Program =
         let typesFile = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Types.fs"
         let propsDir = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Props"
 
+        Shell.cleanDir propsDir
+
         Render.componentDocument api.GeneratorComponentApi |> File.writeString false plotlyFile
 
         Render.interopDocument api.GeneratorComponentApi |> File.writeString false interopFile

@@ -33,3 +33,7 @@
 
 ### 0.5.0 - Monday, October 21, 2019
 * Added support for layout specific attributes
+
+### 0.6.0 - Friday, October 25, 2019
+* Reimplemented code generation to be significantly smaller and easier to use. 
+  No more namespace collisions, as well as fixed some issues with layoutAttribute specific values.

@@ -10,40 +10,40 @@ let yData2 = [ 24; 16; 20 ]
 
 let chart () =
     Plotly.plot [
-        plot.data [
-            data.bar [
+        plot.traces [
+            traces.bar [
                 bar.x xData
                 bar.y yData
                 bar.text (yData |> List.map string)
                 bar.textposition.auto
                 bar.hoverinfo.none
                 bar.marker [
-                    bar.marker.color (colors.rgb(158, 202, 225))
-                    bar.marker.opacity 0.6
-                    bar.marker.line [
-                        marker.line.color (colors.rgb(8, 48, 107))
-                        marker.line.width 1.5
+                    marker.color (colors.rgb(158, 202, 225))
+                    marker.opacity 0.6
+                    marker.line [
+                        line.color (colors.rgb(8, 48, 107))
+                        line.width 1.5
                     ]
                 ]
             ]
-            data.bar [
+            traces.bar [
                 bar.x xData
                 bar.y yData2
                 bar.text (yData |> List.map string)
                 bar.textposition.auto
                 bar.hoverinfo.none
                 bar.marker [
-                    bar.marker.color (colors.rgba(58, 200, 224, 0.5))
-                    bar.marker.line [
-                        marker.line.color (colors.rgb(8, 48, 107))
-                        marker.line.width 1.5
+                    marker.color (colors.rgba(58, 200, 224, 0.5))
+                    marker.line [
+                        line.color (colors.rgb(8, 48, 107))
+                        line.width 1.5
                     ]
                 ]
             ]
         ]
         plot.layout [
             layout.title [
-                layout.title.text "January 2013 Sales Report"
+                title.text "January 2013 Sales Report"
             ]
         ]
     ]

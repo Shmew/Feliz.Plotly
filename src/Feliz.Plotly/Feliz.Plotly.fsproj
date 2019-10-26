@@ -10,9 +10,7 @@
     <Compile Include="Types.fs" />
     <Compile Include="Interop.fs" />
     <Compile Include="Bindings.fs" />
-    <Compile Include="Props\Config.fs" />
-    <Compile Include="Props\Data.fs" />
-    <Compile Include="Props\Layout.fs" />
+    <Compile Include="Props\*.fs" />
     <Compile Include="Plotly.fs" />
     <None Include="paket.references" />
     <None Include="paket.template" />

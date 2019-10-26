@@ -16,12 +16,6 @@ module Render =
                 tree.Head |> List.singleton
             | tree -> tree
 
-        /// Returns the head and tail of a string list as a new list if the length is over the threshold
-        let private firstLastTree (threshold: int) (parentTree: string list) =
-            if parentTree.Length > threshold then
-                [ parentTree.Head; parentTree |> List.last ]
-            else parentTree
-
         /// Gets the code lines for the implementation of a single component overload.
         /// Does not include docs.
         let singleComponentOverload (comp: Component) (compOverload: ComponentOverload) =
@@ -67,10 +61,13 @@ module Render =
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
+            let attrValue =
+                if prop.PropType = ValType.Component then prop.ParentNameTree |> List.head 
+                else (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "")
             let bodyCode =
                 match propOverload.BodyCode with
                 | ValueExprOnly expr ->
-                    sprintf "Interop.mk%sAttr \"%s\" %s" (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "") prop.RealPropName
+                    sprintf "Interop.mk%sAttr \"%s\" %s" attrValue prop.RealPropName
                         expr
                 | CustomBody code -> code
             sprintf "static member %s%s %s = %s"
@@ -80,13 +77,7 @@ module Render =
         /// Builds the base interface for enumerable props
         let enumBaseInterface (prop: Prop) =
             prop.ParentNameTree
-            |> trimTreeToHead 4
-            |> function
-            | tree when tree.Length = 2 -> 
-                tree |> List.filter (fun s -> s <> (prop.MethodName |> String.upperFirst))
-            | tree when tree.Length > 2 && prop.PropType <> ValType.EnumeratedArray ->
-                tree |> (List.rev >> List.tail >> List.rev)
-            | tree -> tree
+            |> trimTreeToHead 1
             |> String.concat ""
 
         /// Gets the code lines for the implementation of a single regular (non-enum)
@@ -101,14 +92,6 @@ module Render =
             |> emptStringToNone
             |> List.singleton
 
-        /// Gets all props within a `Component`
-        let getCompProps (comp: Component) =
-            comp.Props
-            |> List.choose (fun p ->
-                if p.Components.IsEmpty then None
-                else Some [ p.Components ])
-            |> (List.concat >> List.concat)
-
         /// Builds non-extension prop strings for a given component
         let regularNonExtensionPropsForComponent (comp: Component) indentLevel =
             let propsAndRegularNonExtensionOverloads =
@@ -118,26 +101,14 @@ module Render =
                     if regularNonExtensionOverloads.IsEmpty then None
                     else Some(p, regularNonExtensionOverloads))
 
-            let compProps = getCompProps comp
-
-            match propsAndRegularNonExtensionOverloads.IsEmpty, compProps.IsEmpty with
-            | true, true -> []
-            | true, false ->
-                [ "[<Erase>]" |> indent indentLevel
-                  sprintf "type %s = " comp.MethodName |> indent indentLevel
-                  for comp in compProps do
-                      for overload in comp.Overloads do
-                          yield! singleComponentOverload comp overload |> List.map (indent (indentLevel + 1)) ]
-            | _ ->
+            match propsAndRegularNonExtensionOverloads.IsEmpty with
+            | true -> []
+            | false ->
                 let allOverloadsAreInline =
                     propsAndRegularNonExtensionOverloads
                     |> List.forall (fun (_, os) -> os |> List.forall (fun o -> o.IsInline))
                 [ if allOverloadsAreInline then "[<Erase>]" |> indent indentLevel
                   sprintf "type %s =" comp.MethodName |> indent indentLevel
-
-                  for comp in compProps do
-                      for overload in comp.Overloads do
-                          yield! singleComponentOverload comp overload |> List.map (indent (indentLevel + 1))
 
                   for prop, overloads in propsAndRegularNonExtensionOverloads do
                       for overload in overloads do
@@ -216,7 +187,6 @@ module Render =
             let regularProps = regularNonExtensionPropsForComponent comp indentStart
             let regularExtensionProps = regularExtensionPropsForComponent comp indentStart
             let enumProps = enumPropsForComponent comp indentStart
-            let compProps = getCompProps comp |> List.collect (propsForComponent (indentStart + 1))
 
             [ if not regularProps.IsEmpty then
                 yield! regularProps
@@ -224,127 +194,43 @@ module Render =
               if not regularExtensionProps.IsEmpty then
                   yield! regularExtensionProps
                   ""
-              if enumProps.Length + compProps.Length > 0 then
+              if enumProps.Length > 0 then
                   sprintf "[<AutoOpen>]" |> indent indentStart
                   sprintf "module %s =" comp.MethodName |> indent indentStart
-              yield! enumProps
-              yield! compProps ]
+              yield! enumProps ]
 
-        /// Gets all component strings for a component
-        let rec subComponentsForComponent depth (comp: Component) =
-            let actualDepth = depth + 1
+        let propHeadStrings (strFun: string -> string) (comp: Component) =
+            let propStr (prop: Prop) =
+                if not prop.RegularOverloads.IsEmpty || not prop.EnumOverloads.IsEmpty then
+                    prop.ParentNameTree
+                    |> List.head
+                    |> strFun
+                    |> List.singleton
+                else
+                    []
 
-            let compComps = getCompProps comp |> List.collect (subComponentsForComponent actualDepth)
-
-            if depth = 0 then []
-            else [ comp ]
-            |> List.append compComps
-
-        /// Gets all distict components within a component list based on the `ParentNameTree` and method name
-        let private getComponentsDistinctParentAndMethod (comps: Component list) =
-            comps
-            |> List.collect (subComponentsForComponent 0)
-            |> List.append comps
-            |> List.distinctBy (fun c -> ((c.ParentNameTree |> String.concat ""), c.MethodName))
+            comp.Props
+            |> List.collect propStr
 
         /// Builds the interface strings from a `Component list`
         let buildInterfaces (comps: Component list) =
-            let buildInterfaceStrs (comp: Component) =
-                let interfaceCompStr (comp: Component) =
-                    comp.ParentNameTree
-                    |> List.distinct
-                    |> firstLastTree 3
-                    |> String.concat ""
-                    |> sprintf "type I%sProperty = interface end"
-
-                let interfacePropStr (prop: Prop) =
-                    let enumAttrs =
-                        if not prop.EnumOverloads.IsEmpty then
-                            if prop.ParentNameTree.Length <= 4 then
-                                prop.ParentNameTree
-                                |> (List.rev
-                                    >> List.tail
-                                    >> List.rev)
-                            else prop.ParentNameTree
-                            |> (firstLastTree 4 >> String.concat "")
-                            |> List.singleton
-                        else
-                            []
-
-                    let regularAttrs =
-                        if not prop.RegularOverloads.IsEmpty then
-                            prop.ParentNameTree
-                            |> firstLastTree 4
-                            |> String.concat ""
-                            |> List.singleton
-                        else
-                            []
-
-                    enumAttrs @ regularAttrs |> List.map (sprintf "type I%sProperty = interface end")
-
-
-                [ yield! comp.Props |> List.collect interfacePropStr
-                  interfaceCompStr comp ]
-                |> List.map (indent 1)
+            let baseInterfaceStr s =
+                sprintf "type I%sProperty = interface end" s
+                |> indent 1
 
             comps
-            |> getComponentsDistinctParentAndMethod
-            |> List.collect buildInterfaceStrs
+            |> List.collect (propHeadStrings baseInterfaceStr)
             |> List.distinct
             |> List.sort
 
         /// Builds the interop strings from a `Component list`
         let buildInterops (comps: Component list) =
-            let buildInteropStrs (comp: Component) =
-                let interopCompStr (comp: Component) =
-                    comp.ParentNameTree @ [ comp.MethodName |> String.upperFirst ]
-                    |> List.distinct
-                    |> firstLastTree 3
-                    |> String.concat ""
-                    |> fun prop ->
-                        sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" 
-                            prop prop
-
-                let interopPropStr (prop: Prop) =
-                    let enumAttrs =
-                        if not prop.EnumOverloads.IsEmpty then
-                            if prop.ParentNameTree.Length <= 4 then
-                                prop.ParentNameTree
-                                |> (List.rev
-                                    >> List.tail
-                                    >> List.rev)
-                            else prop.ParentNameTree
-                            |> (firstLastTree 4 >> String.concat "")
-                            |> fun prop ->
-                                sprintf
-                                    "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
-                                    prop prop
-                            |> List.singleton
-                        else
-                            []
-
-                    let regularAttrs =
-                        if not prop.RegularOverloads.IsEmpty then
-                            prop.ParentNameTree
-                            |> (firstLastTree 4 >> String.concat "")
-                            |> fun prop ->
-                                sprintf
-                                    "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
-                                    prop prop
-                            |> List.singleton
-                        else
-                            []
-
-                    enumAttrs @ regularAttrs
-
-
-                [ yield! comp.Props |> List.collect interopPropStr
-                  interopCompStr comp ]
-                |> List.map (indent 1)
+            let baseInteropStr s =
+                sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" s s
+                |> indent 1
 
             comps
-            |> getComponentsDistinctParentAndMethod
-            |> List.collect buildInteropStrs
+            |> List.collect (propHeadStrings baseInteropStr)
             |> List.distinct
             |> List.sort
 

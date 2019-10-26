@@ -12,7 +12,7 @@ module Bindings =
 
     let getKV value : string * obj = unbox value
 
-    let extractData (properties: #IDataProperty list) =
+    let extractTraces (properties: #ITracesProperty list) =
         properties 
         |> List.map (getKV >> snd) 
         |> ResizeArray 

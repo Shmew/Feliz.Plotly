@@ -12,8 +12,8 @@ open Feliz
 
 [<Erase>]
 type plot =
-    /// Create the plotly data sets
-    static member inline data (properties: #IDataProperty list) = Bindings.extractData properties
+    /// Create the plotly traces
+    static member inline traces (properties: #ITracesProperty list) = Bindings.extractTraces properties
     /// Create the plotly config
     static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr "config" (createObj !!properties)
     /// Create the plotly layout
