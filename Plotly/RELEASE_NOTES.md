@@ -37,3 +37,6 @@
 ### 0.6.0 - Friday, October 25, 2019
 * Reimplemented code generation to be significantly smaller and easier to use. 
   No more namespace collisions, as well as fixed some issues with layoutAttribute specific values.
+
+### 0.6.1 - Saturday, October 26, 2019
+* Fix subplotid implementation
