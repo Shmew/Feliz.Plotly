@@ -158,7 +158,7 @@ type scatterpolar =
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScatterpolarAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScatterpolarAttr "unselected" (createObj !!properties)
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
-    static member inline subplot (values: seq<string>) = Interop.mkScatterpolarAttr "subplot" (values |> Array.ofSeq)
+    static member inline subplot (value: string) = Interop.mkScatterpolarAttr "subplot" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkScatterpolarAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .

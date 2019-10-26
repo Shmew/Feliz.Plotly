@@ -112,9 +112,9 @@ type carpet =
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
     static member inline color (value: string) = Interop.mkCarpetAttr "color" value
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (values: seq<string>) = Interop.mkCarpetAttr "xaxis" (values |> Array.ofSeq)
+    static member inline xaxis (value: string) = Interop.mkCarpetAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (values: seq<string>) = Interop.mkCarpetAttr "yaxis" (values |> Array.ofSeq)
+    static member inline yaxis (value: string) = Interop.mkCarpetAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkCarpetAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .

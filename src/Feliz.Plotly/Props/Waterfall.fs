@@ -194,9 +194,9 @@ type waterfall =
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
     static member inline alignmentgroup (value: string) = Interop.mkWaterfallAttr "alignmentgroup" value
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (values: seq<string>) = Interop.mkWaterfallAttr "xaxis" (values |> Array.ofSeq)
+    static member inline xaxis (value: string) = Interop.mkWaterfallAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (values: seq<string>) = Interop.mkWaterfallAttr "yaxis" (values |> Array.ofSeq)
+    static member inline yaxis (value: string) = Interop.mkWaterfallAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkWaterfallAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .

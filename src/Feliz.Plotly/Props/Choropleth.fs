@@ -120,9 +120,9 @@ type choropleth =
     static member inline showscale (value: bool) = Interop.mkChoroplethAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkChoroplethAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    static member inline coloraxis (values: seq<string>) = Interop.mkChoroplethAttr "coloraxis" (values |> Array.ofSeq)
+    static member inline coloraxis (value: string) = Interop.mkChoroplethAttr "coloraxis" value
     /// Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`, and so on.
-    static member inline geo (values: seq<string>) = Interop.mkChoroplethAttr "geo" (values |> Array.ofSeq)
+    static member inline geo (value: string) = Interop.mkChoroplethAttr "geo" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkChoroplethAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .

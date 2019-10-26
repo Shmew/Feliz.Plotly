@@ -132,11 +132,11 @@ type histogram2d =
     static member inline showscale (value: bool) = Interop.mkHistogram2dAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkHistogram2dAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    static member inline coloraxis (values: seq<string>) = Interop.mkHistogram2dAttr "coloraxis" (values |> Array.ofSeq)
+    static member inline coloraxis (value: string) = Interop.mkHistogram2dAttr "coloraxis" value
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (values: seq<string>) = Interop.mkHistogram2dAttr "xaxis" (values |> Array.ofSeq)
+    static member inline xaxis (value: string) = Interop.mkHistogram2dAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (values: seq<string>) = Interop.mkHistogram2dAttr "yaxis" (values |> Array.ofSeq)
+    static member inline yaxis (value: string) = Interop.mkHistogram2dAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkHistogram2dAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .

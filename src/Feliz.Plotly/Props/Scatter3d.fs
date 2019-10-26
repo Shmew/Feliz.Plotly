@@ -109,7 +109,7 @@ type scatter3d =
     static member inline errorY (properties: #IErrorYProperty list) = Interop.mkScatter3dAttr "error_y" (createObj !!properties)
     static member inline errorZ (properties: #IErrorZProperty list) = Interop.mkScatter3dAttr "error_z" (createObj !!properties)
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    static member inline scene (values: seq<string>) = Interop.mkScatter3dAttr "scene" (values |> Array.ofSeq)
+    static member inline scene (value: string) = Interop.mkScatter3dAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkScatter3dAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .

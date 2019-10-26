@@ -127,6 +127,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilledArea", "FilledArea", 
 		public\Plotly\Examples\FilledArea\StackedArea.md = public\Plotly\Examples\FilledArea\StackedArea.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HorizontalBar", "HorizontalBar", "{A8D175E9-3D68-4207-A9A6-D2DB03726E08}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\HorizontalBar\BarWithLinePlot.md = public\Plotly\Examples\HorizontalBar\BarWithLinePlot.md
+		public\Plotly\Examples\HorizontalBar\Basic.md = public\Plotly\Examples\HorizontalBar\Basic.md
+		public\Plotly\Examples\HorizontalBar\Colored.md = public\Plotly\Examples\HorizontalBar\Colored.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +170,7 @@ Global
 		{D86FF2C9-9DBC-49B2-A120-BC3307597EB3} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{4EE56625-1A9D-4886-B109-09EE33552ED7} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{9BEF5646-A611-41A5-9A7B-40B48CD1B6F3} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{A8D175E9-3D68-4207-A9A6-D2DB03726E08} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

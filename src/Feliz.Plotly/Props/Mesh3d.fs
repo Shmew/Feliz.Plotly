@@ -162,7 +162,7 @@ type mesh3d =
     static member inline showscale (value: bool) = Interop.mkMesh3dAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkMesh3dAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    static member inline coloraxis (values: seq<string>) = Interop.mkMesh3dAttr "coloraxis" (values |> Array.ofSeq)
+    static member inline coloraxis (value: string) = Interop.mkMesh3dAttr "coloraxis" value
     /// Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.
     static member inline opacity (value: int) = Interop.mkMesh3dAttr "opacity" value
     /// Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.
@@ -173,7 +173,7 @@ type mesh3d =
     static member inline lightposition (properties: #ILightpositionProperty list) = Interop.mkMesh3dAttr "lightposition" (createObj !!properties)
     static member inline lighting (properties: #ILightingProperty list) = Interop.mkMesh3dAttr "lighting" (createObj !!properties)
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    static member inline scene (values: seq<string>) = Interop.mkMesh3dAttr "scene" (values |> Array.ofSeq)
+    static member inline scene (value: string) = Interop.mkMesh3dAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkMesh3dAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .

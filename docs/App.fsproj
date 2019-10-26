@@ -4,6 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\HorizontalBar\Basic.fs" />
+    <Compile Include="Plotly\Examples\HorizontalBar\Colored.fs" />
+    <Compile Include="Plotly\Examples\HorizontalBar\BarWithLinePlot.fs" />
     <Compile Include="Plotly\Examples\FilledArea\Basic.fs" />
     <Compile Include="Plotly\Examples\FilledArea\OverlaidWithoutBoundary.fs" />
     <Compile Include="Plotly\Examples\FilledArea\StackedArea.fs" />

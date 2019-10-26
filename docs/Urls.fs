@@ -36,6 +36,11 @@ let [<Literal>] StackedArea = "StackedArea"
 let [<Literal>] NormalizedStackedArea = "NormalizedStackedArea"
 let [<Literal>] SelectHover = "SelectHover"
 
+// Horizontal Bar Examples
+let [<Literal>] HorizontalBar = "HorizontalBar"
+let [<Literal>] Colored = "Colored"
+let [<Literal>] BarWithLinePlot = "BarWithLinePlot"
+
 // Line Examples
 let [<Literal>] Line = "Line"
 let [<Literal>] ColoredAndStyledScatter = "ColoredAndStyledScatter"

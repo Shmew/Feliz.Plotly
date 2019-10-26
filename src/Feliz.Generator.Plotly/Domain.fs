@@ -163,7 +163,7 @@ module rec Domain =
                 | "integer" -> ValType.Int isArrayOk
                 | "number" -> ValType.Number isArrayOk
                 | "string" -> ValType.String isArrayOk
-                | "subplotid" -> ValType.String false |> ValType.List 
+                | "subplotid" -> ValType.String isArrayOk
                 | "enumerated" when isEnumeratedWithCustom() -> 
                     ValType.EnumeratedWithCustom
                 | "enumerated" -> 

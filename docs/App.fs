@@ -97,12 +97,18 @@ let samples =
           "plotly-chart-filledarea-normalizedstackedarea", Samples.FilledArea.NormalizedStackedArea.chart()
           "plotly-chart-filledarea-selecthover", Samples.FilledArea.SelectHover.chart() ]
 
+    let horiontalBar =
+        [ "plotly-chart-horizontalbar-basic", Samples.HorizontalBar.Basic.chart()
+          "plotly-chart-horizontalbar-colored", Samples.HorizontalBar.Colored.chart() ]
+          //"plotly-chart-horizontalbar-barwithlineplot", Samples.HorizontalBar.BarWithLinePlot.chart() ]
+
     [ scatter
       bubble
       dot
       line
       bar
-      filledArea ]
+      filledArea
+      horiontalBar ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -347,6 +353,11 @@ let sidebar (state: State) dispatch =
                         menuItem "Normalized Stacked Area" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.NormalizedStackedArea ]
                         menuItem "Select Hover" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.SelectHover ]
                     ]
+                    nestedMenuList "Horizontal Bar" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Basic ]
+                        menuItem "Colored" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Colored ]
+                        //menuItem "Bar With Line Plot" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.BarWithLinePlot ]
+                    ]
                 ]
             ]
         ]
@@ -407,6 +418,9 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.StackedArea ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "StackedArea.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.NormalizedStackedArea ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "NormalizedStackedArea.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.SelectHover ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "SelectHover.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Colored ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "Colored.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.BarWithLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "BarWithLinePlot.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

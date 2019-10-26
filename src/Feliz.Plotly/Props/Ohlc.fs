@@ -129,9 +129,9 @@ type ohlc =
     static member inline tickwidth (value: float) = Interop.mkOhlcAttr "tickwidth" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkOhlcAttr "hoverlabel" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (values: seq<string>) = Interop.mkOhlcAttr "xaxis" (values |> Array.ofSeq)
+    static member inline xaxis (value: string) = Interop.mkOhlcAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (values: seq<string>) = Interop.mkOhlcAttr "yaxis" (values |> Array.ofSeq)
+    static member inline yaxis (value: string) = Interop.mkOhlcAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkOhlcAttr "idssrc" value
     /// Sets the source reference on plot.ly for  customdata .
