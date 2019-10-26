@@ -4,27 +4,27 @@ Taken from [Plotly - Line Charts](https://plot.ly/javascript/line-charts/)
 
 ```fsharp:plotly-chart-line-namedlineandscatter
 [<RequireQualifiedAccess>]
-module Samples.Line.DataLabelsHover
+module Samples.Line.NamedLineAndScatter
 
 open Feliz
 open Feliz.Plotly
 
 let chart () =
     Plotly.plot [
-        plot.data [
-            data.scatter [
+        plot.traces [
+            traces.scatter [
                 scatter.x [ 1; 2; 3; 4 ]
                 scatter.y [ 10; 15; 13; 17 ]
                 scatter.mode.markers
                 scatter.name "Scatter"
             ]
-            data.scatter [
+            traces.scatter [
                 scatter.x [ 2; 3; 4; 5]
                 scatter.y [ 16; 5; 11; 9 ]
                 scatter.mode.lines
                 scatter.name "Lines"
             ]
-            data.scatter [
+            traces.scatter [
                 scatter.x [ 1; 2; 3; 4]
                 scatter.y [ 12; 9; 15; 12 ]
                 scatter.mode.markersAndLines
@@ -33,7 +33,7 @@ let chart () =
         ]
         plot.layout [
             layout.title [
-                layout.title.text "Adding Names to Line and Scatter Plot"
+                title.text "Adding Names to Line and Scatter Plot"
             ]
         ]
     ]

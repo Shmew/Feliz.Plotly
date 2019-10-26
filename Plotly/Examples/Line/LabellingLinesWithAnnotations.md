@@ -29,36 +29,32 @@ let lineSize = [ 2; 2; 4; 2 ]
 
 let labels = ["Television"; "Newspaper"; "Internet"; "Radio"]
 
-module layout = Plotly.layout
-module annotations = layout.annotations
-module xaxis = layout.xaxis
-
-let data' =
+let traces' =
     [ 0 .. 3 ]
     |> List.collect (fun i ->
-        [ data.scatter [
+        [ traces.scatter [
             scatter.x xData.[i]
             scatter.y yData.[i]
             scatter.mode.lines
             scatter.line [
-                scatter.line.color plotColors.[i]
-                scatter.line.width lineSize.[i]
+                line.color plotColors.[i]
+                line.width lineSize.[i]
             ]
           ]
-          data.scatter [
+          traces.scatter [
             scatter.x xData.[i]
             scatter.y yData.[i]
             scatter.mode.markers
             scatter.marker [
-                scatter.marker.color plotColors.[i]
-                scatter.marker.size 12
+                marker.color plotColors.[i]
+                marker.size 12
             ]
           ] ])
 
-let dataAnnotations =
+let tracesAnnotations =
     [ 0 .. xData.Length-1 ]
     |> List.collect (fun i ->
-        [ layout.annotations.annotation [
+        [ annotations.annotation [
             annotation.xref.paper
             annotation.x 0.05
             annotation.y yData.[i].Head
@@ -66,13 +62,13 @@ let dataAnnotations =
             annotation.yanchor.middle
             annotation.text (sprintf "%s %i%s" labels.[i] yData.[i].Head "%")
             annotation.font [
-                annotation.font.family "Arial"
-                annotation.font.size 16
-                annotation.font.color colors.black
+                font.family "Arial"
+                font.size 16
+                font.color colors.black
             ]
             annotation.showarrow false
           ]
-          layout.annotations.annotation [
+          annotations.annotation [
             annotation.xref.paper
             annotation.x 0.95
             annotation.y yData.[i].[11]
@@ -80,9 +76,9 @@ let dataAnnotations =
             annotation.yanchor.middle
             annotation.text (sprintf "%i%s" yData.[i].[11] "%")
             annotation.font [
-                annotation.font.family "Arial"
-                annotation.font.size 16
-                annotation.font.color colors.black
+                font.family "Arial"
+                font.size 16
+                font.color colors.black
             ]
             annotation.showarrow false
           ]  
@@ -90,41 +86,41 @@ let dataAnnotations =
 
 let chart () =
     Plotly.plot [
-        plot.data data'
+        plot.traces traces'
         plot.layout [
             layout.showlegend false
             layout.autosize false
             layout.height 400
             layout.width 1300
             layout.xaxis [
-                layout.xaxis.showline true
-                layout.xaxis.showgrid false
-                layout.xaxis.showticklabels true
-                layout.xaxis.linecolor (colors.rgb(204, 204, 204))
-                layout.xaxis.linewidth 2
-                layout.xaxis.ticks.outside
-                layout.xaxis.tickcolor (colors.rgb(204, 204, 204))
-                layout.xaxis.tickwidth 2
-                layout.xaxis.ticklen 5
-                layout.xaxis.tickfont [
-                    xaxis.tickfont.family "Arial"
-                    xaxis.tickfont.size 12
-                    xaxis.tickfont.color (colors.rgb(82, 82, 82))
+                xaxis.showline true
+                xaxis.showgrid false
+                xaxis.showticklabels true
+                xaxis.linecolor (colors.rgb(204, 204, 204))
+                xaxis.linewidth 2
+                xaxis.ticks.outside
+                xaxis.tickcolor (colors.rgb(204, 204, 204))
+                xaxis.tickwidth 2
+                xaxis.ticklen 5
+                xaxis.tickfont [
+                    tickfont.family "Arial"
+                    tickfont.size 12
+                    tickfont.color (colors.rgb(82, 82, 82))
                 ]
             ]
             layout.yaxis [
-                layout.yaxis.showgrid false
-                layout.yaxis.zeroline false
-                layout.yaxis.showline false
-                layout.yaxis.showticklabels false
+                yaxis.showgrid false
+                yaxis.zeroline false
+                yaxis.showline false
+                yaxis.showticklabels false
             ]
             layout.margin [
-                layout.margin.l 100
-                layout.margin.r 20
-                layout.margin.t 100
+                margin.l 100
+                margin.r 20
+                margin.t 100
             ]
             layout.annotations [
-                layout.annotations.annotation [
+                annotations.annotation [
                     annotation.xref.paper
                     annotation.yref.paper
                     annotation.x 0.5
@@ -133,28 +129,28 @@ let chart () =
                     annotation.yanchor.bottom
                     annotation.text "Main Source for News"
                     annotation.font [
-                        annotation.font.family "Arial"
-                        annotation.font.size 30
-                        annotation.font.color (colors.rgb(37, 37, 37))
+                        font.family "Arial"
+                        font.size 30
+                        font.color (colors.rgb(37, 37, 37))
                     ]
                     annotation.showarrow false
                 ]
-                layout.annotations.annotation [
+                annotations.annotation [
                     annotation.xref.paper
                     annotation.yref.paper
                     annotation.x 0.5
                     annotation.y -0.1
                     annotation.xanchor.center
                     annotation.yanchor.top
-                    annotation.text "Source: Pew Research Center & Storytelling with data"
+                    annotation.text "Source: Pew Research Center & Storytelling with traces"
                     annotation.font [
-                        annotation.font.family "Arial"
-                        annotation.font.size 12
-                        annotation.font.color (colors.rgb(150, 150, 150))
+                        font.family "Arial"
+                        font.size 12
+                        font.color (colors.rgb(150, 150, 150))
                     ]
                     annotation.showarrow false
                 ]
-                yield! dataAnnotations
+                yield! tracesAnnotations
             ]
         ]
     ]

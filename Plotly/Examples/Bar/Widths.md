@@ -11,11 +11,12 @@ open Feliz.Plotly
 
 let chart () =
     Plotly.plot [
-        plot.data [
-            data.bar [
+        plot.traces [
+            traces.bar [
                 bar.x [ 1.; 2.; 3.; 5.5; 10. ]
                 bar.y [ 10; 8; 6; 4; 2 ]
                 bar.width [ 0.8; 0.8; 0.8; 3.5; 4. ]
             ]
         ]
-    ]```
+    ]
+```
