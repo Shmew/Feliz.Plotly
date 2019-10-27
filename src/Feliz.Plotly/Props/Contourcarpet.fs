@@ -23,19 +23,35 @@ type contourcarpet =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkContourcarpetAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkContourcarpetAttr "stream" (createObj !!properties)
@@ -58,19 +74,35 @@ type contourcarpet =
     /// The `carpet` of the carpet axes on which this contour trace lies
     static member inline carpet (value: string) = Interop.mkContourcarpetAttr "carpet" value
     /// Sets the z data.
+    static member inline z (value: bool) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
+    /// Sets the z data.
     static member inline z (values: seq<bool>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (value: string) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
     /// Sets the z data.
     static member inline z (values: seq<string>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
+    static member inline z (value: int) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
+    /// Sets the z data.
     static member inline z (values: seq<int>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (value: float) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
     /// Sets the x coordinates.
+    static member inline a (value: bool) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline a (values: seq<bool>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline a (value: string) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline a (values: seq<string>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the x coordinates.
+    static member inline a (value: int) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline a (values: seq<int>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline a (value: float) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline a (values: seq<float>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -94,11 +126,19 @@ type contourcarpet =
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline da (value: float) = Interop.mkContourcarpetAttr "da" value
     /// Sets the y coordinates.
+    static member inline b (value: bool) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline b (values: seq<bool>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline b (value: string) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline b (values: seq<string>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
     /// Sets the y coordinates.
+    static member inline b (value: int) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline b (values: seq<int>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline b (value: float) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline b (values: seq<float>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -122,19 +162,35 @@ type contourcarpet =
     /// Sets the y coordinate step. See `y0` for more info.
     static member inline db (value: float) = Interop.mkContourcarpetAttr "db" value
     /// Sets the text elements associated with each z value.
+    static member inline text (value: bool) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
+    /// Sets the text elements associated with each z value.
     static member inline text (values: seq<bool>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (value: string) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<string>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
+    static member inline text (value: int) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
+    /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (value: float) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
     /// Same as `text`.
+    static member inline hovertext (value: bool) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
+    /// Same as `text`.
     static member inline hovertext (values: seq<bool>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (value: string) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
+    static member inline hovertext (value: int) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
+    /// Same as `text`.
     static member inline hovertext (values: seq<int>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (value: float) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
     /// Same as `text`.
     static member inline hovertext (values: seq<float>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
     /// Transposes the z data.
@@ -161,6 +217,8 @@ type contourcarpet =
     static member inline zmid (value: int) = Interop.mkContourcarpetAttr "zmid" value
     /// Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.
     static member inline zmid (value: float) = Interop.mkContourcarpetAttr "zmid" value
+    /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    static member inline colorscale (value: string) = Interop.mkContourcarpetAttr "colorscale" (value |> Array.singleton)
     /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
     static member inline colorscale (values: seq<string>) = Interop.mkContourcarpetAttr "colorscale" (values |> Array.ofSeq)
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.

@@ -13,11 +13,19 @@ type tickformatstop =
     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
     static member inline enabled (value: bool) = Interop.mkTickformatstopAttr "enabled" value
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+    static member inline dtickrange (value: bool) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
+    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
     static member inline dtickrange (values: seq<bool>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
+    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+    static member inline dtickrange (value: int) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
     static member inline dtickrange (values: seq<int>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+    static member inline dtickrange (value: float) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
+    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
     static member inline dtickrange (values: seq<float>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
+    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+    static member inline dtickrange (value: string) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
     static member inline dtickrange (values: seq<string>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
     /// string - dtickformat for described zoom level, the same as *tickformat*

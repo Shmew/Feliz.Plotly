@@ -46,6 +46,26 @@ let update msg state =
         | Some(tab) -> { state with CurrentTab = Some tab }, Cmd.none
         | None -> { state with CurrentTab = None }, Cmd.none
 
+let centeredSpinner =
+    Html.div [
+        prop.style [
+            style.textAlign.center
+            style.marginLeft length.auto
+            style.marginRight length.auto
+            style.marginTop 50
+        ]
+        prop.children [
+            Html.li [
+                prop.className [
+                    FA.Fa
+                    FA.FaRefresh
+                    FA.FaSpin
+                    FA.Fa3X
+                ]
+            ]
+        ]
+    ]
+
 let samples = 
     let scatter =
         [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
@@ -61,7 +81,7 @@ let samples =
           "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart() ]
 
     let dot =
-        [ "plotly-chart-dot-basic", Samples.Dot.Basic.chart() ]
+        [ "plotly-chart-dot-categorical", Samples.Dot.Categorical.chart() ]
 
     let line = 
         [ "plotly-chart-line-basic", Samples.Line.Basic.chart()
@@ -99,8 +119,28 @@ let samples =
 
     let horiontalBar =
         [ "plotly-chart-horizontalbar-basic", Samples.HorizontalBar.Basic.chart()
-          "plotly-chart-horizontalbar-colored", Samples.HorizontalBar.Colored.chart() ]
-          //"plotly-chart-horizontalbar-barwithlineplot", Samples.HorizontalBar.BarWithLinePlot.chart() ]
+          "plotly-chart-horizontalbar-colored", Samples.HorizontalBar.Colored.chart()
+          "plotly-chart-horizontalbar-barwithlineplot", Samples.HorizontalBar.BarWithLinePlot.chart() ]
+
+    let pie =
+        [ "plotly-chart-pie-basic", Samples.Pie.Basic.chart()
+          "plotly-chart-pie-subplots", Samples.Pie.Subplots.chart()
+          "plotly-chart-pie-donut", Samples.Pie.Donut.chart() ]
+
+    let sunburst =
+        [ "plotly-chart-sunburst-basic", Samples.Sunburst.Basic.chart()
+          "plotly-chart-sunburst-branchvalues", Samples.Sunburst.Branchvalues.chart()
+          "plotly-chart-sunburst-repeatedlabels", Samples.Sunburst.RepeatedLabels.chart()
+          "plotly-chart-sunburst-largenumberslices", Samples.Sunburst.LargeNumberSlices.chart(centeredSpinner) ]
+
+    let sankey =
+        [ "plotly-chart-sankey-basic", Samples.Sankey.Basic.chart()
+          "plotly-chart-sankey-styled", Samples.Sankey.Styled.chart(centeredSpinner) ]
+
+    let pointCloud =
+        [ "plotly-chart-pointcloud-basic", Samples.PointCloud.Basic.chart()
+          "plotly-chart-pointcloud-styled", Samples.PointCloud.Styled.chart()
+          "plotly-chart-pointcloud-advanced", Samples.PointCloud.Advanced.chart() ]
 
     [ scatter
       bubble
@@ -108,7 +148,11 @@ let samples =
       line
       bar
       filledArea
-      horiontalBar ]
+      horiontalBar
+      pie
+      sunburst
+      sankey
+      pointCloud ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -116,26 +160,6 @@ let githubPath (rawPath: string) =
     if parts.Length > 5
     then sprintf "http://www.github.com/%s/%s" parts.[3] parts.[4]
     else rawPath
-
-let centeredSpinner =
-    Html.div [
-        prop.style [
-            style.textAlign.center
-            style.marginLeft length.auto
-            style.marginRight length.auto
-            style.marginTop 50
-        ]
-        prop.children [
-            Html.li [
-                prop.className [
-                    FA.Fa
-                    FA.FaRefresh
-                    FA.FaSpin
-                    FA.Fa3X
-                ]
-            ]
-        ]
-    ]
 
 /// Renders a code block from markdown using react-highlight.
 /// Injects sample React components when the code block has language of the format <language>:<sample-name>
@@ -207,10 +231,10 @@ let loadMarkdown' = React.functionComponent <| fun (input: {| path: string list 
             let! (statusCode, responseText) = Http.get path
             setLoading(false)
             if statusCode = 200 then
-              setContent(responseText)
-              setError(None)
+                setContent(responseText)
+                setError(None)
             else
-              setError(Some (sprintf "Status %d: could not load %s" statusCode path))
+                setError(Some (sprintf "Status %d: could not load %s" statusCode path))
         }
         |> Async.StartImmediate
 
@@ -317,7 +341,7 @@ let sidebar (state: State) dispatch =
                         menuItem "Marker Size Color and Symbol Array" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ]
                     ]
                     nestedMenuList "Dot" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Basic ]
+                        menuItem "Categorical" [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Categorical ]
                     ]
                     nestedMenuList "Line" [
                         menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.Basic ]
@@ -356,7 +380,27 @@ let sidebar (state: State) dispatch =
                     nestedMenuList "Horizontal Bar" [
                         menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Basic ]
                         menuItem "Colored" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Colored ]
-                        //menuItem "Bar With Line Plot" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.BarWithLinePlot ]
+                        menuItem "Bar With Line Plot" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.BarWithLinePlot ]
+                    ]
+                    nestedMenuList "Pie" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Basic ]
+                        menuItem "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Subplots ]
+                        menuItem "Donut" [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Donut ]
+                    ]
+                    nestedMenuList "Sunburst" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Basic ]
+                        menuItem "Branch Values" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Branchvalues ]
+                        menuItem "Repeated Labels" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.RepeatedLabels ]
+                        menuItem "Large Number of Slices" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.LargeNumberSlices ]
+                    ]
+                    nestedMenuList "Sankey" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Basic ]
+                        menuItem "Styled" [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Styled ]
+                    ]
+                    nestedMenuList "Point Cloud" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Basic ]
+                        menuItem "Styled" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Styled ]
+                        //menuItem "Advanced" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Advanced ]
                     ]
                 ]
             ]
@@ -389,7 +433,7 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeAndColor ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeAndColor.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.SizeScaling ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "SizeScaling.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeColorAndSymbolArray.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Dot" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Categorical ] -> loadMarkdown [ "Plotly"; "Examples"; "Dot" ; "Categorical.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "Basic.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.NamedLineAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "NamedLineAndScatter.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineAndScatterStyling ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineAndScatterStyling.md" ]
@@ -421,6 +465,18 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "Basic.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Colored ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "Colored.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.BarWithLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "BarWithLinePlot.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Pie" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Subplots ] -> loadMarkdown [ "Plotly"; "Examples"; "Pie" ; "Subplots.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Donut ] -> loadMarkdown [ "Plotly"; "Examples"; "Pie" ; "Donut.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Branchvalues ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "Branchvalues.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.RepeatedLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "RepeatedLabels.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.LargeNumberSlices ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "LargeNumberSlices.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Sankey" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "Sankey" ; "Styled.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Styled.md" ]
+    //| [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Advanced ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Advanced.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

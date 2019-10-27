@@ -51,13 +51,23 @@ type layout =
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
     static member inline waterfallgroupgap (value: float) = Interop.mkLayoutAttr "waterfallgroupgap" value
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (value: bool) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<bool>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (value: string) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<string>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (value: int) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<int>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (value: float) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<float>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
+    /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
+    static member inline piecolorway (value: string) = Interop.mkLayoutAttr "piecolorway" (value |> Array.singleton)
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
     static member inline piecolorway (values: seq<string>) = Interop.mkLayoutAttr "piecolorway" (values |> Array.ofSeq)
     /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
@@ -65,13 +75,19 @@ type layout =
     /// Sets the source reference on plot.ly for  hiddenlabels .
     static member inline hiddenlabelssrc (value: string) = Interop.mkLayoutAttr "hiddenlabelssrc" value
     /// Sets the default sunburst slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendsunburstcolors`.
+    static member inline sunburstcolorway (value: string) = Interop.mkLayoutAttr "sunburstcolorway" (value |> Array.singleton)
+    /// Sets the default sunburst slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendsunburstcolors`.
     static member inline sunburstcolorway (values: seq<string>) = Interop.mkLayoutAttr "sunburstcolorway" (values |> Array.ofSeq)
     /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
     static member inline extendsunburstcolors (value: bool) = Interop.mkLayoutAttr "extendsunburstcolors" value
     /// Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.
+    static member inline treemapcolorway (value: string) = Interop.mkLayoutAttr "treemapcolorway" (value |> Array.singleton)
+    /// Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.
     static member inline treemapcolorway (values: seq<string>) = Interop.mkLayoutAttr "treemapcolorway" (values |> Array.ofSeq)
     /// If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
     static member inline extendtreemapcolors (value: bool) = Interop.mkLayoutAttr "extendtreemapcolors" value
+    /// Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.
+    static member inline funnelareacolorway (value: string) = Interop.mkLayoutAttr "funnelareacolorway" (value |> Array.singleton)
     /// Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.
     static member inline funnelareacolorway (values: seq<string>) = Interop.mkLayoutAttr "funnelareacolorway" (values |> Array.ofSeq)
     /// If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
@@ -100,6 +116,8 @@ type layout =
     static member inline hidesources (value: bool) = Interop.mkLayoutAttr "hidesources" value
     /// Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.
     static member inline showlegend (value: bool) = Interop.mkLayoutAttr "showlegend" value
+    /// Sets the default trace colors.
+    static member inline colorway (value: string) = Interop.mkLayoutAttr "colorway" (value |> Array.singleton)
     /// Sets the default trace colors.
     static member inline colorway (values: seq<string>) = Interop.mkLayoutAttr "colorway" (values |> Array.ofSeq)
     /// If provided, a changed value tells `Plotly.react` that one or more data arrays has changed. This way you can modify arrays in-place rather than making a complete new copy for an incremental change. If NOT provided, `Plotly.react` assumes that data arrays are being treated as immutable, thus any data array with a different identity from its predecessor contains new data.
@@ -191,8 +209,6 @@ type layout =
     static member inline spikedistance (value: int) = Interop.mkLayoutAttr "spikedistance" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkLayoutAttr "hoverlabel" (createObj !!properties)
     static member inline grid (properties: #IGridProperty list) = Interop.mkLayoutAttr "grid" (createObj !!properties)
-    static member inline xaxis (properties: #IXaxisProperty list) = Interop.mkLayoutAttr "xaxis" (createObj !!properties)
-    static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkLayoutAttr "yaxis" (createObj !!properties)
     static member inline ternary (properties: #ITernaryProperty list) = Interop.mkLayoutAttr "ternary" (createObj !!properties)
     static member inline scene (properties: #ISceneProperty list) = Interop.mkLayoutAttr "scene" (createObj !!properties)
     static member inline geo (properties: #IGeoProperty list) = Interop.mkLayoutAttr "geo" (createObj !!properties)
@@ -200,10 +216,6 @@ type layout =
     static member inline polar (properties: #IPolarProperty list) = Interop.mkLayoutAttr "polar" (createObj !!properties)
     static member inline radialaxis (properties: #IRadialaxisProperty list) = Interop.mkLayoutAttr "radialaxis" (createObj !!properties)
     static member inline angularaxis (properties: #IAngularaxisProperty list) = Interop.mkLayoutAttr "angularaxis" (createObj !!properties)
-    /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Rotates the entire polar by the given angle in legacy polar charts.
-    static member inline orientation (value: int) = Interop.mkLayoutAttr "orientation" value
-    /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Rotates the entire polar by the given angle in legacy polar charts.
-    static member inline orientation (value: float) = Interop.mkLayoutAttr "orientation" value
     static member inline legend (properties: #ILegendProperty list) = Interop.mkLayoutAttr "legend" (createObj !!properties)
     static member inline annotations (properties: #IAnnotationsProperty list) = Interop.mkLayoutAttr "annotations" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     static member inline shapes (properties: #IShapesProperty list) = Interop.mkLayoutAttr "shapes" (createObj !!properties)
@@ -214,6 +226,16 @@ type layout =
     static member inline coloraxis (properties: #IColoraxisProperty list) = Interop.mkLayoutAttr "coloraxis" (createObj !!properties)
     /// Sets the source reference on plot.ly for  meta .
     static member inline metasrc (value: string) = Interop.mkLayoutAttr "metasrc" value
+    static member inline xaxis (properties: #IXaxisProperty list) = Interop.mkLayoutAttr "xaxis" (createObj !!properties)
+    static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkLayoutAttr "yaxis" (createObj !!properties)
+    static member inline xaxis2 (properties: #IXaxis2Property list) = Interop.mkLayoutAttr "xaxis2" (createObj !!properties)
+    static member inline xaxis3 (properties: #IXaxis3Property list) = Interop.mkLayoutAttr "xaxis3" (createObj !!properties)
+    static member inline xaxis4 (properties: #IXaxis4Property list) = Interop.mkLayoutAttr "xaxis4" (createObj !!properties)
+    static member inline xaxis5 (properties: #IXaxis5Property list) = Interop.mkLayoutAttr "xaxis5" (createObj !!properties)
+    static member inline yaxis2 (properties: #IYaxis2Property list) = Interop.mkLayoutAttr "yaxis2" (createObj !!properties)
+    static member inline yaxis3 (properties: #IYaxis3Property list) = Interop.mkLayoutAttr "yaxis3" (createObj !!properties)
+    static member inline yaxis4 (properties: #IYaxis4Property list) = Interop.mkLayoutAttr "yaxis4" (createObj !!properties)
+    static member inline yaxis5 (properties: #IYaxis5Property list) = Interop.mkLayoutAttr "yaxis5" (createObj !!properties)
 
 [<AutoOpen>]
 module layout =
@@ -311,10 +333,4 @@ module layout =
         static member inline taiwan = Interop.mkLayoutAttr "calendar" "taiwan"
         static member inline thai = Interop.mkLayoutAttr "calendar" "thai"
         static member inline ummalqura = Interop.mkLayoutAttr "calendar" "ummalqura"
-
-    /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Sets the direction corresponding to positive angles in legacy polar charts.
-    [<Erase>]
-    type direction =
-        static member inline clockwise = Interop.mkLayoutAttr "direction" "clockwise"
-        static member inline counterclockwise = Interop.mkLayoutAttr "direction" "counterclockwise"
 

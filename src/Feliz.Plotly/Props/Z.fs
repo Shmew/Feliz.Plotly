@@ -50,11 +50,19 @@ type z =
     /// Sets the width of the highlighted contour lines.
     static member inline highlightwidth (value: float) = Interop.mkZAttr "highlightwidth" value
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
+    static member inline locations (value: bool) = Interop.mkZAttr "locations" (value |> Array.singleton)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<bool>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
+    static member inline locations (value: string) = Interop.mkZAttr "locations" (value |> Array.singleton)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<string>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
+    static member inline locations (value: int) = Interop.mkZAttr "locations" (value |> Array.singleton)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<int>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
+    static member inline locations (value: float) = Interop.mkZAttr "locations" (value |> Array.singleton)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<float>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
     /// Sets the fill ratio of the `slices`. The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.

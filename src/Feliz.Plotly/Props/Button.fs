@@ -23,11 +23,19 @@ type button =
     /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
     static member inline templateitemname (value: string) = Interop.mkButtonAttr "templateitemname" value
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (value: bool) = Interop.mkButtonAttr "args" (value |> Array.singleton)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<bool>) = Interop.mkButtonAttr "args" (values |> Array.ofSeq)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (value: int) = Interop.mkButtonAttr "args" (value |> Array.singleton)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<int>) = Interop.mkButtonAttr "args" (values |> Array.ofSeq)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (value: float) = Interop.mkButtonAttr "args" (value |> Array.singleton)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<float>) = Interop.mkButtonAttr "args" (values |> Array.ofSeq)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (value: string) = Interop.mkButtonAttr "args" (value |> Array.singleton)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<string>) = Interop.mkButtonAttr "args" (values |> Array.ofSeq)
     /// When true, the API method is executed. When false, all other behaviors are the same and command execution is skipped. This may be useful when hooking into, for example, the `plotly_buttonclicked` method and executing the API command manually without losing the benefit of the updatemenu automatically binding to the state of the plot through the specification of `method` and `args`.

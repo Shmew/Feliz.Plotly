@@ -34,6 +34,9 @@ NUGET
       Fable.Elmish (>= 3.0) - restriction: >= netstandard2.0
       Fable.React (>= 5.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
+    Fable.Parsimmon (4.1) - restriction: >= netstandard2.0
+      Fable.Core (>= 3.0) - restriction: >= netstandard2.0
+      FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
     Fable.React (5.3.4) - restriction: >= netstandard2.0
       Fable.Browser.Dom (>= 1.0) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
@@ -43,6 +46,10 @@ NUGET
       Fable.Browser.XMLHttpRequest (>= 1.1) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
+    Fable.SimpleJson (3.7)
+      Fable.Core (>= 3.0) - restriction: >= netstandard2.0
+      Fable.Parsimmon (>= 4.0) - restriction: >= netstandard2.0
+      FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
     Feliz (0.58)
       Fable.Core (>= 3.1.1) - restriction: >= netstandard2.0
       Fable.React (>= 5.3.2) - restriction: >= netstandard2.0
@@ -57,7 +64,7 @@ NUGET
       FSharp.Core (>= 4.3.4) - restriction: || (>= net452) (>= netstandard2.0)
 GITHUB
   remote: Zaid-Ajaj/Feliz
-    Feliz.Markdown/Markdown.fs (ef5fdef1c96a2e888331dcf2a076fee8b9f1555a)
+    Feliz.Markdown/Markdown.fs (363e07278166f33e581b20c986eb011114c0fb89)
 GROUP FakeBuild
 NUGET
   remote: https://api.nuget.org/v3/index.json

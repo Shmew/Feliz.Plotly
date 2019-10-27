@@ -131,10 +131,6 @@ type config =
     static member inline displaylogo (value: bool) = Interop.mkConfigAttr "displaylogo" value
     /// watermark the images with the company's logo
     static member inline watermark (value: bool) = Interop.mkConfigAttr "watermark" value
-    /// Set the pixel ratio during WebGL image export. This config option was formerly named `plot3dPixelRatio` which is now deprecated.
-    static member inline plotGlPixelRatio (value: int) = Interop.mkConfigAttr "plotGlPixelRatio" value
-    /// Set the pixel ratio during WebGL image export. This config option was formerly named `plot3dPixelRatio` which is now deprecated.
-    static member inline plotGlPixelRatio (value: float) = Interop.mkConfigAttr "plotGlPixelRatio" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: bool) = Interop.mkConfigAttr "setBackground" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.

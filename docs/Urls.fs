@@ -28,6 +28,7 @@ let [<Literal>] MarkerSizeColorAndSymbolArray = "MarkerSizeColorAndSymbolArray"
 
 // Dot Examples
 let [<Literal>] Dot = "Dot"
+let [<Literal>] Categorical = "Categorical"
 
 // Filled Area Examples
 let [<Literal>] FilledArea = "FilledArea"
@@ -52,6 +53,18 @@ let [<Literal>] LineDash = "LineDash"
 let [<Literal>] NamedLineAndScatter = "NamedLineAndScatter"
 let [<Literal>] StylingLinePlot = "StylingLinePlot"
 
+// Pie Examples
+let [<Literal>] Pie = "Pie"
+let [<Literal>] Subplots = "Subplots"
+let [<Literal>] Donut = "Donut"
+
+// Point Cloud Examples
+let [<Literal>] PointCloud = "PointCloud"
+let [<Literal>] Advanced = "Advanced"
+
+// Sankey Examples
+let [<Literal>] Sankey = "Sankey"
+
 // Scatter Examples
 let [<Literal>] Scatter = "Scatter"
 let [<Literal>] ColorDimension = "ColorDimension"
@@ -59,13 +72,13 @@ let [<Literal>] DataLabelsHover = "DataLabelsHover"
 let [<Literal>] DataLabelsOnPlot = "DataLabelsOnPlot"
 let [<Literal>] LabellingLinesWithAnnotations = "LabellingLinesWithAnnotations"
 
+// Sunburst Examples
+let [<Literal>] Sunburst = "Sunburst"
+let [<Literal>] Branchvalues = "Branchvalues"
+let [<Literal>] RepeatedLabels = "RepeatedLabels"
+let [<Literal>] LargeNumberSlices = "LargeNumberSlices"
+
 // Non-exclusive Chart names
 let [<Literal>] Basic = "Basic"
 let [<Literal>] HoverText = "HoverText"
-
-
-
-
-
-
-
+let [<Literal>] Styled = "Styled"

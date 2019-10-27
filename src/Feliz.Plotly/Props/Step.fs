@@ -18,7 +18,11 @@ type step =
     /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
     static member inline thickness (value: float) = Interop.mkStepAttr "thickness" value
     /// Sets the range of this axis.
+    static member inline range (value: int) = Interop.mkStepAttr "range" (value |> Array.singleton)
+    /// Sets the range of this axis.
     static member inline range (values: seq<int>) = Interop.mkStepAttr "range" (values |> Array.ofSeq)
+    /// Sets the range of this axis.
+    static member inline range (value: float) = Interop.mkStepAttr "range" (value |> Array.singleton)
     /// Sets the range of this axis.
     static member inline range (values: seq<float>) = Interop.mkStepAttr "range" (values |> Array.ofSeq)
     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
@@ -28,11 +32,19 @@ type step =
     /// Determines whether or not this step is included in the slider.
     static member inline visible (value: bool) = Interop.mkStepAttr "visible" value
     /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+    static member inline args (value: bool) = Interop.mkStepAttr "args" (value |> Array.singleton)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     static member inline args (values: seq<bool>) = Interop.mkStepAttr "args" (values |> Array.ofSeq)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+    static member inline args (value: int) = Interop.mkStepAttr "args" (value |> Array.singleton)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     static member inline args (values: seq<int>) = Interop.mkStepAttr "args" (values |> Array.ofSeq)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+    static member inline args (value: float) = Interop.mkStepAttr "args" (value |> Array.singleton)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     static member inline args (values: seq<float>) = Interop.mkStepAttr "args" (values |> Array.ofSeq)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+    static member inline args (value: string) = Interop.mkStepAttr "args" (value |> Array.singleton)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     static member inline args (values: seq<string>) = Interop.mkStepAttr "args" (values |> Array.ofSeq)
     /// Sets the text label to appear on the slider

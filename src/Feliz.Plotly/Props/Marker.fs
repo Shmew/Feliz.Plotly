@@ -45,7 +45,11 @@ type marker =
     /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     static member inline color (values: seq<string>) = Interop.mkMarkerAttr "color" (values |> Array.ofSeq)
     /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
+    static member inline color (value: int) = Interop.mkMarkerAttr "color" (value |> Array.singleton)
+    /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     static member inline color (values: seq<int>) = Interop.mkMarkerAttr "color" (values |> Array.ofSeq)
+    /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
+    static member inline color (value: float) = Interop.mkMarkerAttr "color" (value |> Array.singleton)
     /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     static member inline color (values: seq<float>) = Interop.mkMarkerAttr "color" (values |> Array.ofSeq)
     /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
@@ -62,6 +66,8 @@ type marker =
     static member inline cmid (value: int) = Interop.mkMarkerAttr "cmid" value
     /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
     static member inline cmid (value: float) = Interop.mkMarkerAttr "cmid" value
+    /// Sets the colorscale. Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    static member inline colorscale (value: string) = Interop.mkMarkerAttr "colorscale" (value |> Array.singleton)
     /// Sets the colorscale. Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
     static member inline colorscale (values: seq<string>) = Interop.mkMarkerAttr "colorscale" (values |> Array.ofSeq)
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
@@ -84,11 +90,19 @@ type marker =
     /// Sets the color of the outlier sample points.
     static member inline outliercolor (value: string) = Interop.mkMarkerAttr "outliercolor" value
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (value: bool) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<bool>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (value: string) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<string>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (value: int) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<int>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (value: float) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<float>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
     /// Sets the source reference on plot.ly for  colors .

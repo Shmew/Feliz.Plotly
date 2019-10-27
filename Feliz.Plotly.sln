@@ -84,7 +84,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bubble", "Bubble", "{DA5CD9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dot", "Dot", "{33BA06BE-6203-4861-AD6A-413977CCD00C}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Dot\Basic.md = public\Plotly\Examples\Dot\Basic.md
+		public\Plotly\Examples\Dot\Categorical.md = public\Plotly\Examples\Dot\Categorical.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Line", "Line", "{D86FF2C9-9DBC-49B2-A120-BC3307597EB3}"
@@ -134,6 +134,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HorizontalBar", "Horizontal
 		public\Plotly\Examples\HorizontalBar\Colored.md = public\Plotly\Examples\HorizontalBar\Colored.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pie", "Pie", "{CFA514B9-EDAD-4E62-AB38-5D23104876CA}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Pie\Basic.md = public\Plotly\Examples\Pie\Basic.md
+		public\Plotly\Examples\Pie\Donut.md = public\Plotly\Examples\Pie\Donut.md
+		public\Plotly\Examples\Pie\Subplots.md = public\Plotly\Examples\Pie\Subplots.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sunburst", "Sunburst", "{5F6EF95A-438D-48B7-B6E9-E068DF79CD90}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Sunburst\Basic.md = public\Plotly\Examples\Sunburst\Basic.md
+		public\Plotly\Examples\Sunburst\Branchvalues.md = public\Plotly\Examples\Sunburst\Branchvalues.md
+		public\Plotly\Examples\Sunburst\LargeNumberSlices.md = public\Plotly\Examples\Sunburst\LargeNumberSlices.md
+		public\Plotly\Examples\Sunburst\RepeatedLabels.md = public\Plotly\Examples\Sunburst\RepeatedLabels.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sankey", "Sankey", "{A24E1FC2-D414-493B-9CB8-286BE17FB06E}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Sankey\Basic.md = public\Plotly\Examples\Sankey\Basic.md
+		public\Plotly\Examples\Sankey\Styled.md = public\Plotly\Examples\Sankey\Styled.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PointCloud", "PointCloud", "{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\PointCloud\Advanced.md = public\Plotly\Examples\PointCloud\Advanced.md
+		public\Plotly\Examples\PointCloud\Basic.md = public\Plotly\Examples\PointCloud\Basic.md
+		public\Plotly\Examples\PointCloud\Styled.md = public\Plotly\Examples\PointCloud\Styled.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +199,10 @@ Global
 		{4EE56625-1A9D-4886-B109-09EE33552ED7} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{9BEF5646-A611-41A5-9A7B-40B48CD1B6F3} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{A8D175E9-3D68-4207-A9A6-D2DB03726E08} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{CFA514B9-EDAD-4E62-AB38-5D23104876CA} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{5F6EF95A-438D-48B7-B6E9-E068DF79CD90} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{A24E1FC2-D414-493B-9CB8-286BE17FB06E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

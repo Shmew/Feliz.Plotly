@@ -2,6 +2,7 @@ group Docs
     Fable.Core
     Fable.Elmish.React
     Fable.SimpleHttp
+    Fable.SimpleJson
     Feliz
     Feliz.Router
     FSharp.Core

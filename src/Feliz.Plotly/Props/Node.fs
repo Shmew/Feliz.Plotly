@@ -11,31 +11,59 @@ open Feliz
 [<Erase>]
 type node =
     /// The shown name of the node.
+    static member inline label (value: bool) = Interop.mkNodeAttr "label" (value |> Array.singleton)
+    /// The shown name of the node.
     static member inline label (values: seq<bool>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
+    /// The shown name of the node.
+    static member inline label (value: string) = Interop.mkNodeAttr "label" (value |> Array.singleton)
     /// The shown name of the node.
     static member inline label (values: seq<string>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
     /// The shown name of the node.
+    static member inline label (value: int) = Interop.mkNodeAttr "label" (value |> Array.singleton)
+    /// The shown name of the node.
     static member inline label (values: seq<int>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
+    /// The shown name of the node.
+    static member inline label (value: float) = Interop.mkNodeAttr "label" (value |> Array.singleton)
     /// The shown name of the node.
     static member inline label (values: seq<float>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
+    static member inline groups (value: int) = Interop.mkNodeAttr "groups" (value |> Array.singleton)
+    /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
     static member inline groups (values: seq<int>) = Interop.mkNodeAttr "groups" (values |> Array.ofSeq)
+    /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
+    static member inline groups (value: float) = Interop.mkNodeAttr "groups" (value |> Array.singleton)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
     static member inline groups (values: seq<float>) = Interop.mkNodeAttr "groups" (values |> Array.ofSeq)
     /// The normalized horizontal position of the node.
+    static member inline x (value: bool) = Interop.mkNodeAttr "x" (value |> Array.singleton)
+    /// The normalized horizontal position of the node.
     static member inline x (values: seq<bool>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
+    /// The normalized horizontal position of the node.
+    static member inline x (value: string) = Interop.mkNodeAttr "x" (value |> Array.singleton)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<string>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
     /// The normalized horizontal position of the node.
+    static member inline x (value: int) = Interop.mkNodeAttr "x" (value |> Array.singleton)
+    /// The normalized horizontal position of the node.
     static member inline x (values: seq<int>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
+    /// The normalized horizontal position of the node.
+    static member inline x (value: float) = Interop.mkNodeAttr "x" (value |> Array.singleton)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<float>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
     /// The normalized vertical position of the node.
+    static member inline y (value: bool) = Interop.mkNodeAttr "y" (value |> Array.singleton)
+    /// The normalized vertical position of the node.
     static member inline y (values: seq<bool>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
+    /// The normalized vertical position of the node.
+    static member inline y (value: string) = Interop.mkNodeAttr "y" (value |> Array.singleton)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<string>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
     /// The normalized vertical position of the node.
+    static member inline y (value: int) = Interop.mkNodeAttr "y" (value |> Array.singleton)
+    /// The normalized vertical position of the node.
     static member inline y (values: seq<int>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
+    /// The normalized vertical position of the node.
+    static member inline y (value: float) = Interop.mkNodeAttr "y" (value |> Array.singleton)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<float>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.

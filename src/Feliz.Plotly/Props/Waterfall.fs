@@ -23,19 +23,35 @@ type waterfall =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkWaterfallAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkWaterfallAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkWaterfallAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkWaterfallAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkWaterfallAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkWaterfallAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkWaterfallAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkWaterfallAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkWaterfallAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkWaterfallAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkWaterfallAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkWaterfallAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkWaterfallAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkWaterfallAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkWaterfallAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkWaterfallAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkWaterfallAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -74,11 +90,19 @@ type waterfall =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkWaterfallAttr "uirevision" (values |> Array.ofSeq)
     /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
+    static member inline measure (value: bool) = Interop.mkWaterfallAttr "measure" (value |> Array.singleton)
+    /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
     static member inline measure (values: seq<bool>) = Interop.mkWaterfallAttr "measure" (values |> Array.ofSeq)
+    /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
+    static member inline measure (value: string) = Interop.mkWaterfallAttr "measure" (value |> Array.singleton)
     /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
     static member inline measure (values: seq<string>) = Interop.mkWaterfallAttr "measure" (values |> Array.ofSeq)
     /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
+    static member inline measure (value: int) = Interop.mkWaterfallAttr "measure" (value |> Array.singleton)
+    /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
     static member inline measure (values: seq<int>) = Interop.mkWaterfallAttr "measure" (values |> Array.ofSeq)
+    /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
+    static member inline measure (value: float) = Interop.mkWaterfallAttr "measure" (value |> Array.singleton)
     /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
     static member inline measure (values: seq<float>) = Interop.mkWaterfallAttr "measure" (values |> Array.ofSeq)
     /// Sets where the bar base is drawn (in position axis units).
@@ -86,11 +110,19 @@ type waterfall =
     /// Sets where the bar base is drawn (in position axis units).
     static member inline base' (value: float) = Interop.mkWaterfallAttr "base" value
     /// Sets the x coordinates.
+    static member inline x (value: bool) = Interop.mkWaterfallAttr "x" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkWaterfallAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: string) = Interop.mkWaterfallAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<string>) = Interop.mkWaterfallAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
+    static member inline x (value: int) = Interop.mkWaterfallAttr "x" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkWaterfallAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: float) = Interop.mkWaterfallAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkWaterfallAttr "x" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -114,11 +146,19 @@ type waterfall =
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: float) = Interop.mkWaterfallAttr "dx" value
     /// Sets the y coordinates.
+    static member inline y (value: bool) = Interop.mkWaterfallAttr "y" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkWaterfallAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: string) = Interop.mkWaterfallAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<string>) = Interop.mkWaterfallAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
+    static member inline y (value: int) = Interop.mkWaterfallAttr "y" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkWaterfallAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: float) = Interop.mkWaterfallAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkWaterfallAttr "y" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.

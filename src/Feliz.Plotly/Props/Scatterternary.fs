@@ -23,19 +23,35 @@ type scatterternary =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScatterternaryAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkScatterternaryAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScatterternaryAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkScatterternaryAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScatterternaryAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkScatterternaryAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkScatterternaryAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkScatterternaryAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScatterternaryAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkScatterternaryAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScatterternaryAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkScatterternaryAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScatterternaryAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkScatterternaryAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkScatterternaryAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkScatterternaryAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScatterternaryAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -74,27 +90,51 @@ type scatterternary =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkScatterternaryAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline a (value: bool) = Interop.mkScatterternaryAttr "a" (value |> Array.singleton)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline a (values: seq<bool>) = Interop.mkScatterternaryAttr "a" (values |> Array.ofSeq)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline a (value: string) = Interop.mkScatterternaryAttr "a" (value |> Array.singleton)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline a (values: seq<string>) = Interop.mkScatterternaryAttr "a" (values |> Array.ofSeq)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline a (value: int) = Interop.mkScatterternaryAttr "a" (value |> Array.singleton)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline a (values: seq<int>) = Interop.mkScatterternaryAttr "a" (values |> Array.ofSeq)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline a (value: float) = Interop.mkScatterternaryAttr "a" (value |> Array.singleton)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline a (values: seq<float>) = Interop.mkScatterternaryAttr "a" (values |> Array.ofSeq)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline b (value: bool) = Interop.mkScatterternaryAttr "b" (value |> Array.singleton)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline b (values: seq<bool>) = Interop.mkScatterternaryAttr "b" (values |> Array.ofSeq)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline b (value: string) = Interop.mkScatterternaryAttr "b" (value |> Array.singleton)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline b (values: seq<string>) = Interop.mkScatterternaryAttr "b" (values |> Array.ofSeq)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline b (value: int) = Interop.mkScatterternaryAttr "b" (value |> Array.singleton)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline b (values: seq<int>) = Interop.mkScatterternaryAttr "b" (values |> Array.ofSeq)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline b (value: float) = Interop.mkScatterternaryAttr "b" (value |> Array.singleton)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline b (values: seq<float>) = Interop.mkScatterternaryAttr "b" (values |> Array.ofSeq)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline c (value: bool) = Interop.mkScatterternaryAttr "c" (value |> Array.singleton)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline c (values: seq<bool>) = Interop.mkScatterternaryAttr "c" (values |> Array.ofSeq)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline c (value: string) = Interop.mkScatterternaryAttr "c" (value |> Array.singleton)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline c (values: seq<string>) = Interop.mkScatterternaryAttr "c" (values |> Array.ofSeq)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline c (value: int) = Interop.mkScatterternaryAttr "c" (value |> Array.singleton)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline c (values: seq<int>) = Interop.mkScatterternaryAttr "c" (values |> Array.ofSeq)
+    /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
+    static member inline c (value: float) = Interop.mkScatterternaryAttr "c" (value |> Array.singleton)
     /// Sets the quantity of component `a` in each data point. If `a`, `b`, and `c` are all provided, they need not be normalized, only the relative values matter. If only two arrays are provided they must be normalized to match `ternary<i>.sum`.
     static member inline c (values: seq<float>) = Interop.mkScatterternaryAttr "c" (values |> Array.ofSeq)
     /// The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. This overrides `ternary<i>.sum` to normalize this specific trace, but does not affect the values displayed on the axes. 0 (or missing) means to use ternary<i>.sum

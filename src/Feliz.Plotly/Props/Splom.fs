@@ -19,19 +19,35 @@ type splom =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkSplomAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkSplomAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkSplomAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkSplomAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkSplomAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkSplomAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkSplomAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkSplomAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkSplomAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -84,7 +100,11 @@ type splom =
     static member inline hovertemplate (values: seq<string>) = Interop.mkSplomAttr "hovertemplate" (values |> Array.ofSeq)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkSplomAttr "marker" (createObj !!properties)
     /// Sets the list of x axes corresponding to dimensions of this splom trace. By default, a splom will match the first N xaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
+    static member inline xaxes (value: string) = Interop.mkSplomAttr "xaxes" (value |> Array.singleton)
+    /// Sets the list of x axes corresponding to dimensions of this splom trace. By default, a splom will match the first N xaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     static member inline xaxes (values: seq<string>) = Interop.mkSplomAttr "xaxes" (values |> Array.ofSeq)
+    /// Sets the list of y axes corresponding to dimensions of this splom trace. By default, a splom will match the first N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
+    static member inline yaxes (value: string) = Interop.mkSplomAttr "yaxes" (value |> Array.singleton)
     /// Sets the list of y axes corresponding to dimensions of this splom trace. By default, a splom will match the first N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     static member inline yaxes (values: seq<string>) = Interop.mkSplomAttr "yaxes" (values |> Array.ofSeq)
     static member inline diagonal (properties: #IDiagonalProperty list) = Interop.mkSplomAttr "diagonal" (createObj !!properties)

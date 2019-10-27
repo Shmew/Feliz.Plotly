@@ -40,3 +40,10 @@
 
 ### 0.6.1 - Saturday, October 26, 2019
 * Fix subplotid implementation
+
+### 0.7.0 - Saturday, October 26, 2019
+* Added singleton support for values that only accept arrays
+  Meaning if you have a single value you can just pass in the value without brackets
+* Filtered out additional deprecated methods
+* Added support for multiple layout.xaxis and layout.yaxis
+* Fixed some attributes that required Float32 typed arrays

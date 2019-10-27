@@ -200,7 +200,9 @@ module rec ApiParser =
         let props =
             jVal.Properties
             |> filterAttributes
-            |> Array.map (fun p -> p ||> parseProp parentTree)
+            |> Array.choose (fun (pName,pJ) -> 
+                if pJ.TryGetProperty("description") |> Option.map (fun j -> j.AsString().Contains("deprecated")) |> Option.defaultValue false then None
+                else parseProp parentTree pName pJ |> Some)
             |> Array.distinctBy (fun p -> p.MethodName)
 
         let addProps comp = (comp, props) ||> Array.fold (flip Component.addProp)
@@ -236,6 +238,7 @@ module rec ApiParser =
             >> appendApostropheToReservedKeywords
 
         let jumps = [ "attributes"; "items"; "layoutAttributes" ]
+        let expandIf = [ ("layout", "xaxis"); ("layout", "yaxis") ]
         
         let rec allComponentNames (jVal: JsonValue) : string list =
             let props = 
@@ -267,19 +270,36 @@ module rec ApiParser =
             |> allComponentNames
             |> List.filter (fun name -> List.contains name compSkips |> not)
             |> List.distinct
+            |> List.collect (fun name -> 
+                if List.contains name (expandIf |> List.map snd) then 
+                    [2..5] 
+                    |> List.map (fun i -> true,sprintf "%s%i" name i)
+                    |> List.append [ false, name ]
+                else (false, name) |> List.singleton)
         
         result 
         |> List.map (
-            (fun n -> 
+            ((fun (b,n) -> 
                 n |> fixComponentName,
-                getAllAttributes n
+                if b then n.Substring(0,(n.Length-1)) else n
+                |> getAllAttributes
                 |> fun res ->
                     if n = "layout" then
                         res.Properties 
                         |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
                         |> JsonValue.Record
                     else res)
-            >> (fun (n,j) -> parseComponent [ n |> String.upperFirst ] n j ))
+              >> (fun (n,j) ->
+                let others, expanded = 
+                    j.Properties 
+                    |> Array.partition (fun (propN, _) -> List.contains (n,propN) expandIf)
+                others
+                |> Array.collect (fun (propN, propJ) ->
+                    [|2..5|] |> Array.map (fun i -> sprintf "%s%i" propN i, propJ))
+                |> Array.append expanded
+                |> JsonValue.Record
+                |> fun res -> n,res))
+              >> (fun (n,j) -> parseComponent [ n |> String.upperFirst ] n j ))
 
     /// Parse the Plotly.js json schema
     let parseApi() =

@@ -2,9 +2,9 @@
 
 Taken from [Plotly - Dot Plots](https://plot.ly/javascript/dot-plots/)
 
-```fsharp:plotly-chart-dot-basic
+```fsharp:plotly-chart-dot-categorical
 [<RequireQualifiedAccess>]
-module Samples.Dot.Basic
+module Samples.Dot.Categorical
 
 open Feliz
 open Feliz.Plotly
@@ -93,9 +93,8 @@ let chart () =
                 legend.yanchor.middle
                 legend.xanchor.right
             ]
-            layout.showlegend false
             layout.height 600
-            layout.width 600
+            layout.width 1200
             layout.paperBgcolor (colors.rgb(254, 247, 234))
             layout.plotBgcolor (colors.rgb(254, 247, 234))
             layout.hovermode.closest

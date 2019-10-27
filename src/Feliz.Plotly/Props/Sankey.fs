@@ -15,19 +15,35 @@ type sankey =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkSankeyAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkSankeyAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkSankeyAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkSankeyAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkSankeyAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkSankeyAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkSankeyAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkSankeyAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkSankeyAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkSankeyAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkSankeyAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkSankeyAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkSankeyAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkSankeyAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkSankeyAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkSankeyAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkSankeyAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.

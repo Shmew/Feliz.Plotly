@@ -4,6 +4,18 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\PointCloud\Basic.fs" />
+    <Compile Include="Plotly\Examples\PointCloud\Styled.fs" />
+    <Compile Include="Plotly\Examples\PointCloud\Advanced.fs" />
+    <Compile Include="Plotly\Examples\Sankey\Basic.fs" />
+    <Compile Include="Plotly\Examples\Sankey\Styled.fs" />
+    <Compile Include="Plotly\Examples\Sunburst\Basic.fs" />
+    <Compile Include="Plotly\Examples\Sunburst\Branchvalues.fs" />
+    <Compile Include="Plotly\Examples\Sunburst\RepeatedLabels.fs" />
+    <Compile Include="Plotly\Examples\Sunburst\LargeNumberSlices.fs" />
+    <Compile Include="Plotly\Examples\Pie\Basic.fs" />
+    <Compile Include="Plotly\Examples\Pie\Subplots.fs" />
+    <Compile Include="Plotly\Examples\Pie\Donut.fs" />
     <Compile Include="Plotly\Examples\HorizontalBar\Basic.fs" />
     <Compile Include="Plotly\Examples\HorizontalBar\Colored.fs" />
     <Compile Include="Plotly\Examples\HorizontalBar\BarWithLinePlot.fs" />
@@ -35,7 +47,7 @@
     <Compile Include="Plotly\Examples\Line\LineDash.fs" />
     <Compile Include="Plotly\Examples\Line\ConnectGapsBetweenData.fs" />
     <Compile Include="Plotly\Examples\Line\LabellingLinesWithAnnotations.fs" />
-    <Compile Include="Plotly\Examples\Dot\Basic.fs" />
+    <Compile Include="Plotly\Examples\Dot\Categorical.fs" />
     <Compile Include="Plotly\Examples\Bubble\Basic.fs" />
     <Compile Include="Plotly\Examples\Bubble\HoverText.fs" />
     <Compile Include="Plotly\Examples\Bubble\MarkerSizeAndColor.fs" />

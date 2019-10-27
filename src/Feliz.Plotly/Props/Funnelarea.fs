@@ -23,19 +23,35 @@ type funnelarea =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkFunnelareaAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkFunnelareaAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkFunnelareaAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkFunnelareaAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkFunnelareaAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkFunnelareaAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkFunnelareaAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkFunnelareaAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkFunnelareaAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkFunnelareaAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkFunnelareaAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkFunnelareaAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkFunnelareaAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkFunnelareaAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkFunnelareaAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkFunnelareaAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkFunnelareaAttr "customdata" (values |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkFunnelareaAttr "hoverlabel" (createObj !!properties)
@@ -58,11 +74,19 @@ type funnelarea =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkFunnelareaAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (value: bool) = Interop.mkFunnelareaAttr "labels" (value |> Array.singleton)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<bool>) = Interop.mkFunnelareaAttr "labels" (values |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (value: string) = Interop.mkFunnelareaAttr "labels" (value |> Array.singleton)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<string>) = Interop.mkFunnelareaAttr "labels" (values |> Array.ofSeq)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (value: int) = Interop.mkFunnelareaAttr "labels" (value |> Array.singleton)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<int>) = Interop.mkFunnelareaAttr "labels" (values |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (value: float) = Interop.mkFunnelareaAttr "labels" (value |> Array.singleton)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<float>) = Interop.mkFunnelareaAttr "labels" (values |> Array.ofSeq)
     /// Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
@@ -74,20 +98,36 @@ type funnelarea =
     /// Sets the label step. See `label0` for more info.
     static member inline dlabel (value: float) = Interop.mkFunnelareaAttr "dlabel" value
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (value: bool) = Interop.mkFunnelareaAttr "values" (value |> Array.singleton)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<bool>) = Interop.mkFunnelareaAttr "values" (values |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (value: string) = Interop.mkFunnelareaAttr "values" (value |> Array.singleton)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<string>) = Interop.mkFunnelareaAttr "values" (values |> Array.ofSeq)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (value: int) = Interop.mkFunnelareaAttr "values" (value |> Array.singleton)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<int>) = Interop.mkFunnelareaAttr "values" (values |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (value: float) = Interop.mkFunnelareaAttr "values" (value |> Array.singleton)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<float>) = Interop.mkFunnelareaAttr "values" (values |> Array.ofSeq)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkFunnelareaAttr "marker" (createObj !!properties)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (value: bool) = Interop.mkFunnelareaAttr "text" (value |> Array.singleton)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<bool>) = Interop.mkFunnelareaAttr "text" (values |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (value: string) = Interop.mkFunnelareaAttr "text" (value |> Array.singleton)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<string>) = Interop.mkFunnelareaAttr "text" (values |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (value: int) = Interop.mkFunnelareaAttr "text" (value |> Array.singleton)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<int>) = Interop.mkFunnelareaAttr "text" (values |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (value: float) = Interop.mkFunnelareaAttr "text" (value |> Array.singleton)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<float>) = Interop.mkFunnelareaAttr "text" (values |> Array.ofSeq)
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.

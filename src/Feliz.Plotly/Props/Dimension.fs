@@ -15,11 +15,19 @@ type dimension =
     /// Sets the label corresponding to this splom dimension.
     static member inline label (value: string) = Interop.mkDimensionAttr "label" value
     /// Sets the dimension values to be plotted.
+    static member inline values (value: bool) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
+    /// Sets the dimension values to be plotted.
     static member inline values (values: seq<bool>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    /// Sets the dimension values to be plotted.
+    static member inline values (value: string) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<string>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
+    static member inline values (value: int) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
+    /// Sets the dimension values to be plotted.
     static member inline values (values: seq<int>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    /// Sets the dimension values to be plotted.
+    static member inline values (value: float) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<float>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
     static member inline axis (properties: #IAxisProperty list) = Interop.mkDimensionAttr "axis" (createObj !!properties)
@@ -30,29 +38,53 @@ type dimension =
     /// Sets the source reference on plot.ly for  values .
     static member inline valuessrc (value: string) = Interop.mkDimensionAttr "valuessrc" value
     /// Sets the values at which ticks on this axis appear.
+    static member inline tickvals (value: bool) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton)
+    /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<bool>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear.
+    static member inline tickvals (value: string) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton)
     /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<string>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
+    static member inline tickvals (value: int) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton)
+    /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<int>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear.
+    static member inline tickvals (value: float) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton)
     /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<float>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
+    static member inline ticktext (value: bool) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton)
+    /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (values: seq<bool>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`.
+    static member inline ticktext (value: string) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (values: seq<string>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
+    static member inline ticktext (value: int) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton)
+    /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (values: seq<int>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`.
+    static member inline ticktext (value: float) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (values: seq<float>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline tickformat (value: string) = Interop.mkDimensionAttr "tickformat" value
     /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
+    static member inline range (value: int) = Interop.mkDimensionAttr "range" (value |> Array.singleton)
+    /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
     static member inline range (values: seq<int>) = Interop.mkDimensionAttr "range" (values |> Array.ofSeq)
+    /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
+    static member inline range (value: float) = Interop.mkDimensionAttr "range" (value |> Array.singleton)
     /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
     static member inline range (values: seq<float>) = Interop.mkDimensionAttr "range" (values |> Array.ofSeq)
     /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
+    static member inline constraintrange (value: int) = Interop.mkDimensionAttr "constraintrange" (value |> Array.singleton)
+    /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
     static member inline constraintrange (values: seq<int>) = Interop.mkDimensionAttr "constraintrange" (values |> Array.ofSeq)
+    /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
+    static member inline constraintrange (value: float) = Interop.mkDimensionAttr "constraintrange" (value |> Array.singleton)
     /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
     static member inline constraintrange (values: seq<float>) = Interop.mkDimensionAttr "constraintrange" (values |> Array.ofSeq)
     /// Do we allow multiple selection ranges or just a single range?
@@ -62,11 +94,19 @@ type dimension =
     /// Sets the source reference on plot.ly for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkDimensionAttr "ticktextsrc" value
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: bool) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: string) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: int) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: float) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
     /// The display index of dimension, from left to right, zero indexed, defaults to dimension index.

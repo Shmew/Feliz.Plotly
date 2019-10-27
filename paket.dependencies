@@ -28,6 +28,7 @@ group Docs
     nuget Fable.Core ~> 3.1
     nuget Fable.Elmish.React ~> 3.0
     nuget Fable.SimpleHttp ~> 2.6
+    nuget Fable.SimpleJson ~> 3.7
     nuget Feliz ~> 0.57
     nuget Feliz.Router ~> 1.4
     nuget FSharp.Core ~> 4.7

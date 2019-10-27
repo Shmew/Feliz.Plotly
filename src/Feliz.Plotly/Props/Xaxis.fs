@@ -16,11 +16,19 @@ type xaxis =
     static member inline color (value: string) = Interop.mkXaxisAttr "color" value
     static member inline title (properties: #ITitleProperty list) = Interop.mkXaxisAttr "title" (createObj !!properties)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (value: bool) = Interop.mkXaxisAttr "range" (value |> Array.singleton)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<bool>) = Interop.mkXaxisAttr "range" (values |> Array.ofSeq)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (value: int) = Interop.mkXaxisAttr "range" (value |> Array.singleton)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<int>) = Interop.mkXaxisAttr "range" (values |> Array.ofSeq)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (value: float) = Interop.mkXaxisAttr "range" (value |> Array.singleton)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<float>) = Interop.mkXaxisAttr "range" (values |> Array.ofSeq)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (value: string) = Interop.mkXaxisAttr "range" (value |> Array.singleton)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<string>) = Interop.mkXaxisAttr "range" (values |> Array.ofSeq)
     /// Determines whether or not this axis is zoom-able. If true, then zoom is disabled.
@@ -68,19 +76,35 @@ type xaxis =
     /// Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1* and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick` to *M3*. To set ticks every 4 years, set `dtick` to *M48*
     static member inline dtick (values: seq<float>) = Interop.mkXaxisAttr "dtick" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (value: bool) = Interop.mkXaxisAttr "tickvals" (value |> Array.singleton)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<bool>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (value: string) = Interop.mkXaxisAttr "tickvals" (value |> Array.singleton)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (value: int) = Interop.mkXaxisAttr "tickvals" (value |> Array.singleton)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<int>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (value: float) = Interop.mkXaxisAttr "tickvals" (value |> Array.singleton)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (value: bool) = Interop.mkXaxisAttr "ticktext" (value |> Array.singleton)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<bool>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (value: string) = Interop.mkXaxisAttr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<string>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (value: int) = Interop.mkXaxisAttr "ticktext" (value |> Array.singleton)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<int>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (value: float) = Interop.mkXaxisAttr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the tick length (in px).
@@ -157,7 +181,11 @@ type xaxis =
     /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
     static member inline dividerwidth (value: float) = Interop.mkXaxisAttr "dividerwidth" value
     /// Sets the domain of this axis (in plot fraction).
+    static member inline domain (value: int) = Interop.mkXaxisAttr "domain" (value |> Array.singleton)
+    /// Sets the domain of this axis (in plot fraction).
     static member inline domain (values: seq<int>) = Interop.mkXaxisAttr "domain" (values |> Array.ofSeq)
+    /// Sets the domain of this axis (in plot fraction).
+    static member inline domain (value: float) = Interop.mkXaxisAttr "domain" (value |> Array.singleton)
     /// Sets the domain of this axis (in plot fraction).
     static member inline domain (values: seq<float>) = Interop.mkXaxisAttr "domain" (values |> Array.ofSeq)
     /// Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to *free*.
@@ -165,11 +193,19 @@ type xaxis =
     /// Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to *free*.
     static member inline position (value: float) = Interop.mkXaxisAttr "position" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: bool) = Interop.mkXaxisAttr "categoryarray" (value |> Array.singleton)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: string) = Interop.mkXaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: int) = Interop.mkXaxisAttr "categoryarray" (value |> Array.singleton)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: float) = Interop.mkXaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.

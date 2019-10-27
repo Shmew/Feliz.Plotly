@@ -82,6 +82,7 @@ module rec Domain =
         | EnumeratedArray
         | EnumeratedWithCustom
         | FlagList
+        | FloatArray
         | InfoArray of ValType
         | Int of bool
         | List of ValType
@@ -95,25 +96,31 @@ module rec Domain =
         open FSharp.Data.JsonExtensions
 
         let boolStr = "(value: bool)", "value"
+        let boolSingleton = "(value: bool)", "(value |> Array.singleton)"
         let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
         let stringStr = "(value: string)", "value"
+        let stringSingleton = "(value: string)", "(value |> Array.singleton)"
         let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
         let intStr = "(value: int)", "value"
+        let intSingleton = "(value: int)", "(value |> Array.singleton)"
         let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
         let floatStr = "(value: float)", "value"
+        let floatSingleton = "(value: float)", "(value |> Array.singleton)"
+        let float32FromFloatSeqStr = "(values: seq<float>)", "(values |> Seq.map float32 |> Array.ofSeq)"
+        let float32FromIntSeqStr = "(values: seq<int>)", "(values |> Seq.map float32 |> Array.ofSeq)"
         let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
         let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
 
         let getPrimativeOverloadSeq =
             function
-            | ValType.Bool _ -> [ boolSeqStr ]
-            | ValType.Int _ -> [ intSeqStr ]
-            | ValType.Number _ -> [ intSeqStr; floatSeqStr ]
-            | ValType.String _ -> [ stringSeqStr ]
+            | ValType.Bool _ -> [ boolSingleton; boolSeqStr ]
+            | ValType.Int _ -> [ intSingleton; intSeqStr ]
+            | ValType.Number _ -> [ intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
+            | ValType.String _ -> [ stringSingleton; stringSeqStr ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedWithCustom -> []
             | ValType.FlagList -> []
-            | ValType.Any -> [ boolSeqStr; intSeqStr; floatSeqStr; stringSeqStr ]
+            | ValType.Any -> [ boolSingleton; boolSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr; stringSingleton; stringSeqStr ]
             | s ->
                 printfn "%s" (s.ToString())
                 [ "(value: TODO)", "value" ]
@@ -140,6 +147,7 @@ module rec Domain =
             match propName, hasValType with
             | "scaleanchor", true -> ValType.String isArrayOk
             | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String isArrayOk
+            | "xy", true -> ValType.FloatArray
             | _, true ->
                 match jVal?valType
                       |> JsonValue.asString
@@ -177,12 +185,13 @@ module rec Domain =
             match vType with
             | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
             | ValType.Bool b -> [ boolStr; if b then boolSeqStr ]
-            | ValType.ColorArray -> [ stringStr; stringSeqStr; intSeqStr; floatSeqStr ]
-            | ValType.DataArray -> [ boolSeqStr; stringSeqStr; intSeqStr; floatSeqStr ]
+            | ValType.ColorArray -> [ stringStr; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
+            | ValType.DataArray -> [ boolSingleton; boolSeqStr; stringSingleton; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedArray -> []
             | ValType.EnumeratedWithCustom -> []
             | ValType.FlagList -> []
+            | ValType.FloatArray -> [ float32FromIntSeqStr; float32FromFloatSeqStr ]
             | ValType.InfoArray vt ->
                 match vt with
                 | ValType.List vtPrim -> vtPrim

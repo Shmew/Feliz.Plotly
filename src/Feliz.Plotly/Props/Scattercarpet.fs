@@ -23,19 +23,35 @@ type scattercarpet =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScattercarpetAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -76,19 +92,35 @@ type scattercarpet =
     /// An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie
     static member inline carpet (value: string) = Interop.mkScattercarpetAttr "carpet" value
     /// Sets the a-axis coordinates.
+    static member inline a (value: bool) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
+    /// Sets the a-axis coordinates.
     static member inline a (values: seq<bool>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
+    /// Sets the a-axis coordinates.
+    static member inline a (value: string) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<string>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the a-axis coordinates.
+    static member inline a (value: int) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
+    /// Sets the a-axis coordinates.
     static member inline a (values: seq<int>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
+    /// Sets the a-axis coordinates.
+    static member inline a (value: float) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<float>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the b-axis coordinates.
+    static member inline b (value: bool) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
+    /// Sets the b-axis coordinates.
     static member inline b (values: seq<bool>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
+    /// Sets the b-axis coordinates.
+    static member inline b (value: string) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<string>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
     /// Sets the b-axis coordinates.
+    static member inline b (value: int) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
+    /// Sets the b-axis coordinates.
     static member inline b (values: seq<int>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
+    /// Sets the b-axis coordinates.
+    static member inline b (value: float) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<float>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
     /// Sets text elements associated with each (a,b) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b). If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.

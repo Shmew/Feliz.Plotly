@@ -11,7 +11,11 @@ open Feliz
 [<Erase>]
 type lonaxis =
     /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
+    static member inline range (value: int) = Interop.mkLonaxisAttr "range" (value |> Array.singleton)
+    /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
     static member inline range (values: seq<int>) = Interop.mkLonaxisAttr "range" (values |> Array.ofSeq)
+    /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
+    static member inline range (value: float) = Interop.mkLonaxisAttr "range" (value |> Array.singleton)
     /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
     static member inline range (values: seq<float>) = Interop.mkLonaxisAttr "range" (values |> Array.ofSeq)
     /// Sets whether or not graticule are shown on the map.

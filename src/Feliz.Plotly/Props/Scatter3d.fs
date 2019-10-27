@@ -23,19 +23,35 @@ type scatter3d =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScatter3dAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkScatter3dAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkScatter3dAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkScatter3dAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkScatter3dAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkScatter3dAttr "hoverlabel" (createObj !!properties)
@@ -58,27 +74,51 @@ type scatter3d =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkScatter3dAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the x coordinates.
+    static member inline x (value: bool) = Interop.mkScatter3dAttr "x" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: string) = Interop.mkScatter3dAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<string>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
+    static member inline x (value: int) = Interop.mkScatter3dAttr "x" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: float) = Interop.mkScatter3dAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
     /// Sets the y coordinates.
+    static member inline y (value: bool) = Interop.mkScatter3dAttr "y" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: string) = Interop.mkScatter3dAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<string>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
+    static member inline y (value: int) = Interop.mkScatter3dAttr "y" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: float) = Interop.mkScatter3dAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
     /// Sets the z coordinates.
+    static member inline z (value: bool) = Interop.mkScatter3dAttr "z" (value |> Array.singleton)
+    /// Sets the z coordinates.
     static member inline z (values: seq<bool>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
+    /// Sets the z coordinates.
+    static member inline z (value: string) = Interop.mkScatter3dAttr "z" (value |> Array.singleton)
     /// Sets the z coordinates.
     static member inline z (values: seq<string>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
     /// Sets the z coordinates.
+    static member inline z (value: int) = Interop.mkScatter3dAttr "z" (value |> Array.singleton)
+    /// Sets the z coordinates.
     static member inline z (values: seq<int>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
+    /// Sets the z coordinates.
+    static member inline z (value: float) = Interop.mkScatter3dAttr "z" (value |> Array.singleton)
     /// Sets the z coordinates.
     static member inline z (values: seq<float>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
     /// Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.

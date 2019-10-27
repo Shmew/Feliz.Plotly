@@ -19,19 +19,35 @@ type carpet =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkCarpetAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkCarpetAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkCarpetAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkCarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkCarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkCarpetAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkCarpetAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkCarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkCarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkCarpetAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkCarpetAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkCarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkCarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkCarpetAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkCarpetAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkCarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkCarpetAttr "customdata" (values |> Array.ofSeq)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkCarpetAttr "stream" (createObj !!properties)
@@ -54,27 +70,51 @@ type carpet =
     /// An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie
     static member inline carpet (value: string) = Interop.mkCarpetAttr "carpet" value
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (value: bool) = Interop.mkCarpetAttr "x" (value |> Array.singleton)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<bool>) = Interop.mkCarpetAttr "x" (values |> Array.ofSeq)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (value: string) = Interop.mkCarpetAttr "x" (value |> Array.singleton)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<string>) = Interop.mkCarpetAttr "x" (values |> Array.ofSeq)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (value: int) = Interop.mkCarpetAttr "x" (value |> Array.singleton)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<int>) = Interop.mkCarpetAttr "x" (values |> Array.ofSeq)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (value: float) = Interop.mkCarpetAttr "x" (value |> Array.singleton)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<float>) = Interop.mkCarpetAttr "x" (values |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (value: bool) = Interop.mkCarpetAttr "y" (value |> Array.singleton)
+    /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<bool>) = Interop.mkCarpetAttr "y" (values |> Array.ofSeq)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (value: string) = Interop.mkCarpetAttr "y" (value |> Array.singleton)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<string>) = Interop.mkCarpetAttr "y" (values |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (value: int) = Interop.mkCarpetAttr "y" (value |> Array.singleton)
+    /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<int>) = Interop.mkCarpetAttr "y" (values |> Array.ofSeq)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (value: float) = Interop.mkCarpetAttr "y" (value |> Array.singleton)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<float>) = Interop.mkCarpetAttr "y" (values |> Array.ofSeq)
     /// An array containing values of the first parameter value
+    static member inline a (value: bool) = Interop.mkCarpetAttr "a" (value |> Array.singleton)
+    /// An array containing values of the first parameter value
     static member inline a (values: seq<bool>) = Interop.mkCarpetAttr "a" (values |> Array.ofSeq)
+    /// An array containing values of the first parameter value
+    static member inline a (value: string) = Interop.mkCarpetAttr "a" (value |> Array.singleton)
     /// An array containing values of the first parameter value
     static member inline a (values: seq<string>) = Interop.mkCarpetAttr "a" (values |> Array.ofSeq)
     /// An array containing values of the first parameter value
+    static member inline a (value: int) = Interop.mkCarpetAttr "a" (value |> Array.singleton)
+    /// An array containing values of the first parameter value
     static member inline a (values: seq<int>) = Interop.mkCarpetAttr "a" (values |> Array.ofSeq)
+    /// An array containing values of the first parameter value
+    static member inline a (value: float) = Interop.mkCarpetAttr "a" (value |> Array.singleton)
     /// An array containing values of the first parameter value
     static member inline a (values: seq<float>) = Interop.mkCarpetAttr "a" (values |> Array.ofSeq)
     /// Alternate to `a`. Builds a linear space of a coordinates. Use with `da` where `a0` is the starting coordinate and `da` the step.
@@ -86,11 +126,19 @@ type carpet =
     /// Sets the a coordinate step. See `a0` for more info.
     static member inline da (value: float) = Interop.mkCarpetAttr "da" value
     /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (value: bool) = Interop.mkCarpetAttr "b" (value |> Array.singleton)
+    /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<bool>) = Interop.mkCarpetAttr "b" (values |> Array.ofSeq)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (value: string) = Interop.mkCarpetAttr "b" (value |> Array.singleton)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<string>) = Interop.mkCarpetAttr "b" (values |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (value: int) = Interop.mkCarpetAttr "b" (value |> Array.singleton)
+    /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<int>) = Interop.mkCarpetAttr "b" (values |> Array.ofSeq)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (value: float) = Interop.mkCarpetAttr "b" (value |> Array.singleton)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<float>) = Interop.mkCarpetAttr "b" (values |> Array.ofSeq)
     /// Alternate to `b`. Builds a linear space of a coordinates. Use with `db` where `b0` is the starting coordinate and `db` the step.

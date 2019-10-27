@@ -11,11 +11,19 @@ open Feliz
 [<Erase>]
 type link =
     /// The shown name of the link.
+    static member inline label (value: bool) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    /// The shown name of the link.
     static member inline label (values: seq<bool>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
+    /// The shown name of the link.
+    static member inline label (value: string) = Interop.mkLinkAttr "label" (value |> Array.singleton)
     /// The shown name of the link.
     static member inline label (values: seq<string>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
     /// The shown name of the link.
+    static member inline label (value: int) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    /// The shown name of the link.
     static member inline label (values: seq<int>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
+    /// The shown name of the link.
+    static member inline label (value: float) = Interop.mkLinkAttr "label" (value |> Array.singleton)
     /// The shown name of the link.
     static member inline label (values: seq<float>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
     /// Sets the `link` color. It can be a single value, or an array for specifying color for each `link`. If `link.color` is omitted, then by default, a translucent grey link will be used.
@@ -24,27 +32,51 @@ type link =
     static member inline color (values: seq<string>) = Interop.mkLinkAttr "color" (values |> Array.ofSeq)
     static member inline line (properties: #ILineProperty list) = Interop.mkLinkAttr "line" (createObj !!properties)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (value: bool) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<bool>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (value: string) = Interop.mkLinkAttr "source" (value |> Array.singleton)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<string>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (value: int) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<int>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (value: float) = Interop.mkLinkAttr "source" (value |> Array.singleton)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<float>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (value: bool) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<bool>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (value: string) = Interop.mkLinkAttr "target" (value |> Array.singleton)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<string>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (value: int) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<int>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (value: float) = Interop.mkLinkAttr "target" (value |> Array.singleton)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<float>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
+    static member inline value (value: bool) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    /// A numeric value representing the flow volume value.
     static member inline value (values: seq<bool>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
+    /// A numeric value representing the flow volume value.
+    static member inline value (value: string) = Interop.mkLinkAttr "value" (value |> Array.singleton)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<string>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
+    static member inline value (value: int) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    /// A numeric value representing the flow volume value.
     static member inline value (values: seq<int>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
+    /// A numeric value representing the flow volume value.
+    static member inline value (value: float) = Interop.mkLinkAttr "value" (value |> Array.singleton)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<float>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkLinkAttr "hoverlabel" (createObj !!properties)

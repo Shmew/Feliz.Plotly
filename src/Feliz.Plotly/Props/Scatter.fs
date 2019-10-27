@@ -23,19 +23,35 @@ type scatter =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScatterAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: bool) = Interop.mkScatterAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScatterAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkScatterAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScatterAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: int) = Interop.mkScatterAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkScatterAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: float) = Interop.mkScatterAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScatterAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: bool) = Interop.mkScatterAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScatterAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkScatterAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScatterAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: int) = Interop.mkScatterAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkScatterAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: float) = Interop.mkScatterAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScatterAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -74,11 +90,19 @@ type scatter =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkScatterAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the x coordinates.
+    static member inline x (value: bool) = Interop.mkScatterAttr "x" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkScatterAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: string) = Interop.mkScatterAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<string>) = Interop.mkScatterAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
+    static member inline x (value: int) = Interop.mkScatterAttr "x" (value |> Array.singleton)
+    /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkScatterAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: float) = Interop.mkScatterAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkScatterAttr "x" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -102,11 +126,19 @@ type scatter =
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: float) = Interop.mkScatterAttr "dx" value
     /// Sets the y coordinates.
+    static member inline y (value: bool) = Interop.mkScatterAttr "y" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkScatterAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: string) = Interop.mkScatterAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<string>) = Interop.mkScatterAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
+    static member inline y (value: int) = Interop.mkScatterAttr "y" (value |> Array.singleton)
+    /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkScatterAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: float) = Interop.mkScatterAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkScatterAttr "y" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -159,22 +191,6 @@ type scatter =
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScatterAttr "unselected" (createObj !!properties)
     /// Sets the text font.
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScatterAttr "textfont" (createObj !!properties)
-    /// r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
-    static member inline r (values: seq<bool>) = Interop.mkScatterAttr "r" (values |> Array.ofSeq)
-    /// r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
-    static member inline r (values: seq<string>) = Interop.mkScatterAttr "r" (values |> Array.ofSeq)
-    /// r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
-    static member inline r (values: seq<int>) = Interop.mkScatterAttr "r" (values |> Array.ofSeq)
-    /// r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
-    static member inline r (values: seq<float>) = Interop.mkScatterAttr "r" (values |> Array.ofSeq)
-    /// t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
-    static member inline t (values: seq<bool>) = Interop.mkScatterAttr "t" (values |> Array.ofSeq)
-    /// t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
-    static member inline t (values: seq<string>) = Interop.mkScatterAttr "t" (values |> Array.ofSeq)
-    /// t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
-    static member inline t (values: seq<int>) = Interop.mkScatterAttr "t" (values |> Array.ofSeq)
-    /// t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
-    static member inline t (values: seq<float>) = Interop.mkScatterAttr "t" (values |> Array.ofSeq)
     static member inline errorX (properties: #IErrorXProperty list) = Interop.mkScatterAttr "error_x" (createObj !!properties)
     static member inline errorY (properties: #IErrorYProperty list) = Interop.mkScatterAttr "error_y" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
