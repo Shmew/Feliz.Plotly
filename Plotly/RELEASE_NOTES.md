@@ -47,3 +47,6 @@
 * Filtered out additional deprecated methods
 * Added support for multiple layout.xaxis and layout.yaxis
 * Fixed some attributes that required Float32 typed arrays
+
+### 0.8.0 - Sunday, October 27, 2019
+* Reimplemented how flaglists are handled

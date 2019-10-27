@@ -15,7 +15,10 @@ let chart () =
             traces.scatter [
                 scatter.x [ 1; 2; 3; 4; 5 ]
                 scatter.y [ 1; 6; 3; 6; 1 ]
-                scatter.mode.textAndMarkers
+                scatter.mode [
+                    scatter.mode.text
+                    scatter.mode.markers
+                ]
                 scatter.name "Team A"
                 scatter.text [ "A-1"; "A-2"; "A-3"; "A-4"; "A-5"]
                 scatter.textposition.topCenter
@@ -29,7 +32,10 @@ let chart () =
             traces.scatter [
                 scatter.x [ 1.5; 2.5; 3.5; 4.5; 5.5 ]
                 scatter.y [ 4; 1; 7; 1; 4 ]
-                scatter.mode.textAndMarkers
+                scatter.mode [
+                    scatter.mode.text
+                    scatter.mode.markers
+                ]
                 scatter.name "Team B"
                 scatter.text ["B-a" ; "B-b" ; "B-c" ; "B-d" ; "B-e" ]
                 scatter.textposition.bottomCenter

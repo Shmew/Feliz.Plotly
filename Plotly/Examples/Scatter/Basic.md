@@ -25,7 +25,10 @@ let chart () =
             traces.scatter [
                 scatter.x [ 1; 2; 3; 4 ]
                 scatter.y [ 12; 9; 15; 12 ]
-                scatter.mode.markersAndLines
+                scatter.mode [
+                    scatter.mode.lines
+                    scatter.mode.markers
+                ]
             ]
         ]
     ]

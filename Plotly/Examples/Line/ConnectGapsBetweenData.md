@@ -15,7 +15,10 @@ let chart () =
             traces.scatter [
                 scatter.x [ 1 .. 8]
                 scatter.y [ 10; 15; 17; 14; 12; 10; 15 ]
-                scatter.mode.markersAndLines
+                scatter.mode [
+                    scatter.mode.lines
+                    scatter.mode.markers
+                ]
                 scatter.connectgaps true
             ]
             traces.scatter [
