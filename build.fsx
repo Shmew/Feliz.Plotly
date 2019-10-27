@@ -569,6 +569,6 @@ Target.create "Publish" ignore
 
 "Release" <== ["All"; "NuGet"; "ConfigRelease"]
 
-"Publish" <== ["Release"; "ConfigRelease"; "NuGetPublish"; "PublishPages"; "GitTag"; "GitPush" ]
+"Publish" <== ["Release"; "ConfigRelease"; "NuGetPublish"; "PublishDocs"; "GitTag"; "GitPush" ]
 
 Target.runOrDefaultWithArguments "Dev"
