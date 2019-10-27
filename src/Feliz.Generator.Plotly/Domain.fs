@@ -104,6 +104,7 @@ module rec Domain =
         let intStr = "(value: int)", "value"
         let intSingleton = "(value: int)", "(value |> Array.singleton)"
         let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
+        let flaglistStrSeq s = sprintf "(properties: #I%sProperty list)" s, "(properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat \"+\")"
         let floatStr = "(value: float)", "value"
         let floatSingleton = "(value: float)", "(value |> Array.singleton)"
         let float32FromFloatSeqStr = "(values: seq<float>)", "(values |> Seq.map float32 |> Array.ofSeq)"
@@ -181,7 +182,7 @@ module rec Domain =
             | _ -> ValType.Component
 
         /// Returns a list of primative overloads for the `ValType`
-        let getOverloadStrings (compName: string) (vType: ValType) =
+        let getOverloadStrings (parentName: string) (compName: string) (vType: ValType) =
             match vType with
             | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
             | ValType.Bool b -> [ boolStr; if b then boolSeqStr ]
@@ -190,7 +191,7 @@ module rec Domain =
             | ValType.Enumerated -> []
             | ValType.EnumeratedArray -> []
             | ValType.EnumeratedWithCustom -> []
-            | ValType.FlagList -> []
+            | ValType.FlagList -> [ flaglistStrSeq parentName ]
             | ValType.FloatArray -> [ float32FromIntSeqStr; float32FromFloatSeqStr ]
             | ValType.InfoArray vt ->
                 match vt with

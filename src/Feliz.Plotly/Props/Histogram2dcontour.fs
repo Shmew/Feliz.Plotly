@@ -54,6 +54,8 @@ type histogram2dcontour =
     static member inline customdata (value: float) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IHistogram2dcontourProperty list) = Interop.mkHistogram2dcontourAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHistogram2dcontourAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkHistogram2dcontourAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHistogram2dcontourAttr "transforms" (createObj !!properties)
@@ -214,36 +216,10 @@ module histogram2dcontour =
         static member inline none = Interop.mkHistogram2dcontourAttr "hoverinfo" "none"
         static member inline skip = Interop.mkHistogram2dcontourAttr "hoverinfo" "skip"
         static member inline name = Interop.mkHistogram2dcontourAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkHistogram2dcontourAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkHistogram2dcontourAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkHistogram2dcontourAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkHistogram2dcontourAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkHistogram2dcontourAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkHistogram2dcontourAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkHistogram2dcontourAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkHistogram2dcontourAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkHistogram2dcontourAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkHistogram2dcontourAttr "hoverinfo" "x"
         static member inline y = Interop.mkHistogram2dcontourAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkHistogram2dcontourAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkHistogram2dcontourAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkHistogram2dcontourAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkHistogram2dcontourAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkHistogram2dcontourAttr "hoverinfo" "z+y+x"
 
     /// Specifies the type of normalization used for this histogram trace. If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If *probability density*, the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).
     [<Erase>]

@@ -78,6 +78,12 @@ let [<Literal>] Branchvalues = "Branchvalues"
 let [<Literal>] RepeatedLabels = "RepeatedLabels"
 let [<Literal>] LargeNumberSlices = "LargeNumberSlices"
 
+// Treemap Examples
+let [<Literal>] Treemap = "Treemap"
+let [<Literal>] DifferentAttributes = "DifferentAttributes"
+let [<Literal>] SectorColors = "SectorColors"
+let [<Literal>] NestedLayers = "NestedLayers"
+
 // Non-exclusive Chart names
 let [<Literal>] Basic = "Basic"
 let [<Literal>] HoverText = "HoverText"

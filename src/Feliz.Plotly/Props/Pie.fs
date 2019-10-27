@@ -136,6 +136,10 @@ type pie =
     static member inline hovertext (values: seq<string>) = Interop.mkPieAttr "hovertext" (values |> Array.ofSeq)
     /// If there are multiple pie charts that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
     static member inline scalegroup (value: string) = Interop.mkPieAttr "scalegroup" value
+    /// Determines which trace information appear on the graph.
+    static member inline textinfo (properties: #IPieProperty list) = Interop.mkPieAttr "textinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IPieProperty list) = Interop.mkPieAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkPieAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -213,19 +217,8 @@ module pie =
         static member inline none = Interop.mkPieAttr "textinfo" "none"
         static member inline label = Interop.mkPieAttr "textinfo" "label"
         static member inline percent = Interop.mkPieAttr "textinfo" "percent"
-        static member inline percentAndLabel = Interop.mkPieAttr "textinfo" "percent+label"
-        static member inline percentAndText = Interop.mkPieAttr "textinfo" "percent+text"
-        static member inline percentAndTextLabel = Interop.mkPieAttr "textinfo" "percent+text+label"
-        static member inline percentAndValue = Interop.mkPieAttr "textinfo" "percent+value"
-        static member inline percentAndValueLabel = Interop.mkPieAttr "textinfo" "percent+value+label"
-        static member inline percentAndValueText = Interop.mkPieAttr "textinfo" "percent+value+text"
-        static member inline percentAndValueTextLabel = Interop.mkPieAttr "textinfo" "percent+value+text+label"
         static member inline text = Interop.mkPieAttr "textinfo" "text"
-        static member inline textAndLabel = Interop.mkPieAttr "textinfo" "text+label"
         static member inline value = Interop.mkPieAttr "textinfo" "value"
-        static member inline valueAndLabel = Interop.mkPieAttr "textinfo" "value+label"
-        static member inline valueAndText = Interop.mkPieAttr "textinfo" "value+text"
-        static member inline valueAndTextLabel = Interop.mkPieAttr "textinfo" "value+text+label"
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]
@@ -235,35 +228,9 @@ module pie =
         static member inline skip = Interop.mkPieAttr "hoverinfo" "skip"
         static member inline label = Interop.mkPieAttr "hoverinfo" "label"
         static member inline name = Interop.mkPieAttr "hoverinfo" "name"
-        static member inline nameAndLabel = Interop.mkPieAttr "hoverinfo" "name+label"
-        static member inline nameAndPercent = Interop.mkPieAttr "hoverinfo" "name+percent"
-        static member inline nameAndPercentLabel = Interop.mkPieAttr "hoverinfo" "name+percent+label"
-        static member inline nameAndPercentText = Interop.mkPieAttr "hoverinfo" "name+percent+text"
-        static member inline nameAndPercentTextLabel = Interop.mkPieAttr "hoverinfo" "name+percent+text+label"
-        static member inline nameAndPercentValue = Interop.mkPieAttr "hoverinfo" "name+percent+value"
-        static member inline nameAndPercentValueLabel = Interop.mkPieAttr "hoverinfo" "name+percent+value+label"
-        static member inline nameAndPercentValueText = Interop.mkPieAttr "hoverinfo" "name+percent+value+text"
-        static member inline nameAndPercentValueTextLabel = Interop.mkPieAttr "hoverinfo" "name+percent+value+text+label"
-        static member inline nameAndText = Interop.mkPieAttr "hoverinfo" "name+text"
-        static member inline nameAndTextLabel = Interop.mkPieAttr "hoverinfo" "name+text+label"
-        static member inline nameAndValue = Interop.mkPieAttr "hoverinfo" "name+value"
-        static member inline nameAndValueLabel = Interop.mkPieAttr "hoverinfo" "name+value+label"
-        static member inline nameAndValueText = Interop.mkPieAttr "hoverinfo" "name+value+text"
-        static member inline nameAndValueTextLabel = Interop.mkPieAttr "hoverinfo" "name+value+text+label"
         static member inline percent = Interop.mkPieAttr "hoverinfo" "percent"
-        static member inline percentAndLabel = Interop.mkPieAttr "hoverinfo" "percent+label"
-        static member inline percentAndText = Interop.mkPieAttr "hoverinfo" "percent+text"
-        static member inline percentAndTextLabel = Interop.mkPieAttr "hoverinfo" "percent+text+label"
-        static member inline percentAndValue = Interop.mkPieAttr "hoverinfo" "percent+value"
-        static member inline percentAndValueLabel = Interop.mkPieAttr "hoverinfo" "percent+value+label"
-        static member inline percentAndValueText = Interop.mkPieAttr "hoverinfo" "percent+value+text"
-        static member inline percentAndValueTextLabel = Interop.mkPieAttr "hoverinfo" "percent+value+text+label"
         static member inline text = Interop.mkPieAttr "hoverinfo" "text"
-        static member inline textAndLabel = Interop.mkPieAttr "hoverinfo" "text+label"
         static member inline value = Interop.mkPieAttr "hoverinfo" "value"
-        static member inline valueAndLabel = Interop.mkPieAttr "hoverinfo" "value+label"
-        static member inline valueAndText = Interop.mkPieAttr "hoverinfo" "value+text"
-        static member inline valueAndTextLabel = Interop.mkPieAttr "hoverinfo" "value+text+label"
 
     /// Specifies the location of the `textinfo`.
     [<Erase>]

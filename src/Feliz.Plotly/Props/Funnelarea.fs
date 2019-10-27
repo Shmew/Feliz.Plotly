@@ -136,10 +136,14 @@ type funnelarea =
     static member inline hovertext (values: seq<string>) = Interop.mkFunnelareaAttr "hovertext" (values |> Array.ofSeq)
     /// If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
     static member inline scalegroup (value: string) = Interop.mkFunnelareaAttr "scalegroup" value
+    /// Determines which trace information appear on the graph.
+    static member inline textinfo (properties: #IFunnelareaProperty list) = Interop.mkFunnelareaAttr "textinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`.
     static member inline texttemplate (value: string) = Interop.mkFunnelareaAttr "texttemplate" value
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`.
     static member inline texttemplate (values: seq<string>) = Interop.mkFunnelareaAttr "texttemplate" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IFunnelareaProperty list) = Interop.mkFunnelareaAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkFunnelareaAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -199,19 +203,8 @@ module funnelarea =
         static member inline none = Interop.mkFunnelareaAttr "textinfo" "none"
         static member inline label = Interop.mkFunnelareaAttr "textinfo" "label"
         static member inline percent = Interop.mkFunnelareaAttr "textinfo" "percent"
-        static member inline percentAndLabel = Interop.mkFunnelareaAttr "textinfo" "percent+label"
-        static member inline percentAndText = Interop.mkFunnelareaAttr "textinfo" "percent+text"
-        static member inline percentAndTextLabel = Interop.mkFunnelareaAttr "textinfo" "percent+text+label"
-        static member inline percentAndValue = Interop.mkFunnelareaAttr "textinfo" "percent+value"
-        static member inline percentAndValueLabel = Interop.mkFunnelareaAttr "textinfo" "percent+value+label"
-        static member inline percentAndValueText = Interop.mkFunnelareaAttr "textinfo" "percent+value+text"
-        static member inline percentAndValueTextLabel = Interop.mkFunnelareaAttr "textinfo" "percent+value+text+label"
         static member inline text = Interop.mkFunnelareaAttr "textinfo" "text"
-        static member inline textAndLabel = Interop.mkFunnelareaAttr "textinfo" "text+label"
         static member inline value = Interop.mkFunnelareaAttr "textinfo" "value"
-        static member inline valueAndLabel = Interop.mkFunnelareaAttr "textinfo" "value+label"
-        static member inline valueAndText = Interop.mkFunnelareaAttr "textinfo" "value+text"
-        static member inline valueAndTextLabel = Interop.mkFunnelareaAttr "textinfo" "value+text+label"
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]
@@ -221,35 +214,9 @@ module funnelarea =
         static member inline skip = Interop.mkFunnelareaAttr "hoverinfo" "skip"
         static member inline label = Interop.mkFunnelareaAttr "hoverinfo" "label"
         static member inline name = Interop.mkFunnelareaAttr "hoverinfo" "name"
-        static member inline nameAndLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+label"
-        static member inline nameAndPercent = Interop.mkFunnelareaAttr "hoverinfo" "name+percent"
-        static member inline nameAndPercentLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+percent+label"
-        static member inline nameAndPercentText = Interop.mkFunnelareaAttr "hoverinfo" "name+percent+text"
-        static member inline nameAndPercentTextLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+percent+text+label"
-        static member inline nameAndPercentValue = Interop.mkFunnelareaAttr "hoverinfo" "name+percent+value"
-        static member inline nameAndPercentValueLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+percent+value+label"
-        static member inline nameAndPercentValueText = Interop.mkFunnelareaAttr "hoverinfo" "name+percent+value+text"
-        static member inline nameAndPercentValueTextLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+percent+value+text+label"
-        static member inline nameAndText = Interop.mkFunnelareaAttr "hoverinfo" "name+text"
-        static member inline nameAndTextLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+text+label"
-        static member inline nameAndValue = Interop.mkFunnelareaAttr "hoverinfo" "name+value"
-        static member inline nameAndValueLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+value+label"
-        static member inline nameAndValueText = Interop.mkFunnelareaAttr "hoverinfo" "name+value+text"
-        static member inline nameAndValueTextLabel = Interop.mkFunnelareaAttr "hoverinfo" "name+value+text+label"
         static member inline percent = Interop.mkFunnelareaAttr "hoverinfo" "percent"
-        static member inline percentAndLabel = Interop.mkFunnelareaAttr "hoverinfo" "percent+label"
-        static member inline percentAndText = Interop.mkFunnelareaAttr "hoverinfo" "percent+text"
-        static member inline percentAndTextLabel = Interop.mkFunnelareaAttr "hoverinfo" "percent+text+label"
-        static member inline percentAndValue = Interop.mkFunnelareaAttr "hoverinfo" "percent+value"
-        static member inline percentAndValueLabel = Interop.mkFunnelareaAttr "hoverinfo" "percent+value+label"
-        static member inline percentAndValueText = Interop.mkFunnelareaAttr "hoverinfo" "percent+value+text"
-        static member inline percentAndValueTextLabel = Interop.mkFunnelareaAttr "hoverinfo" "percent+value+text+label"
         static member inline text = Interop.mkFunnelareaAttr "hoverinfo" "text"
-        static member inline textAndLabel = Interop.mkFunnelareaAttr "hoverinfo" "text+label"
         static member inline value = Interop.mkFunnelareaAttr "hoverinfo" "value"
-        static member inline valueAndLabel = Interop.mkFunnelareaAttr "hoverinfo" "value+label"
-        static member inline valueAndText = Interop.mkFunnelareaAttr "hoverinfo" "value+text"
-        static member inline valueAndTextLabel = Interop.mkFunnelareaAttr "hoverinfo" "value+text+label"
 
     /// Specifies the location of the `textinfo`.
     [<Erase>]

@@ -37,7 +37,11 @@ let chart () =
                     domain.row 0
                     domain.column 0
                 ]
-                pie.hoverinfo.nameAndPercentLabel
+                pie.hoverinfo [
+                    pie.hoverinfo.name
+                    pie.hoverinfo.percent
+                    pie.hoverinfo.label
+                ]
                 pie.textinfo.none
             ]
             traces.pie [
@@ -51,7 +55,11 @@ let chart () =
                     domain.row 1
                     domain.column 0
                 ]
-                pie.hoverinfo.nameAndPercentLabel
+                pie.hoverinfo [
+                    pie.hoverinfo.name
+                    pie.hoverinfo.percent
+                    pie.hoverinfo.label
+                ]
                 pie.textinfo.none
             ]
             traces.pie [
@@ -65,7 +73,11 @@ let chart () =
                     domain.row 0
                     domain.column 1
                 ]
-                pie.hoverinfo.nameAndPercentLabel
+                pie.hoverinfo [
+                    pie.hoverinfo.name
+                    pie.hoverinfo.percent
+                    pie.hoverinfo.label
+                ]
                 pie.textinfo.none
             ]
             traces.pie [
@@ -76,14 +88,19 @@ let chart () =
                     marker.colors pieColors.[3]
                 ]
                 pie.domain [
-                    domain.x [ 0.52; 1. ]
-                    domain.y [ 0.; 0.48 ]
+                    domain.row 1
+                    domain.column 1
                 ]
-                pie.hoverinfo.nameAndPercentLabel
+                pie.hoverinfo [
+                    pie.hoverinfo.name
+                    pie.hoverinfo.percent
+                    pie.hoverinfo.label
+                ]
                 pie.textinfo.none
             ]
         ]
         plot.layout [
+            layout.showlegend false
             layout.height 400
             layout.width 500
             layout.grid [

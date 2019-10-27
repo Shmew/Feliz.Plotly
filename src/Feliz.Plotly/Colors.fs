@@ -1,13 +1,10 @@
 namespace Feliz.Plotly
 
-open Fable.Core
-open System.ComponentModel
-
 module colors =
     let hsl (hue: float, saturation: float, lightness: float) = 
         sprintf "hsl(%s,%s%c,%s%c)" (unbox<string> hue) (unbox<string> saturation) '%' (unbox<string> lightness) '%'
 
-module ColorScales =
+module Colorscales =
     open Feliz.colors
 
     type ColorScale =
@@ -27,8 +24,8 @@ module ColorScales =
 
     /// How to represent float,string array in F#?
     let greys =
-        [ rgb (0, 0, 0)
-          rgb (255, 255, 255) ]
+        [| [| box 0; rgb (0, 0, 0) |> box |]
+           [| box 1; rgb (255, 255, 255) |> box |] |]
 
     let ylGnBu =
         [ rgb (8, 29, 88)

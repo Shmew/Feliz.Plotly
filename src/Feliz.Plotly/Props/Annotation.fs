@@ -116,6 +116,8 @@ type annotation =
     static member inline arrowhead (value: int) = Interop.mkAnnotationAttr "arrowhead" value
     /// Sets the start annotation arrow head style.
     static member inline startarrowhead (value: int) = Interop.mkAnnotationAttr "startarrowhead" value
+    /// Sets the annotation arrow head position.
+    static member inline arrowside (properties: #IAnnotationProperty list) = Interop.mkAnnotationAttr "arrowside" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
     static member inline arrowsize (value: int) = Interop.mkAnnotationAttr "arrowsize" value
     /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head about 3x as wide as the line.
@@ -216,7 +218,6 @@ module annotation =
         static member inline none = Interop.mkAnnotationAttr "arrowside" "none"
         static member inline end' = Interop.mkAnnotationAttr "arrowside" "end"
         static member inline start = Interop.mkAnnotationAttr "arrowside" "start"
-        static member inline startAndEnd = Interop.mkAnnotationAttr "arrowside" "start+end"
 
     /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ax` is a relative offset in pixels  from `x`. If set to an x axis id (e.g. *x* or *x2*), `ax` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
     [<Erase>]

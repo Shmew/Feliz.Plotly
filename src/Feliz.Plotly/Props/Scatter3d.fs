@@ -137,6 +137,8 @@ type scatter3d =
     static member inline hovertemplate (value: string) = Interop.mkScatter3dAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkScatter3dAttr "hovertemplate" (values |> Array.ofSeq)
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    static member inline mode (properties: #IScatter3dProperty list) = Interop.mkScatter3dAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the surface fill color.
     static member inline surfacecolor (value: string) = Interop.mkScatter3dAttr "surfacecolor" value
     static member inline projection (properties: #IProjectionProperty list) = Interop.mkScatter3dAttr "projection" (createObj !!properties)
@@ -145,6 +147,8 @@ type scatter3d =
     static member inline line (properties: #ILineProperty list) = Interop.mkScatter3dAttr "line" (createObj !!properties)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkScatter3dAttr "marker" (createObj !!properties)
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScatter3dAttr "textfont" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IScatter3dProperty list) = Interop.mkScatter3dAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline errorX (properties: #IErrorXProperty list) = Interop.mkScatter3dAttr "error_x" (createObj !!properties)
     static member inline errorY (properties: #IErrorYProperty list) = Interop.mkScatter3dAttr "error_y" (createObj !!properties)
     static member inline errorZ (properties: #IErrorZProperty list) = Interop.mkScatter3dAttr "error_z" (createObj !!properties)
@@ -193,11 +197,7 @@ module scatter3d =
         static member inline none = Interop.mkScatter3dAttr "mode" "none"
         static member inline lines = Interop.mkScatter3dAttr "mode" "lines"
         static member inline markers = Interop.mkScatter3dAttr "mode" "markers"
-        static member inline markersAndLines = Interop.mkScatter3dAttr "mode" "markers+lines"
         static member inline text = Interop.mkScatter3dAttr "mode" "text"
-        static member inline textAndLines = Interop.mkScatter3dAttr "mode" "text+lines"
-        static member inline textAndMarkers = Interop.mkScatter3dAttr "mode" "text+markers"
-        static member inline textAndMarkersLines = Interop.mkScatter3dAttr "mode" "text+markers+lines"
 
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.
     [<Erase>]
@@ -227,36 +227,10 @@ module scatter3d =
         static member inline none = Interop.mkScatter3dAttr "hoverinfo" "none"
         static member inline skip = Interop.mkScatter3dAttr "hoverinfo" "skip"
         static member inline name = Interop.mkScatter3dAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkScatter3dAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkScatter3dAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkScatter3dAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkScatter3dAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkScatter3dAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkScatter3dAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkScatter3dAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkScatter3dAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkScatter3dAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkScatter3dAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkScatter3dAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkScatter3dAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkScatter3dAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkScatter3dAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkScatter3dAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkScatter3dAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkScatter3dAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkScatter3dAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkScatter3dAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkScatter3dAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkScatter3dAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkScatter3dAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkScatter3dAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkScatter3dAttr "hoverinfo" "x"
         static member inline y = Interop.mkScatter3dAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkScatter3dAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkScatter3dAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkScatter3dAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkScatter3dAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkScatter3dAttr "hoverinfo" "z+y+x"
 
     /// Sets the calendar system to use with `x` date data.
     [<Erase>]

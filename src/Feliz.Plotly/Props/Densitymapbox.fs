@@ -135,6 +135,8 @@ type densitymapbox =
     static member inline hovertext (value: string) = Interop.mkDensitymapboxAttr "hovertext" value
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (values: seq<string>) = Interop.mkDensitymapboxAttr "hovertext" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IDensitymapboxProperty list) = Interop.mkDensitymapboxAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkDensitymapboxAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -207,34 +209,8 @@ module densitymapbox =
         static member inline none = Interop.mkDensitymapboxAttr "hoverinfo" "none"
         static member inline skip = Interop.mkDensitymapboxAttr "hoverinfo" "skip"
         static member inline lat = Interop.mkDensitymapboxAttr "hoverinfo" "lat"
-        static member inline latAndLon = Interop.mkDensitymapboxAttr "hoverinfo" "lat+lon"
         static member inline lon = Interop.mkDensitymapboxAttr "hoverinfo" "lon"
         static member inline name = Interop.mkDensitymapboxAttr "hoverinfo" "name"
-        static member inline nameAndLat = Interop.mkDensitymapboxAttr "hoverinfo" "name+lat"
-        static member inline nameAndLatLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+lat+lon"
-        static member inline nameAndLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+lon"
-        static member inline nameAndText = Interop.mkDensitymapboxAttr "hoverinfo" "name+text"
-        static member inline nameAndTextLat = Interop.mkDensitymapboxAttr "hoverinfo" "name+text+lat"
-        static member inline nameAndTextLatLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+text+lat+lon"
-        static member inline nameAndTextLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+text+lon"
-        static member inline nameAndTextZ = Interop.mkDensitymapboxAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZLat = Interop.mkDensitymapboxAttr "hoverinfo" "name+text+z+lat"
-        static member inline nameAndTextZLatLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+text+z+lat+lon"
-        static member inline nameAndTextZLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+text+z+lon"
-        static member inline nameAndZ = Interop.mkDensitymapboxAttr "hoverinfo" "name+z"
-        static member inline nameAndZLat = Interop.mkDensitymapboxAttr "hoverinfo" "name+z+lat"
-        static member inline nameAndZLatLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+z+lat+lon"
-        static member inline nameAndZLon = Interop.mkDensitymapboxAttr "hoverinfo" "name+z+lon"
         static member inline text = Interop.mkDensitymapboxAttr "hoverinfo" "text"
-        static member inline textAndLat = Interop.mkDensitymapboxAttr "hoverinfo" "text+lat"
-        static member inline textAndLatLon = Interop.mkDensitymapboxAttr "hoverinfo" "text+lat+lon"
-        static member inline textAndLon = Interop.mkDensitymapboxAttr "hoverinfo" "text+lon"
-        static member inline textAndZ = Interop.mkDensitymapboxAttr "hoverinfo" "text+z"
-        static member inline textAndZLat = Interop.mkDensitymapboxAttr "hoverinfo" "text+z+lat"
-        static member inline textAndZLatLon = Interop.mkDensitymapboxAttr "hoverinfo" "text+z+lat+lon"
-        static member inline textAndZLon = Interop.mkDensitymapboxAttr "hoverinfo" "text+z+lon"
         static member inline z = Interop.mkDensitymapboxAttr "hoverinfo" "z"
-        static member inline zAndLat = Interop.mkDensitymapboxAttr "hoverinfo" "z+lat"
-        static member inline zAndLatLon = Interop.mkDensitymapboxAttr "hoverinfo" "z+lat+lon"
-        static member inline zAndLon = Interop.mkDensitymapboxAttr "hoverinfo" "z+lon"
 

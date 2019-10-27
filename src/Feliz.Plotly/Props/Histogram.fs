@@ -70,6 +70,8 @@ type histogram =
     static member inline selectedpoints (value: float) = Interop.mkHistogramAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkHistogramAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IHistogramProperty list) = Interop.mkHistogramAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHistogramAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkHistogramAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHistogramAttr "transforms" (createObj !!properties)
@@ -194,36 +196,10 @@ module histogram =
         static member inline none = Interop.mkHistogramAttr "hoverinfo" "none"
         static member inline skip = Interop.mkHistogramAttr "hoverinfo" "skip"
         static member inline name = Interop.mkHistogramAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkHistogramAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkHistogramAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkHistogramAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkHistogramAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkHistogramAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkHistogramAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkHistogramAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkHistogramAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkHistogramAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkHistogramAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkHistogramAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkHistogramAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkHistogramAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkHistogramAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkHistogramAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkHistogramAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkHistogramAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkHistogramAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkHistogramAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkHistogramAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkHistogramAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkHistogramAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkHistogramAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkHistogramAttr "hoverinfo" "x"
         static member inline y = Interop.mkHistogramAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkHistogramAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkHistogramAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkHistogramAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkHistogramAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkHistogramAttr "hoverinfo" "z+y+x"
 
     /// Sets the orientation of the bars. With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
     [<Erase>]

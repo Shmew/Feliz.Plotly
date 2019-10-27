@@ -188,6 +188,8 @@ type isosurface =
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     static member inline flatshading (value: bool) = Interop.mkIsosurfaceAttr "flatshading" value
     static member inline contour (properties: #IContourProperty list) = Interop.mkIsosurfaceAttr "contour" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IIsosurfaceProperty list) = Interop.mkIsosurfaceAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
     static member inline scene (value: string) = Interop.mkIsosurfaceAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .
@@ -229,34 +231,8 @@ module isosurface =
         static member inline none = Interop.mkIsosurfaceAttr "hoverinfo" "none"
         static member inline skip = Interop.mkIsosurfaceAttr "hoverinfo" "skip"
         static member inline name = Interop.mkIsosurfaceAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkIsosurfaceAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkIsosurfaceAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkIsosurfaceAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkIsosurfaceAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkIsosurfaceAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkIsosurfaceAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkIsosurfaceAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkIsosurfaceAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkIsosurfaceAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkIsosurfaceAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkIsosurfaceAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkIsosurfaceAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkIsosurfaceAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkIsosurfaceAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkIsosurfaceAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkIsosurfaceAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkIsosurfaceAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkIsosurfaceAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkIsosurfaceAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkIsosurfaceAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkIsosurfaceAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkIsosurfaceAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkIsosurfaceAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkIsosurfaceAttr "hoverinfo" "x"
         static member inline y = Interop.mkIsosurfaceAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkIsosurfaceAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkIsosurfaceAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkIsosurfaceAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkIsosurfaceAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkIsosurfaceAttr "hoverinfo" "z+y+x"
 

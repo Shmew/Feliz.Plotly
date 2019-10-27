@@ -262,6 +262,8 @@ type mesh3d =
     static member inline contour (properties: #IContourProperty list) = Interop.mkMesh3dAttr "contour" (createObj !!properties)
     static member inline lightposition (properties: #ILightpositionProperty list) = Interop.mkMesh3dAttr "lightposition" (createObj !!properties)
     static member inline lighting (properties: #ILightingProperty list) = Interop.mkMesh3dAttr "lighting" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IMesh3dProperty list) = Interop.mkMesh3dAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
     static member inline scene (value: string) = Interop.mkMesh3dAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .
@@ -320,36 +322,10 @@ module mesh3d =
         static member inline none = Interop.mkMesh3dAttr "hoverinfo" "none"
         static member inline skip = Interop.mkMesh3dAttr "hoverinfo" "skip"
         static member inline name = Interop.mkMesh3dAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkMesh3dAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkMesh3dAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkMesh3dAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkMesh3dAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkMesh3dAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkMesh3dAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkMesh3dAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkMesh3dAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkMesh3dAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkMesh3dAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkMesh3dAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkMesh3dAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkMesh3dAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkMesh3dAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkMesh3dAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkMesh3dAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkMesh3dAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkMesh3dAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkMesh3dAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkMesh3dAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkMesh3dAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkMesh3dAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkMesh3dAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkMesh3dAttr "hoverinfo" "x"
         static member inline y = Interop.mkMesh3dAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkMesh3dAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkMesh3dAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkMesh3dAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkMesh3dAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkMesh3dAttr "hoverinfo" "z+y+x"
 
     /// Sets the calendar system to use with `x` date data.
     [<Erase>]

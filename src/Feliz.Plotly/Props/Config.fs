@@ -27,6 +27,8 @@ type config =
     static member inline frameMargins (value: int) = Interop.mkConfigAttr "frameMargins" value
     /// When `layout.autosize` is turned on, set the frame margins in fraction of the graph size.
     static member inline frameMargins (value: float) = Interop.mkConfigAttr "frameMargins" value
+    /// Determines whether mouse wheel or two-finger scroll zooms is enable. Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false* to disable scrolling for all subplots.
+    static member inline scrollZoom (properties: #IConfigProperty list) = Interop.mkConfigAttr "scrollZoom" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the delay for registering a double-click in ms. This is the time interval (in ms) between first mousedown and 2nd mouseup to constitute a double-click. This setting propagates to all on-subplot double clicks (except for geo and mapbox) and on-legend double clicks.
     static member inline doubleClickDelay (value: int) = Interop.mkConfigAttr "doubleClickDelay" value
     /// Sets the delay for registering a double-click in ms. This is the time interval (in ms) between first mousedown and 2nd mouseup to constitute a double-click. This setting propagates to all on-subplot double clicks (except for geo and mapbox) and on-legend double clicks.
@@ -198,19 +200,8 @@ module config =
         static member inline cartesian = Interop.mkConfigAttr "scrollZoom" "cartesian"
         static member inline false' = Interop.mkConfigAttr "scrollZoom" "false"
         static member inline geo = Interop.mkConfigAttr "scrollZoom" "geo"
-        static member inline geoAndCartesian = Interop.mkConfigAttr "scrollZoom" "geo+cartesian"
-        static member inline geoAndGl3d = Interop.mkConfigAttr "scrollZoom" "geo+gl3d"
-        static member inline geoAndGl3dCartesian = Interop.mkConfigAttr "scrollZoom" "geo+gl3d+cartesian"
         static member inline gl3d = Interop.mkConfigAttr "scrollZoom" "gl3d"
-        static member inline gl3dAndCartesian = Interop.mkConfigAttr "scrollZoom" "gl3d+cartesian"
         static member inline mapbox = Interop.mkConfigAttr "scrollZoom" "mapbox"
-        static member inline mapboxAndCartesian = Interop.mkConfigAttr "scrollZoom" "mapbox+cartesian"
-        static member inline mapboxAndGeo = Interop.mkConfigAttr "scrollZoom" "mapbox+geo"
-        static member inline mapboxAndGeoCartesian = Interop.mkConfigAttr "scrollZoom" "mapbox+geo+cartesian"
-        static member inline mapboxAndGeoGl3d = Interop.mkConfigAttr "scrollZoom" "mapbox+geo+gl3d"
-        static member inline mapboxAndGeoGl3dCartesian = Interop.mkConfigAttr "scrollZoom" "mapbox+geo+gl3d+cartesian"
-        static member inline mapboxAndGl3d = Interop.mkConfigAttr "scrollZoom" "mapbox+gl3d"
-        static member inline mapboxAndGl3dCartesian = Interop.mkConfigAttr "scrollZoom" "mapbox+gl3d+cartesian"
         static member inline true' = Interop.mkConfigAttr "scrollZoom" "true"
 
     /// Sets the double click interaction mode. Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double click resets the axis ranges to their initial values. If *autosize*, double click set the axis ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis ranges to their initial values and even double clicks set the axis ranges to their autorange values.

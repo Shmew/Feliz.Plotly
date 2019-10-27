@@ -83,7 +83,7 @@ module rec ApiParser =
         let propOverloads = 
             if isSkip then []
             else
-                ValType.getOverloadStrings (propMethodName |> String.upperFirst) propType 
+                ValType.getOverloadStrings (componentTree |> List.rev |> List.head) (propMethodName |> String.upperFirst) propType 
                 |> List.map (fun (paramsCode, valueCode) -> 
                     if List.contains propMethodName traceChildren && componentTree |> List.head = "Traces" then
                         (paramsCode, 
@@ -115,8 +115,7 @@ module rec ApiParser =
                 let flagCombinations =
                     jVal?flags.AsArray()
                     |> List.ofArray
-                    |> List.allCombinations
-                    |> List.map (List.map (JsonValue.asString >> trimJson) >> (String.concat "+"))
+                    |> List.map (JsonValue.asString >> trimJson)
                 let extras =
                     match jVal.TryGetProperty("extras") with
                     | Some extras -> extras.AsArray() |> List.ofArray |> List.map (JsonValue.asString)
@@ -248,8 +247,7 @@ module rec ApiParser =
                 |> List.ofArray 
                 |> List.filter (fun (name, j) -> 
                     List.contains name skips |> not
-                    && j.TryGetProperty("valType").IsNone
-                )
+                    && j.TryGetProperty("valType").IsNone)
 
             let newNames = props |> List.map fst |> List.distinct
 

@@ -64,6 +64,8 @@ type indicator =
     static member inline uirevision (value: float) = Interop.mkIndicatorAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkIndicatorAttr "uirevision" (values |> Array.ofSeq)
+    /// Determines how the value is displayed on the graph. `number` displays the value numerically in text. `delta` displays the difference to a reference value in text. Finally, `gauge` displays the value graphically on an axis.
+    static member inline mode (properties: #IIndicatorProperty list) = Interop.mkIndicatorAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the number to be displayed.
     static member inline value (value: int) = Interop.mkIndicatorAttr "value" value
     /// Sets the number to be displayed.
@@ -94,11 +96,7 @@ module indicator =
     [<Erase>]
     type mode =
         static member inline delta = Interop.mkIndicatorAttr "mode" "delta"
-        static member inline deltaAndNumber = Interop.mkIndicatorAttr "mode" "delta+number"
         static member inline gauge = Interop.mkIndicatorAttr "mode" "gauge"
-        static member inline gaugeAndDelta = Interop.mkIndicatorAttr "mode" "gauge+delta"
-        static member inline gaugeAndDeltaNumber = Interop.mkIndicatorAttr "mode" "gauge+delta+number"
-        static member inline gaugeAndNumber = Interop.mkIndicatorAttr "mode" "gauge+number"
         static member inline number = Interop.mkIndicatorAttr "mode" "number"
 
     /// Sets the horizontal alignment of the `text` within the box. Note that this attribute has no effect if an angular gauge is displayed: in this case, it is always centered

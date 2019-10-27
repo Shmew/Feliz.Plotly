@@ -123,6 +123,8 @@ type scattercarpet =
     static member inline b (value: float) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<float>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    static member inline mode (properties: #IScattercarpetProperty list) = Interop.mkScattercarpetAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets text elements associated with each (a,b) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b). If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: string) = Interop.mkScattercarpetAttr "text" value
     /// Sets text elements associated with each (a,b) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b). If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -145,6 +147,10 @@ type scattercarpet =
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScattercarpetAttr "textfont" (createObj !!properties)
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScattercarpetAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScattercarpetAttr "unselected" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IScattercarpetProperty list) = Interop.mkScattercarpetAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
+    /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
+    static member inline hoveron (properties: #IScattercarpetProperty list) = Interop.mkScattercarpetAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkScattercarpetAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -194,11 +200,7 @@ module scattercarpet =
         static member inline none = Interop.mkScattercarpetAttr "mode" "none"
         static member inline lines = Interop.mkScattercarpetAttr "mode" "lines"
         static member inline markers = Interop.mkScattercarpetAttr "mode" "markers"
-        static member inline markersAndLines = Interop.mkScattercarpetAttr "mode" "markers+lines"
         static member inline text = Interop.mkScattercarpetAttr "mode" "text"
-        static member inline textAndLines = Interop.mkScattercarpetAttr "mode" "text+lines"
-        static member inline textAndMarkers = Interop.mkScattercarpetAttr "mode" "text+markers"
-        static member inline textAndMarkersLines = Interop.mkScattercarpetAttr "mode" "text+markers+lines"
 
     /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
     [<Erase>]
@@ -228,24 +230,12 @@ module scattercarpet =
         static member inline skip = Interop.mkScattercarpetAttr "hoverinfo" "skip"
         static member inline a = Interop.mkScattercarpetAttr "hoverinfo" "a"
         static member inline b = Interop.mkScattercarpetAttr "hoverinfo" "b"
-        static member inline bAndA = Interop.mkScattercarpetAttr "hoverinfo" "b+a"
         static member inline name = Interop.mkScattercarpetAttr "hoverinfo" "name"
-        static member inline nameAndA = Interop.mkScattercarpetAttr "hoverinfo" "name+a"
-        static member inline nameAndB = Interop.mkScattercarpetAttr "hoverinfo" "name+b"
-        static member inline nameAndBA = Interop.mkScattercarpetAttr "hoverinfo" "name+b+a"
-        static member inline nameAndText = Interop.mkScattercarpetAttr "hoverinfo" "name+text"
-        static member inline nameAndTextA = Interop.mkScattercarpetAttr "hoverinfo" "name+text+a"
-        static member inline nameAndTextB = Interop.mkScattercarpetAttr "hoverinfo" "name+text+b"
-        static member inline nameAndTextBA = Interop.mkScattercarpetAttr "hoverinfo" "name+text+b+a"
         static member inline text = Interop.mkScattercarpetAttr "hoverinfo" "text"
-        static member inline textAndA = Interop.mkScattercarpetAttr "hoverinfo" "text+a"
-        static member inline textAndB = Interop.mkScattercarpetAttr "hoverinfo" "text+b"
-        static member inline textAndBA = Interop.mkScattercarpetAttr "hoverinfo" "text+b+a"
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
     [<Erase>]
     type hoveron =
         static member inline fills = Interop.mkScattercarpetAttr "hoveron" "fills"
-        static member inline fillsAndPoints = Interop.mkScattercarpetAttr "hoveron" "fills+points"
         static member inline points = Interop.mkScattercarpetAttr "hoveron" "points"
 

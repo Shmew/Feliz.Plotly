@@ -20,6 +20,8 @@ type legend =
     static member inline borderwidth (value: float) = Interop.mkLegendAttr "borderwidth" value
     /// Sets the font used to text the legend items.
     static member inline font (properties: #IFontProperty list) = Interop.mkLegendAttr "font" (createObj !!properties)
+    /// Determines the order at which the legend items are displayed. If *normal*, the items are displayed top-to-bottom in the same order as the input data. If *reversed*, the items are displayed in the opposite order as *normal*. If *grouped*, the items are displayed in groups (when a trace `legendgroup` is provided). if *grouped+reversed*, the items are displayed in the opposite order as *grouped*.
+    static member inline traceorder (properties: #ILegendProperty list) = Interop.mkLegendAttr "traceorder" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the amount of vertical space (in px) between legend groups.
     static member inline tracegroupgap (value: int) = Interop.mkLegendAttr "tracegroupgap" value
     /// Sets the amount of vertical space (in px) between legend groups.
@@ -62,7 +64,6 @@ module legend =
     type traceorder =
         static member inline normal = Interop.mkLegendAttr "traceorder" "normal"
         static member inline grouped = Interop.mkLegendAttr "traceorder" "grouped"
-        static member inline groupedAndReversed = Interop.mkLegendAttr "traceorder" "grouped+reversed"
         static member inline reversed = Interop.mkLegendAttr "traceorder" "reversed"
 
     /// Determines if the legend items symbols scale with their corresponding *trace* attributes or remain *constant* independent of the symbol size on the graph.

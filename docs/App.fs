@@ -139,8 +139,13 @@ let samples =
 
     let pointCloud =
         [ "plotly-chart-pointcloud-basic", Samples.PointCloud.Basic.chart()
-          "plotly-chart-pointcloud-styled", Samples.PointCloud.Styled.chart()
-          "plotly-chart-pointcloud-advanced", Samples.PointCloud.Advanced.chart() ]
+          "plotly-chart-pointcloud-styled", Samples.PointCloud.Styled.chart() ]
+
+    let treemap =
+        [ "plotly-chart-treemap-basic", Samples.Treemap.Basic.chart()
+          "plotly-chart-treemap-differentattributes", Samples.Treemap.DifferentAttributes.chart()
+          "plotly-chart-treemap-sectorcolors", Samples.Treemap.SectorColors.chart()
+          "plotly-chart-treemap-nestedlayers", Samples.Treemap.NestedLayers.chart(centeredSpinner) ]
 
     [ scatter
       bubble
@@ -152,7 +157,8 @@ let samples =
       pie
       sunburst
       sankey
-      pointCloud ]
+      pointCloud
+      treemap ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -400,7 +406,12 @@ let sidebar (state: State) dispatch =
                     nestedMenuList "Point Cloud" [
                         menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Basic ]
                         menuItem "Styled" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Styled ]
-                        //menuItem "Advanced" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Advanced ]
+                    ]
+                    nestedMenuList "Treemap" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.Basic ]
+                        menuItem "Different Attributes" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.DifferentAttributes ]
+                        menuItem "Sector Colors" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ]
+                        menuItem "Nested Layers" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ]
                     ]
                 ]
             ]
@@ -476,7 +487,10 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "Sankey" ; "Styled.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Basic.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Styled.md" ]
-    //| [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Advanced ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Advanced.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.DifferentAttributes ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "DifferentAttributes.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "SectorColors.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "NestedLayers.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

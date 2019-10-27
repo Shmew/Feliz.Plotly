@@ -66,6 +66,8 @@ type scattergl =
     static member inline selectedpoints (value: float) = Interop.mkScatterglAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkScatterglAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IScatterglProperty list) = Interop.mkScatterglAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkScatterglAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkScatterglAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkScatterglAttr "transforms" (createObj !!properties)
@@ -167,6 +169,8 @@ type scattergl =
     static member inline hovertext (values: seq<string>) = Interop.mkScatterglAttr "hovertext" (values |> Array.ofSeq)
     /// Sets the text font.
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScatterglAttr "textfont" (createObj !!properties)
+    /// Determines the drawing mode for this scatter trace.
+    static member inline mode (properties: #IScatterglProperty list) = Interop.mkScatterglAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline line (properties: #ILineProperty list) = Interop.mkScatterglAttr "line" (createObj !!properties)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkScatterglAttr "marker" (createObj !!properties)
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
@@ -235,36 +239,10 @@ module scattergl =
         static member inline none = Interop.mkScatterglAttr "hoverinfo" "none"
         static member inline skip = Interop.mkScatterglAttr "hoverinfo" "skip"
         static member inline name = Interop.mkScatterglAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkScatterglAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkScatterglAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkScatterglAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkScatterglAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkScatterglAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkScatterglAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkScatterglAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkScatterglAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkScatterglAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkScatterglAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkScatterglAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkScatterglAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkScatterglAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkScatterglAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkScatterglAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkScatterglAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkScatterglAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkScatterglAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkScatterglAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkScatterglAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkScatterglAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkScatterglAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkScatterglAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkScatterglAttr "hoverinfo" "x"
         static member inline y = Interop.mkScatterglAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkScatterglAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkScatterglAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkScatterglAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkScatterglAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkScatterglAttr "hoverinfo" "z+y+x"
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     [<Erase>]
@@ -285,11 +263,7 @@ module scattergl =
         static member inline none = Interop.mkScatterglAttr "mode" "none"
         static member inline lines = Interop.mkScatterglAttr "mode" "lines"
         static member inline markers = Interop.mkScatterglAttr "mode" "markers"
-        static member inline markersAndLines = Interop.mkScatterglAttr "mode" "markers+lines"
         static member inline text = Interop.mkScatterglAttr "mode" "text"
-        static member inline textAndLines = Interop.mkScatterglAttr "mode" "text+lines"
-        static member inline textAndMarkers = Interop.mkScatterglAttr "mode" "text+markers"
-        static member inline textAndMarkersLines = Interop.mkScatterglAttr "mode" "text+markers+lines"
 
     /// Sets the area to fill with a solid color. Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.
     [<Erase>]

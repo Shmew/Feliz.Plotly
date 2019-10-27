@@ -89,6 +89,8 @@ type scatterpolargl =
     static member inline uirevision (value: float) = Interop.mkScatterpolarglAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkScatterpolarglAttr "uirevision" (values |> Array.ofSeq)
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    static member inline mode (properties: #IScatterpolarglProperty list) = Interop.mkScatterpolarglAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the radial coordinates
     static member inline r (value: bool) = Interop.mkScatterpolarglAttr "r" (value |> Array.singleton)
     /// Sets the radial coordinates
@@ -185,6 +187,8 @@ type scatterpolargl =
     static member inline fillcolor (value: string) = Interop.mkScatterpolarglAttr "fillcolor" value
     /// Sets the text font.
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScatterpolarglAttr "textfont" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IScatterpolarglProperty list) = Interop.mkScatterpolarglAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScatterpolarglAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScatterpolarglAttr "unselected" (createObj !!properties)
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
@@ -230,11 +234,7 @@ module scatterpolargl =
         static member inline none = Interop.mkScatterpolarglAttr "mode" "none"
         static member inline lines = Interop.mkScatterpolarglAttr "mode" "lines"
         static member inline markers = Interop.mkScatterpolarglAttr "mode" "markers"
-        static member inline markersAndLines = Interop.mkScatterpolarglAttr "mode" "markers+lines"
         static member inline text = Interop.mkScatterpolarglAttr "mode" "text"
-        static member inline textAndLines = Interop.mkScatterpolarglAttr "mode" "text+lines"
-        static member inline textAndMarkers = Interop.mkScatterpolarglAttr "mode" "text+markers"
-        static member inline textAndMarkersLines = Interop.mkScatterpolarglAttr "mode" "text+markers+lines"
 
     /// Sets the unit of input *theta* values. Has an effect only when on *linear* angular axes.
     [<Erase>]
@@ -274,18 +274,7 @@ module scatterpolargl =
         static member inline none = Interop.mkScatterpolarglAttr "hoverinfo" "none"
         static member inline skip = Interop.mkScatterpolarglAttr "hoverinfo" "skip"
         static member inline name = Interop.mkScatterpolarglAttr "hoverinfo" "name"
-        static member inline nameAndR = Interop.mkScatterpolarglAttr "hoverinfo" "name+r"
-        static member inline nameAndText = Interop.mkScatterpolarglAttr "hoverinfo" "name+text"
-        static member inline nameAndTextR = Interop.mkScatterpolarglAttr "hoverinfo" "name+text+r"
-        static member inline nameAndTextTheta = Interop.mkScatterpolarglAttr "hoverinfo" "name+text+theta"
-        static member inline nameAndTextThetaR = Interop.mkScatterpolarglAttr "hoverinfo" "name+text+theta+r"
-        static member inline nameAndTheta = Interop.mkScatterpolarglAttr "hoverinfo" "name+theta"
-        static member inline nameAndThetaR = Interop.mkScatterpolarglAttr "hoverinfo" "name+theta+r"
         static member inline r = Interop.mkScatterpolarglAttr "hoverinfo" "r"
         static member inline text = Interop.mkScatterpolarglAttr "hoverinfo" "text"
-        static member inline textAndR = Interop.mkScatterpolarglAttr "hoverinfo" "text+r"
-        static member inline textAndTheta = Interop.mkScatterpolarglAttr "hoverinfo" "text+theta"
-        static member inline textAndThetaR = Interop.mkScatterpolarglAttr "hoverinfo" "text+theta+r"
         static member inline theta = Interop.mkScatterpolarglAttr "hoverinfo" "theta"
-        static member inline thetaAndR = Interop.mkScatterpolarglAttr "hoverinfo" "theta+r"
 

@@ -203,6 +203,8 @@ type layout =
     static member inline modebar (properties: #IModebarProperty list) = Interop.mkLayoutAttr "modebar" (createObj !!properties)
     /// Sets transition options used during Plotly.react updates.
     static member inline transition (properties: #ITransitionProperty list) = Interop.mkLayoutAttr "transition" (createObj !!properties)
+    /// Determines the mode of single click interactions. *event* is the default value and emits the `plotly_click` event. In addition this mode emits the `plotly_selected` event in drag modes *lasso* and *select*, but with no event data attached (kept for compatibility reasons). The *select* flag enables selecting single data points via click. This mode also supports persistent selections, meaning that pressing Shift while clicking, adds to / subtracts from an existing selection. *select* with `hovermode`: *x* can be confusing, consider explicitly setting `hovermode`: *closest* when using this feature. Selection events are sent accordingly as long as *event* flag is set as well. When the *event* flag is missing, `plotly_click` and `plotly_selected` events are not fired.
+    static member inline clickmode (properties: #ILayoutProperty list) = Interop.mkLayoutAttr "clickmode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff, 0 means no looking for data). This is only a real distance for hovering on point-like objects, like scatter points. For area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside, but these objects will not supersede hover on point-like objects in case of conflict.
     static member inline hoverdistance (value: int) = Interop.mkLayoutAttr "hoverdistance" value
     /// Sets the default distance (in pixels) to look for data to draw spikelines to (-1 means no cutoff, 0 means no looking for data). As with hoverdistance, distance does not apply to area-like objects. In addition, some objects can be hovered on but will not generate spikelines, such as scatter fills.
@@ -285,7 +287,6 @@ module layout =
         static member inline none = Interop.mkLayoutAttr "clickmode" "none"
         static member inline event = Interop.mkLayoutAttr "clickmode" "event"
         static member inline select = Interop.mkLayoutAttr "clickmode" "select"
-        static member inline selectAndEvent = Interop.mkLayoutAttr "clickmode" "select+event"
 
     /// Determines the mode of drag interactions. *select* and *lasso* apply only to scatter traces with markers or text. *orbit* and *turntable* apply only to 3D scenes.
     [<Erase>]

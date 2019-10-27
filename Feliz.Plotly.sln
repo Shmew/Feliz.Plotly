@@ -157,9 +157,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sankey", "Sankey", "{A24E1F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PointCloud", "PointCloud", "{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\PointCloud\Advanced.md = public\Plotly\Examples\PointCloud\Advanced.md
 		public\Plotly\Examples\PointCloud\Basic.md = public\Plotly\Examples\PointCloud\Basic.md
 		public\Plotly\Examples\PointCloud\Styled.md = public\Plotly\Examples\PointCloud\Styled.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Treemap", "Treemap", "{81B3001F-4146-42F1-BF14-2F4BE9A8EE88}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Treemap\Basic.md = public\Plotly\Examples\Treemap\Basic.md
+		public\Plotly\Examples\Treemap\DifferentAttributes.md = public\Plotly\Examples\Treemap\DifferentAttributes.md
+		public\Plotly\Examples\Treemap\NestedLayers.md = public\Plotly\Examples\Treemap\NestedLayers.md
+		public\Plotly\Examples\Treemap\SectorColors.md = public\Plotly\Examples\Treemap\SectorColors.md
 	EndProjectSection
 EndProject
 Global
@@ -203,6 +210,7 @@ Global
 		{5F6EF95A-438D-48B7-B6E9-E068DF79CD90} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{A24E1FC2-D414-493B-9CB8-286BE17FB06E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{81B3001F-4146-42F1-BF14-2F4BE9A8EE88} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

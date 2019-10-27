@@ -91,7 +91,7 @@ let chart () =
             layout.showlegend false
             layout.autosize false
             layout.height 400
-            layout.width 1300
+            layout.width 1000
             layout.xaxis [
                 xaxis.showline true
                 xaxis.showgrid false

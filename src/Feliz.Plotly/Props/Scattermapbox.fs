@@ -121,6 +121,8 @@ type scattermapbox =
     static member inline lat (value: float) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<float>) = Interop.mkScattermapboxAttr "lat" (values |> Array.ofSeq)
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover.
+    static member inline mode (properties: #IScattermapboxProperty list) = Interop.mkScattermapboxAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: string) = Interop.mkScattermapboxAttr "text" value
     /// Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -145,6 +147,8 @@ type scattermapbox =
     static member inline below (value: string) = Interop.mkScattermapboxAttr "below" value
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScattermapboxAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScattermapboxAttr "unselected" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IScattermapboxProperty list) = Interop.mkScattermapboxAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkScattermapboxAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -187,11 +191,7 @@ module scattermapbox =
         static member inline none = Interop.mkScattermapboxAttr "mode" "none"
         static member inline lines = Interop.mkScattermapboxAttr "mode" "lines"
         static member inline markers = Interop.mkScattermapboxAttr "mode" "markers"
-        static member inline markersAndLines = Interop.mkScattermapboxAttr "mode" "markers+lines"
         static member inline text = Interop.mkScattermapboxAttr "mode" "text"
-        static member inline textAndLines = Interop.mkScattermapboxAttr "mode" "text+lines"
-        static member inline textAndMarkers = Interop.mkScattermapboxAttr "mode" "text+markers"
-        static member inline textAndMarkersLines = Interop.mkScattermapboxAttr "mode" "text+markers+lines"
 
     /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
     [<Erase>]
@@ -219,18 +219,7 @@ module scattermapbox =
         static member inline none = Interop.mkScattermapboxAttr "hoverinfo" "none"
         static member inline skip = Interop.mkScattermapboxAttr "hoverinfo" "skip"
         static member inline lat = Interop.mkScattermapboxAttr "hoverinfo" "lat"
-        static member inline latAndLon = Interop.mkScattermapboxAttr "hoverinfo" "lat+lon"
         static member inline lon = Interop.mkScattermapboxAttr "hoverinfo" "lon"
         static member inline name = Interop.mkScattermapboxAttr "hoverinfo" "name"
-        static member inline nameAndLat = Interop.mkScattermapboxAttr "hoverinfo" "name+lat"
-        static member inline nameAndLatLon = Interop.mkScattermapboxAttr "hoverinfo" "name+lat+lon"
-        static member inline nameAndLon = Interop.mkScattermapboxAttr "hoverinfo" "name+lon"
-        static member inline nameAndText = Interop.mkScattermapboxAttr "hoverinfo" "name+text"
-        static member inline nameAndTextLat = Interop.mkScattermapboxAttr "hoverinfo" "name+text+lat"
-        static member inline nameAndTextLatLon = Interop.mkScattermapboxAttr "hoverinfo" "name+text+lat+lon"
-        static member inline nameAndTextLon = Interop.mkScattermapboxAttr "hoverinfo" "name+text+lon"
         static member inline text = Interop.mkScattermapboxAttr "hoverinfo" "text"
-        static member inline textAndLat = Interop.mkScattermapboxAttr "hoverinfo" "text+lat"
-        static member inline textAndLatLon = Interop.mkScattermapboxAttr "hoverinfo" "text+lat+lon"
-        static member inline textAndLon = Interop.mkScattermapboxAttr "hoverinfo" "text+lon"
 

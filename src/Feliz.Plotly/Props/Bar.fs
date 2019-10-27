@@ -70,6 +70,8 @@ type bar =
     static member inline selectedpoints (value: float) = Interop.mkBarAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkBarAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IBarProperty list) = Interop.mkBarAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkBarAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkBarAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkBarAttr "transforms" (createObj !!properties)
@@ -286,36 +288,10 @@ module bar =
         static member inline none = Interop.mkBarAttr "hoverinfo" "none"
         static member inline skip = Interop.mkBarAttr "hoverinfo" "skip"
         static member inline name = Interop.mkBarAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkBarAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkBarAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkBarAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkBarAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkBarAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkBarAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkBarAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkBarAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkBarAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkBarAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkBarAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkBarAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkBarAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkBarAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkBarAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkBarAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkBarAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkBarAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkBarAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkBarAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkBarAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkBarAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkBarAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkBarAttr "hoverinfo" "x"
         static member inline y = Interop.mkBarAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkBarAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkBarAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkBarAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkBarAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkBarAttr "hoverinfo" "z+y+x"
 
     /// Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside.
     [<Erase>]

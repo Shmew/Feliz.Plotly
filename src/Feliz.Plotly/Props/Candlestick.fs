@@ -70,6 +70,8 @@ type candlestick =
     static member inline selectedpoints (value: float) = Interop.mkCandlestickAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkCandlestickAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #ICandlestickProperty list) = Interop.mkCandlestickAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline stream (properties: #IStreamProperty list) = Interop.mkCandlestickAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkCandlestickAttr "transforms" (createObj !!properties)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -227,36 +229,10 @@ module candlestick =
         static member inline none = Interop.mkCandlestickAttr "hoverinfo" "none"
         static member inline skip = Interop.mkCandlestickAttr "hoverinfo" "skip"
         static member inline name = Interop.mkCandlestickAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkCandlestickAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkCandlestickAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkCandlestickAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkCandlestickAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkCandlestickAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkCandlestickAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkCandlestickAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkCandlestickAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkCandlestickAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkCandlestickAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkCandlestickAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkCandlestickAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkCandlestickAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkCandlestickAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkCandlestickAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkCandlestickAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkCandlestickAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkCandlestickAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkCandlestickAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkCandlestickAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkCandlestickAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkCandlestickAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkCandlestickAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkCandlestickAttr "hoverinfo" "x"
         static member inline y = Interop.mkCandlestickAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkCandlestickAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkCandlestickAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkCandlestickAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkCandlestickAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkCandlestickAttr "hoverinfo" "z+y+x"
 
     /// Sets the calendar system to use with `x` date data.
     [<Erase>]

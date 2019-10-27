@@ -131,6 +131,8 @@ type yaxis =
     static member inline spikethickness (value: float) = Interop.mkYaxisAttr "spikethickness" value
     /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
     static member inline spikedash (value: string) = Interop.mkYaxisAttr "spikedash" value
+    /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
+    static member inline spikemode (properties: #IYaxisProperty list) = Interop.mkYaxisAttr "spikemode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the tick font.
     static member inline tickfont (properties: #ITickfontProperty list) = Interop.mkYaxisAttr "tickfont" (createObj !!properties)
     /// Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
@@ -306,11 +308,7 @@ module yaxis =
     [<Erase>]
     type spikemode =
         static member inline across = Interop.mkYaxisAttr "spikemode" "across"
-        static member inline acrossAndToaxis = Interop.mkYaxisAttr "spikemode" "across+toaxis"
         static member inline marker = Interop.mkYaxisAttr "spikemode" "marker"
-        static member inline markerAndAcross = Interop.mkYaxisAttr "spikemode" "marker+across"
-        static member inline markerAndAcrossToaxis = Interop.mkYaxisAttr "spikemode" "marker+across+toaxis"
-        static member inline markerAndToaxis = Interop.mkYaxisAttr "spikemode" "marker+toaxis"
         static member inline toaxis = Interop.mkYaxisAttr "spikemode" "toaxis"
 
     /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.

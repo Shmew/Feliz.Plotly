@@ -68,6 +68,8 @@ type box =
     static member inline selectedpoints (value: float) = Interop.mkBoxAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkBoxAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IBoxProperty list) = Interop.mkBoxAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkBoxAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkBoxAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkBoxAttr "transforms" (createObj !!properties)
@@ -197,6 +199,8 @@ type box =
     static member inline alignmentgroup (value: string) = Interop.mkBoxAttr "alignmentgroup" value
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkBoxAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkBoxAttr "unselected" (createObj !!properties)
+    /// Do the hover effects highlight individual boxes  or sample points or both?
+    static member inline hoveron (properties: #IBoxProperty list) = Interop.mkBoxAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkBoxAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
@@ -236,36 +240,10 @@ module box =
         static member inline none = Interop.mkBoxAttr "hoverinfo" "none"
         static member inline skip = Interop.mkBoxAttr "hoverinfo" "skip"
         static member inline name = Interop.mkBoxAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkBoxAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkBoxAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkBoxAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkBoxAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkBoxAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkBoxAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkBoxAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkBoxAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkBoxAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkBoxAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkBoxAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkBoxAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkBoxAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkBoxAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkBoxAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkBoxAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkBoxAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkBoxAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkBoxAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkBoxAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkBoxAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkBoxAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkBoxAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkBoxAttr "hoverinfo" "x"
         static member inline y = Interop.mkBoxAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkBoxAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkBoxAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkBoxAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkBoxAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkBoxAttr "hoverinfo" "z+y+x"
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
     [<Erase>]
@@ -293,7 +271,6 @@ module box =
     type hoveron =
         static member inline boxes = Interop.mkBoxAttr "hoveron" "boxes"
         static member inline points = Interop.mkBoxAttr "hoveron" "points"
-        static member inline pointsAndBoxes = Interop.mkBoxAttr "hoveron" "points+boxes"
 
     /// Sets the calendar system to use with `x` date data.
     [<Erase>]

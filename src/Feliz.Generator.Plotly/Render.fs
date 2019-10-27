@@ -9,61 +9,12 @@ module Render =
     let indent numLevels = String.indent 4 numLevels
 
     module GetLines =
-        /// Returns the head of a string list if the length is over the threshold
-        let private trimTreeToHead (threshold: int) (tree: string list) =
-            match tree with
-            | tree when tree.Length > threshold ->
-                tree.Head |> List.singleton
-            | tree -> tree
-
-        /// Gets the code lines for the implementation of a single component overload.
-        /// Does not include docs.
-        let singleComponentOverload (comp: Component) (compOverload: ComponentOverload) =
-            let filterMethod (tree: string list) =
-                tree |> List.filter ((<>) (comp.MethodName |> String.upperFirst))
-
-            let baseInterfaceTree =
-                comp.ParentNameTree
-                |> function
-                | tree when tree.IsEmpty -> [ "Plot" ]
-                | tree -> tree
-                |> List.distinct
-
-            let baseInterface =
-                baseInterfaceTree
-                |> trimTreeToHead 3
-                |> String.concat ""
-
-            let attrStr =
-                match (comp.ParentNameTree |> filterMethod) with
-                | [ s ] -> s
-                | _ ->
-                    if baseInterfaceTree.Length > 1 then 
-                        baseInterfaceTree |> filterMethod |> trimTreeToHead 3 |> String.concat ""
-                    else baseInterface
-
-            if compOverload.SkipAttr then
-                comp.ParentNameTree
-                |> filterMethod
-                |> function
-                | tree when tree.IsEmpty -> [ "Plot" ]
-                | tree -> tree
-                |> List.last
-                |> String.lowerFirst
-            else comp.MethodName
-            |> fun inputAttr ->
-                sprintf "static member %s%s %s = Interop.mk%sAttr \"%s\" %s"
-                    (if compOverload.IsInline then "inline "
-                     else "") comp.MethodName
-                    (baseInterface |> compOverload.ParamFun) attrStr
-                    inputAttr compOverload.PropsCode |> List.singleton
-
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
             let attrValue =
-                if prop.PropType = ValType.Component then prop.ParentNameTree |> List.head 
-                else (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "")
+                prop.ParentNameTree |> List.head 
+                //else (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "")
             let bodyCode =
                 match propOverload.BodyCode with
                 | ValueExprOnly expr ->
@@ -74,12 +25,6 @@ module Render =
                 (if propOverload.IsInline then "inline "
                  else "") prop.MethodName propOverload.ParamsCode bodyCode |> List.singleton
 
-        /// Builds the base interface for enumerable props
-        let enumBaseInterface (prop: Prop) =
-            prop.ParentNameTree
-            |> trimTreeToHead 1
-            |> String.concat ""
-
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropEnumOverload (prop: Prop) (propOverload: EnumPropOverload) =
@@ -88,7 +33,7 @@ module Render =
                  else "") propOverload.MethodName
                 (match propOverload.ParamsCode with
                  | Some s -> s + " "
-                 | None -> "") (enumBaseInterface prop) prop.RealPropName propOverload.ValueCode
+                 | None -> "") (prop.ParentNameTree.Head) prop.RealPropName propOverload.ValueCode
             |> emptStringToNone
             |> List.singleton
 
@@ -158,7 +103,7 @@ module Render =
             else
                 [ for prop, _ in propsAndEnumOverloads do
                     if prop.PropType = ValType.EnumeratedArray then
-                        let baseInterface = if indentLevel > 1 then prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "" else enumBaseInterface prop
+                        let baseInterface = prop.ParentNameTree.Head
                         sprintf "/// Use a list of enumerated values" |> indent (indentLevel + 1)
                         sprintf "let inline %ss (properties: #I%sProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mk%sAttr \"%s\""
                             prop.MethodName baseInterface baseInterface prop.RealPropName

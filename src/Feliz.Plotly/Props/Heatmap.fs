@@ -50,6 +50,8 @@ type heatmap =
     static member inline customdata (value: float) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHeatmapAttr "customdata" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IHeatmapProperty list) = Interop.mkHeatmapAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHeatmapAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkHeatmapAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHeatmapAttr "transforms" (createObj !!properties)
@@ -275,36 +277,10 @@ module heatmap =
         static member inline none = Interop.mkHeatmapAttr "hoverinfo" "none"
         static member inline skip = Interop.mkHeatmapAttr "hoverinfo" "skip"
         static member inline name = Interop.mkHeatmapAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkHeatmapAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkHeatmapAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkHeatmapAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkHeatmapAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkHeatmapAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkHeatmapAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkHeatmapAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkHeatmapAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkHeatmapAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkHeatmapAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkHeatmapAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkHeatmapAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkHeatmapAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkHeatmapAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkHeatmapAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkHeatmapAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkHeatmapAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkHeatmapAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkHeatmapAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkHeatmapAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkHeatmapAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkHeatmapAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkHeatmapAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkHeatmapAttr "hoverinfo" "x"
         static member inline y = Interop.mkHeatmapAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkHeatmapAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkHeatmapAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkHeatmapAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkHeatmapAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkHeatmapAttr "hoverinfo" "z+y+x"
 
     /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
     [<Erase>]

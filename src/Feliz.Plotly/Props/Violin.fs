@@ -68,6 +68,8 @@ type violin =
     static member inline selectedpoints (value: float) = Interop.mkViolinAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkViolinAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IViolinProperty list) = Interop.mkViolinAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkViolinAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkViolinAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkViolinAttr "transforms" (createObj !!properties)
@@ -211,6 +213,8 @@ type violin =
     static member inline alignmentgroup (value: string) = Interop.mkViolinAttr "alignmentgroup" value
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkViolinAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkViolinAttr "unselected" (createObj !!properties)
+    /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
+    static member inline hoveron (properties: #IViolinProperty list) = Interop.mkViolinAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkViolinAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
@@ -250,36 +254,10 @@ module violin =
         static member inline none = Interop.mkViolinAttr "hoverinfo" "none"
         static member inline skip = Interop.mkViolinAttr "hoverinfo" "skip"
         static member inline name = Interop.mkViolinAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkViolinAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkViolinAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkViolinAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkViolinAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkViolinAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkViolinAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkViolinAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkViolinAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkViolinAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkViolinAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkViolinAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkViolinAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkViolinAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkViolinAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkViolinAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkViolinAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkViolinAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkViolinAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkViolinAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkViolinAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkViolinAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkViolinAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkViolinAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkViolinAttr "hoverinfo" "x"
         static member inline y = Interop.mkViolinAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkViolinAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkViolinAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkViolinAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkViolinAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkViolinAttr "hoverinfo" "z+y+x"
 
     /// Sets the orientation of the violin(s). If *v* (*h*), the distribution is visualized along the vertical (horizontal).
     [<Erase>]
@@ -320,10 +298,6 @@ module violin =
     type hoveron =
         static member inline all = Interop.mkViolinAttr "hoveron" "all"
         static member inline kde = Interop.mkViolinAttr "hoveron" "kde"
-        static member inline kdeAndPoints = Interop.mkViolinAttr "hoveron" "kde+points"
-        static member inline kdeAndPointsViolins = Interop.mkViolinAttr "hoveron" "kde+points+violins"
-        static member inline kdeAndViolins = Interop.mkViolinAttr "hoveron" "kde+violins"
         static member inline points = Interop.mkViolinAttr "hoveron" "points"
-        static member inline pointsAndViolins = Interop.mkViolinAttr "hoveron" "points+violins"
         static member inline violins = Interop.mkViolinAttr "hoveron" "violins"
 

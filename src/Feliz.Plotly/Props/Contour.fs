@@ -54,6 +54,8 @@ type contour =
     static member inline customdata (value: float) = Interop.mkContourAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IContourProperty list) = Interop.mkContourAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkContourAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkContourAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkContourAttr "transforms" (createObj !!properties)
@@ -279,36 +281,10 @@ module contour =
         static member inline none = Interop.mkContourAttr "hoverinfo" "none"
         static member inline skip = Interop.mkContourAttr "hoverinfo" "skip"
         static member inline name = Interop.mkContourAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkContourAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkContourAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkContourAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkContourAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkContourAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkContourAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkContourAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkContourAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkContourAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkContourAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkContourAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkContourAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkContourAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkContourAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkContourAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkContourAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkContourAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkContourAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkContourAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkContourAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkContourAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkContourAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkContourAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkContourAttr "hoverinfo" "x"
         static member inline y = Interop.mkContourAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkContourAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkContourAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkContourAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkContourAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkContourAttr "hoverinfo" "z+y+x"
 
     /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
     [<Erase>]

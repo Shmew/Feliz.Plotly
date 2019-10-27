@@ -204,6 +204,8 @@ type volume =
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     static member inline flatshading (value: bool) = Interop.mkVolumeAttr "flatshading" value
     static member inline contour (properties: #IContourProperty list) = Interop.mkVolumeAttr "contour" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IVolumeProperty list) = Interop.mkVolumeAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
     static member inline scene (value: string) = Interop.mkVolumeAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .
@@ -245,34 +247,8 @@ module volume =
         static member inline none = Interop.mkVolumeAttr "hoverinfo" "none"
         static member inline skip = Interop.mkVolumeAttr "hoverinfo" "skip"
         static member inline name = Interop.mkVolumeAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkVolumeAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkVolumeAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkVolumeAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkVolumeAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkVolumeAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkVolumeAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkVolumeAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkVolumeAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkVolumeAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkVolumeAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkVolumeAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkVolumeAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkVolumeAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkVolumeAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkVolumeAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkVolumeAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkVolumeAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkVolumeAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkVolumeAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkVolumeAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkVolumeAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkVolumeAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkVolumeAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkVolumeAttr "hoverinfo" "x"
         static member inline y = Interop.mkVolumeAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkVolumeAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkVolumeAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkVolumeAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkVolumeAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkVolumeAttr "hoverinfo" "z+y+x"
 

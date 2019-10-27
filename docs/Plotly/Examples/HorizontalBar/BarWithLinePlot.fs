@@ -86,7 +86,10 @@ let chart () =
                 scatter.y y
                 scatter.xaxis "x2"
                 scatter.yaxis "y"
-                scatter.mode.markersAndLines
+                scatter.mode [
+                    scatter.mode.lines
+                    scatter.mode.markers
+                ]
                 scatter.line [
                     line.color (colors.rgb(128, 0, 128))
                 ]

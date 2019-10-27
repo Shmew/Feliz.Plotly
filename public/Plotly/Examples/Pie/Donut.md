@@ -21,7 +21,11 @@ let chart () =
                     domain.column 0
                 ]
                 pie.name "GHG Emissions"
-                pie.hoverinfo.nameAndPercentLabel
+                pie.hoverinfo [
+                    pie.hoverinfo.name
+                    pie.hoverinfo.percent
+                    pie.hoverinfo.label
+                ]
                 pie.hole 0.4
             ]
             traces.pie [
@@ -33,7 +37,11 @@ let chart () =
                     domain.column 1
                 ]
                 pie.name "CO2 Emissions"
-                pie.hoverinfo.nameAndPercentLabel
+                pie.hoverinfo [
+                    pie.hoverinfo.name
+                    pie.hoverinfo.percent
+                    pie.hoverinfo.label
+                ]
                 pie.hole 0.4
             ]
         ]

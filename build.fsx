@@ -195,14 +195,16 @@ Target.create "CleanDocs" <| fun _ ->
         ++ (pub @@ "*bundle.*")
         ++ (pub @@ "**/README.md")
         ++ (pub @@ "**/RELEASE_NOTES.md")
+        ++ (pub @@ "index.html")
         |> List.ofSeq
         |> List.iter Shell.rm
 
     TaskRunner.runWithRetries clean 10
 
-Target.create "CopyMarkdowns" <| fun _ ->
+Target.create "CopyDocFiles" <| fun _ ->
     [ pub @@ "Plotly/README.md", __SOURCE_DIRECTORY__ @@ "README.md"
-      pub @@ "Plotly/RELEASE_NOTES.md", __SOURCE_DIRECTORY__ @@ "RELEASE_NOTES.md" ]
+      pub @@ "Plotly/RELEASE_NOTES.md", __SOURCE_DIRECTORY__ @@ "RELEASE_NOTES.md"
+      pub @@ "index.html", __SOURCE_DIRECTORY__ @@ "docs/index.html" ]
     |> List.iter (fun (target, source) -> Shell.copyFile target source)
 
 Target.create "PrepDocs" ignore
@@ -539,7 +541,7 @@ Target.create "Publish" ignore
 "All" <== ["Lint"; "RunTests"; "CopyBinaries" ]
 
 "CleanDocs"
-  ==> "CopyMarkdowns"
+  ==> "CopyDocFiles"
   ==> "PrepDocs"
 
 "All"

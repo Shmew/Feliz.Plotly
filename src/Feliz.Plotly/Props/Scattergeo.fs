@@ -137,6 +137,8 @@ type scattergeo =
     static member inline locations (value: float) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<float>) = Interop.mkScattergeoAttr "locations" (values |> Array.ofSeq)
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    static member inline mode (properties: #IScattergeoProperty list) = Interop.mkScattergeoAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: string) = Interop.mkScattergeoAttr "text" value
     /// Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -159,6 +161,8 @@ type scattergeo =
     static member inline fillcolor (value: string) = Interop.mkScattergeoAttr "fillcolor" value
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScattergeoAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScattergeoAttr "unselected" (createObj !!properties)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IScattergeoProperty list) = Interop.mkScattergeoAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkScattergeoAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -215,11 +219,7 @@ module scattergeo =
         static member inline none = Interop.mkScattergeoAttr "mode" "none"
         static member inline lines = Interop.mkScattergeoAttr "mode" "lines"
         static member inline markers = Interop.mkScattergeoAttr "mode" "markers"
-        static member inline markersAndLines = Interop.mkScattergeoAttr "mode" "markers+lines"
         static member inline text = Interop.mkScattergeoAttr "mode" "text"
-        static member inline textAndLines = Interop.mkScattergeoAttr "mode" "text+lines"
-        static member inline textAndMarkers = Interop.mkScattergeoAttr "mode" "text+markers"
-        static member inline textAndMarkersLines = Interop.mkScattergeoAttr "mode" "text+markers+lines"
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     [<Erase>]
@@ -247,34 +247,8 @@ module scattergeo =
         static member inline none = Interop.mkScattergeoAttr "hoverinfo" "none"
         static member inline skip = Interop.mkScattergeoAttr "hoverinfo" "skip"
         static member inline lat = Interop.mkScattergeoAttr "hoverinfo" "lat"
-        static member inline latAndLon = Interop.mkScattergeoAttr "hoverinfo" "lat+lon"
         static member inline location = Interop.mkScattergeoAttr "hoverinfo" "location"
-        static member inline locationAndLat = Interop.mkScattergeoAttr "hoverinfo" "location+lat"
-        static member inline locationAndLatLon = Interop.mkScattergeoAttr "hoverinfo" "location+lat+lon"
-        static member inline locationAndLon = Interop.mkScattergeoAttr "hoverinfo" "location+lon"
         static member inline lon = Interop.mkScattergeoAttr "hoverinfo" "lon"
         static member inline name = Interop.mkScattergeoAttr "hoverinfo" "name"
-        static member inline nameAndLat = Interop.mkScattergeoAttr "hoverinfo" "name+lat"
-        static member inline nameAndLatLon = Interop.mkScattergeoAttr "hoverinfo" "name+lat+lon"
-        static member inline nameAndLocation = Interop.mkScattergeoAttr "hoverinfo" "name+location"
-        static member inline nameAndLocationLat = Interop.mkScattergeoAttr "hoverinfo" "name+location+lat"
-        static member inline nameAndLocationLatLon = Interop.mkScattergeoAttr "hoverinfo" "name+location+lat+lon"
-        static member inline nameAndLocationLon = Interop.mkScattergeoAttr "hoverinfo" "name+location+lon"
-        static member inline nameAndLon = Interop.mkScattergeoAttr "hoverinfo" "name+lon"
-        static member inline nameAndText = Interop.mkScattergeoAttr "hoverinfo" "name+text"
-        static member inline nameAndTextLat = Interop.mkScattergeoAttr "hoverinfo" "name+text+lat"
-        static member inline nameAndTextLatLon = Interop.mkScattergeoAttr "hoverinfo" "name+text+lat+lon"
-        static member inline nameAndTextLocation = Interop.mkScattergeoAttr "hoverinfo" "name+text+location"
-        static member inline nameAndTextLocationLat = Interop.mkScattergeoAttr "hoverinfo" "name+text+location+lat"
-        static member inline nameAndTextLocationLatLon = Interop.mkScattergeoAttr "hoverinfo" "name+text+location+lat+lon"
-        static member inline nameAndTextLocationLon = Interop.mkScattergeoAttr "hoverinfo" "name+text+location+lon"
-        static member inline nameAndTextLon = Interop.mkScattergeoAttr "hoverinfo" "name+text+lon"
         static member inline text = Interop.mkScattergeoAttr "hoverinfo" "text"
-        static member inline textAndLat = Interop.mkScattergeoAttr "hoverinfo" "text+lat"
-        static member inline textAndLatLon = Interop.mkScattergeoAttr "hoverinfo" "text+lat+lon"
-        static member inline textAndLocation = Interop.mkScattergeoAttr "hoverinfo" "text+location"
-        static member inline textAndLocationLat = Interop.mkScattergeoAttr "hoverinfo" "text+location+lat"
-        static member inline textAndLocationLatLon = Interop.mkScattergeoAttr "hoverinfo" "text+location+lat+lon"
-        static member inline textAndLocationLon = Interop.mkScattergeoAttr "hoverinfo" "text+location+lon"
-        static member inline textAndLon = Interop.mkScattergeoAttr "hoverinfo" "text+lon"
 

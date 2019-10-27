@@ -70,6 +70,8 @@ type scatter =
     static member inline selectedpoints (value: float) = Interop.mkScatterAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkScatterAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IScatterProperty list) = Interop.mkScatterAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkScatterAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkScatterAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkScatterAttr "transforms" (createObj !!properties)
@@ -175,6 +177,10 @@ type scatter =
     static member inline hovertext (value: string) = Interop.mkScatterAttr "hovertext" value
     /// Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (values: seq<string>) = Interop.mkScatterAttr "hovertext" (values |> Array.ofSeq)
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    static member inline mode (properties: #IScatterProperty list) = Interop.mkScatterAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
+    /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
+    static member inline hoveron (properties: #IScatterProperty list) = Interop.mkScatterAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkScatterAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -243,36 +249,10 @@ module scatter =
         static member inline none = Interop.mkScatterAttr "hoverinfo" "none"
         static member inline skip = Interop.mkScatterAttr "hoverinfo" "skip"
         static member inline name = Interop.mkScatterAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkScatterAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkScatterAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkScatterAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkScatterAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkScatterAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkScatterAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkScatterAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkScatterAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkScatterAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkScatterAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkScatterAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkScatterAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkScatterAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkScatterAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkScatterAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkScatterAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkScatterAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkScatterAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkScatterAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkScatterAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkScatterAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkScatterAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkScatterAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkScatterAttr "hoverinfo" "x"
         static member inline y = Interop.mkScatterAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkScatterAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkScatterAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkScatterAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkScatterAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkScatterAttr "hoverinfo" "z+y+x"
 
     /// Only relevant when `stackgroup` is used, and only the first `orientation` found in the `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`. Sets the stacking direction. With *v* (*h*), the y (x) values of subsequent traces are added. Also affects the default value of `fill`.
     [<Erase>]
@@ -299,17 +279,12 @@ module scatter =
         static member inline none = Interop.mkScatterAttr "mode" "none"
         static member inline lines = Interop.mkScatterAttr "mode" "lines"
         static member inline markers = Interop.mkScatterAttr "mode" "markers"
-        static member inline markersAndLines = Interop.mkScatterAttr "mode" "markers+lines"
         static member inline text = Interop.mkScatterAttr "mode" "text"
-        static member inline textAndLines = Interop.mkScatterAttr "mode" "text+lines"
-        static member inline textAndMarkers = Interop.mkScatterAttr "mode" "text+markers"
-        static member inline textAndMarkersLines = Interop.mkScatterAttr "mode" "text+markers+lines"
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
     [<Erase>]
     type hoveron =
         static member inline fills = Interop.mkScatterAttr "hoveron" "fills"
-        static member inline fillsAndPoints = Interop.mkScatterAttr "hoveron" "fills+points"
         static member inline points = Interop.mkScatterAttr "hoveron" "points"
 
     /// Sets the area to fill with a solid color. Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.

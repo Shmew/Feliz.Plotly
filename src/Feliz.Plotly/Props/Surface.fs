@@ -178,6 +178,8 @@ type surface =
     static member inline opacity (value: int) = Interop.mkSurfaceAttr "opacity" value
     /// Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.
     static member inline opacity (value: float) = Interop.mkSurfaceAttr "opacity" value
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #ISurfaceProperty list) = Interop.mkSurfaceAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
     static member inline scene (value: string) = Interop.mkSurfaceAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .
@@ -219,36 +221,10 @@ module surface =
         static member inline none = Interop.mkSurfaceAttr "hoverinfo" "none"
         static member inline skip = Interop.mkSurfaceAttr "hoverinfo" "skip"
         static member inline name = Interop.mkSurfaceAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkSurfaceAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkSurfaceAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkSurfaceAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkSurfaceAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkSurfaceAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkSurfaceAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkSurfaceAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkSurfaceAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkSurfaceAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkSurfaceAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkSurfaceAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkSurfaceAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkSurfaceAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkSurfaceAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkSurfaceAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkSurfaceAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkSurfaceAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkSurfaceAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkSurfaceAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkSurfaceAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkSurfaceAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkSurfaceAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkSurfaceAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkSurfaceAttr "hoverinfo" "x"
         static member inline y = Interop.mkSurfaceAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkSurfaceAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkSurfaceAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkSurfaceAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkSurfaceAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkSurfaceAttr "hoverinfo" "z+y+x"
 
     /// Sets the calendar system to use with `x` date data.
     [<Erase>]

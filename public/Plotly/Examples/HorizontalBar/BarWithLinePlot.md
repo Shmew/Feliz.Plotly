@@ -43,10 +43,11 @@ let dataAnns =
     y
     |> List.map3 (fun savings networth y ->
         [ annotations.annotation [
-            annotation.xref.custom "x1"
-            annotation.yref.custom "y1"
+            annotation.xref.custom "x"
+            annotation.yref.custom "y"
             annotation.x (savings + 2.3)
-            annotation.y (y + "%")
+            annotation.y y
+            annotation.text (sprintf "%.2f%s" savings "%")
             annotation.font [
                 font.family "Arial"
                 font.size 12
@@ -56,10 +57,10 @@ let dataAnns =
           ] 
           annotations.annotation [
             annotation.xref.custom "x2"
-            annotation.yref.custom "y1"
+            annotation.yref.custom "y"
             annotation.x (networth - 20000.)
             annotation.y y
-            annotation.text (sprintf "%0.2f M" networth)
+            annotation.text (sprintf "$ %0.2f M" networth)
             annotation.font [
                 font.family "Arial"
                 font.size 12
@@ -77,14 +78,10 @@ let chart () =
             traces.bar [
                 bar.x xSavings
                 bar.y y
-                bar.xaxis "x1"
-                bar.yaxis "y1"
+                bar.xaxis "x"
+                bar.yaxis "y"
                 bar.marker [
                     marker.color (colors.rgba(50, 171, 96, 0.6))
-                    marker.line [
-                        line.color (colors.rgba(50, 171, 96, 1.0))
-                        line.width 1
-                    ]
                 ]
                 bar.name "Household savings, percentage of household disposable income"
                 bar.orientation.h
@@ -93,8 +90,11 @@ let chart () =
                 scatter.x xNetWorth
                 scatter.y y
                 scatter.xaxis "x2"
-                scatter.yaxis "y1"
-                scatter.mode.markersAndLines
+                scatter.yaxis "y"
+                scatter.mode [
+                    scatter.mode.lines
+                    scatter.mode.markers
+                ]
                 scatter.line [
                     line.color (colors.rgb(128, 0, 128))
                 ]
@@ -105,23 +105,24 @@ let chart () =
             layout.title [
                 title.text "Household Savings & Net Worth for Eight OECD Countries"
             ]
+            layout.grid [
+                grid.rows 1
+                grid.columns 2
+                grid.pattern.coupled
+            ]
             layout.xaxis [
-                xaxis.range [ 0; 20 ]
-                xaxis.domain [ 0.; 0.5 ]
                 xaxis.zeroline false
                 xaxis.showline false
                 xaxis.showticklabels true
                 xaxis.showgrid true
             ]
-            layout.xaxis [
-                xaxis.range [ 25000; 150000 ]
-                xaxis.domain [ 0.5; 1. ]
-                xaxis.zeroline false
-                xaxis.showline false
-                xaxis.showticklabels true
-                xaxis.showgrid true
-                xaxis.side.top
-                xaxis.dtick 25000
+            layout.xaxis2 [
+                xaxis2.zeroline false
+                xaxis2.showline false
+                xaxis2.showticklabels true
+                xaxis2.showgrid true
+                xaxis2.side.top
+                xaxis2.dtick 25000
             ]
             layout.legend [
                 legend.x 0.029
@@ -136,7 +137,7 @@ let chart () =
                 margin.t 200
                 margin.b 70
             ]
-            layout.width 600
+            layout.width 1200
             layout.height 600
             layout.paperBgcolor (colors.rgb(248, 248, 255))
             layout.plotBgcolor (colors.rgb(248, 248, 255))

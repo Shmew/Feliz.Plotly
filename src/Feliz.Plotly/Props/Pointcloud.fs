@@ -54,6 +54,8 @@ type pointcloud =
     static member inline customdata (value: float) = Interop.mkPointcloudAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkPointcloudAttr "customdata" (values |> Array.ofSeq)
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    static member inline hoverinfo (properties: #IPointcloudProperty list) = Interop.mkPointcloudAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkPointcloudAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkPointcloudAttr "stream" (createObj !!properties)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -204,34 +206,8 @@ module pointcloud =
         static member inline none = Interop.mkPointcloudAttr "hoverinfo" "none"
         static member inline skip = Interop.mkPointcloudAttr "hoverinfo" "skip"
         static member inline name = Interop.mkPointcloudAttr "hoverinfo" "name"
-        static member inline nameAndText = Interop.mkPointcloudAttr "hoverinfo" "name+text"
-        static member inline nameAndTextX = Interop.mkPointcloudAttr "hoverinfo" "name+text+x"
-        static member inline nameAndTextY = Interop.mkPointcloudAttr "hoverinfo" "name+text+y"
-        static member inline nameAndTextYX = Interop.mkPointcloudAttr "hoverinfo" "name+text+y+x"
-        static member inline nameAndTextZ = Interop.mkPointcloudAttr "hoverinfo" "name+text+z"
-        static member inline nameAndTextZX = Interop.mkPointcloudAttr "hoverinfo" "name+text+z+x"
-        static member inline nameAndTextZY = Interop.mkPointcloudAttr "hoverinfo" "name+text+z+y"
-        static member inline nameAndTextZYX = Interop.mkPointcloudAttr "hoverinfo" "name+text+z+y+x"
-        static member inline nameAndX = Interop.mkPointcloudAttr "hoverinfo" "name+x"
-        static member inline nameAndY = Interop.mkPointcloudAttr "hoverinfo" "name+y"
-        static member inline nameAndYX = Interop.mkPointcloudAttr "hoverinfo" "name+y+x"
-        static member inline nameAndZ = Interop.mkPointcloudAttr "hoverinfo" "name+z"
-        static member inline nameAndZX = Interop.mkPointcloudAttr "hoverinfo" "name+z+x"
-        static member inline nameAndZY = Interop.mkPointcloudAttr "hoverinfo" "name+z+y"
-        static member inline nameAndZYX = Interop.mkPointcloudAttr "hoverinfo" "name+z+y+x"
         static member inline text = Interop.mkPointcloudAttr "hoverinfo" "text"
-        static member inline textAndX = Interop.mkPointcloudAttr "hoverinfo" "text+x"
-        static member inline textAndY = Interop.mkPointcloudAttr "hoverinfo" "text+y"
-        static member inline textAndYX = Interop.mkPointcloudAttr "hoverinfo" "text+y+x"
-        static member inline textAndZ = Interop.mkPointcloudAttr "hoverinfo" "text+z"
-        static member inline textAndZX = Interop.mkPointcloudAttr "hoverinfo" "text+z+x"
-        static member inline textAndZY = Interop.mkPointcloudAttr "hoverinfo" "text+z+y"
-        static member inline textAndZYX = Interop.mkPointcloudAttr "hoverinfo" "text+z+y+x"
         static member inline x = Interop.mkPointcloudAttr "hoverinfo" "x"
         static member inline y = Interop.mkPointcloudAttr "hoverinfo" "y"
-        static member inline yAndX = Interop.mkPointcloudAttr "hoverinfo" "y+x"
         static member inline z = Interop.mkPointcloudAttr "hoverinfo" "z"
-        static member inline zAndX = Interop.mkPointcloudAttr "hoverinfo" "z+x"
-        static member inline zAndY = Interop.mkPointcloudAttr "hoverinfo" "z+y"
-        static member inline zAndYX = Interop.mkPointcloudAttr "hoverinfo" "z+y+x"
 
