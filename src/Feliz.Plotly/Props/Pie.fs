@@ -38,6 +38,30 @@ type pie =
     static member inline ids (value: float) = Interop.mkPieAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkPieAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool list>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool []>) = Interop.mkPieAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<string>>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string list>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string []>) = Interop.mkPieAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<int>>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int list>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int []>) = Interop.mkPieAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<float>>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float list>) = Interop.mkPieAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float []>) = Interop.mkPieAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkPieAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -54,6 +78,30 @@ type pie =
     static member inline customdata (value: float) = Interop.mkPieAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkPieAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool list>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool []>) = Interop.mkPieAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string list>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string []>) = Interop.mkPieAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int list>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int []>) = Interop.mkPieAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float list>) = Interop.mkPieAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float []>) = Interop.mkPieAttr "customdata" (values |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkPieAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkPieAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkPieAttr "transforms" (createObj !!properties)
@@ -89,6 +137,30 @@ type pie =
     static member inline labels (value: float) = Interop.mkPieAttr "labels" (value |> Array.singleton)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<float>) = Interop.mkPieAttr "labels" (values |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<seq<bool>>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<bool list>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<bool []>) = Interop.mkPieAttr "labels" (values |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<seq<string>>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<string list>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<string []>) = Interop.mkPieAttr "labels" (values |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<seq<int>>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<int list>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<int []>) = Interop.mkPieAttr "labels" (values |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<seq<float>>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<float list>) = Interop.mkPieAttr "labels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<float []>) = Interop.mkPieAttr "labels" (values |> Array.ofSeq)
     /// Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
     static member inline label0 (value: int) = Interop.mkPieAttr "label0" value
     /// Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
@@ -113,6 +185,30 @@ type pie =
     static member inline values (value: float) = Interop.mkPieAttr "values" (value |> Array.singleton)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<float>) = Interop.mkPieAttr "values" (values |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<seq<bool>>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<bool list>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<bool []>) = Interop.mkPieAttr "values" (values |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<seq<string>>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<string list>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<string []>) = Interop.mkPieAttr "values" (values |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<seq<int>>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<int list>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<int []>) = Interop.mkPieAttr "values" (values |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<seq<float>>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<float list>) = Interop.mkPieAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<float []>) = Interop.mkPieAttr "values" (values |> Array.ofSeq)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkPieAttr "marker" (createObj !!properties)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: bool) = Interop.mkPieAttr "text" (value |> Array.singleton)
@@ -130,6 +226,30 @@ type pie =
     static member inline text (value: float) = Interop.mkPieAttr "text" (value |> Array.singleton)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<float>) = Interop.mkPieAttr "text" (values |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<seq<bool>>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<bool list>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<bool []>) = Interop.mkPieAttr "text" (values |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<seq<string>>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<string list>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<string []>) = Interop.mkPieAttr "text" (values |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<seq<int>>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<int list>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<int []>) = Interop.mkPieAttr "text" (values |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<seq<float>>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<float list>) = Interop.mkPieAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<float []>) = Interop.mkPieAttr "text" (values |> Array.ofSeq)
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (value: string) = Interop.mkPieAttr "hovertext" value
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.

@@ -147,6 +147,12 @@ let samples =
           "plotly-chart-treemap-sectorcolors", Samples.Treemap.SectorColors.chart()
           "plotly-chart-treemap-nestedlayers", Samples.Treemap.NestedLayers.chart(centeredSpinner) ]
 
+    let table = []
+
+    let multipleChartTypes =
+        [ "plotly-chart-multiplecharttypes-lineandbar", Samples.MultipleChartTypes.LineAndBar.chart()
+          "plotly-chart-multiplecharttypes-contourandscatter", Samples.MultipleChartTypes.ContourAndScatter.chart() ]
+
     [ scatter
       bubble
       dot
@@ -158,7 +164,8 @@ let samples =
       sunburst
       sankey
       pointCloud
-      treemap ]
+      treemap
+      multipleChartTypes ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -413,6 +420,10 @@ let sidebar (state: State) dispatch =
                         menuItem "Sector Colors" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ]
                         menuItem "Nested Layers" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ]
                     ]
+                    nestedMenuList "Multiple Chart Types" [
+                        menuItem "Line and Bar" [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.LineAndBar ]
+                        menuItem "Contour and Scatter" [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.ContourAndScatter ]
+                    ]
                 ]
             ]
         ]
@@ -491,6 +502,8 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.DifferentAttributes ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "DifferentAttributes.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "SectorColors.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "NestedLayers.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.LineAndBar ] -> loadMarkdown [ "Plotly"; "Examples"; "MultipleChartTypes" ; "LineAndBar.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.ContourAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "MultipleChartTypes" ; "ContourAndScatter.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =

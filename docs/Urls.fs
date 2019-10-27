@@ -53,6 +53,11 @@ let [<Literal>] LineDash = "LineDash"
 let [<Literal>] NamedLineAndScatter = "NamedLineAndScatter"
 let [<Literal>] StylingLinePlot = "StylingLinePlot"
 
+// Multiple Chart Type Examples
+let [<Literal>] MultipleChartTypes = "MultipleChartTypes"
+let [<Literal>] LineAndBar = "LineAndBar"
+let [<Literal>] ContourAndScatter = "ContourAndScatter"
+
 // Pie Examples
 let [<Literal>] Pie = "Pie"
 let [<Literal>] Subplots = "Subplots"

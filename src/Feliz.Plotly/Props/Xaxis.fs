@@ -91,6 +91,30 @@ type xaxis =
     static member inline tickvals (value: float) = Interop.mkXaxisAttr "tickvals" (value |> Array.singleton)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<seq<bool>>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<bool list>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<bool []>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<seq<string>>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<string list>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<string []>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<seq<int>>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<int list>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<int []>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<seq<float>>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<float list>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<float []>) = Interop.mkXaxisAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (value: bool) = Interop.mkXaxisAttr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -107,6 +131,30 @@ type xaxis =
     static member inline ticktext (value: float) = Interop.mkXaxisAttr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<seq<bool>>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<bool list>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<bool []>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<seq<string>>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<string list>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<string []>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<seq<int>>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<int list>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<int []>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<seq<float>>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<float list>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<float []>) = Interop.mkXaxisAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the tick length (in px).
     static member inline ticklen (value: int) = Interop.mkXaxisAttr "ticklen" value
     /// Sets the tick length (in px).
@@ -210,6 +258,30 @@ type xaxis =
     static member inline categoryarray (value: float) = Interop.mkXaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<seq<bool>>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<bool list>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<bool []>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<seq<string>>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<string list>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<string []>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<seq<int>>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<int list>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<int []>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<seq<float>>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<float list>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<float []>) = Interop.mkXaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.
     static member inline uirevision (value: bool) = Interop.mkXaxisAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.

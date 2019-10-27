@@ -169,6 +169,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Treemap", "Treemap", "{81B3
 		public\Plotly\Examples\Treemap\SectorColors.md = public\Plotly\Examples\Treemap\SectorColors.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Table", "Table", "{52168EAE-6304-400D-A1EA-86F5FAC82D8C}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Table\AlternatingRowColors.md = public\Plotly\Examples\Table\AlternatingRowColors.md
+		public\Plotly\Examples\Table\Basic.md = public\Plotly\Examples\Table\Basic.md
+		public\Plotly\Examples\Table\ChangingSizes.md = public\Plotly\Examples\Table\ChangingSizes.md
+		public\Plotly\Examples\Table\FromCSV.md = public\Plotly\Examples\Table\FromCSV.md
+		public\Plotly\Examples\Table\Styled.md = public\Plotly\Examples\Table\Styled.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleChartTypes", "MultipleChartTypes", "{67FC7E7D-B739-4640-AA2F-822C9FEFBC47}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\MultipleChartTypes\ContourAndScatter.md = public\Plotly\Examples\MultipleChartTypes\ContourAndScatter.md
+		public\Plotly\Examples\MultipleChartTypes\LineAndBar.md = public\Plotly\Examples\MultipleChartTypes\LineAndBar.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -211,6 +226,8 @@ Global
 		{A24E1FC2-D414-493B-9CB8-286BE17FB06E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{81B3001F-4146-42F1-BF14-2F4BE9A8EE88} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{52168EAE-6304-400D-A1EA-86F5FAC82D8C} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{67FC7E7D-B739-4640-AA2F-822C9FEFBC47} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

@@ -38,6 +38,30 @@ type contour =
     static member inline ids (value: float) = Interop.mkContourAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool list>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool []>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<string>>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string list>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string []>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<int>>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int list>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int []>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<float>>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float list>) = Interop.mkContourAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float []>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkContourAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -54,6 +78,30 @@ type contour =
     static member inline customdata (value: float) = Interop.mkContourAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool list>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool []>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string list>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string []>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int list>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int []>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float list>) = Interop.mkContourAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float []>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IContourProperty list) = Interop.mkContourAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkContourAttr "hoverlabel" (createObj !!properties)
@@ -91,6 +139,30 @@ type contour =
     static member inline z (value: float) = Interop.mkContourAttr "z" (value |> Array.singleton)
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<seq<bool>>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<bool list>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<bool []>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<seq<string>>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<string list>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<string []>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<seq<int>>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<int list>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<int []>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<seq<float>>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<float list>) = Interop.mkContourAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<float []>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (value: bool) = Interop.mkContourAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
@@ -107,6 +179,30 @@ type contour =
     static member inline x (value: float) = Interop.mkContourAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<seq<bool>>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<bool list>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<bool []>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<seq<string>>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<string list>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<string []>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<seq<int>>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<int list>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<int []>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<seq<float>>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<float list>) = Interop.mkContourAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<float []>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (value: bool) = Interop.mkContourAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -143,6 +239,30 @@ type contour =
     static member inline y (value: float) = Interop.mkContourAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<seq<bool>>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<bool list>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<bool []>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<seq<string>>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<string list>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<string []>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<seq<int>>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<int list>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<int []>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<seq<float>>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<float list>) = Interop.mkContourAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<float []>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (value: bool) = Interop.mkContourAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -179,6 +299,30 @@ type contour =
     static member inline text (value: float) = Interop.mkContourAttr "text" (value |> Array.singleton)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<seq<bool>>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<bool list>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<bool []>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<seq<string>>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<string list>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<string []>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<seq<int>>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<int list>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<int []>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<seq<float>>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<float list>) = Interop.mkContourAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<float []>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
     /// Same as `text`.
     static member inline hovertext (value: bool) = Interop.mkContourAttr "hovertext" (value |> Array.singleton)
     /// Same as `text`.
@@ -195,6 +339,30 @@ type contour =
     static member inline hovertext (value: float) = Interop.mkContourAttr "hovertext" (value |> Array.singleton)
     /// Same as `text`.
     static member inline hovertext (values: seq<float>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<seq<bool>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<bool list>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<bool []>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<seq<string>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<string list>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<string []>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<seq<int>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<int list>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<int []>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<seq<float>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<float list>) = Interop.mkContourAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<float []>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
     /// Transposes the z data.
     static member inline transpose (value: bool) = Interop.mkContourAttr "transpose" value
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format

@@ -38,6 +38,30 @@ type candlestick =
     static member inline ids (value: float) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkCandlestickAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool list>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool []>) = Interop.mkCandlestickAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<string>>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string list>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string []>) = Interop.mkCandlestickAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<int>>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int list>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int []>) = Interop.mkCandlestickAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<float>>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float list>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float []>) = Interop.mkCandlestickAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -54,6 +78,30 @@ type candlestick =
     static member inline customdata (value: float) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkCandlestickAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool list>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool []>) = Interop.mkCandlestickAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string list>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string []>) = Interop.mkCandlestickAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int list>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int []>) = Interop.mkCandlestickAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float list>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float []>) = Interop.mkCandlestickAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: bool) = Interop.mkCandlestickAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -106,6 +154,30 @@ type candlestick =
     static member inline x (value: float) = Interop.mkCandlestickAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<float>) = Interop.mkCandlestickAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<bool>>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<bool list>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<bool []>) = Interop.mkCandlestickAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<string>>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<string list>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<string []>) = Interop.mkCandlestickAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<int>>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<int list>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<int []>) = Interop.mkCandlestickAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<float>>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<float list>) = Interop.mkCandlestickAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<float []>) = Interop.mkCandlestickAttr "x" (values |> Array.ofSeq)
     /// Sets the open values.
     static member inline open' (value: bool) = Interop.mkCandlestickAttr "open" (value |> Array.singleton)
     /// Sets the open values.
@@ -122,6 +194,30 @@ type candlestick =
     static member inline open' (value: float) = Interop.mkCandlestickAttr "open" (value |> Array.singleton)
     /// Sets the open values.
     static member inline open' (values: seq<float>) = Interop.mkCandlestickAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<bool>>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<bool list>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<bool []>) = Interop.mkCandlestickAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<string>>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<string list>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<string []>) = Interop.mkCandlestickAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<int>>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<int list>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<int []>) = Interop.mkCandlestickAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<float>>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<float list>) = Interop.mkCandlestickAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<float []>) = Interop.mkCandlestickAttr "open" (values |> Array.ofSeq)
     /// Sets the high values.
     static member inline high (value: bool) = Interop.mkCandlestickAttr "high" (value |> Array.singleton)
     /// Sets the high values.
@@ -138,6 +234,30 @@ type candlestick =
     static member inline high (value: float) = Interop.mkCandlestickAttr "high" (value |> Array.singleton)
     /// Sets the high values.
     static member inline high (values: seq<float>) = Interop.mkCandlestickAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<bool>>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<bool list>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<bool []>) = Interop.mkCandlestickAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<string>>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<string list>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<string []>) = Interop.mkCandlestickAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<int>>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<int list>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<int []>) = Interop.mkCandlestickAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<float>>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<float list>) = Interop.mkCandlestickAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<float []>) = Interop.mkCandlestickAttr "high" (values |> Array.ofSeq)
     /// Sets the low values.
     static member inline low (value: bool) = Interop.mkCandlestickAttr "low" (value |> Array.singleton)
     /// Sets the low values.
@@ -154,6 +274,30 @@ type candlestick =
     static member inline low (value: float) = Interop.mkCandlestickAttr "low" (value |> Array.singleton)
     /// Sets the low values.
     static member inline low (values: seq<float>) = Interop.mkCandlestickAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<bool>>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<bool list>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<bool []>) = Interop.mkCandlestickAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<string>>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<string list>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<string []>) = Interop.mkCandlestickAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<int>>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<int list>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<int []>) = Interop.mkCandlestickAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<float>>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<float list>) = Interop.mkCandlestickAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<float []>) = Interop.mkCandlestickAttr "low" (values |> Array.ofSeq)
     /// Sets the close values.
     static member inline close (value: bool) = Interop.mkCandlestickAttr "close" (value |> Array.singleton)
     /// Sets the close values.
@@ -170,6 +314,30 @@ type candlestick =
     static member inline close (value: float) = Interop.mkCandlestickAttr "close" (value |> Array.singleton)
     /// Sets the close values.
     static member inline close (values: seq<float>) = Interop.mkCandlestickAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<bool>>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<bool list>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<bool []>) = Interop.mkCandlestickAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<string>>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<string list>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<string []>) = Interop.mkCandlestickAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<int>>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<int list>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<int []>) = Interop.mkCandlestickAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<float>>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<float list>) = Interop.mkCandlestickAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<float []>) = Interop.mkCandlestickAttr "close" (values |> Array.ofSeq)
     static member inline line (properties: #ILineProperty list) = Interop.mkCandlestickAttr "line" (createObj !!properties)
     static member inline increasing (properties: #IIncreasingProperty list) = Interop.mkCandlestickAttr "increasing" (createObj !!properties)
     static member inline decreasing (properties: #IDecreasingProperty list) = Interop.mkCandlestickAttr "decreasing" (createObj !!properties)

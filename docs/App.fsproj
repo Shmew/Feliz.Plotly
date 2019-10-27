@@ -4,6 +4,13 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\MultipleChartTypes\LineAndBar.fs" />
+    <Compile Include="Plotly\Examples\MultipleChartTypes\ContourAndScatter.fs" />
+    <Compile Include="Plotly\Examples\Table\Basic.fs" />
+    <Compile Include="Plotly\Examples\Table\Styled.fs" />
+    <Compile Include="Plotly\Examples\Table\FromCSV.fs" />
+    <Compile Include="Plotly\Examples\Table\ChangingSizes.fs" />
+    <Compile Include="Plotly\Examples\Table\AlternatingRowColors.fs" />
     <Compile Include="Plotly\Examples\Treemap\Basic.fs" />
     <Compile Include="Plotly\Examples\Treemap\DifferentAttributes.fs" />
     <Compile Include="Plotly\Examples\Treemap\SectorColors.fs" />

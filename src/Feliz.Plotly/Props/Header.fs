@@ -26,6 +26,30 @@ type header =
     static member inline values (value: float) = Interop.mkHeaderAttr "values" (value |> Array.singleton)
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<float>) = Interop.mkHeaderAttr "values" (values |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<seq<bool>>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<bool list>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<bool []>) = Interop.mkHeaderAttr "values" (values |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<seq<string>>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<string list>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<string []>) = Interop.mkHeaderAttr "values" (values |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<seq<int>>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<int list>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<int []>) = Interop.mkHeaderAttr "values" (values |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<seq<float>>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<float list>) = Interop.mkHeaderAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<float []>) = Interop.mkHeaderAttr "values" (values |> Array.ofSeq)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (value: bool) = Interop.mkHeaderAttr "format" (value |> Array.singleton)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
@@ -42,6 +66,30 @@ type header =
     static member inline format (value: float) = Interop.mkHeaderAttr "format" (value |> Array.singleton)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<float>) = Interop.mkHeaderAttr "format" (values |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<seq<bool>>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<bool list>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<bool []>) = Interop.mkHeaderAttr "format" (values |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<seq<string>>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<string list>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<string []>) = Interop.mkHeaderAttr "format" (values |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<seq<int>>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<int list>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<int []>) = Interop.mkHeaderAttr "format" (values |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<seq<float>>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<float list>) = Interop.mkHeaderAttr "format" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<float []>) = Interop.mkHeaderAttr "format" (values |> Array.ofSeq)
     /// Prefix for cell values.
     static member inline prefix (value: string) = Interop.mkHeaderAttr "prefix" value
     /// Prefix for cell values.

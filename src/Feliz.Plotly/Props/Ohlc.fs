@@ -38,6 +38,30 @@ type ohlc =
     static member inline ids (value: float) = Interop.mkOhlcAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool list>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool []>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<string>>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string list>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string []>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<int>>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int list>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int []>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<float>>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float list>) = Interop.mkOhlcAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float []>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -54,6 +78,30 @@ type ohlc =
     static member inline customdata (value: float) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool list>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool []>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string list>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string []>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int list>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int []>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float list>) = Interop.mkOhlcAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float []>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: bool) = Interop.mkOhlcAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -106,6 +154,30 @@ type ohlc =
     static member inline x (value: float) = Interop.mkOhlcAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<float>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<bool>>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<bool list>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<bool []>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<string>>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<string list>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<string []>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<int>>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<int list>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<int []>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<seq<float>>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<float list>) = Interop.mkOhlcAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<float []>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
     /// Sets the open values.
     static member inline open' (value: bool) = Interop.mkOhlcAttr "open" (value |> Array.singleton)
     /// Sets the open values.
@@ -122,6 +194,30 @@ type ohlc =
     static member inline open' (value: float) = Interop.mkOhlcAttr "open" (value |> Array.singleton)
     /// Sets the open values.
     static member inline open' (values: seq<float>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<bool>>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<bool list>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<bool []>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<string>>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<string list>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<string []>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<int>>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<int list>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<int []>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<seq<float>>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<float list>) = Interop.mkOhlcAttr "open" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (values: seq<float []>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
     /// Sets the high values.
     static member inline high (value: bool) = Interop.mkOhlcAttr "high" (value |> Array.singleton)
     /// Sets the high values.
@@ -138,6 +234,30 @@ type ohlc =
     static member inline high (value: float) = Interop.mkOhlcAttr "high" (value |> Array.singleton)
     /// Sets the high values.
     static member inline high (values: seq<float>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<bool>>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<bool list>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<bool []>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<string>>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<string list>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<string []>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<int>>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<int list>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<int []>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<seq<float>>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<float list>) = Interop.mkOhlcAttr "high" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (values: seq<float []>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
     /// Sets the low values.
     static member inline low (value: bool) = Interop.mkOhlcAttr "low" (value |> Array.singleton)
     /// Sets the low values.
@@ -154,6 +274,30 @@ type ohlc =
     static member inline low (value: float) = Interop.mkOhlcAttr "low" (value |> Array.singleton)
     /// Sets the low values.
     static member inline low (values: seq<float>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<bool>>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<bool list>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<bool []>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<string>>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<string list>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<string []>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<int>>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<int list>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<int []>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<seq<float>>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<float list>) = Interop.mkOhlcAttr "low" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (values: seq<float []>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
     /// Sets the close values.
     static member inline close (value: bool) = Interop.mkOhlcAttr "close" (value |> Array.singleton)
     /// Sets the close values.
@@ -170,6 +314,30 @@ type ohlc =
     static member inline close (value: float) = Interop.mkOhlcAttr "close" (value |> Array.singleton)
     /// Sets the close values.
     static member inline close (values: seq<float>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<bool>>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<bool list>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<bool []>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<string>>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<string list>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<string []>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<int>>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<int list>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<int []>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<seq<float>>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<float list>) = Interop.mkOhlcAttr "close" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (values: seq<float []>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
     static member inline line (properties: #ILineProperty list) = Interop.mkOhlcAttr "line" (createObj !!properties)
     static member inline increasing (properties: #IIncreasingProperty list) = Interop.mkOhlcAttr "increasing" (createObj !!properties)
     static member inline decreasing (properties: #IDecreasingProperty list) = Interop.mkOhlcAttr "decreasing" (createObj !!properties)

@@ -50,3 +50,6 @@
 
 ### 0.8.0 - Sunday, October 27, 2019
 * Reimplemented how flaglists are handled
+
+### 0.8.1 - Sunday, October 27, 2019
+* Added support for 2D collections

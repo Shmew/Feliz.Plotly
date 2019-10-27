@@ -34,6 +34,30 @@ type densitymapbox =
     static member inline ids (value: float) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkDensitymapboxAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool list>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool []>) = Interop.mkDensitymapboxAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<string>>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string list>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string []>) = Interop.mkDensitymapboxAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<int>>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int list>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int []>) = Interop.mkDensitymapboxAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float list>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float []>) = Interop.mkDensitymapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -50,6 +74,30 @@ type densitymapbox =
     static member inline customdata (value: float) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkDensitymapboxAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool list>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool []>) = Interop.mkDensitymapboxAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string list>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string []>) = Interop.mkDensitymapboxAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int list>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int []>) = Interop.mkDensitymapboxAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float list>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float []>) = Interop.mkDensitymapboxAttr "customdata" (values |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkDensitymapboxAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkDensitymapboxAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkDensitymapboxAttr "transforms" (createObj !!properties)
@@ -85,6 +133,30 @@ type densitymapbox =
     static member inline lon (value: float) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<float>) = Interop.mkDensitymapboxAttr "lon" (values |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<seq<bool>>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<bool list>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<bool []>) = Interop.mkDensitymapboxAttr "lon" (values |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<seq<string>>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<string list>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<string []>) = Interop.mkDensitymapboxAttr "lon" (values |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<seq<int>>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<int list>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<int []>) = Interop.mkDensitymapboxAttr "lon" (values |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<float list>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<float []>) = Interop.mkDensitymapboxAttr "lon" (values |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (value: bool) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton)
     /// Sets the latitude coordinates (in degrees North).
@@ -101,6 +173,30 @@ type densitymapbox =
     static member inline lat (value: float) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<float>) = Interop.mkDensitymapboxAttr "lat" (values |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<seq<bool>>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<bool list>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<bool []>) = Interop.mkDensitymapboxAttr "lat" (values |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<seq<string>>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<string list>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<string []>) = Interop.mkDensitymapboxAttr "lat" (values |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<seq<int>>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<int list>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<int []>) = Interop.mkDensitymapboxAttr "lat" (values |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<float list>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<float []>) = Interop.mkDensitymapboxAttr "lat" (values |> Array.ofSeq)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (value: bool) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
@@ -117,6 +213,30 @@ type densitymapbox =
     static member inline z (value: float) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<float>) = Interop.mkDensitymapboxAttr "z" (values |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<seq<bool>>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<bool list>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<bool []>) = Interop.mkDensitymapboxAttr "z" (values |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<seq<string>>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<string list>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<string []>) = Interop.mkDensitymapboxAttr "z" (values |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<seq<int>>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<int list>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<int []>) = Interop.mkDensitymapboxAttr "z" (values |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<float list>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<float []>) = Interop.mkDensitymapboxAttr "z" (values |> Array.ofSeq)
     /// Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.
     static member inline radius (value: int) = Interop.mkDensitymapboxAttr "radius" value
     /// Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.

@@ -34,6 +34,30 @@ type histogram2d =
     static member inline ids (value: float) = Interop.mkHistogram2dAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkHistogram2dAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool list>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool []>) = Interop.mkHistogram2dAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<string>>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string list>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string []>) = Interop.mkHistogram2dAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<int>>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int list>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int []>) = Interop.mkHistogram2dAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<seq<float>>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float list>) = Interop.mkHistogram2dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float []>) = Interop.mkHistogram2dAttr "ids" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkHistogram2dAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -50,6 +74,30 @@ type histogram2d =
     static member inline customdata (value: float) = Interop.mkHistogram2dAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHistogram2dAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool list>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool []>) = Interop.mkHistogram2dAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string list>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string []>) = Interop.mkHistogram2dAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int list>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int []>) = Interop.mkHistogram2dAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float list>) = Interop.mkHistogram2dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float []>) = Interop.mkHistogram2dAttr "customdata" (values |> Array.ofSeq)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IHistogram2dProperty list) = Interop.mkHistogram2dAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHistogram2dAttr "hoverlabel" (createObj !!properties)
@@ -87,6 +135,30 @@ type histogram2d =
     static member inline x (value: float) = Interop.mkHistogram2dAttr "x" (value |> Array.singleton)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<float>) = Interop.mkHistogram2dAttr "x" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<seq<bool>>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<bool list>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<bool []>) = Interop.mkHistogram2dAttr "x" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<seq<string>>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<string list>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<string []>) = Interop.mkHistogram2dAttr "x" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<seq<int>>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<int list>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<int []>) = Interop.mkHistogram2dAttr "x" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<seq<float>>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<float list>) = Interop.mkHistogram2dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<float []>) = Interop.mkHistogram2dAttr "x" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (value: bool) = Interop.mkHistogram2dAttr "y" (value |> Array.singleton)
     /// Sets the sample data to be binned on the y axis.
@@ -103,6 +175,30 @@ type histogram2d =
     static member inline y (value: float) = Interop.mkHistogram2dAttr "y" (value |> Array.singleton)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<float>) = Interop.mkHistogram2dAttr "y" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<seq<bool>>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<bool list>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<bool []>) = Interop.mkHistogram2dAttr "y" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<seq<string>>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<string list>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<string []>) = Interop.mkHistogram2dAttr "y" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<seq<int>>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<int list>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<int []>) = Interop.mkHistogram2dAttr "y" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<seq<float>>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<float list>) = Interop.mkHistogram2dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<float []>) = Interop.mkHistogram2dAttr "y" (values |> Array.ofSeq)
     /// Sets the aggregation data.
     static member inline z (value: bool) = Interop.mkHistogram2dAttr "z" (value |> Array.singleton)
     /// Sets the aggregation data.
@@ -119,6 +215,30 @@ type histogram2d =
     static member inline z (value: float) = Interop.mkHistogram2dAttr "z" (value |> Array.singleton)
     /// Sets the aggregation data.
     static member inline z (values: seq<float>) = Interop.mkHistogram2dAttr "z" (values |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<seq<bool>>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<bool list>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<bool []>) = Interop.mkHistogram2dAttr "z" (values |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<seq<string>>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<string list>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<string []>) = Interop.mkHistogram2dAttr "z" (values |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<seq<int>>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<int list>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<int []>) = Interop.mkHistogram2dAttr "z" (values |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<seq<float>>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<float list>) = Interop.mkHistogram2dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<float []>) = Interop.mkHistogram2dAttr "z" (values |> Array.ofSeq)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkHistogram2dAttr "marker" (createObj !!properties)
     /// Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     static member inline nbinsx (value: int) = Interop.mkHistogram2dAttr "nbinsx" value

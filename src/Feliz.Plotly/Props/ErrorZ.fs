@@ -30,6 +30,30 @@ type errorZ =
     static member inline array (value: float) = Interop.mkErrorZAttr "array" (value |> Array.singleton)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<float>) = Interop.mkErrorZAttr "array" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<seq<bool>>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<bool list>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<bool []>) = Interop.mkErrorZAttr "array" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<seq<string>>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<string list>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<string []>) = Interop.mkErrorZAttr "array" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<seq<int>>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<int list>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<int []>) = Interop.mkErrorZAttr "array" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<seq<float>>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<float list>) = Interop.mkErrorZAttr "array" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<float []>) = Interop.mkErrorZAttr "array" (values |> Array.ofSeq)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (value: bool) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
@@ -46,6 +70,30 @@ type errorZ =
     static member inline arrayminus (value: float) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<float>) = Interop.mkErrorZAttr "arrayminus" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<seq<bool>>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<bool list>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<bool []>) = Interop.mkErrorZAttr "arrayminus" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<seq<string>>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<string list>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<string []>) = Interop.mkErrorZAttr "arrayminus" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<seq<int>>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<int list>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<int []>) = Interop.mkErrorZAttr "arrayminus" (values |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<seq<float>>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<float list>) = Interop.mkErrorZAttr "arrayminus" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<float []>) = Interop.mkErrorZAttr "arrayminus" (values |> Array.ofSeq)
     /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
     static member inline value (value: int) = Interop.mkErrorZAttr "value" value
     /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
