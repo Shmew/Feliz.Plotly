@@ -63,4 +63,7 @@ let chart () =
                 ]
             ]
         ]
+        plot.layout [
+            layout.height 350
+        ]
     ]
