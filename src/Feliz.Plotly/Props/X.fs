@@ -66,29 +66,33 @@ type x =
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
     static member inline locations (values: seq<float>) = Interop.mkXAttr "locations" (values |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<seq<bool>>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<seq<bool>>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<bool list>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<bool list>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<bool []>) = Interop.mkXAttr "locations" (values |> Array.ofSeq)
+    static member inline locations (values: seq<bool []>) = Interop.mkXAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<seq<string>>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<seq<string>>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<string list>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<string list>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<string []>) = Interop.mkXAttr "locations" (values |> Array.ofSeq)
+    static member inline locations (values: seq<string []>) = Interop.mkXAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<seq<int>>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<seq<int>>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<int list>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<int list>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<int []>) = Interop.mkXAttr "locations" (values |> Array.ofSeq)
+    static member inline locations (values: seq<int []>) = Interop.mkXAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<seq<float>>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<seq<float>>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<float list>) = Interop.mkXAttr "locations" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline locations (values: seq<float list>) = Interop.mkXAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
-    static member inline locations (values: seq<float []>) = Interop.mkXAttr "locations" (values |> Array.ofSeq)
+    static member inline locations (values: seq<float []>) = Interop.mkXAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
+    static member inline locations (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkXAttr "locations" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
+    static member inline locations (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkXAttr "locations" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the fill ratio of the `slices`. The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.
     static member inline fill (value: int) = Interop.mkXAttr "fill" value
     /// Sets the fill ratio of the `slices`. The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.

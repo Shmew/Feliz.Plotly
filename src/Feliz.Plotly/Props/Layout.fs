@@ -67,29 +67,33 @@ type layout =
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<float>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<seq<bool>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<seq<bool>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<bool list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<bool list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<bool []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<bool []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<seq<string>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<seq<string>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<string list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<string list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<string []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<string []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<seq<int>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<seq<int>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<int list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<int list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<int []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<int []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<seq<float>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<seq<float>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<float list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<float list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<float []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<float []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
     static member inline piecolorway (value: string) = Interop.mkLayoutAttr "piecolorway" (value |> Array.singleton)
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.

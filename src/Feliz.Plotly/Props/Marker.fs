@@ -106,29 +106,33 @@ type marker =
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<float>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<seq<bool>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<seq<bool>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<bool list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<bool list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<bool []>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    static member inline colors (values: seq<bool []>) = Interop.mkMarkerAttr "colors" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<seq<string>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<seq<string>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<string list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<string list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<string []>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    static member inline colors (values: seq<string []>) = Interop.mkMarkerAttr "colors" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<seq<int>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<seq<int>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<int list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<int list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<int []>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    static member inline colors (values: seq<int []>) = Interop.mkMarkerAttr "colors" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<seq<float>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<seq<float>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<float list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline colors (values: seq<float list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<float []>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    static member inline colors (values: seq<float []>) = Interop.mkMarkerAttr "colors" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the source reference on plot.ly for  colors .
     static member inline colorssrc (value: string) = Interop.mkMarkerAttr "colorssrc" value
     static member inline pad (properties: #IPadProperty list) = Interop.mkMarkerAttr "pad" (createObj !!properties)

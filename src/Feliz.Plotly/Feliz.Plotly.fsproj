@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Utils.fs" />
     <Compile Include="Colors.fs" />
     <Compile Include="Types.fs" />
     <Compile Include="Interop.fs" />

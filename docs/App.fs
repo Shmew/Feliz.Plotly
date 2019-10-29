@@ -147,7 +147,12 @@ let samples =
           "plotly-chart-treemap-sectorcolors", Samples.Treemap.SectorColors.chart()
           "plotly-chart-treemap-nestedlayers", Samples.Treemap.NestedLayers.chart(centeredSpinner) ]
 
-    let table = []
+    let table = 
+        [ "plotly-chart-table-basic", Samples.Table.Basic.chart()
+          "plotly-chart-table-styled", Samples.Table.Styled.chart()
+          "plotly-chart-table-fromcsv", Samples.Table.FromCSV.chart(centeredSpinner)
+          "plotly-chart-table-changingsizes", Samples.Table.ChangingSizes.chart()
+          "plotly-chart-table-alternatingrowcolors", Samples.Table.AlternatingRowColors.chart() ]
 
     let multipleChartTypes =
         [ "plotly-chart-multiplecharttypes-lineandbar", Samples.MultipleChartTypes.LineAndBar.chart()
@@ -165,6 +170,7 @@ let samples =
       sankey
       pointCloud
       treemap
+      table
       multipleChartTypes ]
     |> List.concat
 
@@ -420,6 +426,13 @@ let sidebar (state: State) dispatch =
                         menuItem "Sector Colors" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ]
                         menuItem "Nested Layers" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ]
                     ]
+                    nestedMenuList "Table" [
+                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Basic ]
+                        menuItem "Styled" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Styled ]
+                        menuItem "From CSV" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.FromCSV ]
+                        menuItem "Changing Sizes" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.ChangingSizes ]
+                        menuItem "Alternating Row Colors" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.AlternatingRowColors ]
+                    ]
                     nestedMenuList "Multiple Chart Types" [
                         menuItem "Line and Bar" [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.LineAndBar ]
                         menuItem "Contour and Scatter" [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.ContourAndScatter ]
@@ -502,6 +515,11 @@ let content state dispatch =
     | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.DifferentAttributes ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "DifferentAttributes.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "SectorColors.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "NestedLayers.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "Basic.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "Styled.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.FromCSV ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "FromCSV.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.ChangingSizes ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "ChangingSizes.md" ]
+    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.AlternatingRowColors ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "AlternatingRowColors.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.LineAndBar ] -> loadMarkdown [ "Plotly"; "Examples"; "MultipleChartTypes" ; "LineAndBar.md" ]
     | [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.ContourAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "MultipleChartTypes" ; "ContourAndScatter.md" ]
     | segments -> Html.div [ for segment in segments -> Html.p segment ]

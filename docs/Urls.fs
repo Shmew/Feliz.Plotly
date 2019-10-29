@@ -83,6 +83,12 @@ let [<Literal>] Branchvalues = "Branchvalues"
 let [<Literal>] RepeatedLabels = "RepeatedLabels"
 let [<Literal>] LargeNumberSlices = "LargeNumberSlices"
 
+// Table Examples
+let [<Literal>] Table = "Table"
+let [<Literal>] FromCSV = "FromCSV"
+let [<Literal>] ChangingSizes = "ChangingSizes"
+let [<Literal>] AlternatingRowColors = "AlternatingRowColors"
+
 // Treemap Examples
 let [<Literal>] Treemap = "Treemap"
 let [<Literal>] DifferentAttributes = "DifferentAttributes"

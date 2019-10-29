@@ -92,29 +92,33 @@ type yaxis2 =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float>) = Interop.mkYaxis2Attr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<seq<bool>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<bool>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<bool list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<bool []>) = Interop.mkYaxis2Attr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool []>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<seq<string>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<string>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<string list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<string list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<string []>) = Interop.mkYaxis2Attr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<string []>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<seq<int>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<int>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<int list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<int list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<int []>) = Interop.mkYaxis2Attr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<int []>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<seq<float>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<float>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<float list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<float list>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<float []>) = Interop.mkYaxis2Attr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<float []>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkYaxis2Attr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (value: bool) = Interop.mkYaxis2Attr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -132,29 +136,33 @@ type yaxis2 =
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float>) = Interop.mkYaxis2Attr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<seq<bool>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<bool>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<bool list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<bool []>) = Interop.mkYaxis2Attr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool []>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<seq<string>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<string>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<string list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<string list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<string []>) = Interop.mkYaxis2Attr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<string []>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<seq<int>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<int>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<int list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<int list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<int []>) = Interop.mkYaxis2Attr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<int []>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<seq<float>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<float>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<float list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<float list>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<float []>) = Interop.mkYaxis2Attr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<float []>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkYaxis2Attr "ticktext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the tick length (in px).
     static member inline ticklen (value: int) = Interop.mkYaxis2Attr "ticklen" value
     /// Sets the tick length (in px).
@@ -259,29 +267,33 @@ type yaxis2 =
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkYaxis2Attr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<bool>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<bool>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<bool list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<bool list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<bool []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<bool []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<string>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<string>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<string list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<string list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<string []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<string []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<int>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<int>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<int list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<int []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<float>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<float>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<float list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<float list>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<float []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<float []>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkYaxis2Attr "categoryarray" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.
     static member inline uirevision (value: bool) = Interop.mkYaxis2Attr "uirevision" value
     /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.

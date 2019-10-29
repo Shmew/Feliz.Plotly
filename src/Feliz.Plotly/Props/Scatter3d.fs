@@ -39,29 +39,33 @@ type scatter3d =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<bool list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool []>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<bool []>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<string>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<string>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<string list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string []>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<string []>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<int>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<int>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<int list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<int []>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<float>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<float>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<float list>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float []>) = Interop.mkScatter3dAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<float []>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatter3dAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -79,29 +83,33 @@ type scatter3d =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<bool list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool []>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<bool []>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<string>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<string list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string []>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<string []>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<int>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<int list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<int []>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<float>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<float list>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float []>) = Interop.mkScatter3dAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<float []>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatter3dAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkScatter3dAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkScatter3dAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkScatter3dAttr "transforms" (createObj !!properties)
@@ -138,29 +146,33 @@ type scatter3d =
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<bool list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<bool list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<bool []>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool []>) = Interop.mkScatter3dAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<string>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<string>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<string list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<string list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<string []>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string []>) = Interop.mkScatter3dAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<int>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<int>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<int list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<int list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<int []>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int []>) = Interop.mkScatter3dAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<float>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<float>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<float list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<float list>) = Interop.mkScatter3dAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<float []>) = Interop.mkScatter3dAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float []>) = Interop.mkScatter3dAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatter3dAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (value: bool) = Interop.mkScatter3dAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
@@ -178,29 +190,33 @@ type scatter3d =
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<bool list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<bool list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<bool []>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<bool []>) = Interop.mkScatter3dAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<string>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<string>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<string list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<string list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<string []>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<string []>) = Interop.mkScatter3dAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<int>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<int>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<int list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<int list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<int []>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<int []>) = Interop.mkScatter3dAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<float>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<float>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<float list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<float list>) = Interop.mkScatter3dAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<float []>) = Interop.mkScatter3dAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<float []>) = Interop.mkScatter3dAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatter3dAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the z coordinates.
     static member inline z (value: bool) = Interop.mkScatter3dAttr "z" (value |> Array.singleton)
     /// Sets the z coordinates.
@@ -218,29 +234,33 @@ type scatter3d =
     /// Sets the z coordinates.
     static member inline z (values: seq<float>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<bool>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<bool list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<bool list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<bool []>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<bool []>) = Interop.mkScatter3dAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<seq<string>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<string>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<string list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<string list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<string []>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<string []>) = Interop.mkScatter3dAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<seq<int>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<int>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<int list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<int list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<int []>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<int []>) = Interop.mkScatter3dAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<seq<float>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<float>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<float list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<float list>) = Interop.mkScatter3dAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<float []>) = Interop.mkScatter3dAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<float []>) = Interop.mkScatter3dAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the z coordinates.
+    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the z coordinates.
+    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatter3dAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: string) = Interop.mkScatter3dAttr "text" value
     /// Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.

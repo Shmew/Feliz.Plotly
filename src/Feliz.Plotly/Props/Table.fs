@@ -31,29 +31,33 @@ type table =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkTableAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<bool>>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool list>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<bool list>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool []>) = Interop.mkTableAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<bool []>) = Interop.mkTableAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<string>>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<string>>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string list>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<string list>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string []>) = Interop.mkTableAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<string []>) = Interop.mkTableAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<int>>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<int>>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int list>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<int list>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkTableAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<int []>) = Interop.mkTableAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<float>>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<float>>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float list>) = Interop.mkTableAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<float list>) = Interop.mkTableAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float []>) = Interop.mkTableAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<float []>) = Interop.mkTableAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkTableAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkTableAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkTableAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -71,29 +75,33 @@ type table =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkTableAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<bool>>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool list>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<bool list>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool []>) = Interop.mkTableAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<bool []>) = Interop.mkTableAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<string>>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string list>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<string list>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string []>) = Interop.mkTableAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<string []>) = Interop.mkTableAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<int>>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int list>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<int list>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkTableAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<int []>) = Interop.mkTableAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<float>>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float list>) = Interop.mkTableAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<float list>) = Interop.mkTableAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float []>) = Interop.mkTableAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<float []>) = Interop.mkTableAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkTableAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkTableAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #ITableProperty list) = Interop.mkTableAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkTableAttr "hoverlabel" (createObj !!properties)
@@ -140,29 +148,33 @@ type table =
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<float>) = Interop.mkTableAttr "columnorder" (values |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<seq<bool>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<seq<bool>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<bool list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<bool list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<bool []>) = Interop.mkTableAttr "columnorder" (values |> Array.ofSeq)
+    static member inline columnorder (values: seq<bool []>) = Interop.mkTableAttr "columnorder" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<seq<string>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<seq<string>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<string list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<string list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<string []>) = Interop.mkTableAttr "columnorder" (values |> Array.ofSeq)
+    static member inline columnorder (values: seq<string []>) = Interop.mkTableAttr "columnorder" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<seq<int>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<seq<int>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<int list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<int list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<int []>) = Interop.mkTableAttr "columnorder" (values |> Array.ofSeq)
+    static member inline columnorder (values: seq<int []>) = Interop.mkTableAttr "columnorder" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<seq<float>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<seq<float>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<float list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline columnorder (values: seq<float list>) = Interop.mkTableAttr "columnorder" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<float []>) = Interop.mkTableAttr "columnorder" (values |> Array.ofSeq)
+    static member inline columnorder (values: seq<float []>) = Interop.mkTableAttr "columnorder" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
+    static member inline columnorder (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
+    static member inline columnorder (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     static member inline header (properties: #IHeaderProperty list) = Interop.mkTableAttr "header" (createObj !!properties)
     static member inline cells (properties: #ICellsProperty list) = Interop.mkTableAttr "cells" (createObj !!properties)
     /// Sets the source reference on plot.ly for  ids .

@@ -35,29 +35,33 @@ type heatmapgl =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<bool list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool []>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<bool []>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<string list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string []>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<string []>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<int list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<int []>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<float list>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float []>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<float []>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -75,29 +79,33 @@ type heatmapgl =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<bool list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool []>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<bool []>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<string list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string []>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<string []>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<int list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<int []>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<float list>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float []>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<float []>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IHeatmapglProperty list) = Interop.mkHeatmapglAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHeatmapglAttr "hoverlabel" (createObj !!properties)
@@ -136,29 +144,33 @@ type heatmapgl =
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<bool list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<bool list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<bool []>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<bool []>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<string list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<string list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<string []>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<string []>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<int list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<int list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<int []>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<int []>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<float list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<float list>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<float []>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<float []>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (value: bool) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
@@ -176,29 +188,33 @@ type heatmapgl =
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<bool list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<bool list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<bool []>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool []>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<string list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<string list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<string []>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string []>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<int list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<int list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<int []>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int []>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<float list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<float list>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<float []>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float []>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (value: bool) = Interop.mkHeatmapglAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -236,29 +252,33 @@ type heatmapgl =
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<bool list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<bool list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<bool []>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<bool []>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<string list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<string list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<string []>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<string []>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<int list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<int list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<int []>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<int []>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<float list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<float list>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<float []>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<float []>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (value: bool) = Interop.mkHeatmapglAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -296,29 +316,33 @@ type heatmapgl =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<bool>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<bool list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<bool list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<bool []>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<bool []>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<string>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<string list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<string list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<string []>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string []>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<int>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<int list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<int list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<int []>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<int []>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<float>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<float list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<float list>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<float []>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<float []>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Transposes the z data.
     static member inline transpose (value: bool) = Interop.mkHeatmapglAttr "transpose" value
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.

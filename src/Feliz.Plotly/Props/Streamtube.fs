@@ -31,29 +31,33 @@ type streamtube =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkStreamtubeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<bool list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool []>) = Interop.mkStreamtubeAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<bool []>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<string list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string []>) = Interop.mkStreamtubeAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<string []>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<int list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkStreamtubeAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<int []>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<float list>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float []>) = Interop.mkStreamtubeAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<float []>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -71,29 +75,33 @@ type streamtube =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkStreamtubeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<bool list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool []>) = Interop.mkStreamtubeAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<bool []>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<string list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string []>) = Interop.mkStreamtubeAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<string []>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<int list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkStreamtubeAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<int []>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<float list>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float []>) = Interop.mkStreamtubeAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<float []>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkStreamtubeAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkStreamtubeAttr "stream" (createObj !!properties)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -129,29 +137,33 @@ type streamtube =
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<float>) = Interop.mkStreamtubeAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<bool list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<bool list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<bool []>) = Interop.mkStreamtubeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool []>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<string list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<string list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<string []>) = Interop.mkStreamtubeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string []>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<int list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<int list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<int []>) = Interop.mkStreamtubeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int []>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<float list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<float list>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field.
-    static member inline x (values: seq<float []>) = Interop.mkStreamtubeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float []>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the x coordinates of the vector field.
+    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the x coordinates of the vector field.
+    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
     static member inline y (value: bool) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates of the vector field.
@@ -169,29 +181,33 @@ type streamtube =
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<float>) = Interop.mkStreamtubeAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<bool list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<bool list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<bool []>) = Interop.mkStreamtubeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<bool []>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<string list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<string list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<string []>) = Interop.mkStreamtubeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<string []>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<int list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<int list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<int []>) = Interop.mkStreamtubeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<int []>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<float list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<float list>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field.
-    static member inline y (values: seq<float []>) = Interop.mkStreamtubeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<float []>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the y coordinates of the vector field.
+    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the y coordinates of the vector field.
+    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
     static member inline z (value: bool) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton)
     /// Sets the z coordinates of the vector field.
@@ -209,29 +225,33 @@ type streamtube =
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<float>) = Interop.mkStreamtubeAttr "z" (values |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<bool list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<bool list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<bool []>) = Interop.mkStreamtubeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<bool []>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<string list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<string list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<string []>) = Interop.mkStreamtubeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<string []>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<int list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<int list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<int []>) = Interop.mkStreamtubeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<int []>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<float list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<float list>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field.
-    static member inline z (values: seq<float []>) = Interop.mkStreamtubeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<float []>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the z coordinates of the vector field.
+    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the z coordinates of the vector field.
+    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the x components of the vector field.
     static member inline u (value: bool) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton)
     /// Sets the x components of the vector field.
@@ -249,29 +269,33 @@ type streamtube =
     /// Sets the x components of the vector field.
     static member inline u (values: seq<float>) = Interop.mkStreamtubeAttr "u" (values |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<bool list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<bool list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<bool []>) = Interop.mkStreamtubeAttr "u" (values |> Array.ofSeq)
+    static member inline u (values: seq<bool []>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<string list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<string list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<string []>) = Interop.mkStreamtubeAttr "u" (values |> Array.ofSeq)
+    static member inline u (values: seq<string []>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<int list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<int list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<int []>) = Interop.mkStreamtubeAttr "u" (values |> Array.ofSeq)
+    static member inline u (values: seq<int []>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<float list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline u (values: seq<float list>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<float []>) = Interop.mkStreamtubeAttr "u" (values |> Array.ofSeq)
+    static member inline u (values: seq<float []>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the x components of the vector field.
+    static member inline u (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the x components of the vector field.
+    static member inline u (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "u" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the y components of the vector field.
     static member inline v (value: bool) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton)
     /// Sets the y components of the vector field.
@@ -289,29 +313,33 @@ type streamtube =
     /// Sets the y components of the vector field.
     static member inline v (values: seq<float>) = Interop.mkStreamtubeAttr "v" (values |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<bool list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<bool list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<bool []>) = Interop.mkStreamtubeAttr "v" (values |> Array.ofSeq)
+    static member inline v (values: seq<bool []>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<string list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<string list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<string []>) = Interop.mkStreamtubeAttr "v" (values |> Array.ofSeq)
+    static member inline v (values: seq<string []>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<int list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<int list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<int []>) = Interop.mkStreamtubeAttr "v" (values |> Array.ofSeq)
+    static member inline v (values: seq<int []>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<float list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline v (values: seq<float list>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<float []>) = Interop.mkStreamtubeAttr "v" (values |> Array.ofSeq)
+    static member inline v (values: seq<float []>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the y components of the vector field.
+    static member inline v (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the y components of the vector field.
+    static member inline v (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "v" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the z components of the vector field.
     static member inline w (value: bool) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton)
     /// Sets the z components of the vector field.
@@ -329,29 +357,33 @@ type streamtube =
     /// Sets the z components of the vector field.
     static member inline w (values: seq<float>) = Interop.mkStreamtubeAttr "w" (values |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<seq<bool>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<bool list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<bool list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<bool []>) = Interop.mkStreamtubeAttr "w" (values |> Array.ofSeq)
+    static member inline w (values: seq<bool []>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<seq<string>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<string list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<string list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<string []>) = Interop.mkStreamtubeAttr "w" (values |> Array.ofSeq)
+    static member inline w (values: seq<string []>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<seq<int>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<int list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<int list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<int []>) = Interop.mkStreamtubeAttr "w" (values |> Array.ofSeq)
+    static member inline w (values: seq<int []>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<seq<float>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<float list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline w (values: seq<float list>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<float []>) = Interop.mkStreamtubeAttr "w" (values |> Array.ofSeq)
+    static member inline w (values: seq<float []>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the z components of the vector field.
+    static member inline w (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the z components of the vector field.
+    static member inline w (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStreamtubeAttr "w" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     static member inline starts (properties: #IStartsProperty list) = Interop.mkStreamtubeAttr "starts" (createObj !!properties)
     /// The maximum number of displayed segments in a streamtube.
     static member inline maxdisplayed (value: int) = Interop.mkStreamtubeAttr "maxdisplayed" value

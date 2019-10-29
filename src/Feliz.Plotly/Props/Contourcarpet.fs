@@ -39,29 +39,33 @@ type contourcarpet =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<bool list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<bool []>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<bool []>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<string list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string []>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<string []>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<int list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<int []>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ids (values: seq<float list>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<float []>) = Interop.mkContourcarpetAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<float []>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourcarpetAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -79,29 +83,33 @@ type contourcarpet =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<bool list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<bool []>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<bool []>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<string list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string []>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<string []>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<int list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<int []>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline customdata (values: seq<float list>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<float []>) = Interop.mkContourcarpetAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<float []>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourcarpetAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkContourcarpetAttr "stream" (createObj !!properties)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkContourcarpetAttr "uirevision" value
@@ -138,29 +146,33 @@ type contourcarpet =
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<bool list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<bool list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<bool []>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<bool []>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<string list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<string list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<string []>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<string []>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<int list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<int list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<int []>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<int []>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<float list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline z (values: seq<float list>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<float []>) = Interop.mkContourcarpetAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<float []>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourcarpetAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline a (value: bool) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
     /// Sets the x coordinates.
@@ -178,29 +190,33 @@ type contourcarpet =
     /// Sets the x coordinates.
     static member inline a (values: seq<float>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<bool list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<bool list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<bool []>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
+    static member inline a (values: seq<bool []>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<string list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<string list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<string []>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
+    static member inline a (values: seq<string []>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<int list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<int list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<int []>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
+    static member inline a (values: seq<int []>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<float list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline a (values: seq<float list>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline a (values: seq<float []>) = Interop.mkContourcarpetAttr "a" (values |> Array.ofSeq)
+    static member inline a (values: seq<float []>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline a (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline a (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourcarpetAttr "a" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline a0 (value: bool) = Interop.mkContourcarpetAttr "a0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -238,29 +254,33 @@ type contourcarpet =
     /// Sets the y coordinates.
     static member inline b (values: seq<float>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<bool list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<bool list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<bool []>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
+    static member inline b (values: seq<bool []>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<string list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<string list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<string []>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
+    static member inline b (values: seq<string []>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<int list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<int list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<int []>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
+    static member inline b (values: seq<int []>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<float list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline b (values: seq<float list>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline b (values: seq<float []>) = Interop.mkContourcarpetAttr "b" (values |> Array.ofSeq)
+    static member inline b (values: seq<float []>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline b (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline b (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourcarpetAttr "b" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline b0 (value: bool) = Interop.mkContourcarpetAttr "b0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -298,29 +318,33 @@ type contourcarpet =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<bool list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<bool list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<bool []>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<bool []>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<string list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<string list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<string []>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string []>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<int list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<int list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<int []>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<int []>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<float list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline text (values: seq<float list>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<float []>) = Interop.mkContourcarpetAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<float []>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourcarpetAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Same as `text`.
     static member inline hovertext (value: bool) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
     /// Same as `text`.
@@ -338,29 +362,33 @@ type contourcarpet =
     /// Same as `text`.
     static member inline hovertext (values: seq<float>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<seq<bool>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<bool list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<bool list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<bool []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<bool []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<seq<string>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<string list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<string list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<string []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<string []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<seq<int>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<int list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<int list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<int []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<int []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<seq<float>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<float list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline hovertext (values: seq<float list>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<float []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<float []>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourcarpetAttr "hovertext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Transposes the z data.
     static member inline transpose (value: bool) = Interop.mkContourcarpetAttr "transpose" value
     /// Sets the fill color if `contours.type` is *constraint*. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.

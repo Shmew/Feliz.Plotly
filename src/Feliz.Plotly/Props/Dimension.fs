@@ -31,29 +31,33 @@ type dimension =
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<float>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<seq<bool>>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<seq<bool>>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<bool list>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<bool list>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<bool []>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<bool []>) = Interop.mkDimensionAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<seq<string>>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<seq<string>>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<string list>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<string list>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<string []>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<string []>) = Interop.mkDimensionAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<seq<int>>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<seq<int>>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<int list>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<int list>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<int []>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<int []>) = Interop.mkDimensionAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<seq<float>>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<seq<float>>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<float list>) = Interop.mkDimensionAttr "values" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline values (values: seq<float list>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<float []>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<float []>) = Interop.mkDimensionAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the dimension values to be plotted.
+    static member inline values (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDimensionAttr "values" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the dimension values to be plotted.
+    static member inline values (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDimensionAttr "values" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     static member inline axis (properties: #IAxisProperty list) = Interop.mkDimensionAttr "axis" (createObj !!properties)
     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
     static member inline name (value: string) = Interop.mkDimensionAttr "name" value
@@ -78,29 +82,33 @@ type dimension =
     /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<float>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<seq<bool>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<bool>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<bool list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<bool []>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool []>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<seq<string>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<string>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<string list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<string list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<string []>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<string []>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<seq<int>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<int>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<int list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<int list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<int []>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<int []>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<seq<float>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<seq<float>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<float list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline tickvals (values: seq<float list>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<float []>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<float []>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear.
+    static member inline tickvals (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear.
+    static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (value: bool) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton)
     /// Sets the text displayed at the ticks position via `tickvals`.
@@ -118,29 +126,33 @@ type dimension =
     /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (values: seq<float>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<seq<bool>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<bool>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<bool list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<bool []>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool []>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<seq<string>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<string>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<string list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<string list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<string []>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<string []>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<seq<int>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<int>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<int list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<int list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<int []>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<int []>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<seq<float>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<seq<float>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<float list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline ticktext (values: seq<float list>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<float []>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<float []>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`.
+    static member inline ticktext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`.
+    static member inline ticktext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline tickformat (value: string) = Interop.mkDimensionAttr "tickformat" value
     /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
@@ -182,29 +194,33 @@ type dimension =
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<bool>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<bool>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<bool list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<bool list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<bool []>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<bool []>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<string>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<string>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<string list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<string list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<string []>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<string []>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<int>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<int>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<int list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int []>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<int []>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<seq<float>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<seq<float>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<float list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline categoryarray (values: seq<float list>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<float []>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<float []>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDimensionAttr "categoryarray" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// The display index of dimension, from left to right, zero indexed, defaults to dimension index.
     static member inline displayindex (value: int) = Interop.mkDimensionAttr "displayindex" value
     /// Sets the source reference on plot.ly for  categoryarray .

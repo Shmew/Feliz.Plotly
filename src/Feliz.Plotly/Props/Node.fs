@@ -27,29 +27,33 @@ type node =
     /// The shown name of the node.
     static member inline label (values: seq<float>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<seq<bool>>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<seq<bool>>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<bool list>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<bool list>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<bool []>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
+    static member inline label (values: seq<bool []>) = Interop.mkNodeAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<seq<string>>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<seq<string>>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<string list>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<string list>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<string []>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
+    static member inline label (values: seq<string []>) = Interop.mkNodeAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<seq<int>>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<seq<int>>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<int list>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<int list>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<int []>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
+    static member inline label (values: seq<int []>) = Interop.mkNodeAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<seq<float>>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<seq<float>>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<float list>) = Interop.mkNodeAttr "label" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline label (values: seq<float list>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<float []>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
+    static member inline label (values: seq<float []>) = Interop.mkNodeAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// The shown name of the node.
+    static member inline label (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "label" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// The shown name of the node.
+    static member inline label (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "label" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
     static member inline groups (value: int) = Interop.mkNodeAttr "groups" (value |> Array.singleton)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
@@ -75,29 +79,33 @@ type node =
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<float>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<seq<bool>>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<bool>>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<bool list>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<bool list>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<bool []>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool []>) = Interop.mkNodeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<seq<string>>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<string>>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<string list>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<string list>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<string []>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string []>) = Interop.mkNodeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<seq<int>>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<int>>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<int list>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<int list>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<int []>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int []>) = Interop.mkNodeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<seq<float>>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<seq<float>>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<float list>) = Interop.mkNodeAttr "x" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline x (values: seq<float list>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<float []>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float []>) = Interop.mkNodeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// The normalized vertical position of the node.
     static member inline y (value: bool) = Interop.mkNodeAttr "y" (value |> Array.singleton)
     /// The normalized vertical position of the node.
@@ -115,29 +123,33 @@ type node =
     /// The normalized vertical position of the node.
     static member inline y (values: seq<float>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<seq<bool>>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<bool>>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<bool list>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<bool list>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<bool []>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<bool []>) = Interop.mkNodeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<seq<string>>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<string>>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<string list>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<string list>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<string []>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<string []>) = Interop.mkNodeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<seq<int>>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<int>>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<int list>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<int list>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<int []>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<int []>) = Interop.mkNodeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<seq<float>>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<seq<float>>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<float list>) = Interop.mkNodeAttr "y" (values |> Seq.map Array.ofSeq |> Array.ofSeq)
+    static member inline y (values: seq<float list>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<float []>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<float []>) = Interop.mkNodeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
     static member inline color (value: string) = Interop.mkNodeAttr "color" value
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
