@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Feature Request",
+    "color": "#ec03fc"
+  },
+  {
+    "name": "Issue",
+    "color": "#fc0331"
+  },
+  {
+    "name": "Docs",
+    "color": "#0000ff"
+  },
+  {
+    "name": "Help wanted",
+    "color": "#fcd303"
+  },
+  {
+    "name": "Question",
+    "color": "#03fcdf"
+  }
+]

@@ -1,0 +1,14 @@
+name: Branch Cleanup
+
+on: pull_request
+
+jobs:
+  branchCleanup:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 'Delete branches on merge'
+    - uses: jessfraz/branch-cleanup-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
