@@ -690,7 +690,6 @@ let content state dispatch =
         else false
 
     match state.CurrentPath with
-    | [ ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Overview; ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> lazyView loadMarkdown [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> lazyView loadMarkdown [ contributing ]
@@ -702,7 +701,7 @@ let content state dispatch =
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
             else [ Urls.Plotly; Urls.Examples ] @ path |> (lazyView loadMarkdown)
-    | segments -> Html.div [ for segment in segments -> Html.p segment ]
+    | _ -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
 
 let main state dispatch =
     Html.div [
