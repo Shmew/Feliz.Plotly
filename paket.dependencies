@@ -15,7 +15,7 @@ group Generator
     source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
-    nuget Fake.IO.FileSystem ~> 5.17
+    nuget Fake.IO.FileSystem ~> 5
     nuget FSharp.Core ~> 4.7
     nuget FSharp.Data ~> 3.3
     
@@ -53,29 +53,29 @@ group Tooling
 	source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
-	nuget Fake.IO.FileSystem ~> 5.17
+	nuget Fake.IO.FileSystem ~> 5
 	nuget FSharp.Core ~> 4.7
     nuget FSharp.Json ~> 0.3
 	nuget FSharpLint.Core ~> 0.12
     nuget Yarnpkg.Yarn ~> 1.15
 
 	clitool dotnet-fable ~> 2.0
-	clitool dotnet-fake ~> 5.17
+	clitool dotnet-fake ~> 5
 
 group FakeBuild
 	source https://api.nuget.org/v3/index.json
 
-	nuget Fake.Core.Target ~> 5.17
-	nuget Fake.Core.ReleaseNotes ~> 5.17
-	nuget Fake.DotNet.AssemblyInfoFile ~> 5.17
-	nuget Fake.DotNet.Cli ~> 5.17
-	nuget Fake.DotNet.FSFormatting ~> 5.17
-	nuget Fake.DotNet.MSBuild ~> 5.17
-	nuget Fake.DotNet.Paket ~> 5.17
-	nuget Fake.IO.FileSystem ~> 5.17
-    nuget Fake.JavaScript.Yarn ~> 5.17
-	nuget Fake.JavaScript.Npm ~> 5.17
-	nuget Fake.Tools.Git ~> 5.17
+	nuget Fake.Core.Target ~> 5
+	nuget Fake.Core.ReleaseNotes ~> 5
+	nuget Fake.DotNet.AssemblyInfoFile ~> 5
+	nuget Fake.DotNet.Cli ~> 5
+	nuget Fake.DotNet.FSFormatting ~> 5
+	nuget Fake.DotNet.MSBuild ~> 5
+	nuget Fake.DotNet.Paket ~> 5
+	nuget Fake.IO.FileSystem ~> 5
+    nuget Fake.JavaScript.Yarn ~> 5
+	nuget Fake.JavaScript.Npm ~> 5
+	nuget Fake.Tools.Git ~> 5
     nuget FSharp.Json ~> 0.3
 	nuget FSharpLint.Core ~> 0.12
 	nuget Fantomas ~> 3.0.0
