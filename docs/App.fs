@@ -513,7 +513,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.DataLabelsHover ] -> [ "DataLabelsHover.md" ]
         | [ Urls.DataLabelsOnPlot ] -> [ "DataLabelsOnPlot.md" ]
         | [ Urls.ColorDimension ] -> [ "ColorDimension.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Scatter ]
     | Urls.Bubble :: rest ->
         match rest with
@@ -522,12 +522,12 @@ let basicExamples (currentPath: string list) =
         | [ Urls.MarkerSizeAndColor ] -> [ "MarkerSizeAndColor.md" ]
         | [ Urls.SizeScaling ] -> [ "SizeScaling.md" ]
         | [ Urls.MarkerSizeColorAndSymbolArray ] -> [ "MarkerSizeColorAndSymbolArray.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Bubble ]
     | Urls.Dot :: rest ->
         match rest with
         | [ Urls.Categorical ] -> [ "Categorical.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Dot ]
     | Urls.Line :: rest ->
         match rest with
@@ -541,7 +541,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.LineDash ] -> [ "LineDash.md" ]
         | [ Urls.ConnectGapsBetweenData ] -> [ "ConnectGapsBetweenData.md" ]
         | [ Urls.LabellingLinesWithAnnotations ] -> [ "LabellingLinesWithAnnotations.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Line ]
     | Urls.Bar :: rest ->
         match rest with
@@ -558,7 +558,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.ColoredAndStyled ] -> [ "ColoredAndStyled.md" ]
         | [ Urls.Waterfall ] -> [ "Waterfall.md" ]
         | [ Urls.RelativeBarmode ] -> [ "RelativeBarmode.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Bar ]
     | Urls.FilledArea :: rest ->
         match rest with
@@ -567,21 +567,21 @@ let basicExamples (currentPath: string list) =
         | [ Urls.StackedArea ] -> [ "StackedArea.md" ]
         | [ Urls.NormalizedStackedArea ] -> [ "NormalizedStackedArea.md" ]
         | [ Urls.SelectHover ] -> [ "SelectHover.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.FilledArea ]
     | Urls.HorizontalBar :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Colored ] -> [ "Colored.md" ]
         | [ Urls.BarWithLinePlot ] -> [ "BarWithLinePlot.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.HorizontalBar ]
     | Urls.Pie :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Subplots ] -> [ "Subplots.md" ]
         | [ Urls.Donut ] -> [ "Donut.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Pie ]
     | Urls.Sunburst :: rest ->
         match rest with
@@ -589,19 +589,19 @@ let basicExamples (currentPath: string list) =
         | [ Urls.Branchvalues ] -> [ "Branchvalues.md" ]
         | [ Urls.RepeatedLabels ] -> [ "RepeatedLabels.md" ]
         | [ Urls.LargeNumberSlices ] -> [ "LargeNumberSlices.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Sunburst ]
     | Urls.Sankey :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Sankey ]
     | Urls.PointCloud :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.PointCloud ]
     | Urls.Treemap :: rest ->
         match rest with
@@ -609,7 +609,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.DifferentAttributes ] -> [ "DifferentAttributes.md" ]
         | [ Urls.SectorColors ] -> [ "SectorColors.md" ]
         | [ Urls.NestedLayers ] -> [ "NestedLayers.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Treemap ]
     | Urls.Table :: rest ->
         match rest with
@@ -618,13 +618,13 @@ let basicExamples (currentPath: string list) =
         | [ Urls.FromCSV ] -> [ "FromCSV.md" ]
         | [ Urls.ChangingSizes ] -> [ "ChangingSizes.md" ]
         | [ Urls.AlternatingRowColors ] -> [ "AlternatingRowColors.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.Table ]
     | Urls.MultipleChartTypes :: rest ->
         match rest with
         | [ Urls.LineAndBar ] -> [ "LineAndBar.md" ]
         | [ Urls.ContourAndScatter ] -> [ "ContourAndScatter.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.MultipleChartTypes ]
     | _ -> [ ]
     |> fun path ->
@@ -642,7 +642,7 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.Styled ] -> [ "Styled.md" ]
         | [ Urls.PercentageOfYValue ] -> [ "PercentageOfYValue.md" ]
         | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
-        | _ -> []
+        | _ -> [ ]
         |> List.append [ Urls.ErrorBars ]
     | _ -> [ ]
     |> fun path ->
@@ -659,7 +659,7 @@ let content state dispatch =
         match state.CurrentPath |> List.skip 2 with
         | basicPath when basicPath |> List.take 1 = [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
         | statisicalPath when statisicalPath |> List.take 1 = [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
-        | _ -> []
+        | _ -> [ ]
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
             else [ Urls.Plotly; Urls.Examples ] @ path |> (lazyView loadMarkdown)
