@@ -293,7 +293,13 @@ let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, bas
     let collapsed = 
         match state.CurrentTab with
         | [ ] -> false
-        | _ -> basePath |> List.forall (fun segment -> List.contains segment state.CurrentTab) 
+        | _ -> 
+            basePath 
+            |> List.indexed 
+            |> List.forall (fun (i, segment) -> 
+                List.tryItem i state.CurrentTab 
+                |> Option.map ((=) segment) 
+                |> Option.defaultValue false) 
 
     Html.li [
         Html.anchor [
