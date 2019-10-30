@@ -15,21 +15,25 @@ type choropleth =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkChoroplethAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkChoroplethAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkChoroplethAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkChoroplethAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkChoroplethAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkChoroplethAttr "ids" value
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<bool>>) = Interop.mkChoroplethAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -59,21 +63,25 @@ type choropleth =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkChoroplethAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkChoroplethAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkChoroplethAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkChoroplethAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkChoroplethAttr "customdata" value
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<bool>>) = Interop.mkChoroplethAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -107,9 +115,9 @@ type choropleth =
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<bool>) = Interop.mkChoroplethAttr "selectedpoints" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-    static member inline selectedpoints (value: string) = Interop.mkChoroplethAttr "selectedpoints" value
+    static member inline selectedpoints (value: System.DateTime) = Interop.mkChoroplethAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-    static member inline selectedpoints (values: seq<string>) = Interop.mkChoroplethAttr "selectedpoints" (values |> Array.ofSeq)
+    static member inline selectedpoints (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "selectedpoints" (values |> Array.ofSeq)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: int) = Interop.mkChoroplethAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -118,6 +126,10 @@ type choropleth =
     static member inline selectedpoints (value: float) = Interop.mkChoroplethAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<float>) = Interop.mkChoroplethAttr "selectedpoints" (values |> Array.ofSeq)
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (value: string) = Interop.mkChoroplethAttr "selectedpoints" value
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (values: seq<string>) = Interop.mkChoroplethAttr "selectedpoints" (values |> Array.ofSeq)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkChoroplethAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkChoroplethAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkChoroplethAttr "transforms" (createObj !!properties)
@@ -126,9 +138,9 @@ type choropleth =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<bool>) = Interop.mkChoroplethAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (value: string) = Interop.mkChoroplethAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkChoroplethAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (values: seq<string>) = Interop.mkChoroplethAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkChoroplethAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -137,22 +149,30 @@ type choropleth =
     static member inline uirevision (value: float) = Interop.mkChoroplethAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkChoroplethAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: string) = Interop.mkChoroplethAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<string>) = Interop.mkChoroplethAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: bool) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: bool) = Interop.mkChoroplethAttr "locations" value
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<bool>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: string) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: System.DateTime) = Interop.mkChoroplethAttr "locations" value
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (values: seq<string>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
+    static member inline locations (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: int) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: int) = Interop.mkChoroplethAttr "locations" value
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<int>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: float) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: float) = Interop.mkChoroplethAttr "locations" value
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<float>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
+    /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
+    static member inline locations (value: string) = Interop.mkChoroplethAttr "locations" value
+    /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
+    static member inline locations (values: seq<string>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<seq<bool>>) = Interop.mkChoroplethAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
@@ -182,21 +202,25 @@ type choropleth =
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethAttr "locations" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: bool) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkChoroplethAttr "z" value
     /// Sets the color values.
     static member inline z (values: seq<bool>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: string) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkChoroplethAttr "z" value
     /// Sets the color values.
-    static member inline z (values: seq<string>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: int) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkChoroplethAttr "z" value
     /// Sets the color values.
     static member inline z (values: seq<int>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: float) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkChoroplethAttr "z" value
     /// Sets the color values.
     static member inline z (values: seq<float>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
+    /// Sets the color values.
+    static member inline z (value: string) = Interop.mkChoroplethAttr "z" value
+    /// Sets the color values.
+    static member inline z (values: seq<string>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
     static member inline z (values: seq<seq<bool>>) = Interop.mkChoroplethAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color values.

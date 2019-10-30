@@ -17,9 +17,9 @@ type style =
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
     static member inline value (values: seq<bool>) = Interop.mkStyleAttr "value" (values |> Array.ofSeq)
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
-    static member inline value (value: string) = Interop.mkStyleAttr "value" value
+    static member inline value (value: System.DateTime) = Interop.mkStyleAttr "value" value
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
-    static member inline value (values: seq<string>) = Interop.mkStyleAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<System.DateTime>) = Interop.mkStyleAttr "value" (values |> Array.ofSeq)
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
     static member inline value (value: int) = Interop.mkStyleAttr "value" value
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
@@ -28,4 +28,8 @@ type style =
     static member inline value (value: float) = Interop.mkStyleAttr "value" value
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
     static member inline value (values: seq<float>) = Interop.mkStyleAttr "value" (values |> Array.ofSeq)
+    /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
+    static member inline value (value: string) = Interop.mkStyleAttr "value" value
+    /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
+    static member inline value (values: seq<string>) = Interop.mkStyleAttr "value" (values |> Array.ofSeq)
 

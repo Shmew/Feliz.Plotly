@@ -90,21 +90,25 @@ type marker =
     /// Sets the color of the outlier sample points.
     static member inline outliercolor (value: string) = Interop.mkMarkerAttr "outliercolor" value
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: bool) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: bool) = Interop.mkMarkerAttr "colors" value
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<bool>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: string) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: System.DateTime) = Interop.mkMarkerAttr "colors" value
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<string>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    static member inline colors (values: seq<System.DateTime>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: int) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: int) = Interop.mkMarkerAttr "colors" value
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<int>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: float) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: float) = Interop.mkMarkerAttr "colors" value
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<float>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (value: string) = Interop.mkMarkerAttr "colors" value
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<string>) = Interop.mkMarkerAttr "colors" (values |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<seq<bool>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.

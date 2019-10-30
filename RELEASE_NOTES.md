@@ -57,3 +57,7 @@
 ### 0.9.0 - Tuesday, October 29, 2019
 * Fixed some properties that were not accepting 2D collections when they should have
 * Added support for 2D collections of different primative types
+
+### 0.10.0 - Wednesday, October 30, 2019
+* Added support for DateTime where applicable
+* Compiled against latest Feliz version

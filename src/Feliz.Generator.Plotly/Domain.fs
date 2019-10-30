@@ -101,19 +101,27 @@ module rec Domain =
         let bool2DSeqStr = "(values: seq<seq<bool>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let bool2DListStr = "(values: seq<bool list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let bool2DArrayStr = "(values: seq<bool []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+
+        let dateStr = "(value: System.DateTime)", "value"
+        let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
+        let dateSeqStr = "(values: seq<System.DateTime>)", "(values |> Array.ofSeq)"
+
         let stringStr = "(value: string)", "value"
         let stringSingleton = "(value: string)", "(value |> Array.singleton)"
         let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
         let string2DSeqStr = "(values: seq<seq<string>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let string2DListStr = "(values: seq<string list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let string2DArrayStr = "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+
         let intStr = "(value: int)", "value"
         let intSingleton = "(value: int)", "(value |> Array.singleton)"
         let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
         let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let int2DListStr = "(values: seq<int list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let int2DArrayStr = "(values: seq<int []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+
         let flaglistStrSeq s = sprintf "(properties: #I%sProperty list)" s, "(properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat \"+\")"
+        
         let floatStr = "(value: float)", "value"
         let floatSingleton = "(value: float)", "(value |> Array.singleton)"
         let float32FromFloatSeqStr = "(values: seq<float>)", "(values |> Seq.map float32 |> Array.ofSeq)"
@@ -122,9 +130,23 @@ module rec Domain =
         let float2DSeqStr = "(values: seq<seq<float>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let float2DListStr = "(values: seq<float list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let float2DArrayStr = "(values: seq<float []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+        
         let datU42DArray = "(values: seq<U4<int [], float [], string [], bool []>>)", "(values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)"
         let dataU42DList = "(values: seq<U4<int list, float list, string list, bool list>>)", "(values |> Seq.map U4.mapListToResize |> Array.ofSeq)"
+        
         let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
+
+        let allNormalStrs =
+            [ boolStr
+              boolSeqStr
+              dateStr
+              dateSeqStr
+              intStr
+              intSeqStr
+              floatStr
+              floatSeqStr
+              stringStr
+              stringSeqStr ]
 
         let allBool2DStrs =
             [ bool2DSeqStr
@@ -152,16 +174,34 @@ module rec Domain =
         let all2DStrs = 
             all2DStrsNoUnions @ [ datU42DArray; dataU42DList ]
 
+        let allBoolArrStrs =
+            [ boolSingleton; boolSeqStr ]
+
+        let allDateArrStrs =
+            [ dateSingleton; dateSeqStr ]
+
+        let allIntArrStrs =
+            [ intSingleton; intSeqStr ]
+
+        let allFloatArrStrs =
+            [ floatSingleton; floatSeqStr ]
+
+        let allStringArrStrs =
+            [ stringSingleton; stringSeqStr ]
+
+        let allArrStrs =
+            allBoolArrStrs @ allDateArrStrs @ allIntArrStrs @ allFloatArrStrs @ allStringArrStrs
+
         let getPrimativeOverloadSeq =
             function
-            | ValType.Bool _ -> [ boolSingleton; boolSeqStr ]
-            | ValType.Int _ -> [ intSingleton; intSeqStr ]
-            | ValType.Number _ -> [ intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
-            | ValType.String _ -> [ stringSingleton; stringSeqStr ]
+            | ValType.Bool _ -> allBoolArrStrs
+            | ValType.Int _ -> allIntArrStrs
+            | ValType.Number _ -> allIntArrStrs @ allFloatArrStrs
+            | ValType.String _ -> allStringArrStrs
             | ValType.Enumerated -> []
             | ValType.EnumeratedWithCustom -> []
             | ValType.FlagList -> []
-            | ValType.Any -> [ boolSingleton; boolSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr; stringSingleton; stringSeqStr ]
+            | ValType.Any -> allArrStrs
             | s ->
                 printfn "%s" (s.ToString())
                 [ "(value: TODO)", "value" ]
@@ -234,10 +274,10 @@ module rec Domain =
         /// Returns a list of primative overloads for the `ValType`
         let getOverloadStrings (parentName: string) (compName: string) (vType: ValType) =
             match vType with
-            | ValType.Any -> [ boolStr; boolSeqStr; stringStr; stringSeqStr; intStr; intSeqStr; floatStr; floatSeqStr ]
+            | ValType.Any -> allNormalStrs
             | ValType.Bool (arrOkay, twoArrOk) -> [ boolStr; if arrOkay then boolSeqStr; if twoArrOk then yield! allBool2DStrs ]
             | ValType.ColorArray -> [ stringStr; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
-            | ValType.DataArray -> [ boolSingleton; boolSeqStr; stringSingleton; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr; yield! all2DStrs ]
+            | ValType.DataArray -> allNormalStrs @ all2DStrs
             | ValType.Enumerated -> []
             | ValType.EnumeratedArray -> []
             | ValType.EnumeratedWithCustom -> []

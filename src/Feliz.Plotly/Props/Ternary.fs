@@ -25,9 +25,9 @@ type ternary =
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<bool>) = Interop.mkTernaryAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
-    static member inline uirevision (value: string) = Interop.mkTernaryAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkTernaryAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
-    static member inline uirevision (values: seq<string>) = Interop.mkTernaryAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkTernaryAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkTernaryAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
@@ -36,4 +36,8 @@ type ternary =
     static member inline uirevision (value: float) = Interop.mkTernaryAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<float>) = Interop.mkTernaryAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: string) = Interop.mkTernaryAttr "uirevision" value
+    /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<string>) = Interop.mkTernaryAttr "uirevision" (values |> Array.ofSeq)
 

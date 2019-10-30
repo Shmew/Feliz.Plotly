@@ -27,6 +27,10 @@ let [<Literal>] MarkerSizeAndColor = "MarkerSizeAndColor"
 let [<Literal>] SizeScaling = "SizeScaling"
 let [<Literal>] MarkerSizeColorAndSymbolArray = "MarkerSizeColorAndSymbolArray"
 
+// Continuous Error Bar Examples
+let [<Literal>] ContinuousErrorBars = "ContinuousErrorBars"
+let [<Literal>] FilledLines = "FilledLines"
+
 // Dot Examples
 let [<Literal>] Dot = "Dot"
 let [<Literal>] Categorical = "Categorical"
@@ -37,7 +41,6 @@ let [<Literal>] WithBarChart = "WithBarChart"
 let [<Literal>] Horizontal = "Horizontal"
 let [<Literal>] Asymmetric = "Asymmetric"
 let [<Literal>] PercentageOfYValue = "PercentageOfYValue"
-let [<Literal>] AsymmetricWithOffset = "AsymmetricWithOffset"
 
 // Filled Area Examples
 let [<Literal>] FilledArea = "FilledArea"
@@ -108,3 +111,4 @@ let [<Literal>] NestedLayers = "NestedLayers"
 let [<Literal>] Basic = "Basic"
 let [<Literal>] HoverText = "HoverText"
 let [<Literal>] Styled = "Styled"
+let [<Literal>] AsymmetricWithOffset = "AsymmetricWithOffset"

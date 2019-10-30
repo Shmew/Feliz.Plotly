@@ -184,7 +184,12 @@ let samples =
               "plotly-chart-errorbars-percentageofyvalue", Samples.ErrorBar.PercentageOfYValue.chart()
               "plotly-chart-errorbars-asymmetricwithoffset", Samples.ErrorBar.AsymmetricWithOffset.chart() ]
 
-        [ errorBars ]
+        let continuousErrorBars =
+            [ "plotly-chart-continuouserrorbars-filledlines", Samples.ContinuousErrorBar.FilledLines.chart()
+              "plotly-chart-continuouserrorbars-asymmetricwithoffset", Samples.ContinuousErrorBar.AsymmetricWithOffset.chart() ]
+
+        [ errorBars
+          continuousErrorBars ]
         |> List.concat
 
     [ basicSamples; statisticalExamples ]
@@ -251,41 +256,59 @@ let renderMarkdown (path: string) (content: string) =
         ]
     ]
 
-let loadMarkdown' = React.functionComponent <| fun (input: {| path: string list |}) ->
-    let isLoading, setLoading = React.useState false
-    let error, setError = React.useState<Option<string>> None
-    let content, setContent = React.useState ""
-    let path =
-        match input.path with
-        | [ one ] when one.StartsWith "http" -> one
-        | segments -> String.concat "/" segments
+module MarkdownLoader =
 
-    React.useEffect(fun _ ->
-        setLoading(true)
-        async {
-            let! (statusCode, responseText) = Http.get path
-            setLoading(false)
-            if statusCode = 200 then
-                setContent(responseText)
-                setError(None)
-            else
-                setError(Some (sprintf "Status %d: could not load %s" statusCode path))
-        }
-        |> Async.StartImmediate
+    open Feliz.ElmishComponents
 
-        React.createDisposable(ignore)
-    ,path)
+    type State =
+        | Initial
+        | Loading
+        | Errored of string
+        | LoadedMarkdown of content: string
 
-    match isLoading, error with
-    | true, _ -> centeredSpinner
-    | false, None -> renderMarkdown path content
-    | _, Some error ->
-        Html.h1 [
-            prop.style [ style.color.crimson ]
-            prop.text error
-        ]
+    type Msg =
+        | StartLoading of path: string list
+        | Loaded of Result<string, int * string>
 
-let loadMarkdown (path: string list) = loadMarkdown' {| path = path |}
+    let init (path: string list) = Initial, Cmd.ofMsg (StartLoading path)
+
+    let resolvePath = function
+    | [ one: string ] when one.StartsWith "http" -> one
+    | segments -> String.concat "/" segments
+
+    let update (msg: Msg) (state: State) =
+        match msg with
+        | StartLoading path ->
+            let loadMarkdownAsync() = async {
+                let! (statusCode, responseText) = Http.get (resolvePath path)
+                if statusCode = 200
+                then return Loaded (Ok responseText)
+                else return Loaded (Error (statusCode, responseText))
+            }
+
+            Loading, Cmd.OfAsync.perform loadMarkdownAsync () id
+
+        | Loaded (Ok content) ->
+            State.LoadedMarkdown content, Cmd.none
+
+        | Loaded (Error (status, _)) ->
+            State.LoadedMarkdown (sprintf "Status %d: could not load markdown" status), Cmd.none
+
+    let render path (state: State) dispatch =
+        match state with
+        | Initial -> Html.none
+        | Loading -> centeredSpinner
+        | LoadedMarkdown content -> renderMarkdown (resolvePath path) content
+        | Errored error ->
+            Html.h1 [
+                prop.style [ style.color.crimson ]
+                prop.text error
+            ]
+
+    let loadMarkdown' (path: string list) =
+        React.elmishComponent("LoadMarkdown", init path, update, render path)
+
+let loadMarkdown (path: string list) = MarkdownLoader.loadMarkdown' path
 
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
@@ -488,6 +511,10 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Percentage of Y Value" [ Urls.PercentageOfYValue ]
                             nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
                         ]
+                        subNestedMenuList "Continuous Error Bars" [ Urls.ContinuousErrorBars ] [
+                            nestedMenuItem "Filled Lines" [ Urls.FilledLines ]
+                            nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
+                        ]
                     ]
                 ]
             ]
@@ -644,6 +671,12 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
         | _ -> [ ]
         |> List.append [ Urls.ErrorBars ]
+    | Urls.ContinuousErrorBars :: rest ->
+        match rest with
+        | [ Urls.FilledLines ] -> [ "FilledLines.md" ]
+        | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.ContinuousErrorBars ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []

@@ -23,21 +23,25 @@ type contour =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkContourAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkContourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkContourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkContourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkContourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<System.DateTime>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkContourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkContourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkContourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkContourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkContourAttr "ids" value
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string>) = Interop.mkContourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<bool>>) = Interop.mkContourAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -67,21 +71,25 @@ type contour =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkContourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkContourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkContourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkContourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<System.DateTime>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkContourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkContourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkContourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkContourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkContourAttr "customdata" value
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string>) = Interop.mkContourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<bool>>) = Interop.mkContourAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -120,9 +128,9 @@ type contour =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<bool>) = Interop.mkContourAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (value: string) = Interop.mkContourAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkContourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (values: seq<string>) = Interop.mkContourAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkContourAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkContourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -131,22 +139,30 @@ type contour =
     static member inline uirevision (value: float) = Interop.mkContourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkContourAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: string) = Interop.mkContourAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<string>) = Interop.mkContourAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: bool) = Interop.mkContourAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkContourAttr "z" value
     /// Sets the z data.
     static member inline z (values: seq<bool>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: string) = Interop.mkContourAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkContourAttr "z" value
     /// Sets the z data.
-    static member inline z (values: seq<string>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: int) = Interop.mkContourAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkContourAttr "z" value
     /// Sets the z data.
     static member inline z (values: seq<int>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: float) = Interop.mkContourAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkContourAttr "z" value
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (value: string) = Interop.mkContourAttr "z" value
+    /// Sets the z data.
+    static member inline z (values: seq<string>) = Interop.mkContourAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
     static member inline z (values: seq<seq<bool>>) = Interop.mkContourAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
@@ -176,21 +192,25 @@ type contour =
     /// Sets the z data.
     static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: bool) = Interop.mkContourAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkContourAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: string) = Interop.mkContourAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkContourAttr "x" value
     /// Sets the x coordinates.
-    static member inline x (values: seq<string>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: int) = Interop.mkContourAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkContourAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: float) = Interop.mkContourAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkContourAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: string) = Interop.mkContourAttr "x" value
+    /// Sets the x coordinates.
+    static member inline x (values: seq<string>) = Interop.mkContourAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<seq<bool>>) = Interop.mkContourAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
@@ -224,9 +244,9 @@ type contour =
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (values: seq<bool>) = Interop.mkContourAttr "x0" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-    static member inline x0 (value: string) = Interop.mkContourAttr "x0" value
+    static member inline x0 (value: System.DateTime) = Interop.mkContourAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-    static member inline x0 (values: seq<string>) = Interop.mkContourAttr "x0" (values |> Array.ofSeq)
+    static member inline x0 (values: seq<System.DateTime>) = Interop.mkContourAttr "x0" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (value: int) = Interop.mkContourAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -235,26 +255,34 @@ type contour =
     static member inline x0 (value: float) = Interop.mkContourAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (values: seq<float>) = Interop.mkContourAttr "x0" (values |> Array.ofSeq)
+    /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+    static member inline x0 (value: string) = Interop.mkContourAttr "x0" value
+    /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+    static member inline x0 (values: seq<string>) = Interop.mkContourAttr "x0" (values |> Array.ofSeq)
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: int) = Interop.mkContourAttr "dx" value
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: float) = Interop.mkContourAttr "dx" value
     /// Sets the y coordinates.
-    static member inline y (value: bool) = Interop.mkContourAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkContourAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: string) = Interop.mkContourAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkContourAttr "y" value
     /// Sets the y coordinates.
-    static member inline y (values: seq<string>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: int) = Interop.mkContourAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkContourAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: float) = Interop.mkContourAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkContourAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: string) = Interop.mkContourAttr "y" value
+    /// Sets the y coordinates.
+    static member inline y (values: seq<string>) = Interop.mkContourAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<seq<bool>>) = Interop.mkContourAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
@@ -288,9 +316,9 @@ type contour =
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (values: seq<bool>) = Interop.mkContourAttr "y0" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-    static member inline y0 (value: string) = Interop.mkContourAttr "y0" value
+    static member inline y0 (value: System.DateTime) = Interop.mkContourAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-    static member inline y0 (values: seq<string>) = Interop.mkContourAttr "y0" (values |> Array.ofSeq)
+    static member inline y0 (values: seq<System.DateTime>) = Interop.mkContourAttr "y0" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (value: int) = Interop.mkContourAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -299,26 +327,34 @@ type contour =
     static member inline y0 (value: float) = Interop.mkContourAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (values: seq<float>) = Interop.mkContourAttr "y0" (values |> Array.ofSeq)
+    /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+    static member inline y0 (value: string) = Interop.mkContourAttr "y0" value
+    /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+    static member inline y0 (values: seq<string>) = Interop.mkContourAttr "y0" (values |> Array.ofSeq)
     /// Sets the y coordinate step. See `y0` for more info.
     static member inline dy (value: int) = Interop.mkContourAttr "dy" value
     /// Sets the y coordinate step. See `y0` for more info.
     static member inline dy (value: float) = Interop.mkContourAttr "dy" value
     /// Sets the text elements associated with each z value.
-    static member inline text (value: bool) = Interop.mkContourAttr "text" (value |> Array.singleton)
+    static member inline text (value: bool) = Interop.mkContourAttr "text" value
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<bool>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: string) = Interop.mkContourAttr "text" (value |> Array.singleton)
+    static member inline text (value: System.DateTime) = Interop.mkContourAttr "text" value
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<string>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<System.DateTime>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: int) = Interop.mkContourAttr "text" (value |> Array.singleton)
+    static member inline text (value: int) = Interop.mkContourAttr "text" value
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: float) = Interop.mkContourAttr "text" (value |> Array.singleton)
+    static member inline text (value: float) = Interop.mkContourAttr "text" value
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (value: string) = Interop.mkContourAttr "text" value
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<string>) = Interop.mkContourAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<seq<bool>>) = Interop.mkContourAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
@@ -348,21 +384,25 @@ type contour =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: bool) = Interop.mkContourAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: bool) = Interop.mkContourAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<bool>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: string) = Interop.mkContourAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: System.DateTime) = Interop.mkContourAttr "hovertext" value
     /// Same as `text`.
-    static member inline hovertext (values: seq<string>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<System.DateTime>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: int) = Interop.mkContourAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: int) = Interop.mkContourAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<int>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: float) = Interop.mkContourAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: float) = Interop.mkContourAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<float>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (value: string) = Interop.mkContourAttr "hovertext" value
+    /// Same as `text`.
+    static member inline hovertext (values: seq<string>) = Interop.mkContourAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
     static member inline hovertext (values: seq<seq<bool>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.

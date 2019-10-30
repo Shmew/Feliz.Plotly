@@ -23,21 +23,25 @@ type histogram2dcontour =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkHistogram2dcontourAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkHistogram2dcontourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkHistogram2dcontourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkHistogram2dcontourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkHistogram2dcontourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkHistogram2dcontourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkHistogram2dcontourAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkHistogram2dcontourAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkHistogram2dcontourAttr "ids" value
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<bool>>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -67,21 +71,25 @@ type histogram2dcontour =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogram2dcontourAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkHistogram2dcontourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkHistogram2dcontourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkHistogram2dcontourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkHistogram2dcontourAttr "customdata" value
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<bool>>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -120,9 +128,9 @@ type histogram2dcontour =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<bool>) = Interop.mkHistogram2dcontourAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (value: string) = Interop.mkHistogram2dcontourAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (values: seq<string>) = Interop.mkHistogram2dcontourAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkHistogram2dcontourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -131,22 +139,30 @@ type histogram2dcontour =
     static member inline uirevision (value: float) = Interop.mkHistogram2dcontourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkHistogram2dcontourAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: string) = Interop.mkHistogram2dcontourAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<string>) = Interop.mkHistogram2dcontourAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: bool) = Interop.mkHistogram2dcontourAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkHistogram2dcontourAttr "x" value
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<bool>) = Interop.mkHistogram2dcontourAttr "x" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: string) = Interop.mkHistogram2dcontourAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "x" value
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (values: seq<string>) = Interop.mkHistogram2dcontourAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "x" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: int) = Interop.mkHistogram2dcontourAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkHistogram2dcontourAttr "x" value
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<int>) = Interop.mkHistogram2dcontourAttr "x" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: float) = Interop.mkHistogram2dcontourAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkHistogram2dcontourAttr "x" value
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<float>) = Interop.mkHistogram2dcontourAttr "x" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (value: string) = Interop.mkHistogram2dcontourAttr "x" value
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<string>) = Interop.mkHistogram2dcontourAttr "x" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<seq<bool>>) = Interop.mkHistogram2dcontourAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
@@ -176,21 +192,25 @@ type histogram2dcontour =
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogram2dcontourAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: bool) = Interop.mkHistogram2dcontourAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkHistogram2dcontourAttr "y" value
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<bool>) = Interop.mkHistogram2dcontourAttr "y" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: string) = Interop.mkHistogram2dcontourAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "y" value
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (values: seq<string>) = Interop.mkHistogram2dcontourAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "y" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: int) = Interop.mkHistogram2dcontourAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkHistogram2dcontourAttr "y" value
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<int>) = Interop.mkHistogram2dcontourAttr "y" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: float) = Interop.mkHistogram2dcontourAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkHistogram2dcontourAttr "y" value
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<float>) = Interop.mkHistogram2dcontourAttr "y" (values |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (value: string) = Interop.mkHistogram2dcontourAttr "y" value
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<string>) = Interop.mkHistogram2dcontourAttr "y" (values |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<seq<bool>>) = Interop.mkHistogram2dcontourAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
@@ -220,21 +240,25 @@ type histogram2dcontour =
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogram2dcontourAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the aggregation data.
-    static member inline z (value: bool) = Interop.mkHistogram2dcontourAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkHistogram2dcontourAttr "z" value
     /// Sets the aggregation data.
     static member inline z (values: seq<bool>) = Interop.mkHistogram2dcontourAttr "z" (values |> Array.ofSeq)
     /// Sets the aggregation data.
-    static member inline z (value: string) = Interop.mkHistogram2dcontourAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "z" value
     /// Sets the aggregation data.
-    static member inline z (values: seq<string>) = Interop.mkHistogram2dcontourAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "z" (values |> Array.ofSeq)
     /// Sets the aggregation data.
-    static member inline z (value: int) = Interop.mkHistogram2dcontourAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkHistogram2dcontourAttr "z" value
     /// Sets the aggregation data.
     static member inline z (values: seq<int>) = Interop.mkHistogram2dcontourAttr "z" (values |> Array.ofSeq)
     /// Sets the aggregation data.
-    static member inline z (value: float) = Interop.mkHistogram2dcontourAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkHistogram2dcontourAttr "z" value
     /// Sets the aggregation data.
     static member inline z (values: seq<float>) = Interop.mkHistogram2dcontourAttr "z" (values |> Array.ofSeq)
+    /// Sets the aggregation data.
+    static member inline z (value: string) = Interop.mkHistogram2dcontourAttr "z" value
+    /// Sets the aggregation data.
+    static member inline z (values: seq<string>) = Interop.mkHistogram2dcontourAttr "z" (values |> Array.ofSeq)
     /// Sets the aggregation data.
     static member inline z (values: seq<seq<bool>>) = Interop.mkHistogram2dcontourAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the aggregation data.

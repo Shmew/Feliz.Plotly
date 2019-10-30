@@ -23,9 +23,9 @@ type scene =
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<bool>) = Interop.mkSceneAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
-    static member inline uirevision (value: string) = Interop.mkSceneAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkSceneAttr "uirevision" value
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
-    static member inline uirevision (values: seq<string>) = Interop.mkSceneAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkSceneAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkSceneAttr "uirevision" value
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
@@ -34,6 +34,10 @@ type scene =
     static member inline uirevision (value: float) = Interop.mkSceneAttr "uirevision" value
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<float>) = Interop.mkSceneAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: string) = Interop.mkSceneAttr "uirevision" value
+    /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<string>) = Interop.mkSceneAttr "uirevision" (values |> Array.ofSeq)
     static member inline annotations (properties: #IAnnotationsProperty list) = Interop.mkSceneAttr "annotations" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
 
 [<AutoOpen>]

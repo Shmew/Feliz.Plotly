@@ -35,9 +35,9 @@ type contours =
     /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
     static member inline value (values: seq<bool>) = Interop.mkContoursAttr "value" (values |> Array.ofSeq)
     /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
-    static member inline value (value: string) = Interop.mkContoursAttr "value" value
+    static member inline value (value: System.DateTime) = Interop.mkContoursAttr "value" value
     /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
-    static member inline value (values: seq<string>) = Interop.mkContoursAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<System.DateTime>) = Interop.mkContoursAttr "value" (values |> Array.ofSeq)
     /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
     static member inline value (value: int) = Interop.mkContoursAttr "value" value
     /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
@@ -46,6 +46,10 @@ type contours =
     static member inline value (value: float) = Interop.mkContoursAttr "value" value
     /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
     static member inline value (values: seq<float>) = Interop.mkContoursAttr "value" (values |> Array.ofSeq)
+    /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
+    static member inline value (value: string) = Interop.mkContoursAttr "value" value
+    /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
+    static member inline value (values: seq<string>) = Interop.mkContoursAttr "value" (values |> Array.ofSeq)
     static member inline x (properties: #IXProperty list) = Interop.mkContoursAttr "x" (createObj !!properties)
     static member inline y (properties: #IYProperty list) = Interop.mkContoursAttr "y" (createObj !!properties)
     static member inline z (properties: #IZProperty list) = Interop.mkContoursAttr "z" (createObj !!properties)

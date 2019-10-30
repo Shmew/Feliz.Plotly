@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBars\FilledLines.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBars\AsymmetricWithOffset.fs" />
     <Compile Include="Plotly\Examples\Statistical\ErrorBars\Basic.fs" />
     <Compile Include="Plotly\Examples\Statistical\ErrorBars\WithBarChart.fs" />
     <Compile Include="Plotly\Examples\Statistical\ErrorBars\Horizontal.fs" />

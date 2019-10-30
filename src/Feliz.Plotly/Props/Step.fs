@@ -36,6 +36,10 @@ type step =
     /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     static member inline args (values: seq<bool>) = Interop.mkStepAttr "args" (values |> Array.ofSeq)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+    static member inline args (value: System.DateTime) = Interop.mkStepAttr "args" (value |> Array.singleton)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+    static member inline args (values: seq<System.DateTime>) = Interop.mkStepAttr "args" (values |> Array.ofSeq)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     static member inline args (value: int) = Interop.mkStepAttr "args" (value |> Array.singleton)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     static member inline args (values: seq<int>) = Interop.mkStepAttr "args" (values |> Array.ofSeq)

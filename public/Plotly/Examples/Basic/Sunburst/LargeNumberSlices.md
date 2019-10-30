@@ -11,7 +11,7 @@ open Fable.SimpleHttp
 open Feliz
 open Feliz.Plotly
 
-type CoffeeData =
+type private CoffeeData =
     { Ids: string [] 
       Labels: string []
       Parents: string [] }
@@ -21,13 +21,13 @@ type CoffeeData =
             Labels = Array.append this.Labels (data.[1] |> Array.singleton)
             Parents = Array.append this.Parents (data.[2] |> Array.singleton) }
 
-module CoffeeData =
+module private CoffeeData =
     let empty =
         { Ids = [||] 
           Labels = [||]
           Parents = [||] }
 
-let render (data: CoffeeData)  =
+let private render (data: CoffeeData)  =
     Plotly.plot [
         plot.traces [
             traces.sunburst [
@@ -60,7 +60,7 @@ let render (data: CoffeeData)  =
         ]
     ]
 
-let chart' = React.functionComponent <| fun (input: {| centeredSpinner: ReactElement |}) ->
+let private chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
     let isLoading, setLoading = React.useState false
     let error, setError = React.useState<Option<string>> None
     let content, setContent = React.useState CoffeeData.empty
@@ -74,6 +74,7 @@ let chart' = React.functionComponent <| fun (input: {| centeredSpinner: ReactEle
             if statusCode = 200 then
                 responseText.Trim().Split('\n') 
                 |> Array.map (fun s -> s.Split(','))
+                |> Array.tail
                 |> Array.fold (fun (state: CoffeeData) (values: string []) -> state.AddDataSet values) content
                 |> setContent
                 setError(None)
@@ -92,7 +93,7 @@ let chart' = React.functionComponent <| fun (input: {| centeredSpinner: ReactEle
         Html.h1 [
             prop.style [ style.color.crimson ]
             prop.text error
-        ]
+        ])
 
 let chart (centeredSpinner: ReactElement) = chart' {| centeredSpinner = centeredSpinner |}
 ```

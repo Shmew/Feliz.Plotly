@@ -11,21 +11,25 @@ open Feliz
 [<Erase>]
 type starts =
     /// Sets the x components of the starting position of the streamtubes
-    static member inline x (value: bool) = Interop.mkStartsAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkStartsAttr "x" value
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<bool>) = Interop.mkStartsAttr "x" (values |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
-    static member inline x (value: string) = Interop.mkStartsAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkStartsAttr "x" value
     /// Sets the x components of the starting position of the streamtubes
-    static member inline x (values: seq<string>) = Interop.mkStartsAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkStartsAttr "x" (values |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
-    static member inline x (value: int) = Interop.mkStartsAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkStartsAttr "x" value
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<int>) = Interop.mkStartsAttr "x" (values |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
-    static member inline x (value: float) = Interop.mkStartsAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkStartsAttr "x" value
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<float>) = Interop.mkStartsAttr "x" (values |> Array.ofSeq)
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (value: string) = Interop.mkStartsAttr "x" value
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<string>) = Interop.mkStartsAttr "x" (values |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<seq<bool>>) = Interop.mkStartsAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
@@ -55,21 +59,25 @@ type starts =
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStartsAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
-    static member inline y (value: bool) = Interop.mkStartsAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkStartsAttr "y" value
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<bool>) = Interop.mkStartsAttr "y" (values |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
-    static member inline y (value: string) = Interop.mkStartsAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkStartsAttr "y" value
     /// Sets the y components of the starting position of the streamtubes
-    static member inline y (values: seq<string>) = Interop.mkStartsAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkStartsAttr "y" (values |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
-    static member inline y (value: int) = Interop.mkStartsAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkStartsAttr "y" value
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<int>) = Interop.mkStartsAttr "y" (values |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
-    static member inline y (value: float) = Interop.mkStartsAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkStartsAttr "y" value
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<float>) = Interop.mkStartsAttr "y" (values |> Array.ofSeq)
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (value: string) = Interop.mkStartsAttr "y" value
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<string>) = Interop.mkStartsAttr "y" (values |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<seq<bool>>) = Interop.mkStartsAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
@@ -99,21 +107,25 @@ type starts =
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStartsAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
-    static member inline z (value: bool) = Interop.mkStartsAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkStartsAttr "z" value
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<bool>) = Interop.mkStartsAttr "z" (values |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
-    static member inline z (value: string) = Interop.mkStartsAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkStartsAttr "z" value
     /// Sets the z components of the starting position of the streamtubes
-    static member inline z (values: seq<string>) = Interop.mkStartsAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkStartsAttr "z" (values |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
-    static member inline z (value: int) = Interop.mkStartsAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkStartsAttr "z" value
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<int>) = Interop.mkStartsAttr "z" (values |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
-    static member inline z (value: float) = Interop.mkStartsAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkStartsAttr "z" value
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<float>) = Interop.mkStartsAttr "z" (values |> Array.ofSeq)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (value: string) = Interop.mkStartsAttr "z" value
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<string>) = Interop.mkStartsAttr "z" (values |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<seq<bool>>) = Interop.mkStartsAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes

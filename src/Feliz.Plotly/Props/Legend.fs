@@ -39,9 +39,9 @@ type legend =
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<bool>) = Interop.mkLegendAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
-    static member inline uirevision (value: string) = Interop.mkLegendAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkLegendAttr "uirevision" value
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
-    static member inline uirevision (values: seq<string>) = Interop.mkLegendAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkLegendAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkLegendAttr "uirevision" value
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
@@ -50,6 +50,10 @@ type legend =
     static member inline uirevision (value: float) = Interop.mkLegendAttr "uirevision" value
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<float>) = Interop.mkLegendAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: string) = Interop.mkLegendAttr "uirevision" value
+    /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<string>) = Interop.mkLegendAttr "uirevision" (values |> Array.ofSeq)
 
 [<AutoOpen>]
 module legend =

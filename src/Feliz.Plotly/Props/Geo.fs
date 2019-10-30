@@ -74,9 +74,9 @@ type geo =
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<bool>) = Interop.mkGeoAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
-    static member inline uirevision (value: string) = Interop.mkGeoAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkGeoAttr "uirevision" value
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
-    static member inline uirevision (values: seq<string>) = Interop.mkGeoAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkGeoAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkGeoAttr "uirevision" value
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
@@ -85,6 +85,10 @@ type geo =
     static member inline uirevision (value: float) = Interop.mkGeoAttr "uirevision" value
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<float>) = Interop.mkGeoAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
+    static member inline uirevision (value: string) = Interop.mkGeoAttr "uirevision" value
+    /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<string>) = Interop.mkGeoAttr "uirevision" (values |> Array.ofSeq)
 
 [<AutoOpen>]
 module geo =

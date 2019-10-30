@@ -17,9 +17,9 @@ type layer =
     /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
     static member inline source (values: seq<bool>) = Interop.mkLayerAttr "source" (values |> Array.ofSeq)
     /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
-    static member inline source (value: string) = Interop.mkLayerAttr "source" value
+    static member inline source (value: System.DateTime) = Interop.mkLayerAttr "source" value
     /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
-    static member inline source (values: seq<string>) = Interop.mkLayerAttr "source" (values |> Array.ofSeq)
+    static member inline source (values: seq<System.DateTime>) = Interop.mkLayerAttr "source" (values |> Array.ofSeq)
     /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
     static member inline source (value: int) = Interop.mkLayerAttr "source" value
     /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
@@ -28,6 +28,10 @@ type layer =
     static member inline source (value: float) = Interop.mkLayerAttr "source" value
     /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
     static member inline source (values: seq<float>) = Interop.mkLayerAttr "source" (values |> Array.ofSeq)
+    /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+    static member inline source (value: string) = Interop.mkLayerAttr "source" value
+    /// Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+    static member inline source (values: seq<string>) = Interop.mkLayerAttr "source" (values |> Array.ofSeq)
     /// Specifies the layer to use from a vector tile source (mapbox.layer.source-layer). Required for *vector* source type that supports multiple layers.
     static member inline sourcelayer (value: string) = Interop.mkLayerAttr "sourcelayer" value
     /// Sets the attribution for this source.
@@ -37,9 +41,9 @@ type layer =
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     static member inline coordinates (values: seq<bool>) = Interop.mkLayerAttr "coordinates" (values |> Array.ofSeq)
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
-    static member inline coordinates (value: string) = Interop.mkLayerAttr "coordinates" value
+    static member inline coordinates (value: System.DateTime) = Interop.mkLayerAttr "coordinates" value
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
-    static member inline coordinates (values: seq<string>) = Interop.mkLayerAttr "coordinates" (values |> Array.ofSeq)
+    static member inline coordinates (values: seq<System.DateTime>) = Interop.mkLayerAttr "coordinates" (values |> Array.ofSeq)
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     static member inline coordinates (value: int) = Interop.mkLayerAttr "coordinates" value
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
@@ -48,6 +52,10 @@ type layer =
     static member inline coordinates (value: float) = Interop.mkLayerAttr "coordinates" value
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     static member inline coordinates (values: seq<float>) = Interop.mkLayerAttr "coordinates" (values |> Array.ofSeq)
+    /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+    static member inline coordinates (value: string) = Interop.mkLayerAttr "coordinates" value
+    /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+    static member inline coordinates (values: seq<string>) = Interop.mkLayerAttr "coordinates" (values |> Array.ofSeq)
     /// Determines if the layer will be inserted before the layer with the specified ID. If omitted or set to '', the layer will be inserted above every existing layer.
     static member inline below (value: string) = Interop.mkLayerAttr "below" value
     /// Sets the primary layer color. If `type` is *circle*, color corresponds to the circle color (mapbox.layer.paint.circle-color) If `type` is *line*, color corresponds to the line color (mapbox.layer.paint.line-color) If `type` is *fill*, color corresponds to the fill color (mapbox.layer.paint.fill-color) If `type` is *symbol*, color corresponds to the icon color (mapbox.layer.paint.icon-color)

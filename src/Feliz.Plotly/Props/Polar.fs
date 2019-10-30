@@ -32,9 +32,9 @@ type polar =
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<bool>) = Interop.mkPolarAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
-    static member inline uirevision (value: string) = Interop.mkPolarAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkPolarAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
-    static member inline uirevision (values: seq<string>) = Interop.mkPolarAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkPolarAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkPolarAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
@@ -43,6 +43,10 @@ type polar =
     static member inline uirevision (value: float) = Interop.mkPolarAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<float>) = Interop.mkPolarAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: string) = Interop.mkPolarAttr "uirevision" value
+    /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<string>) = Interop.mkPolarAttr "uirevision" (values |> Array.ofSeq)
 
 [<AutoOpen>]
 module polar =

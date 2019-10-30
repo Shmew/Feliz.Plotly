@@ -15,21 +15,25 @@ type surface =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkSurfaceAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkSurfaceAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkSurfaceAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkSurfaceAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string>) = Interop.mkSurfaceAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkSurfaceAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkSurfaceAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkSurfaceAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkSurfaceAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkSurfaceAttr "ids" value
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string>) = Interop.mkSurfaceAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<bool>>) = Interop.mkSurfaceAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -59,21 +63,25 @@ type surface =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkSurfaceAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkSurfaceAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkSurfaceAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string>) = Interop.mkSurfaceAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkSurfaceAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkSurfaceAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkSurfaceAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkSurfaceAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkSurfaceAttr "customdata" value
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string>) = Interop.mkSurfaceAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<bool>>) = Interop.mkSurfaceAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -109,9 +117,9 @@ type surface =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<bool>) = Interop.mkSurfaceAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (value: string) = Interop.mkSurfaceAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkSurfaceAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (values: seq<string>) = Interop.mkSurfaceAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkSurfaceAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -120,22 +128,30 @@ type surface =
     static member inline uirevision (value: float) = Interop.mkSurfaceAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkSurfaceAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: string) = Interop.mkSurfaceAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<string>) = Interop.mkSurfaceAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (value: bool) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkSurfaceAttr "z" value
     /// Sets the z coordinates.
     static member inline z (values: seq<bool>) = Interop.mkSurfaceAttr "z" (values |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (value: string) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkSurfaceAttr "z" value
     /// Sets the z coordinates.
-    static member inline z (values: seq<string>) = Interop.mkSurfaceAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "z" (values |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (value: int) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkSurfaceAttr "z" value
     /// Sets the z coordinates.
     static member inline z (values: seq<int>) = Interop.mkSurfaceAttr "z" (values |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (value: float) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkSurfaceAttr "z" value
     /// Sets the z coordinates.
     static member inline z (values: seq<float>) = Interop.mkSurfaceAttr "z" (values |> Array.ofSeq)
+    /// Sets the z coordinates.
+    static member inline z (value: string) = Interop.mkSurfaceAttr "z" value
+    /// Sets the z coordinates.
+    static member inline z (values: seq<string>) = Interop.mkSurfaceAttr "z" (values |> Array.ofSeq)
     /// Sets the z coordinates.
     static member inline z (values: seq<seq<bool>>) = Interop.mkSurfaceAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates.
@@ -165,21 +181,25 @@ type surface =
     /// Sets the z coordinates.
     static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: bool) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkSurfaceAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkSurfaceAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: string) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkSurfaceAttr "x" value
     /// Sets the x coordinates.
-    static member inline x (values: seq<string>) = Interop.mkSurfaceAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: int) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkSurfaceAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkSurfaceAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: float) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkSurfaceAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkSurfaceAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: string) = Interop.mkSurfaceAttr "x" value
+    /// Sets the x coordinates.
+    static member inline x (values: seq<string>) = Interop.mkSurfaceAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<seq<bool>>) = Interop.mkSurfaceAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
@@ -209,21 +229,25 @@ type surface =
     /// Sets the x coordinates.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: bool) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkSurfaceAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkSurfaceAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: string) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkSurfaceAttr "y" value
     /// Sets the y coordinates.
-    static member inline y (values: seq<string>) = Interop.mkSurfaceAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: int) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkSurfaceAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkSurfaceAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: float) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkSurfaceAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkSurfaceAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: string) = Interop.mkSurfaceAttr "y" value
+    /// Sets the y coordinates.
+    static member inline y (values: seq<string>) = Interop.mkSurfaceAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<seq<bool>>) = Interop.mkSurfaceAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
@@ -267,21 +291,25 @@ type surface =
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in.
     static member inline connectgaps (value: bool) = Interop.mkSurfaceAttr "connectgaps" value
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: bool) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: bool) = Interop.mkSurfaceAttr "surfacecolor" value
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<bool>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Array.ofSeq)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: string) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: System.DateTime) = Interop.mkSurfaceAttr "surfacecolor" value
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (values: seq<string>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Array.ofSeq)
+    static member inline surfacecolor (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Array.ofSeq)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: int) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: int) = Interop.mkSurfaceAttr "surfacecolor" value
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<int>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Array.ofSeq)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: float) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: float) = Interop.mkSurfaceAttr "surfacecolor" value
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<float>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Array.ofSeq)
+    /// Sets the surface color values, used for setting a color scale independent of `z`.
+    static member inline surfacecolor (value: string) = Interop.mkSurfaceAttr "surfacecolor" value
+    /// Sets the surface color values, used for setting a color scale independent of `z`.
+    static member inline surfacecolor (values: seq<string>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Array.ofSeq)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<seq<bool>>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the surface color values, used for setting a color scale independent of `z`.

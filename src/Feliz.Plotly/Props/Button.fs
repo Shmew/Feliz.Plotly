@@ -27,6 +27,10 @@ type button =
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<bool>) = Interop.mkButtonAttr "args" (values |> Array.ofSeq)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (value: System.DateTime) = Interop.mkButtonAttr "args" (value |> Array.singleton)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (values: seq<System.DateTime>) = Interop.mkButtonAttr "args" (values |> Array.ofSeq)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (value: int) = Interop.mkButtonAttr "args" (value |> Array.singleton)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<int>) = Interop.mkButtonAttr "args" (values |> Array.ofSeq)

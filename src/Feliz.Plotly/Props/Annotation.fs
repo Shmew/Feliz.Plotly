@@ -17,9 +17,9 @@ type annotation =
     /// Sets the annotation's x position.
     static member inline x (values: seq<bool>) = Interop.mkAnnotationAttr "x" (values |> Array.ofSeq)
     /// Sets the annotation's x position.
-    static member inline x (value: string) = Interop.mkAnnotationAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkAnnotationAttr "x" value
     /// Sets the annotation's x position.
-    static member inline x (values: seq<string>) = Interop.mkAnnotationAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "x" (values |> Array.ofSeq)
     /// Sets the annotation's x position.
     static member inline x (value: int) = Interop.mkAnnotationAttr "x" value
     /// Sets the annotation's x position.
@@ -28,14 +28,18 @@ type annotation =
     static member inline x (value: float) = Interop.mkAnnotationAttr "x" value
     /// Sets the annotation's x position.
     static member inline x (values: seq<float>) = Interop.mkAnnotationAttr "x" (values |> Array.ofSeq)
+    /// Sets the annotation's x position.
+    static member inline x (value: string) = Interop.mkAnnotationAttr "x" value
+    /// Sets the annotation's x position.
+    static member inline x (values: seq<string>) = Interop.mkAnnotationAttr "x" (values |> Array.ofSeq)
     /// Sets the annotation's y position.
     static member inline y (value: bool) = Interop.mkAnnotationAttr "y" value
     /// Sets the annotation's y position.
     static member inline y (values: seq<bool>) = Interop.mkAnnotationAttr "y" (values |> Array.ofSeq)
     /// Sets the annotation's y position.
-    static member inline y (value: string) = Interop.mkAnnotationAttr "y" value
+    static member inline y (value: System.DateTime) = Interop.mkAnnotationAttr "y" value
     /// Sets the annotation's y position.
-    static member inline y (values: seq<string>) = Interop.mkAnnotationAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "y" (values |> Array.ofSeq)
     /// Sets the annotation's y position.
     static member inline y (value: int) = Interop.mkAnnotationAttr "y" value
     /// Sets the annotation's y position.
@@ -44,14 +48,18 @@ type annotation =
     static member inline y (value: float) = Interop.mkAnnotationAttr "y" value
     /// Sets the annotation's y position.
     static member inline y (values: seq<float>) = Interop.mkAnnotationAttr "y" (values |> Array.ofSeq)
+    /// Sets the annotation's y position.
+    static member inline y (value: string) = Interop.mkAnnotationAttr "y" value
+    /// Sets the annotation's y position.
+    static member inline y (values: seq<string>) = Interop.mkAnnotationAttr "y" (values |> Array.ofSeq)
     /// Sets the annotation's z position.
     static member inline z (value: bool) = Interop.mkAnnotationAttr "z" value
     /// Sets the annotation's z position.
     static member inline z (values: seq<bool>) = Interop.mkAnnotationAttr "z" (values |> Array.ofSeq)
     /// Sets the annotation's z position.
-    static member inline z (value: string) = Interop.mkAnnotationAttr "z" value
+    static member inline z (value: System.DateTime) = Interop.mkAnnotationAttr "z" value
     /// Sets the annotation's z position.
-    static member inline z (values: seq<string>) = Interop.mkAnnotationAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "z" (values |> Array.ofSeq)
     /// Sets the annotation's z position.
     static member inline z (value: int) = Interop.mkAnnotationAttr "z" value
     /// Sets the annotation's z position.
@@ -60,6 +68,10 @@ type annotation =
     static member inline z (value: float) = Interop.mkAnnotationAttr "z" value
     /// Sets the annotation's z position.
     static member inline z (values: seq<float>) = Interop.mkAnnotationAttr "z" (values |> Array.ofSeq)
+    /// Sets the annotation's z position.
+    static member inline z (value: string) = Interop.mkAnnotationAttr "z" value
+    /// Sets the annotation's z position.
+    static member inline z (values: seq<string>) = Interop.mkAnnotationAttr "z" (values |> Array.ofSeq)
     /// Sets the x component of the arrow tail about the arrow head (in pixels).
     static member inline ax (value: int) = Interop.mkAnnotationAttr "ax" value
     /// Sets the x component of the arrow tail about the arrow head (in pixels).
@@ -152,9 +164,9 @@ type annotation =
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
     static member inline xclick (values: seq<bool>) = Interop.mkAnnotationAttr "xclick" (values |> Array.ofSeq)
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
-    static member inline xclick (value: string) = Interop.mkAnnotationAttr "xclick" value
+    static member inline xclick (value: System.DateTime) = Interop.mkAnnotationAttr "xclick" value
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
-    static member inline xclick (values: seq<string>) = Interop.mkAnnotationAttr "xclick" (values |> Array.ofSeq)
+    static member inline xclick (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "xclick" (values |> Array.ofSeq)
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
     static member inline xclick (value: int) = Interop.mkAnnotationAttr "xclick" value
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
@@ -163,14 +175,18 @@ type annotation =
     static member inline xclick (value: float) = Interop.mkAnnotationAttr "xclick" value
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
     static member inline xclick (values: seq<float>) = Interop.mkAnnotationAttr "xclick" (values |> Array.ofSeq)
+    /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+    static member inline xclick (value: string) = Interop.mkAnnotationAttr "xclick" value
+    /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+    static member inline xclick (values: seq<string>) = Interop.mkAnnotationAttr "xclick" (values |> Array.ofSeq)
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
     static member inline yclick (value: bool) = Interop.mkAnnotationAttr "yclick" value
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
     static member inline yclick (values: seq<bool>) = Interop.mkAnnotationAttr "yclick" (values |> Array.ofSeq)
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
-    static member inline yclick (value: string) = Interop.mkAnnotationAttr "yclick" value
+    static member inline yclick (value: System.DateTime) = Interop.mkAnnotationAttr "yclick" value
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
-    static member inline yclick (values: seq<string>) = Interop.mkAnnotationAttr "yclick" (values |> Array.ofSeq)
+    static member inline yclick (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "yclick" (values |> Array.ofSeq)
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
     static member inline yclick (value: int) = Interop.mkAnnotationAttr "yclick" value
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
@@ -179,6 +195,10 @@ type annotation =
     static member inline yclick (value: float) = Interop.mkAnnotationAttr "yclick" value
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
     static member inline yclick (values: seq<float>) = Interop.mkAnnotationAttr "yclick" (values |> Array.ofSeq)
+    /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+    static member inline yclick (value: string) = Interop.mkAnnotationAttr "yclick" value
+    /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+    static member inline yclick (values: seq<string>) = Interop.mkAnnotationAttr "yclick" (values |> Array.ofSeq)
 
 [<AutoOpen>]
 module annotation =

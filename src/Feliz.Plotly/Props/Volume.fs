@@ -15,21 +15,25 @@ type volume =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkVolumeAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkVolumeAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkVolumeAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<System.DateTime>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkVolumeAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkVolumeAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkVolumeAttr "ids" value
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<bool>>) = Interop.mkVolumeAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -59,21 +63,25 @@ type volume =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkVolumeAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkVolumeAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<System.DateTime>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkVolumeAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkVolumeAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkVolumeAttr "customdata" value
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<bool>>) = Interop.mkVolumeAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -109,9 +117,9 @@ type volume =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<bool>) = Interop.mkVolumeAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (value: string) = Interop.mkVolumeAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkVolumeAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (values: seq<string>) = Interop.mkVolumeAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkVolumeAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkVolumeAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -120,22 +128,30 @@ type volume =
     static member inline uirevision (value: float) = Interop.mkVolumeAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkVolumeAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: string) = Interop.mkVolumeAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<string>) = Interop.mkVolumeAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: bool) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkVolumeAttr "x" value
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<bool>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: string) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkVolumeAttr "x" value
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<string>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: int) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkVolumeAttr "x" value
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<int>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: float) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkVolumeAttr "x" value
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<float>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
+    /// Sets the X coordinates of the vertices on X axis.
+    static member inline x (value: string) = Interop.mkVolumeAttr "x" value
+    /// Sets the X coordinates of the vertices on X axis.
+    static member inline x (values: seq<string>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<seq<bool>>) = Interop.mkVolumeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
@@ -165,21 +181,25 @@ type volume =
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: bool) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkVolumeAttr "y" value
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<bool>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: string) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkVolumeAttr "y" value
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<string>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: int) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkVolumeAttr "y" value
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<int>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: float) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkVolumeAttr "y" value
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<float>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
+    /// Sets the Y coordinates of the vertices on Y axis.
+    static member inline y (value: string) = Interop.mkVolumeAttr "y" value
+    /// Sets the Y coordinates of the vertices on Y axis.
+    static member inline y (values: seq<string>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<seq<bool>>) = Interop.mkVolumeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
@@ -209,21 +229,25 @@ type volume =
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: bool) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkVolumeAttr "z" value
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<bool>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: string) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkVolumeAttr "z" value
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<string>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: int) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkVolumeAttr "z" value
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<int>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: float) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkVolumeAttr "z" value
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<float>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
+    /// Sets the Z coordinates of the vertices on Z axis.
+    static member inline z (value: string) = Interop.mkVolumeAttr "z" value
+    /// Sets the Z coordinates of the vertices on Z axis.
+    static member inline z (values: seq<string>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<seq<bool>>) = Interop.mkVolumeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
@@ -253,21 +277,25 @@ type volume =
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: bool) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: bool) = Interop.mkVolumeAttr "value" value
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<bool>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: string) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: System.DateTime) = Interop.mkVolumeAttr "value" value
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<string>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<System.DateTime>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: int) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: int) = Interop.mkVolumeAttr "value" value
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<int>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: float) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: float) = Interop.mkVolumeAttr "value" value
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<float>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
+    /// Sets the 4th dimension (value) of the vertices.
+    static member inline value (value: string) = Interop.mkVolumeAttr "value" value
+    /// Sets the 4th dimension (value) of the vertices.
+    static member inline value (values: seq<string>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<seq<bool>>) = Interop.mkVolumeAttr "value" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
@@ -356,9 +384,9 @@ type volume =
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
     static member inline opacityscale (values: seq<bool>) = Interop.mkVolumeAttr "opacityscale" (values |> Array.ofSeq)
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
-    static member inline opacityscale (value: string) = Interop.mkVolumeAttr "opacityscale" value
+    static member inline opacityscale (value: System.DateTime) = Interop.mkVolumeAttr "opacityscale" value
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
-    static member inline opacityscale (values: seq<string>) = Interop.mkVolumeAttr "opacityscale" (values |> Array.ofSeq)
+    static member inline opacityscale (values: seq<System.DateTime>) = Interop.mkVolumeAttr "opacityscale" (values |> Array.ofSeq)
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
     static member inline opacityscale (value: int) = Interop.mkVolumeAttr "opacityscale" value
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
@@ -367,6 +395,10 @@ type volume =
     static member inline opacityscale (value: float) = Interop.mkVolumeAttr "opacityscale" value
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
     static member inline opacityscale (values: seq<float>) = Interop.mkVolumeAttr "opacityscale" (values |> Array.ofSeq)
+    /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
+    static member inline opacityscale (value: string) = Interop.mkVolumeAttr "opacityscale" value
+    /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
+    static member inline opacityscale (values: seq<string>) = Interop.mkVolumeAttr "opacityscale" (values |> Array.ofSeq)
     static member inline lightposition (properties: #ILightpositionProperty list) = Interop.mkVolumeAttr "lightposition" (createObj !!properties)
     static member inline lighting (properties: #ILightingProperty list) = Interop.mkVolumeAttr "lighting" (createObj !!properties)
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.

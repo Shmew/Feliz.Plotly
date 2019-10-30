@@ -31,9 +31,9 @@ type image =
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
     static member inline x (values: seq<bool>) = Interop.mkImageAttr "x" (values |> Array.ofSeq)
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
-    static member inline x (value: string) = Interop.mkImageAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkImageAttr "x" value
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
-    static member inline x (values: seq<string>) = Interop.mkImageAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkImageAttr "x" (values |> Array.ofSeq)
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
     static member inline x (value: int) = Interop.mkImageAttr "x" value
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
@@ -42,14 +42,18 @@ type image =
     static member inline x (value: float) = Interop.mkImageAttr "x" value
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
     static member inline x (values: seq<float>) = Interop.mkImageAttr "x" (values |> Array.ofSeq)
+    /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+    static member inline x (value: string) = Interop.mkImageAttr "x" value
+    /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+    static member inline x (values: seq<string>) = Interop.mkImageAttr "x" (values |> Array.ofSeq)
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
     static member inline y (value: bool) = Interop.mkImageAttr "y" value
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
     static member inline y (values: seq<bool>) = Interop.mkImageAttr "y" (values |> Array.ofSeq)
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
-    static member inline y (value: string) = Interop.mkImageAttr "y" value
+    static member inline y (value: System.DateTime) = Interop.mkImageAttr "y" value
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
-    static member inline y (values: seq<string>) = Interop.mkImageAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkImageAttr "y" (values |> Array.ofSeq)
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
     static member inline y (value: int) = Interop.mkImageAttr "y" value
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
@@ -58,6 +62,10 @@ type image =
     static member inline y (value: float) = Interop.mkImageAttr "y" value
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
     static member inline y (values: seq<float>) = Interop.mkImageAttr "y" (values |> Array.ofSeq)
+    /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+    static member inline y (value: string) = Interop.mkImageAttr "y" value
+    /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+    static member inline y (values: seq<string>) = Interop.mkImageAttr "y" (values |> Array.ofSeq)
     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
     static member inline name (value: string) = Interop.mkImageAttr "name" value
     /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.

@@ -109,7 +109,7 @@ let private render (data: BTCMiningData)  =
         ]
     ]
 
-let private chart' = React.functionComponent <| fun (input: {| centeredSpinner: ReactElement |}) ->
+let private chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
     let isLoading, setLoading = React.useState false
     let error, setError = React.useState<Option<string>> None
     let content, setContent = React.useState BTCMiningData.empty
@@ -146,6 +146,6 @@ let private chart' = React.functionComponent <| fun (input: {| centeredSpinner: 
         Html.h1 [
             prop.style [ style.color.crimson ]
             prop.text error
-        ]
+        ])
 
 let chart (centeredSpinner: ReactElement) = chart' {| centeredSpinner = centeredSpinner |}

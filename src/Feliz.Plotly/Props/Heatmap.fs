@@ -19,21 +19,25 @@ type heatmap =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkHeatmapAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkHeatmapAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkHeatmapAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkHeatmapAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<string>) = Interop.mkHeatmapAttr "ids" (values |> Array.ofSeq)
+    static member inline ids (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkHeatmapAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkHeatmapAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkHeatmapAttr "ids" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkHeatmapAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkHeatmapAttr "ids" value
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string>) = Interop.mkHeatmapAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<bool>>) = Interop.mkHeatmapAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -63,21 +67,25 @@ type heatmap =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkHeatmapAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkHeatmapAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkHeatmapAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<string>) = Interop.mkHeatmapAttr "customdata" (values |> Array.ofSeq)
+    static member inline customdata (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkHeatmapAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkHeatmapAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkHeatmapAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHeatmapAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkHeatmapAttr "customdata" value
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string>) = Interop.mkHeatmapAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<bool>>) = Interop.mkHeatmapAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -116,9 +124,9 @@ type heatmap =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<bool>) = Interop.mkHeatmapAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (value: string) = Interop.mkHeatmapAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkHeatmapAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    static member inline uirevision (values: seq<string>) = Interop.mkHeatmapAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkHeatmapAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -127,22 +135,30 @@ type heatmap =
     static member inline uirevision (value: float) = Interop.mkHeatmapAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<float>) = Interop.mkHeatmapAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: string) = Interop.mkHeatmapAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<string>) = Interop.mkHeatmapAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: bool) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkHeatmapAttr "z" value
     /// Sets the z data.
     static member inline z (values: seq<bool>) = Interop.mkHeatmapAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: string) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkHeatmapAttr "z" value
     /// Sets the z data.
-    static member inline z (values: seq<string>) = Interop.mkHeatmapAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: int) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkHeatmapAttr "z" value
     /// Sets the z data.
     static member inline z (values: seq<int>) = Interop.mkHeatmapAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: float) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkHeatmapAttr "z" value
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkHeatmapAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (value: string) = Interop.mkHeatmapAttr "z" value
+    /// Sets the z data.
+    static member inline z (values: seq<string>) = Interop.mkHeatmapAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
     static member inline z (values: seq<seq<bool>>) = Interop.mkHeatmapAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
@@ -172,21 +188,25 @@ type heatmap =
     /// Sets the z data.
     static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: bool) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkHeatmapAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkHeatmapAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: string) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkHeatmapAttr "x" value
     /// Sets the x coordinates.
-    static member inline x (values: seq<string>) = Interop.mkHeatmapAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: int) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkHeatmapAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkHeatmapAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: float) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkHeatmapAttr "x" value
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkHeatmapAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: string) = Interop.mkHeatmapAttr "x" value
+    /// Sets the x coordinates.
+    static member inline x (values: seq<string>) = Interop.mkHeatmapAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<seq<bool>>) = Interop.mkHeatmapAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
@@ -220,9 +240,9 @@ type heatmap =
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (values: seq<bool>) = Interop.mkHeatmapAttr "x0" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-    static member inline x0 (value: string) = Interop.mkHeatmapAttr "x0" value
+    static member inline x0 (value: System.DateTime) = Interop.mkHeatmapAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-    static member inline x0 (values: seq<string>) = Interop.mkHeatmapAttr "x0" (values |> Array.ofSeq)
+    static member inline x0 (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "x0" (values |> Array.ofSeq)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (value: int) = Interop.mkHeatmapAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -231,26 +251,34 @@ type heatmap =
     static member inline x0 (value: float) = Interop.mkHeatmapAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (values: seq<float>) = Interop.mkHeatmapAttr "x0" (values |> Array.ofSeq)
+    /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+    static member inline x0 (value: string) = Interop.mkHeatmapAttr "x0" value
+    /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+    static member inline x0 (values: seq<string>) = Interop.mkHeatmapAttr "x0" (values |> Array.ofSeq)
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: int) = Interop.mkHeatmapAttr "dx" value
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: float) = Interop.mkHeatmapAttr "dx" value
     /// Sets the y coordinates.
-    static member inline y (value: bool) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkHeatmapAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkHeatmapAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: string) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkHeatmapAttr "y" value
     /// Sets the y coordinates.
-    static member inline y (values: seq<string>) = Interop.mkHeatmapAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: int) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkHeatmapAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkHeatmapAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: float) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkHeatmapAttr "y" value
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkHeatmapAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: string) = Interop.mkHeatmapAttr "y" value
+    /// Sets the y coordinates.
+    static member inline y (values: seq<string>) = Interop.mkHeatmapAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<seq<bool>>) = Interop.mkHeatmapAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
@@ -284,9 +312,9 @@ type heatmap =
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (values: seq<bool>) = Interop.mkHeatmapAttr "y0" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-    static member inline y0 (value: string) = Interop.mkHeatmapAttr "y0" value
+    static member inline y0 (value: System.DateTime) = Interop.mkHeatmapAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-    static member inline y0 (values: seq<string>) = Interop.mkHeatmapAttr "y0" (values |> Array.ofSeq)
+    static member inline y0 (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "y0" (values |> Array.ofSeq)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (value: int) = Interop.mkHeatmapAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -295,26 +323,34 @@ type heatmap =
     static member inline y0 (value: float) = Interop.mkHeatmapAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (values: seq<float>) = Interop.mkHeatmapAttr "y0" (values |> Array.ofSeq)
+    /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+    static member inline y0 (value: string) = Interop.mkHeatmapAttr "y0" value
+    /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+    static member inline y0 (values: seq<string>) = Interop.mkHeatmapAttr "y0" (values |> Array.ofSeq)
     /// Sets the y coordinate step. See `y0` for more info.
     static member inline dy (value: int) = Interop.mkHeatmapAttr "dy" value
     /// Sets the y coordinate step. See `y0` for more info.
     static member inline dy (value: float) = Interop.mkHeatmapAttr "dy" value
     /// Sets the text elements associated with each z value.
-    static member inline text (value: bool) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: bool) = Interop.mkHeatmapAttr "text" value
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<bool>) = Interop.mkHeatmapAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: string) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: System.DateTime) = Interop.mkHeatmapAttr "text" value
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<string>) = Interop.mkHeatmapAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: int) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: int) = Interop.mkHeatmapAttr "text" value
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int>) = Interop.mkHeatmapAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: float) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: float) = Interop.mkHeatmapAttr "text" value
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkHeatmapAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (value: string) = Interop.mkHeatmapAttr "text" value
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<string>) = Interop.mkHeatmapAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<seq<bool>>) = Interop.mkHeatmapAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
@@ -344,21 +380,25 @@ type heatmap =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: bool) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: bool) = Interop.mkHeatmapAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<bool>) = Interop.mkHeatmapAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: string) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: System.DateTime) = Interop.mkHeatmapAttr "hovertext" value
     /// Same as `text`.
-    static member inline hovertext (values: seq<string>) = Interop.mkHeatmapAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: int) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: int) = Interop.mkHeatmapAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<int>) = Interop.mkHeatmapAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (value: float) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: float) = Interop.mkHeatmapAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<float>) = Interop.mkHeatmapAttr "hovertext" (values |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (value: string) = Interop.mkHeatmapAttr "hovertext" value
+    /// Same as `text`.
+    static member inline hovertext (values: seq<string>) = Interop.mkHeatmapAttr "hovertext" (values |> Array.ofSeq)
     /// Same as `text`.
     static member inline hovertext (values: seq<seq<bool>>) = Interop.mkHeatmapAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.

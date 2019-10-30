@@ -11,21 +11,25 @@ open Feliz
 [<Erase>]
 type link =
     /// The shown name of the link.
-    static member inline label (value: bool) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: bool) = Interop.mkLinkAttr "label" value
     /// The shown name of the link.
     static member inline label (values: seq<bool>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
     /// The shown name of the link.
-    static member inline label (value: string) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: System.DateTime) = Interop.mkLinkAttr "label" value
     /// The shown name of the link.
-    static member inline label (values: seq<string>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
+    static member inline label (values: seq<System.DateTime>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
     /// The shown name of the link.
-    static member inline label (value: int) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: int) = Interop.mkLinkAttr "label" value
     /// The shown name of the link.
     static member inline label (values: seq<int>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
     /// The shown name of the link.
-    static member inline label (value: float) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: float) = Interop.mkLinkAttr "label" value
     /// The shown name of the link.
     static member inline label (values: seq<float>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
+    /// The shown name of the link.
+    static member inline label (value: string) = Interop.mkLinkAttr "label" value
+    /// The shown name of the link.
+    static member inline label (values: seq<string>) = Interop.mkLinkAttr "label" (values |> Array.ofSeq)
     /// The shown name of the link.
     static member inline label (values: seq<seq<bool>>) = Interop.mkLinkAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the link.
@@ -60,21 +64,25 @@ type link =
     static member inline color (values: seq<string>) = Interop.mkLinkAttr "color" (values |> Array.ofSeq)
     static member inline line (properties: #ILineProperty list) = Interop.mkLinkAttr "line" (createObj !!properties)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: bool) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: bool) = Interop.mkLinkAttr "source" value
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<bool>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: string) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: System.DateTime) = Interop.mkLinkAttr "source" value
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (values: seq<string>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
+    static member inline source (values: seq<System.DateTime>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: int) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: int) = Interop.mkLinkAttr "source" value
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<int>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: float) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: float) = Interop.mkLinkAttr "source" value
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<float>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (value: string) = Interop.mkLinkAttr "source" value
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (values: seq<string>) = Interop.mkLinkAttr "source" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<seq<bool>>) = Interop.mkLinkAttr "source" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
@@ -104,21 +112,25 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLinkAttr "source" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: bool) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: bool) = Interop.mkLinkAttr "target" value
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<bool>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: string) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: System.DateTime) = Interop.mkLinkAttr "target" value
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (values: seq<string>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
+    static member inline target (values: seq<System.DateTime>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: int) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: int) = Interop.mkLinkAttr "target" value
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<int>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: float) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: float) = Interop.mkLinkAttr "target" value
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<float>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (value: string) = Interop.mkLinkAttr "target" value
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (values: seq<string>) = Interop.mkLinkAttr "target" (values |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<seq<bool>>) = Interop.mkLinkAttr "target" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
@@ -148,21 +160,25 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLinkAttr "target" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: bool) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: bool) = Interop.mkLinkAttr "value" value
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<bool>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: string) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: System.DateTime) = Interop.mkLinkAttr "value" value
     /// A numeric value representing the flow volume value.
-    static member inline value (values: seq<string>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<System.DateTime>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: int) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: int) = Interop.mkLinkAttr "value" value
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<int>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: float) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: float) = Interop.mkLinkAttr "value" value
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<float>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
+    /// A numeric value representing the flow volume value.
+    static member inline value (value: string) = Interop.mkLinkAttr "value" value
+    /// A numeric value representing the flow volume value.
+    static member inline value (values: seq<string>) = Interop.mkLinkAttr "value" (values |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<seq<bool>>) = Interop.mkLinkAttr "value" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// A numeric value representing the flow volume value.

@@ -17,9 +17,9 @@ type shape =
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
     static member inline xanchor (values: seq<bool>) = Interop.mkShapeAttr "xanchor" (values |> Array.ofSeq)
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
-    static member inline xanchor (value: string) = Interop.mkShapeAttr "xanchor" value
+    static member inline xanchor (value: System.DateTime) = Interop.mkShapeAttr "xanchor" value
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
-    static member inline xanchor (values: seq<string>) = Interop.mkShapeAttr "xanchor" (values |> Array.ofSeq)
+    static member inline xanchor (values: seq<System.DateTime>) = Interop.mkShapeAttr "xanchor" (values |> Array.ofSeq)
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
     static member inline xanchor (value: int) = Interop.mkShapeAttr "xanchor" value
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
@@ -28,14 +28,18 @@ type shape =
     static member inline xanchor (value: float) = Interop.mkShapeAttr "xanchor" value
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
     static member inline xanchor (values: seq<float>) = Interop.mkShapeAttr "xanchor" (values |> Array.ofSeq)
+    /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+    static member inline xanchor (value: string) = Interop.mkShapeAttr "xanchor" value
+    /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+    static member inline xanchor (values: seq<string>) = Interop.mkShapeAttr "xanchor" (values |> Array.ofSeq)
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     static member inline x0 (value: bool) = Interop.mkShapeAttr "x0" value
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     static member inline x0 (values: seq<bool>) = Interop.mkShapeAttr "x0" (values |> Array.ofSeq)
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
-    static member inline x0 (value: string) = Interop.mkShapeAttr "x0" value
+    static member inline x0 (value: System.DateTime) = Interop.mkShapeAttr "x0" value
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
-    static member inline x0 (values: seq<string>) = Interop.mkShapeAttr "x0" (values |> Array.ofSeq)
+    static member inline x0 (values: seq<System.DateTime>) = Interop.mkShapeAttr "x0" (values |> Array.ofSeq)
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     static member inline x0 (value: int) = Interop.mkShapeAttr "x0" value
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
@@ -44,14 +48,18 @@ type shape =
     static member inline x0 (value: float) = Interop.mkShapeAttr "x0" value
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     static member inline x0 (values: seq<float>) = Interop.mkShapeAttr "x0" (values |> Array.ofSeq)
+    /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+    static member inline x0 (value: string) = Interop.mkShapeAttr "x0" value
+    /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+    static member inline x0 (values: seq<string>) = Interop.mkShapeAttr "x0" (values |> Array.ofSeq)
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
     static member inline x1 (value: bool) = Interop.mkShapeAttr "x1" value
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
     static member inline x1 (values: seq<bool>) = Interop.mkShapeAttr "x1" (values |> Array.ofSeq)
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
-    static member inline x1 (value: string) = Interop.mkShapeAttr "x1" value
+    static member inline x1 (value: System.DateTime) = Interop.mkShapeAttr "x1" value
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
-    static member inline x1 (values: seq<string>) = Interop.mkShapeAttr "x1" (values |> Array.ofSeq)
+    static member inline x1 (values: seq<System.DateTime>) = Interop.mkShapeAttr "x1" (values |> Array.ofSeq)
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
     static member inline x1 (value: int) = Interop.mkShapeAttr "x1" value
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
@@ -60,14 +68,18 @@ type shape =
     static member inline x1 (value: float) = Interop.mkShapeAttr "x1" value
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
     static member inline x1 (values: seq<float>) = Interop.mkShapeAttr "x1" (values |> Array.ofSeq)
+    /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+    static member inline x1 (value: string) = Interop.mkShapeAttr "x1" value
+    /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+    static member inline x1 (values: seq<string>) = Interop.mkShapeAttr "x1" (values |> Array.ofSeq)
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (value: bool) = Interop.mkShapeAttr "yanchor" value
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (values: seq<bool>) = Interop.mkShapeAttr "yanchor" (values |> Array.ofSeq)
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
-    static member inline yanchor (value: string) = Interop.mkShapeAttr "yanchor" value
+    static member inline yanchor (value: System.DateTime) = Interop.mkShapeAttr "yanchor" value
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
-    static member inline yanchor (values: seq<string>) = Interop.mkShapeAttr "yanchor" (values |> Array.ofSeq)
+    static member inline yanchor (values: seq<System.DateTime>) = Interop.mkShapeAttr "yanchor" (values |> Array.ofSeq)
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (value: int) = Interop.mkShapeAttr "yanchor" value
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
@@ -76,14 +88,18 @@ type shape =
     static member inline yanchor (value: float) = Interop.mkShapeAttr "yanchor" value
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (values: seq<float>) = Interop.mkShapeAttr "yanchor" (values |> Array.ofSeq)
+    /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+    static member inline yanchor (value: string) = Interop.mkShapeAttr "yanchor" value
+    /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+    static member inline yanchor (values: seq<string>) = Interop.mkShapeAttr "yanchor" (values |> Array.ofSeq)
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     static member inline y0 (value: bool) = Interop.mkShapeAttr "y0" value
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     static member inline y0 (values: seq<bool>) = Interop.mkShapeAttr "y0" (values |> Array.ofSeq)
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
-    static member inline y0 (value: string) = Interop.mkShapeAttr "y0" value
+    static member inline y0 (value: System.DateTime) = Interop.mkShapeAttr "y0" value
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
-    static member inline y0 (values: seq<string>) = Interop.mkShapeAttr "y0" (values |> Array.ofSeq)
+    static member inline y0 (values: seq<System.DateTime>) = Interop.mkShapeAttr "y0" (values |> Array.ofSeq)
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     static member inline y0 (value: int) = Interop.mkShapeAttr "y0" value
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
@@ -92,14 +108,18 @@ type shape =
     static member inline y0 (value: float) = Interop.mkShapeAttr "y0" value
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     static member inline y0 (values: seq<float>) = Interop.mkShapeAttr "y0" (values |> Array.ofSeq)
+    /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+    static member inline y0 (value: string) = Interop.mkShapeAttr "y0" value
+    /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+    static member inline y0 (values: seq<string>) = Interop.mkShapeAttr "y0" (values |> Array.ofSeq)
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
     static member inline y1 (value: bool) = Interop.mkShapeAttr "y1" value
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
     static member inline y1 (values: seq<bool>) = Interop.mkShapeAttr "y1" (values |> Array.ofSeq)
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
-    static member inline y1 (value: string) = Interop.mkShapeAttr "y1" value
+    static member inline y1 (value: System.DateTime) = Interop.mkShapeAttr "y1" value
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
-    static member inline y1 (values: seq<string>) = Interop.mkShapeAttr "y1" (values |> Array.ofSeq)
+    static member inline y1 (values: seq<System.DateTime>) = Interop.mkShapeAttr "y1" (values |> Array.ofSeq)
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
     static member inline y1 (value: int) = Interop.mkShapeAttr "y1" value
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
@@ -108,6 +128,10 @@ type shape =
     static member inline y1 (value: float) = Interop.mkShapeAttr "y1" value
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
     static member inline y1 (values: seq<float>) = Interop.mkShapeAttr "y1" (values |> Array.ofSeq)
+    /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+    static member inline y1 (value: string) = Interop.mkShapeAttr "y1" value
+    /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+    static member inline y1 (values: seq<string>) = Interop.mkShapeAttr "y1" (values |> Array.ofSeq)
     /// For `type` *path* - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being *scaled* and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of *pixel* size mode. There are a few restrictions / quirks only absolute instructions, not relative. So the allowed segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry are relative. In the future we could consider supporting relative commands, but we would have to decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are smooth on linear axes may not be smooth on log, and vice versa. no chained \"polybezier\" commands - specify the segment type for each one. On category axes, values are numbers scaled to the serial numbers of categories because using the categories themselves there would be no way to describe fractional positions On data axes: because space and T are both normal components of path strings, we can't use either to separate date from time parts. Therefore we'll use underscore for this purpose: 2015-02-21_13:45:56.789
     static member inline path (value: string) = Interop.mkShapeAttr "path" value
     /// Sets the opacity of the shape.

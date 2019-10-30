@@ -21,9 +21,9 @@ type framesEntry =
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
     static member inline data (values: seq<bool>) = Interop.mkFramesEntryAttr "data" (values |> Array.ofSeq)
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
-    static member inline data (value: string) = Interop.mkFramesEntryAttr "data" value
+    static member inline data (value: System.DateTime) = Interop.mkFramesEntryAttr "data" value
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
-    static member inline data (values: seq<string>) = Interop.mkFramesEntryAttr "data" (values |> Array.ofSeq)
+    static member inline data (values: seq<System.DateTime>) = Interop.mkFramesEntryAttr "data" (values |> Array.ofSeq)
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
     static member inline data (value: int) = Interop.mkFramesEntryAttr "data" value
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
@@ -32,14 +32,18 @@ type framesEntry =
     static member inline data (value: float) = Interop.mkFramesEntryAttr "data" value
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
     static member inline data (values: seq<float>) = Interop.mkFramesEntryAttr "data" (values |> Array.ofSeq)
+    /// A list of traces this frame modifies. The format is identical to the normal trace definition.
+    static member inline data (value: string) = Interop.mkFramesEntryAttr "data" value
+    /// A list of traces this frame modifies. The format is identical to the normal trace definition.
+    static member inline data (values: seq<string>) = Interop.mkFramesEntryAttr "data" (values |> Array.ofSeq)
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
     static member inline layout (value: bool) = Interop.mkFramesEntryAttr "layout" value
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
     static member inline layout (values: seq<bool>) = Interop.mkFramesEntryAttr "layout" (values |> Array.ofSeq)
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
-    static member inline layout (value: string) = Interop.mkFramesEntryAttr "layout" value
+    static member inline layout (value: System.DateTime) = Interop.mkFramesEntryAttr "layout" value
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
-    static member inline layout (values: seq<string>) = Interop.mkFramesEntryAttr "layout" (values |> Array.ofSeq)
+    static member inline layout (values: seq<System.DateTime>) = Interop.mkFramesEntryAttr "layout" (values |> Array.ofSeq)
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
     static member inline layout (value: int) = Interop.mkFramesEntryAttr "layout" value
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
@@ -48,4 +52,8 @@ type framesEntry =
     static member inline layout (value: float) = Interop.mkFramesEntryAttr "layout" value
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
     static member inline layout (values: seq<float>) = Interop.mkFramesEntryAttr "layout" (values |> Array.ofSeq)
+    /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
+    static member inline layout (value: string) = Interop.mkFramesEntryAttr "layout" value
+    /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
+    static member inline layout (values: seq<string>) = Interop.mkFramesEntryAttr "layout" (values |> Array.ofSeq)
 

@@ -20,6 +20,10 @@ type aaxis =
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<bool>) = Interop.mkAaxisAttr "range" (values |> Array.ofSeq)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (value: System.DateTime) = Interop.mkAaxisAttr "range" (value |> Array.singleton)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (values: seq<System.DateTime>) = Interop.mkAaxisAttr "range" (values |> Array.ofSeq)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (value: int) = Interop.mkAaxisAttr "range" (value |> Array.singleton)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<int>) = Interop.mkAaxisAttr "range" (values |> Array.ofSeq)
@@ -36,21 +40,25 @@ type aaxis =
     /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     static member inline nticks (value: int) = Interop.mkAaxisAttr "nticks" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: bool) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: bool) = Interop.mkAaxisAttr "tickvals" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<bool>) = Interop.mkAaxisAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: string) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: System.DateTime) = Interop.mkAaxisAttr "tickvals" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<string>) = Interop.mkAaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkAaxisAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: int) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: int) = Interop.mkAaxisAttr "tickvals" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<int>) = Interop.mkAaxisAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: float) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: float) = Interop.mkAaxisAttr "tickvals" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float>) = Interop.mkAaxisAttr "tickvals" (values |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (value: string) = Interop.mkAaxisAttr "tickvals" value
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<string>) = Interop.mkAaxisAttr "tickvals" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<seq<bool>>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -80,21 +88,25 @@ type aaxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: bool) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: bool) = Interop.mkAaxisAttr "ticktext" value
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<bool>) = Interop.mkAaxisAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: string) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: System.DateTime) = Interop.mkAaxisAttr "ticktext" value
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<string>) = Interop.mkAaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkAaxisAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: int) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: int) = Interop.mkAaxisAttr "ticktext" value
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<int>) = Interop.mkAaxisAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: float) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: float) = Interop.mkAaxisAttr "ticktext" value
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float>) = Interop.mkAaxisAttr "ticktext" (values |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (value: string) = Interop.mkAaxisAttr "ticktext" value
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<string>) = Interop.mkAaxisAttr "ticktext" (values |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<seq<bool>>) = Interop.mkAaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -139,21 +151,25 @@ type aaxis =
     static member inline tickformat (value: string) = Interop.mkAaxisAttr "tickformat" value
     static member inline tickformatstops (properties: #ITickformatstopsProperty list) = Interop.mkAaxisAttr "tickformatstops" (createObj !!properties)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: bool) = Interop.mkAaxisAttr "categoryarray" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkAaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: System.DateTime) = Interop.mkAaxisAttr "categoryarray" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<string>) = Interop.mkAaxisAttr "categoryarray" (values |> Array.ofSeq)
+    static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkAaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: int) = Interop.mkAaxisAttr "categoryarray" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int>) = Interop.mkAaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: float) = Interop.mkAaxisAttr "categoryarray" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkAaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: string) = Interop.mkAaxisAttr "categoryarray" value
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<string>) = Interop.mkAaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<seq<bool>>) = Interop.mkAaxisAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -267,9 +283,9 @@ type aaxis =
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
     static member inline uirevision (values: seq<bool>) = Interop.mkAaxisAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
-    static member inline uirevision (value: string) = Interop.mkAaxisAttr "uirevision" value
+    static member inline uirevision (value: System.DateTime) = Interop.mkAaxisAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
-    static member inline uirevision (values: seq<string>) = Interop.mkAaxisAttr "uirevision" (values |> Array.ofSeq)
+    static member inline uirevision (values: seq<System.DateTime>) = Interop.mkAaxisAttr "uirevision" (values |> Array.ofSeq)
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
     static member inline uirevision (value: int) = Interop.mkAaxisAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
@@ -278,6 +294,10 @@ type aaxis =
     static member inline uirevision (value: float) = Interop.mkAaxisAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
     static member inline uirevision (values: seq<float>) = Interop.mkAaxisAttr "uirevision" (values |> Array.ofSeq)
+    /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
+    static member inline uirevision (value: string) = Interop.mkAaxisAttr "uirevision" value
+    /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
+    static member inline uirevision (values: seq<string>) = Interop.mkAaxisAttr "uirevision" (values |> Array.ofSeq)
 
 [<AutoOpen>]
 module aaxis =

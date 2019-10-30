@@ -14,29 +14,20 @@ open Feliz.Plotly
 
 module private JsonParsing =
     type EnergyNode =
-        { Pad: int
-          Thickness: int
-          Line: obj
-          Label: string [] }
+        { label: string [] }
 
     type EnergyLink =
-        { Source: int []
-          Target: int []
-          Value: float []
-          Label: string [] }
+        { source: int []
+          target: int []
+          value: float []
+          label: string [] }
 
     type EnergyData =
-        { Type: string
-          Domain: obj
-          Orientation: string
-          Valueformat: string
-          Valuesuffix: string
-          Node: EnergyNode
-          Link: EnergyLink }
+        { node: EnergyNode
+          link: EnergyLink }
 
     type EnergyJson =
-        { Data: EnergyData []
-          Layout: obj }
+        { data: EnergyData [] }
 
 type private EnergyData =
     { NodeLabel: string []
@@ -72,7 +63,6 @@ let private render (data: EnergyData) =
                         line.width 0.5
                     ]
                     node.label data.NodeLabel
-                    node.color colors.blue
                 ]
                 sankey.link [
                     link.source data.LinkSource
@@ -93,12 +83,11 @@ let private render (data: EnergyData) =
                 font.size 10
                 font.color colors.white
             ]
-            layout.plotBgcolor colors.black
             layout.paperBgcolor colors.black
         ]
     ]
 
-let private chart' = React.functionComponent <| fun (input: {| centeredSpinner: ReactElement |}) ->
+let private chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
     let isLoading, setLoading = React.useState false
     let error, setError = React.useState<Option<string>> None
     let content, setContent = React.useState EnergyData.empty
@@ -113,16 +102,16 @@ let private chart' = React.functionComponent <| fun (input: {| centeredSpinner: 
                 responseText
                 |> Json.tryParseAs<JsonParsing.EnergyJson>
                 |> Result.bind (fun eJson -> 
-                    match eJson.Data |> Array.tryHead with
+                    match eJson.data |> Array.tryHead with
                     | Some data -> Ok data
                     | None -> Error "Failed to parse Data array")
                 |> function
                 | Ok res -> 
-                    { NodeLabel = res.Node.Label 
-                      LinkSource = res.Link.Source
-                      LinkTarget = res.Link.Target
-                      LinkValue = res.Link.Value
-                      LinkLabel = res.Link.Label }
+                    { NodeLabel = res.node.label 
+                      LinkSource = res.link.source
+                      LinkTarget = res.link.target
+                      LinkValue = res.link.value
+                      LinkLabel = res.link.label }
                     |> setContent
                     setError(None)
                 | Error e ->
@@ -142,7 +131,7 @@ let private chart' = React.functionComponent <| fun (input: {| centeredSpinner: 
         Html.h1 [
             prop.style [ style.color.crimson ]
             prop.text error
-        ]
+        ])
 
 let chart (centeredSpinner: ReactElement) = chart' {| centeredSpinner = centeredSpinner |}
 ```
