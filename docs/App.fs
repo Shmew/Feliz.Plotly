@@ -472,7 +472,6 @@ let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
 let contributing = sprintf "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/master/public/Feliz/Contributing.md"
 
 let basicExamples (currentPath: string list) =
-    printfn "%A" currentPath
     match currentPath with
     | Urls.Scatter :: rest ->
         match rest with
@@ -597,20 +596,20 @@ let basicExamples (currentPath: string list) =
     |> fun path ->
         if path |> List.isEmpty then []
         else [ Urls.Basic ] @ path
-
+        
 let content state dispatch =
     match state.CurrentPath with
-    | [ ] -> loadMarkdown [ "Plotly"; "README.md" ]
-    | [ Urls.Plotly; Urls.Overview; ] -> loadMarkdown [ "Plotly"; "README.md" ]
-    | [ Urls.Plotly; Urls.Installation ] -> loadMarkdown [ "Plotly"; "Installation.md" ]
-    | [ Urls.Plotly; Urls.Contributing ] -> loadMarkdown [ contributing ]
+    | [ ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
+    | [ Urls.Plotly; Urls.Overview; ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
+    | [ Urls.Plotly; Urls.Installation ] -> lazyView loadMarkdown [ "Plotly"; "Installation.md" ]
+    | [ Urls.Plotly; Urls.Contributing ] -> lazyView loadMarkdown [ contributing ]
     | _ when state.CurrentPath |> List.take 2 = [ Urls.Plotly; Urls.Examples ] -> 
         match state.CurrentPath |> List.skip 2 with
         | basicPath when basicPath |> List.take 1 = [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
         | _ -> []
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
-            else [ Urls.Plotly; Urls.Examples ] @ path |> loadMarkdown
+            else [ Urls.Plotly; Urls.Examples ] @ path |> (lazyView loadMarkdown)
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =
