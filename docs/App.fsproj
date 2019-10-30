@@ -4,6 +4,13 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBars\WithBarChart.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Horizontal.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Asymmetric.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Styled.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBars\PercentageOfYValue.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBars\AsymmetricWithOffset.fs" />
     <Compile Include="Plotly\Examples\Basic\MultipleChartTypes\LineAndBar.fs" />
     <Compile Include="Plotly\Examples\Basic\MultipleChartTypes\ContourAndScatter.fs" />
     <Compile Include="Plotly\Examples\Basic\Table\Basic.fs" />

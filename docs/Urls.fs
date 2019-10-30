@@ -5,6 +5,7 @@ let [<Literal>] Installation = "Installation"
 let [<Literal>] Overview = "Overview"
 let [<Literal>] Contributing = "Contributing"
 let [<Literal>] Examples = "Examples"
+let [<Literal>] Statistical = "Statistical"
 
 // Bar Examples
 let [<Literal>] Bar = "Bar"
@@ -29,6 +30,14 @@ let [<Literal>] MarkerSizeColorAndSymbolArray = "MarkerSizeColorAndSymbolArray"
 // Dot Examples
 let [<Literal>] Dot = "Dot"
 let [<Literal>] Categorical = "Categorical"
+
+// Error Bar Examples
+let [<Literal>] ErrorBars = "ErrorBars"
+let [<Literal>] WithBarChart = "WithBarChart"
+let [<Literal>] Horizontal = "Horizontal"
+let [<Literal>] Asymmetric = "Asymmetric"
+let [<Literal>] PercentageOfYValue = "PercentageOfYValue"
+let [<Literal>] AsymmetricWithOffset = "AsymmetricWithOffset"
 
 // Filled Area Examples
 let [<Literal>] FilledArea = "FilledArea"

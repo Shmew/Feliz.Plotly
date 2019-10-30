@@ -186,6 +186,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleChartTypes", "Multi
 		public\Plotly\Examples\Basic\MultipleChartTypes\LineAndBar.md = public\Plotly\Examples\Basic\MultipleChartTypes\LineAndBar.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistical", "Statistical", "{0D457903-8E32-4932-893E-C26C4918366E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ErrorBars", "ErrorBars", "{DB48F7B0-9D46-4B09-8FD1-B065CDF4AAB3}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\ErrorBars\Asymmetric.md = public\Plotly\Examples\Statistical\ErrorBars\Asymmetric.md
+		public\Plotly\Examples\Statistical\ErrorBars\AsymmetricWithOffset.md = public\Plotly\Examples\Statistical\ErrorBars\AsymmetricWithOffset.md
+		public\Plotly\Examples\Statistical\ErrorBars\Basic.md = public\Plotly\Examples\Statistical\ErrorBars\Basic.md
+		public\Plotly\Examples\Statistical\ErrorBars\Horizontal.md = public\Plotly\Examples\Statistical\ErrorBars\Horizontal.md
+		public\Plotly\Examples\Statistical\ErrorBars\PercentageOfYValue.md = public\Plotly\Examples\Statistical\ErrorBars\PercentageOfYValue.md
+		public\Plotly\Examples\Statistical\ErrorBars\Styled.md = public\Plotly\Examples\Statistical\ErrorBars\Styled.md
+		public\Plotly\Examples\Statistical\ErrorBars\WithBarChart.md = public\Plotly\Examples\Statistical\ErrorBars\WithBarChart.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -216,6 +229,7 @@ Global
 		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B} = {55637037-300B-4FA5-8D14-B2CECCCD4B0D}
 		{C3F9583A-523B-4835-B6BC-CD8FFD2178E3} = {CABBED80-2F75-4DFE-8F77-7F7FDFDC8008}
 		{AB994CC4-9A55-4156-9D53-E08C67F09B25} = {C3F9583A-523B-4835-B6BC-CD8FFD2178E3}
+		{A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{F1E4DF8B-5D61-4605-A06C-51F24DEAA73D} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
 		{DA5CD959-6F1C-4139-B59E-EB5637A4925C} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
 		{33BA06BE-6203-4861-AD6A-413977CCD00C} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
@@ -230,7 +244,8 @@ Global
 		{81B3001F-4146-42F1-BF14-2F4BE9A8EE88} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
 		{52168EAE-6304-400D-A1EA-86F5FAC82D8C} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
 		{67FC7E7D-B739-4640-AA2F-822C9FEFBC47} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
-		{A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{0D457903-8E32-4932-893E-C26C4918366E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{DB48F7B0-9D46-4B09-8FD1-B065CDF4AAB3} = {0D457903-8E32-4932-893E-C26C4918366E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

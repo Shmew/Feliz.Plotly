@@ -66,111 +66,128 @@ let centeredSpinner =
     ]
 
 let samples = 
-    let scatter =
-        [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
-          "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
-          "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
-          "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart() ]
+    let basicSamples =
+        let scatter =
+            [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
+              "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
+              "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
+              "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart() ]
         
-    let bubble =
-        [ "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart()
-          "plotly-chart-bubble-hovertext", Samples.Bubble.HoverText.chart()
-          "plotly-chart-bubble-markersizeandcolor", Samples.Bubble.MarkerSizeAndColor.chart()
-          "plotly-chart-bubble-sizescaling", Samples.Bubble.SizeScaling.chart()
-          "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart() ]
+        let bubble =
+            [ "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart()
+              "plotly-chart-bubble-hovertext", Samples.Bubble.HoverText.chart()
+              "plotly-chart-bubble-markersizeandcolor", Samples.Bubble.MarkerSizeAndColor.chart()
+              "plotly-chart-bubble-sizescaling", Samples.Bubble.SizeScaling.chart()
+              "plotly-chart-bubble-markersizecolorandsymbolarray", Samples.Bubble.MarkerSizeColorAndSymbolArray.chart() ]
 
-    let dot =
-        [ "plotly-chart-dot-categorical", Samples.Dot.Categorical.chart() ]
+        let dot =
+            [ "plotly-chart-dot-categorical", Samples.Dot.Categorical.chart() ]
 
-    let line = 
-        [ "plotly-chart-line-basic", Samples.Line.Basic.chart()
-          "plotly-chart-line-namedlineandscatter", Samples.Line.NamedLineAndScatter.chart()
-          "plotly-chart-line-lineandscatterstyling", Samples.Line.LineAndScatterStyling.chart()
-          "plotly-chart-line-stylinglineplot", Samples.Line.StylingLinePlot.chart()
-          "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart()
-          "plotly-chart-line-lineshapeoptionsinterpolation", Samples.Line.LineShapeOptionsInterpolation.chart()
-          "plotly-chart-line-graphandaxestitles", Samples.Line.GraphAndAxesTitles.chart()
-          "plotly-chart-line-linedash", Samples.Line.LineDash.chart()
-          "plotly-chart-line-connectgapsbetweendata", Samples.Line.ConnectGapsBetweenData.chart()
-          "plotly-chart-line-labellinglineswithannotations", Samples.Line.LabellingLinesWithAnnotations.chart() ]
+        let line = 
+            [ "plotly-chart-line-basic", Samples.Line.Basic.chart()
+              "plotly-chart-line-namedlineandscatter", Samples.Line.NamedLineAndScatter.chart()
+              "plotly-chart-line-lineandscatterstyling", Samples.Line.LineAndScatterStyling.chart()
+              "plotly-chart-line-stylinglineplot", Samples.Line.StylingLinePlot.chart()
+              "plotly-chart-line-coloredandstyledscatter", Samples.Line.ColoredAndStyledScatter.chart()
+              "plotly-chart-line-lineshapeoptionsinterpolation", Samples.Line.LineShapeOptionsInterpolation.chart()
+              "plotly-chart-line-graphandaxestitles", Samples.Line.GraphAndAxesTitles.chart()
+              "plotly-chart-line-linedash", Samples.Line.LineDash.chart()
+              "plotly-chart-line-connectgapsbetweendata", Samples.Line.ConnectGapsBetweenData.chart()
+              "plotly-chart-line-labellinglineswithannotations", Samples.Line.LabellingLinesWithAnnotations.chart() ]
 
-    let bar =
-        [ "plotly-chart-bar-basic", Samples.Bar.Basic.chart()
-          "plotly-chart-bar-grouped", Samples.Bar.Grouped.chart()
-          "plotly-chart-bar-stacked", Samples.Bar.Stacked.chart()
-          "plotly-chart-bar-hovertext", Samples.Bar.HoverText.chart()
-          "plotly-chart-bar-directlabels", Samples.Bar.DirectLabels.chart()
-          "plotly-chart-bar-groupeddirectlabels", Samples.Bar.GroupedDirectLabels.chart()
-          "plotly-chart-bar-rotatedlabels", Samples.Bar.RotatedLabels.chart()
-          "plotly-chart-bar-colors", Samples.Bar.Colors.chart()
-          "plotly-chart-bar-widths", Samples.Bar.Widths.chart()
-          "plotly-chart-bar-base", Samples.Bar.Base.chart()
-          "plotly-chart-bar-coloredandstyled", Samples.Bar.ColoredAndStyled.chart()
-          "plotly-chart-bar-waterfall", Samples.Bar.Waterfall.chart()
-          "plotly-chart-bar-relativebarmode", Samples.Bar.RelativeBarmode.chart() ]
+        let bar =
+            [ "plotly-chart-bar-basic", Samples.Bar.Basic.chart()
+              "plotly-chart-bar-grouped", Samples.Bar.Grouped.chart()
+              "plotly-chart-bar-stacked", Samples.Bar.Stacked.chart()
+              "plotly-chart-bar-hovertext", Samples.Bar.HoverText.chart()
+              "plotly-chart-bar-directlabels", Samples.Bar.DirectLabels.chart()
+              "plotly-chart-bar-groupeddirectlabels", Samples.Bar.GroupedDirectLabels.chart()
+              "plotly-chart-bar-rotatedlabels", Samples.Bar.RotatedLabels.chart()
+              "plotly-chart-bar-colors", Samples.Bar.Colors.chart()
+              "plotly-chart-bar-widths", Samples.Bar.Widths.chart()
+              "plotly-chart-bar-base", Samples.Bar.Base.chart()
+              "plotly-chart-bar-coloredandstyled", Samples.Bar.ColoredAndStyled.chart()
+              "plotly-chart-bar-waterfall", Samples.Bar.Waterfall.chart()
+              "plotly-chart-bar-relativebarmode", Samples.Bar.RelativeBarmode.chart() ]
 
-    let filledArea =
-        [ "plotly-chart-filledarea-basic", Samples.FilledArea.Basic.chart()
-          "plotly-chart-filledarea-overlaidwithoutboundary", Samples.FilledArea.OverlaidWithoutBoundary.chart()
-          "plotly-chart-filledarea-stackedarea", Samples.FilledArea.StackedArea.chart()
-          "plotly-chart-filledarea-normalizedstackedarea", Samples.FilledArea.NormalizedStackedArea.chart()
-          "plotly-chart-filledarea-selecthover", Samples.FilledArea.SelectHover.chart() ]
+        let filledArea =
+            [ "plotly-chart-filledarea-basic", Samples.FilledArea.Basic.chart()
+              "plotly-chart-filledarea-overlaidwithoutboundary", Samples.FilledArea.OverlaidWithoutBoundary.chart()
+              "plotly-chart-filledarea-stackedarea", Samples.FilledArea.StackedArea.chart()
+              "plotly-chart-filledarea-normalizedstackedarea", Samples.FilledArea.NormalizedStackedArea.chart()
+              "plotly-chart-filledarea-selecthover", Samples.FilledArea.SelectHover.chart() ]
 
-    let horiontalBar =
-        [ "plotly-chart-horizontalbar-basic", Samples.HorizontalBar.Basic.chart()
-          "plotly-chart-horizontalbar-colored", Samples.HorizontalBar.Colored.chart()
-          "plotly-chart-horizontalbar-barwithlineplot", Samples.HorizontalBar.BarWithLinePlot.chart() ]
+        let horiontalBar =
+            [ "plotly-chart-horizontalbar-basic", Samples.HorizontalBar.Basic.chart()
+              "plotly-chart-horizontalbar-colored", Samples.HorizontalBar.Colored.chart()
+              "plotly-chart-horizontalbar-barwithlineplot", Samples.HorizontalBar.BarWithLinePlot.chart() ]
 
-    let pie =
-        [ "plotly-chart-pie-basic", Samples.Pie.Basic.chart()
-          "plotly-chart-pie-subplots", Samples.Pie.Subplots.chart()
-          "plotly-chart-pie-donut", Samples.Pie.Donut.chart() ]
+        let pie =
+            [ "plotly-chart-pie-basic", Samples.Pie.Basic.chart()
+              "plotly-chart-pie-subplots", Samples.Pie.Subplots.chart()
+              "plotly-chart-pie-donut", Samples.Pie.Donut.chart() ]
 
-    let sunburst =
-        [ "plotly-chart-sunburst-basic", Samples.Sunburst.Basic.chart()
-          "plotly-chart-sunburst-branchvalues", Samples.Sunburst.Branchvalues.chart()
-          "plotly-chart-sunburst-repeatedlabels", Samples.Sunburst.RepeatedLabels.chart()
-          "plotly-chart-sunburst-largenumberslices", Samples.Sunburst.LargeNumberSlices.chart(centeredSpinner) ]
+        let sunburst =
+            [ "plotly-chart-sunburst-basic", Samples.Sunburst.Basic.chart()
+              "plotly-chart-sunburst-branchvalues", Samples.Sunburst.Branchvalues.chart()
+              "plotly-chart-sunburst-repeatedlabels", Samples.Sunburst.RepeatedLabels.chart()
+              "plotly-chart-sunburst-largenumberslices", Samples.Sunburst.LargeNumberSlices.chart(centeredSpinner) ]
 
-    let sankey =
-        [ "plotly-chart-sankey-basic", Samples.Sankey.Basic.chart()
-          "plotly-chart-sankey-styled", Samples.Sankey.Styled.chart(centeredSpinner) ]
+        let sankey =
+            [ "plotly-chart-sankey-basic", Samples.Sankey.Basic.chart()
+              "plotly-chart-sankey-styled", Samples.Sankey.Styled.chart(centeredSpinner) ]
 
-    let pointCloud =
-        [ "plotly-chart-pointcloud-basic", Samples.PointCloud.Basic.chart()
-          "plotly-chart-pointcloud-styled", Samples.PointCloud.Styled.chart() ]
+        let pointCloud =
+            [ "plotly-chart-pointcloud-basic", Samples.PointCloud.Basic.chart()
+              "plotly-chart-pointcloud-styled", Samples.PointCloud.Styled.chart() ]
 
-    let treemap =
-        [ "plotly-chart-treemap-basic", Samples.Treemap.Basic.chart()
-          "plotly-chart-treemap-differentattributes", Samples.Treemap.DifferentAttributes.chart()
-          "plotly-chart-treemap-sectorcolors", Samples.Treemap.SectorColors.chart()
-          "plotly-chart-treemap-nestedlayers", Samples.Treemap.NestedLayers.chart(centeredSpinner) ]
+        let treemap =
+            [ "plotly-chart-treemap-basic", Samples.Treemap.Basic.chart()
+              "plotly-chart-treemap-differentattributes", Samples.Treemap.DifferentAttributes.chart()
+              "plotly-chart-treemap-sectorcolors", Samples.Treemap.SectorColors.chart()
+              "plotly-chart-treemap-nestedlayers", Samples.Treemap.NestedLayers.chart(centeredSpinner) ]
 
-    let table = 
-        [ "plotly-chart-table-basic", Samples.Table.Basic.chart()
-          "plotly-chart-table-styled", Samples.Table.Styled.chart()
-          "plotly-chart-table-fromcsv", Samples.Table.FromCSV.chart(centeredSpinner)
-          "plotly-chart-table-changingsizes", Samples.Table.ChangingSizes.chart()
-          "plotly-chart-table-alternatingrowcolors", Samples.Table.AlternatingRowColors.chart() ]
+        let table = 
+            [ "plotly-chart-table-basic", Samples.Table.Basic.chart()
+              "plotly-chart-table-styled", Samples.Table.Styled.chart()
+              "plotly-chart-table-fromcsv", Samples.Table.FromCSV.chart(centeredSpinner)
+              "plotly-chart-table-changingsizes", Samples.Table.ChangingSizes.chart()
+              "plotly-chart-table-alternatingrowcolors", Samples.Table.AlternatingRowColors.chart() ]
 
-    let multipleChartTypes =
-        [ "plotly-chart-multiplecharttypes-lineandbar", Samples.MultipleChartTypes.LineAndBar.chart()
-          "plotly-chart-multiplecharttypes-contourandscatter", Samples.MultipleChartTypes.ContourAndScatter.chart() ]
+        let multipleChartTypes =
+            [ "plotly-chart-multiplecharttypes-lineandbar", Samples.MultipleChartTypes.LineAndBar.chart()
+              "plotly-chart-multiplecharttypes-contourandscatter", Samples.MultipleChartTypes.ContourAndScatter.chart() ]
 
-    [ scatter
-      bubble
-      dot
-      line
-      bar
-      filledArea
-      horiontalBar
-      pie
-      sunburst
-      sankey
-      pointCloud
-      treemap
-      table
-      multipleChartTypes ]
+        [ scatter
+          bubble
+          dot
+          line
+          bar
+          filledArea
+          horiontalBar
+          pie
+          sunburst
+          sankey
+          pointCloud
+          treemap
+          table
+          multipleChartTypes ]
+        |> List.concat
+
+    let statisticalExamples =
+        let errorBars =
+            [ "plotly-chart-errorbars-basic", Samples.ErrorBar.Basic.chart()
+              "plotly-chart-errorbars-withbarchart", Samples.ErrorBar.WithBarChart.chart()
+              "plotly-chart-errorbars-horizontal", Samples.ErrorBar.Horizontal.chart()
+              "plotly-chart-errorbars-asymmetric", Samples.ErrorBar.Asymmetric.chart()
+              "plotly-chart-errorbars-styled", Samples.ErrorBar.Styled.chart()
+              "plotly-chart-errorbars-percentageofyvalue", Samples.ErrorBar.PercentageOfYValue.chart()
+              "plotly-chart-errorbars-asymmetricwithoffset", Samples.ErrorBar.AsymmetricWithOffset.chart() ]
+
+        [ errorBars ]
+        |> List.concat
+
+    [ basicSamples; statisticalExamples ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -455,6 +472,17 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Contour and Scatter" [ Urls.ContourAndScatter ]
                         ]
                     ]
+                    nestedMenuList "Statistical Plot Types" [ Urls.Plotly; Urls.Examples; Urls.Statistical ] [
+                        subNestedMenuList "Error Bars" [ Urls.ErrorBars ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "With Bar Chart" [ Urls.WithBarChart ]
+                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                            nestedMenuItem "Asymmetric" [ Urls.Asymmetric ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                            nestedMenuItem "Percentage of Y Value" [ Urls.PercentageOfYValue ]
+                            nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
+                        ]
+                    ]
                 ]
             ]
         ]
@@ -596,7 +624,25 @@ let basicExamples (currentPath: string list) =
     |> fun path ->
         if path |> List.isEmpty then []
         else [ Urls.Basic ] @ path
-        
+
+let statisticalExamples (currentPath: string list) =
+    match currentPath with
+    | Urls.ErrorBars :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.WithBarChart ] -> [ "WithBarChart.md" ]
+        | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
+        | [ Urls.Asymmetric ] -> [ "Asymmetric.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | [ Urls.PercentageOfYValue ] -> [ "PercentageOfYValue.md" ]
+        | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
+        | _ -> []
+        |> List.append [ Urls.ErrorBars ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Statistical ] @ path
+
 let content state dispatch =
     match state.CurrentPath with
     | [ ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
@@ -606,6 +652,7 @@ let content state dispatch =
     | _ when state.CurrentPath |> List.take 2 = [ Urls.Plotly; Urls.Examples ] -> 
         match state.CurrentPath |> List.skip 2 with
         | basicPath when basicPath |> List.take 1 = [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
+        | statisicalPath when statisicalPath |> List.take 1 = [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
         | _ -> []
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
