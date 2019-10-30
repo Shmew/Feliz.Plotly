@@ -683,15 +683,21 @@ let statisticalExamples (currentPath: string list) =
         else [ Urls.Statistical ] @ path
 
 let content state dispatch =
+    let tryTakePath (basePath: string list) (path: string list) =
+        let num = path.Length
+        if basePath.Length >= num then
+            basePath |> List.take num = path
+        else false
+
     match state.CurrentPath with
     | [ ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Overview; ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> lazyView loadMarkdown [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> lazyView loadMarkdown [ contributing ]
-    | _ when state.CurrentPath |> List.take 2 = [ Urls.Plotly; Urls.Examples ] -> 
+    | _ when tryTakePath state.CurrentPath [ Urls.Plotly; Urls.Examples ] -> 
         match state.CurrentPath |> List.skip 2 with
-        | basicPath when basicPath |> List.take 1 = [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
-        | statisicalPath when statisicalPath |> List.take 1 = [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
+        | basicPath when tryTakePath basicPath [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
+        | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
         | _ -> [ ]
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
