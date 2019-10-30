@@ -65,123 +65,125 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7F29BFE8-02B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{AB994CC4-9A55-4156-9D53-E08C67F09B25}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basic", "Basic", "{A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scatter", "Scatter", "{F1E4DF8B-5D61-4605-A06C-51F24DEAA73D}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Scatter\Basic.md = public\Plotly\Examples\Scatter\Basic.md
-		public\Plotly\Examples\Scatter\ColorDimension.md = public\Plotly\Examples\Scatter\ColorDimension.md
-		public\Plotly\Examples\Scatter\DataLabelsHover.md = public\Plotly\Examples\Scatter\DataLabelsHover.md
-		public\Plotly\Examples\Scatter\DataLabelsOnPlot.md = public\Plotly\Examples\Scatter\DataLabelsOnPlot.md
+		public\Plotly\Examples\Basic\Scatter\Basic.md = public\Plotly\Examples\Basic\Scatter\Basic.md
+		public\Plotly\Examples\Basic\Scatter\ColorDimension.md = public\Plotly\Examples\Basic\Scatter\ColorDimension.md
+		public\Plotly\Examples\Basic\Scatter\DataLabelsHover.md = public\Plotly\Examples\Basic\Scatter\DataLabelsHover.md
+		public\Plotly\Examples\Basic\Scatter\DataLabelsOnPlot.md = public\Plotly\Examples\Basic\Scatter\DataLabelsOnPlot.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bubble", "Bubble", "{DA5CD959-6F1C-4139-B59E-EB5637A4925C}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Bubble\Basic.md = public\Plotly\Examples\Bubble\Basic.md
-		public\Plotly\Examples\Bubble\HoverText.md = public\Plotly\Examples\Bubble\HoverText.md
-		public\Plotly\Examples\Bubble\MarkerSizeAndColor.md = public\Plotly\Examples\Bubble\MarkerSizeAndColor.md
-		public\Plotly\Examples\Bubble\MarkerSizeColorAndSymbolArray.md = public\Plotly\Examples\Bubble\MarkerSizeColorAndSymbolArray.md
-		public\Plotly\Examples\Bubble\SizeScaling.md = public\Plotly\Examples\Bubble\SizeScaling.md
+		public\Plotly\Examples\Basic\Bubble\Basic.md = public\Plotly\Examples\Basic\Bubble\Basic.md
+		public\Plotly\Examples\Basic\Bubble\HoverText.md = public\Plotly\Examples\Basic\Bubble\HoverText.md
+		public\Plotly\Examples\Basic\Bubble\MarkerSizeAndColor.md = public\Plotly\Examples\Basic\Bubble\MarkerSizeAndColor.md
+		public\Plotly\Examples\Basic\Bubble\MarkerSizeColorAndSymbolArray.md = public\Plotly\Examples\Basic\Bubble\MarkerSizeColorAndSymbolArray.md
+		public\Plotly\Examples\Basic\Bubble\SizeScaling.md = public\Plotly\Examples\Basic\Bubble\SizeScaling.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dot", "Dot", "{33BA06BE-6203-4861-AD6A-413977CCD00C}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Dot\Categorical.md = public\Plotly\Examples\Dot\Categorical.md
+		public\Plotly\Examples\Basic\Dot\Categorical.md = public\Plotly\Examples\Basic\Dot\Categorical.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Line", "Line", "{D86FF2C9-9DBC-49B2-A120-BC3307597EB3}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Line\Basic.md = public\Plotly\Examples\Line\Basic.md
-		public\Plotly\Examples\Line\ColoredAndStyledScatter.md = public\Plotly\Examples\Line\ColoredAndStyledScatter.md
-		public\Plotly\Examples\Line\ConnectGapsBetweenData.md = public\Plotly\Examples\Line\ConnectGapsBetweenData.md
-		public\Plotly\Examples\Line\GraphAndAxesTitles.md = public\Plotly\Examples\Line\GraphAndAxesTitles.md
-		public\Plotly\Examples\Line\LabellingLinesWithAnnotations.md = public\Plotly\Examples\Line\LabellingLinesWithAnnotations.md
-		public\Plotly\Examples\Line\LineAndScatterStyling.md = public\Plotly\Examples\Line\LineAndScatterStyling.md
-		public\Plotly\Examples\Line\LineDash.md = public\Plotly\Examples\Line\LineDash.md
-		public\Plotly\Examples\Line\LineShapeOptionsInterpolation.md = public\Plotly\Examples\Line\LineShapeOptionsInterpolation.md
-		public\Plotly\Examples\Line\NamedLineAndScatter.md = public\Plotly\Examples\Line\NamedLineAndScatter.md
-		public\Plotly\Examples\Line\StylingLinePlot.md = public\Plotly\Examples\Line\StylingLinePlot.md
+		public\Plotly\Examples\Basic\Line\Basic.md = public\Plotly\Examples\Basic\Line\Basic.md
+		public\Plotly\Examples\Basic\Line\ColoredAndStyledScatter.md = public\Plotly\Examples\Basic\Line\ColoredAndStyledScatter.md
+		public\Plotly\Examples\Basic\Line\ConnectGapsBetweenData.md = public\Plotly\Examples\Basic\Line\ConnectGapsBetweenData.md
+		public\Plotly\Examples\Basic\Line\GraphAndAxesTitles.md = public\Plotly\Examples\Basic\Line\GraphAndAxesTitles.md
+		public\Plotly\Examples\Basic\Line\LabellingLinesWithAnnotations.md = public\Plotly\Examples\Basic\Line\LabellingLinesWithAnnotations.md
+		public\Plotly\Examples\Basic\Line\LineAndScatterStyling.md = public\Plotly\Examples\Basic\Line\LineAndScatterStyling.md
+		public\Plotly\Examples\Basic\Line\LineDash.md = public\Plotly\Examples\Basic\Line\LineDash.md
+		public\Plotly\Examples\Basic\Line\LineShapeOptionsInterpolation.md = public\Plotly\Examples\Basic\Line\LineShapeOptionsInterpolation.md
+		public\Plotly\Examples\Basic\Line\NamedLineAndScatter.md = public\Plotly\Examples\Basic\Line\NamedLineAndScatter.md
+		public\Plotly\Examples\Basic\Line\StylingLinePlot.md = public\Plotly\Examples\Basic\Line\StylingLinePlot.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bar", "Bar", "{4EE56625-1A9D-4886-B109-09EE33552ED7}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Bar\Base.md = public\Plotly\Examples\Bar\Base.md
-		public\Plotly\Examples\Bar\Basic.md = public\Plotly\Examples\Bar\Basic.md
-		public\Plotly\Examples\Bar\ColoredAndStyled.md = public\Plotly\Examples\Bar\ColoredAndStyled.md
-		public\Plotly\Examples\Bar\Colors.md = public\Plotly\Examples\Bar\Colors.md
-		public\Plotly\Examples\Bar\DirectLabels.md = public\Plotly\Examples\Bar\DirectLabels.md
-		public\Plotly\Examples\Bar\Grouped.md = public\Plotly\Examples\Bar\Grouped.md
-		public\Plotly\Examples\Bar\GroupedDirectLabels.md = public\Plotly\Examples\Bar\GroupedDirectLabels.md
-		public\Plotly\Examples\Bar\HoverText.md = public\Plotly\Examples\Bar\HoverText.md
-		public\Plotly\Examples\Bar\RelativeBarmode.md = public\Plotly\Examples\Bar\RelativeBarmode.md
-		public\Plotly\Examples\Bar\RotatedLabels.md = public\Plotly\Examples\Bar\RotatedLabels.md
-		public\Plotly\Examples\Bar\Stacked.md = public\Plotly\Examples\Bar\Stacked.md
-		public\Plotly\Examples\Bar\Waterfall.md = public\Plotly\Examples\Bar\Waterfall.md
-		public\Plotly\Examples\Bar\Widths.md = public\Plotly\Examples\Bar\Widths.md
+		public\Plotly\Examples\Basic\Bar\Base.md = public\Plotly\Examples\Basic\Bar\Base.md
+		public\Plotly\Examples\Basic\Bar\Basic.md = public\Plotly\Examples\Basic\Bar\Basic.md
+		public\Plotly\Examples\Basic\Bar\ColoredAndStyled.md = public\Plotly\Examples\Basic\Bar\ColoredAndStyled.md
+		public\Plotly\Examples\Basic\Bar\Colors.md = public\Plotly\Examples\Basic\Bar\Colors.md
+		public\Plotly\Examples\Basic\Bar\DirectLabels.md = public\Plotly\Examples\Basic\Bar\DirectLabels.md
+		public\Plotly\Examples\Basic\Bar\Grouped.md = public\Plotly\Examples\Basic\Bar\Grouped.md
+		public\Plotly\Examples\Basic\Bar\GroupedDirectLabels.md = public\Plotly\Examples\Basic\Bar\GroupedDirectLabels.md
+		public\Plotly\Examples\Basic\Bar\HoverText.md = public\Plotly\Examples\Basic\Bar\HoverText.md
+		public\Plotly\Examples\Basic\Bar\RelativeBarmode.md = public\Plotly\Examples\Basic\Bar\RelativeBarmode.md
+		public\Plotly\Examples\Basic\Bar\RotatedLabels.md = public\Plotly\Examples\Basic\Bar\RotatedLabels.md
+		public\Plotly\Examples\Basic\Bar\Stacked.md = public\Plotly\Examples\Basic\Bar\Stacked.md
+		public\Plotly\Examples\Basic\Bar\Waterfall.md = public\Plotly\Examples\Basic\Bar\Waterfall.md
+		public\Plotly\Examples\Basic\Bar\Widths.md = public\Plotly\Examples\Basic\Bar\Widths.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilledArea", "FilledArea", "{9BEF5646-A611-41A5-9A7B-40B48CD1B6F3}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\FilledArea\Basic.md = public\Plotly\Examples\FilledArea\Basic.md
-		public\Plotly\Examples\FilledArea\NormalizedStackedArea.md = public\Plotly\Examples\FilledArea\NormalizedStackedArea.md
-		public\Plotly\Examples\FilledArea\OverlaidWithoutBoundary.md = public\Plotly\Examples\FilledArea\OverlaidWithoutBoundary.md
-		public\Plotly\Examples\FilledArea\SelectHover.md = public\Plotly\Examples\FilledArea\SelectHover.md
-		public\Plotly\Examples\FilledArea\StackedArea.md = public\Plotly\Examples\FilledArea\StackedArea.md
+		public\Plotly\Examples\Basic\FilledArea\Basic.md = public\Plotly\Examples\Basic\FilledArea\Basic.md
+		public\Plotly\Examples\Basic\FilledArea\NormalizedStackedArea.md = public\Plotly\Examples\Basic\FilledArea\NormalizedStackedArea.md
+		public\Plotly\Examples\Basic\FilledArea\OverlaidWithoutBoundary.md = public\Plotly\Examples\Basic\FilledArea\OverlaidWithoutBoundary.md
+		public\Plotly\Examples\Basic\FilledArea\SelectHover.md = public\Plotly\Examples\Basic\FilledArea\SelectHover.md
+		public\Plotly\Examples\Basic\FilledArea\StackedArea.md = public\Plotly\Examples\Basic\FilledArea\StackedArea.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HorizontalBar", "HorizontalBar", "{A8D175E9-3D68-4207-A9A6-D2DB03726E08}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\HorizontalBar\BarWithLinePlot.md = public\Plotly\Examples\HorizontalBar\BarWithLinePlot.md
-		public\Plotly\Examples\HorizontalBar\Basic.md = public\Plotly\Examples\HorizontalBar\Basic.md
-		public\Plotly\Examples\HorizontalBar\Colored.md = public\Plotly\Examples\HorizontalBar\Colored.md
+		public\Plotly\Examples\Basic\HorizontalBar\BarWithLinePlot.md = public\Plotly\Examples\Basic\HorizontalBar\BarWithLinePlot.md
+		public\Plotly\Examples\Basic\HorizontalBar\Basic.md = public\Plotly\Examples\Basic\HorizontalBar\Basic.md
+		public\Plotly\Examples\Basic\HorizontalBar\Colored.md = public\Plotly\Examples\Basic\HorizontalBar\Colored.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pie", "Pie", "{CFA514B9-EDAD-4E62-AB38-5D23104876CA}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Pie\Basic.md = public\Plotly\Examples\Pie\Basic.md
-		public\Plotly\Examples\Pie\Donut.md = public\Plotly\Examples\Pie\Donut.md
-		public\Plotly\Examples\Pie\Subplots.md = public\Plotly\Examples\Pie\Subplots.md
+		public\Plotly\Examples\Basic\Pie\Basic.md = public\Plotly\Examples\Basic\Pie\Basic.md
+		public\Plotly\Examples\Basic\Pie\Donut.md = public\Plotly\Examples\Basic\Pie\Donut.md
+		public\Plotly\Examples\Basic\Pie\Subplots.md = public\Plotly\Examples\Basic\Pie\Subplots.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sunburst", "Sunburst", "{5F6EF95A-438D-48B7-B6E9-E068DF79CD90}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Sunburst\Basic.md = public\Plotly\Examples\Sunburst\Basic.md
-		public\Plotly\Examples\Sunburst\Branchvalues.md = public\Plotly\Examples\Sunburst\Branchvalues.md
-		public\Plotly\Examples\Sunburst\LargeNumberSlices.md = public\Plotly\Examples\Sunburst\LargeNumberSlices.md
-		public\Plotly\Examples\Sunburst\RepeatedLabels.md = public\Plotly\Examples\Sunburst\RepeatedLabels.md
+		public\Plotly\Examples\Basic\Sunburst\Basic.md = public\Plotly\Examples\Basic\Sunburst\Basic.md
+		public\Plotly\Examples\Basic\Sunburst\Branchvalues.md = public\Plotly\Examples\Basic\Sunburst\Branchvalues.md
+		public\Plotly\Examples\Basic\Sunburst\LargeNumberSlices.md = public\Plotly\Examples\Basic\Sunburst\LargeNumberSlices.md
+		public\Plotly\Examples\Basic\Sunburst\RepeatedLabels.md = public\Plotly\Examples\Basic\Sunburst\RepeatedLabels.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sankey", "Sankey", "{A24E1FC2-D414-493B-9CB8-286BE17FB06E}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Sankey\Basic.md = public\Plotly\Examples\Sankey\Basic.md
-		public\Plotly\Examples\Sankey\Styled.md = public\Plotly\Examples\Sankey\Styled.md
+		public\Plotly\Examples\Basic\Sankey\Basic.md = public\Plotly\Examples\Basic\Sankey\Basic.md
+		public\Plotly\Examples\Basic\Sankey\Styled.md = public\Plotly\Examples\Basic\Sankey\Styled.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PointCloud", "PointCloud", "{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\PointCloud\Basic.md = public\Plotly\Examples\PointCloud\Basic.md
-		public\Plotly\Examples\PointCloud\Styled.md = public\Plotly\Examples\PointCloud\Styled.md
+		public\Plotly\Examples\Basic\PointCloud\Basic.md = public\Plotly\Examples\Basic\PointCloud\Basic.md
+		public\Plotly\Examples\Basic\PointCloud\Styled.md = public\Plotly\Examples\Basic\PointCloud\Styled.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Treemap", "Treemap", "{81B3001F-4146-42F1-BF14-2F4BE9A8EE88}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Treemap\Basic.md = public\Plotly\Examples\Treemap\Basic.md
-		public\Plotly\Examples\Treemap\DifferentAttributes.md = public\Plotly\Examples\Treemap\DifferentAttributes.md
-		public\Plotly\Examples\Treemap\NestedLayers.md = public\Plotly\Examples\Treemap\NestedLayers.md
-		public\Plotly\Examples\Treemap\SectorColors.md = public\Plotly\Examples\Treemap\SectorColors.md
+		public\Plotly\Examples\Basic\Treemap\Basic.md = public\Plotly\Examples\Basic\Treemap\Basic.md
+		public\Plotly\Examples\Basic\Treemap\DifferentAttributes.md = public\Plotly\Examples\Basic\Treemap\DifferentAttributes.md
+		public\Plotly\Examples\Basic\Treemap\NestedLayers.md = public\Plotly\Examples\Basic\Treemap\NestedLayers.md
+		public\Plotly\Examples\Basic\Treemap\SectorColors.md = public\Plotly\Examples\Basic\Treemap\SectorColors.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Table", "Table", "{52168EAE-6304-400D-A1EA-86F5FAC82D8C}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Table\AlternatingRowColors.md = public\Plotly\Examples\Table\AlternatingRowColors.md
-		public\Plotly\Examples\Table\Basic.md = public\Plotly\Examples\Table\Basic.md
-		public\Plotly\Examples\Table\ChangingSizes.md = public\Plotly\Examples\Table\ChangingSizes.md
-		public\Plotly\Examples\Table\FromCSV.md = public\Plotly\Examples\Table\FromCSV.md
-		public\Plotly\Examples\Table\Styled.md = public\Plotly\Examples\Table\Styled.md
+		public\Plotly\Examples\Basic\Table\AlternatingRowColors.md = public\Plotly\Examples\Basic\Table\AlternatingRowColors.md
+		public\Plotly\Examples\Basic\Table\Basic.md = public\Plotly\Examples\Basic\Table\Basic.md
+		public\Plotly\Examples\Basic\Table\ChangingSizes.md = public\Plotly\Examples\Basic\Table\ChangingSizes.md
+		public\Plotly\Examples\Basic\Table\FromCSV.md = public\Plotly\Examples\Basic\Table\FromCSV.md
+		public\Plotly\Examples\Basic\Table\Styled.md = public\Plotly\Examples\Basic\Table\Styled.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleChartTypes", "MultipleChartTypes", "{67FC7E7D-B739-4640-AA2F-822C9FEFBC47}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\MultipleChartTypes\ContourAndScatter.md = public\Plotly\Examples\MultipleChartTypes\ContourAndScatter.md
-		public\Plotly\Examples\MultipleChartTypes\LineAndBar.md = public\Plotly\Examples\MultipleChartTypes\LineAndBar.md
+		public\Plotly\Examples\Basic\MultipleChartTypes\ContourAndScatter.md = public\Plotly\Examples\Basic\MultipleChartTypes\ContourAndScatter.md
+		public\Plotly\Examples\Basic\MultipleChartTypes\LineAndBar.md = public\Plotly\Examples\Basic\MultipleChartTypes\LineAndBar.md
 	EndProjectSection
 EndProject
 Global
@@ -214,20 +216,21 @@ Global
 		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B} = {55637037-300B-4FA5-8D14-B2CECCCD4B0D}
 		{C3F9583A-523B-4835-B6BC-CD8FFD2178E3} = {CABBED80-2F75-4DFE-8F77-7F7FDFDC8008}
 		{AB994CC4-9A55-4156-9D53-E08C67F09B25} = {C3F9583A-523B-4835-B6BC-CD8FFD2178E3}
-		{F1E4DF8B-5D61-4605-A06C-51F24DEAA73D} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{DA5CD959-6F1C-4139-B59E-EB5637A4925C} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{33BA06BE-6203-4861-AD6A-413977CCD00C} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{D86FF2C9-9DBC-49B2-A120-BC3307597EB3} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{4EE56625-1A9D-4886-B109-09EE33552ED7} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{9BEF5646-A611-41A5-9A7B-40B48CD1B6F3} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{A8D175E9-3D68-4207-A9A6-D2DB03726E08} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{CFA514B9-EDAD-4E62-AB38-5D23104876CA} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{5F6EF95A-438D-48B7-B6E9-E068DF79CD90} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{A24E1FC2-D414-493B-9CB8-286BE17FB06E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{81B3001F-4146-42F1-BF14-2F4BE9A8EE88} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{52168EAE-6304-400D-A1EA-86F5FAC82D8C} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
-		{67FC7E7D-B739-4640-AA2F-822C9FEFBC47} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{F1E4DF8B-5D61-4605-A06C-51F24DEAA73D} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{DA5CD959-6F1C-4139-B59E-EB5637A4925C} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{33BA06BE-6203-4861-AD6A-413977CCD00C} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{D86FF2C9-9DBC-49B2-A120-BC3307597EB3} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{4EE56625-1A9D-4886-B109-09EE33552ED7} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{9BEF5646-A611-41A5-9A7B-40B48CD1B6F3} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{A8D175E9-3D68-4207-A9A6-D2DB03726E08} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{CFA514B9-EDAD-4E62-AB38-5D23104876CA} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{5F6EF95A-438D-48B7-B6E9-E068DF79CD90} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{A24E1FC2-D414-493B-9CB8-286BE17FB06E} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{DC4EDEEE-BF66-4C65-B64C-6C737EB11B4E} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{81B3001F-4146-42F1-BF14-2F4BE9A8EE88} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{52168EAE-6304-400D-A1EA-86F5FAC82D8C} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{67FC7E7D-B739-4640-AA2F-822C9FEFBC47} = {A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F}
+		{A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

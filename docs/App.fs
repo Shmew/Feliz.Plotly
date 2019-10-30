@@ -20,14 +20,14 @@ type Highlight =
 
 type State = 
     { CurrentPath : string list
-      CurrentTab: string option }
+      CurrentTab: string list }
 
 let init () = 
     { CurrentPath = [ ]
-      CurrentTab = None }, Cmd.none
+      CurrentTab = [ ] }, Cmd.none
 
 type Msg =
-    | TabToggled of string option
+    | TabToggled of string list
     | UrlChanged of string list
 
 let update msg state =
@@ -35,16 +35,15 @@ let update msg state =
     | UrlChanged segments -> 
         { state with CurrentPath = segments }, 
         match state.CurrentTab with
-        | None when segments.Length > 2 -> 
-            segments 
-            |> List.tryItem(segments.Length - 2)
+        | [ ] when segments.Length > 2 -> 
+            segments
             |> TabToggled
             |> Cmd.ofMsg
         | _ -> Cmd.none
-    | TabToggled tabOpt ->
-        match tabOpt with
-        | Some(tab) -> { state with CurrentTab = Some tab }, Cmd.none
-        | None -> { state with CurrentTab = None }, Cmd.none
+    | TabToggled tabs ->
+        match tabs with
+        | [ ] -> { state with CurrentTab = [ ] }, Cmd.none
+        | _ -> { state with CurrentTab = tabs }, Cmd.none
 
 let centeredSpinner =
     Html.div [
@@ -273,18 +272,19 @@ let loadMarkdown (path: string list) = loadMarkdown' {| path = path |}
 
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
-let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, elems: ReactElement list, dispatch) ->
+let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, basePath: string list, elems: (string list -> Fable.React.ReactElement) list, dispatch) ->
     let collapsed = 
         match state.CurrentTab with
-        | Some tab -> tab = name
-        | None -> false
+        | [ ] -> false
+        | _ -> basePath |> List.forall (fun segment -> List.contains segment state.CurrentTab) 
+
     Html.li [
         Html.anchor [
             prop.className Bulma.IsUnselectable
             prop.onClick <| fun _ -> 
                 match collapsed with
-                | true -> dispatch <| TabToggled None
-                | false -> dispatch <| TabToggled (Some name)
+                | true -> dispatch <| TabToggled (basePath |> List.rev |> List.tail |> List.rev)
+                | false -> dispatch <| TabToggled basePath
             prop.children [
                 Html.i [
                     prop.style [ style.marginRight 10 ]
@@ -302,13 +302,16 @@ let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, ele
             prop.style [ 
                 if not collapsed then yield! [ style.display.none ] 
             ]
-            prop.children elems
+            prop.children (elems |> List.map (fun f -> f basePath))
         ]
     ]), memoizeWith = memoEqualsButFunctions)
 
 let sidebar (state: State) dispatch =
-    let nestedMenuList (name: string) (items: Fable.React.ReactElement list) =
-        nestedMenuList'(state, name, items, dispatch)
+    let nestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) =
+        nestedMenuList'(state, name, basePath, items, dispatch)
+
+    let subNestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) (addedBasePath: string list) =
+        nestedMenuList'(state, name, (addedBasePath @ basePath), items, dispatch)
 
     // top level label
     let menuLabel (content: string) =
@@ -337,6 +340,19 @@ let sidebar (state: State) dispatch =
             ]
         ]
 
+    let nestedMenuItem (name: string) (extendedPath: string list) (basePath: string list) =
+        let path = basePath @ extendedPath
+        Html.li [
+            Html.anchor [
+                prop.className [
+                    state.CurrentPath = path, Bulma.IsActive
+                    state.CurrentPath = path, Bulma.HasBackgroundPrimary
+                ]
+                prop.text name
+                prop.href (sprintf "#/%s" (String.concat "/" path))
+            ]
+        ]
+
     let allItems =
         Html.div [
             prop.className "scrollbar"
@@ -346,96 +362,98 @@ let sidebar (state: State) dispatch =
                     menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
                     menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
                     menuLabel "Examples"
-                    nestedMenuList "Scatter" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.Basic ]
-                        menuItem "Data Labels Hover" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsHover ]
-                        menuItem "Data Labels On Plot" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsOnPlot ]
-                        menuItem "Color Dimension" [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.ColorDimension ]
-                    ]
-                    nestedMenuList "Bubble" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.Basic ]
-                        menuItem "HoverText" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.HoverText ]
-                        menuItem "Marker Size and Color" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeAndColor ]
-                        menuItem "Size Scaling" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.SizeScaling ]
-                        menuItem "Marker Size Color and Symbol Array" [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ]
-                    ]
-                    nestedMenuList "Dot" [
-                        menuItem "Categorical" [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Categorical ]
-                    ]
-                    nestedMenuList "Line" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.Basic ]
-                        menuItem "Named Line and Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.NamedLineAndScatter ]
-                        menuItem "Line and Scatter Styling" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineAndScatterStyling ]
-                        menuItem "Styling Line Plot" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.StylingLinePlot ]
-                        menuItem "Colored and Styled Scatter" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ColoredAndStyledScatter ]
-                        menuItem "Line Shape Options Interpolation" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineShapeOptionsInterpolation ]
-                        menuItem "Graph and Axes Titles" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.GraphAndAxesTitles ]
-                        menuItem "Line Dash" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineDash ]
-                        menuItem "Connect Gaps Between Data" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ConnectGapsBetweenData ]
-                        menuItem "Labelling Lines With Annotations" [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LabellingLinesWithAnnotations ]
-                    ]
-                    nestedMenuList "Bar" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Basic ]
-                        menuItem "Grouped" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Grouped ]
-                        menuItem "Stacked" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Stacked ]
-                        menuItem "Hover Text" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.HoverText ]
-                        menuItem "Direct Labels" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.DirectLabels ]
-                        menuItem "Grouped Direct Labels" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.GroupedDirectLabels ]
-                        menuItem "Rotated Labels" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RotatedLabels ]
-                        menuItem "Colors" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Colors ]
-                        menuItem "Widths" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Widths ]
-                        menuItem "Base" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Base ]
-                        menuItem "Colored and Styled" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.ColoredAndStyled ]
-                        menuItem "Waterfall" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Waterfall ]
-                        menuItem "Relative Barmode" [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RelativeBarmode ]
-                    ]
-                    nestedMenuList "Filled Area" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.Basic ]
-                        menuItem "Overlaid Without Boundary" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.OverlaidWithoutBoundary ]
-                        menuItem "Stacked Area" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.StackedArea ]
-                        menuItem "Normalized Stacked Area" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.NormalizedStackedArea ]
-                        menuItem "Select Hover" [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.SelectHover ]
-                    ]
-                    nestedMenuList "Horizontal Bar" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Basic ]
-                        menuItem "Colored" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Colored ]
-                        menuItem "Bar With Line Plot" [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.BarWithLinePlot ]
-                    ]
-                    nestedMenuList "Pie" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Basic ]
-                        menuItem "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Subplots ]
-                        menuItem "Donut" [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Donut ]
-                    ]
-                    nestedMenuList "Sunburst" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Basic ]
-                        menuItem "Branch Values" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Branchvalues ]
-                        menuItem "Repeated Labels" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.RepeatedLabels ]
-                        menuItem "Large Number of Slices" [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.LargeNumberSlices ]
-                    ]
-                    nestedMenuList "Sankey" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Basic ]
-                        menuItem "Styled" [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Styled ]
-                    ]
-                    nestedMenuList "Point Cloud" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Basic ]
-                        menuItem "Styled" [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Styled ]
-                    ]
-                    nestedMenuList "Treemap" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.Basic ]
-                        menuItem "Different Attributes" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.DifferentAttributes ]
-                        menuItem "Sector Colors" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ]
-                        menuItem "Nested Layers" [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ]
-                    ]
-                    nestedMenuList "Table" [
-                        menuItem "Basic" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Basic ]
-                        menuItem "Styled" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Styled ]
-                        menuItem "From CSV" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.FromCSV ]
-                        menuItem "Changing Sizes" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.ChangingSizes ]
-                        menuItem "Alternating Row Colors" [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.AlternatingRowColors ]
-                    ]
-                    nestedMenuList "Multiple Chart Types" [
-                        menuItem "Line and Bar" [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.LineAndBar ]
-                        menuItem "Contour and Scatter" [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.ContourAndScatter ]
+                    nestedMenuList "Basic Plot Types" [ Urls.Plotly; Urls.Examples; Urls.Basic ] [
+                        subNestedMenuList "Scatter" [ Urls.Scatter ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Data Labels Hover" [ Urls.DataLabelsHover ]
+                            nestedMenuItem "Data Labels On Plot" [ Urls.DataLabelsOnPlot ]
+                            nestedMenuItem "Color Dimension" [ Urls.ColorDimension ]
+                        ]
+                        subNestedMenuList "Bubble" [ Urls.Bubble ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "HoverText" [ Urls.HoverText ]
+                            nestedMenuItem "Marker Size and Color" [ Urls.MarkerSizeAndColor ]
+                            nestedMenuItem "Size Scaling" [ Urls.SizeScaling ]
+                            nestedMenuItem "Marker Size Color and Symbol Array" [ Urls.MarkerSizeColorAndSymbolArray ]
+                        ]
+                        subNestedMenuList "Dot" [ Urls.Dot ] [
+                            nestedMenuItem "Categorical" [ Urls.Categorical ]
+                        ]
+                        subNestedMenuList "Line" [ Urls.Line ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Named Line and Scatter" [ Urls.NamedLineAndScatter ]
+                            nestedMenuItem "Line and Scatter Styling" [ Urls.LineAndScatterStyling ]
+                            nestedMenuItem "Styling Line Plot" [ Urls.StylingLinePlot ]
+                            nestedMenuItem "Colored and Styled Scatter" [ Urls.ColoredAndStyledScatter ]
+                            nestedMenuItem "Line Shape Options Interpolation" [ Urls.LineShapeOptionsInterpolation ]
+                            nestedMenuItem "Graph and Axes Titles" [ Urls.GraphAndAxesTitles ]
+                            nestedMenuItem "Line Dash" [ Urls.LineDash ]
+                            nestedMenuItem "Connect Gaps Between Data" [ Urls.ConnectGapsBetweenData ]
+                            nestedMenuItem "Labelling Lines With Annotations" [ Urls.LabellingLinesWithAnnotations ]
+                        ]
+                        subNestedMenuList "Bar" [ Urls.Bar ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Grouped" [ Urls.Grouped ]
+                            nestedMenuItem "Stacked" [ Urls.Stacked ]
+                            nestedMenuItem "Hover Text" [ Urls.HoverText ]
+                            nestedMenuItem "Direct Labels" [ Urls.DirectLabels ]
+                            nestedMenuItem "Grouped Direct Labels" [ Urls.GroupedDirectLabels ]
+                            nestedMenuItem "Rotated Labels" [ Urls.RotatedLabels ]
+                            nestedMenuItem "Colors" [ Urls.Colors ]
+                            nestedMenuItem "Widths" [ Urls.Widths ]
+                            nestedMenuItem "Base" [ Urls.Base ]
+                            nestedMenuItem "Colored and Styled" [ Urls.ColoredAndStyled ]
+                            nestedMenuItem "Waterfall" [ Urls.Waterfall ]
+                            nestedMenuItem "Relative Barmode" [ Urls.RelativeBarmode ]
+                        ]
+                        subNestedMenuList "Filled Area" [ Urls.FilledArea ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Overlaid Without Boundary" [ Urls.OverlaidWithoutBoundary ]
+                            nestedMenuItem "Stacked Area" [ Urls.StackedArea ]
+                            nestedMenuItem "Normalized Stacked Area" [ Urls.NormalizedStackedArea ]
+                            nestedMenuItem "Select Hover" [ Urls.SelectHover ]
+                        ]
+                        subNestedMenuList "Horizontal Bar" [ Urls.HorizontalBar ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Colored" [ Urls.Colored ]
+                            nestedMenuItem "Bar With Line Plot" [ Urls.BarWithLinePlot ]
+                        ]
+                        subNestedMenuList "Pie" [ Urls.Pie ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Subplots" [ Urls.Subplots ]
+                            nestedMenuItem "Donut" [ Urls.Donut ]
+                        ]
+                        subNestedMenuList "Sunburst" [ Urls.Sunburst ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Branch Values" [ Urls.Branchvalues ]
+                            nestedMenuItem "Repeated Labels" [ Urls.RepeatedLabels ]
+                            nestedMenuItem "Large Number of Slices" [ Urls.LargeNumberSlices ]
+                        ]
+                        subNestedMenuList "Sankey" [ Urls.Sankey ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                        ]
+                        subNestedMenuList "Point Cloud" [ Urls.PointCloud ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                        ]
+                        subNestedMenuList "Treemap" [ Urls.Treemap ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Different Attributes" [ Urls.DifferentAttributes ]
+                            nestedMenuItem "Sector Colors" [ Urls.SectorColors ]
+                            nestedMenuItem "Nested Layers" [ Urls.NestedLayers ]
+                        ]
+                        subNestedMenuList "Table" [ Urls.Table ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                            nestedMenuItem "From CSV" [ Urls.FromCSV ]
+                            nestedMenuItem "Changing Sizes" [ Urls.ChangingSizes ]
+                            nestedMenuItem "Alternating Row Colors" [ Urls.AlternatingRowColors ]
+                        ]
+                        subNestedMenuList "Multiple Chart Types" [ Urls.MultipleChartTypes ] [
+                            nestedMenuItem "Line and Bar" [ Urls.LineAndBar ]
+                            nestedMenuItem "Contour and Scatter" [ Urls.ContourAndScatter ]
+                        ]
                     ]
                 ]
             ]
@@ -453,75 +471,146 @@ let sidebar (state: State) dispatch =
 let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
 let contributing = sprintf "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/master/public/Feliz/Contributing.md"
 
+let basicExamples (currentPath: string list) =
+    printfn "%A" currentPath
+    match currentPath with
+    | Urls.Scatter :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.DataLabelsHover ] -> [ "DataLabelsHover.md" ]
+        | [ Urls.DataLabelsOnPlot ] -> [ "DataLabelsOnPlot.md" ]
+        | [ Urls.ColorDimension ] -> [ "ColorDimension.md" ]
+        | _ -> []
+        |> List.append [ Urls.Scatter ]
+    | Urls.Bubble :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.HoverText ] -> [ "HoverText.md" ]
+        | [ Urls.MarkerSizeAndColor ] -> [ "MarkerSizeAndColor.md" ]
+        | [ Urls.SizeScaling ] -> [ "SizeScaling.md" ]
+        | [ Urls.MarkerSizeColorAndSymbolArray ] -> [ "MarkerSizeColorAndSymbolArray.md" ]
+        | _ -> []
+        |> List.append [ Urls.Bubble ]
+    | Urls.Dot :: rest ->
+        match rest with
+        | [ Urls.Categorical ] -> [ "Categorical.md" ]
+        | _ -> []
+        |> List.append [ Urls.Dot ]
+    | Urls.Line :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.NamedLineAndScatter ] -> [ "NamedLineAndScatter.md" ]
+        | [ Urls.LineAndScatterStyling ] -> [ "LineAndScatterStyling.md" ]
+        | [ Urls.StylingLinePlot ] -> [ "StylingLinePlot.md" ]
+        | [ Urls.ColoredAndStyledScatter ] -> [ "ColoredAndStyledScatter.md" ]
+        | [ Urls.LineShapeOptionsInterpolation ] -> [ "LineShapeOptionsInterpolation.md" ]
+        | [ Urls.GraphAndAxesTitles ] -> [ "GraphAndAxesTitles.md" ]
+        | [ Urls.LineDash ] -> [ "LineDash.md" ]
+        | [ Urls.ConnectGapsBetweenData ] -> [ "ConnectGapsBetweenData.md" ]
+        | [ Urls.LabellingLinesWithAnnotations ] -> [ "LabellingLinesWithAnnotations.md" ]
+        | _ -> []
+        |> List.append [ Urls.Line ]
+    | Urls.Bar :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Grouped ] -> [ "Grouped.md" ]
+        | [ Urls.Stacked ] -> [ "Stacked.md" ]
+        | [ Urls.HoverText ] -> [ "HoverText.md" ]
+        | [ Urls.DirectLabels ] -> [ "DirectLabels.md" ]
+        | [ Urls.GroupedDirectLabels ] -> [ "GroupedDirectLabels.md" ]
+        | [ Urls.RotatedLabels ] -> [ "RotatedLabels.md" ]
+        | [ Urls.Colors ] -> [ "Colors.md" ]
+        | [ Urls.Widths ] -> [ "Widths.md" ]
+        | [ Urls.Base ] -> [ "Base.md" ]
+        | [ Urls.ColoredAndStyled ] -> [ "ColoredAndStyled.md" ]
+        | [ Urls.Waterfall ] -> [ "Waterfall.md" ]
+        | [ Urls.RelativeBarmode ] -> [ "RelativeBarmode.md" ]
+        | _ -> []
+        |> List.append [ Urls.Bar ]
+    | Urls.FilledArea :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.OverlaidWithoutBoundary ] -> [ "OverlaidWithoutBoundary.md" ]
+        | [ Urls.StackedArea ] -> [ "StackedArea.md" ]
+        | [ Urls.NormalizedStackedArea ] -> [ "NormalizedStackedArea.md" ]
+        | [ Urls.SelectHover ] -> [ "SelectHover.md" ]
+        | _ -> []
+        |> List.append [ Urls.FilledArea ]
+    | Urls.HorizontalBar :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Colored ] -> [ "Colored.md" ]
+        | [ Urls.BarWithLinePlot ] -> [ "BarWithLinePlot.md" ]
+        | _ -> []
+        |> List.append [ Urls.HorizontalBar ]
+    | Urls.Pie :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Subplots ] -> [ "Subplots.md" ]
+        | [ Urls.Donut ] -> [ "Donut.md" ]
+        | _ -> []
+        |> List.append [ Urls.Pie ]
+    | Urls.Sunburst :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Branchvalues ] -> [ "Branchvalues.md" ]
+        | [ Urls.RepeatedLabels ] -> [ "RepeatedLabels.md" ]
+        | [ Urls.LargeNumberSlices ] -> [ "LargeNumberSlices.md" ]
+        | _ -> []
+        |> List.append [ Urls.Sunburst ]
+    | Urls.Sankey :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | _ -> []
+        |> List.append [ Urls.Sankey ]
+    | Urls.PointCloud :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | _ -> []
+        |> List.append [ Urls.PointCloud ]
+    | Urls.Treemap :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.DifferentAttributes ] -> [ "DifferentAttributes.md" ]
+        | [ Urls.SectorColors ] -> [ "SectorColors.md" ]
+        | [ Urls.NestedLayers ] -> [ "NestedLayers.md" ]
+        | _ -> []
+        |> List.append [ Urls.Treemap ]
+    | Urls.Table :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | [ Urls.FromCSV ] -> [ "FromCSV.md" ]
+        | [ Urls.ChangingSizes ] -> [ "ChangingSizes.md" ]
+        | [ Urls.AlternatingRowColors ] -> [ "AlternatingRowColors.md" ]
+        | _ -> []
+        |> List.append [ Urls.Table ]
+    | Urls.MultipleChartTypes :: rest ->
+        match rest with
+        | [ Urls.LineAndBar ] -> [ "LineAndBar.md" ]
+        | [ Urls.ContourAndScatter ] -> [ "ContourAndScatter.md" ]
+        | _ -> []
+        |> List.append [ Urls.MultipleChartTypes ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Basic ] @ path
+
 let content state dispatch =
     match state.CurrentPath with
     | [ ] -> loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Overview; ] -> loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> loadMarkdown [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> loadMarkdown [ contributing ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsHover ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsHover.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.DataLabelsOnPlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "DataLabelsOnPlot.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Scatter; Urls.ColorDimension ] -> loadMarkdown [ "Plotly"; "Examples"; "Scatter" ; "ColorDimension.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.HoverText ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "HoverText.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeAndColor ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeAndColor.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.SizeScaling ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "SizeScaling.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bubble; Urls.MarkerSizeColorAndSymbolArray ] -> loadMarkdown [ "Plotly"; "Examples"; "Bubble" ; "MarkerSizeColorAndSymbolArray.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Dot; Urls.Categorical ] -> loadMarkdown [ "Plotly"; "Examples"; "Dot" ; "Categorical.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.NamedLineAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "NamedLineAndScatter.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineAndScatterStyling ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineAndScatterStyling.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.StylingLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "StylingLinePlot.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ColoredAndStyledScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ColoredAndStyledScatter.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineShapeOptionsInterpolation ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineShapeOptionsInterpolation.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.GraphAndAxesTitles ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "GraphAndAxesTitles.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LineDash ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LineDash.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.ConnectGapsBetweenData ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "ConnectGapsBetweenData.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Line; Urls.LabellingLinesWithAnnotations ] -> loadMarkdown [ "Plotly"; "Examples"; "Line" ; "LabellingLinesWithAnnotations.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Grouped ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Grouped.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Stacked ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Stacked.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.HoverText ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "HoverText.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.DirectLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "DirectLabels.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.GroupedDirectLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "GroupedDirectLabels.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RotatedLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "RotatedLabels.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Colors ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Colors.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Widths ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Widths.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Base ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Base.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.ColoredAndStyled ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "ColoredAndStyled.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.Waterfall ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "Waterfall.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Bar; Urls.RelativeBarmode ] -> loadMarkdown [ "Plotly"; "Examples"; "Bar" ; "RelativeBarmode.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.OverlaidWithoutBoundary ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "OverlaidWithoutBoundary.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.StackedArea ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "StackedArea.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.NormalizedStackedArea ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "NormalizedStackedArea.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.FilledArea; Urls.SelectHover ] -> loadMarkdown [ "Plotly"; "Examples"; "FilledArea" ; "SelectHover.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.Colored ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "Colored.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.HorizontalBar; Urls.BarWithLinePlot ] -> loadMarkdown [ "Plotly"; "Examples"; "HorizontalBar" ; "BarWithLinePlot.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Pie" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Subplots ] -> loadMarkdown [ "Plotly"; "Examples"; "Pie" ; "Subplots.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Pie; Urls.Donut ] -> loadMarkdown [ "Plotly"; "Examples"; "Pie" ; "Donut.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.Branchvalues ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "Branchvalues.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.RepeatedLabels ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "RepeatedLabels.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Sunburst; Urls.LargeNumberSlices ] -> loadMarkdown [ "Plotly"; "Examples"; "Sunburst" ; "LargeNumberSlices.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Sankey" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Sankey; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "Sankey" ; "Styled.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.PointCloud; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "PointCloud" ; "Styled.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.DifferentAttributes ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "DifferentAttributes.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.SectorColors ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "SectorColors.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Treemap; Urls.NestedLayers ] -> loadMarkdown [ "Plotly"; "Examples"; "Treemap" ; "NestedLayers.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Basic ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "Basic.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.Styled ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "Styled.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.FromCSV ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "FromCSV.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.ChangingSizes ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "ChangingSizes.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.Table; Urls.AlternatingRowColors ] -> loadMarkdown [ "Plotly"; "Examples"; "Table" ; "AlternatingRowColors.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.LineAndBar ] -> loadMarkdown [ "Plotly"; "Examples"; "MultipleChartTypes" ; "LineAndBar.md" ]
-    | [ Urls.Plotly; Urls.Examples; Urls.MultipleChartTypes; Urls.ContourAndScatter ] -> loadMarkdown [ "Plotly"; "Examples"; "MultipleChartTypes" ; "ContourAndScatter.md" ]
+    | _ when state.CurrentPath |> List.take 2 = [ Urls.Plotly; Urls.Examples ] -> 
+        match state.CurrentPath |> List.skip 2 with
+        | basicPath when basicPath |> List.take 1 = [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
+        | _ -> []
+        |> fun path ->
+            if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
+            else [ Urls.Plotly; Urls.Examples ] @ path |> loadMarkdown
     | segments -> Html.div [ for segment in segments -> Html.p segment ]
 
 let main state dispatch =
