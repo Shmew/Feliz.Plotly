@@ -82,7 +82,7 @@ let private colorscaleChart () =
         ]
     ]
 
-let chart = React.functionComponent <| fun () ->
+let chart = React.functionComponent (fun () ->
     let (state, dispatch) = React.useReducer(update, init)
 
     Html.div [
@@ -114,5 +114,5 @@ let chart = React.functionComponent <| fun () ->
                 ]
             ]
         ]
-    ]
+    ])
 ```
