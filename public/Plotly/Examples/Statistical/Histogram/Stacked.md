@@ -4,22 +4,27 @@ Taken from [Plotly - Histograms](https://plot.ly/javascript/histograms/)
 
 ```fsharp:plotly-chart-histogram-stacked
 [<RequireQualifiedAccess>]
-module Samples.ErrorBar.Basic
+module Samples.Histogram.Stacked
 
 open Feliz
 open Feliz.Plotly
 
+let rng = System.Random()
+
+let dataX = [ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble())
+
 let chart () =
     Plotly.plot [
         plot.traces [
-            traces.scatter [
-                scatter.x [ 0; 1; 2 ]
-                scatter.y [ 6; 10; 2 ]
-                scatter.errorY [
-                    errorY.array [ 1; 2; 3 ]
-                    errorY.visible true
-                ]
+            traces.histogram [
+                histogram.x dataX
             ]
+            traces.histogram [
+                histogram.x dataX
+            ]
+        ]
+        plot.layout [
+            layout.barmode.stack
         ]
     ]
 ```

@@ -4,20 +4,21 @@ Taken from [Plotly - Histograms](https://plot.ly/javascript/histograms/)
 
 ```fsharp:plotly-chart-histogram-normalized
 [<RequireQualifiedAccess>]
-module Samples.ErrorBar.Basic
+module Samples.Histogram.Normalized
 
 open Feliz
 open Feliz.Plotly
 
+let rng = System.Random()
+
 let chart () =
     Plotly.plot [
         plot.traces [
-            traces.scatter [
-                scatter.x [ 0; 1; 2 ]
-                scatter.y [ 6; 10; 2 ]
-                scatter.errorY [
-                    errorY.array [ 1; 2; 3 ]
-                    errorY.visible true
+            traces.histogram [
+                histogram.x ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble()))
+                histogram.histnorm.probability
+                histogram.marker [
+                    marker.color (colors.rgb(255, 255, 100))
                 ]
             ]
         ]
