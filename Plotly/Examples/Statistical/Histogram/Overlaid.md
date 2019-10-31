@@ -4,22 +4,33 @@ Taken from [Plotly - Histograms](https://plot.ly/javascript/histograms/)
 
 ```fsharp:plotly-chart-histogram-overlaid
 [<RequireQualifiedAccess>]
-module Samples.ErrorBar.Basic
+module Samples.Histogram.Overlaid
 
 open Feliz
 open Feliz.Plotly
 
+let rng = System.Random()
+
 let chart () =
     Plotly.plot [
         plot.traces [
-            traces.scatter [
-                scatter.x [ 0; 1; 2 ]
-                scatter.y [ 6; 10; 2 ]
-                scatter.errorY [
-                    errorY.array [ 1; 2; 3 ]
-                    errorY.visible true
+            traces.histogram [
+                histogram.x ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble()))
+                histogram.opacity 0.5
+                histogram.marker [
+                    marker.color colors.green
                 ]
             ]
+            traces.histogram [
+                histogram.x ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble() + 0.1))
+                histogram.opacity 0.6
+                histogram.marker [
+                    marker.color colors.red
+                ]
+            ]
+        ]
+        plot.layout [
+            layout.barmode.overlay
         ]
     ]
 ```
