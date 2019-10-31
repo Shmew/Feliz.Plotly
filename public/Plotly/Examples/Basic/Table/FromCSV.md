@@ -13,7 +13,7 @@ open Feliz
 open Feliz.Plotly
 open System
 
-type private BTCMiningData =
+type BTCMiningData =
     { Headers: string []
       Ids: int [] 
       Date: string []
@@ -46,7 +46,7 @@ type private BTCMiningData =
           U4.Case1 this.MiningRevenueUSD
           U4.Case1 this.TransactionFeesBTC ]
 
-module private BTCMiningData =
+module BTCMiningData =
     let empty =
         { Headers = [||]
           Ids = [||]
@@ -59,7 +59,7 @@ module private BTCMiningData =
           MiningRevenueUSD = [||]
           TransactionFeesBTC = [||] }
 
-let private render (data: BTCMiningData)  =
+let render (data: BTCMiningData)  =
     Plotly.plot [
         plot.traces [
             traces.table [
@@ -114,7 +114,7 @@ let private render (data: BTCMiningData)  =
         ]
     ]
 
-let private chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
+let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
     let isLoading, setLoading = React.useState false
     let error, setError = React.useState<Option<string>> None
     let content, setContent = React.useState BTCMiningData.empty

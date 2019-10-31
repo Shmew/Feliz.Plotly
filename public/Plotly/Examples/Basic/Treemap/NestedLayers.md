@@ -11,7 +11,7 @@ open Fable.SimpleHttp
 open Feliz
 open Feliz.Plotly
 
-type private CoffeeData =
+type CoffeeData =
     { Ids: string [] 
       Labels: string []
       Parents: string [] }
@@ -21,13 +21,13 @@ type private CoffeeData =
             Labels = Array.append this.Labels (data.[1] |> Array.singleton)
             Parents = Array.append this.Parents (data.[2] |> Array.singleton) }
 
-module private CoffeeData =
+module CoffeeData =
     let empty =
         { Ids = [||] 
           Labels = [||]
           Parents = [||] }
 
-let private render (data: CoffeeData)  =
+let render (data: CoffeeData)  =
     Plotly.plot [
         plot.traces [
             traces.treemap [
@@ -42,7 +42,7 @@ let private render (data: CoffeeData)  =
         ]
     ]
 
-let private chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
+let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
     let isLoading, setLoading = React.useState false
     let error, setError = React.useState<Option<string>> None
     let content, setContent = React.useState CoffeeData.empty

@@ -176,17 +176,17 @@ let samples =
 
     let statisticalExamples =
         let errorBars =
-            [ "plotly-chart-errorbars-basic", Samples.ErrorBar.Basic.chart()
-              "plotly-chart-errorbars-withbarchart", Samples.ErrorBar.WithBarChart.chart()
-              "plotly-chart-errorbars-horizontal", Samples.ErrorBar.Horizontal.chart()
-              "plotly-chart-errorbars-asymmetric", Samples.ErrorBar.Asymmetric.chart()
-              "plotly-chart-errorbars-styled", Samples.ErrorBar.Styled.chart()
-              "plotly-chart-errorbars-percentageofyvalue", Samples.ErrorBar.PercentageOfYValue.chart()
-              "plotly-chart-errorbars-asymmetricwithoffset", Samples.ErrorBar.AsymmetricWithOffset.chart() ]
+            [ "plotly-chart-errorbar-basic", Samples.ErrorBar.Basic.chart()
+              "plotly-chart-errorbar-withbarchart", Samples.ErrorBar.WithBarChart.chart()
+              "plotly-chart-errorbar-horizontal", Samples.ErrorBar.Horizontal.chart()
+              "plotly-chart-errorbar-asymmetric", Samples.ErrorBar.Asymmetric.chart()
+              "plotly-chart-errorbar-styled", Samples.ErrorBar.Styled.chart()
+              "plotly-chart-errorbar-percentageofyvalue", Samples.ErrorBar.PercentageOfYValue.chart()
+              "plotly-chart-errorbar-asymmetricwithoffset", Samples.ErrorBar.AsymmetricWithOffset.chart() ]
 
         let continuousErrorBars =
-            [ "plotly-chart-continuouserrorbars-filledlines", Samples.ContinuousErrorBar.FilledLines.chart()
-              "plotly-chart-continuouserrorbars-asymmetricwithoffset", Samples.ContinuousErrorBar.AsymmetricWithOffset.chart() ]
+            [ "plotly-chart-continuouserrorbar-filledlines", Samples.ContinuousErrorBar.FilledLines.chart()
+              "plotly-chart-continuouserrorbar-asymmetricwithoffset", Samples.ContinuousErrorBar.AsymmetricWithOffset.chart() ]
 
         let boxPlots =
             [ "plotly-chart-boxplot-basic", Samples.BoxPlot.Basic.chart()
@@ -200,9 +200,20 @@ let samples =
               "plotly-chart-boxplot-styled", Samples.BoxPlot.Styled.chart()
               "plotly-chart-boxplot-rainbow", Samples.BoxPlot.Rainbow.chart() ]
 
+        let histograms =
+            [ "plotly-chart-histogram-basic", Samples.Histogram.Basic.chart()
+              "plotly-chart-histogram-horizontal", Samples.Histogram.Horizontal.chart()
+              "plotly-chart-histogram-overlaid", Samples.Histogram.Overlaid.chart()
+              "plotly-chart-histogram-stacked", Samples.Histogram.Stacked.chart()
+              "plotly-chart-histogram-styled", Samples.Histogram.Styled.chart()
+              "plotly-chart-histogram-cumulative", Samples.Histogram.Cumulative.chart()
+              "plotly-chart-histogram-normalized", Samples.Histogram.Normalized.chart()
+              "plotly-chart-histogram-specifiedbinning", Samples.Histogram.SpecifiedBinning.chart() ]
+
         [ errorBars
           continuousErrorBars
-          boxPlots ]
+          boxPlots
+          histograms ]
         |> List.concat
 
     [ basicSamples; statisticalExamples ]
@@ -515,7 +526,7 @@ let sidebar (state: State) dispatch =
                         ]
                     ]
                     nestedMenuList "Statistical Plot Types" [ Urls.Plotly; Urls.Examples; Urls.Statistical ] [
-                        subNestedMenuList "Error Bars" [ Urls.ErrorBars ] [
+                        subNestedMenuList "Error Bars" [ Urls.ErrorBar ] [
                             nestedMenuItem "Basic" [ Urls.Basic ]
                             nestedMenuItem "With Bar Chart" [ Urls.WithBarChart ]
                             nestedMenuItem "Horizontal" [ Urls.Horizontal ]
@@ -524,7 +535,7 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Percentage of Y Value" [ Urls.PercentageOfYValue ]
                             nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
                         ]
-                        subNestedMenuList "Continuous Error Bars" [ Urls.ContinuousErrorBars ] [
+                        subNestedMenuList "Continuous Error Bars" [ Urls.ContinuousErrorBar ] [
                             nestedMenuItem "Filled Lines" [ Urls.FilledLines ]
                             nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
                         ]
@@ -539,6 +550,16 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Colored" [ Urls.Colored ]
                             nestedMenuItem "Styled" [ Urls.Styled ]
                             nestedMenuItem "Rainbow" [ Urls.Rainbow ]
+                        ]
+                        subNestedMenuList "Histograms" [ Urls.Histogram ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                            nestedMenuItem "Overlaid" [ Urls.Overlaid ]
+                            nestedMenuItem "Stacked" [ Urls.Stacked ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                            nestedMenuItem "Cumulative" [ Urls.Cumulative ]
+                            nestedMenuItem "Normalized" [ Urls.Normalized ]
+                            nestedMenuItem "Specified Binning" [ Urls.SpecifiedBinning ]
                         ]
                     ]
                 ]
@@ -685,7 +706,7 @@ let basicExamples (currentPath: string list) =
 
 let statisticalExamples (currentPath: string list) =
     match currentPath with
-    | Urls.ErrorBars :: rest ->
+    | Urls.ErrorBar :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.WithBarChart ] -> [ "WithBarChart.md" ]
@@ -695,13 +716,13 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.PercentageOfYValue ] -> [ "PercentageOfYValue.md" ]
         | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
         | _ -> [ ]
-        |> List.append [ Urls.ErrorBars ]
-    | Urls.ContinuousErrorBars :: rest ->
+        |> List.append [ Urls.ErrorBar ]
+    | Urls.ContinuousErrorBar :: rest ->
         match rest with
         | [ Urls.FilledLines ] -> [ "FilledLines.md" ]
         | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
         | _ -> [ ]
-        |> List.append [ Urls.ContinuousErrorBars ]
+        |> List.append [ Urls.ContinuousErrorBar ]
     | Urls.BoxPlot :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
@@ -716,6 +737,18 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.Rainbow ] -> [ "Rainbow.md" ]
         | _ -> [ ]
         |> List.append [ Urls.BoxPlot ]
+    | Urls.Histogram :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
+        | [ Urls.Overlaid ] -> [ "Overlaid.md" ]
+        | [ Urls.Stacked ] -> [ "Stacked.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | [ Urls.Cumulative ] -> [ "Cumulative.md" ]
+        | [ Urls.Normalized ] -> [ "Normalized.md" ]
+        | [ Urls.SpecifiedBinning ] -> [ "SpecifiedBinning.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Histogram ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []

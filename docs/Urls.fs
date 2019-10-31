@@ -14,6 +14,7 @@ let [<Literal>] Basic = "Basic"
 let [<Literal>] Grouped = "Grouped"
 let [<Literal>] Horizontal = "Horizontal"
 let [<Literal>] HoverText = "HoverText"
+let [<Literal>] Stacked = "Stacked"
 let [<Literal>] Styled = "Styled"
 
 // Bar Examples
@@ -24,7 +25,6 @@ let [<Literal>] ColoredAndStyled = "ColoredAndStyled"
 let [<Literal>] Colors = "Colors"
 let [<Literal>] DirectLabels = "DirectLabels"
 let [<Literal>] GroupedDirectLabels = "GroupedDirectLabels"
-let [<Literal>] Stacked = "Stacked"
 let [<Literal>] RelativeBarmode = "RelativeBarmode"
 let [<Literal>] RotatedLabels = "RotatedLabels"
 let [<Literal>] Waterfall = "Waterfall"
@@ -47,7 +47,7 @@ let [<Literal>] MarkerSizeColorAndSymbolArray = "MarkerSizeColorAndSymbolArray"
 let [<Literal>] SizeScaling = "SizeScaling"
 
 // Continuous Error Bar Examples
-let [<Literal>] ContinuousErrorBars = "ContinuousErrorBars"
+let [<Literal>] ContinuousErrorBar = "ContinuousErrorBar"
 
 let [<Literal>] FilledLines = "FilledLines"
 
@@ -57,7 +57,7 @@ let [<Literal>] Dot = "Dot"
 let [<Literal>] Categorical = "Categorical"
 
 // Error Bar Examples
-let [<Literal>] ErrorBars = "ErrorBars"
+let [<Literal>] ErrorBar = "ErrorBar"
 
 let [<Literal>] Asymmetric = "Asymmetric"
 let [<Literal>] PercentageOfYValue = "PercentageOfYValue"
@@ -70,6 +70,14 @@ let [<Literal>] NormalizedStackedArea = "NormalizedStackedArea"
 let [<Literal>] OverlaidWithoutBoundary = "OverlaidWithoutBoundary"
 let [<Literal>] SelectHover = "SelectHover"
 let [<Literal>] StackedArea = "StackedArea"
+
+// Histogram Examples
+let [<Literal>] Histogram = "Histogram"
+
+let [<Literal>] Cumulative = "Cumulative"
+let [<Literal>] Normalized = "Normalized"
+let [<Literal>] Overlaid = "Overlaid"
+let [<Literal>] SpecifiedBinning = "SpecifiedBinning"
 
 // Horizontal Bar Examples
 let [<Literal>] HorizontalBar = "HorizontalBar"

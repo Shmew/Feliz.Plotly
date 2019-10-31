@@ -188,21 +188,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleChartTypes", "Multi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistical", "Statistical", "{0D457903-8E32-4932-893E-C26C4918366E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ErrorBars", "ErrorBars", "{DB48F7B0-9D46-4B09-8FD1-B065CDF4AAB3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ErrorBar", "ErrorBar", "{DB48F7B0-9D46-4B09-8FD1-B065CDF4AAB3}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Statistical\ErrorBars\Asymmetric.md = public\Plotly\Examples\Statistical\ErrorBars\Asymmetric.md
-		public\Plotly\Examples\Statistical\ErrorBars\AsymmetricWithOffset.md = public\Plotly\Examples\Statistical\ErrorBars\AsymmetricWithOffset.md
-		public\Plotly\Examples\Statistical\ErrorBars\Basic.md = public\Plotly\Examples\Statistical\ErrorBars\Basic.md
-		public\Plotly\Examples\Statistical\ErrorBars\Horizontal.md = public\Plotly\Examples\Statistical\ErrorBars\Horizontal.md
-		public\Plotly\Examples\Statistical\ErrorBars\PercentageOfYValue.md = public\Plotly\Examples\Statistical\ErrorBars\PercentageOfYValue.md
-		public\Plotly\Examples\Statistical\ErrorBars\Styled.md = public\Plotly\Examples\Statistical\ErrorBars\Styled.md
-		public\Plotly\Examples\Statistical\ErrorBars\WithBarChart.md = public\Plotly\Examples\Statistical\ErrorBars\WithBarChart.md
+		public\Plotly\Examples\Statistical\ErrorBar\Asymmetric.md = public\Plotly\Examples\Statistical\ErrorBar\Asymmetric.md
+		public\Plotly\Examples\Statistical\ErrorBar\AsymmetricWithOffset.md = public\Plotly\Examples\Statistical\ErrorBar\AsymmetricWithOffset.md
+		public\Plotly\Examples\Statistical\ErrorBar\Basic.md = public\Plotly\Examples\Statistical\ErrorBar\Basic.md
+		public\Plotly\Examples\Statistical\ErrorBar\Horizontal.md = public\Plotly\Examples\Statistical\ErrorBar\Horizontal.md
+		public\Plotly\Examples\Statistical\ErrorBar\PercentageOfYValue.md = public\Plotly\Examples\Statistical\ErrorBar\PercentageOfYValue.md
+		public\Plotly\Examples\Statistical\ErrorBar\Styled.md = public\Plotly\Examples\Statistical\ErrorBar\Styled.md
+		public\Plotly\Examples\Statistical\ErrorBar\WithBarChart.md = public\Plotly\Examples\Statistical\ErrorBar\WithBarChart.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousErrorBars", "ContinuousErrorBars", "{08DC8364-BAFA-451D-B1AB-8A73B87E9552}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousErrorBar", "ContinuousErrorBar", "{08DC8364-BAFA-451D-B1AB-8A73B87E9552}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Statistical\ContinuousErrorBars\AsymmetricWithOffset.md = public\Plotly\Examples\Statistical\ContinuousErrorBars\AsymmetricWithOffset.md
-		public\Plotly\Examples\Statistical\ContinuousErrorBars\FilledLines.md = public\Plotly\Examples\Statistical\ContinuousErrorBars\FilledLines.md
+		public\Plotly\Examples\Statistical\ContinuousErrorBar\AsymmetricWithOffset.md = public\Plotly\Examples\Statistical\ContinuousErrorBar\AsymmetricWithOffset.md
+		public\Plotly\Examples\Statistical\ContinuousErrorBar\FilledLines.md = public\Plotly\Examples\Statistical\ContinuousErrorBar\FilledLines.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BoxPlot", "BoxPlot", "{11290115-7F1A-4A18-B087-63D6E438476B}"
@@ -217,6 +217,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BoxPlot", "BoxPlot", "{1129
 		public\Plotly\Examples\Statistical\BoxPlot\StyledMeanAndStdDev.md = public\Plotly\Examples\Statistical\BoxPlot\StyledMeanAndStdDev.md
 		public\Plotly\Examples\Statistical\BoxPlot\StyledOutliers.md = public\Plotly\Examples\Statistical\BoxPlot\StyledOutliers.md
 		public\Plotly\Examples\Statistical\BoxPlot\UnderlyingData.md = public\Plotly\Examples\Statistical\BoxPlot\UnderlyingData.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Histogram", "Histogram", "{A0CB93A3-BF21-4900-B17F-342776C8CC06}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\Histogram\Basic.md = public\Plotly\Examples\Statistical\Histogram\Basic.md
+		public\Plotly\Examples\Statistical\Histogram\Cumulative.md = public\Plotly\Examples\Statistical\Histogram\Cumulative.md
+		public\Plotly\Examples\Statistical\Histogram\Horizontal.md = public\Plotly\Examples\Statistical\Histogram\Horizontal.md
+		public\Plotly\Examples\Statistical\Histogram\Normalized.md = public\Plotly\Examples\Statistical\Histogram\Normalized.md
+		public\Plotly\Examples\Statistical\Histogram\Overlaid.md = public\Plotly\Examples\Statistical\Histogram\Overlaid.md
+		public\Plotly\Examples\Statistical\Histogram\SpecifiedBinning.md = public\Plotly\Examples\Statistical\Histogram\SpecifiedBinning.md
+		public\Plotly\Examples\Statistical\Histogram\Stacked.md = public\Plotly\Examples\Statistical\Histogram\Stacked.md
+		public\Plotly\Examples\Statistical\Histogram\Styled.md = public\Plotly\Examples\Statistical\Histogram\Styled.md
 	EndProjectSection
 EndProject
 Global
@@ -268,6 +280,7 @@ Global
 		{DB48F7B0-9D46-4B09-8FD1-B065CDF4AAB3} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{08DC8364-BAFA-451D-B1AB-8A73B87E9552} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{11290115-7F1A-4A18-B087-63D6E438476B} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{A0CB93A3-BF21-4900-B17F-342776C8CC06} = {0D457903-8E32-4932-893E-C26C4918366E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

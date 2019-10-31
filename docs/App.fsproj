@@ -4,6 +4,14 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Statistical\Histogram\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Histogram\Horizontal.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Histogram\Overlaid.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Histogram\Stacked.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Histogram\Styled.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Histogram\Cumulative.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Histogram\Normalized.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Histogram\SpecifiedBinning.fs" />
     <Compile Include="Plotly\Examples\Statistical\BoxPlot\Basic.fs" />
     <Compile Include="Plotly\Examples\Statistical\BoxPlot\UnderlyingData.fs" />
     <Compile Include="Plotly\Examples\Statistical\BoxPlot\Horizontal.fs" />
@@ -14,15 +22,15 @@
     <Compile Include="Plotly\Examples\Statistical\BoxPlot\Colored.fs" />
     <Compile Include="Plotly\Examples\Statistical\BoxPlot\Styled.fs" />
     <Compile Include="Plotly\Examples\Statistical\BoxPlot\Rainbow.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBars\FilledLines.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBars\AsymmetricWithOffset.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Basic.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ErrorBars\WithBarChart.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Horizontal.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Asymmetric.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ErrorBars\Styled.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ErrorBars\PercentageOfYValue.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ErrorBars\AsymmetricWithOffset.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBar\FilledLines.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBar\AsymmetricWithOffset.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBar\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBar\WithBarChart.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBar\Horizontal.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBar\Asymmetric.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBar\Styled.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBar\PercentageOfYValue.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ErrorBar\AsymmetricWithOffset.fs" />
     <Compile Include="Plotly\Examples\Basic\MultipleChartTypes\LineAndBar.fs" />
     <Compile Include="Plotly\Examples\Basic\MultipleChartTypes\ContourAndScatter.fs" />
     <Compile Include="Plotly\Examples\Basic\Table\Basic.fs" />

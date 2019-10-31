@@ -5,28 +5,28 @@ open Feliz
 open Feliz.Plotly
 open Zanaptak.TypedCssClasses
 
-type private Bulma = CssClasses<"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css", Naming.PascalCase>
+type Bulma = CssClasses<"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css", Naming.PascalCase>
 
-type private ColorScheme =
+type ColorScheme =
     | Markers
     | Colorway
     | Colorscale
 
-type private State =
+type State =
     { ColorScheme: ColorScheme }
 
-type private Msg =
+type Msg =
     | ChangeScheme of ColorScheme
 
-let private init = { ColorScheme = Markers }
+let init = { ColorScheme = Markers }
 
-let private update (state: State) = function
+let update (state: State) = function
     | ChangeScheme colorScheme -> { state with ColorScheme = colorScheme }
 
-let private labels = [ "A1"; "A2"; "A3"; "A4"; "A5"; "B1"; "B2" ]
-let private parents = [ ""; "A1"; "A2"; "A3"; "A4"; ""; "B1" ]
+let labels = [ "A1"; "A2"; "A3"; "A4"; "A5"; "B1"; "B2" ]
+let parents = [ ""; "A1"; "A2"; "A3"; "A4"; ""; "B1" ]
 
-let private markersChart () =
+let markersChart () =
     Plotly.plot [
         plot.traces [
             traces.treemap [
@@ -47,7 +47,7 @@ let private markersChart () =
         ]
     ]
 
-let private colorwayChart () =
+let colorwayChart () =
     Plotly.plot [
         plot.traces [
             traces.treemap [
@@ -63,7 +63,7 @@ let private colorwayChart () =
         ]
     ]
 
-let private colorscaleChart () =
+let colorscaleChart () =
     Plotly.plot [
         plot.traces [
             traces.treemap [
