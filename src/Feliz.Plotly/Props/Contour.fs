@@ -500,6 +500,14 @@ type contour =
     static member inline hovertextsrc (value: string) = Interop.mkContourAttr "hovertextsrc" value
     /// Sets the source reference on plot.ly for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkContourAttr "hovertemplatesrc" value
+    /// Sets whether or not dynamic contours are shown on hover
+    static member inline show (value: bool) = Interop.mkContourAttr "show" value
+    /// Sets the color of the contour lines.
+    static member inline color (value: string) = Interop.mkContourAttr "color" value
+    /// Sets the width of the contour lines.
+    static member inline width (value: int) = Interop.mkContourAttr "width" value
+    /// Sets the width of the contour lines.
+    static member inline width (value: float) = Interop.mkContourAttr "width" value
 
 [<AutoOpen>]
 module contour =

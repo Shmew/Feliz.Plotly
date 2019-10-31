@@ -52,6 +52,12 @@ type line =
     static member inline widthsrc (value: string) = Interop.mkLineAttr "widthsrc" value
     /// Sets the source reference on plot.ly for  color .
     static member inline colorsrc (value: string) = Interop.mkLineAttr "colorsrc" value
+    /// Sets the border line color of the outlier sample points. Defaults to marker.color
+    static member inline outliercolor (value: string) = Interop.mkLineAttr "outliercolor" value
+    /// Sets the border line width (in px) of the outlier sample points.
+    static member inline outlierwidth (value: int) = Interop.mkLineAttr "outlierwidth" value
+    /// Sets the border line width (in px) of the outlier sample points.
+    static member inline outlierwidth (value: float) = Interop.mkLineAttr "outlierwidth" value
     /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `line.color`is set to a numerical array.
     static member inline showscale (value: bool) = Interop.mkLineAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkLineAttr "colorbar" (createObj !!properties)

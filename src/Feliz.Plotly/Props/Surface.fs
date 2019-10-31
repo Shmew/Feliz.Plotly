@@ -400,6 +400,16 @@ type surface =
     static member inline surfacecolorsrc (value: string) = Interop.mkSurfaceAttr "surfacecolorsrc" value
     /// Sets the source reference on plot.ly for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkSurfaceAttr "hoverinfosrc" value
+    /// Hides/displays surfaces between minimum and maximum iso-values.
+    static member inline show (value: bool) = Interop.mkSurfaceAttr "show" value
+    /// Sets the number of iso-surfaces between minimum and maximum iso-values. By default this value is 2 meaning that only minimum and maximum surfaces would be drawn.
+    static member inline count (value: int) = Interop.mkSurfaceAttr "count" value
+    /// Sets the fill ratio of the iso-surface. The default fill value of the surface is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.
+    static member inline fill (value: int) = Interop.mkSurfaceAttr "fill" value
+    /// Sets the fill ratio of the iso-surface. The default fill value of the surface is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.
+    static member inline fill (value: float) = Interop.mkSurfaceAttr "fill" value
+    /// Sets the surface pattern of the iso-surface 3-D sections. The default pattern of the surface is `all` meaning that the rest of surface elements would be shaded. The check options (either 1 or 2) could be used to draw half of the squares on the surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
+    static member inline pattern (properties: #ISurfaceProperty list) = Interop.mkSurfaceAttr "pattern" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
 
 [<AutoOpen>]
 module surface =
@@ -481,4 +491,16 @@ module surface =
         static member inline taiwan = Interop.mkSurfaceAttr "zcalendar" "taiwan"
         static member inline thai = Interop.mkSurfaceAttr "zcalendar" "thai"
         static member inline ummalqura = Interop.mkSurfaceAttr "zcalendar" "ummalqura"
+
+    /// Sets the surface pattern of the iso-surface 3-D sections. The default pattern of the surface is `all` meaning that the rest of surface elements would be shaded. The check options (either 1 or 2) could be used to draw half of the squares on the surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
+    [<Erase>]
+    type pattern =
+        static member inline all = Interop.mkSurfaceAttr "pattern" "all"
+        static member inline even = Interop.mkSurfaceAttr "pattern" "even"
+        static member inline odd = Interop.mkSurfaceAttr "pattern" "odd"
+        static member inline A = Interop.mkSurfaceAttr "pattern" "A"
+        static member inline B = Interop.mkSurfaceAttr "pattern" "B"
+        static member inline C = Interop.mkSurfaceAttr "pattern" "C"
+        static member inline D = Interop.mkSurfaceAttr "pattern" "D"
+        static member inline E = Interop.mkSurfaceAttr "pattern" "E"
 

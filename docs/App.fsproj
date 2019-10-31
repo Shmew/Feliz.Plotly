@@ -4,6 +4,16 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\UnderlyingData.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\Horizontal.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\Grouped.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\StyledOutliers.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\StyledMeanAndStdDev.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\GroupedHorizontal.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\Colored.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\Styled.fs" />
+    <Compile Include="Plotly\Examples\Statistical\BoxPlot\Rainbow.fs" />
     <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBars\FilledLines.fs" />
     <Compile Include="Plotly\Examples\Statistical\ContinuousErrorBars\AsymmetricWithOffset.fs" />
     <Compile Include="Plotly\Examples\Statistical\ErrorBars\Basic.fs" />

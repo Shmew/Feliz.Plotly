@@ -188,8 +188,21 @@ let samples =
             [ "plotly-chart-continuouserrorbars-filledlines", Samples.ContinuousErrorBar.FilledLines.chart()
               "plotly-chart-continuouserrorbars-asymmetricwithoffset", Samples.ContinuousErrorBar.AsymmetricWithOffset.chart() ]
 
+        let boxPlots =
+            [ "plotly-chart-boxplot-basic", Samples.BoxPlot.Basic.chart()
+              "plotly-chart-boxplot-underlyingdata", Samples.BoxPlot.UnderlyingData.chart()
+              "plotly-chart-boxplot-horizontal", Samples.BoxPlot.Horizontal.chart()
+              "plotly-chart-boxplot-grouped", Samples.BoxPlot.Grouped.chart()
+              "plotly-chart-boxplot-styledoutliers", Samples.BoxPlot.StyledOutliers.chart()
+              "plotly-chart-boxplot-styledmeanandstddev", Samples.BoxPlot.StyledMeanAndStdDev.chart()
+              "plotly-chart-boxplot-groupedhorizontal", Samples.BoxPlot.GroupedHorizontal.chart()
+              "plotly-chart-boxplot-colored", Samples.BoxPlot.Colored.chart()
+              "plotly-chart-boxplot-styled", Samples.BoxPlot.Styled.chart()
+              "plotly-chart-boxplot-rainbow", Samples.BoxPlot.Rainbow.chart() ]
+
         [ errorBars
-          continuousErrorBars ]
+          continuousErrorBars
+          boxPlots ]
         |> List.concat
 
     [ basicSamples; statisticalExamples ]
@@ -515,6 +528,18 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Filled Lines" [ Urls.FilledLines ]
                             nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
                         ]
+                        subNestedMenuList "Box Plots" [ Urls.BoxPlot ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Underlying Data" [ Urls.UnderlyingData ]
+                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                            nestedMenuItem "Grouped" [ Urls.Grouped ]
+                            nestedMenuItem "Styled Outliers" [ Urls.StyledOutliers ]
+                            nestedMenuItem "Styled Mean and Std Dev" [ Urls.StyledMeanAndStdDev ]
+                            nestedMenuItem "Grouped Horizontal" [ Urls.GroupedHorizontal ]
+                            nestedMenuItem "Colored" [ Urls.Colored ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                            nestedMenuItem "Rainbow" [ Urls.Rainbow ]
+                        ]
                     ]
                 ]
             ]
@@ -677,6 +702,20 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
         | _ -> [ ]
         |> List.append [ Urls.ContinuousErrorBars ]
+    | Urls.BoxPlot :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.UnderlyingData ] -> [ "UnderlyingData.md" ]
+        | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
+        | [ Urls.Grouped ] -> [ "Grouped.md" ]
+        | [ Urls.StyledOutliers ] -> [ "StyledOutliers.md" ]
+        | [ Urls.StyledMeanAndStdDev ] -> [ "StyledMeanandStdDev.md" ]
+        | [ Urls.GroupedHorizontal ] -> [ "GroupedHorizontal.md" ]
+        | [ Urls.Colored ] -> [ "Colored.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | [ Urls.Rainbow ] -> [ "Rainbow.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.BoxPlot ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []

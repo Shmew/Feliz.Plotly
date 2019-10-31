@@ -205,6 +205,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContinuousErrorBars", "Cont
 		public\Plotly\Examples\Statistical\ContinuousErrorBars\FilledLines.md = public\Plotly\Examples\Statistical\ContinuousErrorBars\FilledLines.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BoxPlot", "BoxPlot", "{11290115-7F1A-4A18-B087-63D6E438476B}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\BoxPlot\Basic.md = public\Plotly\Examples\Statistical\BoxPlot\Basic.md
+		public\Plotly\Examples\Statistical\BoxPlot\Colored.md = public\Plotly\Examples\Statistical\BoxPlot\Colored.md
+		public\Plotly\Examples\Statistical\BoxPlot\Grouped.md = public\Plotly\Examples\Statistical\BoxPlot\Grouped.md
+		public\Plotly\Examples\Statistical\BoxPlot\GroupedHorizontal.md = public\Plotly\Examples\Statistical\BoxPlot\GroupedHorizontal.md
+		public\Plotly\Examples\Statistical\BoxPlot\Horizontal.md = public\Plotly\Examples\Statistical\BoxPlot\Horizontal.md
+		public\Plotly\Examples\Statistical\BoxPlot\Rainbow.md = public\Plotly\Examples\Statistical\BoxPlot\Rainbow.md
+		public\Plotly\Examples\Statistical\BoxPlot\Styled.md = public\Plotly\Examples\Statistical\BoxPlot\Styled.md
+		public\Plotly\Examples\Statistical\BoxPlot\StyledMeanAndStdDev.md = public\Plotly\Examples\Statistical\BoxPlot\StyledMeanAndStdDev.md
+		public\Plotly\Examples\Statistical\BoxPlot\StyledOutliers.md = public\Plotly\Examples\Statistical\BoxPlot\StyledOutliers.md
+		public\Plotly\Examples\Statistical\BoxPlot\UnderlyingData.md = public\Plotly\Examples\Statistical\BoxPlot\UnderlyingData.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -253,6 +267,7 @@ Global
 		{0D457903-8E32-4932-893E-C26C4918366E} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{DB48F7B0-9D46-4B09-8FD1-B065CDF4AAB3} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{08DC8364-BAFA-451D-B1AB-8A73B87E9552} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{11290115-7F1A-4A18-B087-63D6E438476B} = {0D457903-8E32-4932-893E-C26C4918366E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

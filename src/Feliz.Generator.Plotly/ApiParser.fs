@@ -66,7 +66,7 @@ module rec ApiParser =
         let jumpArray = [ "annotations" ]
 
         let isSkip =
-            [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType" ]
+            [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType"; "transform" ]
             |> List.contains propName
 
         let propMethodName =
@@ -211,14 +211,19 @@ module rec ApiParser =
         |> Component.addParentComponentTree parentTree
         |> addProps
 
+    /// Parses the root schema for components with the given name returning a JsonValue of a collected set of properties
     let getAllAttributes (property: string) =
         let rec getAttributes attribList parent (jVal: JsonValue) =
-            match jVal.Properties with
-            | attribs when attribs.Length > 0 && attribs |> Array.map fst |> Array.contains "valType" -> [||]
+            jVal.Properties
+            |> function
             | attribs when attribs |> Array.filter (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone) |> Array.length > 0 -> 
-                attribs 
-                |> Array.filter (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone)
-                |> Array.collect (fun (_, attrib) -> [| parent , attrib |])
+                attribs
+                |> Array.partition (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone)
+                ||> fun matches others ->
+                    let addedAttribList = 
+                        matches |> Array.collect (fun (_, attrib) -> [| parent , attrib |])
+                        |> Array.append attribList
+                    Array.append addedAttribList (Array.collect (fun (pName,j) -> getAttributes [||] pName j) others)
             | _ ->
                 Array.append attribList (Array.collect (fun (pName,j) -> getAttributes [||] pName j) jVal.Properties)
 
@@ -227,6 +232,7 @@ module rec ApiParser =
         |> Array.distinct
         |> JsonValue.Record
 
+    /// Gets a list of all components within the schema with their collected properties
     let getAllComponents () =
         let fixComponentName =
             trimJson
@@ -260,7 +266,7 @@ module rec ApiParser =
 
         let result =
             let schemaSkips = [ "defs" ]
-            let compSkips = [ "type" ]
+            let compSkips = [ "type"; "transform" ]
 
             schema.Properties
             |> Array.filter (fun (name,_) -> List.contains name schemaSkips |> not)

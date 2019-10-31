@@ -416,6 +416,13 @@ type bar =
     static member inline rsrc (value: string) = Interop.mkBarAttr "rsrc" value
     /// Sets the source reference on plot.ly for  t .
     static member inline tsrc (value: string) = Interop.mkBarAttr "tsrc" value
+    /// Sets the background color of the arc.
+    static member inline color (value: string) = Interop.mkBarAttr "color" value
+    static member inline line (properties: #ILineProperty list) = Interop.mkBarAttr "line" (createObj !!properties)
+    /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
+    static member inline thickness (value: int) = Interop.mkBarAttr "thickness" value
+    /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
+    static member inline thickness (value: float) = Interop.mkBarAttr "thickness" value
 
 [<AutoOpen>]
 module bar =

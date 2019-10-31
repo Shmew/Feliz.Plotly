@@ -24,7 +24,7 @@ let randomDates (dates: (int * int * int) list) (count: int) =
             let startDate = DateTime(y,m,d).Ticks
             let endDate = DateTime(y2,m2,d2).Ticks
             (startDate - endDate) 
-            |> ((*) (i |> int64))
+            |> (fun n -> n * (i |> int64))
             |> ((+) startDate)
             |> DateTime
             |> List.singleton
@@ -41,6 +41,9 @@ let chart () =
             traces.scatter [
                 scatter.x (randomDates [ (2001, 01, 01); (2001, 02, 01) ] 50)
                 scatter.y (randomNumber 50 20)
+                scatter.line [
+                    line.width 0
+                ]
                 scatter.marker [
                     marker.color "#444"
                 ]
@@ -76,7 +79,7 @@ let chart () =
         plot.layout [
             layout.showlegend false
             layout.title [
-                title.text "Continuous, variable value error bars&lt;br&gt;Notice the hover text!"
+                title.text "Continuous, variable value error bars<br>Notice the hover text!"
             ]
             layout.yaxis [
                 yaxis.title [

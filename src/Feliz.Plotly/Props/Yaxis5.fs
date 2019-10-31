@@ -344,6 +344,14 @@ type yaxis5 =
     static member inline ticktextsrc (value: string) = Interop.mkYaxis5Attr "ticktextsrc" value
     /// Sets the source reference on plot.ly for  categoryarray .
     static member inline categoryarraysrc (value: string) = Interop.mkYaxis5Attr "categoryarraysrc" value
+    /// Sets whether or not spikes extending from the projection data points to this axis' wall boundaries are shown on hover.
+    static member inline spikesides (value: bool) = Interop.mkYaxis5Attr "spikesides" value
+    /// Sets whether or not this axis' wall has a background color.
+    static member inline showbackground (value: bool) = Interop.mkYaxis5Attr "showbackground" value
+    /// Sets the background color of this axis' wall.
+    static member inline backgroundcolor (value: string) = Interop.mkYaxis5Attr "backgroundcolor" value
+    /// Sets whether or not this axis is labeled
+    static member inline showaxeslabels (value: bool) = Interop.mkYaxis5Attr "showaxeslabels" value
 
 [<AutoOpen>]
 module yaxis5 =
