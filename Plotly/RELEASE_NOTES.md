@@ -61,3 +61,6 @@
 ### 0.10.0 - Wednesday, October 30, 2019
 * Added support for DateTime where applicable
 * Compiled against latest Feliz version
+
+### 0.10.1 - Wednesday, October 30, 2019
+* Fixed an issue where some deeply nested properties didn't get compiled for some attributes
