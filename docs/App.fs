@@ -709,7 +709,7 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
         | [ Urls.Grouped ] -> [ "Grouped.md" ]
         | [ Urls.StyledOutliers ] -> [ "StyledOutliers.md" ]
-        | [ Urls.StyledMeanAndStdDev ] -> [ "StyledMeanandStdDev.md" ]
+        | [ Urls.StyledMeanAndStdDev ] -> [ "StyledMeanAndStdDev.md" ]
         | [ Urls.GroupedHorizontal ] -> [ "GroupedHorizontal.md" ]
         | [ Urls.Colored ] -> [ "Colored.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
