@@ -12,7 +12,7 @@ open Fable.SimpleJson
 open Feliz
 open Feliz.Plotly
 
-module private JsonParsing =
+module JsonParsing =
     type EnergyNode =
         { label: string [] }
 
@@ -29,14 +29,14 @@ module private JsonParsing =
     type EnergyJson =
         { data: EnergyData [] }
 
-type private EnergyData =
+type EnergyData =
     { NodeLabel: string []
       LinkSource: int []
       LinkTarget: int []
       LinkValue: float []
       LinkLabel: string [] }
 
-module private EnergyData =
+module EnergyData =
     let empty =
         { NodeLabel = [||]
           LinkSource = [||]
@@ -44,7 +44,7 @@ module private EnergyData =
           LinkValue = [||]
           LinkLabel = [||] }
 
-let private render (data: EnergyData) =
+let render (data: EnergyData) =
     Plotly.plot [
         plot.traces [
             traces.sankey [
@@ -87,7 +87,7 @@ let private render (data: EnergyData) =
         ]
     ]
 
-let private chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
+let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
     let isLoading, setLoading = React.useState false
     let error, setError = React.useState<Option<string>> None
     let content, setContent = React.useState EnergyData.empty
