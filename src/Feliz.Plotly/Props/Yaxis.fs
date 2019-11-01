@@ -16,25 +16,25 @@ type yaxis =
     static member inline color (value: string) = Interop.mkYaxisAttr "color" value
     static member inline title (properties: #ITitleProperty list) = Interop.mkYaxisAttr "title" (createObj !!properties)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: bool) = Interop.mkYaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: bool) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<bool>) = Interop.mkYaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<bool>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: System.DateTime) = Interop.mkYaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: System.DateTime) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<System.DateTime>) = Interop.mkYaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<System.DateTime>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: int) = Interop.mkYaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: int) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<int>) = Interop.mkYaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<int>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: float) = Interop.mkYaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: float) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<float>) = Interop.mkYaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<float>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: string) = Interop.mkYaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: string) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<string>) = Interop.mkYaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<string>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
     /// Determines whether or not this axis is zoom-able. If true, then zoom is disabled.
     static member inline fixedrange (value: bool) = Interop.mkYaxisAttr "fixedrange" value
     /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
@@ -259,13 +259,13 @@ type yaxis =
     /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
     static member inline dividerwidth (value: float) = Interop.mkYaxisAttr "dividerwidth" value
     /// Sets the domain of this axis (in plot fraction).
-    static member inline domain (value: int) = Interop.mkYaxisAttr "domain" (value |> Array.singleton)
+    static member inline domain (value: int) = Interop.mkYaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
     /// Sets the domain of this axis (in plot fraction).
-    static member inline domain (values: seq<int>) = Interop.mkYaxisAttr "domain" (values |> Array.ofSeq)
+    static member inline domain (values: seq<int>) = Interop.mkYaxisAttr "domain" (values |> ResizeArray)
     /// Sets the domain of this axis (in plot fraction).
-    static member inline domain (value: float) = Interop.mkYaxisAttr "domain" (value |> Array.singleton)
+    static member inline domain (value: float) = Interop.mkYaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
     /// Sets the domain of this axis (in plot fraction).
-    static member inline domain (values: seq<float>) = Interop.mkYaxisAttr "domain" (values |> Array.ofSeq)
+    static member inline domain (values: seq<float>) = Interop.mkYaxisAttr "domain" (values |> ResizeArray)
     /// Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to *free*.
     static member inline position (value: int) = Interop.mkYaxisAttr "position" value
     /// Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to *free*.

@@ -408,11 +408,11 @@ type ohlc =
     /// Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
     static member inline text (value: string) = Interop.mkOhlcAttr "text" value
     /// Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
-    static member inline text (values: seq<string>) = Interop.mkOhlcAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkOhlcAttr "text" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkOhlcAttr "hovertext" value
     /// Same as `text`.
-    static member inline hovertext (values: seq<string>) = Interop.mkOhlcAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<string>) = Interop.mkOhlcAttr "hovertext" (values |> ResizeArray)
     /// Sets the width of the open/close tick marks relative to the *x* minimal interval.
     static member inline tickwidth (value: int) = Interop.mkOhlcAttr "tickwidth" value
     /// Sets the width of the open/close tick marks relative to the *x* minimal interval.

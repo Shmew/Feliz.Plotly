@@ -12,7 +12,7 @@ module ParserUtils =
     let schema =
         File.readAsString (__SOURCE_DIRECTORY__ @@ "../../paket-files/generator/plotly/plotly.js/dist/plot-schema.json")
         |> JsonValue.Parse
-    
+
     /// Returns `true` if the `JsonValue` is a component
     let private isComp (jVal: JsonValue) =
         jVal
@@ -43,20 +43,22 @@ module ParserUtils =
         |> List.filter (fun s -> s <> "")
 
     let trimBypass (s: string) =
-        if s.EndsWith("_BYPASS") then s.Substring(0,s.Length-7)
+        if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7)
         else s
 
     let trimBypassWith (s: string) trueFun falseFun =
-        if s.EndsWith("_BYPASS") then 
-            s.Substring(0,s.Length-7) |> trueFun
+        if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7) |> trueFun
         else falseFun s
 
-    let skips = 
-        schema?defs?metaKeys.AsArray() 
-        |> Array.toList 
+    let skips =
+        schema?defs?metaKeys.AsArray()
+        |> Array.toList
         |> List.map (JsonValue.asString >> trimJson)
 
-    let traceChildren = schema?traces.Properties |> Array.map fst |> List.ofArray
+    let traceChildren =
+        schema?traces.Properties
+        |> Array.map fst
+        |> List.ofArray
 
 module rec ApiParser =
     open ParserUtils
@@ -80,30 +82,32 @@ module rec ApiParser =
 
         let propType = ValType.getType propName jVal
 
-        let propOverloads = 
-            if isSkip then []
+        let propOverloads =
+            if isSkip then
+                []
             else
-                ValType.getOverloadStrings (componentTree |> List.rev |> List.head) (propMethodName |> String.upperFirst) propType 
-                |> List.map (fun (paramsCode, valueCode) -> 
-                    if List.contains propMethodName traceChildren && componentTree |> List.head = "Traces" then
-                        (paramsCode, 
-                         sprintf "(createObj !!(properties @ [ unbox (Interop.mk%sAttr \"type\" \"%s\") ]))" 
-                            (propMethodName |> String.upperFirst) propMethodName)
-                        ||> RegularPropOverload.create
-                    elif List.contains propMethodName jumpArray then
+                ValType.getOverloadStrings
+                    (componentTree
+                     |> List.rev
+                     |> List.head) (propMethodName |> String.upperFirst) propType
+                |> List.map (fun (paramsCode, valueCode) ->
+                    if List.contains propMethodName traceChildren && componentTree
+                                                                     |> List.head = "Traces" then
                         (paramsCode,
-                         "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)")
+                         sprintf "(createObj !!(properties @ [ unbox (Interop.mk%sAttr \"type\" \"%s\") ]))"
+                             (propMethodName |> String.upperFirst) propMethodName) ||> RegularPropOverload.create
+                    elif List.contains propMethodName jumpArray then
+                        (paramsCode, "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)")
                         ||> RegularPropOverload.create
                     else RegularPropOverload.create paramsCode valueCode)
 
         let enumOverloads =
             match propType with
             | ValType.Enumerated
-            | ValType.EnumeratedArray
-                ->
-                    jVal?values.AsArray()
-                    |> Array.map JsonValue.asString
-                    |> List.ofArray
+            | ValType.EnumeratedArray ->
+                jVal?values.AsArray()
+                |> Array.map JsonValue.asString
+                |> List.ofArray
             | ValType.EnumeratedWithCustom ->
                 jVal?values.AsArray()
                 |> Array.map (fun j ->
@@ -116,9 +120,13 @@ module rec ApiParser =
                     jVal?flags.AsArray()
                     |> List.ofArray
                     |> List.map (JsonValue.asString >> trimJson)
+
                 let extras =
                     match jVal.TryGetProperty("extras") with
-                    | Some extras -> extras.AsArray() |> List.ofArray |> List.map (JsonValue.asString)
+                    | Some extras ->
+                        extras.AsArray()
+                        |> List.ofArray
+                        |> List.map (JsonValue.asString)
                     | None -> []
 
                 extras @ flagCombinations
@@ -137,13 +145,12 @@ module rec ApiParser =
                     |> snakeCaseToCamelCase
                     |> prefixUnderscoreOrNegativeToNumbers
                     |> appendApostropheToReservedKeywords
-                
+
                 match propType with
                 | ValType.EnumeratedWithCustom when v = "custom" ->
                     let paramsCode, valueCode = ValType.stringStr
-                    
-                    EnumPropOverload.create methodName valueCode
-                    |> EnumPropOverload.setParamsCode paramsCode
+
+                    EnumPropOverload.create methodName valueCode |> EnumPropOverload.setParamsCode paramsCode
                 | _ -> EnumPropOverload.create methodName (sprintf "\"%s\"" (trimJson v)))
             |> List.distinct
 
@@ -165,14 +172,13 @@ module rec ApiParser =
         let jumpCompIf = [ ("Layout", "layoutAttributes") ]
         let parentTree = parentTree |> List.map trimBypass
 
-        let rec performJumps (name: string) (j: JsonValue) =    
-            if List.contains name jumpComp then
-                j.Properties |> Array.collect (fun (name, j) -> performJumps name j)
-            else (name,j) |> Array.singleton
+        let rec performJumps (name: string) (j: JsonValue) =
+            if List.contains name jumpComp then j.Properties |> Array.collect (fun (name, j) -> performJumps name j)
+            else (name, j) |> Array.singleton
 
         let filterAttributes (props: (string * JsonValue) []) =
             let isJumpCompIf name =
-                List.contains name (jumpCompIf |> List.map snd) 
+                List.contains name (jumpCompIf |> List.map snd)
                 && List.contains parentTree.Head (jumpCompIf |> List.map fst)
 
             props
@@ -180,27 +186,30 @@ module rec ApiParser =
                 (Array.singleton
                  >> (fun prop ->
                  match prop |> Array.head with
-                 | attribs when attribs |> fst |> isJumpCompIf  ->
-                        attribs
-                        |> snd
-                        |> fun j -> j.Properties
-                 | (name, j) when List.contains name jumpComp ->
-                     performJumps name j
+                 | attribs when attribs
+                                |> fst
+                                |> isJumpCompIf ->
+                     attribs
+                     |> snd
+                     |> fun j -> j.Properties
+                 | (name, j) when List.contains name jumpComp -> performJumps name j
                  | _ -> prop)
-                 >> (fun prop -> 
-                    prop
-                    |> Array.filter (fun p -> 
-                        Array.contains (fst p) 
-                            ((skips 
-                                |> List.filter (fun skip -> List.contains skip (jumpCompIf |> List.map snd) |> not )) 
-                                |> Array.ofList) 
-                        |> not)))
+                 >> (fun prop ->
+                 prop
+                 |> Array.filter
+                     (fun p ->
+                     Array.contains (fst p)
+                         ((skips |> List.filter (fun skip -> List.contains skip (jumpCompIf |> List.map snd) |> not))
+                          |> Array.ofList) |> not)))
 
         let props =
             jVal.Properties
             |> filterAttributes
-            |> Array.choose (fun (pName,pJ) -> 
-                if pJ.TryGetProperty("description") |> Option.map (fun j -> j.AsString().Contains("deprecated")) |> Option.defaultValue false then None
+            |> Array.choose (fun (pName, pJ) ->
+                if pJ.TryGetProperty("description")
+                   |> Option.map (fun j -> j.AsString().Contains("deprecated"))
+                   |> Option.defaultValue false
+                then None
                 else parseProp parentTree pName pJ |> Some)
             |> Array.distinctBy (fun p -> p.MethodName)
 
@@ -216,24 +225,27 @@ module rec ApiParser =
         let rec getAttributes attribList parent (jVal: JsonValue) =
             jVal.Properties
             |> function
-            | attribs when attribs |> Array.filter (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone) |> Array.length > 0 -> 
+            | attribs when attribs
+                           |> Array.filter (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone)
+                           |> Array.length > 0 ->
                 attribs
                 |> Array.partition (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone)
                 ||> fun matches others ->
-                    let addedAttribList = 
-                        matches |> Array.collect (fun (_, attrib) -> [| parent , attrib |])
+                    let addedAttribList =
+                        matches
+                        |> Array.collect (fun (_, attrib) -> [| parent, attrib |])
                         |> Array.append attribList
-                    Array.append addedAttribList (Array.collect (fun (pName,j) -> getAttributes [||] pName j) others)
+                    Array.append addedAttribList (Array.collect (fun (pName, j) -> getAttributes [||] pName j) others)
             | _ ->
-                Array.append attribList (Array.collect (fun (pName,j) -> getAttributes [||] pName j) jVal.Properties)
+                Array.append attribList (Array.collect (fun (pName, j) -> getAttributes [||] pName j) jVal.Properties)
 
-        getAttributes [||] property schema 
+        getAttributes [||] property schema
         |> Array.collect (snd >> JsonExtensions.Properties)
         |> Array.distinct
         |> JsonValue.Record
 
     /// Gets a list of all components within the schema with their collected properties
-    let getAllComponents () =
+    let getAllComponents() =
         let fixComponentName =
             trimJson
             >> spaceCaseTokebabCase
@@ -243,24 +255,30 @@ module rec ApiParser =
             >> appendApostropheToReservedKeywords
 
         let jumps = [ "attributes"; "items"; "layoutAttributes" ]
-        let expandIf = [ ("layout", "xaxis"); ("layout", "yaxis") ]
-        
-        let rec allComponentNames (jVal: JsonValue) : string list =
-            let props = 
+
+        let expandIf =
+            [ ("layout", "xaxis")
+              ("layout", "yaxis") ]
+
+        let rec allComponentNames (jVal: JsonValue): string list =
+            let props =
                 match jumps |> List.choose (jVal.TryGetProperty) with
                 | j when j.Length > 0 -> (j |> List.head).Properties
                 | _ -> jVal.Properties
-                |> List.ofArray 
-                |> List.filter (fun (name, j) -> 
-                    List.contains name skips |> not
-                    && j.TryGetProperty("valType").IsNone)
+                |> List.ofArray
+                |> List.filter (fun (name, j) -> List.contains name skips
+                                                 |> not
+                                                 && j.TryGetProperty("valType").IsNone)
 
-            let newNames = props |> List.map fst |> List.distinct
+            let newNames =
+                props
+                |> List.map fst
+                |> List.distinct
 
             props
-            |> List.collect (fun (name,j) -> 
+            |> List.collect (fun (name, j) ->
                 if j.TryGetProperty("valType").IsNone then allComponentNames j
-                else [name])
+                else [ name ])
             |> List.append newNames
             |> List.distinct
 
@@ -269,41 +287,43 @@ module rec ApiParser =
             let compSkips = [ "type"; "transform" ]
 
             schema.Properties
-            |> Array.filter (fun (name,_) -> List.contains name schemaSkips |> not)
+            |> Array.filter (fun (name, _) -> List.contains name schemaSkips |> not)
             |> JsonValue.Record
             |> allComponentNames
             |> List.filter (fun name -> List.contains name compSkips |> not)
             |> List.distinct
-            |> List.collect (fun name -> 
-                if List.contains name (expandIf |> List.map snd) then 
-                    [2..5] 
-                    |> List.map (fun i -> true,sprintf "%s%i" name i)
+            |> List.collect (fun name ->
+                if List.contains name (expandIf |> List.map snd) then
+                    [ 2 .. 5 ]
+                    |> List.map (fun i -> true, sprintf "%s%i" name i)
                     |> List.append [ false, name ]
-                else (false, name) |> List.singleton)
-        
-        result 
-        |> List.map (
-            ((fun (b,n) -> 
-                n |> fixComponentName,
-                if b then n.Substring(0,(n.Length-1)) else n
-                |> getAllAttributes
-                |> fun res ->
-                    if n = "layout" then
-                        res.Properties 
-                        |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
-                        |> JsonValue.Record
-                    else res)
-              >> (fun (n,j) ->
-                let others, expanded = 
-                    j.Properties 
-                    |> Array.partition (fun (propN, _) -> List.contains (n,propN) expandIf)
-                others
-                |> Array.collect (fun (propN, propJ) ->
-                    [|2..5|] |> Array.map (fun i -> sprintf "%s%i" propN i, propJ))
-                |> Array.append expanded
-                |> JsonValue.Record
-                |> fun res -> n,res))
-              >> (fun (n,j) -> parseComponent [ n |> String.upperFirst ] n j ))
+                else
+                    (false, name) |> List.singleton)
+
+        result
+        |> List.map
+            (((fun (b, n) ->
+              n |> fixComponentName,
+              if b then n.Substring(0, (n.Length - 1))
+              else n
+              |> getAllAttributes
+              |> fun res ->
+                  if n = "layout" then
+                      res.Properties
+                      |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
+                      |> JsonValue.Record
+                  else
+                      res)
+              >> (fun (n, j) ->
+              let others, expanded =
+                  j.Properties |> Array.partition (fun (propN, _) -> List.contains (n, propN) expandIf)
+              others
+              |> Array.collect
+                  (fun (propN, propJ) -> [| 2 .. 5 |] |> Array.map (fun i -> sprintf "%s%i" propN i, propJ))
+              |> Array.append expanded
+              |> JsonValue.Record
+              |> fun res -> n, res))
+             >> (fun (n, j) -> parseComponent [ n |> String.upperFirst ] n j))
 
     /// Parse the Plotly.js json schema
     let parseApi() =

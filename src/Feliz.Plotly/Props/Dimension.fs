@@ -168,21 +168,21 @@ type dimension =
     /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline tickformat (value: string) = Interop.mkDimensionAttr "tickformat" value
     /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
-    static member inline range (value: int) = Interop.mkDimensionAttr "range" (value |> Array.singleton)
+    static member inline range (value: int) = Interop.mkDimensionAttr "range" (value |> Array.singleton |> ResizeArray)
     /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
-    static member inline range (values: seq<int>) = Interop.mkDimensionAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<int>) = Interop.mkDimensionAttr "range" (values |> ResizeArray)
     /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
-    static member inline range (value: float) = Interop.mkDimensionAttr "range" (value |> Array.singleton)
+    static member inline range (value: float) = Interop.mkDimensionAttr "range" (value |> Array.singleton |> ResizeArray)
     /// The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers as elements.
-    static member inline range (values: seq<float>) = Interop.mkDimensionAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<float>) = Interop.mkDimensionAttr "range" (values |> ResizeArray)
     /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
-    static member inline constraintrange (value: int) = Interop.mkDimensionAttr "constraintrange" (value |> Array.singleton)
+    static member inline constraintrange (value: int) = Interop.mkDimensionAttr "constraintrange" (value |> Array.singleton |> ResizeArray)
     /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
-    static member inline constraintrange (values: seq<int>) = Interop.mkDimensionAttr "constraintrange" (values |> Array.ofSeq)
+    static member inline constraintrange (values: seq<int>) = Interop.mkDimensionAttr "constraintrange" (values |> ResizeArray)
     /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
-    static member inline constraintrange (value: float) = Interop.mkDimensionAttr "constraintrange" (value |> Array.singleton)
+    static member inline constraintrange (value: float) = Interop.mkDimensionAttr "constraintrange" (value |> Array.singleton |> ResizeArray)
     /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
-    static member inline constraintrange (values: seq<float>) = Interop.mkDimensionAttr "constraintrange" (values |> Array.ofSeq)
+    static member inline constraintrange (values: seq<float>) = Interop.mkDimensionAttr "constraintrange" (values |> ResizeArray)
     /// Do we allow multiple selection ranges or just a single range?
     static member inline multiselect (value: bool) = Interop.mkDimensionAttr "multiselect" value
     /// Sets the source reference on plot.ly for  tickvals .

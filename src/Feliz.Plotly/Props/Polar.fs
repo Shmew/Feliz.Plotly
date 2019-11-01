@@ -12,13 +12,13 @@ open Feliz
 type polar =
     static member inline domain (properties: #IDomainProperty list) = Interop.mkPolarAttr "domain" (createObj !!properties)
     /// Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
-    static member inline sector (value: int) = Interop.mkPolarAttr "sector" (value |> Array.singleton)
+    static member inline sector (value: int) = Interop.mkPolarAttr "sector" (value |> Array.singleton |> ResizeArray)
     /// Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
-    static member inline sector (values: seq<int>) = Interop.mkPolarAttr "sector" (values |> Array.ofSeq)
+    static member inline sector (values: seq<int>) = Interop.mkPolarAttr "sector" (values |> ResizeArray)
     /// Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
-    static member inline sector (value: float) = Interop.mkPolarAttr "sector" (value |> Array.singleton)
+    static member inline sector (value: float) = Interop.mkPolarAttr "sector" (value |> Array.singleton |> ResizeArray)
     /// Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
-    static member inline sector (values: seq<float>) = Interop.mkPolarAttr "sector" (values |> Array.ofSeq)
+    static member inline sector (values: seq<float>) = Interop.mkPolarAttr "sector" (values |> ResizeArray)
     /// Sets the fraction of the radius to cut out of the polar subplot.
     static member inline hole (value: int) = Interop.mkPolarAttr "hole" value
     /// Sets the fraction of the radius to cut out of the polar subplot.

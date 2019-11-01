@@ -60,16 +60,6 @@ let chart () =
             layout.title [
                 title.text "Basic Point Cloud"
             ]
-            layout.xaxis [
-                xaxis.type'.linear
-                xaxis.range [ -2.501411175139456; 43.340777299865266 ]
-                xaxis.autorange.true'
-            ]
-            layout.yaxis [
-                yaxis.type'.linear
-                yaxis.range [ 4; 6 ]
-                yaxis.autorange.true'
-            ]
             layout.height 598
             layout.width 1080
             layout.autosize true

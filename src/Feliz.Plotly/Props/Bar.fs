@@ -310,19 +310,19 @@ type bar =
     /// Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: string) = Interop.mkBarAttr "text" value
     /// Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<string>) = Interop.mkBarAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkBarAttr "text" (values |> ResizeArray)
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
     static member inline texttemplate (value: string) = Interop.mkBarAttr "texttemplate" value
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
-    static member inline texttemplate (values: seq<string>) = Interop.mkBarAttr "texttemplate" (values |> Array.ofSeq)
+    static member inline texttemplate (values: seq<string>) = Interop.mkBarAttr "texttemplate" (values |> ResizeArray)
     /// Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (value: string) = Interop.mkBarAttr "hovertext" value
     /// Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
-    static member inline hovertext (values: seq<string>) = Interop.mkBarAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<string>) = Interop.mkBarAttr "hovertext" (values |> ResizeArray)
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkBarAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    static member inline hovertemplate (values: seq<string>) = Interop.mkBarAttr "hovertemplate" (values |> Array.ofSeq)
+    static member inline hovertemplate (values: seq<string>) = Interop.mkBarAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the angle of the tick labels with respect to the bar. For example, a `tickangle` of -90 draws the tick labels vertically. With *auto* the texts may automatically be rotated to fit with the maximum size in bars.
     static member inline textangle (value: int) = Interop.mkBarAttr "textangle" value
     /// Sets the angle of the tick labels with respect to the bar. For example, a `tickangle` of -90 draws the tick labels vertically. With *auto* the texts may automatically be rotated to fit with the maximum size in bars.
@@ -360,17 +360,17 @@ type bar =
     /// Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.
     static member inline offset (value: float) = Interop.mkBarAttr "offset" value
     /// Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.
-    static member inline offset (values: seq<int>) = Interop.mkBarAttr "offset" (values |> Array.ofSeq)
+    static member inline offset (values: seq<int>) = Interop.mkBarAttr "offset" (values |> ResizeArray)
     /// Shifts the position where the bar is drawn (in position axis units). In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode instead.
-    static member inline offset (values: seq<float>) = Interop.mkBarAttr "offset" (values |> Array.ofSeq)
+    static member inline offset (values: seq<float>) = Interop.mkBarAttr "offset" (values |> ResizeArray)
     /// Sets the bar width (in position axis units).
     static member inline width (value: int) = Interop.mkBarAttr "width" value
     /// Sets the bar width (in position axis units).
     static member inline width (value: float) = Interop.mkBarAttr "width" value
     /// Sets the bar width (in position axis units).
-    static member inline width (values: seq<int>) = Interop.mkBarAttr "width" (values |> Array.ofSeq)
+    static member inline width (values: seq<int>) = Interop.mkBarAttr "width" (values |> ResizeArray)
     /// Sets the bar width (in position axis units).
-    static member inline width (values: seq<float>) = Interop.mkBarAttr "width" (values |> Array.ofSeq)
+    static member inline width (values: seq<float>) = Interop.mkBarAttr "width" (values |> ResizeArray)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkBarAttr "marker" (createObj !!properties)
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
     static member inline offsetgroup (value: string) = Interop.mkBarAttr "offsetgroup" value

@@ -1,6 +1,9 @@
 namespace Fable.Plotly.Generator
 
 module rec Domain =
+    open FSharp.Data
+    open FSharp.Data.JsonExtensions
+
     type RegularPropOverloadBody =
         | ValueExprOnly of string
         | CustomBody of string
@@ -72,10 +75,54 @@ module rec Domain =
         /// Sets whether the overload is inline.
         let setInline isInline (overload: EnumPropOverload) = { overload with IsInline = isInline }
 
+    type PrimSpecs =
+        { ArrayOk: bool
+          NumArrayOk: bool
+          TwoDimArrayOk: bool
+          IsCalcType: bool }
+
+    module PrimSpecs =
+        let create (jVal: JsonValue) =
+            let isArrayOk =
+                match jVal.TryGetProperty("arrayOk") with
+                | Some arrOk -> arrOk.AsBoolean()
+                | None -> false
+
+            { ArrayOk = isArrayOk
+              NumArrayOk =
+                  match jVal.TryGetProperty("description") with
+                  | Some desc when desc.AsString().Contains("array of numbers") -> true
+                  | _ -> false
+              TwoDimArrayOk =
+                  if isArrayOk then
+                      jVal.TryGetProperty("description")
+                      |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains "2D array"))
+                      |> Option.defaultValue false
+                  else
+                      false
+              IsCalcType =
+                  let editType =
+                      jVal.TryGetProperty("editType")
+                      |> Option.map (JsonExtensions.AsString >> ((=) "calc"))
+                      |> Option.defaultValue false
+
+                  let role =
+                      jVal.TryGetProperty("role")
+                      |> Option.map (JsonExtensions.AsString >> ((=) "data"))
+                      |> Option.defaultValue false
+
+                  editType && role }
+
+        let allFalse =
+            { ArrayOk = false
+              NumArrayOk = false
+              TwoDimArrayOk = false
+              IsCalcType = false }
+
     [<RequireQualifiedAccess>]
     type ValType =
         | Any
-        | Bool of bool * bool
+        | Bool of PrimSpecs
         | ColorArray
         | ColorScale
         | DataArray
@@ -85,113 +132,102 @@ module rec Domain =
         | FlagList
         | FloatArray
         | InfoArray of ValType
-        | Int of bool * bool
+        | Int of PrimSpecs
         | List of ValType
-        | Number of bool * bool
-        | NumList of ValType
-        | String of bool * bool
+        | Number of PrimSpecs
+        | String of PrimSpecs
         | Component
 
     module ValType =
-        open FSharp.Data
-        open FSharp.Data.JsonExtensions
-
         let boolStr = "(value: bool)", "value"
-        let boolSingleton = "(value: bool)", "(value |> Array.singleton)"
+        let boolResizeSingleton = "(value: bool)", "(value |> Array.singleton |> ResizeArray)"
+        let boolSeqResizeStr = "(values: seq<bool>)", "(values |> ResizeArray)"
         let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
+        let boolSingleton = "(value: bool)", "(value |> Array.singleton)"
         let bool2DSeqStr = "(values: seq<seq<bool>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let bool2DListStr = "(values: seq<bool list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let bool2DListStr =
+            "(values: seq<bool list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let bool2DArrayStr = "(values: seq<bool []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
         let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
 
-        let datU42DArray = "(values: seq<U4<int [], float [], string [], bool []>>)", "(values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)"
-        let dataU42DList = "(values: seq<U4<int list, float list, string list, bool list>>)", "(values |> Seq.map U4.mapListToResize |> Array.ofSeq)"
+        let datU42DArray =
+            "(values: seq<U4<int [], float [], string [], bool []>>)",
+            "(values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)"
+        let dataU42DList =
+            "(values: seq<U4<int list, float list, string list, bool list>>)",
+            "(values |> Seq.map U4.mapListToResize |> Array.ofSeq)"
 
         let dateStr = "(value: System.DateTime)", "value"
-        let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
+        let dateResizeSingleton = "(value: System.DateTime)", "(value |> Array.singleton |> ResizeArray)"
+        let dateSeqResizeStr = "(values: seq<System.DateTime>)", "(values |> ResizeArray)"
         let dateSeqStr = "(values: seq<System.DateTime>)", "(values |> Array.ofSeq)"
+        let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
 
-        let flaglistStrSeq s = sprintf "(properties: #I%sProperty list)" s, "(properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat \"+\")"
-        
+
+        let flaglistStrSeq s =
+            sprintf "(properties: #I%sProperty list)" s,
+            "(properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat \"+\")"
+
         let floatStr = "(value: float)", "value"
+        let floatResizeSingleton = "(value: float)", "(value |> Array.singleton |> ResizeArray)"
+        let floatSeqResizeStr = "(values: seq<float>)", "(values |> ResizeArray)"
+        let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
         let floatSingleton = "(value: float)", "(value |> Array.singleton)"
         let float32FromFloatSeqStr = "(values: seq<float>)", "(values |> Seq.map float32 |> Array.ofSeq)"
         let float32FromIntSeqStr = "(values: seq<int>)", "(values |> Seq.map float32 |> Array.ofSeq)"
-        let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
-        let float2DSeqStr = "(values: seq<seq<float>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let float2DListStr = "(values: seq<float list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let float2DSeqStr =
+            "(values: seq<seq<float>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let float2DListStr =
+            "(values: seq<float list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let float2DArrayStr = "(values: seq<float []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
         let intStr = "(value: int)", "value"
-        let intSingleton = "(value: int)", "(value |> Array.singleton)"
+        let intResizeSingleton = "(value: int)", "(value |> Array.singleton |> ResizeArray)"
+        let intSeqResizeStr = "(values: seq<int>)", "(values |> ResizeArray)"
         let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
+        let intSingleton = "(value: int)", "(value |> Array.singleton)"
         let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let int2DListStr = "(values: seq<int list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let int2DArrayStr = "(values: seq<int []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
         let stringStr = "(value: string)", "value"
-        let stringSingleton = "(value: string)", "(value |> Array.singleton)"
+        let stringResizeSingleton = "(value: string)", "(value |> Array.singleton |> ResizeArray)"
+        let stringSeqResizeStr = "(values: seq<string>)", "(values |> ResizeArray)"
         let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
-        let string2DSeqStr = "(values: seq<seq<string>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let string2DListStr = "(values: seq<string list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let stringSingleton = "(value: string)", "(value |> Array.singleton)"
+        let string2DSeqStr =
+            "(values: seq<seq<string>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let string2DListStr =
+            "(values: seq<string list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let string2DArrayStr = "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
         let allNormalStrs =
-            [ boolStr
-              boolSeqStr
-              dateStr
-              dateSeqStr
-              intStr
-              intSeqStr
-              floatStr
-              floatSeqStr
-              stringStr
-              stringSeqStr ]
+            [ boolStr; boolSeqStr; dateStr; dateSeqStr; intStr; intSeqStr; floatStr; floatSeqStr; stringStr; stringSeqStr ]
 
-        let allBool2DStrs =
-            [ bool2DSeqStr
-              bool2DListStr
-              bool2DArrayStr ]
-        
-        let allFloat2DStrs =
-            [ float2DSeqStr
-              float2DListStr
-              float2DArrayStr ]
-        
-        let allInt2DStrs =
-            [ int2DSeqStr
-              int2DListStr
-              int2DArrayStr ]
+        let allBool2DStrs = [ bool2DSeqStr; bool2DListStr; bool2DArrayStr ]
 
-        let allStr2DStrs =
-            [ string2DSeqStr
-              string2DListStr
-              string2DArrayStr ]
+        let allFloat2DStrs = [ float2DSeqStr; float2DListStr; float2DArrayStr ]
 
-        let all2DStrsNoUnions =
-            allBool2DStrs @ allStr2DStrs @ allInt2DStrs @ allFloat2DStrs
+        let allInt2DStrs = [ int2DSeqStr; int2DListStr; int2DArrayStr ]
 
-        let all2DStrs = 
-            all2DStrsNoUnions @ [ datU42DArray; dataU42DList ]
+        let allStr2DStrs = [ string2DSeqStr; string2DListStr; string2DArrayStr ]
 
-        let allBoolArrStrs =
-            [ boolSingleton; boolSeqStr ]
+        let all2DStrsNoUnions = allBool2DStrs @ allStr2DStrs @ allInt2DStrs @ allFloat2DStrs
 
-        let allDateArrStrs =
-            [ dateSingleton; dateSeqStr ]
+        let all2DStrs = all2DStrsNoUnions @ [ datU42DArray; dataU42DList ]
 
-        let allFloatArrStrs =
-            [ floatSingleton; floatSeqStr ]
+        let allBoolArrStrs = [ boolResizeSingleton; boolSeqResizeStr ]
 
-        let allIntArrStrs =
-            [ intSingleton; intSeqStr ]
+        let allDateArrStrs = [ dateResizeSingleton; dateSeqResizeStr ]
 
-        let allStringArrStrs =
-            [ stringSingleton; stringSeqStr ]
+        let allFloatArrStrs = [ floatResizeSingleton; floatSeqResizeStr ]
 
-        let allArrStrs =
-            allBoolArrStrs @ allDateArrStrs @ allIntArrStrs @ allFloatArrStrs @ allStringArrStrs
+        let allIntArrStrs = [ intResizeSingleton; intSeqResizeStr ]
+
+        let allStringArrStrs = [ stringResizeSingleton; stringSeqResizeStr ]
+
+        let allArrStrs = allBoolArrStrs @ allDateArrStrs @ allIntArrStrs @ allFloatArrStrs @ allStringArrStrs
 
         let getPrimativeOverloadSeq =
             function
@@ -217,48 +253,29 @@ module rec Domain =
                 |> Array.filter (fun s -> s.AsString() |> String.containsRegex)
                 |> Array.length > 0
 
-            let isArrayOk =
-                match jVal.TryGetProperty("arrayOk") with
-                | Some arrOk -> arrOk.AsBoolean()
-                | None -> false
-
-            let arrayAllowances =
-                let is2DArrayOk =
-                    if isArrayOk then
-                        jVal.TryGetProperty("description")
-                        |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains "2D array"))
-                        |> Option.defaultValue false
-                    else false
-
-                isArrayOk, is2DArrayOk
-
-            let isNumArrayOk =
-                match jVal.TryGetProperty("description") with
-                | Some desc when desc.AsString().Contains("array of numbers") -> true
-                | _ -> false
+            let attributes = PrimSpecs.create jVal
 
             match propName, hasValType with
-            | "scaleanchor", true -> ValType.String arrayAllowances
-            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String arrayAllowances
+            | "scaleanchor", true -> ValType.String attributes
+            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
             | "xy", true -> ValType.FloatArray
             | _, true ->
                 match jVal?valType
                       |> JsonValue.asString
                       |> fun s -> s.Trim('"') with
-                | "angle" -> ValType.Number arrayAllowances
+                | "angle" -> ValType.Number attributes
                 | "any" -> ValType.Any
-                | "boolean" -> ValType.Bool arrayAllowances
-                | "color" -> 
-                    match isArrayOk && isNumArrayOk with
+                | "boolean" -> ValType.Bool attributes
+                | "color" ->
+                    match attributes.ArrayOk && attributes.NumArrayOk with
                     | true -> ValType.ColorArray
-                    | false -> ValType.String arrayAllowances
-                | "colorlist" -> ValType.String (false, false) |> ValType.List
+                    | false -> ValType.String attributes
+                | "colorlist" -> ValType.String PrimSpecs.allFalse |> ValType.List
                 | "colorscale" -> ValType.ColorScale
                 | "data_array" -> ValType.DataArray
-                | "enumerated" when isEnumeratedWithCustom() -> 
-                    ValType.EnumeratedWithCustom
-                | "enumerated" -> 
-                    if isArrayOk then ValType.EnumeratedArray
+                | "enumerated" when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
+                | "enumerated" ->
+                    if attributes.ArrayOk then ValType.EnumeratedArray
                     else ValType.Enumerated
                 | "flaglist" -> ValType.FlagList
                 | "info_array" ->
@@ -266,10 +283,10 @@ module rec Domain =
                     else jVal?items.AsArray().[0]
                     |> getType propName
                     |> ValType.InfoArray
-                | "integer" -> ValType.Int arrayAllowances
-                | "number" -> ValType.Number arrayAllowances
-                | "string" -> ValType.String arrayAllowances
-                | "subplotid" -> ValType.String arrayAllowances
+                | "integer" -> ValType.Int attributes
+                | "number" -> ValType.Number attributes
+                | "string" -> ValType.String attributes
+                | "subplotid" -> ValType.String attributes
                 | _ -> ValType.Any
             | _ -> ValType.Component
 
@@ -277,7 +294,14 @@ module rec Domain =
         let getOverloadStrings (parentName: string) (compName: string) (vType: ValType) =
             match vType with
             | ValType.Any -> allNormalStrs
-            | ValType.Bool (arrOkay, twoArrOk) -> [ boolStr; if arrOkay then boolSeqStr; if twoArrOk then yield! allBool2DStrs ]
+            | ValType.Bool attrib ->
+                [ boolStr
+                  if attrib.ArrayOk then
+                      if attrib.IsCalcType then
+                          boolSeqStr
+                      else
+                          boolSeqResizeStr
+                          if attrib.TwoDimArrayOk then yield! allBool2DStrs ]
             | ValType.ColorArray -> [ stringStr; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
             | ValType.ColorScale -> [ stringStr; string2DListStr ]
             | ValType.DataArray -> allNormalStrs @ all2DStrs
@@ -291,11 +315,34 @@ module rec Domain =
                 | ValType.List vtPrim -> vtPrim
                 | _ -> vt
                 |> getPrimativeOverloadSeq
-            | ValType.Int (arrOkay, twoArrOk) -> [ intStr; if arrOkay then intSeqStr; if twoArrOk then yield! allInt2DStrs ]
+            | ValType.Int attrib ->
+                [ intStr
+                  if attrib.ArrayOk then
+                      if attrib.IsCalcType then
+                          intSeqStr
+                      else
+                          intSeqResizeStr
+                          if attrib.TwoDimArrayOk then yield! allInt2DStrs ]
             | ValType.List vt -> getPrimativeOverloadSeq vt
-            | ValType.Number (arrOkay, twoArrOk) -> [ intStr; floatStr; if arrOkay then yield! [ intSeqStr; floatSeqStr ]; if twoArrOk then yield! [ yield! allInt2DStrs; yield! allFloat2DStrs ] ]
-            | ValType.NumList vt -> getPrimativeOverloadSeq vt
-            | ValType.String (arrOkay, twoArrOk) -> [ stringStr; if arrOkay then stringSeqStr; if twoArrOk then yield! allStr2DStrs ]
+            | ValType.Number attrib ->
+                [ intStr
+                  floatStr
+                  if attrib.ArrayOk then
+                      if attrib.IsCalcType then
+                          yield! [ intSeqStr; floatSeqStr ]
+                      else
+                          yield! [ intSeqResizeStr; floatSeqResizeStr ]
+                          if attrib.TwoDimArrayOk then
+                              yield! [ yield! allInt2DStrs
+                                       yield! allFloat2DStrs ] ]
+            | ValType.String attrib ->
+                [ stringStr
+                  if attrib.ArrayOk then
+                      if attrib.IsCalcType then
+                          stringSeqStr
+                      else
+                          stringSeqResizeStr
+                          if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
             | ValType.Component -> [ compStr compName ]
 
         let isPrimative (vType: ValType) =
@@ -367,7 +414,7 @@ module rec Domain =
         let defaults =
             [ { ParamFun = sprintf "(properties: #I%sProperty list)"
                 PropsCode = "(createObj !!properties)"
-                IsInline = true 
+                IsInline = true
                 SkipAttr = false } ]
 
         /// Creates an inline component overload with the specified code for params
@@ -375,7 +422,7 @@ module rec Domain =
         let create paramFun propsCode =
             { ParamFun = paramFun
               PropsCode = propsCode
-              IsInline = true 
+              IsInline = true
               SkipAttr = false }
 
         /// Sets whether the overload is inline.

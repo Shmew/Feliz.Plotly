@@ -4,6 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Subplots\MultipleAxes\TwoYAxes.fs" />
+    <Compile Include="Plotly\Examples\Subplots\MultipleAxes\MultipleYAxes.fs" />
+    <Compile Include="Plotly\Examples\Statistical\2DDensity\WithHistogramSubplots.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogram\BivariateNormalDistribution.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogram\BinningAndStyling.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogram\OverlaidWithScatter.fs" />

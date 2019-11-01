@@ -54,9 +54,9 @@ type parcats =
     /// The number of observations represented by each state. Defaults to 1 so that each state represents one observation
     static member inline counts (value: float) = Interop.mkParcatsAttr "counts" value
     /// The number of observations represented by each state. Defaults to 1 so that each state represents one observation
-    static member inline counts (values: seq<int>) = Interop.mkParcatsAttr "counts" (values |> Array.ofSeq)
+    static member inline counts (values: seq<int>) = Interop.mkParcatsAttr "counts" (values |> ResizeArray)
     /// The number of observations represented by each state. Defaults to 1 so that each state represents one observation
-    static member inline counts (values: seq<float>) = Interop.mkParcatsAttr "counts" (values |> Array.ofSeq)
+    static member inline counts (values: seq<float>) = Interop.mkParcatsAttr "counts" (values |> ResizeArray)
     /// Sets the source reference on plot.ly for  meta .
     static member inline metasrc (value: string) = Interop.mkParcatsAttr "metasrc" value
     /// Sets the source reference on plot.ly for  counts .

@@ -109,11 +109,11 @@ type cells =
     /// Prefix for cell values.
     static member inline prefix (value: string) = Interop.mkCellsAttr "prefix" value
     /// Prefix for cell values.
-    static member inline prefix (values: seq<string>) = Interop.mkCellsAttr "prefix" (values |> Array.ofSeq)
+    static member inline prefix (values: seq<string>) = Interop.mkCellsAttr "prefix" (values |> ResizeArray)
     /// Suffix for cell values.
     static member inline suffix (value: string) = Interop.mkCellsAttr "suffix" value
     /// Suffix for cell values.
-    static member inline suffix (values: seq<string>) = Interop.mkCellsAttr "suffix" (values |> Array.ofSeq)
+    static member inline suffix (values: seq<string>) = Interop.mkCellsAttr "suffix" (values |> ResizeArray)
     /// The height of cells.
     static member inline height (value: int) = Interop.mkCellsAttr "height" value
     /// The height of cells.

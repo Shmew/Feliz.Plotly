@@ -11,13 +11,13 @@ open Feliz
 [<Erase>]
 type angularaxis =
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (value: int) = Interop.mkAngularaxisAttr "domain" (value |> Array.singleton)
+    static member inline domain (value: int) = Interop.mkAngularaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (values: seq<int>) = Interop.mkAngularaxisAttr "domain" (values |> Array.ofSeq)
+    static member inline domain (values: seq<int>) = Interop.mkAngularaxisAttr "domain" (values |> ResizeArray)
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (value: float) = Interop.mkAngularaxisAttr "domain" (value |> Array.singleton)
+    static member inline domain (value: float) = Interop.mkAngularaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (values: seq<float>) = Interop.mkAngularaxisAttr "domain" (values |> Array.ofSeq)
+    static member inline domain (values: seq<float>) = Interop.mkAngularaxisAttr "domain" (values |> ResizeArray)
     /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
     static member inline visible (value: bool) = Interop.mkAngularaxisAttr "visible" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.

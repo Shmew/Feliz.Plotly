@@ -140,9 +140,9 @@ type table =
     /// The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.
     static member inline columnwidth (value: float) = Interop.mkTableAttr "columnwidth" value
     /// The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.
-    static member inline columnwidth (values: seq<int>) = Interop.mkTableAttr "columnwidth" (values |> Array.ofSeq)
+    static member inline columnwidth (values: seq<int>) = Interop.mkTableAttr "columnwidth" (values |> ResizeArray)
     /// The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.
-    static member inline columnwidth (values: seq<float>) = Interop.mkTableAttr "columnwidth" (values |> Array.ofSeq)
+    static member inline columnwidth (values: seq<float>) = Interop.mkTableAttr "columnwidth" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (value: bool) = Interop.mkTableAttr "columnorder" value
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.

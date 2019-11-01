@@ -15,17 +15,17 @@ type marker =
     /// Sets the marker opacity.
     static member inline opacity (value: float) = Interop.mkMarkerAttr "opacity" value
     /// Sets the marker opacity.
-    static member inline opacity (values: seq<int>) = Interop.mkMarkerAttr "opacity" (values |> Array.ofSeq)
+    static member inline opacity (values: seq<int>) = Interop.mkMarkerAttr "opacity" (values |> ResizeArray)
     /// Sets the marker opacity.
-    static member inline opacity (values: seq<float>) = Interop.mkMarkerAttr "opacity" (values |> Array.ofSeq)
+    static member inline opacity (values: seq<float>) = Interop.mkMarkerAttr "opacity" (values |> ResizeArray)
     /// Sets the marker size (in px).
     static member inline size (value: int) = Interop.mkMarkerAttr "size" value
     /// Sets the marker size (in px).
     static member inline size (value: float) = Interop.mkMarkerAttr "size" value
     /// Sets the marker size (in px).
-    static member inline size (values: seq<int>) = Interop.mkMarkerAttr "size" (values |> Array.ofSeq)
+    static member inline size (values: seq<int>) = Interop.mkMarkerAttr "size" (values |> ResizeArray)
     /// Sets the marker size (in px).
-    static member inline size (values: seq<float>) = Interop.mkMarkerAttr "size" (values |> Array.ofSeq)
+    static member inline size (values: seq<float>) = Interop.mkMarkerAttr "size" (values |> ResizeArray)
     /// Sets a maximum number of points to be drawn on the graph. *0* corresponds to no limit.
     static member inline maxdisplayed (value: int) = Interop.mkMarkerAttr "maxdisplayed" value
     /// Sets a maximum number of points to be drawn on the graph. *0* corresponds to no limit.

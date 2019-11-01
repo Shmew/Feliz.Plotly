@@ -274,11 +274,11 @@ type choroplethmapbox =
     /// Sets the text elements associated with each location.
     static member inline text (value: string) = Interop.mkChoroplethmapboxAttr "text" value
     /// Sets the text elements associated with each location.
-    static member inline text (values: seq<string>) = Interop.mkChoroplethmapboxAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkChoroplethmapboxAttr "text" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkChoroplethmapboxAttr "hovertext" value
     /// Same as `text`.
-    static member inline hovertext (values: seq<string>) = Interop.mkChoroplethmapboxAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<string>) = Interop.mkChoroplethmapboxAttr "hovertext" (values |> ResizeArray)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkChoroplethmapboxAttr "marker" (createObj !!properties)
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkChoroplethmapboxAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkChoroplethmapboxAttr "unselected" (createObj !!properties)
@@ -287,7 +287,7 @@ type choroplethmapbox =
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkChoroplethmapboxAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    static member inline hovertemplate (values: seq<string>) = Interop.mkChoroplethmapboxAttr "hovertemplate" (values |> Array.ofSeq)
+    static member inline hovertemplate (values: seq<string>) = Interop.mkChoroplethmapboxAttr "hovertemplate" (values |> ResizeArray)
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     static member inline zauto (value: bool) = Interop.mkChoroplethmapboxAttr "zauto" value
     /// Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.

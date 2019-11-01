@@ -238,6 +238,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2DHistogram", "2DHistogram"
 		public\Plotly\Examples\Statistical\2DHistogram\OverlaidWithScatter.md = public\Plotly\Examples\Statistical\2DHistogram\OverlaidWithScatter.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2DDensity", "2DDensity", "{834836F5-E005-47FE-BBA2-9D8D3679D585}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\2DDensity\WithHistogramSubplots.md = public\Plotly\Examples\Statistical\2DDensity\WithHistogramSubplots.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Subplots", "Subplots", "{075DB580-2D04-43B4-A3D8-025F5D569379}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleAxes", "MultipleAxes", "{8B569A60-A3ED-4EE2-ABAF-3EE5E08CFD36}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Subplots\MultipleAxes\MultipleYAxes.md = public\Plotly\Examples\Subplots\MultipleAxes\MultipleYAxes.md
+		public\Plotly\Examples\Subplots\MultipleAxes\TwoYAxes.md = public\Plotly\Examples\Subplots\MultipleAxes\TwoYAxes.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,6 +302,9 @@ Global
 		{11290115-7F1A-4A18-B087-63D6E438476B} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{A0CB93A3-BF21-4900-B17F-342776C8CC06} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{A86F7BF9-066D-435B-BDA2-C06C0D7027E2} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{834836F5-E005-47FE-BBA2-9D8D3679D585} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{075DB580-2D04-43B4-A3D8-025F5D569379} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{8B569A60-A3ED-4EE2-ABAF-3EE5E08CFD36} = {075DB580-2D04-43B4-A3D8-025F5D569379}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

@@ -1,7 +1,6 @@
 ﻿[<RequireQualifiedAccess>]
 module Samples.Sankey.Styled
 
-open Fable.React
 open Fable.SimpleHttp
 open Fable.SimpleJson
 open Feliz

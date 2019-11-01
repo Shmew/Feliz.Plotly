@@ -389,7 +389,7 @@ type pointcloud =
     /// Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: string) = Interop.mkPointcloudAttr "text" value
     /// Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<string>) = Interop.mkPointcloudAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkPointcloudAttr "text" (values |> ResizeArray)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkPointcloudAttr "marker" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkPointcloudAttr "xaxis" value

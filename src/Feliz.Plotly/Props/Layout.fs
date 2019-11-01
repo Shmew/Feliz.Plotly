@@ -99,29 +99,29 @@ type layout =
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
-    static member inline piecolorway (value: string) = Interop.mkLayoutAttr "piecolorway" (value |> Array.singleton)
+    static member inline piecolorway (value: string) = Interop.mkLayoutAttr "piecolorway" (value |> Array.singleton |> ResizeArray)
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
-    static member inline piecolorway (values: seq<string>) = Interop.mkLayoutAttr "piecolorway" (values |> Array.ofSeq)
+    static member inline piecolorway (values: seq<string>) = Interop.mkLayoutAttr "piecolorway" (values |> ResizeArray)
     /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
     static member inline extendpiecolors (value: bool) = Interop.mkLayoutAttr "extendpiecolors" value
     /// Sets the source reference on plot.ly for  hiddenlabels .
     static member inline hiddenlabelssrc (value: string) = Interop.mkLayoutAttr "hiddenlabelssrc" value
     /// Sets the default sunburst slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendsunburstcolors`.
-    static member inline sunburstcolorway (value: string) = Interop.mkLayoutAttr "sunburstcolorway" (value |> Array.singleton)
+    static member inline sunburstcolorway (value: string) = Interop.mkLayoutAttr "sunburstcolorway" (value |> Array.singleton |> ResizeArray)
     /// Sets the default sunburst slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendsunburstcolors`.
-    static member inline sunburstcolorway (values: seq<string>) = Interop.mkLayoutAttr "sunburstcolorway" (values |> Array.ofSeq)
+    static member inline sunburstcolorway (values: seq<string>) = Interop.mkLayoutAttr "sunburstcolorway" (values |> ResizeArray)
     /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
     static member inline extendsunburstcolors (value: bool) = Interop.mkLayoutAttr "extendsunburstcolors" value
     /// Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.
-    static member inline treemapcolorway (value: string) = Interop.mkLayoutAttr "treemapcolorway" (value |> Array.singleton)
+    static member inline treemapcolorway (value: string) = Interop.mkLayoutAttr "treemapcolorway" (value |> Array.singleton |> ResizeArray)
     /// Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.
-    static member inline treemapcolorway (values: seq<string>) = Interop.mkLayoutAttr "treemapcolorway" (values |> Array.ofSeq)
+    static member inline treemapcolorway (values: seq<string>) = Interop.mkLayoutAttr "treemapcolorway" (values |> ResizeArray)
     /// If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
     static member inline extendtreemapcolors (value: bool) = Interop.mkLayoutAttr "extendtreemapcolors" value
     /// Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.
-    static member inline funnelareacolorway (value: string) = Interop.mkLayoutAttr "funnelareacolorway" (value |> Array.singleton)
+    static member inline funnelareacolorway (value: string) = Interop.mkLayoutAttr "funnelareacolorway" (value |> Array.singleton |> ResizeArray)
     /// Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.
-    static member inline funnelareacolorway (values: seq<string>) = Interop.mkLayoutAttr "funnelareacolorway" (values |> Array.ofSeq)
+    static member inline funnelareacolorway (values: seq<string>) = Interop.mkLayoutAttr "funnelareacolorway" (values |> ResizeArray)
     /// If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
     static member inline extendfunnelareacolors (value: bool) = Interop.mkLayoutAttr "extendfunnelareacolors" value
     /// Sets the global font. Note that fonts used in traces and other layout components inherit from the global font.
@@ -149,9 +149,9 @@ type layout =
     /// Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is explicitly given with `showlegend: true`.
     static member inline showlegend (value: bool) = Interop.mkLayoutAttr "showlegend" value
     /// Sets the default trace colors.
-    static member inline colorway (value: string) = Interop.mkLayoutAttr "colorway" (value |> Array.singleton)
+    static member inline colorway (value: string) = Interop.mkLayoutAttr "colorway" (value |> Array.singleton |> ResizeArray)
     /// Sets the default trace colors.
-    static member inline colorway (values: seq<string>) = Interop.mkLayoutAttr "colorway" (values |> Array.ofSeq)
+    static member inline colorway (values: seq<string>) = Interop.mkLayoutAttr "colorway" (values |> ResizeArray)
     /// If provided, a changed value tells `Plotly.react` that one or more data arrays has changed. This way you can modify arrays in-place rather than making a complete new copy for an incremental change. If NOT provided, `Plotly.react` assumes that data arrays are being treated as immutable, thus any data array with a different identity from its predecessor contains new data.
     static member inline datarevision (value: bool) = Interop.mkLayoutAttr "datarevision" value
     /// If provided, a changed value tells `Plotly.react` that one or more data arrays has changed. This way you can modify arrays in-place rather than making a complete new copy for an incremental change. If NOT provided, `Plotly.react` assumes that data arrays are being treated as immutable, thus any data array with a different identity from its predecessor contains new data.

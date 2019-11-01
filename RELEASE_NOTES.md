@@ -67,3 +67,6 @@
 
 ### 0.11.0 - Thursday, October 31, 2019
 * Added support for custom colorscaling, and fixed api for colorscaling
+
+### 0.12.0 - Friday, November 1, 2019
+* Fixed some attributes being cast to the wrong JS type

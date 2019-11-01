@@ -12,14 +12,11 @@ module Render =
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
-            let attrValue =
-                prop.ParentNameTree |> List.head 
-                //else (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "")
+            let attrValue = prop.ParentNameTree |> List.head
+            //else (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "")
             let bodyCode =
                 match propOverload.BodyCode with
-                | ValueExprOnly expr ->
-                    sprintf "Interop.mk%sAttr \"%s\" %s" attrValue prop.RealPropName
-                        expr
+                | ValueExprOnly expr -> sprintf "Interop.mk%sAttr \"%s\" %s" attrValue prop.RealPropName expr
                 | CustomBody code -> code
             sprintf "static member %s%s %s = %s"
                 (if propOverload.IsInline then "inline "
@@ -105,27 +102,27 @@ module Render =
                     if prop.PropType = ValType.EnumeratedArray then
                         let baseInterface = prop.ParentNameTree.Head
                         sprintf "/// Use a list of enumerated values" |> indent (indentLevel + 1)
-                        sprintf "let inline %ss (properties: #I%sProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mk%sAttr \"%s\""
-                            prop.MethodName baseInterface baseInterface prop.RealPropName
-                        |> indent (indentLevel + 1)
+                        sprintf
+                            "let inline %ss (properties: #I%sProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mk%sAttr \"%s\""
+                            prop.MethodName baseInterface baseInterface prop.RealPropName |> indent (indentLevel + 1)
                         ""
                   for prop, overloads in propsAndEnumOverloads do
-                    let allOverloadsAreInline = overloads |> List.forall (fun o -> o.IsInline)
-                    yield! prop.DocLines
-                           |> List.map
-                               (String.prefix "/// "
-                                >> String.trim
-                                >> indent (indentLevel + 1))
-                    if allOverloadsAreInline then "[<Erase>]" |> indent (indentLevel + 1)
-                    sprintf "type %s =" prop.MethodName |> indent (indentLevel + 1)
-                    for overload in overloads do
-                        yield! overload.DocLines
-                               |> List.map
-                                   (String.prefix "/// "
-                                    >> String.trim
-                                    >> indent (indentLevel + 2))
-                        yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
-                    "" ]
+                      let allOverloadsAreInline = overloads |> List.forall (fun o -> o.IsInline)
+                      yield! prop.DocLines
+                             |> List.map
+                                 (String.prefix "/// "
+                                  >> String.trim
+                                  >> indent (indentLevel + 1))
+                      if allOverloadsAreInline then "[<Erase>]" |> indent (indentLevel + 1)
+                      sprintf "type %s =" prop.MethodName |> indent (indentLevel + 1)
+                      for overload in overloads do
+                          yield! overload.DocLines
+                                 |> List.map
+                                     (String.prefix "/// "
+                                      >> String.trim
+                                      >> indent (indentLevel + 2))
+                          yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
+                      "" ]
 
         /// Gets all prop strings for a component
         let rec propsForComponent indentStart (comp: Component) =
@@ -154,14 +151,11 @@ module Render =
                 else
                     []
 
-            comp.Props
-            |> List.collect propStr
+            comp.Props |> List.collect propStr
 
         /// Builds the interface strings from a `Component list`
         let buildInterfaces (comps: Component list) =
-            let baseInterfaceStr s =
-                sprintf "type I%sProperty = interface end" s
-                |> indent 1
+            let baseInterfaceStr s = sprintf "type I%sProperty = interface end" s |> indent 1
 
             comps
             |> List.collect (propHeadStrings baseInterfaceStr)

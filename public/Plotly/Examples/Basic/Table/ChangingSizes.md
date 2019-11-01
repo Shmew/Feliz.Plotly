@@ -30,8 +30,8 @@ let chart () =
                 table.header [
                     header.values headers
                     header.aligns [
-                        header.align.center
                         header.align.left
+                        header.align.center
                     ]
                     header.height 40
                     header.line [

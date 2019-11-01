@@ -109,11 +109,11 @@ type header =
     /// Prefix for cell values.
     static member inline prefix (value: string) = Interop.mkHeaderAttr "prefix" value
     /// Prefix for cell values.
-    static member inline prefix (values: seq<string>) = Interop.mkHeaderAttr "prefix" (values |> Array.ofSeq)
+    static member inline prefix (values: seq<string>) = Interop.mkHeaderAttr "prefix" (values |> ResizeArray)
     /// Suffix for cell values.
     static member inline suffix (value: string) = Interop.mkHeaderAttr "suffix" value
     /// Suffix for cell values.
-    static member inline suffix (values: seq<string>) = Interop.mkHeaderAttr "suffix" (values |> Array.ofSeq)
+    static member inline suffix (values: seq<string>) = Interop.mkHeaderAttr "suffix" (values |> ResizeArray)
     /// The height of cells.
     static member inline height (value: int) = Interop.mkHeaderAttr "height" value
     /// The height of cells.

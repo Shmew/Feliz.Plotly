@@ -306,25 +306,25 @@ type violin =
     /// If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together
     static member inline scalegroup (value: string) = Interop.mkViolinAttr "scalegroup" value
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (value: bool) = Interop.mkViolinAttr "span" (value |> Array.singleton)
+    static member inline span (value: bool) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (values: seq<bool>) = Interop.mkViolinAttr "span" (values |> Array.ofSeq)
+    static member inline span (values: seq<bool>) = Interop.mkViolinAttr "span" (values |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (value: System.DateTime) = Interop.mkViolinAttr "span" (value |> Array.singleton)
+    static member inline span (value: System.DateTime) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (values: seq<System.DateTime>) = Interop.mkViolinAttr "span" (values |> Array.ofSeq)
+    static member inline span (values: seq<System.DateTime>) = Interop.mkViolinAttr "span" (values |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (value: int) = Interop.mkViolinAttr "span" (value |> Array.singleton)
+    static member inline span (value: int) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (values: seq<int>) = Interop.mkViolinAttr "span" (values |> Array.ofSeq)
+    static member inline span (values: seq<int>) = Interop.mkViolinAttr "span" (values |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (value: float) = Interop.mkViolinAttr "span" (value |> Array.singleton)
+    static member inline span (value: float) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (values: seq<float>) = Interop.mkViolinAttr "span" (values |> Array.ofSeq)
+    static member inline span (values: seq<float>) = Interop.mkViolinAttr "span" (values |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (value: string) = Interop.mkViolinAttr "span" (value |> Array.singleton)
+    static member inline span (value: string) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
-    static member inline span (values: seq<string>) = Interop.mkViolinAttr "span" (values |> Array.ofSeq)
+    static member inline span (values: seq<string>) = Interop.mkViolinAttr "span" (values |> ResizeArray)
     static member inline line (properties: #ILineProperty list) = Interop.mkViolinAttr "line" (createObj !!properties)
     /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
     static member inline fillcolor (value: string) = Interop.mkViolinAttr "fillcolor" value
@@ -344,15 +344,15 @@ type violin =
     /// Sets the text elements associated with each sample value. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline text (value: string) = Interop.mkViolinAttr "text" value
     /// Sets the text elements associated with each sample value. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
-    static member inline text (values: seq<string>) = Interop.mkViolinAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkViolinAttr "text" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkViolinAttr "hovertext" value
     /// Same as `text`.
-    static member inline hovertext (values: seq<string>) = Interop.mkViolinAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<string>) = Interop.mkViolinAttr "hovertext" (values |> ResizeArray)
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkViolinAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    static member inline hovertemplate (values: seq<string>) = Interop.mkViolinAttr "hovertemplate" (values |> Array.ofSeq)
+    static member inline hovertemplate (values: seq<string>) = Interop.mkViolinAttr "hovertemplate" (values |> ResizeArray)
     static member inline box (properties: #IBoxProperty list) = Interop.mkViolinAttr "box" (createObj !!properties)
     static member inline meanline (properties: #IMeanlineProperty list) = Interop.mkViolinAttr "meanline" (createObj !!properties)
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.

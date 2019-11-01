@@ -15,7 +15,7 @@ type sort =
     /// Sets the target by which the sort transform is applied. If a string, *target* is assumed to be a reference to a data array in the parent trace object. To sort about nested variables, use *.* to access them. For example, set `target` to *marker.size* to sort about the marker size array. If an array, *target* is then the data array by which the sort transform is applied.
     static member inline target (value: string) = Interop.mkSortAttr "target" value
     /// Sets the target by which the sort transform is applied. If a string, *target* is assumed to be a reference to a data array in the parent trace object. To sort about nested variables, use *.* to access them. For example, set `target` to *marker.size* to sort about the marker size array. If an array, *target* is then the data array by which the sort transform is applied.
-    static member inline target (values: seq<string>) = Interop.mkSortAttr "target" (values |> Array.ofSeq)
+    static member inline target (values: seq<string>) = Interop.mkSortAttr "target" (values |> ResizeArray)
     /// Sets the source reference on plot.ly for  target .
     static member inline targetsrc (value: string) = Interop.mkSortAttr "targetsrc" value
 

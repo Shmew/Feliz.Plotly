@@ -15,13 +15,13 @@ type projection =
     static member inline z (properties: #IZProperty list) = Interop.mkProjectionAttr "z" (createObj !!properties)
     static member inline rotation (properties: #IRotationProperty list) = Interop.mkProjectionAttr "rotation" (createObj !!properties)
     /// For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
-    static member inline parallels (value: int) = Interop.mkProjectionAttr "parallels" (value |> Array.singleton)
+    static member inline parallels (value: int) = Interop.mkProjectionAttr "parallels" (value |> Array.singleton |> ResizeArray)
     /// For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
-    static member inline parallels (values: seq<int>) = Interop.mkProjectionAttr "parallels" (values |> Array.ofSeq)
+    static member inline parallels (values: seq<int>) = Interop.mkProjectionAttr "parallels" (values |> ResizeArray)
     /// For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
-    static member inline parallels (value: float) = Interop.mkProjectionAttr "parallels" (value |> Array.singleton)
+    static member inline parallels (value: float) = Interop.mkProjectionAttr "parallels" (value |> Array.singleton |> ResizeArray)
     /// For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
-    static member inline parallels (values: seq<float>) = Interop.mkProjectionAttr "parallels" (values |> Array.ofSeq)
+    static member inline parallels (values: seq<float>) = Interop.mkProjectionAttr "parallels" (values |> ResizeArray)
     /// Zooms in or out on the map view. A scale of *1* corresponds to the largest zoom level that fits the map's lon and lat ranges.
     static member inline scale (value: int) = Interop.mkProjectionAttr "scale" value
     /// Zooms in or out on the map view. A scale of *1* corresponds to the largest zoom level that fits the map's lon and lat ranges.

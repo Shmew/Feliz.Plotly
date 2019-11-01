@@ -330,32 +330,32 @@ type barpolar =
     /// Shifts the angular position where the bar is drawn (in *thetatunit* units).
     static member inline offset (value: float) = Interop.mkBarpolarAttr "offset" value
     /// Shifts the angular position where the bar is drawn (in *thetatunit* units).
-    static member inline offset (values: seq<int>) = Interop.mkBarpolarAttr "offset" (values |> Array.ofSeq)
+    static member inline offset (values: seq<int>) = Interop.mkBarpolarAttr "offset" (values |> ResizeArray)
     /// Shifts the angular position where the bar is drawn (in *thetatunit* units).
-    static member inline offset (values: seq<float>) = Interop.mkBarpolarAttr "offset" (values |> Array.ofSeq)
+    static member inline offset (values: seq<float>) = Interop.mkBarpolarAttr "offset" (values |> ResizeArray)
     /// Sets the bar angular width (in *thetaunit* units).
     static member inline width (value: int) = Interop.mkBarpolarAttr "width" value
     /// Sets the bar angular width (in *thetaunit* units).
     static member inline width (value: float) = Interop.mkBarpolarAttr "width" value
     /// Sets the bar angular width (in *thetaunit* units).
-    static member inline width (values: seq<int>) = Interop.mkBarpolarAttr "width" (values |> Array.ofSeq)
+    static member inline width (values: seq<int>) = Interop.mkBarpolarAttr "width" (values |> ResizeArray)
     /// Sets the bar angular width (in *thetaunit* units).
-    static member inline width (values: seq<float>) = Interop.mkBarpolarAttr "width" (values |> Array.ofSeq)
+    static member inline width (values: seq<float>) = Interop.mkBarpolarAttr "width" (values |> ResizeArray)
     /// Sets hover text elements associated with each bar. If a single string, the same string appears over all bars. If an array of string, the items are mapped in order to the this trace's coordinates.
     static member inline text (value: string) = Interop.mkBarpolarAttr "text" value
     /// Sets hover text elements associated with each bar. If a single string, the same string appears over all bars. If an array of string, the items are mapped in order to the this trace's coordinates.
-    static member inline text (values: seq<string>) = Interop.mkBarpolarAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkBarpolarAttr "text" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkBarpolarAttr "hovertext" value
     /// Same as `text`.
-    static member inline hovertext (values: seq<string>) = Interop.mkBarpolarAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<string>) = Interop.mkBarpolarAttr "hovertext" (values |> ResizeArray)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkBarpolarAttr "marker" (createObj !!properties)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IBarpolarProperty list) = Interop.mkBarpolarAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkBarpolarAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    static member inline hovertemplate (values: seq<string>) = Interop.mkBarpolarAttr "hovertemplate" (values |> Array.ofSeq)
+    static member inline hovertemplate (values: seq<string>) = Interop.mkBarpolarAttr "hovertemplate" (values |> ResizeArray)
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkBarpolarAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkBarpolarAttr "unselected" (createObj !!properties)
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.

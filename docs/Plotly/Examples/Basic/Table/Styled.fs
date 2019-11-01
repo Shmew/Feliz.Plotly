@@ -44,7 +44,10 @@ let chart () =
                 ]
                 table.cells [
                     cells.values values
-                    cells.align.center
+                    cells.aligns [
+                        cells.align.left
+                        cells.align.center
+                    ]
                     cells.line [
                         line.color "#506784"
                         line.width 1

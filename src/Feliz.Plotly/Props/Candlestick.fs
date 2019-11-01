@@ -408,11 +408,11 @@ type candlestick =
     /// Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
     static member inline text (value: string) = Interop.mkCandlestickAttr "text" value
     /// Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
-    static member inline text (values: seq<string>) = Interop.mkCandlestickAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkCandlestickAttr "text" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkCandlestickAttr "hovertext" value
     /// Same as `text`.
-    static member inline hovertext (values: seq<string>) = Interop.mkCandlestickAttr "hovertext" (values |> Array.ofSeq)
+    static member inline hovertext (values: seq<string>) = Interop.mkCandlestickAttr "hovertext" (values |> ResizeArray)
     /// Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
     static member inline whiskerwidth (value: int) = Interop.mkCandlestickAttr "whiskerwidth" value
     /// Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).

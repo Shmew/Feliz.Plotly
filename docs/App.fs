@@ -215,14 +215,26 @@ let samples =
               "plotly-chart-twodimensionalhistogram-binningandstyling", Samples.TwoDimensionalHistogram.BinningAndStyling.chart() 
               "plotly-chart-twodimensionalhistogram-overlaidwithscatter", Samples.TwoDimensionalHistogram.OverlaidWithScatter.chart() ]
 
+        let twoDimensionalDensity =
+            [ "plotly-chart-twodimensionaldensity-withhistogramsubplots", Samples.TwoDimensionalDensity.WithHistogramSubplots.chart() ]
+
         [ errorBars
           continuousErrorBars
           boxPlots
           histograms
-          twoDimensionalHistograms ]
+          twoDimensionalHistograms
+          twoDimensionalDensity ]
         |> List.concat
 
-    [ basicSamples; statisticalExamples ]
+    let subplotExamples =
+        let multipleAxes =
+            [ "plotly-chart-multipleaxes-twoyaxes", Samples.MultipleAxes.TwoYAxes.chart()
+              "plotly-chart-multipleaxes-multipleyaxes", Samples.MultipleAxes.MultipleYAxes.chart() ]
+
+        [ multipleAxes ]
+        |> List.concat
+
+    [ basicSamples; statisticalExamples; subplotExamples ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -545,7 +557,7 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Filled Lines" [ Urls.FilledLines ]
                             nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
                         ]
-                        subNestedMenuList "Box Plots" [ Urls.BoxPlot ] [
+                        subNestedMenuList "Box" [ Urls.BoxPlot ] [
                             nestedMenuItem "Basic" [ Urls.Basic ]
                             nestedMenuItem "Underlying Data" [ Urls.UnderlyingData ]
                             nestedMenuItem "Horizontal" [ Urls.Horizontal ]
@@ -557,7 +569,7 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Styled" [ Urls.Styled ]
                             nestedMenuItem "Rainbow" [ Urls.Rainbow ]
                         ]
-                        subNestedMenuList "Histograms" [ Urls.Histogram ] [
+                        subNestedMenuList "Histogram" [ Urls.Histogram ] [
                             nestedMenuItem "Basic" [ Urls.Basic ]
                             nestedMenuItem "Horizontal" [ Urls.Horizontal ]
                             nestedMenuItem "Overlaid" [ Urls.Overlaid ]
@@ -567,10 +579,19 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Normalized" [ Urls.Normalized ]
                             nestedMenuItem "Specified Binning" [ Urls.SpecifiedBinning ]
                         ]
-                        subNestedMenuList "2D Histograms" [ Urls.TwoDimensionalHistogram ] [
+                        subNestedMenuList "2D Histogram" [ Urls.TwoDimensionalHistogram ] [
                             nestedMenuItem "Bivariate Normal Distribution" [ Urls.BivariateNormalDistribution ]
                             nestedMenuItem "Binning and Styling" [ Urls.BinningAndStyling ]
                             nestedMenuItem "Overlaid with Scatter" [ Urls.OverlaidWithScatter ]
+                        ]
+                        subNestedMenuList "2D Density" [ Urls.TwoDimensionalDensity ] [
+                            nestedMenuItem "With Histogram Subplots" [ Urls.WithHistogramSubplots ]
+                        ]
+                    ]
+                    nestedMenuList "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Subplots ] [
+                        subNestedMenuList "Multiple Axes" [ Urls.MultipleAxes ] [
+                            nestedMenuItem "Two Y-Axes" [ Urls.TwoYAxes ]
+                            nestedMenuItem "Multiple Y-Axes" [ Urls.MultipleYAxes ]
                         ]
                     ]
                 ]
@@ -767,10 +788,28 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.OverlaidWithScatter ] -> [ "OverlaidWithScatter.md" ]
         | _ -> [ ]
         |> List.append [ Urls.TwoDimensionalHistogram ]
+    | Urls.TwoDimensionalDensity :: rest ->
+        match rest with
+        | [ Urls.WithHistogramSubplots ] -> [ "WithHistogramSubplots.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.TwoDimensionalDensity ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []
         else [ Urls.Statistical ] @ path
+
+let subplotExamples (currentPath: string list) =
+    match currentPath with
+    | Urls.MultipleAxes :: rest ->
+        match rest with
+        | [ Urls.TwoYAxes ] -> [ "TwoYAxes.md" ]
+        | [ Urls.MultipleYAxes ] -> [ "MultipleYAxes.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.MultipleAxes ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Subplots ] @ path
 
 let content state dispatch =
     let tryTakePath (basePath: string list) (path: string list) =
@@ -787,6 +826,7 @@ let content state dispatch =
         match state.CurrentPath |> List.skip 2 with
         | basicPath when tryTakePath basicPath [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
         | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
+        | subplotsPath when tryTakePath subplotsPath [ Urls.Subplots ] -> subplotsPath |> List.skip 1 |> subplotExamples
         | _ -> [ ]
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]

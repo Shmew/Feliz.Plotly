@@ -11,35 +11,35 @@ open Feliz
 [<Erase>]
 type radialaxis =
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (value: int) = Interop.mkRadialaxisAttr "domain" (value |> Array.singleton)
+    static member inline domain (value: int) = Interop.mkRadialaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (values: seq<int>) = Interop.mkRadialaxisAttr "domain" (values |> Array.ofSeq)
+    static member inline domain (values: seq<int>) = Interop.mkRadialaxisAttr "domain" (values |> ResizeArray)
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (value: float) = Interop.mkRadialaxisAttr "domain" (value |> Array.singleton)
+    static member inline domain (value: float) = Interop.mkRadialaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
     /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (values: seq<float>) = Interop.mkRadialaxisAttr "domain" (values |> Array.ofSeq)
+    static member inline domain (values: seq<float>) = Interop.mkRadialaxisAttr "domain" (values |> ResizeArray)
     /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
     static member inline visible (value: bool) = Interop.mkRadialaxisAttr "visible" value
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: bool) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: bool) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<bool>) = Interop.mkRadialaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<bool>) = Interop.mkRadialaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: System.DateTime) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: System.DateTime) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<System.DateTime>) = Interop.mkRadialaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<System.DateTime>) = Interop.mkRadialaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: int) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: int) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<int>) = Interop.mkRadialaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<int>) = Interop.mkRadialaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: float) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: float) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<float>) = Interop.mkRadialaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<float>) = Interop.mkRadialaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: string) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: string) = Interop.mkRadialaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<string>) = Interop.mkRadialaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<string>) = Interop.mkRadialaxisAttr "range" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (value: bool) = Interop.mkRadialaxisAttr "categoryarray" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.

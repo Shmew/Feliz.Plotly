@@ -13,25 +13,25 @@ type tickformatstop =
     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
     static member inline enabled (value: bool) = Interop.mkTickformatstopAttr "enabled" value
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (value: bool) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
+    static member inline dtickrange (value: bool) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (values: seq<bool>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
+    static member inline dtickrange (values: seq<bool>) = Interop.mkTickformatstopAttr "dtickrange" (values |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (value: System.DateTime) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
+    static member inline dtickrange (value: System.DateTime) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (values: seq<System.DateTime>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
+    static member inline dtickrange (values: seq<System.DateTime>) = Interop.mkTickformatstopAttr "dtickrange" (values |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (value: int) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
+    static member inline dtickrange (value: int) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (values: seq<int>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
+    static member inline dtickrange (values: seq<int>) = Interop.mkTickformatstopAttr "dtickrange" (values |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (value: float) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
+    static member inline dtickrange (value: float) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (values: seq<float>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
+    static member inline dtickrange (values: seq<float>) = Interop.mkTickformatstopAttr "dtickrange" (values |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (value: string) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton)
+    static member inline dtickrange (value: string) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-    static member inline dtickrange (values: seq<string>) = Interop.mkTickformatstopAttr "dtickrange" (values |> Array.ofSeq)
+    static member inline dtickrange (values: seq<string>) = Interop.mkTickformatstopAttr "dtickrange" (values |> ResizeArray)
     /// string - dtickformat for described zoom level, the same as *tickformat*
     static member inline value (value: string) = Interop.mkTickformatstopAttr "value" value
     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.

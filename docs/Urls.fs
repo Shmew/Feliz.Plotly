@@ -7,6 +7,7 @@ let [<Literal>] Examples = "Examples"
 let [<Literal>] Installation = "Installation"
 let [<Literal>] Overview = "Overview"
 let [<Literal>] Statistical = "Statistical"
+let [<Literal>] Subplots = "Subplots"
 
 // Non-exclusive Chart names
 let [<Literal>] AsymmetricWithOffset = "AsymmetricWithOffset"
@@ -97,6 +98,12 @@ let [<Literal>] GraphAndAxesTitles = "GraphAndAxesTitles"
 let [<Literal>] NamedLineAndScatter = "NamedLineAndScatter"
 let [<Literal>] StylingLinePlot = "StylingLinePlot"
 
+// Multiple Axes Examples
+let [<Literal>] MultipleAxes = "MultipleAxes"
+
+let [<Literal>] MultipleYAxes = "MultipleYAxes"
+let [<Literal>] TwoYAxes = "TwoYAxes"
+
 // Multiple Chart Type Examples
 let [<Literal>] MultipleChartTypes = "MultipleChartTypes"
 
@@ -107,7 +114,6 @@ let [<Literal>] LineAndBar = "LineAndBar"
 let [<Literal>] Pie = "Pie"
 
 let [<Literal>] Donut = "Donut"
-let [<Literal>] Subplots = "Subplots"
 
 // Point Cloud Examples
 let [<Literal>] PointCloud = "PointCloud"
@@ -145,6 +151,11 @@ let [<Literal>] Treemap = "Treemap"
 let [<Literal>] DifferentAttributes = "DifferentAttributes"
 let [<Literal>] NestedLayers = "NestedLayers"
 let [<Literal>] SectorColors = "SectorColors"
+
+// 2D Density Examples
+let [<Literal>] TwoDimensionalDensity = "2DDensity"
+
+let [<Literal>] WithHistogramSubplots = "WithHistogramSubplots"
 
 // 2D Histogram Examples
 let [<Literal>] TwoDimensionalHistogram = "2DHistogram"

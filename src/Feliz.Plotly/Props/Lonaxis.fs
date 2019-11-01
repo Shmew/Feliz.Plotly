@@ -11,13 +11,13 @@ open Feliz
 [<Erase>]
 type lonaxis =
     /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
-    static member inline range (value: int) = Interop.mkLonaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: int) = Interop.mkLonaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
-    static member inline range (values: seq<int>) = Interop.mkLonaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<int>) = Interop.mkLonaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
-    static member inline range (value: float) = Interop.mkLonaxisAttr "range" (value |> Array.singleton)
+    static member inline range (value: float) = Interop.mkLonaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
-    static member inline range (values: seq<float>) = Interop.mkLonaxisAttr "range" (values |> Array.ofSeq)
+    static member inline range (values: seq<float>) = Interop.mkLonaxisAttr "range" (values |> ResizeArray)
     /// Sets whether or not graticule are shown on the map.
     static member inline showgrid (value: bool) = Interop.mkLonaxisAttr "showgrid" value
     /// Sets the graticule's starting tick longitude/latitude.

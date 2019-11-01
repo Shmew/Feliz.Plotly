@@ -1,7 +1,6 @@
 ﻿[<RequireQualifiedAccess>]
 module Samples.Treemap.NestedLayers
 
-open Fable.React
 open Fable.SimpleHttp
 open Feliz
 open Feliz.Plotly

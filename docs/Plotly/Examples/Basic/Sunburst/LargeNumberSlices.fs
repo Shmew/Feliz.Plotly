@@ -1,7 +1,6 @@
 ﻿[<RequireQualifiedAccess>]
 module Samples.Sunburst.LargeNumberSlices
 
-open Fable.React
 open Fable.SimpleHttp
 open Feliz
 open Feliz.Plotly

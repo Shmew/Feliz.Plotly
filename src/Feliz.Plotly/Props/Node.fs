@@ -59,13 +59,13 @@ type node =
     /// The shown name of the node.
     static member inline label (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "label" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
-    static member inline groups (value: int) = Interop.mkNodeAttr "groups" (value |> Array.singleton)
+    static member inline groups (value: int) = Interop.mkNodeAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
-    static member inline groups (values: seq<int>) = Interop.mkNodeAttr "groups" (values |> Array.ofSeq)
+    static member inline groups (values: seq<int>) = Interop.mkNodeAttr "groups" (values |> ResizeArray)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
-    static member inline groups (value: float) = Interop.mkNodeAttr "groups" (value |> Array.singleton)
+    static member inline groups (value: float) = Interop.mkNodeAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
-    static member inline groups (values: seq<float>) = Interop.mkNodeAttr "groups" (values |> Array.ofSeq)
+    static member inline groups (values: seq<float>) = Interop.mkNodeAttr "groups" (values |> ResizeArray)
     /// The normalized horizontal position of the node.
     static member inline x (value: bool) = Interop.mkNodeAttr "x" value
     /// The normalized horizontal position of the node.
@@ -165,7 +165,7 @@ type node =
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
     static member inline color (value: string) = Interop.mkNodeAttr "color" value
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
-    static member inline color (values: seq<string>) = Interop.mkNodeAttr "color" (values |> Array.ofSeq)
+    static member inline color (values: seq<string>) = Interop.mkNodeAttr "color" (values |> ResizeArray)
     static member inline line (properties: #ILineProperty list) = Interop.mkNodeAttr "line" (createObj !!properties)
     /// Sets the padding (in px) between the `nodes`.
     static member inline pad (value: int) = Interop.mkNodeAttr "pad" value
@@ -179,7 +179,7 @@ type node =
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkNodeAttr "hovertemplate" value
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    static member inline hovertemplate (values: seq<string>) = Interop.mkNodeAttr "hovertemplate" (values |> Array.ofSeq)
+    static member inline hovertemplate (values: seq<string>) = Interop.mkNodeAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on plot.ly for  label .
     static member inline labelsrc (value: string) = Interop.mkNodeAttr "labelsrc" value
     /// Sets the source reference on plot.ly for  x .
