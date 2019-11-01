@@ -7,11 +7,9 @@ Taken from [Plotly - Tables](https://plot.ly/javascript/table/)
 module Samples.Table.FromCSV
 
 open Fable.Core
-open Fable.React
 open Fable.SimpleHttp
 open Feliz
 open Feliz.Plotly
-open System
 
 type BTCMiningData =
     { Headers: string []
@@ -63,10 +61,7 @@ let render (data: BTCMiningData)  =
     Plotly.plot [
         plot.traces [
             traces.table [
-                // These are in the original example, but don't seem to actually work. When inspecting the output object, it's the same as their examples.
-                //table.columnwidth [ 200; 500; 600; 600; 400; 400; 600; 600; 600 ]
-                // I also really don't understand the point of this particular feature
-                //table.columnorder [ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ]
+                table.columnwidth [ 200; 500; 600; 600; 400; 400; 600; 600; 600 ]
                 table.header [
                     header.values data.Headers
                     header.align.center

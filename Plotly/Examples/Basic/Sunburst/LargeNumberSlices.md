@@ -6,7 +6,6 @@ Taken from [Plotly - Sunburst Charts](https://plot.ly/javascript/sunburst-charts
 [<RequireQualifiedAccess>]
 module Samples.Sunburst.LargeNumberSlices
 
-open Fable.React
 open Fable.SimpleHttp
 open Feliz
 open Feliz.Plotly

@@ -6,7 +6,6 @@ Taken from [Plotly - Sankey Diagrams](https://plot.ly/javascript/sankey-diagram/
 [<RequireQualifiedAccess>]
 module Samples.Sankey.Styled
 
-open Fable.React
 open Fable.SimpleHttp
 open Fable.SimpleJson
 open Feliz
