@@ -29,7 +29,7 @@ let ann =
             annotation.y yData.[i]
             annotation.text textList.[i]
             annotation.font [
-                font.family "Arial"
+                font.family fonts.arial
                 font.size 14
                 font.color (colors.rgba(245, 246, 249, 1))
             ]

@@ -42,7 +42,7 @@ let chart () =
                         fill.color "#119DFF"
                     ]
                     header.font [
-                        font.family "Arial"
+                        font.family fonts.arial
                         font.size 12
                         font.color colors.white
                     ]
@@ -62,7 +62,7 @@ let chart () =
                         fill.color [ "#25FEFD"; colors.white ]
                     ]
                     cells.font [
-                        font.family "Arial"
+                        font.family fonts.arial
                         font.size 11
                         font.color "#506784"
                     ]

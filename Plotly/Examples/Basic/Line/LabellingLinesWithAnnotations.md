@@ -62,7 +62,7 @@ let tracesAnnotations =
             annotation.yanchor.middle
             annotation.text (sprintf "%s %i%s" labels.[i] yData.[i].Head "%")
             annotation.font [
-                font.family "Arial"
+                font.family fonts.arial
                 font.size 16
                 font.color colors.black
             ]
@@ -76,7 +76,7 @@ let tracesAnnotations =
             annotation.yanchor.middle
             annotation.text (sprintf "%i%s" yData.[i].[11] "%")
             annotation.font [
-                font.family "Arial"
+                font.family fonts.arial
                 font.size 16
                 font.color colors.black
             ]

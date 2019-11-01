@@ -39,7 +39,7 @@ let chart () =
                         fill.color colors.gray
                     ]
                     header.font [
-                        font.family "Arial"
+                        font.family fonts.arial
                         font.size 12
                         font.color colors.white
                     ]
@@ -52,7 +52,7 @@ let chart () =
                         line.width 1
                     ]
                     cells.font [
-                        font.family "Arial"
+                        font.family fonts.arial
                         font.size 11
                         font.color colors.black
                     ]
