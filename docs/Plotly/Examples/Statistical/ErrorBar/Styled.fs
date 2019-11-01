@@ -6,7 +6,7 @@ open Feliz.Plotly
 
 let linspace min max n = 
     let bw = (max - min) / (float n - 1.)
-    List.init n <| (float >> ((*) bw) >> ((+) min))
+    List.init n <| (float >> (fun  num -> num * bw) >> ((+) min))
 
 let theoX = linspace -4. 4. 100
 
