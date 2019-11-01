@@ -5,7 +5,7 @@ module colors =
     module colorscale =
         open Feliz.colors
 
-        let getScaled len n = n / (len - 1 |> float)
+        let private getScaled len n = n / (len - 1 |> float)
 
         let sequential (colors: string list) =
             colors |> List.mapi (fun i color -> [ (i |> float |> (getScaled colors.Length) |> string); color ])
