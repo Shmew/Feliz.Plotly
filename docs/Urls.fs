@@ -145,3 +145,10 @@ let [<Literal>] Treemap = "Treemap"
 let [<Literal>] DifferentAttributes = "DifferentAttributes"
 let [<Literal>] NestedLayers = "NestedLayers"
 let [<Literal>] SectorColors = "SectorColors"
+
+// 2D Histogram Examples
+let [<Literal>] TwoDimensionalHistogram = "2DHistogram"
+
+let [<Literal>] BinningAndStyling = "BinningAndStyling"
+let [<Literal>] BivariateNormalDistribution = "BivariateNormalDistribution"
+let [<Literal>] OverlaidWithScatter = "OverlaidWithScatter"

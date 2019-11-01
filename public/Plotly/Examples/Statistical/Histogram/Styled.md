@@ -19,7 +19,7 @@ let chart () =
                 histogram.y ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble()))
                 histogram.name "control"
                 histogram.autobinx false
-                histogram.histnorm.none // they use a type that doesn't exist anymore?
+                histogram.histnorm.none
                 histogram.marker [
                     marker.color (colors.rgba(255, 100, 102, 0.7))
                     marker.line [

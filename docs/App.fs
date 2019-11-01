@@ -210,10 +210,16 @@ let samples =
               "plotly-chart-histogram-normalized", Samples.Histogram.Normalized.chart()
               "plotly-chart-histogram-specifiedbinning", Samples.Histogram.SpecifiedBinning.chart() ]
 
+        let twoDimensionalHistograms =
+            [ "plotly-chart-twodimensionalhistogram-bivariatenormaldistribution", Samples.TwoDimensionalHistogram.BivariateNormalDistribution.chart() 
+              "plotly-chart-twodimensionalhistogram-binningandstyling", Samples.TwoDimensionalHistogram.BinningAndStyling.chart() 
+              "plotly-chart-twodimensionalhistogram-overlaidwithscatter", Samples.TwoDimensionalHistogram.OverlaidWithScatter.chart() ]
+
         [ errorBars
           continuousErrorBars
           boxPlots
-          histograms ]
+          histograms
+          twoDimensionalHistograms ]
         |> List.concat
 
     [ basicSamples; statisticalExamples ]
@@ -561,6 +567,11 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Normalized" [ Urls.Normalized ]
                             nestedMenuItem "Specified Binning" [ Urls.SpecifiedBinning ]
                         ]
+                        subNestedMenuList "2D Histograms" [ Urls.TwoDimensionalHistogram ] [
+                            nestedMenuItem "Bivariate Normal Distribution" [ Urls.BivariateNormalDistribution ]
+                            nestedMenuItem "Binning and Styling" [ Urls.BinningAndStyling ]
+                            nestedMenuItem "Overlaid with Scatter" [ Urls.OverlaidWithScatter ]
+                        ]
                     ]
                 ]
             ]
@@ -749,6 +760,13 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.SpecifiedBinning ] -> [ "SpecifiedBinning.md" ]
         | _ -> [ ]
         |> List.append [ Urls.Histogram ]
+    | Urls.TwoDimensionalHistogram :: rest ->
+        match rest with
+        | [ Urls.BivariateNormalDistribution ] -> [ "BivariateNormalDistribution.md" ]
+        | [ Urls.BinningAndStyling ] -> [ "BinningAndStyling.md" ]
+        | [ Urls.OverlaidWithScatter ] -> [ "OverlaidWithScatter.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.TwoDimensionalHistogram ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []

@@ -64,3 +64,6 @@
 
 ### 0.10.1 - Wednesday, October 30, 2019
 * Fixed an issue where some deeply nested properties didn't get compiled for some attributes
+
+### 0.11.0 - Thursday, October 31, 2019
+* Added support for custom colorscaling, and fixed api for colorscaling

@@ -4,6 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Statistical\2DHistogram\BivariateNormalDistribution.fs" />
+    <Compile Include="Plotly\Examples\Statistical\2DHistogram\BinningAndStyling.fs" />
+    <Compile Include="Plotly\Examples\Statistical\2DHistogram\OverlaidWithScatter.fs" />
     <Compile Include="Plotly\Examples\Statistical\Histogram\Basic.fs" />
     <Compile Include="Plotly\Examples\Statistical\Histogram\Horizontal.fs" />
     <Compile Include="Plotly\Examples\Statistical\Histogram\Overlaid.fs" />

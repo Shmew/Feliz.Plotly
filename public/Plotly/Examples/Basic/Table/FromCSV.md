@@ -78,7 +78,7 @@ let render (data: BTCMiningData)  =
                         fill.color (colors.rgb(235, 100, 230))
                     ]
                     header.font [
-                        font.family "Arial"
+                        font.family fonts.arial
                         font.size 11
                         font.color colors.white
                     ]
@@ -98,7 +98,7 @@ let render (data: BTCMiningData)  =
                         ]
                     ]
                     cells.font [
-                        font.family "Arial"
+                        font.family fonts.arial
                         font.size 10
                         font.color colors.black
                     ]

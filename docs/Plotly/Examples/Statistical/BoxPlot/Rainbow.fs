@@ -12,7 +12,7 @@ let getRandomArbitrary min max =
 
 let linspace min max n = 
     let bw = (max - min) / (float n - 1.)
-    List.init n <| (float >> ((*) bw) >> ((+) min))
+    List.init n <| (float >> (fun num -> num * bw) >> ((+) min))
 
 let boxNumber = 30
 let boxColors = linspace 0. 360. boxNumber |> List.map (fun color -> colors.hsl(color, 50., 50.))

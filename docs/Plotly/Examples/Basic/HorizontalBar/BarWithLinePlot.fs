@@ -44,7 +44,7 @@ let dataAnns =
             annotation.y y
             annotation.text (sprintf "%.2f%s" savings "%")
             annotation.font [
-                font.family "Arial"
+                font.family fonts.arial
                 font.size 12
                 font.color (colors.rgb(50, 171, 96))
             ]
@@ -57,7 +57,7 @@ let dataAnns =
             annotation.y y
             annotation.text (sprintf "$ %0.2f M" networth)
             annotation.font [
-                font.family "Arial"
+                font.family fonts.arial
                 font.size 12
                 font.color (colors.rgb(128, 0, 128))
             ]
@@ -148,7 +148,7 @@ let chart () =
                         10.1787/cfc6f499-en (Accessed on 05 June 2015)"
                     annotation.showarrow false
                     annotation.font [
-                        font.family "Arial"
+                        font.family fonts.arial
                         font.size 10
                         font.color (colors.rgb(150, 150, 150))
                     ]

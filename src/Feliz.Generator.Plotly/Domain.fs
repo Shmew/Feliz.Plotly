@@ -77,6 +77,7 @@ module rec Domain =
         | Any
         | Bool of bool * bool
         | ColorArray
+        | ColorScale
         | DataArray
         | Enumerated
         | EnumeratedArray
@@ -102,23 +103,14 @@ module rec Domain =
         let bool2DListStr = "(values: seq<bool list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let bool2DArrayStr = "(values: seq<bool []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
+        let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
+
+        let datU42DArray = "(values: seq<U4<int [], float [], string [], bool []>>)", "(values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)"
+        let dataU42DList = "(values: seq<U4<int list, float list, string list, bool list>>)", "(values |> Seq.map U4.mapListToResize |> Array.ofSeq)"
+
         let dateStr = "(value: System.DateTime)", "value"
         let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
         let dateSeqStr = "(values: seq<System.DateTime>)", "(values |> Array.ofSeq)"
-
-        let stringStr = "(value: string)", "value"
-        let stringSingleton = "(value: string)", "(value |> Array.singleton)"
-        let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
-        let string2DSeqStr = "(values: seq<seq<string>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let string2DListStr = "(values: seq<string list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let string2DArrayStr = "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
-
-        let intStr = "(value: int)", "value"
-        let intSingleton = "(value: int)", "(value |> Array.singleton)"
-        let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
-        let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let int2DListStr = "(values: seq<int list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let int2DArrayStr = "(values: seq<int []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
         let flaglistStrSeq s = sprintf "(properties: #I%sProperty list)" s, "(properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat \"+\")"
         
@@ -130,11 +122,20 @@ module rec Domain =
         let float2DSeqStr = "(values: seq<seq<float>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let float2DListStr = "(values: seq<float list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let float2DArrayStr = "(values: seq<float []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
-        
-        let datU42DArray = "(values: seq<U4<int [], float [], string [], bool []>>)", "(values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)"
-        let dataU42DList = "(values: seq<U4<int list, float list, string list, bool list>>)", "(values |> Seq.map U4.mapListToResize |> Array.ofSeq)"
-        
-        let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
+
+        let intStr = "(value: int)", "value"
+        let intSingleton = "(value: int)", "(value |> Array.singleton)"
+        let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
+        let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let int2DListStr = "(values: seq<int list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let int2DArrayStr = "(values: seq<int []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+
+        let stringStr = "(value: string)", "value"
+        let stringSingleton = "(value: string)", "(value |> Array.singleton)"
+        let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
+        let string2DSeqStr = "(values: seq<seq<string>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let string2DListStr = "(values: seq<string list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let string2DArrayStr = "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
         let allNormalStrs =
             [ boolStr
@@ -152,21 +153,21 @@ module rec Domain =
             [ bool2DSeqStr
               bool2DListStr
               bool2DArrayStr ]
-
-        let allStr2DStrs =
-            [ string2DSeqStr
-              string2DListStr
-              string2DArrayStr ]
-
+        
+        let allFloat2DStrs =
+            [ float2DSeqStr
+              float2DListStr
+              float2DArrayStr ]
+        
         let allInt2DStrs =
             [ int2DSeqStr
               int2DListStr
               int2DArrayStr ]
 
-        let allFloat2DStrs =
-            [ float2DSeqStr
-              float2DListStr
-              float2DArrayStr ]
+        let allStr2DStrs =
+            [ string2DSeqStr
+              string2DListStr
+              string2DArrayStr ]
 
         let all2DStrsNoUnions =
             allBool2DStrs @ allStr2DStrs @ allInt2DStrs @ allFloat2DStrs
@@ -180,11 +181,11 @@ module rec Domain =
         let allDateArrStrs =
             [ dateSingleton; dateSeqStr ]
 
-        let allIntArrStrs =
-            [ intSingleton; intSeqStr ]
-
         let allFloatArrStrs =
             [ floatSingleton; floatSeqStr ]
+
+        let allIntArrStrs =
+            [ intSingleton; intSeqStr ]
 
         let allStringArrStrs =
             [ stringSingleton; stringSeqStr ]
@@ -194,14 +195,15 @@ module rec Domain =
 
         let getPrimativeOverloadSeq =
             function
+            | ValType.Any -> allArrStrs
             | ValType.Bool _ -> allBoolArrStrs
-            | ValType.Int _ -> allIntArrStrs
-            | ValType.Number _ -> allIntArrStrs @ allFloatArrStrs
-            | ValType.String _ -> allStringArrStrs
+            | ValType.ColorScale -> [ stringStr; string2DListStr ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedWithCustom -> []
             | ValType.FlagList -> []
-            | ValType.Any -> allArrStrs
+            | ValType.Int _ -> allIntArrStrs
+            | ValType.Number _ -> allIntArrStrs @ allFloatArrStrs
+            | ValType.String _ -> allStringArrStrs
             | s ->
                 printfn "%s" (s.ToString())
                 [ "(value: TODO)", "value" ]
@@ -250,9 +252,14 @@ module rec Domain =
                     match isArrayOk && isNumArrayOk with
                     | true -> ValType.ColorArray
                     | false -> ValType.String arrayAllowances
-                | "colorlist" -> ValType.String (false, false) |> ValType.List 
-                | "colorscale" -> ValType.String (false, false) |> ValType.List
+                | "colorlist" -> ValType.String (false, false) |> ValType.List
+                | "colorscale" -> ValType.ColorScale
                 | "data_array" -> ValType.DataArray
+                | "enumerated" when isEnumeratedWithCustom() -> 
+                    ValType.EnumeratedWithCustom
+                | "enumerated" -> 
+                    if isArrayOk then ValType.EnumeratedArray
+                    else ValType.Enumerated
                 | "flaglist" -> ValType.FlagList
                 | "info_array" ->
                     if jVal?items.AsArray().Length < 1 then jVal?items
@@ -263,11 +270,6 @@ module rec Domain =
                 | "number" -> ValType.Number arrayAllowances
                 | "string" -> ValType.String arrayAllowances
                 | "subplotid" -> ValType.String arrayAllowances
-                | "enumerated" when isEnumeratedWithCustom() -> 
-                    ValType.EnumeratedWithCustom
-                | "enumerated" -> 
-                    if isArrayOk then ValType.EnumeratedArray
-                    else ValType.Enumerated
                 | _ -> ValType.Any
             | _ -> ValType.Component
 
@@ -277,6 +279,7 @@ module rec Domain =
             | ValType.Any -> allNormalStrs
             | ValType.Bool (arrOkay, twoArrOk) -> [ boolStr; if arrOkay then boolSeqStr; if twoArrOk then yield! allBool2DStrs ]
             | ValType.ColorArray -> [ stringStr; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
+            | ValType.ColorScale -> [ stringStr; string2DListStr ]
             | ValType.DataArray -> allNormalStrs @ all2DStrs
             | ValType.Enumerated -> []
             | ValType.EnumeratedArray -> []
@@ -297,11 +300,11 @@ module rec Domain =
 
         let isPrimative (vType: ValType) =
             match vType with
+            | ValType.Component
             | ValType.Enumerated
             | ValType.EnumeratedArray
             | ValType.EnumeratedWithCustom
-            | ValType.FlagList
-            | ValType.Component -> false
+            | ValType.FlagList -> false
             | _ -> true
 
     type Prop =
