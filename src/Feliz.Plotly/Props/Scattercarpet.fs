@@ -59,7 +59,7 @@ type scattercarpet =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkScattercarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkScattercarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkScattercarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkScattercarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -70,6 +70,16 @@ type scattercarpet =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattercarpetAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattercarpetAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkScattercarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkScattercarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkScattercarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkScattercarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkScattercarpetAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkScattercarpetAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -107,7 +117,7 @@ type scattercarpet =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkScattercarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkScattercarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkScattercarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkScattercarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -118,6 +128,16 @@ type scattercarpet =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattercarpetAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattercarpetAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkScattercarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkScattercarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkScattercarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkScattercarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkScattercarpetAttr "customdata" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: bool) = Interop.mkScattercarpetAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -200,7 +220,7 @@ type scattercarpet =
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<int list>) = Interop.mkScattercarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the a-axis coordinates.
-    static member inline a (values: seq<int []>) = Interop.mkScattercarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline a (values: seq<int option []>) = Interop.mkScattercarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<seq<float>>) = Interop.mkScattercarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the a-axis coordinates.
@@ -211,6 +231,16 @@ type scattercarpet =
     static member inline a (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattercarpetAttr "a" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattercarpetAttr "a" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the a-axis coordinates.
+    static member inline a (values: seq<bool option>) = Interop.mkScattercarpetAttr "a" (values |> ResizeArray)
+    /// Sets the a-axis coordinates.
+    static member inline a (values: seq<System.DateTime option>) = Interop.mkScattercarpetAttr "a" (values |> ResizeArray)
+    /// Sets the a-axis coordinates.
+    static member inline a (values: seq<int option>) = Interop.mkScattercarpetAttr "a" (values |> ResizeArray)
+    /// Sets the a-axis coordinates.
+    static member inline a (values: seq<float option>) = Interop.mkScattercarpetAttr "a" (values |> ResizeArray)
+    /// Sets the a-axis coordinates.
+    static member inline a (values: seq<string option>) = Interop.mkScattercarpetAttr "a" (values |> ResizeArray)
     /// Sets the b-axis coordinates.
     static member inline b (value: bool) = Interop.mkScattercarpetAttr "b" value
     /// Sets the b-axis coordinates.
@@ -248,7 +278,7 @@ type scattercarpet =
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<int list>) = Interop.mkScattercarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the b-axis coordinates.
-    static member inline b (values: seq<int []>) = Interop.mkScattercarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline b (values: seq<int option []>) = Interop.mkScattercarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<seq<float>>) = Interop.mkScattercarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the b-axis coordinates.
@@ -259,6 +289,16 @@ type scattercarpet =
     static member inline b (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattercarpetAttr "b" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattercarpetAttr "b" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the b-axis coordinates.
+    static member inline b (values: seq<bool option>) = Interop.mkScattercarpetAttr "b" (values |> ResizeArray)
+    /// Sets the b-axis coordinates.
+    static member inline b (values: seq<System.DateTime option>) = Interop.mkScattercarpetAttr "b" (values |> ResizeArray)
+    /// Sets the b-axis coordinates.
+    static member inline b (values: seq<int option>) = Interop.mkScattercarpetAttr "b" (values |> ResizeArray)
+    /// Sets the b-axis coordinates.
+    static member inline b (values: seq<float option>) = Interop.mkScattercarpetAttr "b" (values |> ResizeArray)
+    /// Sets the b-axis coordinates.
+    static member inline b (values: seq<string option>) = Interop.mkScattercarpetAttr "b" (values |> ResizeArray)
     /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     static member inline mode (properties: #IScattercarpetProperty list) = Interop.mkScattercarpetAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets text elements associated with each (a,b) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b). If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -281,6 +321,8 @@ type scattercarpet =
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkScattercarpetAttr "marker" (createObj !!properties)
     /// Sets the text font.
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScattercarpetAttr "textfont" (createObj !!properties)
+    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    static member inline textposition (properties: #IScattercarpetProperty list) = Interop.mkScattercarpetAttr "textposition" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScattercarpetAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScattercarpetAttr "unselected" (createObj !!properties)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
@@ -320,9 +362,6 @@ type scattercarpet =
 
 [<AutoOpen>]
 module scattercarpet =
-    /// Use a list of enumerated values
-    let inline textpositions (properties: #IScattercarpetProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mkScattercarpetAttr "textposition"
-
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     [<Erase>]
     type visible =

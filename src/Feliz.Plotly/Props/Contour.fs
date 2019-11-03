@@ -59,7 +59,7 @@ type contour =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkContourAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkContourAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkContourAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkContourAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -70,6 +70,16 @@ type contour =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkContourAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkContourAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkContourAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkContourAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkContourAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkContourAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -107,7 +117,7 @@ type contour =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkContourAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkContourAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkContourAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkContourAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -118,6 +128,16 @@ type contour =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkContourAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkContourAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkContourAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkContourAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkContourAttr "customdata" (values |> ResizeArray)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IContourProperty list) = Interop.mkContourAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkContourAttr "hoverlabel" (createObj !!properties)
@@ -180,7 +200,7 @@ type contour =
     /// Sets the z data.
     static member inline z (values: seq<int list>) = Interop.mkContourAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<int []>) = Interop.mkContourAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline z (values: seq<int option []>) = Interop.mkContourAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
     static member inline z (values: seq<seq<float>>) = Interop.mkContourAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z data.
@@ -191,6 +211,16 @@ type contour =
     static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the z data.
     static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (values: seq<bool option>) = Interop.mkContourAttr "z" (values |> ResizeArray)
+    /// Sets the z data.
+    static member inline z (values: seq<System.DateTime option>) = Interop.mkContourAttr "z" (values |> ResizeArray)
+    /// Sets the z data.
+    static member inline z (values: seq<int option>) = Interop.mkContourAttr "z" (values |> ResizeArray)
+    /// Sets the z data.
+    static member inline z (values: seq<float option>) = Interop.mkContourAttr "z" (values |> ResizeArray)
+    /// Sets the z data.
+    static member inline z (values: seq<string option>) = Interop.mkContourAttr "z" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (value: bool) = Interop.mkContourAttr "x" value
     /// Sets the x coordinates.
@@ -228,7 +258,7 @@ type contour =
     /// Sets the x coordinates.
     static member inline x (values: seq<int list>) = Interop.mkContourAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<int []>) = Interop.mkContourAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline x (values: seq<int option []>) = Interop.mkContourAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<seq<float>>) = Interop.mkContourAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates.
@@ -239,6 +269,16 @@ type contour =
     static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<bool option>) = Interop.mkContourAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTime option>) = Interop.mkContourAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<int option>) = Interop.mkContourAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<float option>) = Interop.mkContourAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<string option>) = Interop.mkContourAttr "x" (values |> ResizeArray)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (value: bool) = Interop.mkContourAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -300,7 +340,7 @@ type contour =
     /// Sets the y coordinates.
     static member inline y (values: seq<int list>) = Interop.mkContourAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<int []>) = Interop.mkContourAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline y (values: seq<int option []>) = Interop.mkContourAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<seq<float>>) = Interop.mkContourAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates.
@@ -311,6 +351,16 @@ type contour =
     static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<bool option>) = Interop.mkContourAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTime option>) = Interop.mkContourAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<int option>) = Interop.mkContourAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<float option>) = Interop.mkContourAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<string option>) = Interop.mkContourAttr "y" (values |> ResizeArray)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (value: bool) = Interop.mkContourAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -372,7 +422,7 @@ type contour =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int list>) = Interop.mkContourAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<int []>) = Interop.mkContourAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline text (values: seq<int option []>) = Interop.mkContourAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<seq<float>>) = Interop.mkContourAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
@@ -383,6 +433,16 @@ type contour =
     static member inline text (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourAttr "text" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<bool option>) = Interop.mkContourAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<System.DateTime option>) = Interop.mkContourAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<int option>) = Interop.mkContourAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<float option>) = Interop.mkContourAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<string option>) = Interop.mkContourAttr "text" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (value: bool) = Interop.mkContourAttr "hovertext" value
     /// Same as `text`.
@@ -420,7 +480,7 @@ type contour =
     /// Same as `text`.
     static member inline hovertext (values: seq<int list>) = Interop.mkContourAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
-    static member inline hovertext (values: seq<int []>) = Interop.mkContourAttr "hovertext" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline hovertext (values: seq<int option []>) = Interop.mkContourAttr "hovertext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Same as `text`.
     static member inline hovertext (values: seq<seq<float>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Same as `text`.
@@ -431,6 +491,16 @@ type contour =
     static member inline hovertext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Same as `text`.
     static member inline hovertext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkContourAttr "hovertext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<bool option>) = Interop.mkContourAttr "hovertext" (values |> ResizeArray)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<System.DateTime option>) = Interop.mkContourAttr "hovertext" (values |> ResizeArray)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<int option>) = Interop.mkContourAttr "hovertext" (values |> ResizeArray)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<float option>) = Interop.mkContourAttr "hovertext" (values |> ResizeArray)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<string option>) = Interop.mkContourAttr "hovertext" (values |> ResizeArray)
     /// Transposes the z data.
     static member inline transpose (value: bool) = Interop.mkContourAttr "transpose" value
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format

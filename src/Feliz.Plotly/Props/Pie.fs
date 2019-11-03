@@ -59,7 +59,7 @@ type pie =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkPieAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkPieAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkPieAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkPieAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -70,6 +70,16 @@ type pie =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPieAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPieAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkPieAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkPieAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkPieAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkPieAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkPieAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkPieAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -107,7 +117,7 @@ type pie =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkPieAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkPieAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkPieAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkPieAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -118,6 +128,16 @@ type pie =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPieAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPieAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkPieAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkPieAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkPieAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkPieAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkPieAttr "customdata" (values |> ResizeArray)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkPieAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkPieAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkPieAttr "transforms" (createObj !!properties)
@@ -178,7 +198,7 @@ type pie =
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<int list>) = Interop.mkPieAttr "labels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
-    static member inline labels (values: seq<int []>) = Interop.mkPieAttr "labels" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline labels (values: seq<int option []>) = Interop.mkPieAttr "labels" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<seq<float>>) = Interop.mkPieAttr "labels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
@@ -189,6 +209,16 @@ type pie =
     static member inline labels (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPieAttr "labels" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     static member inline labels (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPieAttr "labels" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<bool option>) = Interop.mkPieAttr "labels" (values |> ResizeArray)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<System.DateTime option>) = Interop.mkPieAttr "labels" (values |> ResizeArray)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<int option>) = Interop.mkPieAttr "labels" (values |> ResizeArray)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<float option>) = Interop.mkPieAttr "labels" (values |> ResizeArray)
+    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    static member inline labels (values: seq<string option>) = Interop.mkPieAttr "labels" (values |> ResizeArray)
     /// Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
     static member inline label0 (value: int) = Interop.mkPieAttr "label0" value
     /// Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
@@ -234,7 +264,7 @@ type pie =
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<int list>) = Interop.mkPieAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
-    static member inline values (values: seq<int []>) = Interop.mkPieAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline values (values: seq<int option []>) = Interop.mkPieAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<seq<float>>) = Interop.mkPieAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
@@ -245,6 +275,16 @@ type pie =
     static member inline values (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPieAttr "values" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     static member inline values (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPieAttr "values" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<bool option>) = Interop.mkPieAttr "values" (values |> ResizeArray)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<System.DateTime option>) = Interop.mkPieAttr "values" (values |> ResizeArray)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<int option>) = Interop.mkPieAttr "values" (values |> ResizeArray)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<float option>) = Interop.mkPieAttr "values" (values |> ResizeArray)
+    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    static member inline values (values: seq<string option>) = Interop.mkPieAttr "values" (values |> ResizeArray)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkPieAttr "marker" (createObj !!properties)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: bool) = Interop.mkPieAttr "text" value
@@ -283,7 +323,7 @@ type pie =
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<int list>) = Interop.mkPieAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<int []>) = Interop.mkPieAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline text (values: seq<int option []>) = Interop.mkPieAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<seq<float>>) = Interop.mkPieAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -294,6 +334,16 @@ type pie =
     static member inline text (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPieAttr "text" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPieAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<bool option>) = Interop.mkPieAttr "text" (values |> ResizeArray)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<System.DateTime option>) = Interop.mkPieAttr "text" (values |> ResizeArray)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<int option>) = Interop.mkPieAttr "text" (values |> ResizeArray)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<float option>) = Interop.mkPieAttr "text" (values |> ResizeArray)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<string option>) = Interop.mkPieAttr "text" (values |> ResizeArray)
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (value: string) = Interop.mkPieAttr "hovertext" value
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
@@ -312,6 +362,8 @@ type pie =
     static member inline texttemplate (value: string) = Interop.mkPieAttr "texttemplate" value
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`.
     static member inline texttemplate (values: seq<string>) = Interop.mkPieAttr "texttemplate" (values |> ResizeArray)
+    /// Specifies the location of the `textinfo`.
+    static member inline textposition (properties: #IPieProperty list) = Interop.mkPieAttr "textposition" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
     /// Sets the font used for `textinfo`.
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkPieAttr "textfont" (createObj !!properties)
     /// Sets the font used for `textinfo` lying inside the sector.
@@ -365,9 +417,6 @@ type pie =
 
 [<AutoOpen>]
 module pie =
-    /// Use a list of enumerated values
-    let inline textpositions (properties: #IPieProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mkPieAttr "textposition"
-
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     [<Erase>]
     type visible =

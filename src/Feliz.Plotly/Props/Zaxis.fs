@@ -67,7 +67,7 @@ type zaxis =
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int list>) = Interop.mkZaxisAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int []>) = Interop.mkZaxisAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline categoryarray (values: seq<int option []>) = Interop.mkZaxisAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<seq<float>>) = Interop.mkZaxisAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -78,6 +78,16 @@ type zaxis =
     static member inline categoryarray (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkZaxisAttr "categoryarray" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkZaxisAttr "categoryarray" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<bool option>) = Interop.mkZaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<System.DateTime option>) = Interop.mkZaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<int option>) = Interop.mkZaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<float option>) = Interop.mkZaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<string option>) = Interop.mkZaxisAttr "categoryarray" (values |> ResizeArray)
     static member inline title (properties: #ITitleProperty list) = Interop.mkZaxisAttr "title" (createObj !!properties)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (value: bool) = Interop.mkZaxisAttr "range" (value |> Array.singleton |> ResizeArray)
@@ -178,7 +188,7 @@ type zaxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<int list>) = Interop.mkZaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<int []>) = Interop.mkZaxisAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline tickvals (values: seq<int option []>) = Interop.mkZaxisAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<seq<float>>) = Interop.mkZaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -189,6 +199,16 @@ type zaxis =
     static member inline tickvals (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkZaxisAttr "tickvals" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkZaxisAttr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<bool option>) = Interop.mkZaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<System.DateTime option>) = Interop.mkZaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<int option>) = Interop.mkZaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<float option>) = Interop.mkZaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<string option>) = Interop.mkZaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (value: bool) = Interop.mkZaxisAttr "ticktext" value
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -226,7 +246,7 @@ type zaxis =
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<int list>) = Interop.mkZaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<int []>) = Interop.mkZaxisAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ticktext (values: seq<int option []>) = Interop.mkZaxisAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<seq<float>>) = Interop.mkZaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -237,6 +257,16 @@ type zaxis =
     static member inline ticktext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkZaxisAttr "ticktext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkZaxisAttr "ticktext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<bool option>) = Interop.mkZaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<System.DateTime option>) = Interop.mkZaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<int option>) = Interop.mkZaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<float option>) = Interop.mkZaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<string option>) = Interop.mkZaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the tick length (in px).
     static member inline ticklen (value: int) = Interop.mkZaxisAttr "ticklen" value
     /// Sets the tick length (in px).

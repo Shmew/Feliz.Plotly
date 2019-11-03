@@ -10,6 +10,8 @@ open Feliz
 
 [<Erase>]
 type marker =
+    /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
+    static member inline symbol (properties: #IMarkerProperty list) = Interop.mkMarkerAttr "symbol" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
     /// Sets the marker opacity.
     static member inline opacity (value: int) = Interop.mkMarkerAttr "opacity" value
     /// Sets the marker opacity.
@@ -126,7 +128,7 @@ type marker =
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<int list>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<int []>) = Interop.mkMarkerAttr "colors" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline colors (values: seq<int option []>) = Interop.mkMarkerAttr "colors" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<seq<float>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
@@ -137,6 +139,16 @@ type marker =
     static member inline colors (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<bool option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<System.DateTime option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<int option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<float option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<string option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the source reference on plot.ly for  colors .
     static member inline colorssrc (value: string) = Interop.mkMarkerAttr "colorssrc" value
     static member inline pad (properties: #IPadProperty list) = Interop.mkMarkerAttr "pad" (createObj !!properties)
@@ -150,9 +162,6 @@ type marker =
 
 [<AutoOpen>]
 module marker =
-    /// Use a list of enumerated values
-    let inline symbols (properties: #IMarkerProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mkMarkerAttr "symbol"
-
     /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
     [<Erase>]
     type symbol =

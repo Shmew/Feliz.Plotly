@@ -20,6 +20,8 @@ type textfont =
     static member inline size (values: seq<float>) = Interop.mkTextfontAttr "size" (values |> ResizeArray)
     static member inline color (value: string) = Interop.mkTextfontAttr "color" value
     static member inline color (values: seq<string>) = Interop.mkTextfontAttr "color" (values |> ResizeArray)
+    static member inline color (values: seq<int>) = Interop.mkTextfontAttr "color" (values |> Array.ofSeq)
+    static member inline color (values: seq<float>) = Interop.mkTextfontAttr "color" (values |> Array.ofSeq)
     /// Sets the source reference on plot.ly for  family .
     static member inline familysrc (value: string) = Interop.mkTextfontAttr "familysrc" value
     /// Sets the source reference on plot.ly for  size .

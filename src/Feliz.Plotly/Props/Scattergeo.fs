@@ -59,7 +59,7 @@ type scattergeo =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkScattergeoAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkScattergeoAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkScattergeoAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkScattergeoAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -70,6 +70,16 @@ type scattergeo =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattergeoAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattergeoAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkScattergeoAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -107,7 +117,7 @@ type scattergeo =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkScattergeoAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkScattergeoAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkScattergeoAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkScattergeoAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -118,6 +128,16 @@ type scattergeo =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattergeoAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattergeoAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: bool) = Interop.mkScattergeoAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -198,7 +218,7 @@ type scattergeo =
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<int list>) = Interop.mkScattergeoAttr "lon" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (values: seq<int []>) = Interop.mkScattergeoAttr "lon" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline lon (values: seq<int option []>) = Interop.mkScattergeoAttr "lon" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<seq<float>>) = Interop.mkScattergeoAttr "lon" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
@@ -209,6 +229,16 @@ type scattergeo =
     static member inline lon (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattergeoAttr "lon" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattergeoAttr "lon" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<bool option>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<System.DateTime option>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<int option>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<float option>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<string option>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (value: bool) = Interop.mkScattergeoAttr "lat" value
     /// Sets the latitude coordinates (in degrees North).
@@ -246,7 +276,7 @@ type scattergeo =
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<int list>) = Interop.mkScattergeoAttr "lat" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (values: seq<int []>) = Interop.mkScattergeoAttr "lat" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline lat (values: seq<int option []>) = Interop.mkScattergeoAttr "lat" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<seq<float>>) = Interop.mkScattergeoAttr "lat" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
@@ -257,6 +287,16 @@ type scattergeo =
     static member inline lat (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattergeoAttr "lat" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattergeoAttr "lat" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<bool option>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<System.DateTime option>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<int option>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<float option>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<string option>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (value: bool) = Interop.mkScattergeoAttr "locations" value
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
@@ -294,7 +334,7 @@ type scattergeo =
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<int list>) = Interop.mkScattergeoAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
-    static member inline locations (values: seq<int []>) = Interop.mkScattergeoAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline locations (values: seq<int option []>) = Interop.mkScattergeoAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<seq<float>>) = Interop.mkScattergeoAttr "locations" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
@@ -305,6 +345,16 @@ type scattergeo =
     static member inline locations (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScattergeoAttr "locations" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScattergeoAttr "locations" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    static member inline locations (values: seq<bool option>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
+    /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    static member inline locations (values: seq<System.DateTime option>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
+    /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    static member inline locations (values: seq<int option>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
+    /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    static member inline locations (values: seq<float option>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
+    /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    static member inline locations (values: seq<string option>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
     /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     static member inline mode (properties: #IScattergeoProperty list) = Interop.mkScattergeoAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) or `locations` coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -321,6 +371,8 @@ type scattergeo =
     static member inline hovertext (values: seq<string>) = Interop.mkScattergeoAttr "hovertext" (values |> ResizeArray)
     /// Sets the text font.
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScattergeoAttr "textfont" (createObj !!properties)
+    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    static member inline textposition (properties: #IScattergeoProperty list) = Interop.mkScattergeoAttr "textposition" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
     static member inline line (properties: #ILineProperty list) = Interop.mkScattergeoAttr "line" (createObj !!properties)
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
     static member inline connectgaps (value: bool) = Interop.mkScattergeoAttr "connectgaps" value
@@ -364,9 +416,6 @@ type scattergeo =
 
 [<AutoOpen>]
 module scattergeo =
-    /// Use a list of enumerated values
-    let inline textpositions (properties: #IScattergeoProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mkScattergeoAttr "textposition"
-
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     [<Erase>]
     type visible =

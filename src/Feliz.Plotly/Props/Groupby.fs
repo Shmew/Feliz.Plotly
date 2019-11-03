@@ -49,7 +49,7 @@ type groupby =
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<int list>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (values: seq<int []>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline groups (values: seq<int option []>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<seq<float>>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
@@ -60,6 +60,16 @@ type groupby =
     static member inline groups (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
+    static member inline groups (values: seq<bool option>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
+    /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
+    static member inline groups (values: seq<System.DateTime option>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
+    /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
+    static member inline groups (values: seq<int option>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
+    /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
+    static member inline groups (values: seq<float option>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
+    /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
+    static member inline groups (values: seq<string option>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Pattern by which grouped traces are named. If only one trace is present, defaults to the group name (`\"%{group}\"`), otherwise defaults to the group name with trace name (`\"%{group} (%{trace})\"`). Available escape sequences are `%{group}`, which inserts the group name, and `%{trace}`, which inserts the trace name. If grouping GDP data by country when more than one trace is present, for example, the default \"%{group} (%{trace})\" would return \"Monaco (GDP per capita)\".
     static member inline nameformat (value: string) = Interop.mkGroupbyAttr "nameformat" value
     static member inline styles (properties: #IStylesProperty list) = Interop.mkGroupbyAttr "styles" (createObj !!properties)

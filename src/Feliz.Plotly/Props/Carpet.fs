@@ -55,7 +55,7 @@ type carpet =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkCarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkCarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkCarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkCarpetAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -66,6 +66,16 @@ type carpet =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkCarpetAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -103,7 +113,7 @@ type carpet =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -114,6 +124,16 @@ type carpet =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkCarpetAttr "stream" (createObj !!properties)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkCarpetAttr "uirevision" value
@@ -174,7 +194,7 @@ type carpet =
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<int list>) = Interop.mkCarpetAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
-    static member inline x (values: seq<int []>) = Interop.mkCarpetAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline x (values: seq<int option []>) = Interop.mkCarpetAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<seq<float>>) = Interop.mkCarpetAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
@@ -185,6 +205,16 @@ type carpet =
     static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (values: seq<bool option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (values: seq<int option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (values: seq<float option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
+    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (values: seq<string option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (value: bool) = Interop.mkCarpetAttr "y" value
     /// A two dimensional array of y coordinates at each carpet point.
@@ -222,7 +252,7 @@ type carpet =
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<int list>) = Interop.mkCarpetAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
-    static member inline y (values: seq<int []>) = Interop.mkCarpetAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline y (values: seq<int option []>) = Interop.mkCarpetAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<seq<float>>) = Interop.mkCarpetAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
@@ -233,6 +263,16 @@ type carpet =
     static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (values: seq<bool option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (values: seq<int option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (values: seq<float option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (values: seq<string option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
     /// An array containing values of the first parameter value
     static member inline a (value: bool) = Interop.mkCarpetAttr "a" value
     /// An array containing values of the first parameter value
@@ -270,7 +310,7 @@ type carpet =
     /// An array containing values of the first parameter value
     static member inline a (values: seq<int list>) = Interop.mkCarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// An array containing values of the first parameter value
-    static member inline a (values: seq<int []>) = Interop.mkCarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline a (values: seq<int option []>) = Interop.mkCarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// An array containing values of the first parameter value
     static member inline a (values: seq<seq<float>>) = Interop.mkCarpetAttr "a" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// An array containing values of the first parameter value
@@ -281,6 +321,16 @@ type carpet =
     static member inline a (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "a" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// An array containing values of the first parameter value
     static member inline a (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "a" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// An array containing values of the first parameter value
+    static member inline a (values: seq<bool option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
+    /// An array containing values of the first parameter value
+    static member inline a (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
+    /// An array containing values of the first parameter value
+    static member inline a (values: seq<int option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
+    /// An array containing values of the first parameter value
+    static member inline a (values: seq<float option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
+    /// An array containing values of the first parameter value
+    static member inline a (values: seq<string option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
     /// Alternate to `a`. Builds a linear space of a coordinates. Use with `da` where `a0` is the starting coordinate and `da` the step.
     static member inline a0 (value: int) = Interop.mkCarpetAttr "a0" value
     /// Alternate to `a`. Builds a linear space of a coordinates. Use with `da` where `a0` is the starting coordinate and `da` the step.
@@ -326,7 +376,7 @@ type carpet =
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<int list>) = Interop.mkCarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
-    static member inline b (values: seq<int []>) = Interop.mkCarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline b (values: seq<int option []>) = Interop.mkCarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<seq<float>>) = Interop.mkCarpetAttr "b" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
@@ -337,6 +387,16 @@ type carpet =
     static member inline b (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "b" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "b" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (values: seq<bool option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (values: seq<int option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (values: seq<float option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (values: seq<string option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
     /// Alternate to `b`. Builds a linear space of a coordinates. Use with `db` where `b0` is the starting coordinate and `db` the step.
     static member inline b0 (value: int) = Interop.mkCarpetAttr "b0" value
     /// Alternate to `b`. Builds a linear space of a coordinates. Use with `db` where `b0` is the starting coordinate and `db` the step.

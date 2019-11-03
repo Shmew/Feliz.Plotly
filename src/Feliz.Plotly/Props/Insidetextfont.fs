@@ -20,6 +20,8 @@ type insidetextfont =
     static member inline size (values: seq<float>) = Interop.mkInsidetextfontAttr "size" (values |> ResizeArray)
     static member inline color (value: string) = Interop.mkInsidetextfontAttr "color" value
     static member inline color (values: seq<string>) = Interop.mkInsidetextfontAttr "color" (values |> ResizeArray)
+    static member inline color (values: seq<int>) = Interop.mkInsidetextfontAttr "color" (values |> Array.ofSeq)
+    static member inline color (values: seq<float>) = Interop.mkInsidetextfontAttr "color" (values |> Array.ofSeq)
     /// Sets the source reference on plot.ly for  family .
     static member inline familysrc (value: string) = Interop.mkInsidetextfontAttr "familysrc" value
     /// Sets the source reference on plot.ly for  size .

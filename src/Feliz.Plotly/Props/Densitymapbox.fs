@@ -55,7 +55,7 @@ type densitymapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -66,6 +66,16 @@ type densitymapbox =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDensitymapboxAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkDensitymapboxAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -103,7 +113,7 @@ type densitymapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -114,6 +124,16 @@ type densitymapbox =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDensitymapboxAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkDensitymapboxAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkDensitymapboxAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkDensitymapboxAttr "transforms" (createObj !!properties)
@@ -174,7 +194,7 @@ type densitymapbox =
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<int list>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (values: seq<int []>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline lon (values: seq<int option []>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
@@ -185,6 +205,16 @@ type densitymapbox =
     static member inline lon (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDensitymapboxAttr "lon" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<bool option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<int option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<float option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<string option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (value: bool) = Interop.mkDensitymapboxAttr "lat" value
     /// Sets the latitude coordinates (in degrees North).
@@ -222,7 +252,7 @@ type densitymapbox =
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<int list>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (values: seq<int []>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline lat (values: seq<int option []>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
@@ -233,6 +263,16 @@ type densitymapbox =
     static member inline lat (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDensitymapboxAttr "lat" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<bool option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<int option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<float option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<string option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (value: bool) = Interop.mkDensitymapboxAttr "z" value
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
@@ -270,7 +310,7 @@ type densitymapbox =
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<int list>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
-    static member inline z (values: seq<int []>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline z (values: seq<int option []>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<seq<float>>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
@@ -281,6 +321,16 @@ type densitymapbox =
     static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkDensitymapboxAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<bool option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<int option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<float option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<string option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.
     static member inline radius (value: int) = Interop.mkDensitymapboxAttr "radius" value
     /// Sets the radius of influence of one `lon` / `lat` point in pixels. Increasing the value makes the densitymapbox trace smoother, but less detailed.

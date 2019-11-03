@@ -76,7 +76,7 @@ type aaxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<int list>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<int []>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline tickvals (values: seq<int option []>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<seq<float>>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -87,6 +87,16 @@ type aaxis =
     static member inline tickvals (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkAaxisAttr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<bool option>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<System.DateTime option>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<int option>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<float option>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
+    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    static member inline tickvals (values: seq<string option>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (value: bool) = Interop.mkAaxisAttr "ticktext" value
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -124,7 +134,7 @@ type aaxis =
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<int list>) = Interop.mkAaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<int []>) = Interop.mkAaxisAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ticktext (values: seq<int option []>) = Interop.mkAaxisAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<seq<float>>) = Interop.mkAaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -135,6 +145,16 @@ type aaxis =
     static member inline ticktext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkAaxisAttr "ticktext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkAaxisAttr "ticktext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<bool option>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<System.DateTime option>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<int option>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<float option>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
+    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    static member inline ticktext (values: seq<string option>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the tick font.
     static member inline tickfont (properties: #ITickfontProperty list) = Interop.mkAaxisAttr "tickfont" (createObj !!properties)
     /// Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
@@ -187,7 +207,7 @@ type aaxis =
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int list>) = Interop.mkAaxisAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int []>) = Interop.mkAaxisAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline categoryarray (values: seq<int option []>) = Interop.mkAaxisAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<seq<float>>) = Interop.mkAaxisAttr "categoryarray" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -198,6 +218,16 @@ type aaxis =
     static member inline categoryarray (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkAaxisAttr "categoryarray" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkAaxisAttr "categoryarray" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<bool option>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<System.DateTime option>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<int option>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<float option>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<string option>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
     /// Extra padding between label and the axis
     static member inline labelpadding (value: int) = Interop.mkAaxisAttr "labelpadding" value
     /// Sets a axis label prefix.

@@ -218,12 +218,45 @@ let samples =
         let twoDimensionalDensity =
             [ "plotly-chart-twodimensionaldensity-withhistogramsubplots", Samples.TwoDimensionalDensity.WithHistogramSubplots.chart() ]
 
+        let spcControl = 
+            [ "plotly-chart-spccontrol-basic", Samples.SPCControl.Basic.chart()
+              "plotly-chart-spccontrol-distribution", Samples.SPCControl.Distribution.chart() ]
+
+        let violin = 
+            [ "plotly-chart-violin-basic", Samples.Violin.Basic.chart(centeredSpinner)
+              "plotly-chart-violin-multipletraces", Samples.Violin.MultipleTraces.chart(centeredSpinner)
+              "plotly-chart-violin-grouped", Samples.Violin.Grouped.chart(centeredSpinner)
+              "plotly-chart-violin-horizontal", Samples.Violin.Horizontal.chart(centeredSpinner)
+              "plotly-chart-violin-split", Samples.Violin.Split.chart(centeredSpinner)
+              "plotly-chart-violin-advanced", Samples.Violin.Advanced.chart() ]
+
+        let parallelCategories = 
+            [ "plotly-chart-parallelcategories-basic", Samples.ParallelCategories.Basic.chart()
+              "plotly-chart-parallelcategories-withcounts", Samples.ParallelCategories.WithCounts.chart()
+              "plotly-chart-parallelcategories-multicolor", Samples.ParallelCategories.MultiColor.chart(centeredSpinner)
+              "plotly-chart-parallelcategories-linkedbrushing", Samples.ParallelCategories.LinkedBrushing.chart(centeredSpinner)
+              "plotly-chart-parallelcategories-multicolorlinkedbrushing", Samples.ParallelCategories.MultiColorLinkedBrushing.chart(centeredSpinner) ]
+
+        let splom = 
+            [ "plotly-chart-splom-iris", Samples.Splom.Iris.chart(centeredSpinner)
+              "plotly-chart-splom-diabetes", Samples.Splom.Diabetes.chart(centeredSpinner) ]
+
+        let twoDimensionalHistogramContour = 
+            [ "plotly-chart-twodimensionalhistogramcontour-basic", Samples.TwoDimensionalHistogramContour.Basic.chart()
+              "plotly-chart-twodimensionalhistogramcontour-colorscale", Samples.TwoDimensionalHistogramContour.Colorscale.chart()
+              "plotly-chart-twodimensionalhistogramcontour-styled", Samples.TwoDimensionalHistogramContour.Styled.chart() ]
+
         [ errorBars
           continuousErrorBars
           boxPlots
           histograms
           twoDimensionalHistograms
-          twoDimensionalDensity ]
+          twoDimensionalDensity
+          spcControl
+          violin
+          parallelCategories
+          splom
+          twoDimensionalHistogramContour ]
         |> List.concat
 
     let subplotExamples =
@@ -587,6 +620,34 @@ let sidebar (state: State) dispatch =
                         subNestedMenuList "2D Density" [ Urls.TwoDimensionalDensity ] [
                             nestedMenuItem "With Histogram Subplots" [ Urls.WithHistogramSubplots ]
                         ]
+                        subNestedMenuList "SPC Control" [ Urls.SPCControl ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Distribution" [ Urls.Distribution ]
+                        ]
+                        subNestedMenuList "Violin" [ Urls.Violin ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                            nestedMenuItem "Grouped" [ Urls.Grouped ]
+                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                            nestedMenuItem "Split" [ Urls.Split ]
+                            nestedMenuItem "Advanced" [ Urls.Advanced ]
+                        ]
+                        subNestedMenuList "Parallel Categories" [ Urls.ParallelCategories ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "With Counts" [ Urls.WithCounts ]
+                            nestedMenuItem "Multi Color" [ Urls.MultiColor ]
+                            nestedMenuItem "Linked Brushing" [ Urls.LinkedBrushing ]
+                            nestedMenuItem "Multi Color Linked Brushing" [ Urls.MultiColorLinkedBrushing ]
+                        ]
+                        subNestedMenuList "Splom" [ Urls.Splom ] [
+                            nestedMenuItem "Iris" [ Urls.Iris ]
+                            nestedMenuItem "Diabetes" [ Urls.Diabetes ]
+                        ]
+                        subNestedMenuList "2D Histogram Contour" [ Urls.TwoDimensionalHistogramContour ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Colorscale" [ Urls.Colorscale ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                        ]
                     ]
                     nestedMenuList "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Subplots ] [
                         subNestedMenuList "Multiple Axes" [ Urls.MultipleAxes ] [
@@ -793,6 +854,44 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.WithHistogramSubplots ] -> [ "WithHistogramSubplots.md" ]
         | _ -> [ ]
         |> List.append [ Urls.TwoDimensionalDensity ]
+    | Urls.SPCControl :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Distribution ] -> [ "Distribution.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.SPCControl ]
+    | Urls.Violin :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.MultipleTraces ] -> [ "MultipleTraces.md" ]
+        | [ Urls.Grouped ] -> [ "Grouped.md" ]
+        | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
+        | [ Urls.Split ] -> [ "Split.md" ]
+        | [ Urls.Advanced ] -> [ "Advanced.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Violin ]
+    | Urls.ParallelCategories :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.WithCounts ] -> [ "WithCounts.md" ]
+        | [ Urls.MultiColor ] -> [ "MultiColor.md" ]
+        | [ Urls.LinkedBrushing ] -> [ "LinkedBrushing.md" ]
+        | [ Urls.MultiColorLinkedBrushing ] -> [ "MultiColorLinkedBrushing.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.ParallelCategories ]
+    | Urls.Splom :: rest ->
+        match rest with
+        | [ Urls.Iris ] -> [ "Iris.md" ]
+        | [ Urls.Diabetes ] -> [ "Diabetes.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Splom ]
+    | Urls.TwoDimensionalHistogramContour :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Colorscale ] -> [ "Colorscale.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.TwoDimensionalHistogramContour ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []

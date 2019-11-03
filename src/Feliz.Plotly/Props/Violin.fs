@@ -57,7 +57,7 @@ type violin =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkViolinAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkViolinAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkViolinAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkViolinAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -68,6 +68,16 @@ type violin =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkViolinAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkViolinAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkViolinAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -105,7 +115,7 @@ type violin =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkViolinAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkViolinAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkViolinAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkViolinAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -116,6 +126,16 @@ type violin =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkViolinAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkViolinAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: bool) = Interop.mkViolinAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -198,7 +218,7 @@ type violin =
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<int list>) = Interop.mkViolinAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (values: seq<int []>) = Interop.mkViolinAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline y (values: seq<int option []>) = Interop.mkViolinAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<seq<float>>) = Interop.mkViolinAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y sample data or coordinates. See overview for more info.
@@ -209,6 +229,16 @@ type violin =
     static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkViolinAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkViolinAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<bool option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<System.DateTime option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<int option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<float option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<string option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (value: bool) = Interop.mkViolinAttr "x" value
     /// Sets the x sample data or coordinates. See overview for more info.
@@ -246,7 +276,7 @@ type violin =
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<int list>) = Interop.mkViolinAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (values: seq<int []>) = Interop.mkViolinAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline x (values: seq<int option []>) = Interop.mkViolinAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<seq<float>>) = Interop.mkViolinAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x sample data or coordinates. See overview for more info.
@@ -257,6 +287,16 @@ type violin =
     static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkViolinAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkViolinAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<bool option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<System.DateTime option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<int option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<float option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<string option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x coordinate of the box. See overview for more info.
     static member inline x0 (value: bool) = Interop.mkViolinAttr "x0" value
     /// Sets the x coordinate of the box. See overview for more info.

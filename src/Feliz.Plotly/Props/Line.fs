@@ -12,10 +12,20 @@ open Feliz
 type line =
     /// Sets the line color.
     static member inline color (value: string) = Interop.mkLineAttr "color" value
+    /// Sets the line color.
+    static member inline color (values: seq<string>) = Interop.mkLineAttr "color" (values |> ResizeArray)
+    /// Sets the line color.
+    static member inline color (values: seq<int>) = Interop.mkLineAttr "color" (values |> Array.ofSeq)
+    /// Sets the line color.
+    static member inline color (values: seq<float>) = Interop.mkLineAttr "color" (values |> Array.ofSeq)
     /// Sets the line width (in px).
     static member inline width (value: int) = Interop.mkLineAttr "width" value
     /// Sets the line width (in px).
     static member inline width (value: float) = Interop.mkLineAttr "width" value
+    /// Sets the line width (in px).
+    static member inline width (values: seq<int>) = Interop.mkLineAttr "width" (values |> ResizeArray)
+    /// Sets the line width (in px).
+    static member inline width (values: seq<float>) = Interop.mkLineAttr "width" (values |> ResizeArray)
     /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. *0* corresponds to no smoothing (equivalent to a *linear* shape).
     static member inline smoothing (value: int) = Interop.mkLineAttr "smoothing" value
     /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. *0* corresponds to no smoothing (equivalent to a *linear* shape).

@@ -47,7 +47,7 @@ type header =
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<int list>) = Interop.mkHeaderAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (values: seq<int []>) = Interop.mkHeaderAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline values (values: seq<int option []>) = Interop.mkHeaderAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<seq<float>>) = Interop.mkHeaderAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
@@ -58,6 +58,16 @@ type header =
     static member inline values (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeaderAttr "values" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeaderAttr "values" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<bool option>) = Interop.mkHeaderAttr "values" (values |> ResizeArray)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<System.DateTime option>) = Interop.mkHeaderAttr "values" (values |> ResizeArray)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<int option>) = Interop.mkHeaderAttr "values" (values |> ResizeArray)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<float option>) = Interop.mkHeaderAttr "values" (values |> ResizeArray)
+    /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+    static member inline values (values: seq<string option>) = Interop.mkHeaderAttr "values" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (value: bool) = Interop.mkHeaderAttr "format" value
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
@@ -95,7 +105,7 @@ type header =
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<int list>) = Interop.mkHeaderAttr "format" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (values: seq<int []>) = Interop.mkHeaderAttr "format" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline format (values: seq<int option []>) = Interop.mkHeaderAttr "format" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<seq<float>>) = Interop.mkHeaderAttr "format" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
@@ -106,6 +116,16 @@ type header =
     static member inline format (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeaderAttr "format" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeaderAttr "format" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<bool option>) = Interop.mkHeaderAttr "format" (values |> ResizeArray)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<System.DateTime option>) = Interop.mkHeaderAttr "format" (values |> ResizeArray)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<int option>) = Interop.mkHeaderAttr "format" (values |> ResizeArray)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<float option>) = Interop.mkHeaderAttr "format" (values |> ResizeArray)
+    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    static member inline format (values: seq<string option>) = Interop.mkHeaderAttr "format" (values |> ResizeArray)
     /// Prefix for cell values.
     static member inline prefix (value: string) = Interop.mkHeaderAttr "prefix" value
     /// Prefix for cell values.
@@ -118,6 +138,8 @@ type header =
     static member inline height (value: int) = Interop.mkHeaderAttr "height" value
     /// The height of cells.
     static member inline height (value: float) = Interop.mkHeaderAttr "height" value
+    /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+    static member inline align (properties: #IHeaderProperty list) = Interop.mkHeaderAttr "align" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
     static member inline line (properties: #ILineProperty list) = Interop.mkHeaderAttr "line" (createObj !!properties)
     static member inline fill (properties: #IFillProperty list) = Interop.mkHeaderAttr "fill" (createObj !!properties)
     static member inline font (properties: #IFontProperty list) = Interop.mkHeaderAttr "font" (createObj !!properties)
@@ -134,9 +156,6 @@ type header =
 
 [<AutoOpen>]
 module header =
-    /// Use a list of enumerated values
-    let inline aligns (properties: #IHeaderProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mkHeaderAttr "align"
-
     /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
     [<Erase>]
     type align =

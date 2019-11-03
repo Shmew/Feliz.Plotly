@@ -15,6 +15,10 @@ type fill =
     /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
     static member inline color (values: seq<string>) = Interop.mkFillAttr "color" (values |> ResizeArray)
     /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
+    static member inline color (values: seq<int>) = Interop.mkFillAttr "color" (values |> Array.ofSeq)
+    /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
+    static member inline color (values: seq<float>) = Interop.mkFillAttr "color" (values |> Array.ofSeq)
+    /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
     static member inline color (values: seq<seq<string>>) = Interop.mkFillAttr "color" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
     static member inline color (values: seq<string list>) = Interop.mkFillAttr "color" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)

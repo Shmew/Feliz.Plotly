@@ -110,6 +110,14 @@ let [<Literal>] MultipleChartTypes = "MultipleChartTypes"
 let [<Literal>] ContourAndScatter = "ContourAndScatter"
 let [<Literal>] LineAndBar = "LineAndBar"
 
+// Parallel Categories Examples
+let [<Literal>] ParallelCategories = "ParallelCategories"
+
+let [<Literal>] WithCounts = "WithCounts"
+let [<Literal>] MultiColor = "MultiColor"
+let [<Literal>] LinkedBrushing = "LinkedBrushing"
+let [<Literal>] MultiColorLinkedBrushing = "MultiColorLinkedBrushing"
+
 // Pie Examples
 let [<Literal>] Pie = "Pie"
 
@@ -130,6 +138,17 @@ let [<Literal>] ColorDimension = "ColorDimension"
 let [<Literal>] DataLabelsHover = "DataLabelsHover"
 let [<Literal>] DataLabelsOnPlot = "DataLabelsOnPlot"
 let [<Literal>] LabellingLinesWithAnnotations = "LabellingLinesWithAnnotations"
+
+// SPC Control Examples
+let [<Literal>] SPCControl = "SPCControl"
+
+let [<Literal>] Distribution = "Distribution"
+
+// Splom Examples
+let [<Literal>] Splom = "Splom"
+
+let [<Literal>] Iris = "Iris"
+let [<Literal>] Diabetes = "Diabetes"
 
 // Sunburst Examples
 let [<Literal>] Sunburst = "Sunburst"
@@ -152,6 +171,12 @@ let [<Literal>] DifferentAttributes = "DifferentAttributes"
 let [<Literal>] NestedLayers = "NestedLayers"
 let [<Literal>] SectorColors = "SectorColors"
 
+// Violin Examples
+let [<Literal>] Violin = "Violin"
+
+let [<Literal>] MultipleTraces = "MultipleTraces"
+let [<Literal>] Split = "Split"
+
 // 2D Density Examples
 let [<Literal>] TwoDimensionalDensity = "2DDensity"
 
@@ -163,3 +188,8 @@ let [<Literal>] TwoDimensionalHistogram = "2DHistogram"
 let [<Literal>] BinningAndStyling = "BinningAndStyling"
 let [<Literal>] BivariateNormalDistribution = "BivariateNormalDistribution"
 let [<Literal>] OverlaidWithScatter = "OverlaidWithScatter"
+
+// 2D Histogram Contour Examples
+let [<Literal>] TwoDimensionalHistogramContour = "2DHistogramContour"
+
+let [<Literal>] Colorscale = "Colorscale"

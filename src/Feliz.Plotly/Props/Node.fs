@@ -47,7 +47,7 @@ type node =
     /// The shown name of the node.
     static member inline label (values: seq<int list>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<int []>) = Interop.mkNodeAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline label (values: seq<int option []>) = Interop.mkNodeAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The shown name of the node.
     static member inline label (values: seq<seq<float>>) = Interop.mkNodeAttr "label" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The shown name of the node.
@@ -58,6 +58,16 @@ type node =
     static member inline label (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "label" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// The shown name of the node.
     static member inline label (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "label" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// The shown name of the node.
+    static member inline label (values: seq<bool option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
+    /// The shown name of the node.
+    static member inline label (values: seq<System.DateTime option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
+    /// The shown name of the node.
+    static member inline label (values: seq<int option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
+    /// The shown name of the node.
+    static member inline label (values: seq<float option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
+    /// The shown name of the node.
+    static member inline label (values: seq<string option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
     static member inline groups (value: int) = Interop.mkNodeAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
@@ -103,7 +113,7 @@ type node =
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<int list>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<int []>) = Interop.mkNodeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline x (values: seq<int option []>) = Interop.mkNodeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<seq<float>>) = Interop.mkNodeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized horizontal position of the node.
@@ -114,6 +124,16 @@ type node =
     static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<bool option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<System.DateTime option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<int option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<float option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<string option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
     /// The normalized vertical position of the node.
     static member inline y (value: bool) = Interop.mkNodeAttr "y" value
     /// The normalized vertical position of the node.
@@ -151,7 +171,7 @@ type node =
     /// The normalized vertical position of the node.
     static member inline y (values: seq<int list>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<int []>) = Interop.mkNodeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline y (values: seq<int option []>) = Interop.mkNodeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<seq<float>>) = Interop.mkNodeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// The normalized vertical position of the node.
@@ -162,10 +182,24 @@ type node =
     static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<bool option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<System.DateTime option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<int option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<float option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<string option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
     static member inline color (value: string) = Interop.mkNodeAttr "color" value
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
     static member inline color (values: seq<string>) = Interop.mkNodeAttr "color" (values |> ResizeArray)
+    /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
+    static member inline color (values: seq<int>) = Interop.mkNodeAttr "color" (values |> Array.ofSeq)
+    /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
+    static member inline color (values: seq<float>) = Interop.mkNodeAttr "color" (values |> Array.ofSeq)
     static member inline line (properties: #ILineProperty list) = Interop.mkNodeAttr "line" (createObj !!properties)
     /// Sets the padding (in px) between the `nodes`.
     static member inline pad (value: int) = Interop.mkNodeAttr "pad" value

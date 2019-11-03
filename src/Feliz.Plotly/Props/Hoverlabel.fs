@@ -14,12 +14,22 @@ type hoverlabel =
     static member inline bgcolor (value: string) = Interop.mkHoverlabelAttr "bgcolor" value
     /// Sets the background color of the hover labels for this trace
     static member inline bgcolor (values: seq<string>) = Interop.mkHoverlabelAttr "bgcolor" (values |> ResizeArray)
+    /// Sets the background color of the hover labels for this trace
+    static member inline bgcolor (values: seq<int>) = Interop.mkHoverlabelAttr "bgcolor" (values |> Array.ofSeq)
+    /// Sets the background color of the hover labels for this trace
+    static member inline bgcolor (values: seq<float>) = Interop.mkHoverlabelAttr "bgcolor" (values |> Array.ofSeq)
     /// Sets the border color of the hover labels for this trace.
     static member inline bordercolor (value: string) = Interop.mkHoverlabelAttr "bordercolor" value
     /// Sets the border color of the hover labels for this trace.
     static member inline bordercolor (values: seq<string>) = Interop.mkHoverlabelAttr "bordercolor" (values |> ResizeArray)
+    /// Sets the border color of the hover labels for this trace.
+    static member inline bordercolor (values: seq<int>) = Interop.mkHoverlabelAttr "bordercolor" (values |> Array.ofSeq)
+    /// Sets the border color of the hover labels for this trace.
+    static member inline bordercolor (values: seq<float>) = Interop.mkHoverlabelAttr "bordercolor" (values |> Array.ofSeq)
     /// Sets the font used in hover labels.
     static member inline font (properties: #IFontProperty list) = Interop.mkHoverlabelAttr "font" (createObj !!properties)
+    /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+    static member inline align (properties: #IHoverlabelProperty list) = Interop.mkHoverlabelAttr "align" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
     /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
     static member inline namelength (value: int) = Interop.mkHoverlabelAttr "namelength" value
     /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
@@ -37,9 +47,6 @@ type hoverlabel =
 
 [<AutoOpen>]
 module hoverlabel =
-    /// Use a list of enumerated values
-    let inline aligns (properties: #IHoverlabelProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mkHoverlabelAttr "align"
-
     /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
     [<Erase>]
     type align =

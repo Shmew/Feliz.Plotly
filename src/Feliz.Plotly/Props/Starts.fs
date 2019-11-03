@@ -47,7 +47,7 @@ type starts =
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<int list>) = Interop.mkStartsAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
-    static member inline x (values: seq<int []>) = Interop.mkStartsAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline x (values: seq<int option []>) = Interop.mkStartsAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<seq<float>>) = Interop.mkStartsAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
@@ -58,6 +58,16 @@ type starts =
     static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStartsAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStartsAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<bool option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<System.DateTime option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<int option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<float option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<string option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (value: bool) = Interop.mkStartsAttr "y" value
     /// Sets the y components of the starting position of the streamtubes
@@ -95,7 +105,7 @@ type starts =
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<int list>) = Interop.mkStartsAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
-    static member inline y (values: seq<int []>) = Interop.mkStartsAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline y (values: seq<int option []>) = Interop.mkStartsAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<seq<float>>) = Interop.mkStartsAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
@@ -106,6 +116,16 @@ type starts =
     static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStartsAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStartsAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<bool option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<System.DateTime option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<int option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<float option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<string option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (value: bool) = Interop.mkStartsAttr "z" value
     /// Sets the z components of the starting position of the streamtubes
@@ -143,7 +163,7 @@ type starts =
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<int list>) = Interop.mkStartsAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
-    static member inline z (values: seq<int []>) = Interop.mkStartsAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline z (values: seq<int option []>) = Interop.mkStartsAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<seq<float>>) = Interop.mkStartsAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
@@ -154,6 +174,16 @@ type starts =
     static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkStartsAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkStartsAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<bool option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<System.DateTime option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<int option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<float option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<string option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
     /// Sets the source reference on plot.ly for  x .
     static member inline xsrc (value: string) = Interop.mkStartsAttr "xsrc" value
     /// Sets the source reference on plot.ly for  y .

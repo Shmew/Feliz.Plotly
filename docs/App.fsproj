@@ -6,6 +6,24 @@
   <ItemGroup>
     <Compile Include="Plotly\Examples\Subplots\MultipleAxes\TwoYAxes.fs" />
     <Compile Include="Plotly\Examples\Subplots\MultipleAxes\MultipleYAxes.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Violin\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Violin\MultipleTraces.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Violin\Grouped.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Violin\Horizontal.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Violin\Split.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Violin\Advanced.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Splom\Iris.fs" />
+    <Compile Include="Plotly\Examples\Statistical\Splom\Diabetes.fs" />
+    <Compile Include="Plotly\Examples\Statistical\SPCControl\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\SPCControl\Distribution.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ParallelCategories\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ParallelCategories\WithCounts.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ParallelCategories\MultiColor.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ParallelCategories\LinkedBrushing.fs" />
+    <Compile Include="Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing.fs" />
+    <Compile Include="Plotly\Examples\Statistical\2DHistogramContour\Basic.fs" />
+    <Compile Include="Plotly\Examples\Statistical\2DHistogramContour\Colorscale.fs" />
+    <Compile Include="Plotly\Examples\Statistical\2DHistogramContour\Styled.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DDensity\WithHistogramSubplots.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogram\BivariateNormalDistribution.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogram\BinningAndStyling.fs" />

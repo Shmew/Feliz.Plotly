@@ -25,7 +25,7 @@ let chart () =
                 box.marker [
                     marker.color (colors.rgb(9, 56, 125))
                 ]
-                box.boxpoints.false'
+                box.boxpoints.false' // This may be a regression on their part
             ]
             traces.box [
                 box.y yData

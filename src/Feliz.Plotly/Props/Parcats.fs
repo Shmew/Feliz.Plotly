@@ -47,7 +47,7 @@ type parcats =
     static member inline labelfont (properties: #ILabelfontProperty list) = Interop.mkParcatsAttr "labelfont" (createObj !!properties)
     /// Sets the font for the `category` labels.
     static member inline tickfont (properties: #ITickfontProperty list) = Interop.mkParcatsAttr "tickfont" (createObj !!properties)
-    static member inline dimensions (properties: #IDimensionsProperty list) = Interop.mkParcatsAttr "dimensions" (createObj !!properties)
+    static member inline dimensions (properties: #IDimensionsProperty list) = Interop.mkParcatsAttr "dimensions" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     static member inline line (properties: #ILineProperty list) = Interop.mkParcatsAttr "line" (createObj !!properties)
     /// The number of observations represented by each state. Defaults to 1 so that each state represents one observation
     static member inline counts (value: int) = Interop.mkParcatsAttr "counts" value

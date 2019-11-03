@@ -25,7 +25,7 @@ let chart () =
             traces.table [
                 table.header [
                     header.values headers
-                    header.aligns [
+                    header.align [
                         header.align.left
                         header.align.center
                     ]
@@ -44,7 +44,7 @@ let chart () =
                 ]
                 table.cells [
                     cells.values values
-                    cells.aligns [
+                    cells.align [
                         cells.align.left
                         cells.align.center
                     ]

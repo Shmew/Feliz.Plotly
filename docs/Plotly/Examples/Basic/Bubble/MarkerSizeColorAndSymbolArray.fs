@@ -38,7 +38,7 @@ let chart () =
                 scatter.marker [
                     marker.color (colors.rgb(31,119,180))
                     marker.size 18
-                    marker.symbols [
+                    marker.symbol [
                         symbol.circle
                         symbol.square
                         symbol.diamond
@@ -53,13 +53,13 @@ let chart () =
                 scatter.marker [
                     marker.size 18
                     marker.line [
-                        //line.color [
-                        //    colors.rgb(120, 120, 120)
-                        //    colors.rgb(120, 120, 120)
-                        //    colors.red
-                        //    colors.rgb(120, 120, 120)
-                        //]
-                       //line.width [2; 2; 6; 2]
+                       line.color [
+                            colors.rgb(120, 120, 120)
+                            colors.rgb(120, 120, 120)
+                            colors.red
+                            colors.rgb(120, 120, 120)
+                        ]
+                       line.width [2; 2; 6; 2]
                     ]
                 ]
             ]

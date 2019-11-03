@@ -65,7 +65,7 @@ module rec ApiParser =
 
     /// Parses a `JsonValue` with given information and returns a `Prop`
     let parseProp componentTree propName (jVal: JsonValue) =
-        let jumpArray = [ "annotations" ]
+        let jumpArray = [ "annotations"; "dimensions" ]
 
         let isSkip =
             [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType"; "transform" ]
@@ -80,7 +80,14 @@ module rec ApiParser =
             |> replaceAddSymbol
             |> appendApostropheToReservedKeywords
 
-        let propType = ValType.getType propName jVal
+        let propType = 
+            match (componentTree |> List.rev |> List.head), propName with
+            | "Line", "color"
+            | "Line", "width" ->
+                { PrimSpecOverrides.empty with
+                    ArrayOk = true, true }
+            | _ -> PrimSpecOverrides.empty
+            |> fun overs -> ValType.getType propName overs jVal
 
         let propOverloads =
             if isSkip then

@@ -59,7 +59,7 @@ type histogram =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int list>) = Interop.mkHistogramAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int []>) = Interop.mkHistogramAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline ids (values: seq<int option []>) = Interop.mkHistogramAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<seq<float>>) = Interop.mkHistogramAttr "ids" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -70,6 +70,16 @@ type histogram =
     static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<bool option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTime option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<float option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<string option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkHistogramAttr "customdata" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -107,7 +117,7 @@ type histogram =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int list>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int []>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline customdata (values: seq<int option []>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<seq<float>>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -118,6 +128,16 @@ type histogram =
     static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<bool option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<float option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<string option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: bool) = Interop.mkHistogramAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -200,7 +220,7 @@ type histogram =
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<int list>) = Interop.mkHistogramAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (values: seq<int []>) = Interop.mkHistogramAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline x (values: seq<int option []>) = Interop.mkHistogramAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<seq<float>>) = Interop.mkHistogramAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
@@ -211,6 +231,16 @@ type histogram =
     static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<bool option>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<System.DateTime option>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<int option>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<float option>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<string option>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (value: bool) = Interop.mkHistogramAttr "y" value
     /// Sets the sample data to be binned on the y axis.
@@ -248,7 +278,7 @@ type histogram =
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<int list>) = Interop.mkHistogramAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (values: seq<int []>) = Interop.mkHistogramAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline y (values: seq<int option []>) = Interop.mkHistogramAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<seq<float>>) = Interop.mkHistogramAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
@@ -259,6 +289,16 @@ type histogram =
     static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<bool option>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<System.DateTime option>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<int option>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<float option>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<string option>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
     /// Sets hover text elements associated with each bar. If a single string, the same string appears over all bars. If an array of string, the items are mapped in order to the this trace's coordinates.
     static member inline text (value: string) = Interop.mkHistogramAttr "text" value
     /// Sets hover text elements associated with each bar. If a single string, the same string appears over all bars. If an array of string, the items are mapped in order to the this trace's coordinates.

@@ -251,6 +251,44 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleAxes", "MultipleAxe
 		public\Plotly\Examples\Subplots\MultipleAxes\TwoYAxes.md = public\Plotly\Examples\Subplots\MultipleAxes\TwoYAxes.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SPCControl", "SPCControl", "{A083BCAE-8B63-494D-90F3-BC0550CCEE29}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\SPCControl\Basic.md = public\Plotly\Examples\Statistical\SPCControl\Basic.md
+		public\Plotly\Examples\Statistical\SPCControl\Distribution.md = public\Plotly\Examples\Statistical\SPCControl\Distribution.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2DHistogramContour", "2DHistogramContour", "{12E09CCE-EDFC-4C1E-B569-3037BC705625}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\2DHistogramContour\Basic.md = public\Plotly\Examples\Statistical\2DHistogramContour\Basic.md
+		public\Plotly\Examples\Statistical\2DHistogramContour\Colorscale.md = public\Plotly\Examples\Statistical\2DHistogramContour\Colorscale.md
+		public\Plotly\Examples\Statistical\2DHistogramContour\Styled.md = public\Plotly\Examples\Statistical\2DHistogramContour\Styled.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ParallelCategories", "ParallelCategories", "{70059608-0DA4-4BA5-8F53-9A678EC20F58}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\ParallelCategories\Basic.md = public\Plotly\Examples\Statistical\ParallelCategories\Basic.md
+		public\Plotly\Examples\Statistical\ParallelCategories\LinkedBrushing.md = public\Plotly\Examples\Statistical\ParallelCategories\LinkedBrushing.md
+		public\Plotly\Examples\Statistical\ParallelCategories\MultiColor.md = public\Plotly\Examples\Statistical\ParallelCategories\MultiColor.md
+		public\Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing.md = public\Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing.md
+		public\Plotly\Examples\Statistical\ParallelCategories\WithCounts.md = public\Plotly\Examples\Statistical\ParallelCategories\WithCounts.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Splom", "Splom", "{F2CF1D23-5CAB-4802-A612-EF1E3799EBB7}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\Splom\Diabetes.md = public\Plotly\Examples\Statistical\Splom\Diabetes.md
+		public\Plotly\Examples\Statistical\Splom\Iris.md = public\Plotly\Examples\Statistical\Splom\Iris.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Violin", "Violin", "{3C85BE5E-47D9-4B1D-8AAF-5ECD70AD60F0}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Statistical\Violin\Advanced.md = public\Plotly\Examples\Statistical\Violin\Advanced.md
+		public\Plotly\Examples\Statistical\Violin\Basic.md = public\Plotly\Examples\Statistical\Violin\Basic.md
+		public\Plotly\Examples\Statistical\Violin\Grouped.md = public\Plotly\Examples\Statistical\Violin\Grouped.md
+		public\Plotly\Examples\Statistical\Violin\Horizontal.md = public\Plotly\Examples\Statistical\Violin\Horizontal.md
+		public\Plotly\Examples\Statistical\Violin\MultipleTraces.md = public\Plotly\Examples\Statistical\Violin\MultipleTraces.md
+		public\Plotly\Examples\Statistical\Violin\Split.md = public\Plotly\Examples\Statistical\Violin\Split.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -305,6 +343,11 @@ Global
 		{834836F5-E005-47FE-BBA2-9D8D3679D585} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{075DB580-2D04-43B4-A3D8-025F5D569379} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{8B569A60-A3ED-4EE2-ABAF-3EE5E08CFD36} = {075DB580-2D04-43B4-A3D8-025F5D569379}
+		{A083BCAE-8B63-494D-90F3-BC0550CCEE29} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{12E09CCE-EDFC-4C1E-B569-3037BC705625} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{70059608-0DA4-4BA5-8F53-9A678EC20F58} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{F2CF1D23-5CAB-4802-A612-EF1E3799EBB7} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{3C85BE5E-47D9-4B1D-8AAF-5ECD70AD60F0} = {0D457903-8E32-4932-893E-C26C4918366E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

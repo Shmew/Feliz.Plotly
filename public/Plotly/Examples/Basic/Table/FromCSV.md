@@ -19,7 +19,7 @@ type BTCMiningData =
       OutputVolue: int []
       MarketPrice: int []
       HashRate: int []
-      CostPerTransactionUSD : int []
+      CostPerTransactionUSD: int []
       MiningRevenueUSD: int []
       TransactionFeesBTC: int [] }
     member this.AddDataSet (data: string []) =
@@ -33,6 +33,7 @@ type BTCMiningData =
             CostPerTransactionUSD = Array.append this.CostPerTransactionUSD (data.[6] |> int |> Array.singleton)
             MiningRevenueUSD = Array.append this.MiningRevenueUSD (data.[7] |> int |> Array.singleton)
             TransactionFeesBTC = Array.append this.TransactionFeesBTC (data.[8] |> int |> Array.singleton) }
+
     member this.Values =
         [ U4.Case1 this.Ids
           U4.Case3 this.Date

@@ -87,7 +87,7 @@ type layout =
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<int list>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<int []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map ResizeArray |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<int option []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<seq<float>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
@@ -98,6 +98,16 @@ type layout =
     static member inline hiddenlabels (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<bool option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<System.DateTime option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<int option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<float option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<string option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
     static member inline piecolorway (value: string) = Interop.mkLayoutAttr "piecolorway" (value |> Array.singleton |> ResizeArray)
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.

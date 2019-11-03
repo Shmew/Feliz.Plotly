@@ -13,7 +13,6 @@ module Render =
         /// prop overload. Does not include docs.
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
             let attrValue = prop.ParentNameTree |> List.head
-            //else (prop.ParentNameTree |> trimTreeToHead 3 |> String.concat "")
             let bodyCode =
                 match propOverload.BodyCode with
                 | ValueExprOnly expr -> sprintf "Interop.mk%sAttr \"%s\" %s" attrValue prop.RealPropName expr
@@ -98,15 +97,7 @@ module Render =
             if propsAndEnumOverloads.IsEmpty then
                 []
             else
-                [ for prop, _ in propsAndEnumOverloads do
-                    if prop.PropType = ValType.EnumeratedArray then
-                        let baseInterface = prop.ParentNameTree.Head
-                        sprintf "/// Use a list of enumerated values" |> indent (indentLevel + 1)
-                        sprintf
-                            "let inline %ss (properties: #I%sProperty list) = properties |> List.map (Bindings.getKV >> snd) |> ResizeArray |> Interop.mk%sAttr \"%s\""
-                            prop.MethodName baseInterface baseInterface prop.RealPropName |> indent (indentLevel + 1)
-                        ""
-                  for prop, overloads in propsAndEnumOverloads do
+                [ for prop, overloads in propsAndEnumOverloads do
                       let allOverloadsAreInline = overloads |> List.forall (fun o -> o.IsInline)
                       yield! prop.DocLines
                              |> List.map
