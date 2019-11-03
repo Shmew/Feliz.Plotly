@@ -70,3 +70,8 @@
 
 ### 0.12.0 - Friday, November 1, 2019
 * Fixed some attributes being cast to the wrong JS type
+
+### 0.13.0 - Saturday, November 2, 2019
+* Changed enumerated arrays to be more consistent with the rest of the api
+* Fixed some overloads not being present
+* Added support for option primatives in data input props
