@@ -14,11 +14,11 @@ let yData =
       [ 13; 14; 20; 24; 20; 24; 24; 40; 35; 41; 43; 50]
       [ 18; 21; 18; 21; 16; 14; 13; 18; 17; 16; 19; 23] ]
 
-let plotColors = 
-    [ colors.rgba(67, 67, 67, 1.)
-      colors.rgba(115, 115, 115, 1.)
-      colors.rgba(49, 130, 189, 1.)
-      colors.rgba(189, 189, 189, 1.) ]
+let plotcolor = 
+    [ color.rgba(67, 67, 67, 1.)
+      color.rgba(115, 115, 115, 1.)
+      color.rgba(49, 130, 189, 1.)
+      color.rgba(189, 189, 189, 1.) ]
 
 let lineSize = [ 2; 2; 4; 2 ]
 
@@ -32,7 +32,7 @@ let traces' =
             scatter.y yData.[i]
             scatter.mode.lines
             scatter.line [
-                line.color plotColors.[i]
+                line.color plotcolor.[i]
                 line.width lineSize.[i]
             ]
           ]
@@ -41,7 +41,7 @@ let traces' =
             scatter.y yData.[i]
             scatter.mode.markers
             scatter.marker [
-                marker.color plotColors.[i]
+                marker.color plotcolor.[i]
                 marker.size 12
             ]
           ] ])
@@ -57,9 +57,9 @@ let tracesAnnotations =
             annotation.yanchor.middle
             annotation.text (sprintf "%s %i%s" labels.[i] yData.[i].Head "%")
             annotation.font [
-                font.family fonts.arial
+                font.family font.arial
                 font.size 16
-                font.color colors.black
+                font.color color.black
             ]
             annotation.showarrow false
           ]
@@ -71,9 +71,9 @@ let tracesAnnotations =
             annotation.yanchor.middle
             annotation.text (sprintf "%i%s" yData.[i].[11] "%")
             annotation.font [
-                font.family fonts.arial
+                font.family font.arial
                 font.size 16
-                font.color colors.black
+                font.color color.black
             ]
             annotation.showarrow false
           ]  
@@ -91,16 +91,16 @@ let chart () =
                 xaxis.showline true
                 xaxis.showgrid false
                 xaxis.showticklabels true
-                xaxis.linecolor (colors.rgb(204, 204, 204))
+                xaxis.linecolor (color.rgb(204, 204, 204))
                 xaxis.linewidth 2
                 xaxis.ticks.outside
-                xaxis.tickcolor (colors.rgb(204, 204, 204))
+                xaxis.tickcolor (color.rgb(204, 204, 204))
                 xaxis.tickwidth 2
                 xaxis.ticklen 5
                 xaxis.tickfont [
                     tickfont.family "Arial"
                     tickfont.size 12
-                    tickfont.color (colors.rgb(82, 82, 82))
+                    tickfont.color (color.rgb(82, 82, 82))
                 ]
             ]
             layout.yaxis [
@@ -126,7 +126,7 @@ let chart () =
                     annotation.font [
                         font.family "Arial"
                         font.size 30
-                        font.color (colors.rgb(37, 37, 37))
+                        font.color (color.rgb(37, 37, 37))
                     ]
                     annotation.showarrow false
                 ]
@@ -141,7 +141,7 @@ let chart () =
                     annotation.font [
                         font.family "Arial"
                         font.size 12
-                        font.color (colors.rgb(150, 150, 150))
+                        font.color (color.rgb(150, 150, 150))
                     ]
                     annotation.showarrow false
                 ]

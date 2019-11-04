@@ -53,8 +53,8 @@ let render (data: TitanicData)  =
                 parcats.line [
                     line.color data.Survived
                     line.colorscale (
-                        [ colors.lightSteelBlue; colors.mediumSeaGreen ]
-                        |> colors.colorscale.sequential
+                        [ color.lightSteelBlue; color.mediumSeaGreen ]
+                        |> color.colorscale.sequential
                     )
                 ]
                 parcats.hoveron.color
@@ -79,7 +79,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState TitanicData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/titanic.csv"
 
-    React.useEffect(fun _ ->
+    let loadDataset() = 
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -88,7 +88,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
                 let fullData =
                     responseText.Trim().Split('\n') 
                     |> Array.map (fun s -> s.Split(','))
-                
+
                 fullData
                 |> Array.tail
                 |> Array.fold (fun (state: TitanicData) (values: string []) -> state.AddDataSet values) content
@@ -100,8 +100,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
         }
         |> Async.StartImmediate
 
-        React.createDisposable(ignore)
-    ,path)
+    React.useEffect(loadDataset, [| path :> obj |])
 
     match isLoading, error with
     | true, _ -> input.centeredSpinner

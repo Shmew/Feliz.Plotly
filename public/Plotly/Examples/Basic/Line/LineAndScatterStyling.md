@@ -17,7 +17,7 @@ let chart () =
                 scatter.y [ 10; 15; 13; 17 ]
                 scatter.mode.markers
                 scatter.marker [
-                    marker.color (colors.rgb(219, 64, 82))
+                    marker.color (color.rgb(219, 64, 82))
                     marker.size 12
                 ]
             ]
@@ -26,7 +26,7 @@ let chart () =
                 scatter.y [ 16; 5; 11; 9 ]
                 scatter.mode.lines
                 scatter.line [
-                    line.color (colors.rgb(55, 128, 191))
+                    line.color (color.rgb(55, 128, 191))
                     line.width 3
                 ]
             ]
@@ -38,11 +38,11 @@ let chart () =
                     scatter.mode.markers
                 ]
                 scatter.marker [
-                    marker.color (colors.rgb(128, 0, 128))
+                    marker.color (color.rgb(128, 0, 128))
                     marker.size 8
                 ]
                 scatter.line [
-                    line.color (colors.rgb(128, 0, 128))
+                    line.color (color.rgb(128, 0, 128))
                     line.width 1
                 ]
             ]

@@ -18,11 +18,11 @@ let chart () =
                 scatter.showlegend true
                 scatter.hoverinfo.all
                 scatter.line [
-                    line.color colors.blue
+                    line.color color.blue
                     line.width 2
                 ]
                 scatter.marker [
-                    marker.color colors.blue
+                    marker.color color.blue
                     marker.size 8
                     marker.symbol.circle
                 ]
@@ -34,7 +34,7 @@ let chart () =
                 scatter.name "Violation"
                 scatter.showlegend true
                 scatter.marker [
-                    marker.color (colors.rgb(255, 65, 54))
+                    marker.color (color.rgb(255, 65, 54))
                     marker.line [
                         line.width 3
                     ]
@@ -50,7 +50,7 @@ let chart () =
                 scatter.name "LCL/UCL"
                 scatter.showlegend true
                 scatter.line [
-                    line.color colors.red
+                    line.color color.red
                     line.width 2
                     line.dash "dash" // See about making these static for non px types
                 ]
@@ -62,7 +62,7 @@ let chart () =
                 scatter.name "Center"
                 scatter.showlegend true
                 scatter.line [
-                    line.color colors.gray
+                    line.color color.gray
                     line.width 2
                 ]
             ]
@@ -72,9 +72,9 @@ let chart () =
                 histogram.orientation.h
                 histogram.name "Distribution"
                 histogram.marker [
-                    marker.color colors.blue
+                    marker.color color.blue
                     marker.line [
-                        line.color colors.white
+                        line.color color.white
                         line.width 1
                     ]
                 ]

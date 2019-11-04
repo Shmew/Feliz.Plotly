@@ -68,7 +68,7 @@ let chart () =
                 sunburst.ids ids
                 sunburst.outsidetextfont [
                     outsidetextfont.size 20
-                    outsidetextfont.color (colors.rgb(55, 126, 184))
+                    outsidetextfont.color (color.rgb(55, 126, 184))
                 ]
                 sunburst.marker [
                     marker.line [
@@ -85,9 +85,9 @@ let chart () =
                 margin.t 0
             ]
             layout.sunburstcolorway [
-                colors.rgb(99, 110, 250)
-                colors.rgb(239, 85, 59)
-                colors.rgb(0, 204, 150)
+                color.rgb(99, 110, 250)
+                color.rgb(239, 85, 59)
+                color.rgb(0, 204, 150)
             ]
         ]
     ]

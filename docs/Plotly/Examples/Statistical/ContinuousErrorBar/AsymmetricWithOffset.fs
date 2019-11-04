@@ -49,9 +49,9 @@ let chart () =
                 scatter.x (randomDates [ (2001, 01, 01); (2001, 02, 01) ] 50)
                 scatter.y (randomNumber 50 21)
                 scatter.fill.tonexty
-                scatter.fillcolor (colors.rgba(68, 68, 68, 0.3))
+                scatter.fillcolor (color.rgba(68, 68, 68, 0.3))
                 scatter.line [
-                    line.color (colors.rgb(31, 118, 180))
+                    line.color (color.rgb(31, 118, 180))
                 ]
                 scatter.mode.lines
                 scatter.name "Measurement"
@@ -60,7 +60,7 @@ let chart () =
                 scatter.x (randomDates [ (2001, 01, 01); (2001, 02, 01) ] 50)
                 scatter.y (randomNumber 50 22)
                 scatter.fill.tonexty
-                scatter.fillcolor (colors.rgba(68, 68, 68, 0.3))
+                scatter.fillcolor (color.rgba(68, 68, 68, 0.3))
                 scatter.line [
                     line.width 0
                 ]

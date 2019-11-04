@@ -31,12 +31,12 @@ let chart () =
                     ybins.size 0.1
                 ]
                 histogram2d.colorscale (
-                    [ colors.rgb(12, 51, 131)
-                      colors.rgb(10, 136, 186)
-                      colors.rgb(242, 211, 56)
-                      colors.rgb(242, 143, 56)
-                      colors.rgb(217, 30, 30) ]
-                    |> colors.colorscale.sequential
+                    [ color.rgb(12, 51, 131)
+                      color.rgb(10, 136, 186)
+                      color.rgb(242, 211, 56)
+                      color.rgb(242, 143, 56)
+                      color.rgb(217, 30, 30) ]
+                    |> color.colorscale.sequential
                 )
             ]
         ]

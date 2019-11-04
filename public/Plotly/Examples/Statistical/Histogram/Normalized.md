@@ -18,7 +18,7 @@ let chart () =
                 histogram.x ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble()))
                 histogram.histnorm.probability
                 histogram.marker [
-                    marker.color (colors.rgb(255, 255, 100))
+                    marker.color (color.rgb(255, 255, 100))
                 ]
             ]
         ]

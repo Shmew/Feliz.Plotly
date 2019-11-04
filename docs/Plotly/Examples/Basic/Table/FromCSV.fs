@@ -63,35 +63,35 @@ let render (data: BTCMiningData)  =
                     header.align.center
                     header.line [
                         line.width 1
-                        line.color (colors.rgb(50, 50, 50))
+                        line.color (color.rgb(50, 50, 50))
                     ]
                     header.fill [
-                        fill.color (colors.rgb(235, 100, 230))
+                        fill.color (color.rgb(235, 100, 230))
                     ]
                     header.font [
-                        font.family fonts.arial
+                        font.family font.arial
                         font.size 11
-                        font.color colors.white
+                        font.color color.white
                     ]
                 ]
                 table.cells [
                     cells.values data.Values
                     cells.align.center
                     cells.line [
-                        line.color colors.black
+                        line.color color.black
                         line.width 1
                     ]
                     cells.fill [
                         fill.color [
-                            colors.rgba(228, 222, 249, 0.65)
-                            colors.rgb(235, 193, 238)
-                            colors.rgba(228, 222, 249, 0.65)
+                            color.rgba(228, 222, 249, 0.65)
+                            color.rgb(235, 193, 238)
+                            color.rgba(228, 222, 249, 0.65)
                         ]
                     ]
                     cells.font [
-                        font.family fonts.arial
+                        font.family font.arial
                         font.size 10
-                        font.color colors.black
+                        font.color color.black
                     ]
                 ]
             ]
@@ -111,7 +111,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState BTCMiningData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/Mining-BTC-180.csv"
 
-    React.useEffect(fun _ ->
+    let loadDataset() = 
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -120,7 +120,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
                 let fullData =
                     responseText.Trim().Split('\n') 
                     |> Array.map (fun s -> s.Split(','))
-                
+
                 fullData
                 |> Array.tail
                 |> Array.fold (fun (state: BTCMiningData) (values: string []) -> state.AddDataSet values) content
@@ -132,8 +132,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
         }
         |> Async.StartImmediate
 
-        React.createDisposable(ignore)
-    ,path)
+    React.useEffect(loadDataset, [| path :> obj |])
 
     match isLoading, error with
     | true, _ -> input.centeredSpinner

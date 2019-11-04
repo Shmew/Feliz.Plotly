@@ -1,4 +1,4 @@
-version 5.226.0
+version 5.229.0
 
 framework: auto-detect
 
@@ -27,6 +27,7 @@ group Docs
 
     nuget Fable.Core ~> 3.1
     nuget Fable.Elmish.React ~> 3.0
+    nuget Fable.Promise ~> 2.0
     nuget Fable.SimpleHttp ~> 2.6
     nuget Fable.SimpleJson ~> 3.7
     nuget Feliz ~> 0.66

@@ -13,7 +13,7 @@ let chart () =
                 box.y yData
                 box.name "Only Mean"
                 box.marker [
-                    marker.color (colors.rgb(8, 81, 156))
+                    marker.color (color.rgb(8, 81, 156))
                 ]
                 box.boxmean.true'
             ]
@@ -21,7 +21,7 @@ let chart () =
                 box.y yData
                 box.name "Mean and Standard Deviation"
                 box.marker [
-                    marker.color (colors.rgb(10, 140, 208))
+                    marker.color (color.rgb(10, 140, 208))
                 ]
                 box.boxmean.sd
             ]

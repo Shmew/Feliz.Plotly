@@ -29,9 +29,9 @@ let chart () =
                 scatter.mode.markers
                 scatter.name "Percent of estimated voting age population"
                 scatter.marker [
-                    marker.color (colors.rgba(156, 165, 196, 0.95))
+                    marker.color (color.rgba(156, 165, 196, 0.95))
                     marker.line [
-                        line.color (colors.rgba(156, 165, 196, 1.0))
+                        line.color (color.rgba(156, 165, 196, 1.0))
                         line.width 1
                     ]
                     marker.symbol.circle
@@ -44,9 +44,9 @@ let chart () =
                 scatter.mode.markers
                 scatter.name "Percent of estimated registered voters"
                 scatter.marker [
-                    marker.color (colors.rgba(204, 204, 204, 0.95))
+                    marker.color (color.rgba(204, 204, 204, 0.95))
                     marker.line [
-                        line.color (colors.rgba(217, 217, 217, 1.0))
+                        line.color (color.rgba(217, 217, 217, 1.0))
                         line.width 1
                     ]
                     marker.symbol.circle
@@ -61,19 +61,19 @@ let chart () =
             layout.xaxis [
                 xaxis.showgrid false
                 xaxis.showline true
-                xaxis.linecolor (colors.rgb(102, 102, 102))
+                xaxis.linecolor (color.rgb(102, 102, 102))
                 xaxis.title [
                     title.font [
-                        font.color (colors.rgb(204, 204, 204))
+                        font.color (color.rgb(204, 204, 204))
                     ]
                 ]
                 xaxis.tickfont [
-                    tickfont.color (colors.rgb(102, 102, 102))
+                    tickfont.color (color.rgb(102, 102, 102))
                 ]
                 xaxis.tickmode.linear
                 xaxis.dtick 10
                 xaxis.ticks.outside
-                xaxis.tickcolor (colors.rgb(102, 102, 102))
+                xaxis.tickcolor (color.rgb(102, 102, 102))
             ]
             layout.margin [
                 margin.l 140
@@ -90,8 +90,8 @@ let chart () =
             ]
             layout.height 600
             layout.width 1200
-            layout.paperBgcolor (colors.rgb(254, 247, 234))
-            layout.plotBgcolor (colors.rgb(254, 247, 234))
+            layout.paperBgcolor (color.rgb(254, 247, 234))
+            layout.plotBgcolor (color.rgb(254, 247, 234))
             layout.hovermode.closest
         ]
     ]

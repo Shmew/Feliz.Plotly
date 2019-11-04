@@ -117,6 +117,7 @@ let [<Literal>] WithCounts = "WithCounts"
 let [<Literal>] MultiColor = "MultiColor"
 let [<Literal>] LinkedBrushing = "LinkedBrushing"
 let [<Literal>] MultiColorLinkedBrushing = "MultiColorLinkedBrushing"
+let [<Literal>] MultiColorLinkedBrushing2 = "MultiColorLinkedBrushing2"
 
 // Pie Examples
 let [<Literal>] Pie = "Pie"

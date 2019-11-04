@@ -44,7 +44,7 @@ let chart () =
                 scatter.mode.markers
                 scatter.name "points"
                 scatter.marker [
-                    marker.color (colors.rgb(102, 0, 0))
+                    marker.color (color.rgb(102, 0, 0))
                     marker.size 2
                     marker.opacity 0.4
                 ]
@@ -56,7 +56,7 @@ let chart () =
                 histogram2dcontour.y yData
                 histogram2dcontour.name "density"
                 histogram2dcontour.ncontours 20
-                histogram2dcontour.colorscale colors.colorscale.hot
+                histogram2dcontour.colorscale color.colorscale.hot
                 histogram2dcontour.reversescale true
                 histogram2dcontour.showscale false
                 histogram2dcontour.yaxis "y"
@@ -66,7 +66,7 @@ let chart () =
                 histogram.x xData
                 histogram.name "x density"
                 histogram.marker [
-                    marker.color (colors.rgb(102, 0, 0))
+                    marker.color (color.rgb(102, 0, 0))
                 ]
                 histogram.yaxis "y2" // Create static typings for these?
             ]
@@ -74,7 +74,7 @@ let chart () =
                 histogram.y yData
                 histogram.name "y density"
                 histogram.marker [
-                    marker.color (colors.rgb(102, 0, 0))
+                    marker.color (color.rgb(102, 0, 0))
                 ]
                 histogram.xaxis "x2" // Create static typings for these?
             ]

@@ -58,7 +58,7 @@ let render (data: EnergyData) =
                     node.pad 15
                     node.thickness 15
                     node.line [
-                        line.color colors.black
+                        line.color color.black
                         line.width 0.5
                     ]
                     node.label data.NodeLabel
@@ -80,9 +80,9 @@ let render (data: EnergyData) =
             layout.height 772
             layout.font [
                 font.size 10
-                font.color colors.white
+                font.color color.white
             ]
-            layout.paperBgcolor colors.black
+            layout.paperBgcolor color.black
         ]
     ]
 
@@ -92,7 +92,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState EnergyData.empty
     let path = "https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy_dark.json"
 
-    React.useEffect(fun _ ->
+    let loadDataset() = 
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -120,8 +120,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
         }
         |> Async.StartImmediate
 
-        React.createDisposable(ignore)
-    ,path)
+    React.useEffect(loadDataset, [| path :> obj |])
 
     match isLoading, error with
     | true, _ -> input.centeredSpinner

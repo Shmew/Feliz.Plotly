@@ -14,7 +14,7 @@ let chart () =
                     marker.border [
                         border.arearatio 0
                     ]
-                    marker.color (colors.rgba(255, 0, 0, 0.6))
+                    marker.color (color.rgba(255, 0, 0, 0.6))
                 ]
                 pointcloud.x [ 0 .. 9 ]
                 pointcloud.y [ 9 .. -1 .. 0 ]
@@ -26,7 +26,7 @@ let chart () =
                     marker.border [
                         border.arearatio 0
                     ]
-                    marker.color (colors.rgba(0, 0, 255, 0.9))
+                    marker.color (color.rgba(0, 0, 255, 0.9))
                     marker.opacity 0.8
                     marker.blend true
                 ]
@@ -39,10 +39,10 @@ let chart () =
                     marker.sizemin 0.5
                     marker.sizemax 100
                     marker.border [
-                        border.color (colors.rgb(0, 0, 0))
+                        border.color (color.rgb(0, 0, 0))
                         border.arearatio 0.7071
                     ]
-                    marker.color colors.green
+                    marker.color color.green
                     marker.opacity 0.8
                     marker.blend true
                 ]

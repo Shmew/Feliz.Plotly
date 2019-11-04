@@ -39,13 +39,13 @@ let markersChart () =
                 treemap.parents parents
                 treemap.marker [
                     marker.colors [
-                        colors.pink
-                        colors.royalBlue
-                        colors.lightGray
-                        colors.purple
-                        colors.cyan
-                        colors.lightGray
-                        colors.lightBlue
+                        color.pink
+                        color.royalBlue
+                        color.lightGray
+                        color.purple
+                        color.cyan
+                        color.lightGray
+                        color.lightBlue
                     ]
                 ]
             ]
@@ -62,8 +62,8 @@ let colorwayChart () =
         ]
         plot.layout [
             layout.treemapcolorway [
-                colors.pink
-                colors.lightGray
+                color.pink
+                color.lightGray
             ]
         ]
     ]

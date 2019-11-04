@@ -13,11 +13,11 @@ let chart () =
                     node.pad 15
                     node.thickness 30
                     node.line [
-                        line.color colors.black
+                        line.color color.black
                         line.width 0.5
                     ]
                     node.label [ "A1"; "A2"; "B1"; "B2"; "C1"; "C2" ]
-                    node.color colors.blue
+                    node.color color.blue
                 ]
                 sankey.link [
                     link.source [ 0; 1; 0; 2; 3; 3 ]

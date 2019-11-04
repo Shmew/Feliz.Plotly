@@ -65,7 +65,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState CoffeeData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/coffee-flavors.csv"
 
-    React.useEffect(fun _ ->
+    let loadDataset() = 
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -82,8 +82,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
         }
         |> Async.StartImmediate
 
-        React.createDisposable(ignore)
-    ,path)
+    React.useEffect(loadDataset, [| path :> obj |])
 
     match isLoading, error with
     | true, _ -> input.centeredSpinner

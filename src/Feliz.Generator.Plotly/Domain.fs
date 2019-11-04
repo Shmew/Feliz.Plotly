@@ -300,7 +300,6 @@ module rec Domain =
         let all2DStrsNoUnionsOpt = allBool2DStrOpt @ allFloat2DStrOpt @ allInt2DStrOpt @ allStr2DStrOpt
 
         let all2DStrs = all2DStrsNoUnions @ [ dataU42DArray; dataU42DList ]
-        let all2DStrsOpt = all2DStrsNoUnionsOpt @ [  ]
 
         let allBoolArrStrs = [ boolResizeSingleton; boolSeqResizeStr ]
 

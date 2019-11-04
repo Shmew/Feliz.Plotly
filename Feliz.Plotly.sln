@@ -270,6 +270,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ParallelCategories", "Paral
 		public\Plotly\Examples\Statistical\ParallelCategories\LinkedBrushing.md = public\Plotly\Examples\Statistical\ParallelCategories\LinkedBrushing.md
 		public\Plotly\Examples\Statistical\ParallelCategories\MultiColor.md = public\Plotly\Examples\Statistical\ParallelCategories\MultiColor.md
 		public\Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing.md = public\Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing.md
+		public\Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing2.md = public\Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing2.md
 		public\Plotly\Examples\Statistical\ParallelCategories\WithCounts.md = public\Plotly\Examples\Statistical\ParallelCategories\WithCounts.md
 	EndProjectSection
 EndProject
