@@ -51,17 +51,16 @@ module Types =
     type State =
         { CarData: CarData
           ColorAction: ColorAction 
+          Colors: float []
           DataLoaded: bool
-          Error: string option
-          Traces: IPlotProperty list }
+          Error: string option }
 
     type Msg =
         | LoadData of string
         | SetCarData of CarData
         | SetColorAction of ColorAction
-        | SetDataLoaded of bool
+        | SetColors of ResizeArray<Bindings.Plotly.PlotDatum>
         | SetError of string option
-        | SetTraces of IPlotProperty list
 
 module State =
     open Types
@@ -80,8 +79,6 @@ module State =
                 |> fun newContent -> { newContent with Headers = fullData |> Array.head }
                 |> SetCarData
                 |> dispatch
-                dispatch <| SetError None
-                dispatch <| SetDataLoaded true
             else
                 dispatch <| SetError(Some (sprintf "Status %d: could not load %s" statusCode path))
         }
@@ -90,23 +87,38 @@ module State =
     let update msg (state: State) =
         match msg with
         | LoadData path -> state, Cmd.ofSub (loadDataset path state)
-        | SetCarData carData -> { state with CarData = carData }, Cmd.none
+        | SetCarData carData -> { state with CarData = carData; Colors = carData.Horsepower |> Array.map (fun _ -> 0.);  DataLoaded = true; Error = None }, Cmd.none
         | SetColorAction colorAction -> { state with ColorAction = colorAction }, Cmd.none
-        | SetDataLoaded b -> { state with DataLoaded = b }, Cmd.none
+        | SetColors points -> 
+            let colorPre = 
+                points
+                |> Array.ofSeq
+                |> Array.map (fun pObj -> pObj.pointNumber)
+
+            let colors =
+                state.Colors
+                |> Array.mapi (fun i _ ->
+                    if Array.contains (i |> float) colorPre then
+                        match state.ColorAction with
+                        | ColorAction.Erase -> 0.
+                        | ColorAction.Red -> 1.
+                        | ColorAction.Blue -> 2.
+                    else 0.)
+            
+            { state with Colors = colors }, Cmd.none
         | SetError err -> { state with Error = err }, Cmd.none
-        | SetTraces t -> { state with Traces = t }, Cmd.none
 
     let init () =
         { CarData = CarData.empty
           ColorAction = ColorAction.Erase
+          Colors = [| |]
           DataLoaded = false
-          Error = None 
-          Traces = [] }, Cmd.ofMsg (LoadData "https://raw.githubusercontent.com/plotly/datasets/master/imports-85.csv")
+          Error = None }, Cmd.ofMsg (LoadData "https://raw.githubusercontent.com/plotly/datasets/master/imports-85.csv")
 
 module View =
     open Types
 
-    let plotData state (plotColors: float []) =
+    let plotData state =
         let plotColorscale =
             [ color.gray
               color.gray
@@ -122,7 +134,7 @@ module View =
                 scatter.y state.CarData.HighwayMPG
                 scatter.mode.markers
                 scatter.marker [
-                    marker.color plotColors
+                    marker.color state.Colors
                     marker.colorscale plotColorscale
                     marker.cmin -0.5
                     marker.cmax 2.5
@@ -153,7 +165,7 @@ module View =
                     domain.y [ 0.; 0.4 ]
                 ]
                 parcats.line [
-                    line.color plotColors
+                    line.color state.Colors
                     line.colorscale plotColorscale
                     line.cmin -0.5
                     line.cmax 2.5
@@ -164,33 +176,8 @@ module View =
                 ]
             ]
         ]
-        |> List.singleton
-
-    let updatePoints state plotColors dispatch (points: ResizeArray<Bindings.Plotly.PlotDatum>) =
-        let points = points |> Array.ofSeq
-
-        let colorPre = 
-            points
-            |> Array.map (fun pObj -> pObj.pointNumber)
-
-        let colors =
-            plotColors
-            |> Array.mapi (fun i _ ->
-                if Array.contains (i |> float) colorPre then
-                    JS.console.log state.ColorAction
-                    match state.ColorAction with
-                    | ColorAction.Erase -> 0.
-                    | ColorAction.Red -> 1.
-                    | ColorAction.Blue -> 2.
-                else 0.)
-
-        plotData state colors
-        |> SetTraces
-        |> dispatch
 
     let render state dispatch =
-        let plotColors = state.CarData.Horsepower |> Array.map (fun _ -> 0.)
-
         match state.DataLoaded, state.Error with
         | false, _ ->
             Html.div [
@@ -214,7 +201,7 @@ module View =
         | true, None -> 
             Html.div [
                 Plotly.plot [
-                    yield! state.Traces
+                    plotData state
                     plot.layout [
                         layout.width 600
                         layout.height 800
@@ -232,8 +219,8 @@ module View =
                         layout.dragmode.lasso
                         layout.hovermode.closest
                     ]
-                    plot.onSelected <| fun o -> o.points |> updatePoints state plotColors dispatch
-                    plot.onClick <| fun o -> o.points |> updatePoints state plotColors dispatch
+                    plot.onSelected <| fun o -> o.points |> SetColors |> dispatch
+                    plot.onClick <| fun o -> o.points |> SetColors |> dispatch
                 ]
                 Html.div [
                     prop.className Bulma.Control

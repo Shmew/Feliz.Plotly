@@ -235,8 +235,7 @@ let samples =
               "plotly-chart-parallelcategories-withcounts", Samples.ParallelCategories.WithCounts.chart()
               "plotly-chart-parallelcategories-multicolor", Samples.ParallelCategories.MultiColor.chart(centeredSpinner)
               "plotly-chart-parallelcategories-linkedbrushing", Samples.ParallelCategories.LinkedBrushing.chart(centeredSpinner)
-              "plotly-chart-parallelcategories-multicolorlinkedbrushing", Samples.ParallelCategories.MultiColorLinkedBrushing.chart()
-              "plotly-chart-parallelcategories-multicolorlinkedbrushing2", Samples.ParallelCategories.MultiColorLinkedBrushing2.chart(centeredSpinner) ]
+              "plotly-chart-parallelcategories-multicolorlinkedbrushing", Samples.ParallelCategories.MultiColorLinkedBrushing.chart() ]
 
         let splom = 
             [ "plotly-chart-splom-iris", Samples.Splom.Iris.chart(centeredSpinner)
@@ -639,7 +638,6 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Multi Color" [ Urls.MultiColor ]
                             nestedMenuItem "Linked Brushing" [ Urls.LinkedBrushing ]
                             nestedMenuItem "Multi Color Linked Brushing" [ Urls.MultiColorLinkedBrushing ]
-                            nestedMenuItem "Multi Color Linked Brushing2" [ Urls.MultiColorLinkedBrushing2 ]
                         ]
                         subNestedMenuList "Splom" [ Urls.Splom ] [
                             nestedMenuItem "Iris" [ Urls.Iris ]
@@ -879,7 +877,6 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.MultiColor ] -> [ "MultiColor.md" ]
         | [ Urls.LinkedBrushing ] -> [ "LinkedBrushing.md" ]
         | [ Urls.MultiColorLinkedBrushing ] -> [ "MultiColorLinkedBrushing.md" ]
-        | [ Urls.MultiColorLinkedBrushing2 ] -> [ "MultiColorLinkedBrushing2.md" ]
         | _ -> [ ]
         |> List.append [ Urls.ParallelCategories ]
     | Urls.Splom :: rest ->
