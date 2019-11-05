@@ -122,7 +122,7 @@ let plot' = React.functionComponent (fun (input: {| carData: CarData |}) ->
 
     React.useEffect(initPlot, [| input.carData :> obj |])
 
-    let updatePoints (points: ResizeArray<Bindings.Plotly.PlotDatum>) =
+    let updatePoints (points: ResizeArray<Bindings.PlotDatum>) =
         let points = points |> Array.ofSeq
 
         let colorPre,selections = 

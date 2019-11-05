@@ -21,7 +21,6 @@
     <Compile Include="Plotly\Examples\Statistical\ParallelCategories\MultiColor.fs" />
     <Compile Include="Plotly\Examples\Statistical\ParallelCategories\LinkedBrushing.fs" />
     <Compile Include="Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing.fs" />
-    <Compile Include="Plotly\Examples\Statistical\ParallelCategories\MultiColorLinkedBrushing2.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogramContour\Basic.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogramContour\Colorscale.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogramContour\Styled.fs" />

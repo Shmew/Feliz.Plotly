@@ -1,7 +1,5 @@
 # Feliz.Plotly - Parallel Categories
 
-This example is not fully complete, needs events implemented.
-
 Taken from [Plotly - Parallel Categories](https://plot.ly/javascript/parallel-categories-diagram/)
 
 ```fsharp:plotly-chart-parallelcategories-linkedbrushing
@@ -129,7 +127,7 @@ let plot' = React.functionComponent (fun (input: {| carData: CarData |}) ->
 
     React.useEffect(initPlot, [| input.carData :> obj |])
 
-    let updatePoints (points: ResizeArray<Bindings.Plotly.PlotDatum>) =
+    let updatePoints (points: ResizeArray<Bindings.PlotDatum>) =
         let points = points |> Array.ofSeq
 
         let colorPre,selections = 

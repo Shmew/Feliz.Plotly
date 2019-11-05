@@ -59,7 +59,7 @@ module Types =
         | LoadData of string
         | SetCarData of CarData
         | SetColorAction of ColorAction
-        | SetColors of ResizeArray<Bindings.Plotly.PlotDatum>
+        | SetColors of ResizeArray<Bindings.PlotDatum>
         | SetError of string option
 
 module State =
@@ -97,13 +97,13 @@ module State =
 
             let colors =
                 state.Colors
-                |> Array.mapi (fun i _ ->
+                |> Array.mapi (fun i origColor ->
                     if Array.contains (i |> float) colorPre then
                         match state.ColorAction with
                         | ColorAction.Erase -> 0.
                         | ColorAction.Red -> 1.
                         | ColorAction.Blue -> 2.
-                    else 0.)
+                    else origColor)
             
             { state with Colors = colors }, Cmd.none
         | SetError err -> { state with Error = err }, Cmd.none

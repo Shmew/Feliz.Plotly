@@ -481,6 +481,7 @@ let sidebar (state: State) dispatch =
                 menuList [
                     menuItem "Overview" [ ]
                     menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
+                    menuItem "Release Notes" [ Urls.Plotly; Urls.ReleaseNotes ]
                     menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
                     menuLabel "Examples"
                     nestedMenuList "Basic Plot Types" [ Urls.Plotly; Urls.Examples; Urls.Basic ] [
@@ -920,6 +921,7 @@ let content state dispatch =
     match state.CurrentPath with
     | [ Urls.Plotly; Urls.Overview; ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> lazyView loadMarkdown [ "Plotly"; "Installation.md" ]
+    | [ Urls.Plotly; Urls.ReleaseNotes ] -> lazyView loadMarkdown [ "Plotly"; "RELEASE_NOTES.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> lazyView loadMarkdown [ contributing ]
     | _ when tryTakePath state.CurrentPath [ Urls.Plotly; Urls.Examples ] -> 
         match state.CurrentPath |> List.skip 2 with
