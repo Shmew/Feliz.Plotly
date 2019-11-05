@@ -1,3 +1,7 @@
+### 0.15.0 - Tuesday, November 4, 2019
+* Add static typings for many properties
+* Created the `PlotData` type to deal with multiple typed inputs for 2D collections
+
 ### 0.14.1 - Tuesday, November 4, 2019
 * Fixed bool enum values not working properly
 * Added typed support for style transformations

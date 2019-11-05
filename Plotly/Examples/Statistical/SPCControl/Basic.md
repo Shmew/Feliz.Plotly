@@ -57,7 +57,7 @@ let chart () =
                 scatter.line [
                     line.color color.red
                     line.width 2
-                    line.dash "dash" // See about making these static for non px types
+                    line.dash.dash
                 ]
             ]
             traces.scatter [

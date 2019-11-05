@@ -54,6 +54,18 @@ let render (data: IrisData) =
           ["0.666"; "#636efa"]
           ["1.0"; "#636efa"] ]
 
+    let layoutXAxis =
+        [ xaxis.showline false
+          xaxis.zeroline false
+          xaxis.gridcolor "#ffff"
+          xaxis.ticklen 4 ]
+
+    let layoutYAxis =
+        [ yaxis.showline false
+          yaxis.zeroline false
+          yaxis.gridcolor "#ffff"
+          yaxis.ticklen 4 ]
+
     Plotly.plot [
         plot.traces [
             traces.splom [
@@ -97,54 +109,15 @@ let render (data: IrisData) =
             layout.hovermode.closest
             layout.dragmode.select
             layout.plotBgcolor (color.rgba(240, 240, 240, 0.95))
-            layout.xaxis [
-                xaxis.showline false
-                xaxis.zeroline false
-                xaxis.gridcolor "#ffff"
-                xaxis.ticklen 4
-            ]
-            layout.yaxis [
-                yaxis.showline false
-                yaxis.zeroline false
-                yaxis.gridcolor "#ffff"
-                yaxis.ticklen 4
-            ]
-            layout.xaxis2 [
-                xaxis2.showline false
-                xaxis2.zeroline false
-                xaxis2.gridcolor "#ffff"
-                xaxis2.ticklen 4
-            ]
-            layout.yaxis2 [
-                yaxis2.showline false
-                yaxis2.zeroline false
-                yaxis2.gridcolor "#ffff"
-                yaxis2.ticklen 4
-            ]
-            layout.xaxis3 [
-                xaxis3.showline false
-                xaxis3.zeroline false
-                xaxis3.gridcolor "#ffff"
-                xaxis3.ticklen 4
-            ]
-            layout.yaxis3 [
-                yaxis3.showline false
-                yaxis3.zeroline false
-                yaxis3.gridcolor "#ffff"
-                yaxis3.ticklen 4
-            ]
-            layout.xaxis4 [
-                xaxis4.showline false
-                xaxis4.zeroline false
-                xaxis4.gridcolor "#ffff"
-                xaxis4.ticklen 4
-            ]
-            layout.yaxis4 [
-                yaxis4.showline false
-                yaxis4.zeroline false
-                yaxis4.gridcolor "#ffff"
-                yaxis4.ticklen 4
-            ]
+            layout.xaxis layoutXAxis
+            layout.xaxis (2, layoutXAxis)
+            layout.xaxis (3, layoutXAxis)
+            layout.xaxis (4, layoutXAxis)
+
+            layout.yaxis layoutYAxis
+            layout.yaxis (2, layoutYAxis)
+            layout.yaxis (3, layoutYAxis)
+            layout.yaxis (4, layoutYAxis)
         ]
     ]
 

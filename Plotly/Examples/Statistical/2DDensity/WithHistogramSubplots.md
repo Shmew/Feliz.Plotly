@@ -48,8 +48,6 @@ let chart () =
                     marker.size 2
                     marker.opacity 0.4
                 ]
-                scatter.xaxis "x"
-                scatter.yaxis "y"
             ]
             traces.histogram2dcontour [
                 histogram2dcontour.x xData
@@ -59,8 +57,6 @@ let chart () =
                 histogram2dcontour.colorscale color.colorscale.hot
                 histogram2dcontour.reversescale true
                 histogram2dcontour.showscale false
-                histogram2dcontour.yaxis "y"
-                histogram2dcontour.xaxis "x"
             ]
             traces.histogram [
                 histogram.x xData
@@ -68,7 +64,7 @@ let chart () =
                 histogram.marker [
                     marker.color (color.rgb(102, 0, 0))
                 ]
-                histogram.yaxis "y2" // Create static typings for these?
+                histogram.yaxis 2
             ]
             traces.histogram [
                 histogram.y yData
@@ -76,7 +72,7 @@ let chart () =
                 histogram.marker [
                     marker.color (color.rgb(102, 0, 0))
                 ]
-                histogram.xaxis "x2" // Create static typings for these?
+                histogram.xaxis 2
             ]
         ]
         plot.layout [
@@ -91,28 +87,28 @@ let chart () =
             layout.bargap 0
             layout.xaxis [
                 xaxis.domain [ 0.; 0.85 ]
-                xaxis.anchor.custom "y"
+                xaxis.anchor.y 1
                 xaxis.showgrid false
                 xaxis.zeroline false
             ]
             layout.yaxis [
-                yaxis.anchor.custom "x"
+                yaxis.anchor.x 1
                 yaxis.domain [ 0.; 0.85 ]
                 yaxis.showgrid false
                 yaxis.zeroline false
             ]
-            layout.xaxis2 [
-                xaxis2.anchor.custom "y2"
-                xaxis2.domain [ 0.85; 1. ]
-                xaxis2.showgrid false
-                xaxis2.zeroline false
-            ]
-            layout.yaxis2 [
-                yaxis2.anchor.custom "x2"
-                yaxis2.domain [ 0.85; 1. ]
-                yaxis2.showgrid false
-                yaxis2.zeroline false
-            ]
+            layout.xaxis (2, [
+                xaxis.anchor.y 2
+                xaxis.domain [ 0.85; 1. ]
+                xaxis.showgrid false
+                xaxis.zeroline false
+            ])
+            layout.yaxis (2, [
+                yaxis.anchor.x 2
+                yaxis.domain [ 0.85; 1. ]
+                yaxis.showgrid false
+                yaxis.zeroline false
+            ])
         ]
         plot.debug true
     ]

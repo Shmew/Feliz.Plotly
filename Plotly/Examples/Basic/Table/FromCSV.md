@@ -35,15 +35,15 @@ type BTCMiningData =
             TransactionFeesBTC = Array.append this.TransactionFeesBTC (data.[8] |> int |> Array.singleton) }
 
     member this.Values =
-        [ U4.Case1 this.Ids
-          U4.Case3 this.Date
-          U4.Case1 this.NumberTransactions
-          U4.Case1 this.OutputVolue
-          U4.Case1 this.MarketPrice
-          U4.Case1 this.HashRate
-          U4.Case1 this.CostPerTransactionUSD
-          U4.Case1 this.MiningRevenueUSD
-          U4.Case1 this.TransactionFeesBTC ]
+        [ PlotData.Int this.Ids
+          PlotData.String this.Date
+          PlotData.Int this.NumberTransactions
+          PlotData.Int this.OutputVolue
+          PlotData.Int this.MarketPrice
+          PlotData.Int this.HashRate
+          PlotData.Int this.CostPerTransactionUSD
+          PlotData.Int this.MiningRevenueUSD
+          PlotData.Int this.TransactionFeesBTC ]
 
 module BTCMiningData =
     let empty =
