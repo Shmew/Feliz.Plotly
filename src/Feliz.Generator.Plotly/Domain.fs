@@ -77,17 +77,19 @@ module rec Domain =
 
     type PrimSpecs =
         { ArrayOk: bool
-          NumArrayOk: bool
-          TwoDimArrayOk: bool
+          Explicit: (string * string) list
+          IsCalcType: bool
           NullOk: bool
-          IsCalcType: bool }
+          NumArrayOk: bool
+          TwoDimArrayOk: bool }
 
     type PrimSpecOverrides =
         { ArrayOk: bool * bool
-          NumArrayOk: bool * bool
-          TwoDimArrayOk: bool * bool
+          Explicit: (string * string) list
+          IsCalcType: bool * bool
           NullOk: bool * bool
-          IsCalcType: bool * bool }
+          NumArrayOk: bool * bool
+          TwoDimArrayOk: bool * bool }
 
     module PrimSpecs =
         let create (jVal: JsonValue) : PrimSpecs =
@@ -97,21 +99,7 @@ module rec Domain =
                 | None -> false
 
             { ArrayOk = isArrayOk
-              NumArrayOk =
-                  match jVal.TryGetProperty("description") with
-                  | Some desc when desc.AsString().Contains("array of numbers") -> true
-                  | _ -> false
-              TwoDimArrayOk =
-                  if isArrayOk then
-                      jVal.TryGetProperty("description")
-                      |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains "2D array"))
-                      |> Option.defaultValue false
-                  else
-                      false
-              NullOk =
-                  match jVal.TryGetProperty("role") with
-                  | Some role when role |> JsonExtensions.AsString = "data" -> true
-                  | _ -> false
+              Explicit = [ ]
               IsCalcType =
                   let editType =
                       jVal.TryGetProperty("editType")
@@ -123,14 +111,30 @@ module rec Domain =
                       |> Option.map (JsonExtensions.AsString >> ((=) "data"))
                       |> Option.defaultValue false
 
-                  editType && role }
+                  editType && role
+              NullOk =
+                  match jVal.TryGetProperty("role") with
+                  | Some role when role |> JsonExtensions.AsString = "data" -> true
+                  | _ -> false
+              NumArrayOk =
+                  match jVal.TryGetProperty("description") with
+                  | Some desc when desc.AsString().Contains("array of numbers") -> true
+                  | _ -> false
+              TwoDimArrayOk =
+                  if isArrayOk then
+                      jVal.TryGetProperty("description")
+                      |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains "2D array"))
+                      |> Option.defaultValue false
+                  else
+                      false }
 
         let allFalse : PrimSpecs =
             { ArrayOk = false
-              NumArrayOk = false
-              TwoDimArrayOk = false
+              Explicit = [ ]
+              IsCalcType = false
               NullOk = false
-              IsCalcType = false }
+              NumArrayOk = false
+              TwoDimArrayOk = false }
 
         let applyOverride (overrides: PrimSpecOverrides) (baseSpecs: PrimSpecs) =
             { baseSpecs with
@@ -138,6 +142,15 @@ module rec Domain =
                     match overrides.ArrayOk with
                     | true, b -> b
                     | false, _ -> baseSpecs.ArrayOk 
+                Explicit = overrides.Explicit
+                IsCalcType =
+                    match overrides.IsCalcType with
+                    | true, b -> b
+                    | false, _ -> baseSpecs.IsCalcType
+                NullOk =
+                    match overrides.NullOk with
+                    | true, b -> b
+                    | false, _ -> baseSpecs.NullOk
                 NumArrayOk =
                     match overrides.NumArrayOk with
                     | true, b -> b
@@ -145,23 +158,16 @@ module rec Domain =
                 TwoDimArrayOk =
                     match overrides.TwoDimArrayOk with
                     | true, b -> b
-                    | false, _ -> baseSpecs.TwoDimArrayOk
-                NullOk =
-                    match overrides.NullOk with
-                    | true, b -> b
-                    | false, _ -> baseSpecs.NullOk
-                IsCalcType =
-                    match overrides.IsCalcType with
-                    | true, b -> b
-                    | false, _ -> baseSpecs.IsCalcType }
+                    | false, _ -> baseSpecs.TwoDimArrayOk }
 
     module PrimSpecOverrides =
         let empty : PrimSpecOverrides =
             { ArrayOk = false, false
-              NumArrayOk = false, false
-              TwoDimArrayOk = false, false
+              Explicit = [ ] 
+              IsCalcType = false, false
               NullOk = false, false
-              IsCalcType = false, false }
+              NumArrayOk = false, false
+              TwoDimArrayOk = false, false }
 
     [<RequireQualifiedAccess>]
     type ValType =
@@ -174,6 +180,7 @@ module rec Domain =
         | Enumerated
         | EnumeratedArray
         | EnumeratedWithCustom
+        | ExplicitOverride of PrimSpecs
         | FlagList
         | FloatArray
         | InfoArray of ValType
@@ -201,6 +208,7 @@ module rec Domain =
         let bool2DArrayStrOpt = "(values: seq<bool option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
         
         let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
+        let compStrExplicit s = sprintf "(properties: I%sProperty list)" s, "(createObj !!properties)"
 
         let dataU42DArray = // When you refactor this add options into the mix
             "(values: seq<U4<int [], float [], string [], bool []>>)",
@@ -330,7 +338,7 @@ module rec Domain =
                 printfn "%s" (s.ToString())
                 [ "(value: TODO)", "value" ]
 
-        /// Extracts the type of the prop recursively
+        /// Extracts the type of the prop
         let rec getType propName attribOverrides (jVal: JsonValue) =
             let hasValType = jVal.TryGetProperty("valType").IsSome
 
@@ -344,6 +352,7 @@ module rec Domain =
                 |> PrimSpecs.applyOverride attribOverrides
 
             match propName, hasValType with
+            | _ when attributes.Explicit.IsEmpty |> not -> ValType.ExplicitOverride attributes
             | "scaleanchor", true -> ValType.String attributes
             | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
             | "xy", true -> ValType.FloatArray
@@ -398,6 +407,7 @@ module rec Domain =
             | ValType.Enumerated -> [ ]
             | ValType.EnumeratedArray -> [ enumeratedArrayStrSeq parentName ]
             | ValType.EnumeratedWithCustom -> [ ]
+            | ValType.ExplicitOverride attrib -> attrib.Explicit
             | ValType.FlagList -> [ flaglistStrSeq parentName ]
             | ValType.FloatArray -> [ float32FromIntSeqStr; float32FromFloatSeqStr ]
             | ValType.InfoArray vt ->

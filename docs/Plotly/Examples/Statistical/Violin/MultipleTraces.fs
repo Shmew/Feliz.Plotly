@@ -37,14 +37,21 @@ module ViolinData =
           Size = [||] }
 
 let render (data: ViolinData)  =
+    let styleValue (color: string) =
+        violin.line [
+            line.color color
+        ]
+        |> List.singleton
+
     Plotly.plot [
         plot.traces [
             traces.violin [
                 violin.x data.Day
                 violin.y data.TotalBill
                 violin.points.false'
+                violin.showlegend true
                 violin.box [
-                    box.visible.true' // this doesn't seem to be working?
+                    box.visible.true'
                 ]
                 violin.line [
                     line.color color.green
@@ -55,22 +62,22 @@ let render (data: ViolinData)  =
                 violin.transforms [
                     transforms.groupby [
                         groupby.groups data.Day
-                        groupby.styles [ // Figure out what all we can set in style.value
+                        groupby.styles [
                             styles.style [
                                 style.target "Sun"
-                                style.value @"{line: {color: 'blue'}}"
+                                style.value (styleValue color.blue)
                             ]
                             styles.style [
                                 style.target "Sat"
-                                style.value @"{line: {color: 'blue'}}"
+                                style.value (styleValue color.orange)
                             ]
                             styles.style [
                                 style.target "Thur"
-                                style.value @"{line: {color: 'blue'}}"
+                                style.value (styleValue color.green)
                             ]
                             styles.style [
                                 style.target "Fri"
-                                style.value @"{line: {color: 'blue'}}"
+                                style.value (styleValue color.red)
                             ]
                         ]
                     ]

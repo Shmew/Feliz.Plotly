@@ -440,6 +440,6 @@ module carpet =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkCarpetAttr "visible" "legendonly"
-        static member inline false' = Interop.mkCarpetAttr "visible" "false"
-        static member inline true' = Interop.mkCarpetAttr "visible" "true"
+        static member inline false' = Interop.mkCarpetAttr "visible" false
+        static member inline true' = Interop.mkCarpetAttr "visible" true
 

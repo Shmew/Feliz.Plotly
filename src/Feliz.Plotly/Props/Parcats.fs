@@ -15,7 +15,7 @@ type parcats =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkParcatsAttr "uid" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkParcatsAttr "stream" (createObj !!properties)
-    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkParcatsAttr "transforms" (createObj !!properties)
+    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkParcatsAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkParcatsAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -68,8 +68,8 @@ module parcats =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkParcatsAttr "visible" "legendonly"
-        static member inline false' = Interop.mkParcatsAttr "visible" "false"
-        static member inline true' = Interop.mkParcatsAttr "visible" "true"
+        static member inline false' = Interop.mkParcatsAttr "visible" false
+        static member inline true' = Interop.mkParcatsAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]

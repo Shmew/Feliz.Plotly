@@ -399,8 +399,8 @@ module yaxis5 =
     [<Erase>]
     type autorange =
         static member inline reversed = Interop.mkYaxis5Attr "autorange" "reversed"
-        static member inline false' = Interop.mkYaxis5Attr "autorange" "false"
-        static member inline true' = Interop.mkYaxis5Attr "autorange" "true"
+        static member inline false' = Interop.mkYaxis5Attr "autorange" false
+        static member inline true' = Interop.mkYaxis5Attr "autorange" true
 
     /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
     [<Erase>]
@@ -454,8 +454,8 @@ module yaxis5 =
         static member inline all = Interop.mkYaxis5Attr "mirror" "all"
         static member inline allticks = Interop.mkYaxis5Attr "mirror" "allticks"
         static member inline ticks = Interop.mkYaxis5Attr "mirror" "ticks"
-        static member inline false' = Interop.mkYaxis5Attr "mirror" "false"
-        static member inline true' = Interop.mkYaxis5Attr "mirror" "true"
+        static member inline false' = Interop.mkYaxis5Attr "mirror" false
+        static member inline true' = Interop.mkYaxis5Attr "mirror" true
 
     /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
     [<Erase>]

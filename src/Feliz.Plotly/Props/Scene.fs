@@ -57,11 +57,11 @@ module scene =
         static member inline pan = Interop.mkSceneAttr "dragmode" "pan"
         static member inline turntable = Interop.mkSceneAttr "dragmode" "turntable"
         static member inline zoom = Interop.mkSceneAttr "dragmode" "zoom"
-        static member inline false' = Interop.mkSceneAttr "dragmode" "false"
+        static member inline false' = Interop.mkSceneAttr "dragmode" false
 
     /// Determines the mode of hover interactions for this scene.
     [<Erase>]
     type hovermode =
         static member inline closest = Interop.mkSceneAttr "hovermode" "closest"
-        static member inline false' = Interop.mkSceneAttr "hovermode" "false"
+        static member inline false' = Interop.mkSceneAttr "hovermode" false
 

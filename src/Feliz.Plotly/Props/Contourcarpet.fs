@@ -563,8 +563,8 @@ module contourcarpet =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkContourcarpetAttr "visible" "legendonly"
-        static member inline false' = Interop.mkContourcarpetAttr "visible" "false"
-        static member inline true' = Interop.mkContourcarpetAttr "visible" "true"
+        static member inline false' = Interop.mkContourcarpetAttr "visible" false
+        static member inline true' = Interop.mkContourcarpetAttr "visible" true
 
     /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
     [<Erase>]

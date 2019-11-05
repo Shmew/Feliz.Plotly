@@ -359,7 +359,7 @@ module layout =
         static member inline select = Interop.mkLayoutAttr "dragmode" "select"
         static member inline turntable = Interop.mkLayoutAttr "dragmode" "turntable"
         static member inline zoom = Interop.mkLayoutAttr "dragmode" "zoom"
-        static member inline false' = Interop.mkLayoutAttr "dragmode" "false"
+        static member inline false' = Interop.mkLayoutAttr "dragmode" false
 
     /// Determines the mode of hover interactions. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation` value) for plots based on cartesian coordinates. For anything else the default value is *closest*.
     [<Erase>]
@@ -367,7 +367,7 @@ module layout =
         static member inline closest = Interop.mkLayoutAttr "hovermode" "closest"
         static member inline x = Interop.mkLayoutAttr "hovermode" "x"
         static member inline y = Interop.mkLayoutAttr "hovermode" "y"
-        static member inline false' = Interop.mkLayoutAttr "hovermode" "false"
+        static member inline false' = Interop.mkLayoutAttr "hovermode" false
 
     /// When \"dragmode\" is set to \"select\", this limits the selection of the drag to horizontal, vertical or diagonal. \"h\" only allows horizontal selection, \"v\" only vertical, \"d\" only diagonal and \"any\" sets no limit.
     [<Erase>]

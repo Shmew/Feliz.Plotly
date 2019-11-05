@@ -81,14 +81,14 @@ module legend =
     type itemclick =
         static member inline toggle = Interop.mkLegendAttr "itemclick" "toggle"
         static member inline toggleothers = Interop.mkLegendAttr "itemclick" "toggleothers"
-        static member inline false' = Interop.mkLegendAttr "itemclick" "false"
+        static member inline false' = Interop.mkLegendAttr "itemclick" false
 
     /// Determines the behavior on legend item double-click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item double-click interactions.
     [<Erase>]
     type itemdoubleclick =
         static member inline toggle = Interop.mkLegendAttr "itemdoubleclick" "toggle"
         static member inline toggleothers = Interop.mkLegendAttr "itemdoubleclick" "toggleothers"
-        static member inline false' = Interop.mkLegendAttr "itemdoubleclick" "false"
+        static member inline false' = Interop.mkLegendAttr "itemdoubleclick" false
 
     /// Sets the legend's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the legend. Value *auto* anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their center otherwise.
     [<Erase>]

@@ -72,7 +72,7 @@ type groupby =
     static member inline groups (values: seq<string option>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Pattern by which grouped traces are named. If only one trace is present, defaults to the group name (`\"%{group}\"`), otherwise defaults to the group name with trace name (`\"%{group} (%{trace})\"`). Available escape sequences are `%{group}`, which inserts the group name, and `%{trace}`, which inserts the trace name. If grouping GDP data by country when more than one trace is present, for example, the default \"%{group} (%{trace})\" would return \"Monaco (GDP per capita)\".
     static member inline nameformat (value: string) = Interop.mkGroupbyAttr "nameformat" value
-    static member inline styles (properties: #IStylesProperty list) = Interop.mkGroupbyAttr "styles" (createObj !!properties)
+    static member inline styles (properties: #IStylesProperty list) = Interop.mkGroupbyAttr "styles" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Sets the source reference on plot.ly for  groups .
     static member inline groupssrc (value: string) = Interop.mkGroupbyAttr "groupssrc" value
 

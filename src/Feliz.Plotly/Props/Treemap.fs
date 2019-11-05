@@ -136,7 +136,7 @@ type treemap =
     static member inline customdata (values: seq<string option>) = Interop.mkTreemapAttr "customdata" (values |> ResizeArray)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkTreemapAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkTreemapAttr "stream" (createObj !!properties)
-    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkTreemapAttr "transforms" (createObj !!properties)
+    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkTreemapAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkTreemapAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -468,8 +468,8 @@ module treemap =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkTreemapAttr "visible" "legendonly"
-        static member inline false' = Interop.mkTreemapAttr "visible" "false"
-        static member inline true' = Interop.mkTreemapAttr "visible" "true"
+        static member inline false' = Interop.mkTreemapAttr "visible" false
+        static member inline true' = Interop.mkTreemapAttr "visible" true
 
     /// Determines how the items in `values` are summed. When set to *total*, items in `values` are taken to be value of all its descendants. When set to *remainder*, items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
     [<Erase>]

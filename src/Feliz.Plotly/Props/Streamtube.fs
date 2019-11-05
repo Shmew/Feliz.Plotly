@@ -581,8 +581,8 @@ module streamtube =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkStreamtubeAttr "visible" "legendonly"
-        static member inline false' = Interop.mkStreamtubeAttr "visible" "false"
-        static member inline true' = Interop.mkStreamtubeAttr "visible" "true"
+        static member inline false' = Interop.mkStreamtubeAttr "visible" false
+        static member inline true' = Interop.mkStreamtubeAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]

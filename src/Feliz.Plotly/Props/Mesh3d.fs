@@ -771,8 +771,8 @@ module mesh3d =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkMesh3dAttr "visible" "legendonly"
-        static member inline false' = Interop.mkMesh3dAttr "visible" "false"
-        static member inline true' = Interop.mkMesh3dAttr "visible" "true"
+        static member inline false' = Interop.mkMesh3dAttr "visible" false
+        static member inline true' = Interop.mkMesh3dAttr "visible" true
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation. It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay triangulation.
     [<Erase>]

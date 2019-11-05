@@ -160,7 +160,7 @@ type box =
     static member inline hoverinfo (properties: #IBoxProperty list) = Interop.mkBoxAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkBoxAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkBoxAttr "stream" (createObj !!properties)
-    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkBoxAttr "transforms" (createObj !!properties)
+    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkBoxAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkBoxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -414,8 +414,8 @@ module box =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkBoxAttr "visible" "legendonly"
-        static member inline false' = Interop.mkBoxAttr "visible" "false"
-        static member inline true' = Interop.mkBoxAttr "visible" "true"
+        static member inline false' = Interop.mkBoxAttr "visible" false
+        static member inline true' = Interop.mkBoxAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]
@@ -435,14 +435,14 @@ module box =
         static member inline all = Interop.mkBoxAttr "boxpoints" "all"
         static member inline outliers = Interop.mkBoxAttr "boxpoints" "outliers"
         static member inline suspectedoutliers = Interop.mkBoxAttr "boxpoints" "suspectedoutliers"
-        static member inline false' = Interop.mkBoxAttr "boxpoints" "false"
+        static member inline false' = Interop.mkBoxAttr "boxpoints" false
 
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.
     [<Erase>]
     type boxmean =
         static member inline sd = Interop.mkBoxAttr "boxmean" "sd"
-        static member inline false' = Interop.mkBoxAttr "boxmean" "false"
-        static member inline true' = Interop.mkBoxAttr "boxmean" "true"
+        static member inline false' = Interop.mkBoxAttr "boxmean" false
+        static member inline true' = Interop.mkBoxAttr "boxmean" true
 
     /// Sets the orientation of the box(es). If *v* (*h*), the distribution is visualized along the vertical (horizontal).
     [<Erase>]

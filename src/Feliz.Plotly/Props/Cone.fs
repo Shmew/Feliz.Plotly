@@ -586,8 +586,8 @@ module cone =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkConeAttr "visible" "legendonly"
-        static member inline false' = Interop.mkConeAttr "visible" "false"
-        static member inline true' = Interop.mkConeAttr "visible" "true"
+        static member inline false' = Interop.mkConeAttr "visible" false
+        static member inline true' = Interop.mkConeAttr "visible" true
 
     /// Determines whether `sizeref` is set as a *scaled* (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as *absolute* value (in the same units as the vector field).
     [<Erase>]

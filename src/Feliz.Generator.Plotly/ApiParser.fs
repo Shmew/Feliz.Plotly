@@ -60,6 +60,11 @@ module ParserUtils =
         |> Array.map fst
         |> List.ofArray
 
+    let transformsChildren =
+        schema?transforms.Properties
+        |> Array.map fst
+        |> List.ofArray
+
     let hasEnums (jVal: JsonValue) =
         jVal.TryGetProperty("valType") 
         |> Option.map (JsonExtensions.AsString >> ((=) "enumerated")) 
@@ -70,7 +75,9 @@ module rec ApiParser =
 
     /// Parses a `JsonValue` with given information and returns a `Prop`
     let parseProp componentTree propName (jVal: JsonValue) =
-        let jumpArray = [ "annotations"; "dimensions" ]
+        let jumpArray = [ "annotations"; "dimensions"; "styles"; "transforms" ]
+        let typeAdders = [ "Traces"; "Transforms" ]
+        let typeAdderChildren = [ yield! traceChildren; yield! transformsChildren ]
 
         let isSkip =
             [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType"; "transform" ]
@@ -91,6 +98,14 @@ module rec ApiParser =
             | "Line", "width" ->
                 { PrimSpecOverrides.empty with
                     ArrayOk = true, true }
+            | "Style", "value" ->
+                { PrimSpecOverrides.empty with
+                    Explicit = 
+                        schema?traces 
+                        |> JsonExtensions.Properties 
+                        |> Array.map (fst >> String.upperFirst >> ValType.compStrExplicit) 
+                        |> List.ofArray
+                        |> List.append [ ValType.stringStr ] }
             | _ -> PrimSpecOverrides.empty
             |> fun overs -> ValType.getType propName overs jVal
 
@@ -103,8 +118,7 @@ module rec ApiParser =
                      |> List.rev
                      |> List.head) (propMethodName |> String.upperFirst) propType
                 |> List.map (fun (paramsCode, valueCode) ->
-                    if List.contains propMethodName traceChildren && componentTree
-                                                                     |> List.head = "Traces" then
+                    if List.contains propMethodName typeAdderChildren && List.contains (componentTree |> List.head) typeAdders then
                         (paramsCode,
                          sprintf "(createObj !!(properties @ [ unbox (Interop.mk%sAttr \"type\" \"%s\") ]))"
                              (propMethodName |> String.upperFirst) propMethodName) ||> RegularPropOverload.create
@@ -163,7 +177,12 @@ module rec ApiParser =
                     let paramsCode, valueCode = ValType.stringStr
 
                     EnumPropOverload.create methodName valueCode |> EnumPropOverload.setParamsCode paramsCode
-                | _ -> EnumPropOverload.create methodName (sprintf "\"%s\"" (trimJson v)))
+                | _ -> 
+                    match v with
+                    | "true"
+                    | "false" -> sprintf "%s" (trimJson v)
+                    | _ -> sprintf "\"%s\"" (trimJson v)
+                    |> EnumPropOverload.create methodName )
             |> List.distinct
 
         let addRegularOverloads prop = (prop, propOverloads) ||> Seq.fold (flip Prop.addRegularOverload)

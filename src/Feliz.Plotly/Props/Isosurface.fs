@@ -477,8 +477,8 @@ module isosurface =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkIsosurfaceAttr "visible" "legendonly"
-        static member inline false' = Interop.mkIsosurfaceAttr "visible" "false"
-        static member inline true' = Interop.mkIsosurfaceAttr "visible" "true"
+        static member inline false' = Interop.mkIsosurfaceAttr "visible" false
+        static member inline true' = Interop.mkIsosurfaceAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]

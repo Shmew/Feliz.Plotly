@@ -494,8 +494,8 @@ module pointcloud =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkPointcloudAttr "visible" "legendonly"
-        static member inline false' = Interop.mkPointcloudAttr "visible" "false"
-        static member inline true' = Interop.mkPointcloudAttr "visible" "true"
+        static member inline false' = Interop.mkPointcloudAttr "visible" false
+        static member inline true' = Interop.mkPointcloudAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]

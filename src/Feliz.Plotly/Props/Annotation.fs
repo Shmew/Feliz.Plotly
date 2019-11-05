@@ -268,5 +268,5 @@ module annotation =
     type clicktoshow =
         static member inline onoff = Interop.mkAnnotationAttr "clicktoshow" "onoff"
         static member inline onout = Interop.mkAnnotationAttr "clicktoshow" "onout"
-        static member inline false' = Interop.mkAnnotationAttr "clicktoshow" "false"
+        static member inline false' = Interop.mkAnnotationAttr "clicktoshow" false
 

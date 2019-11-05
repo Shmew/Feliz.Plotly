@@ -401,8 +401,8 @@ module xaxis =
     [<Erase>]
     type autorange =
         static member inline reversed = Interop.mkXaxisAttr "autorange" "reversed"
-        static member inline false' = Interop.mkXaxisAttr "autorange" "false"
-        static member inline true' = Interop.mkXaxisAttr "autorange" "true"
+        static member inline false' = Interop.mkXaxisAttr "autorange" false
+        static member inline true' = Interop.mkXaxisAttr "autorange" true
 
     /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
     [<Erase>]
@@ -453,8 +453,8 @@ module xaxis =
         static member inline all = Interop.mkXaxisAttr "mirror" "all"
         static member inline allticks = Interop.mkXaxisAttr "mirror" "allticks"
         static member inline ticks = Interop.mkXaxisAttr "mirror" "ticks"
-        static member inline false' = Interop.mkXaxisAttr "mirror" "false"
-        static member inline true' = Interop.mkXaxisAttr "mirror" "true"
+        static member inline false' = Interop.mkXaxisAttr "mirror" false
+        static member inline true' = Interop.mkXaxisAttr "mirror" true
 
     /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
     [<Erase>]

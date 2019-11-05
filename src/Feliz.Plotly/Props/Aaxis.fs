@@ -343,8 +343,8 @@ module aaxis =
     [<Erase>]
     type autorange =
         static member inline reversed = Interop.mkAaxisAttr "autorange" "reversed"
-        static member inline false' = Interop.mkAaxisAttr "autorange" "false"
-        static member inline true' = Interop.mkAaxisAttr "autorange" "true"
+        static member inline false' = Interop.mkAaxisAttr "autorange" false
+        static member inline true' = Interop.mkAaxisAttr "autorange" true
 
     /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
     [<Erase>]

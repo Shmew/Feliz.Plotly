@@ -230,11 +230,11 @@ module config =
     [<Erase>]
     type scrollZoom =
         static member inline cartesian = Interop.mkConfigAttr "scrollZoom" "cartesian"
-        static member inline false' = Interop.mkConfigAttr "scrollZoom" "false"
+        static member inline false' = Interop.mkConfigAttr "scrollZoom" false
         static member inline geo = Interop.mkConfigAttr "scrollZoom" "geo"
         static member inline gl3d = Interop.mkConfigAttr "scrollZoom" "gl3d"
         static member inline mapbox = Interop.mkConfigAttr "scrollZoom" "mapbox"
-        static member inline true' = Interop.mkConfigAttr "scrollZoom" "true"
+        static member inline true' = Interop.mkConfigAttr "scrollZoom" true
 
     /// Sets the double click interaction mode. Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double click resets the axis ranges to their initial values. If *autosize*, double click set the axis ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis ranges to their initial values and even double clicks set the axis ranges to their autorange values.
     [<Erase>]
@@ -242,12 +242,12 @@ module config =
         static member inline autosize = Interop.mkConfigAttr "doubleClick" "autosize"
         static member inline reset = Interop.mkConfigAttr "doubleClick" "reset"
         static member inline resetAndAutosize = Interop.mkConfigAttr "doubleClick" "reset+autosize"
-        static member inline false' = Interop.mkConfigAttr "doubleClick" "false"
+        static member inline false' = Interop.mkConfigAttr "doubleClick" false
 
     /// Determines the mode bar display mode. If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If *hover*, the mode bar is visible while the mouse cursor is on the graph container.
     [<Erase>]
     type displayModeBar =
         static member inline hover = Interop.mkConfigAttr "displayModeBar" "hover"
-        static member inline false' = Interop.mkConfigAttr "displayModeBar" "false"
-        static member inline true' = Interop.mkConfigAttr "displayModeBar" "true"
+        static member inline false' = Interop.mkConfigAttr "displayModeBar" false
+        static member inline true' = Interop.mkConfigAttr "displayModeBar" true
 

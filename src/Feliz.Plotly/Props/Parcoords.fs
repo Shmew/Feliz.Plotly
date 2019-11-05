@@ -131,7 +131,7 @@ type parcoords =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkParcoordsAttr "customdata" (values |> ResizeArray)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkParcoordsAttr "stream" (createObj !!properties)
-    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkParcoordsAttr "transforms" (createObj !!properties)
+    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkParcoordsAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkParcoordsAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -178,8 +178,8 @@ module parcoords =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkParcoordsAttr "visible" "legendonly"
-        static member inline false' = Interop.mkParcoordsAttr "visible" "false"
-        static member inline true' = Interop.mkParcoordsAttr "visible" "true"
+        static member inline false' = Interop.mkParcoordsAttr "visible" false
+        static member inline true' = Interop.mkParcoordsAttr "visible" true
 
     /// Specifies the location of the `label`. *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted labels with *labelangle* may be positioned better inside margins when `labelposition` is set to *bottom*.
     [<Erase>]

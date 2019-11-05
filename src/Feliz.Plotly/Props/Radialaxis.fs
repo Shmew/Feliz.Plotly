@@ -350,8 +350,8 @@ module radialaxis =
     [<Erase>]
     type autorange =
         static member inline reversed = Interop.mkRadialaxisAttr "autorange" "reversed"
-        static member inline false' = Interop.mkRadialaxisAttr "autorange" "false"
-        static member inline true' = Interop.mkRadialaxisAttr "autorange" "true"
+        static member inline false' = Interop.mkRadialaxisAttr "autorange" false
+        static member inline true' = Interop.mkRadialaxisAttr "autorange" true
 
     /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. If *normal*, the range is computed in relation to the extrema of the input data (same behavior as for cartesian axes).
     [<Erase>]

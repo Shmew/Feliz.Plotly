@@ -160,7 +160,7 @@ type violin =
     static member inline hoverinfo (properties: #IViolinProperty list) = Interop.mkViolinAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkViolinAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkViolinAttr "stream" (createObj !!properties)
-    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkViolinAttr "transforms" (createObj !!properties)
+    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkViolinAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkViolinAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -432,8 +432,8 @@ module violin =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkViolinAttr "visible" "legendonly"
-        static member inline false' = Interop.mkViolinAttr "visible" "false"
-        static member inline true' = Interop.mkViolinAttr "visible" "true"
+        static member inline false' = Interop.mkViolinAttr "visible" false
+        static member inline true' = Interop.mkViolinAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]
@@ -472,7 +472,7 @@ module violin =
         static member inline all = Interop.mkViolinAttr "points" "all"
         static member inline outliers = Interop.mkViolinAttr "points" "outliers"
         static member inline suspectedoutliers = Interop.mkViolinAttr "points" "suspectedoutliers"
-        static member inline false' = Interop.mkViolinAttr "points" "false"
+        static member inline false' = Interop.mkViolinAttr "points" false
 
     /// Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under *overlay* mode, where one trace has `side` set to *positive* and the other to *negative*.
     [<Erase>]

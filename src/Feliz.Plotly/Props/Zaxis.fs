@@ -362,8 +362,8 @@ module zaxis =
     [<Erase>]
     type autorange =
         static member inline reversed = Interop.mkZaxisAttr "autorange" "reversed"
-        static member inline false' = Interop.mkZaxisAttr "autorange" "false"
-        static member inline true' = Interop.mkZaxisAttr "autorange" "true"
+        static member inline false' = Interop.mkZaxisAttr "autorange" false
+        static member inline true' = Interop.mkZaxisAttr "autorange" true
 
     /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
     [<Erase>]
@@ -392,8 +392,8 @@ module zaxis =
         static member inline all = Interop.mkZaxisAttr "mirror" "all"
         static member inline allticks = Interop.mkZaxisAttr "mirror" "allticks"
         static member inline ticks = Interop.mkZaxisAttr "mirror" "ticks"
-        static member inline false' = Interop.mkZaxisAttr "mirror" "false"
-        static member inline true' = Interop.mkZaxisAttr "mirror" "true"
+        static member inline false' = Interop.mkZaxisAttr "mirror" false
+        static member inline true' = Interop.mkZaxisAttr "mirror" true
 
     /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
     [<Erase>]

@@ -343,8 +343,8 @@ module baxis =
     [<Erase>]
     type autorange =
         static member inline reversed = Interop.mkBaxisAttr "autorange" "reversed"
-        static member inline false' = Interop.mkBaxisAttr "autorange" "false"
-        static member inline true' = Interop.mkBaxisAttr "autorange" "true"
+        static member inline false' = Interop.mkBaxisAttr "autorange" false
+        static member inline true' = Interop.mkBaxisAttr "autorange" true
 
     /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
     [<Erase>]

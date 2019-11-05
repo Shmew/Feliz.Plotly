@@ -138,7 +138,7 @@ type histogram2d =
     static member inline hoverinfo (properties: #IHistogram2dProperty list) = Interop.mkHistogram2dAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHistogram2dAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkHistogram2dAttr "stream" (createObj !!properties)
-    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHistogram2dAttr "transforms" (createObj !!properties)
+    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHistogram2dAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkHistogram2dAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -418,8 +418,8 @@ module histogram2d =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkHistogram2dAttr "visible" "legendonly"
-        static member inline false' = Interop.mkHistogram2dAttr "visible" "false"
-        static member inline true' = Interop.mkHistogram2dAttr "visible" "true"
+        static member inline false' = Interop.mkHistogram2dAttr "visible" false
+        static member inline true' = Interop.mkHistogram2dAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]
@@ -456,7 +456,7 @@ module histogram2d =
     type zsmooth =
         static member inline best = Interop.mkHistogram2dAttr "zsmooth" "best"
         static member inline fast = Interop.mkHistogram2dAttr "zsmooth" "fast"
-        static member inline false' = Interop.mkHistogram2dAttr "zsmooth" "false"
+        static member inline false' = Interop.mkHistogram2dAttr "zsmooth" false
 
     /// Sets the calendar system to use with `x` date data.
     [<Erase>]

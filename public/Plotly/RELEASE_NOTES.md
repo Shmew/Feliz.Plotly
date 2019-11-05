@@ -1,3 +1,7 @@
+### 0.14.1 - Tuesday, November 4, 2019
+* Fixed bool enum values not working properly
+* Added typed support for style transformations
+
 ### 0.14.0 - Monday, November 4, 2019
 * Fixed some nested enum values not getting overloads generated
 * Added proper support for plot events

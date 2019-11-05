@@ -460,6 +460,6 @@ module marker =
     [<Erase>]
     type depthfade =
         static member inline reversed = Interop.mkMarkerAttr "depthfade" "reversed"
-        static member inline false' = Interop.mkMarkerAttr "depthfade" "false"
-        static member inline true' = Interop.mkMarkerAttr "depthfade" "true"
+        static member inline false' = Interop.mkMarkerAttr "depthfade" false
+        static member inline true' = Interop.mkMarkerAttr "depthfade" true
 

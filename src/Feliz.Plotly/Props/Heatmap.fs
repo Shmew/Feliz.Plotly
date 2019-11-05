@@ -138,7 +138,7 @@ type heatmap =
     static member inline hoverinfo (properties: #IHeatmapProperty list) = Interop.mkHeatmapAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHeatmapAttr "hoverlabel" (createObj !!properties)
     static member inline stream (properties: #IStreamProperty list) = Interop.mkHeatmapAttr "stream" (createObj !!properties)
-    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHeatmapAttr "transforms" (createObj !!properties)
+    static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHeatmapAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: bool) = Interop.mkHeatmapAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -573,8 +573,8 @@ module heatmap =
     [<Erase>]
     type visible =
         static member inline legendonly = Interop.mkHeatmapAttr "visible" "legendonly"
-        static member inline false' = Interop.mkHeatmapAttr "visible" "false"
-        static member inline true' = Interop.mkHeatmapAttr "visible" "true"
+        static member inline false' = Interop.mkHeatmapAttr "visible" false
+        static member inline true' = Interop.mkHeatmapAttr "visible" true
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]
@@ -605,7 +605,7 @@ module heatmap =
     type zsmooth =
         static member inline best = Interop.mkHeatmapAttr "zsmooth" "best"
         static member inline fast = Interop.mkHeatmapAttr "zsmooth" "fast"
-        static member inline false' = Interop.mkHeatmapAttr "zsmooth" "false"
+        static member inline false' = Interop.mkHeatmapAttr "zsmooth" false
 
     /// Sets the calendar system to use with `x` date data.
     [<Erase>]
