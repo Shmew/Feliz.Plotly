@@ -23,14 +23,14 @@ module rec Domain =
           TwoDimArrayOk: bool * bool }
 
     module PrimSpecs =
-        let create (jVal: JsonValue) : PrimSpecs =
+        let create (jVal: JsonValue): PrimSpecs =
             let isArrayOk =
                 match jVal.TryGetProperty("arrayOk") with
                 | Some arrOk -> arrOk.AsBoolean()
                 | None -> false
 
             { ArrayOk = isArrayOk
-              Explicit = [ ]
+              Explicit = []
               Identity = None
               IsCalcType =
                   let editType =
@@ -46,7 +46,8 @@ module rec Domain =
                   editType && role
               NullOk =
                   match jVal.TryGetProperty("role") with
-                  | Some role when role |> JsonExtensions.AsString = "data" -> true
+                  | Some role when role
+                                   |> JsonExtensions.AsString = "data" -> true
                   | _ -> false
               NumArrayOk =
                   match jVal.TryGetProperty("description") with
@@ -60,9 +61,9 @@ module rec Domain =
                   else
                       false }
 
-        let allFalse : PrimSpecs =
+        let allFalse: PrimSpecs =
             { ArrayOk = false
-              Explicit = [ ]
+              Explicit = []
               Identity = None
               IsCalcType = false
               NullOk = false
@@ -71,32 +72,32 @@ module rec Domain =
 
         let applyOverride (overrides: PrimSpecOverrides) (baseSpecs: PrimSpecs) =
             { baseSpecs with
-                ArrayOk =
-                    match overrides.ArrayOk with
-                    | true, b -> b
-                    | false, _ -> baseSpecs.ArrayOk 
-                Explicit = overrides.Explicit
-                IsCalcType =
-                    match overrides.IsCalcType with
-                    | true, b -> b
-                    | false, _ -> baseSpecs.IsCalcType
-                NullOk =
-                    match overrides.NullOk with
-                    | true, b -> b
-                    | false, _ -> baseSpecs.NullOk
-                NumArrayOk =
-                    match overrides.NumArrayOk with
-                    | true, b -> b
-                    | false, _ -> baseSpecs.NumArrayOk
-                TwoDimArrayOk =
-                    match overrides.TwoDimArrayOk with
-                    | true, b -> b
-                    | false, _ -> baseSpecs.TwoDimArrayOk }
+                  ArrayOk =
+                      match overrides.ArrayOk with
+                      | true, b -> b
+                      | false, _ -> baseSpecs.ArrayOk
+                  Explicit = overrides.Explicit
+                  IsCalcType =
+                      match overrides.IsCalcType with
+                      | true, b -> b
+                      | false, _ -> baseSpecs.IsCalcType
+                  NullOk =
+                      match overrides.NullOk with
+                      | true, b -> b
+                      | false, _ -> baseSpecs.NullOk
+                  NumArrayOk =
+                      match overrides.NumArrayOk with
+                      | true, b -> b
+                      | false, _ -> baseSpecs.NumArrayOk
+                  TwoDimArrayOk =
+                      match overrides.TwoDimArrayOk with
+                      | true, b -> b
+                      | false, _ -> baseSpecs.TwoDimArrayOk }
 
     module PrimSpecOverrides =
-        let empty : PrimSpecOverrides =
+        let empty: PrimSpecOverrides =
             { ArrayOk = false, false
-              Explicit = [ ] 
+              Explicit = []
               Identity = None
               IsCalcType = false, false
               NullOk = false, false
@@ -133,21 +134,20 @@ module rec Domain =
         let boolSeqStrOpt = "(values: seq<bool option>)", "(values |> Array.ofSeq)"
         let boolSingleton = "(value: bool)", "(value |> Array.singleton)"
         let bool2DSeqStr = "(values: seq<seq<bool>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let bool2DSeqStrOpt = "(values: seq<seq<bool option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let bool2DSeqStrOpt =
+            "(values: seq<seq<bool option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let bool2DListStr =
             "(values: seq<bool list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let bool2DListStrOpt =
             "(values: seq<bool option list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let bool2DArrayStr = "(values: seq<bool []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
         let bool2DArrayStrOpt = "(values: seq<bool option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
-        
+
         let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
         let compStrExplicit s = sprintf "(properties: I%sProperty list)" s, "(createObj !!properties)"
         let compStrExplicitExpanded s = sprintf "(id: int, properties: I%sProperty list)" s, "(createObj !!properties)"
 
-        let data2D =
-            "(values: seq<PlotData>)",
-            "(values |> Seq.map PlotData.asDataResize |> Array.ofSeq)"
+        let data2D = "(values: seq<PlotData>)", "(values |> Seq.map PlotData.asDataResize |> Array.ofSeq)"
 
         let dateStr = "(value: System.DateTime)", "value"
         let dateResizeSingleton = "(value: System.DateTime)", "(value |> Array.singleton |> ResizeArray)"
@@ -158,7 +158,8 @@ module rec Domain =
         let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
 
         let enumeratedArrayStrSeq s =
-            sprintf "(properties: #I%sProperty list)" s, "(properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)"
+            sprintf "(properties: #I%sProperty list)" s,
+            "(properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)"
 
         let flaglistStrSeq s =
             sprintf "(properties: #I%sProperty list)" s,
@@ -172,9 +173,11 @@ module rec Domain =
         let floatSeqStrOpt = "(values: seq<float option>)", "(values |> Array.ofSeq)"
         let floatSingleton = "(value: float)", "(value |> Array.singleton)"
         let float32FromFloatSeqStr = "(values: seq<float>)", "(values |> Seq.map float32 |> Array.ofSeq)"
-        let float32FromFloatSeqStrOpt = "(values: seq<float option>)", "(values |> Seq.map (Option.map float32) |> Array.ofSeq)"
+        let float32FromFloatSeqStrOpt =
+            "(values: seq<float option>)", "(values |> Seq.map (Option.map float32) |> Array.ofSeq)"
         let float32FromIntSeqStr = "(values: seq<int>)", "(values |> Seq.map float32 |> Array.ofSeq)"
-        let float32FromIntSeqStrOpt = "(values: seq<int option>)", "(values |> Seq.map (Option.map float32) |> Array.ofSeq)"
+        let float32FromIntSeqStrOpt =
+            "(values: seq<int option>)", "(values |> Seq.map (Option.map float32) |> Array.ofSeq)"
         let float2DSeqStr =
             "(values: seq<seq<float>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let float2DSeqStrOpt =
@@ -195,9 +198,11 @@ module rec Domain =
         let intSeqStrOpt = "(values: seq<int option>)", "(values |> Array.ofSeq)"
         let intSingleton = "(value: int)", "(value |> Array.singleton)"
         let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let int2DSeqStrOpt = "(values: seq<seq<int option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let int2DSeqStrOpt =
+            "(values: seq<seq<int option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let int2DListStr = "(values: seq<int list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let int2DListStrOpt = "(values: seq<int option list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let int2DListStrOpt =
+            "(values: seq<int option list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
         let int2DArrayStr = "(values: seq<int option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
         let int2DArrayStrOpt = "(values: seq<int option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
 
@@ -222,8 +227,7 @@ module rec Domain =
         let allNormalStrs =
             [ boolStr; boolSeqStr; dateStr; dateSeqStr; intStr; intSeqStr; floatStr; floatSeqStr; stringStr; stringSeqStr ]
 
-        let allNormalOptStrs =
-            [ boolSeqStrOpt; dateSeqStrOpt; intSeqStrOpt; floatSeqStrOpt; stringSeqStrOpt ]
+        let allNormalOptStrs = [ boolSeqStrOpt; dateSeqStrOpt; intSeqStrOpt; floatSeqStrOpt; stringSeqStrOpt ]
 
         let allBool2DStrs = [ bool2DSeqStr; bool2DListStr; bool2DArrayStr ]
         let allBool2DStrOpt = [ bool2DSeqStrOpt; bool2DListStrOpt; bool2DArrayStrOpt ]
@@ -254,7 +258,8 @@ module rec Domain =
 
         let allArrStrs = allBoolArrStrs @ allDateArrStrs @ allIntArrStrs @ allFloatArrStrs @ allStringArrStrs
 
-        let allArrOptStrs = [ boolSeqResizeStrOpt; dateSeqResizeStrOpt; intSeqResizeStrOpt; floatSeqResizeStrOpt; stringSeqResizeStrOpt ]
+        let allArrOptStrs =
+            [ boolSeqResizeStrOpt; dateSeqResizeStrOpt; intSeqResizeStrOpt; floatSeqResizeStrOpt; stringSeqResizeStrOpt ]
 
         let getPrimativeOverloadSeq =
             function
@@ -280,13 +285,12 @@ module rec Domain =
                 |> Array.filter (fun s -> s.AsString() |> String.containsRegex)
                 |> Array.length > 0
 
-            let attributes = 
-                PrimSpecs.create jVal
-                |> PrimSpecs.applyOverride attribOverrides
+            let attributes = PrimSpecs.create jVal |> PrimSpecs.applyOverride attribOverrides
 
             match propName, hasValType with
-            | _ when attributes.Explicit.IsEmpty |> not -> 
-                ValType.ExplicitOverride { attributes with Identity = Some <| getType propName { attribOverrides with Explicit = [] } jVal }
+            | _ when attributes.Explicit.IsEmpty |> not ->
+                ValType.ExplicitOverride
+                    { attributes with Identity = Some <| getType propName { attribOverrides with Explicit = [] } jVal }
             | "scaleanchor", true -> ValType.String attributes
             | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
             | "xy", true -> ValType.FloatArray
@@ -317,8 +321,7 @@ module rec Domain =
                     |> ValType.InfoArray
                 | "integer" -> ValType.Int attributes
                 | "number" -> ValType.Number attributes
-                | "string" when jVal.TryGetProperty("values").IsSome ->
-                    ValType.EnumeratedWithCustom
+                | "string" when jVal.TryGetProperty("values").IsSome -> ValType.EnumeratedWithCustom
                 | "string" -> ValType.String attributes
                 | "subplotid" -> ValType.String attributes
                 | _ -> ValType.Any
@@ -336,17 +339,25 @@ module rec Domain =
                       else
                           boolSeqResizeStr
                           if attrib.TwoDimArrayOk then yield! allBool2DStrs ]
-            | ValType.Color attrib -> [ stringStr; if attrib.IsCalcType then stringSeqStr else stringSeqResizeStr; intSeqStr; floatSeqStr; if attrib.TwoDimArrayOk then yield! allStr2DStrs  ]
+            | ValType.Color attrib ->
+                [ stringStr
+                  if attrib.IsCalcType then
+                      stringSeqStr
+                  else
+                      stringSeqResizeStr
+                      intSeqStr
+                      floatSeqStr
+                      if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
             | ValType.ColorArray -> [ stringStr; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
             | ValType.ColorScale -> [ stringStr; string2DListStr ]
             | ValType.DataArray -> allNormalStrs @ all2DStrs @ allArrOptStrs
-            | ValType.Enumerated -> [ ]
+            | ValType.Enumerated -> []
             | ValType.EnumeratedArray -> [ enumeratedArrayStrSeq parentName ]
-            | ValType.EnumeratedWithCustom -> [ ]
+            | ValType.EnumeratedWithCustom -> []
             | ValType.ExplicitOverride attrib ->
                 match attrib.Identity with
                 | Some propIdentity -> getOverloadStrings parentName compName propIdentity
-                | _ -> [ ]
+                | _ -> []
             | ValType.FlagList -> [ flaglistStrSeq parentName ]
             | ValType.FloatArray -> [ float32FromIntSeqStr; float32FromFloatSeqStr ]
             | ValType.InfoArray vt ->
@@ -388,7 +399,7 @@ module rec Domain =
         let getExplicitOverloadStrings (vType: ValType) =
             match vType with
             | ValType.ExplicitOverride attrib -> attrib.Explicit
-            | _ -> [ ]
+            | _ -> []
 
         let rec isPrimative (vType: ValType) =
             match vType with

@@ -66,8 +66,8 @@ module ParserUtils =
         |> List.ofArray
 
     let hasEnums (jVal: JsonValue) =
-        jVal.TryGetProperty("valType") 
-        |> Option.map (JsonExtensions.AsString >> ((=) "enumerated")) 
+        jVal.TryGetProperty("valType")
+        |> Option.map (JsonExtensions.AsString >> ((=) "enumerated"))
         |> Option.defaultValue false
 
 module rec ApiParser =
@@ -77,17 +77,21 @@ module rec ApiParser =
     let parseProp componentTree propName (jVal: JsonValue) =
         let jumpArray = [ "annotations"; "dimensions"; "styles"; "transforms" ]
         let typeAdders = [ "Traces"; "Transforms" ]
-        let typeAdderChildren = [ yield! traceChildren; yield! transformsChildren ]
+
+        let typeAdderChildren =
+            [ yield! traceChildren
+              yield! transformsChildren ]
 
         let isSkip =
             [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType"; "transform" ]
             |> List.contains propName
 
-        let isPropAxis =
-            propName = "xaxis" || propName = "yaxis"
+        let isPropAxis = propName = "xaxis" || propName = "yaxis"
 
         let isExpanded =
-            match (componentTree |> List.rev |> List.head), propName with
+            match (componentTree
+                   |> List.rev
+                   |> List.head), propName with
             | "Layout", _ when isPropAxis -> true
             | _ -> false
 
@@ -100,41 +104,47 @@ module rec ApiParser =
             |> replaceAddSymbol
             |> appendApostropheToReservedKeywords
 
-        let componentParent = componentTree |> List.rev |> List.head
+        let componentParent =
+            componentTree
+            |> List.rev
+            |> List.head
+
         let mNameUpper = propMethodName |> String.upperFirst
 
         let isAnchorOrOverlay =
-            (componentParent = "Xaxis" || componentParent = "Yaxis") 
-             && (propName = "overlaying" || propName = "anchor" )
+            (componentParent = "Xaxis" || componentParent = "Yaxis") && (propName = "overlaying" || propName = "anchor")
 
-        let axisInt axisIdentity = 
-            ValType.intStrCustom "axisId" 
-                (sprintf "(sprintf \"%s%s\" %s)" 
-                    axisIdentity "%s" "(if axisId > 1 then (axisId |> string) else \"\")")
+        let axisInt axisIdentity =
+            ValType.intStrCustom "axisId"
+                (sprintf "(sprintf \"%s%s\" %s)" axisIdentity "%s" "(if axisId > 1 then (axisId |> string) else \"\")")
 
         let axisIntSpecs =
-            { PrimSpecOverrides.empty with Explicit = propName.Substring(0,1) |> axisInt |> List.singleton }
+            { PrimSpecOverrides.empty with
+                  Explicit =
+                      propName.Substring(0, 1)
+                      |> axisInt
+                      |> List.singleton }
 
-        let propType = 
+        let propType =
             match componentParent, propName with
             | "Line", "color"
-            | "Line", "width" ->
-                { PrimSpecOverrides.empty with
-                    ArrayOk = true, true }
+            | "Line", "width" -> { PrimSpecOverrides.empty with ArrayOk = true, true }
             | "Style", "value" ->
                 { PrimSpecOverrides.empty with
-                    Explicit = 
-                        schema?traces 
-                        |> JsonExtensions.Properties 
-                        |> Array.map (fst >> String.upperFirst >> ValType.compStrExplicit) 
-                        |> List.ofArray }
-            | _ when List.contains (componentParent.ToLower()) traceChildren && isPropAxis ->
-                axisIntSpecs
+                      Explicit =
+                          schema?traces
+                          |> JsonExtensions.Properties
+                          |> Array.map
+                              (fst
+                               >> String.upperFirst
+                               >> ValType.compStrExplicit)
+                          |> List.ofArray }
+            | _ when List.contains (componentParent.ToLower()) traceChildren && isPropAxis -> axisIntSpecs
             | _ when isExpanded ->
                 { PrimSpecOverrides.empty with
-                    Explicit =
-                        let pNameUpper = propName |> String.upperFirst
-                        [ pNameUpper |> ValType.compStrExplicitExpanded ] }
+                      Explicit =
+                          let pNameUpper = propName |> String.upperFirst
+                          [ pNameUpper |> ValType.compStrExplicitExpanded ] }
             | _ -> PrimSpecOverrides.empty
             |> fun overs -> ValType.getType propName overs jVal
 
@@ -149,18 +159,17 @@ module rec ApiParser =
                             expOverStrs
                             |> List.map (fun (paramsCode, valueCode) ->
                                 let bodyCode =
-                                    sprintf "Interop.mk%sAttr %s %s" 
-                                        componentParent
-                                        (sprintf "(sprintf \"%s%s\" id)" propMethodName "%i") 
-                                        valueCode
+                                    sprintf "Interop.mk%sAttr %s %s" componentParent
+                                        (sprintf "(sprintf \"%s%s\" id)" propMethodName "%i") valueCode
                                 RegularPropOverload.createCustom paramsCode bodyCode)
-                        else 
-                            expOverStrs 
+                        else
+                            expOverStrs
                             |> List.map (fun (paramsCode, valueCode) -> RegularPropOverload.create paramsCode valueCode)
 
                 ValType.getOverloadStrings componentParent mNameUpper propType
                 |> List.map (fun (paramsCode, valueCode) ->
-                    if List.contains propMethodName typeAdderChildren && List.contains (componentTree |> List.head) typeAdders then
+                    if List.contains propMethodName typeAdderChildren
+                       && List.contains (componentTree |> List.head) typeAdders then
                         (paramsCode,
                          sprintf "(createObj !!(properties @ [ unbox (Interop.mk%sAttr \"type\" \"%s\") ]))"
                              (propMethodName |> String.upperFirst) propMethodName) ||> RegularPropOverload.create
@@ -181,9 +190,8 @@ module rec ApiParser =
                 jVal?values.AsArray()
                 |> Array.collect (fun j ->
                     match j |> JsonValue.asString with
-                    | s when String.containsRegex s && isAnchorOrOverlay ->
-                        [| "x"; "y" |]
-                    | s when s |> String.containsRegex -> [| |]
+                    | s when String.containsRegex s && isAnchorOrOverlay -> [| "x"; "y" |]
+                    | s when s |> String.containsRegex -> [||]
                     | s -> s |> Array.singleton)
                 |> Array.append [| "custom" |]
                 |> List.ofArray
@@ -221,27 +229,25 @@ module rec ApiParser =
                 match propType with
                 | ValType.EnumeratedWithCustom when isAnchorOrOverlay && (v = "x" || v = "y") ->
                     let paramsCode, valueCode = axisInt v
-                    
-                    EnumPropOverload.create methodName valueCode 
+
+                    EnumPropOverload.create methodName valueCode
                     |> EnumPropOverload.setParamsCode paramsCode
                     |> List.singleton
                 | ValType.EnumeratedWithCustom when v = "custom" && componentParent = "Line" && propName = "dash" ->
-                    let valueCode, paramsCode =
-                        [ ValType.intSeqResizeStr; ValType.floatSeqResizeStr ]
-                        |> List.unzip
+                    let valueCode, paramsCode = [ ValType.intSeqResizeStr; ValType.floatSeqResizeStr ] |> List.unzip
 
                     paramsCode
-                    |> List.map2 (fun pCode vCode ->
-                        EnumPropOverload.create methodName vCode
-                        |> EnumPropOverload.setParamsCode pCode) valueCode
+                    |> List.map2
+                        (fun pCode vCode ->
+                        EnumPropOverload.create methodName vCode |> EnumPropOverload.setParamsCode pCode) valueCode
 
                 | ValType.EnumeratedWithCustom when v = "custom" ->
                     let paramsCode, valueCode = ValType.stringStr
 
-                    EnumPropOverload.create methodName valueCode 
+                    EnumPropOverload.create methodName valueCode
                     |> EnumPropOverload.setParamsCode paramsCode
                     |> List.singleton
-                | _ -> 
+                | _ ->
                     match v with
                     | "true"
                     | "false" -> sprintf "%s" (trimJson v)
@@ -330,7 +336,9 @@ module rec ApiParser =
 
         getEnumValues [||] property schema
         |> (Array.collect (snd >> JsonExtensions.Properties)
-            >> Array.collect (fun (name, jVal) -> if name = "values" then jVal.AsArray() else [||]))
+            >> Array.collect (fun (name, jVal) ->
+                if name = "values" then jVal.AsArray()
+                else [||]))
         |> Array.distinct
         |> JsonValue.Array
 
@@ -349,13 +357,17 @@ module rec ApiParser =
         getAttributes [||] property schema
         |> Array.collect (snd >> JsonExtensions.Properties)
         |> Array.distinct
-        |> Array.map (fun (name, jVal) -> 
-            if jVal |> hasEnums then 
+        |> Array.map (fun (name, jVal) ->
+            if jVal |> hasEnums then
                 let fullEnums = getAllEnumAttributes property name
-                jVal.Properties |> Array.map (fun (n, j) -> if n = "values" then (n, fullEnums) else (n, j))
+                jVal.Properties
+                |> Array.map (fun (n, j) ->
+                    if n = "values" then (n, fullEnums)
+                    else (n, j))
                 |> JsonValue.Record
                 |> fun newJ -> (name, newJ)
-            else (name, jVal))
+            else
+                (name, jVal))
         |> JsonValue.Record
 
     /// Gets a list of all components within the schema with their collected properties
@@ -406,15 +418,16 @@ module rec ApiParser =
         result
         |> List.map
             (((fun n ->
-              n |> fixComponentName,
-              
-              getAllAttributes n
-              |> fun res ->
-                  if n = "layout" then
-                      res.Properties
-                      |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
-                      |> JsonValue.Record
-                  else res))
+             n |> fixComponentName,
+
+             getAllAttributes n
+             |> fun res ->
+                 if n = "layout" then
+                     res.Properties
+                     |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
+                     |> JsonValue.Record
+                 else
+                     res))
              >> (fun (n, j) -> parseComponent [ n |> String.upperFirst ] n j))
 
     /// Parse the Plotly.js json schema
@@ -456,33 +469,29 @@ module rec ApiParser =
               "static member inline debug (value: bool) = Interop.mkPlotAttr \"debug\" value"
               "When true, adds a call to Plotly.Plot.resize() as a window.resize event handler",
               "static member inline useResizeHandler (value: bool) = Interop.mkPlotAttr \"useResizeHandler\" value"
-              "",
-              "static member inline onAfterExport (handler: unit -> unit) = Interop.mkPlotAttr \"onClick\" handler"
+              "", "static member inline onAfterExport (handler: unit -> unit) = Interop.mkPlotAttr \"onClick\" handler"
               "",
               "static member inline onAfterPlot (handler: unit -> unit) = Interop.mkPlotAttr \"onAfterPlot\" handler"
-              "",
-              "static member inline onAnimated (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimated\" handler"
+              "", "static member inline onAnimated (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimated\" handler"
               "",
               "static member inline onAnimatingFrame (handler: Bindings.FrameAnimationEvent -> unit) = Interop.mkPlotAttr \"onAnimatingFrame\" handler"
               "",
               "static member inline onAnimationInterrupted (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimationInterrupted\" handler"
-              "",
-              "static member inline onAutoSize (handler: unit -> unit) = Interop.mkPlotAttr \"onAutoSize\" handler"
+              "", "static member inline onAutoSize (handler: unit -> unit) = Interop.mkPlotAttr \"onAutoSize\" handler"
               "",
               "static member inline onBeforeExport (handler: unit -> unit) = Interop.mkPlotAttr \"onBeforeExport\" handler"
               "",
               "static member inline onButtonClicked (handler: Bindings.ButtonClickEvent -> unit) = Interop.mkPlotAttr \"onButtonClicked\" handler"
-              "", 
+              "",
               "static member inline onClick (handler: Bindings.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onClick\" handler"
               "",
               "static member inline onClickAnnotation (handler: Bindings.ClickAnnotationEvent -> unit) = Interop.mkPlotAttr \"onClickAnnotation\" handler"
-              "",
-              "static member inline onDeselect (handler: unit -> unit) = Interop.mkPlotAttr \"onDeselect\" handler"
+              "", "static member inline onDeselect (handler: unit -> unit) = Interop.mkPlotAttr \"onDeselect\" handler"
               "",
               "static member inline onDoubleClick (handler: unit -> unit) = Interop.mkPlotAttr \"onDoubleClick\" handler"
               "",
               "static member inline onFramework (handler: unit -> unit) = Interop.mkPlotAttr \"onFramework\" handler"
-              "", 
+              "",
               "static member inline onHover (handler: Bindings.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onHover\" handler"
               "",
               "static member inline onLegendClick (handler: Bindings.LegendClickEvent -> unit) = Interop.mkPlotAttr \"onLegendClick\" handler"
@@ -492,8 +501,7 @@ module rec ApiParser =
               "static member inline onRelayout (handler: Bindings.PlotRelayoutEvent -> unit) = Interop.mkPlotAttr \"onRelayout\" handler"
               "",
               "static member inline onRestyle (handler: Bindings.PlotRestyleEvent -> unit) = Interop.mkPlotAttr \"onRestyle\" handler"
-              "",
-              "static member inline onRedraw (handler: unit -> unit) = Interop.mkPlotAttr \"onRedraw\" handler"
+              "", "static member inline onRedraw (handler: unit -> unit) = Interop.mkPlotAttr \"onRedraw\" handler"
               "",
               "static member inline onSelected (handler: Bindings.PlotSelectionEvent -> unit) = Interop.mkPlotAttr \"onSelected\" handler"
               "",

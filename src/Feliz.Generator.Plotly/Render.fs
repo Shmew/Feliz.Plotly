@@ -13,6 +13,7 @@ module Render =
         /// prop overload. Does not include docs.
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
             let attrValue = prop.ParentNameTree |> List.head
+
             let bodyCode =
                 match propOverload.BodyCode with
                 | ValueExprOnly expr -> sprintf "Interop.mk%sAttr \"%s\" %s" attrValue prop.RealPropName expr
@@ -98,22 +99,22 @@ module Render =
                 []
             else
                 [ for prop, overloads in propsAndEnumOverloads do
-                      let allOverloadsAreInline = overloads |> List.forall (fun o -> o.IsInline)
-                      yield! prop.DocLines
-                             |> List.map
-                                 (String.prefix "/// "
-                                  >> String.trim
-                                  >> indent (indentLevel + 1))
-                      if allOverloadsAreInline then "[<Erase>]" |> indent (indentLevel + 1)
-                      sprintf "type %s =" prop.MethodName |> indent (indentLevel + 1)
-                      for overload in overloads do
-                          yield! overload.DocLines
-                                 |> List.map
-                                     (String.prefix "/// "
-                                      >> String.trim
-                                      >> indent (indentLevel + 2))
-                          yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
-                      "" ]
+                    let allOverloadsAreInline = overloads |> List.forall (fun o -> o.IsInline)
+                    yield! prop.DocLines
+                           |> List.map
+                               (String.prefix "/// "
+                                >> String.trim
+                                >> indent (indentLevel + 1))
+                    if allOverloadsAreInline then "[<Erase>]" |> indent (indentLevel + 1)
+                    sprintf "type %s =" prop.MethodName |> indent (indentLevel + 1)
+                    for overload in overloads do
+                        yield! overload.DocLines
+                               |> List.map
+                                   (String.prefix "/// "
+                                    >> String.trim
+                                    >> indent (indentLevel + 2))
+                        yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
+                    "" ]
 
         /// Gets all prop strings for a component
         let rec propsForComponent indentStart (comp: Component) =
