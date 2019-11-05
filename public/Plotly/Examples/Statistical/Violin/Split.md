@@ -86,7 +86,7 @@ let render (data: ViolinData)  =
                 title.text "Split Violin Plot"
             ]
             layout.xaxis [
-                xaxis.range [ -1; 4]
+                xaxis.range [ -1; 4 ]
             ]
             layout.yaxis [
                 yaxis.zeroline false
