@@ -57,9 +57,7 @@ type groupby =
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<float []>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline groups (values: seq<PlotData>) = Interop.mkGroupbyAttr "groups" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<bool option>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].

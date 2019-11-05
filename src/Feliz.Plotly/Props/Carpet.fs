@@ -63,9 +63,7 @@ type carpet =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkCarpetAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkCarpetAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -121,9 +119,7 @@ type carpet =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkCarpetAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -202,9 +198,7 @@ type carpet =
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<float []>) = Interop.mkCarpetAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkCarpetAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<bool option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
     /// A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
@@ -260,9 +254,7 @@ type carpet =
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<float []>) = Interop.mkCarpetAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A two dimensional array of y coordinates at each carpet point.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkCarpetAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<bool option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
@@ -318,9 +310,7 @@ type carpet =
     /// An array containing values of the first parameter value
     static member inline a (values: seq<float []>) = Interop.mkCarpetAttr "a" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// An array containing values of the first parameter value
-    static member inline a (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "a" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// An array containing values of the first parameter value
-    static member inline a (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "a" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline a (values: seq<PlotData>) = Interop.mkCarpetAttr "a" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// An array containing values of the first parameter value
     static member inline a (values: seq<bool option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
     /// An array containing values of the first parameter value
@@ -384,9 +374,7 @@ type carpet =
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<float []>) = Interop.mkCarpetAttr "b" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
-    static member inline b (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCarpetAttr "b" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A two dimensional array of y coordinates at each carpet point.
-    static member inline b (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCarpetAttr "b" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline b (values: seq<PlotData>) = Interop.mkCarpetAttr "b" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<bool option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
@@ -416,7 +404,11 @@ type carpet =
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
     static member inline color (value: string) = Interop.mkCarpetAttr "color" value
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+    static member inline xaxis (axisId: int) = Interop.mkCarpetAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkCarpetAttr "xaxis" value
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
+    static member inline yaxis (axisId: int) = Interop.mkCarpetAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkCarpetAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

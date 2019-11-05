@@ -67,9 +67,7 @@ type histogram =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkHistogramAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkHistogramAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -125,9 +123,7 @@ type histogram =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkHistogramAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -228,9 +224,7 @@ type histogram =
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<float []>) = Interop.mkHistogramAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the sample data to be binned on the x axis.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkHistogramAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<bool option>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
@@ -286,9 +280,7 @@ type histogram =
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<float []>) = Interop.mkHistogramAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHistogramAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the sample data to be binned on the y axis.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHistogramAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkHistogramAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<bool option>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
@@ -334,7 +326,11 @@ type histogram =
     static member inline errorX (properties: #IErrorXProperty list) = Interop.mkHistogramAttr "error_x" (createObj !!properties)
     static member inline errorY (properties: #IErrorYProperty list) = Interop.mkHistogramAttr "error_y" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+    static member inline xaxis (axisId: int) = Interop.mkHistogramAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkHistogramAttr "xaxis" value
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
+    static member inline yaxis (axisId: int) = Interop.mkHistogramAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkHistogramAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

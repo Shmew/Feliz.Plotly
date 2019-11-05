@@ -83,6 +83,14 @@ module rec ApiParser =
             [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType"; "transform" ]
             |> List.contains propName
 
+        let isPropAxis =
+            propName = "xaxis" || propName = "yaxis"
+
+        let isExpanded =
+            match (componentTree |> List.rev |> List.head), propName with
+            | "Layout", _ when isPropAxis -> true
+            | _ -> false
+
         let propMethodName =
             propName
             |> trimJson
@@ -92,8 +100,23 @@ module rec ApiParser =
             |> replaceAddSymbol
             |> appendApostropheToReservedKeywords
 
+        let componentParent = componentTree |> List.rev |> List.head
+        let mNameUpper = propMethodName |> String.upperFirst
+
+        let isAnchorOrOverlay =
+            (componentParent = "Xaxis" || componentParent = "Yaxis") 
+             && (propName = "overlaying" || propName = "anchor" )
+
+        let axisInt axisIdentity = 
+            ValType.intStrCustom "axisId" 
+                (sprintf "(sprintf \"%s%s\" %s)" 
+                    axisIdentity "%s" "(if axisId > 1 then (axisId |> string) else \"\")")
+
+        let axisIntSpecs =
+            { PrimSpecOverrides.empty with Explicit = propName.Substring(0,1) |> axisInt |> List.singleton }
+
         let propType = 
-            match (componentTree |> List.rev |> List.head), propName with
+            match componentParent, propName with
             | "Line", "color"
             | "Line", "width" ->
                 { PrimSpecOverrides.empty with
@@ -104,8 +127,14 @@ module rec ApiParser =
                         schema?traces 
                         |> JsonExtensions.Properties 
                         |> Array.map (fst >> String.upperFirst >> ValType.compStrExplicit) 
-                        |> List.ofArray
-                        |> List.append [ ValType.stringStr ] }
+                        |> List.ofArray }
+            | _ when List.contains (componentParent.ToLower()) traceChildren && isPropAxis ->
+                axisIntSpecs
+            | _ when isExpanded ->
+                { PrimSpecOverrides.empty with
+                    Explicit =
+                        let pNameUpper = propName |> String.upperFirst
+                        [ pNameUpper |> ValType.compStrExplicitExpanded ] }
             | _ -> PrimSpecOverrides.empty
             |> fun overs -> ValType.getType propName overs jVal
 
@@ -113,10 +142,23 @@ module rec ApiParser =
             if isSkip then
                 []
             else
-                ValType.getOverloadStrings
-                    (componentTree
-                     |> List.rev
-                     |> List.head) (propMethodName |> String.upperFirst) propType
+                let explicitOverloadStrings =
+                    ValType.getExplicitOverloadStrings propType
+                    |> fun expOverStrs ->
+                        if isExpanded then
+                            expOverStrs
+                            |> List.map (fun (paramsCode, valueCode) ->
+                                let bodyCode =
+                                    sprintf "Interop.mk%sAttr %s %s" 
+                                        componentParent
+                                        (sprintf "(sprintf \"%s%s\" id)" propMethodName "%i") 
+                                        valueCode
+                                RegularPropOverload.createCustom paramsCode bodyCode)
+                        else 
+                            expOverStrs 
+                            |> List.map (fun (paramsCode, valueCode) -> RegularPropOverload.create paramsCode valueCode)
+
+                ValType.getOverloadStrings componentParent mNameUpper propType
                 |> List.map (fun (paramsCode, valueCode) ->
                     if List.contains propMethodName typeAdderChildren && List.contains (componentTree |> List.head) typeAdders then
                         (paramsCode,
@@ -126,6 +168,7 @@ module rec ApiParser =
                         (paramsCode, "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)")
                         ||> RegularPropOverload.create
                     else RegularPropOverload.create paramsCode valueCode)
+                |> List.append explicitOverloadStrings
 
         let enumOverloads =
             match propType with
@@ -136,10 +179,13 @@ module rec ApiParser =
                 |> List.ofArray
             | ValType.EnumeratedWithCustom ->
                 jVal?values.AsArray()
-                |> Array.map (fun j ->
+                |> Array.collect (fun j ->
                     match j |> JsonValue.asString with
-                    | s when String.containsRegex s -> "custom"
-                    | s -> s)
+                    | s when String.containsRegex s && isAnchorOrOverlay ->
+                        [| "x"; "y" |]
+                    | s when s |> String.containsRegex -> [| |]
+                    | s -> s |> Array.singleton)
+                |> Array.append [| "custom" |]
                 |> List.ofArray
             | ValType.FlagList ->
                 let flagCombinations =
@@ -158,7 +204,7 @@ module rec ApiParser =
                 extras @ flagCombinations
             | _ -> []
             |> List.sort
-            |> List.map (fun v ->
+            |> List.collect (fun v ->
                 let methodName =
                     v
                     |> emptStringToNone
@@ -173,16 +219,35 @@ module rec ApiParser =
                     |> appendApostropheToReservedKeywords
 
                 match propType with
+                | ValType.EnumeratedWithCustom when isAnchorOrOverlay && (v = "x" || v = "y") ->
+                    let paramsCode, valueCode = axisInt v
+                    
+                    EnumPropOverload.create methodName valueCode 
+                    |> EnumPropOverload.setParamsCode paramsCode
+                    |> List.singleton
+                | ValType.EnumeratedWithCustom when v = "custom" && componentParent = "Line" && propName = "dash" ->
+                    let valueCode, paramsCode =
+                        [ ValType.intSeqResizeStr; ValType.floatSeqResizeStr ]
+                        |> List.unzip
+
+                    paramsCode
+                    |> List.map2 (fun pCode vCode ->
+                        EnumPropOverload.create methodName vCode
+                        |> EnumPropOverload.setParamsCode pCode) valueCode
+
                 | ValType.EnumeratedWithCustom when v = "custom" ->
                     let paramsCode, valueCode = ValType.stringStr
 
-                    EnumPropOverload.create methodName valueCode |> EnumPropOverload.setParamsCode paramsCode
+                    EnumPropOverload.create methodName valueCode 
+                    |> EnumPropOverload.setParamsCode paramsCode
+                    |> List.singleton
                 | _ -> 
                     match v with
                     | "true"
                     | "false" -> sprintf "%s" (trimJson v)
                     | _ -> sprintf "\"%s\"" (trimJson v)
-                    |> EnumPropOverload.create methodName )
+                    |> EnumPropOverload.create methodName
+                    |> List.singleton)
             |> List.distinct
 
         let addRegularOverloads prop = (prop, propOverloads) ||> Seq.fold (flip Prop.addRegularOverload)
@@ -305,10 +370,6 @@ module rec ApiParser =
 
         let jumps = [ "attributes"; "items"; "layoutAttributes" ]
 
-        let expandIf =
-            [ ("layout", "xaxis")
-              ("layout", "yaxis") ]
-
         let rec allComponentNames (jVal: JsonValue): string list =
             let props =
                 match jumps |> List.choose (jVal.TryGetProperty) with
@@ -341,37 +402,19 @@ module rec ApiParser =
             |> allComponentNames
             |> List.filter (fun name -> List.contains name compSkips |> not)
             |> List.distinct
-            |> List.collect (fun name ->
-                if List.contains name (expandIf |> List.map snd) then
-                    [ 2 .. 5 ]
-                    |> List.map (fun i -> true, sprintf "%s%i" name i)
-                    |> List.append [ false, name ]
-                else
-                    (false, name) |> List.singleton)
 
         result
         |> List.map
-            (((fun (b, n) ->
+            (((fun n ->
               n |> fixComponentName,
-              if b then n.Substring(0, (n.Length - 1))
-              else n
-              |> getAllAttributes
+              
+              getAllAttributes n
               |> fun res ->
                   if n = "layout" then
                       res.Properties
                       |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
                       |> JsonValue.Record
-                  else
-                      res)
-              >> (fun (n, j) ->
-              let others, expanded =
-                  j.Properties |> Array.partition (fun (propN, _) -> List.contains (n, propN) expandIf)
-              others
-              |> Array.collect
-                  (fun (propN, propJ) -> [| 2 .. 5 |] |> Array.map (fun i -> sprintf "%s%i" propN i, propJ))
-              |> Array.append expanded
-              |> JsonValue.Record
-              |> fun res -> n, res))
+                  else res))
              >> (fun (n, j) -> parseComponent [ n |> String.upperFirst ] n j))
 
     /// Parse the Plotly.js json schema

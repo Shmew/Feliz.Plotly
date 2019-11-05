@@ -30,8 +30,6 @@ type line =
     static member inline smoothing (value: int) = Interop.mkLineAttr "smoothing" value
     /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. *0* corresponds to no smoothing (equivalent to a *linear* shape).
     static member inline smoothing (value: float) = Interop.mkLineAttr "smoothing" value
-    /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
-    static member inline dash (value: string) = Interop.mkLineAttr "dash" value
     /// Simplifies lines by removing nearly-collinear points. When transitioning lines, it may be desirable to disable this so that the number of points along the resulting SVG path is unaffected.
     static member inline simplify (value: bool) = Interop.mkLineAttr "simplify" value
     /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax`  Has an effect only if in `marker.line.color`is set to a numerical array. Defaults to `false` when `marker.line.cmin` and `marker.line.cmax` are set by the user.
@@ -88,4 +86,16 @@ module line =
         static member inline spline = Interop.mkLineAttr "shape" "spline"
         static member inline vh = Interop.mkLineAttr "shape" "vh"
         static member inline vhv = Interop.mkLineAttr "shape" "vhv"
+
+    /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
+    [<Erase>]
+    type dash =
+        static member inline dash = Interop.mkLineAttr "dash" "dash"
+        static member inline dashdot = Interop.mkLineAttr "dash" "dashdot"
+        static member inline dot = Interop.mkLineAttr "dash" "dot"
+        static member inline longdash = Interop.mkLineAttr "dash" "longdash"
+        static member inline longdashdot = Interop.mkLineAttr "dash" "longdashdot"
+        static member inline solid = Interop.mkLineAttr "dash" "solid"
+        static member inline custom (values: seq<int>) = Interop.mkLineAttr "dash" (values |> ResizeArray)
+        static member inline custom (values: seq<float>) = Interop.mkLineAttr "dash" (values |> ResizeArray)
 

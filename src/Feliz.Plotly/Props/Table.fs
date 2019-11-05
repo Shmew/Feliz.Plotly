@@ -59,9 +59,7 @@ type table =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkTableAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkTableAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkTableAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkTableAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type table =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkTableAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkTableAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkTableAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkTableAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -208,9 +204,7 @@ type table =
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<float []>) = Interop.mkTableAttr "columnorder" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkTableAttr "columnorder" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline columnorder (values: seq<PlotData>) = Interop.mkTableAttr "columnorder" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<bool option>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.

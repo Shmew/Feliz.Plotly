@@ -67,9 +67,7 @@ type scatter =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkScatterAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatterAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatterAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkScatterAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkScatterAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -125,9 +123,7 @@ type scatter =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkScatterAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatterAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatterAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkScatterAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkScatterAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -228,9 +224,7 @@ type scatter =
     /// Sets the x coordinates.
     static member inline x (values: seq<float []>) = Interop.mkScatterAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatterAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatterAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkScatterAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool option>) = Interop.mkScatterAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -310,9 +304,7 @@ type scatter =
     /// Sets the y coordinates.
     static member inline y (values: seq<float []>) = Interop.mkScatterAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkScatterAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkScatterAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkScatterAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool option>) = Interop.mkScatterAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -386,7 +378,11 @@ type scatter =
     static member inline errorX (properties: #IErrorXProperty list) = Interop.mkScatterAttr "error_x" (createObj !!properties)
     static member inline errorY (properties: #IErrorYProperty list) = Interop.mkScatterAttr "error_y" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+    static member inline xaxis (axisId: int) = Interop.mkScatterAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkScatterAttr "xaxis" value
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
+    static member inline yaxis (axisId: int) = Interop.mkScatterAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkScatterAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

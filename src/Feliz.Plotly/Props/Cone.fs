@@ -59,9 +59,7 @@ type cone =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkConeAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkConeAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type cone =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkConeAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkConeAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkConeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -197,9 +193,7 @@ type cone =
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<float []>) = Interop.mkConeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkConeAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<bool option>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
@@ -255,9 +249,7 @@ type cone =
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<float []>) = Interop.mkConeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkConeAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<bool option>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
@@ -313,9 +305,7 @@ type cone =
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (values: seq<float []>) = Interop.mkConeAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkConeAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (values: seq<bool option>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
@@ -371,9 +361,7 @@ type cone =
     /// Sets the x components of the vector field.
     static member inline u (values: seq<float []>) = Interop.mkConeAttr "u" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "u" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the x components of the vector field.
-    static member inline u (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "u" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline u (values: seq<PlotData>) = Interop.mkConeAttr "u" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<bool option>) = Interop.mkConeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
@@ -429,9 +417,7 @@ type cone =
     /// Sets the y components of the vector field.
     static member inline v (values: seq<float []>) = Interop.mkConeAttr "v" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "v" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the y components of the vector field.
-    static member inline v (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "v" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline v (values: seq<PlotData>) = Interop.mkConeAttr "v" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<bool option>) = Interop.mkConeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
@@ -487,9 +473,7 @@ type cone =
     /// Sets the z components of the vector field.
     static member inline w (values: seq<float []>) = Interop.mkConeAttr "w" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkConeAttr "w" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the z components of the vector field.
-    static member inline w (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkConeAttr "w" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline w (values: seq<PlotData>) = Interop.mkConeAttr "w" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<bool option>) = Interop.mkConeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.

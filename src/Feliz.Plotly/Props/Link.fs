@@ -55,9 +55,7 @@ type link =
     /// The shown name of the link.
     static member inline label (values: seq<float []>) = Interop.mkLinkAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The shown name of the link.
-    static member inline label (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkLinkAttr "label" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// The shown name of the link.
-    static member inline label (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLinkAttr "label" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline label (values: seq<PlotData>) = Interop.mkLinkAttr "label" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// The shown name of the link.
     static member inline label (values: seq<bool option>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
@@ -122,9 +120,7 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<float []>) = Interop.mkLinkAttr "source" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkLinkAttr "source" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLinkAttr "source" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline source (values: seq<PlotData>) = Interop.mkLinkAttr "source" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<bool option>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
@@ -180,9 +176,7 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<float []>) = Interop.mkLinkAttr "target" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkLinkAttr "target" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLinkAttr "target" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline target (values: seq<PlotData>) = Interop.mkLinkAttr "target" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<bool option>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
@@ -238,9 +232,7 @@ type link =
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<float []>) = Interop.mkLinkAttr "value" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
-    static member inline value (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkLinkAttr "value" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A numeric value representing the flow volume value.
-    static member inline value (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLinkAttr "value" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline value (values: seq<PlotData>) = Interop.mkLinkAttr "value" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<bool option>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.

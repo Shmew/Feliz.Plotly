@@ -67,9 +67,7 @@ type pointcloud =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkPointcloudAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPointcloudAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPointcloudAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkPointcloudAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -125,9 +123,7 @@ type pointcloud =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkPointcloudAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPointcloudAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPointcloudAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkPointcloudAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -207,9 +203,7 @@ type pointcloud =
     /// Sets the x coordinates.
     static member inline x (values: seq<float []>) = Interop.mkPointcloudAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPointcloudAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPointcloudAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkPointcloudAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool option>) = Interop.mkPointcloudAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -265,9 +259,7 @@ type pointcloud =
     /// Sets the y coordinates.
     static member inline y (values: seq<float []>) = Interop.mkPointcloudAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPointcloudAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPointcloudAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkPointcloudAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool option>) = Interop.mkPointcloudAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -327,9 +319,7 @@ type pointcloud =
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (values: seq<float []>) = Interop.mkPointcloudAttr "indices" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
-    static member inline indices (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPointcloudAttr "indices" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
-    static member inline indices (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPointcloudAttr "indices" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline indices (values: seq<PlotData>) = Interop.mkPointcloudAttr "indices" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (values: seq<bool option>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
@@ -385,9 +375,7 @@ type pointcloud =
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (values: seq<float []>) = Interop.mkPointcloudAttr "xbounds" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
-    static member inline xbounds (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPointcloudAttr "xbounds" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
-    static member inline xbounds (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPointcloudAttr "xbounds" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline xbounds (values: seq<PlotData>) = Interop.mkPointcloudAttr "xbounds" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (values: seq<bool option>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
@@ -443,9 +431,7 @@ type pointcloud =
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (values: seq<float []>) = Interop.mkPointcloudAttr "ybounds" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
-    static member inline ybounds (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkPointcloudAttr "ybounds" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
-    static member inline ybounds (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkPointcloudAttr "ybounds" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ybounds (values: seq<PlotData>) = Interop.mkPointcloudAttr "ybounds" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (values: seq<bool option>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
@@ -462,7 +448,11 @@ type pointcloud =
     static member inline text (values: seq<string>) = Interop.mkPointcloudAttr "text" (values |> ResizeArray)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkPointcloudAttr "marker" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+    static member inline xaxis (axisId: int) = Interop.mkPointcloudAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkPointcloudAttr "xaxis" value
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
+    static member inline yaxis (axisId: int) = Interop.mkPointcloudAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkPointcloudAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

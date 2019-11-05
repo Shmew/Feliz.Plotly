@@ -57,6 +57,34 @@ let render (data: DiabetesData)  =
           ["0.5"; "#ef553b"]
           ["1"; "#ef553b"] ]
 
+    let layoutXAxis =
+        [ xaxis.showline false
+          xaxis.zeroline false
+          xaxis.gridcolor "#ffff"
+          xaxis.ticklen 2
+          xaxis.tickfont [
+              tickfont.size 10
+          ]
+          xaxis.title [
+              title.font [
+                  font.size 12
+              ]
+          ] ]
+
+    let layoutYAxis =
+        [ yaxis.showline false
+          yaxis.zeroline false
+          yaxis.gridcolor "#ffff"
+          yaxis.ticklen 2
+          yaxis.tickfont [
+              tickfont.size 10
+          ]
+          yaxis.title [
+              title.font [
+                  font.size 12
+              ]
+          ] ]
+
     Plotly.plot [
         plot.traces [
             traces.splom [
@@ -119,118 +147,15 @@ let render (data: DiabetesData)  =
             layout.hovermode.closest
             layout.dragmode.select
             layout.plotBgcolor (color.rgba(240, 240, 240, 0.95))
-            layout.xaxis [
-                xaxis.showline false
-                xaxis.zeroline false
-                xaxis.gridcolor "#ffff"
-                xaxis.ticklen 2
-                xaxis.tickfont [
-                    tickfont.size 10
-                ]
-                xaxis.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
-            layout.yaxis [
-                yaxis.showline false
-                yaxis.zeroline false
-                yaxis.gridcolor "#ffff"
-                yaxis.ticklen 2
-                yaxis.tickfont [
-                    tickfont.size 10
-                ]
-                yaxis.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
-            layout.xaxis2 [
-                xaxis2.showline false
-                xaxis2.zeroline false
-                xaxis2.gridcolor "#ffff"
-                xaxis2.ticklen 2
-                xaxis2.tickfont [
-                    tickfont.size 10
-                ]
-                xaxis2.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
-            layout.yaxis2 [
-                yaxis2.showline false
-                yaxis2.zeroline false
-                yaxis2.gridcolor "#ffff"
-                yaxis2.ticklen 2
-                yaxis2.tickfont [
-                    tickfont.size 10
-                ]
-                yaxis2.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
-            layout.xaxis3 [
-                xaxis3.showline false
-                xaxis3.zeroline false
-                xaxis3.gridcolor "#ffff"
-                xaxis3.ticklen 2
-                xaxis3.tickfont [
-                    tickfont.size 10
-                ]
-                xaxis3.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
-            layout.yaxis3 [
-                yaxis3.showline false
-                yaxis3.zeroline false
-                yaxis3.gridcolor "#ffff"
-                yaxis3.ticklen 2
-                yaxis3.tickfont [
-                    tickfont.size 10
-                ]
-                yaxis3.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
-            layout.xaxis4 [
-                xaxis4.showline false
-                xaxis4.zeroline false
-                xaxis4.gridcolor "#ffff"
-                xaxis4.ticklen 2
-                xaxis4.tickfont [
-                    tickfont.size 10
-                ]
-                xaxis4.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
-            layout.yaxis4 [
-                yaxis4.showline false
-                yaxis4.zeroline false
-                yaxis4.gridcolor "#ffff"
-                yaxis4.ticklen 2
-                yaxis4.tickfont [
-                    tickfont.size 10
-                ]
-                yaxis4.title [
-                    title.font [
-                        font.size 12
-                    ]
-                ]
-            ]
+            layout.xaxis layoutXAxis
+            layout.xaxis (2, layoutXAxis)
+            layout.xaxis (3, layoutXAxis)
+            layout.xaxis (4, layoutXAxis)
+
+            layout.yaxis layoutYAxis
+            layout.yaxis (2, layoutYAxis)
+            layout.yaxis (3, layoutYAxis)
+            layout.yaxis (4, layoutYAxis)
         ]
     ]
 

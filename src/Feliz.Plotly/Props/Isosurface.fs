@@ -59,9 +59,7 @@ type isosurface =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkIsosurfaceAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkIsosurfaceAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkIsosurfaceAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkIsosurfaceAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkIsosurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type isosurface =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkIsosurfaceAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkIsosurfaceAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkIsosurfaceAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkIsosurfaceAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkIsosurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -197,9 +193,7 @@ type isosurface =
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<float []>) = Interop.mkIsosurfaceAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkIsosurfaceAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkIsosurfaceAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkIsosurfaceAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<bool option>) = Interop.mkIsosurfaceAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
@@ -255,9 +249,7 @@ type isosurface =
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<float []>) = Interop.mkIsosurfaceAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkIsosurfaceAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkIsosurfaceAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkIsosurfaceAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<bool option>) = Interop.mkIsosurfaceAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
@@ -313,9 +305,7 @@ type isosurface =
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<float []>) = Interop.mkIsosurfaceAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkIsosurfaceAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkIsosurfaceAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkIsosurfaceAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<bool option>) = Interop.mkIsosurfaceAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
@@ -371,9 +361,7 @@ type isosurface =
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<float []>) = Interop.mkIsosurfaceAttr "value" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkIsosurfaceAttr "value" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkIsosurfaceAttr "value" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline value (values: seq<PlotData>) = Interop.mkIsosurfaceAttr "value" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<bool option>) = Interop.mkIsosurfaceAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.

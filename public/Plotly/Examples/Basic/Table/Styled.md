@@ -11,11 +11,11 @@ open Feliz
 open Feliz.Plotly
 
 let values =
-    [ U4.Case3 [| "Salaries"; "Office"; "Merchandise"; "Legal"; "<b>TOTAL</b>" |]
-      U4.Case1 [| 1200000; 20000; 80000; 2000; 12120000 |]
-      U4.Case1 [| 1300000; 20000; 70000; 2000; 130902000 |]
-      U4.Case1 [| 1300000; 20000; 120000; 2000; 131222000 |]
-      U4.Case1 [| 1400000; 20000; 90000; 2000; 14102000 |] ]
+    [ PlotData.String [ "Salaries"; "Office"; "Merchandise"; "Legal"; "<b>TOTAL</b>" ]
+      PlotData.Int [ 1200000; 20000; 80000; 2000; 12120000 ]
+      PlotData.Int [ 1300000; 20000; 70000; 2000; 130902000 ]
+      PlotData.Int [ 1300000; 20000; 120000; 2000; 131222000 ]
+      PlotData.Int [ 1400000; 20000; 90000; 2000; 14102000 ] ]
 
 let headers =
     [ [ "<b>EXPENSES</b>" ]

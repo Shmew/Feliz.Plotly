@@ -94,9 +94,7 @@ type z =
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<float []>) = Interop.mkZAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkZAttr "locations" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkZAttr "locations" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline locations (values: seq<PlotData>) = Interop.mkZAttr "locations" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<bool option>) = Interop.mkZAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.

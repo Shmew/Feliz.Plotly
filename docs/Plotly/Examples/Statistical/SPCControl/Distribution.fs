@@ -52,7 +52,7 @@ let chart () =
                 scatter.line [
                     line.color color.red
                     line.width 2
-                    line.dash "dash" // See about making these static for non px types
+                    line.dash.dash
                 ]
             ]
             traces.scatter [
@@ -78,8 +78,8 @@ let chart () =
                         line.width 1
                     ]
                 ]
-                histogram.xaxis "x2"
-                histogram.yaxis "y2"
+                histogram.xaxis 2
+                histogram.yaxis 2
             ]
         ]
         plot.layout [
@@ -94,12 +94,12 @@ let chart () =
                 yaxis.range [ -10; 10 ]
                 yaxis.zeroline false
             ]
-            layout.xaxis2 [
-                xaxis2.domain [ 0.8; 1. ]
-            ]
-            layout.yaxis2 [
-                yaxis2.anchor.custom "x2"
-                yaxis2.showticklabels false
-            ]
+            layout.xaxis (2, [
+                xaxis.domain [ 0.8; 1. ]
+            ])
+            layout.yaxis (2, [
+                yaxis.anchor.x 2
+                yaxis.showticklabels false
+            ])
         ]
     ]

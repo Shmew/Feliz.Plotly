@@ -59,9 +59,7 @@ type choroplethmapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type choroplethmapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -218,9 +214,7 @@ type choroplethmapbox =
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<float []>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline locations (values: seq<PlotData>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<bool option>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
@@ -276,9 +270,7 @@ type choroplethmapbox =
     /// Sets the color values.
     static member inline z (values: seq<float []>) = Interop.mkChoroplethmapboxAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethmapboxAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the color values.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethmapboxAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkChoroplethmapboxAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the color values.
     static member inline z (values: seq<bool option>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.

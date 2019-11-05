@@ -13,7 +13,7 @@ let chart () =
                 scatter.mode.lines
                 scatter.name "Solid"
                 scatter.line [
-                    line.dash "solid" // TODO: see about turning this into an enum
+                    line.dash.solid
                     line.width 4
                 ]
             ]
@@ -23,7 +23,7 @@ let chart () =
                 scatter.mode.lines
                 scatter.name "dashdot"
                 scatter.line [
-                    line.dash "dashdot"
+                    line.dash.dashdot
                     line.width 4
                 ]
             ]
@@ -33,7 +33,7 @@ let chart () =
                 scatter.mode.lines
                 scatter.name "Solid"
                 scatter.line [
-                    line.dash "solid"
+                    line.dash.solid
                     line.width 4
                 ]
             ]
@@ -43,7 +43,7 @@ let chart () =
                 scatter.mode.lines
                 scatter.name "dot"
                 scatter.line [
-                    line.dash "dot"
+                    line.dash.dot
                     line.width 4
                 ]
             ]

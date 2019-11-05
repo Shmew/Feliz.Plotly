@@ -67,9 +67,7 @@ type candlestick =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkCandlestickAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -125,9 +123,7 @@ type candlestick =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkCandlestickAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -227,9 +223,7 @@ type candlestick =
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<float []>) = Interop.mkCandlestickAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCandlestickAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCandlestickAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkCandlestickAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<bool option>) = Interop.mkCandlestickAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
@@ -285,9 +279,7 @@ type candlestick =
     /// Sets the open values.
     static member inline open' (values: seq<float []>) = Interop.mkCandlestickAttr "open" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the open values.
-    static member inline open' (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCandlestickAttr "open" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the open values.
-    static member inline open' (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCandlestickAttr "open" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline open' (values: seq<PlotData>) = Interop.mkCandlestickAttr "open" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the open values.
     static member inline open' (values: seq<bool option>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
     /// Sets the open values.
@@ -343,9 +335,7 @@ type candlestick =
     /// Sets the high values.
     static member inline high (values: seq<float []>) = Interop.mkCandlestickAttr "high" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the high values.
-    static member inline high (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCandlestickAttr "high" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the high values.
-    static member inline high (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCandlestickAttr "high" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline high (values: seq<PlotData>) = Interop.mkCandlestickAttr "high" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the high values.
     static member inline high (values: seq<bool option>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
     /// Sets the high values.
@@ -401,9 +391,7 @@ type candlestick =
     /// Sets the low values.
     static member inline low (values: seq<float []>) = Interop.mkCandlestickAttr "low" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the low values.
-    static member inline low (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCandlestickAttr "low" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the low values.
-    static member inline low (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCandlestickAttr "low" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline low (values: seq<PlotData>) = Interop.mkCandlestickAttr "low" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the low values.
     static member inline low (values: seq<bool option>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
     /// Sets the low values.
@@ -459,9 +447,7 @@ type candlestick =
     /// Sets the close values.
     static member inline close (values: seq<float []>) = Interop.mkCandlestickAttr "close" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the close values.
-    static member inline close (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCandlestickAttr "close" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the close values.
-    static member inline close (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCandlestickAttr "close" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline close (values: seq<PlotData>) = Interop.mkCandlestickAttr "close" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the close values.
     static member inline close (values: seq<bool option>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
     /// Sets the close values.
@@ -489,7 +475,11 @@ type candlestick =
     static member inline whiskerwidth (value: float) = Interop.mkCandlestickAttr "whiskerwidth" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkCandlestickAttr "hoverlabel" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+    static member inline xaxis (axisId: int) = Interop.mkCandlestickAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkCandlestickAttr "xaxis" value
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
+    static member inline yaxis (axisId: int) = Interop.mkCandlestickAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkCandlestickAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

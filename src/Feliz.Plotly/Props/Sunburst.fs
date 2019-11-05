@@ -63,9 +63,7 @@ type sunburst =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkSunburstAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSunburstAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSunburstAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkSunburstAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -121,9 +119,7 @@ type sunburst =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkSunburstAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSunburstAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSunburstAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkSunburstAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -202,9 +198,7 @@ type sunburst =
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<float []>) = Interop.mkSunburstAttr "labels" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the labels of each of the sectors.
-    static member inline labels (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSunburstAttr "labels" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the labels of each of the sectors.
-    static member inline labels (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSunburstAttr "labels" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline labels (values: seq<PlotData>) = Interop.mkSunburstAttr "labels" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<bool option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
@@ -260,9 +254,7 @@ type sunburst =
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<float []>) = Interop.mkSunburstAttr "parents" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSunburstAttr "parents" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSunburstAttr "parents" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline parents (values: seq<PlotData>) = Interop.mkSunburstAttr "parents" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<bool option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
@@ -318,9 +310,7 @@ type sunburst =
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<float []>) = Interop.mkSunburstAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSunburstAttr "values" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSunburstAttr "values" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline values (values: seq<PlotData>) = Interop.mkSunburstAttr "values" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<bool option>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
@@ -402,9 +392,7 @@ type sunburst =
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<float []>) = Interop.mkSunburstAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSunburstAttr "text" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSunburstAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline text (values: seq<PlotData>) = Interop.mkSunburstAttr "text" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<bool option>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.

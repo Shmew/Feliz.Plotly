@@ -59,9 +59,7 @@ type errorY =
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<float []>) = Interop.mkErrorYAttr "array" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    static member inline array (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkErrorYAttr "array" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    static member inline array (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkErrorYAttr "array" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline array (values: seq<PlotData>) = Interop.mkErrorYAttr "array" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<bool option>) = Interop.mkErrorYAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
@@ -117,9 +115,7 @@ type errorY =
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<float []>) = Interop.mkErrorYAttr "arrayminus" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    static member inline arrayminus (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkErrorYAttr "arrayminus" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    static member inline arrayminus (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkErrorYAttr "arrayminus" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline arrayminus (values: seq<PlotData>) = Interop.mkErrorYAttr "arrayminus" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<bool option>) = Interop.mkErrorYAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.

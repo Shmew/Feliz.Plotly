@@ -67,9 +67,7 @@ type barpolar =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkBarpolarAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkBarpolarAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkBarpolarAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkBarpolarAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkBarpolarAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -125,9 +123,7 @@ type barpolar =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkBarpolarAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkBarpolarAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkBarpolarAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkBarpolarAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkBarpolarAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -226,9 +222,7 @@ type barpolar =
     /// Sets the radial coordinates
     static member inline r (values: seq<float []>) = Interop.mkBarpolarAttr "r" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the radial coordinates
-    static member inline r (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkBarpolarAttr "r" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the radial coordinates
-    static member inline r (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkBarpolarAttr "r" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline r (values: seq<PlotData>) = Interop.mkBarpolarAttr "r" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the radial coordinates
     static member inline r (values: seq<bool option>) = Interop.mkBarpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
@@ -284,9 +278,7 @@ type barpolar =
     /// Sets the angular coordinates
     static member inline theta (values: seq<float []>) = Interop.mkBarpolarAttr "theta" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkBarpolarAttr "theta" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the angular coordinates
-    static member inline theta (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkBarpolarAttr "theta" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline theta (values: seq<PlotData>) = Interop.mkBarpolarAttr "theta" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the angular coordinates
     static member inline theta (values: seq<bool option>) = Interop.mkBarpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates

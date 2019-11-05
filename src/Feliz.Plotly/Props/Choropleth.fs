@@ -59,9 +59,7 @@ type choropleth =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkChoroplethAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkChoroplethAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkChoroplethAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type choropleth =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkChoroplethAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkChoroplethAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkChoroplethAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -218,9 +214,7 @@ type choropleth =
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<float []>) = Interop.mkChoroplethAttr "locations" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethAttr "locations" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethAttr "locations" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline locations (values: seq<PlotData>) = Interop.mkChoroplethAttr "locations" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<bool option>) = Interop.mkChoroplethAttr "locations" (values |> ResizeArray)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
@@ -276,9 +270,7 @@ type choropleth =
     /// Sets the color values.
     static member inline z (values: seq<float []>) = Interop.mkChoroplethAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkChoroplethAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the color values.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkChoroplethAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkChoroplethAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the color values.
     static member inline z (values: seq<bool option>) = Interop.mkChoroplethAttr "z" (values |> ResizeArray)
     /// Sets the color values.

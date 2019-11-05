@@ -73,8 +73,6 @@ let chart () =
             traces.bar [
                 bar.x xSavings
                 bar.y y
-                bar.xaxis "x"
-                bar.yaxis "y"
                 bar.marker [
                     marker.color (color.rgba(50, 171, 96, 0.6))
                 ]
@@ -84,8 +82,7 @@ let chart () =
             traces.scatter [
                 scatter.x xNetWorth
                 scatter.y y
-                scatter.xaxis "x2"
-                scatter.yaxis "y"
+                scatter.xaxis 2
                 scatter.mode [
                     scatter.mode.lines
                     scatter.mode.markers
@@ -111,14 +108,14 @@ let chart () =
                 xaxis.showticklabels true
                 xaxis.showgrid true
             ]
-            layout.xaxis2 [
-                xaxis2.zeroline false
-                xaxis2.showline false
-                xaxis2.showticklabels true
-                xaxis2.showgrid true
-                xaxis2.side.top
-                xaxis2.dtick 25000
-            ]
+            layout.xaxis (2, [
+                xaxis.zeroline false
+                xaxis.showline false
+                xaxis.showticklabels true
+                xaxis.showgrid true
+                xaxis.side.top
+                xaxis.dtick 25000
+            ])
             layout.legend [
                 legend.x 0.029
                 legend.y 1.238

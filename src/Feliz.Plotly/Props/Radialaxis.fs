@@ -85,9 +85,7 @@ type radialaxis =
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float []>) = Interop.mkRadialaxisAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkRadialaxisAttr "categoryarray" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkRadialaxisAttr "categoryarray" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline categoryarray (values: seq<PlotData>) = Interop.mkRadialaxisAttr "categoryarray" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool option>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -230,9 +228,7 @@ type radialaxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float []>) = Interop.mkRadialaxisAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkRadialaxisAttr "tickvals" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkRadialaxisAttr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline tickvals (values: seq<PlotData>) = Interop.mkRadialaxisAttr "tickvals" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<bool option>) = Interop.mkRadialaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -288,9 +284,7 @@ type radialaxis =
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float []>) = Interop.mkRadialaxisAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkRadialaxisAttr "ticktext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkRadialaxisAttr "ticktext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ticktext (values: seq<PlotData>) = Interop.mkRadialaxisAttr "ticktext" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<bool option>) = Interop.mkRadialaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.

@@ -59,9 +59,7 @@ type surface =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkSurfaceAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSurfaceAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkSurfaceAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type surface =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkSurfaceAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSurfaceAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkSurfaceAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -197,9 +193,7 @@ type surface =
     /// Sets the z coordinates.
     static member inline z (values: seq<float []>) = Interop.mkSurfaceAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z coordinates.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSurfaceAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the z coordinates.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkSurfaceAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the z coordinates.
     static member inline z (values: seq<bool option>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
@@ -255,9 +249,7 @@ type surface =
     /// Sets the x coordinates.
     static member inline x (values: seq<float []>) = Interop.mkSurfaceAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSurfaceAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkSurfaceAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool option>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -313,9 +305,7 @@ type surface =
     /// Sets the y coordinates.
     static member inline y (values: seq<float []>) = Interop.mkSurfaceAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSurfaceAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkSurfaceAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool option>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -385,9 +375,7 @@ type surface =
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<float []>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline surfacecolor (values: seq<PlotData>) = Interop.mkSurfaceAttr "surfacecolor" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<bool option>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.

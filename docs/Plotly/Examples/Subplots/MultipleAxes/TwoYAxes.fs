@@ -16,7 +16,7 @@ let chart () =
                 scatter.x [ 2; 3; 4 ]
                 scatter.y [ 4; 5; 6 ]
                 scatter.name "yaxis2 data"
-                scatter.yaxis "y2"
+                scatter.yaxis 2
             ]
         ]
         plot.layout [
@@ -28,18 +28,18 @@ let chart () =
                     title.text "yaxis title"
                 ]
             ]
-            layout.yaxis2 [
-                yaxis2.title [
+            layout.yaxis (2, [
+                yaxis.title [
                     title.text "yaxis2 title"
                     title.font [
                         font.color (color.rgb(148, 103, 189))
                     ]
                 ]
-                yaxis2.tickfont [
+                yaxis.tickfont [
                     tickfont.color (color.rgb(148, 103, 189))
                 ]
-                yaxis2.overlaying.custom "y"
-                yaxis2.side.right
-            ]
+                yaxis.overlaying.y 1
+                yaxis.side.right
+            ])
         ]
     ]

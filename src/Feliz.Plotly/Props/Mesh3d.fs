@@ -59,9 +59,7 @@ type mesh3d =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkMesh3dAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkMesh3dAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkMesh3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type mesh3d =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkMesh3dAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkMesh3dAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkMesh3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -197,9 +193,7 @@ type mesh3d =
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<float []>) = Interop.mkMesh3dAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkMesh3dAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<bool option>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
@@ -255,9 +249,7 @@ type mesh3d =
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<float []>) = Interop.mkMesh3dAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkMesh3dAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<bool option>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
@@ -313,9 +305,7 @@ type mesh3d =
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<float []>) = Interop.mkMesh3dAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkMesh3dAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<bool option>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
@@ -371,9 +361,7 @@ type mesh3d =
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<float []>) = Interop.mkMesh3dAttr "i" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
-    static member inline i (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "i" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
-    static member inline i (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "i" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline i (values: seq<PlotData>) = Interop.mkMesh3dAttr "i" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<bool option>) = Interop.mkMesh3dAttr "i" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
@@ -429,9 +417,7 @@ type mesh3d =
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
     static member inline j (values: seq<float []>) = Interop.mkMesh3dAttr "j" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
-    static member inline j (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "j" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
-    static member inline j (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "j" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline j (values: seq<PlotData>) = Interop.mkMesh3dAttr "j" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
     static member inline j (values: seq<bool option>) = Interop.mkMesh3dAttr "j" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
@@ -487,9 +473,7 @@ type mesh3d =
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
     static member inline k (values: seq<float []>) = Interop.mkMesh3dAttr "k" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
-    static member inline k (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "k" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
-    static member inline k (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "k" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline k (values: seq<PlotData>) = Interop.mkMesh3dAttr "k" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
     static member inline k (values: seq<bool option>) = Interop.mkMesh3dAttr "k" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
@@ -561,9 +545,7 @@ type mesh3d =
     /// Sets the vertex intensity values, used for plotting fields on meshes
     static member inline intensity (values: seq<float []>) = Interop.mkMesh3dAttr "intensity" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the vertex intensity values, used for plotting fields on meshes
-    static member inline intensity (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "intensity" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the vertex intensity values, used for plotting fields on meshes
-    static member inline intensity (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "intensity" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline intensity (values: seq<PlotData>) = Interop.mkMesh3dAttr "intensity" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the vertex intensity values, used for plotting fields on meshes
     static member inline intensity (values: seq<bool option>) = Interop.mkMesh3dAttr "intensity" (values |> ResizeArray)
     /// Sets the vertex intensity values, used for plotting fields on meshes
@@ -621,9 +603,7 @@ type mesh3d =
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
     static member inline vertexcolor (values: seq<float []>) = Interop.mkMesh3dAttr "vertexcolor" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    static member inline vertexcolor (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "vertexcolor" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    static member inline vertexcolor (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "vertexcolor" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline vertexcolor (values: seq<PlotData>) = Interop.mkMesh3dAttr "vertexcolor" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
     static member inline vertexcolor (values: seq<bool option>) = Interop.mkMesh3dAttr "vertexcolor" (values |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
@@ -679,9 +659,7 @@ type mesh3d =
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     static member inline facecolor (values: seq<float []>) = Interop.mkMesh3dAttr "facecolor" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    static member inline facecolor (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMesh3dAttr "facecolor" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    static member inline facecolor (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMesh3dAttr "facecolor" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline facecolor (values: seq<PlotData>) = Interop.mkMesh3dAttr "facecolor" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     static member inline facecolor (values: seq<bool option>) = Interop.mkMesh3dAttr "facecolor" (values |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.

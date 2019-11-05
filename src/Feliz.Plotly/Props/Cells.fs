@@ -55,9 +55,7 @@ type cells =
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<float []>) = Interop.mkCellsAttr "values" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCellsAttr "values" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCellsAttr "values" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline values (values: seq<PlotData>) = Interop.mkCellsAttr "values" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<bool option>) = Interop.mkCellsAttr "values" (values |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
@@ -113,9 +111,7 @@ type cells =
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<float []>) = Interop.mkCellsAttr "format" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkCellsAttr "format" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkCellsAttr "format" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline format (values: seq<PlotData>) = Interop.mkCellsAttr "format" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<bool option>) = Interop.mkCellsAttr "format" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format

@@ -84,9 +84,7 @@ type baxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float []>) = Interop.mkBaxisAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkBaxisAttr "tickvals" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkBaxisAttr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline tickvals (values: seq<PlotData>) = Interop.mkBaxisAttr "tickvals" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<bool option>) = Interop.mkBaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -142,9 +140,7 @@ type baxis =
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float []>) = Interop.mkBaxisAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkBaxisAttr "ticktext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkBaxisAttr "ticktext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ticktext (values: seq<PlotData>) = Interop.mkBaxisAttr "ticktext" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<bool option>) = Interop.mkBaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -215,9 +211,7 @@ type baxis =
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float []>) = Interop.mkBaxisAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkBaxisAttr "categoryarray" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkBaxisAttr "categoryarray" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline categoryarray (values: seq<PlotData>) = Interop.mkBaxisAttr "categoryarray" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool option>) = Interop.mkBaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.

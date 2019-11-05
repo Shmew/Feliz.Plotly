@@ -132,9 +132,7 @@ type xaxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float []>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline tickvals (values: seq<PlotData>) = Interop.mkXaxisAttr "tickvals" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<bool option>) = Interop.mkXaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -190,9 +188,7 @@ type xaxis =
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float []>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ticktext (values: seq<PlotData>) = Interop.mkXaxisAttr "ticktext" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<bool option>) = Interop.mkXaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -225,8 +221,6 @@ type xaxis =
     static member inline spikethickness (value: int) = Interop.mkXaxisAttr "spikethickness" value
     /// Sets the width (in px) of the zero line.
     static member inline spikethickness (value: float) = Interop.mkXaxisAttr "spikethickness" value
-    /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
-    static member inline spikedash (value: string) = Interop.mkXaxisAttr "spikedash" value
     /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
     static member inline spikemode (properties: #IXaxisProperty list) = Interop.mkXaxisAttr "spikemode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the tick font.
@@ -335,9 +329,7 @@ type xaxis =
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float []>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline categoryarray (values: seq<PlotData>) = Interop.mkXaxisAttr "categoryarray" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool option>) = Interop.mkXaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -456,6 +448,17 @@ module xaxis =
         static member inline false' = Interop.mkXaxisAttr "mirror" false
         static member inline true' = Interop.mkXaxisAttr "mirror" true
 
+    /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
+    [<Erase>]
+    type spikedash =
+        static member inline dash = Interop.mkXaxisAttr "spikedash" "dash"
+        static member inline dashdot = Interop.mkXaxisAttr "spikedash" "dashdot"
+        static member inline dot = Interop.mkXaxisAttr "spikedash" "dot"
+        static member inline longdash = Interop.mkXaxisAttr "spikedash" "longdash"
+        static member inline longdashdot = Interop.mkXaxisAttr "spikedash" "longdashdot"
+        static member inline solid = Interop.mkXaxisAttr "spikedash" "solid"
+        static member inline custom (value: string) = Interop.mkXaxisAttr "spikedash" value
+
     /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data point to the axis the  series is plotted on. If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If *marker*, then a marker dot is drawn on the axis the series is plotted on
     [<Erase>]
     type spikemode =
@@ -508,6 +511,8 @@ module xaxis =
     type anchor =
         static member inline free = Interop.mkXaxisAttr "anchor" "free"
         static member inline custom (value: string) = Interop.mkXaxisAttr "anchor" value
+        static member inline x (axisId: int) = Interop.mkXaxisAttr "anchor" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline y (axisId: int) = Interop.mkXaxisAttr "anchor" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
     [<Erase>]
@@ -522,6 +527,8 @@ module xaxis =
     type overlaying =
         static member inline free = Interop.mkXaxisAttr "overlaying" "free"
         static member inline custom (value: string) = Interop.mkXaxisAttr "overlaying" value
+        static member inline x (axisId: int) = Interop.mkXaxisAttr "overlaying" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline y (axisId: int) = Interop.mkXaxisAttr "overlaying" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
     [<Erase>]

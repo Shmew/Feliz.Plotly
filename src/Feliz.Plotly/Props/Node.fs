@@ -55,9 +55,7 @@ type node =
     /// The shown name of the node.
     static member inline label (values: seq<float []>) = Interop.mkNodeAttr "label" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "label" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// The shown name of the node.
-    static member inline label (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "label" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline label (values: seq<PlotData>) = Interop.mkNodeAttr "label" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// The shown name of the node.
     static member inline label (values: seq<bool option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
     /// The shown name of the node.
@@ -121,9 +119,7 @@ type node =
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<float []>) = Interop.mkNodeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// The normalized horizontal position of the node.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkNodeAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<bool option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
     /// The normalized horizontal position of the node.
@@ -179,9 +175,7 @@ type node =
     /// The normalized vertical position of the node.
     static member inline y (values: seq<float []>) = Interop.mkNodeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkNodeAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// The normalized vertical position of the node.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkNodeAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkNodeAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<bool option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
     /// The normalized vertical position of the node.

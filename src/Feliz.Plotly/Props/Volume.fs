@@ -59,9 +59,7 @@ type volume =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkVolumeAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkVolumeAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkVolumeAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkVolumeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -117,9 +115,7 @@ type volume =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkVolumeAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkVolumeAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkVolumeAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkVolumeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -197,9 +193,7 @@ type volume =
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<float []>) = Interop.mkVolumeAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkVolumeAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkVolumeAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<bool option>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
@@ -255,9 +249,7 @@ type volume =
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<float []>) = Interop.mkVolumeAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkVolumeAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkVolumeAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<bool option>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
@@ -313,9 +305,7 @@ type volume =
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<float []>) = Interop.mkVolumeAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkVolumeAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkVolumeAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<bool option>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
@@ -371,9 +361,7 @@ type volume =
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<float []>) = Interop.mkVolumeAttr "value" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkVolumeAttr "value" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkVolumeAttr "value" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline value (values: seq<PlotData>) = Interop.mkVolumeAttr "value" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<bool option>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.

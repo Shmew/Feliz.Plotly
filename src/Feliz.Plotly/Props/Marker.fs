@@ -136,9 +136,7 @@ type marker =
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<float []>) = Interop.mkMarkerAttr "colors" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkMarkerAttr "colors" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline colors (values: seq<PlotData>) = Interop.mkMarkerAttr "colors" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<bool option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.

@@ -63,9 +63,7 @@ type heatmapgl =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float []>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline ids (values: seq<PlotData>) = Interop.mkHeatmapglAttr "ids" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -121,9 +119,7 @@ type heatmapgl =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float []>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline customdata (values: seq<PlotData>) = Interop.mkHeatmapglAttr "customdata" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool option>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -204,9 +200,7 @@ type heatmapgl =
     /// Sets the z data.
     static member inline z (values: seq<float []>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the z data.
-    static member inline z (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline z (values: seq<PlotData>) = Interop.mkHeatmapglAttr "z" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the z data.
     static member inline z (values: seq<bool option>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
     /// Sets the z data.
@@ -262,9 +256,7 @@ type heatmapgl =
     /// Sets the x coordinates.
     static member inline x (values: seq<float []>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the x coordinates.
-    static member inline x (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline x (values: seq<PlotData>) = Interop.mkHeatmapglAttr "x" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool option>) = Interop.mkHeatmapglAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -344,9 +336,7 @@ type heatmapgl =
     /// Sets the y coordinates.
     static member inline y (values: seq<float []>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the y coordinates.
-    static member inline y (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline y (values: seq<PlotData>) = Interop.mkHeatmapglAttr "y" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool option>) = Interop.mkHeatmapglAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -426,9 +416,7 @@ type heatmapgl =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float []>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline text (values: seq<PlotData>) = Interop.mkHeatmapglAttr "text" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<bool option>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
@@ -469,7 +457,11 @@ type heatmapgl =
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     static member inline coloraxis (value: string) = Interop.mkHeatmapglAttr "coloraxis" value
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+    static member inline xaxis (axisId: int) = Interop.mkHeatmapglAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkHeatmapglAttr "xaxis" value
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
+    static member inline yaxis (axisId: int) = Interop.mkHeatmapglAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkHeatmapglAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

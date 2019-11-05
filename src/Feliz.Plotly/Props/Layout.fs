@@ -95,9 +95,7 @@ type layout =
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<float []>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map ResizeArray |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<U4<int [], float [], string [], bool []>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map U4.mapArrayToResize |> Array.ofSeq)
-    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<U4<int list, float list, string list, bool list>>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map U4.mapListToResize |> Array.ofSeq)
+    static member inline hiddenlabels (values: seq<PlotData>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Seq.map PlotData.asDataResize |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<bool option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
@@ -273,6 +271,10 @@ type layout =
     static member inline spikedistance (value: int) = Interop.mkLayoutAttr "spikedistance" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkLayoutAttr "hoverlabel" (createObj !!properties)
     static member inline grid (properties: #IGridProperty list) = Interop.mkLayoutAttr "grid" (createObj !!properties)
+    static member inline xaxis (id: int, properties: IXaxisProperty list) = Interop.mkLayoutAttr (sprintf "xaxis%i" id) (createObj !!properties)
+    static member inline xaxis (properties: #IXaxisProperty list) = Interop.mkLayoutAttr "xaxis" (createObj !!properties)
+    static member inline yaxis (id: int, properties: IYaxisProperty list) = Interop.mkLayoutAttr (sprintf "yaxis%i" id) (createObj !!properties)
+    static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkLayoutAttr "yaxis" (createObj !!properties)
     static member inline ternary (properties: #ITernaryProperty list) = Interop.mkLayoutAttr "ternary" (createObj !!properties)
     static member inline scene (properties: #ISceneProperty list) = Interop.mkLayoutAttr "scene" (createObj !!properties)
     static member inline geo (properties: #IGeoProperty list) = Interop.mkLayoutAttr "geo" (createObj !!properties)
@@ -290,16 +292,6 @@ type layout =
     static member inline coloraxis (properties: #IColoraxisProperty list) = Interop.mkLayoutAttr "coloraxis" (createObj !!properties)
     /// Sets the source reference on plot.ly for  meta .
     static member inline metasrc (value: string) = Interop.mkLayoutAttr "metasrc" value
-    static member inline xaxis (properties: #IXaxisProperty list) = Interop.mkLayoutAttr "xaxis" (createObj !!properties)
-    static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkLayoutAttr "yaxis" (createObj !!properties)
-    static member inline xaxis2 (properties: #IXaxis2Property list) = Interop.mkLayoutAttr "xaxis2" (createObj !!properties)
-    static member inline xaxis3 (properties: #IXaxis3Property list) = Interop.mkLayoutAttr "xaxis3" (createObj !!properties)
-    static member inline xaxis4 (properties: #IXaxis4Property list) = Interop.mkLayoutAttr "xaxis4" (createObj !!properties)
-    static member inline xaxis5 (properties: #IXaxis5Property list) = Interop.mkLayoutAttr "xaxis5" (createObj !!properties)
-    static member inline yaxis2 (properties: #IYaxis2Property list) = Interop.mkLayoutAttr "yaxis2" (createObj !!properties)
-    static member inline yaxis3 (properties: #IYaxis3Property list) = Interop.mkLayoutAttr "yaxis3" (createObj !!properties)
-    static member inline yaxis4 (properties: #IYaxis4Property list) = Interop.mkLayoutAttr "yaxis4" (createObj !!properties)
-    static member inline yaxis5 (properties: #IYaxis5Property list) = Interop.mkLayoutAttr "yaxis5" (createObj !!properties)
 
 [<AutoOpen>]
 module layout =
