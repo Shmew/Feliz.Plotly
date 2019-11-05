@@ -12,7 +12,7 @@ let chart () =
                 bar.y [ 500; 600; 700 ]
                 bar.base' [ -500; -600; -700 ]
                 bar.marker [
-                    marker.color colors.red
+                    marker.color color.red
                 ]
                 bar.name "expenses"
             ]
@@ -21,7 +21,7 @@ let chart () =
                 bar.y [ 300; 400; 700 ]
                 bar.base' 0
                 bar.marker [
-                    marker.color colors.blue
+                    marker.color color.blue
                 ]
                 bar.name "revenue"
             ]

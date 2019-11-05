@@ -32,11 +32,11 @@ let chart () =
                 yaxis2.title [
                     title.text "yaxis2 title"
                     title.font [
-                        font.color (colors.rgb(148, 103, 189))
+                        font.color (color.rgb(148, 103, 189))
                     ]
                 ]
                 yaxis2.tickfont [
-                    tickfont.color (colors.rgb(148, 103, 189))
+                    tickfont.color (color.rgb(148, 103, 189))
                 ]
                 yaxis2.overlaying.custom "y"
                 yaxis2.side.right

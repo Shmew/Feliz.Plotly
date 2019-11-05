@@ -16,7 +16,7 @@ let chart () =
                 scatter.marker [
                     marker.symbol.circle
                     marker.opacity 0.7
-                    marker.color (colors.rgb(200, 111, 200))
+                    marker.color (color.rgb(200, 111, 200))
                 ]
                 scatter.showlegend false
             ]
@@ -27,7 +27,7 @@ let chart () =
                 scatter.marker [
                     marker.symbol.square
                     marker.opacity 0.7
-                    marker.color colors.cyan
+                    marker.color color.cyan
                 ]
                 scatter.showlegend false
             ]
@@ -35,9 +35,9 @@ let chart () =
                 histogram2d.x ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble() * 2.))
                 histogram2d.y ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble() * 3.))
                 histogram2d.colorscale (
-                    [ colors.rgb(0, 225, 100)
-                      colors.rgb(100, 0, 200) ]
-                    |> colors.colorscale.sequential
+                    [ color.rgb(0, 225, 100)
+                      color.rgb(100, 0, 200) ]
+                    |> color.colorscale.sequential
                 )
             ]
         ]

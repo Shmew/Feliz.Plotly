@@ -28,28 +28,28 @@ let chart () =
                     header.align.center
                     header.line [
                         line.width 1
-                        line.color colors.black
+                        line.color color.black
                     ]
                     header.fill [
-                        fill.color colors.gray
+                        fill.color color.gray
                     ]
                     header.font [
-                        font.family fonts.arial
+                        font.family font.arial
                         font.size 12
-                        font.color colors.white
+                        font.color color.white
                     ]
                 ]
                 table.cells [
                     cells.values values
                     cells.align.center
                     cells.line [
-                        line.color colors.black
+                        line.color color.black
                         line.width 1
                     ]
                     cells.font [
-                        font.family fonts.arial
+                        font.family font.arial
                         font.size 11
-                        font.color colors.black
+                        font.color color.black
                     ]
                 ]
             ]

@@ -13,7 +13,7 @@ let chart () =
                 sunburst.values [ 65; 14; 12; 10; 2; 6; 6; 4; 4 ]
                 sunburst.outsidetextfont [
                     outsidetextfont.size 20
-                    outsidetextfont.color (colors.rgb(55, 126, 184))
+                    outsidetextfont.color (color.rgb(55, 126, 184))
                 ]
                 sunburst.leaf [
                     leaf.opacity 0.4

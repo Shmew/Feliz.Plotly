@@ -49,9 +49,9 @@ let dataAnns =
             annotation.y y
             annotation.text (sprintf "%.2f%s" savings "%")
             annotation.font [
-                font.family fonts.arial
+                font.family font.arial
                 font.size 12
-                font.color (colors.rgb(50, 171, 96))
+                font.color (color.rgb(50, 171, 96))
             ]
             annotation.showarrow false
           ] 
@@ -62,9 +62,9 @@ let dataAnns =
             annotation.y y
             annotation.text (sprintf "$ %0.2f M" networth)
             annotation.font [
-                font.family fonts.arial
+                font.family font.arial
                 font.size 12
-                font.color (colors.rgb(128, 0, 128))
+                font.color (color.rgb(128, 0, 128))
             ]
             annotation.showarrow false
           ]
@@ -81,7 +81,7 @@ let chart () =
                 bar.xaxis "x"
                 bar.yaxis "y"
                 bar.marker [
-                    marker.color (colors.rgba(50, 171, 96, 0.6))
+                    marker.color (color.rgba(50, 171, 96, 0.6))
                 ]
                 bar.name "Household savings, percentage of household disposable income"
                 bar.orientation.h
@@ -96,7 +96,7 @@ let chart () =
                     scatter.mode.markers
                 ]
                 scatter.line [
-                    line.color (colors.rgb(128, 0, 128))
+                    line.color (color.rgb(128, 0, 128))
                 ]
                 scatter.name "Household net worth, Million USD/capita"
             ]
@@ -139,8 +139,8 @@ let chart () =
             ]
             layout.width 1200
             layout.height 600
-            layout.paperBgcolor (colors.rgb(248, 248, 255))
-            layout.plotBgcolor (colors.rgb(248, 248, 255))
+            layout.paperBgcolor (color.rgb(248, 248, 255))
+            layout.plotBgcolor (color.rgb(248, 248, 255))
             layout.annotations [
                 annotations.annotation [
                     annotation.xref.paper
@@ -153,9 +153,9 @@ let chart () =
                         10.1787/cfc6f499-en (Accessed on 05 June 2015)"
                     annotation.showarrow false
                     annotation.font [
-                        font.family fonts.arial
+                        font.family font.arial
                         font.size 10
-                        font.color (colors.rgb(150, 150, 150))
+                        font.color (color.rgb(150, 150, 150))
                     ]
                 ]
                 yield! dataAnns

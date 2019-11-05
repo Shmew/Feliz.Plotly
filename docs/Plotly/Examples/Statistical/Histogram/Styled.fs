@@ -16,9 +16,9 @@ let chart () =
                 histogram.autobinx false
                 histogram.histnorm.none
                 histogram.marker [
-                    marker.color (colors.rgba(255, 100, 102, 0.7))
+                    marker.color (color.rgba(255, 100, 102, 0.7))
                     marker.line [
-                        line.color (colors.rgba(255, 100, 102, 1.))
+                        line.color (color.rgba(255, 100, 102, 1.))
                         line.width 1
                     ]
                 ]
@@ -35,9 +35,9 @@ let chart () =
                 histogram.name "experimental"
                 histogram.autobinx false
                 histogram.marker [
-                    marker.color (colors.rgba(100, 200, 102, 0.7))
+                    marker.color (color.rgba(100, 200, 102, 0.7))
                     marker.line [
-                        line.color (colors.rgba(100, 200, 102, 1.))
+                        line.color (color.rgba(100, 200, 102, 1.))
                         line.width 1
                     ]
                 ]

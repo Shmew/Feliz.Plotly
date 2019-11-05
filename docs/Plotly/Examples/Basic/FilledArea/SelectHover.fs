@@ -11,9 +11,9 @@ let chart () =
                 scatter.x [ 0.; 0.5; 1.; 1.5; 2. ]
                 scatter.y [ 0; 1; 2; 1; 0 ]
                 scatter.fill.toself
-                scatter.fillcolor (colors.rgb(171, 99, 250))
+                scatter.fillcolor (color.rgb(171, 99, 250))
                 scatter.line [
-                    line.color (colors.rgb(171, 99, 250))
+                    line.color (color.rgb(171, 99, 250))
                 ]
                 scatter.text "Points + Fills"
                 scatter.hoverinfo.text
@@ -22,9 +22,9 @@ let chart () =
                 scatter.x [ 3.; 3.5; 4.; 4.5; 5. ]
                 scatter.y [ 0; 1; 2; 1; 0 ]
                 scatter.fill.toself
-                scatter.fillcolor (colors.rgb(231, 99, 250))
+                scatter.fillcolor (color.rgb(231, 99, 250))
                 scatter.line [
-                    line.color (colors.rgb(231, 99, 250))
+                    line.color (color.rgb(231, 99, 250))
                 ]
                 scatter.text "Points only"
                 scatter.hoverinfo.text

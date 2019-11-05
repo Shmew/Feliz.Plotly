@@ -1,9 +1,9 @@
 namespace Feliz.Plotly
 
 [<RequireQualifiedAccess>]
-module colors =
+module color =
     module colorscale =
-        open Feliz.colors
+        open Feliz.color
 
         let private getScaled len n = n / (len - 1 |> float)
 

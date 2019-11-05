@@ -14,10 +14,10 @@ let chart () =
                 scatter.name "North America"
                 scatter.text [ "United States"; "Canada" ]
                 scatter.marker [
-                    marker.color (colors.rgb(164, 194, 244))
+                    marker.color (color.rgb(164, 194, 244))
                     marker.size 12
                     marker.line [
-                        line.color colors.white
+                        line.color color.white
                         line.width 0.5
                     ]
                 ]
@@ -29,7 +29,7 @@ let chart () =
                 scatter.name "Europe"
                 scatter.text [ "Germany"; "Britain"; "France"; "Spain"; "Italy"; "Czech Rep."; "Greece"; "Poland" ]
                 scatter.marker [
-                    marker.color (colors.rgb(255, 217, 102))
+                    marker.color (color.rgb(255, 217, 102))
                     marker.size 12
                 ]
             ]
@@ -40,7 +40,7 @@ let chart () =
                 scatter.name "Asia/Pacific"
                 scatter.text [ "Australia"; "Japan"; "South Korea"; "Malaysia"; "China"; "Indonesia"; "Philippines"; "India" ]
                 scatter.marker [
-                    marker.color (colors.rgb(234, 153, 153))
+                    marker.color (color.rgb(234, 153, 153))
                     marker.size 12
                 ]
             ]
@@ -51,7 +51,7 @@ let chart () =
                 scatter.name "Asia/Pacific"
                 scatter.text [ "Chile"; "Argentina"; "Mexico"; "Venezuela"; "Venezuela"; "El Salvador"; "Bolivia" ]
                 scatter.marker [
-                    marker.color (colors.rgb(142, 124, 195))
+                    marker.color (color.rgb(142, 124, 195))
                     marker.size 12
                 ]
             ]

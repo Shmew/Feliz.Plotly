@@ -15,7 +15,7 @@ let chart () =
                 box.jitter 0.3
                 box.pointpos -1.8
                 box.marker [
-                    marker.color (colors.rgb(7, 40, 89))
+                    marker.color (color.rgb(7, 40, 89))
                 ]
                 box.boxpoints.all
             ]
@@ -23,7 +23,7 @@ let chart () =
                 box.y yData
                 box.name "Only Whiskers"
                 box.marker [
-                    marker.color (colors.rgb(9, 56, 125))
+                    marker.color (color.rgb(9, 56, 125))
                 ]
                 box.boxpoints.false' // This may be a regression on their part
             ]
@@ -31,10 +31,10 @@ let chart () =
                 box.y yData
                 box.name "Suspected Outlier"
                 box.marker [
-                    marker.color (colors.rgb(8, 81, 156))
-                    marker.outliercolor (colors.rgba(219, 64, 82, 0.6))
+                    marker.color (color.rgb(8, 81, 156))
+                    marker.outliercolor (color.rgba(219, 64, 82, 0.6))
                     marker.line [
-                        line.outliercolor (colors.rgba(219, 64, 82, 0.6))
+                        line.outliercolor (color.rgba(219, 64, 82, 0.6))
                         line.outlierwidth 2
                     ]
                 ]
@@ -44,7 +44,7 @@ let chart () =
                 box.y yData
                 box.name "Whiskers and Outliers"
                 box.marker [
-                    marker.color (colors.rgb(107, 174, 214))
+                    marker.color (color.rgb(107, 174, 214))
                 ]
                 box.boxpoints.outliers
             ]

@@ -17,11 +17,11 @@ let values =
       [ 38; 19; 16; 14; 13 ]
       [ 31; 24; 19; 18; 8 ] ]
 
-let pieColors =
-    [ [ colors.rgb(56, 75, 126); colors.rgb(18, 36, 37); colors.rgb(34, 53, 101); colors.rgb(36, 55, 57); colors.rgb(6, 4, 4) ]
-      [ colors.rgb(177, 127, 38); colors.rgb(205, 152, 36); colors.rgb(99, 79, 37); colors.rgb(129, 180, 179); colors.rgb(124, 103, 37) ]
-      [ colors.rgb(33, 75, 99); colors.rgb(79, 129, 102); colors.rgb(151, 179, 100); colors.rgb(175, 49, 35); colors.rgb(36, 73, 147) ]
-      [ colors.rgb(146, 123, 21); colors.rgb(177, 180, 34); colors.rgb(206, 206, 40); colors.rgb(175, 51, 21); colors.rgb(35, 36, 21) ] ]
+let piecolor =
+    [ [ color.rgb(56, 75, 126); color.rgb(18, 36, 37); color.rgb(34, 53, 101); color.rgb(36, 55, 57); color.rgb(6, 4, 4) ]
+      [ color.rgb(177, 127, 38); color.rgb(205, 152, 36); color.rgb(99, 79, 37); color.rgb(129, 180, 179); color.rgb(124, 103, 37) ]
+      [ color.rgb(33, 75, 99); color.rgb(79, 129, 102); color.rgb(151, 179, 100); color.rgb(175, 49, 35); color.rgb(36, 73, 147) ]
+      [ color.rgb(146, 123, 21); color.rgb(177, 180, 34); color.rgb(206, 206, 40); color.rgb(175, 51, 21); color.rgb(35, 36, 21) ] ]
 
 let chart () =
     Plotly.plot [
@@ -31,7 +31,7 @@ let chart () =
                 pie.labels labels
                 pie.name "Starry Night"
                 pie.marker [
-                    marker.colors pieColors.[0]
+                    marker.color piecolor.[0]
                 ]
                 pie.domain [
                     domain.row 0
@@ -49,7 +49,7 @@ let chart () =
                 pie.labels labels
                 pie.name "Sunflowers"
                 pie.marker [
-                    marker.colors pieColors.[1]
+                    marker.color piecolor.[1]
                 ]
                 pie.domain [
                     domain.row 1
@@ -67,7 +67,7 @@ let chart () =
                 pie.labels labels
                 pie.name "Irises"
                 pie.marker [
-                    marker.colors pieColors.[2]
+                    marker.color piecolor.[2]
                 ]
                 pie.domain [
                     domain.row 0
@@ -85,7 +85,7 @@ let chart () =
                 pie.labels labels
                 pie.name "The Night Cafe"
                 pie.marker [
-                    marker.colors pieColors.[3]
+                    marker.color piecolor.[3]
                 ]
                 pie.domain [
                     domain.row 1

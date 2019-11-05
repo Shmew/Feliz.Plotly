@@ -235,7 +235,7 @@ let samples =
               "plotly-chart-parallelcategories-withcounts", Samples.ParallelCategories.WithCounts.chart()
               "plotly-chart-parallelcategories-multicolor", Samples.ParallelCategories.MultiColor.chart(centeredSpinner)
               "plotly-chart-parallelcategories-linkedbrushing", Samples.ParallelCategories.LinkedBrushing.chart(centeredSpinner)
-              "plotly-chart-parallelcategories-multicolorlinkedbrushing", Samples.ParallelCategories.MultiColorLinkedBrushing.chart(centeredSpinner) ]
+              "plotly-chart-parallelcategories-multicolorlinkedbrushing", Samples.ParallelCategories.MultiColorLinkedBrushing.chart() ]
 
         let splom = 
             [ "plotly-chart-splom-iris", Samples.Splom.Iris.chart(centeredSpinner)

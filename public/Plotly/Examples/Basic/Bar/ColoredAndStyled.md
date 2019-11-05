@@ -20,7 +20,7 @@ let chart () =
                 bar.x xData
                 bar.y yData
                 bar.marker [
-                    marker.color (colors.rgb(55, 83, 109))
+                    marker.color (color.rgb(55, 83, 109))
                 ]
                 bar.name "Rest of World"
             ]
@@ -28,7 +28,7 @@ let chart () =
                 bar.x xData
                 bar.y yData2
                 bar.marker [
-                    marker.color (colors.rgb(26, 118, 255))
+                    marker.color (color.rgb(26, 118, 255))
                 ]
                 bar.name "China"
             ]
@@ -40,7 +40,7 @@ let chart () =
             layout.xaxis [
                 xaxis.tickfont [
                     tickfont.size 14
-                    tickfont.color (colors.rgb(107, 107, 107))
+                    tickfont.color (color.rgb(107, 107, 107))
                 ]
             ]
             layout.yaxis [
@@ -48,19 +48,19 @@ let chart () =
                     title.text "USD (millions)"
                     title.font [
                         font.size 16
-                        font.color (colors.rgb(107, 107, 107))
+                        font.color (color.rgb(107, 107, 107))
                     ]
                 ]
                 yaxis.tickfont [ 
                     tickfont.size 16
-                    tickfont.color (colors.rgb(107, 107, 107))
+                    tickfont.color (color.rgb(107, 107, 107))
                 ]
             ]
             layout.legend [
                 legend.x 0
                 legend.y 1.
-                legend.bgcolor (colors.rgba(255, 255, 255, 0.))
-                legend.bordercolor (colors.rgba(255, 255, 255, 0.))
+                legend.bgcolor (color.rgba(255, 255, 255, 0.))
+                legend.bordercolor (color.rgba(255, 255, 255, 0.))
             ]
             layout.barmode.group
             layout.bargap 0.15

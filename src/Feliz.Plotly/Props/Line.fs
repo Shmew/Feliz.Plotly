@@ -81,6 +81,7 @@ module line =
     /// Determines the line shape. With *spline* the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.
     [<Erase>]
     type shape =
+        static member inline hspline = Interop.mkLineAttr "shape" "hspline"
         static member inline hv = Interop.mkLineAttr "shape" "hv"
         static member inline hvh = Interop.mkLineAttr "shape" "hvh"
         static member inline linear = Interop.mkLineAttr "shape" "linear"

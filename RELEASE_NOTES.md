@@ -75,3 +75,7 @@
 * Changed enumerated arrays to be more consistent with the rest of the api
 * Fixed some overloads not being present
 * Added support for option primatives in data input props
+
+### 0.14.0 - Monday, November 4, 2019
+* Fixed some nested enum values not getting overloads generated
+* Added proper support for plot events

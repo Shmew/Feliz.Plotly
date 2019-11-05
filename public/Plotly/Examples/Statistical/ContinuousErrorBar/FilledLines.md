@@ -25,9 +25,9 @@ let chart () =
                 scatter.x xData
                 scatter.y yData
                 scatter.fill.toself
-                scatter.fillcolor (colors.rgba(0, 100, 80, 0.2))
+                scatter.fillcolor (color.rgba(0, 100, 80, 0.2))
                 scatter.line [
-                    line.color colors.transparent
+                    line.color color.transparent
                 ]
                 scatter.name "Fair"
                 scatter.showlegend false
@@ -36,9 +36,9 @@ let chart () =
                 scatter.x xData2
                 scatter.y yData2
                 scatter.fill.toself
-                scatter.fillcolor (colors.rgba(0, 176, 246, 0.2))
+                scatter.fillcolor (color.rgba(0, 176, 246, 0.2))
                 scatter.line [
-                    line.color colors.transparent
+                    line.color color.transparent
                 ]
                 scatter.name "Premium"
                 scatter.showlegend false
@@ -47,9 +47,9 @@ let chart () =
                 scatter.x xData3
                 scatter.y yData3
                 scatter.fill.toself
-                scatter.fillcolor (colors.rgba(231, 107, 243, 0.2))
+                scatter.fillcolor (color.rgba(231, 107, 243, 0.2))
                 scatter.line [
-                    line.color colors.transparent
+                    line.color color.transparent
                 ]
                 scatter.name "Fair"
                 scatter.showlegend false
@@ -58,7 +58,7 @@ let chart () =
                 scatter.x [ 1 .. 10 ]
                 scatter.y [ 1 .. 10 ]
                 scatter.line [
-                    line.color (colors.rgb(0, 100, 80))
+                    line.color (color.rgb(0, 100, 80))
                 ]
                 scatter.mode.lines
                 scatter.name "Fair"
@@ -67,7 +67,7 @@ let chart () =
                 scatter.x [ 1 .. 10 ]
                 scatter.y [ 5.; 2.5; 5.; 7.5; 5.; 2.5; 7.5; 4.5; 5.5; 5. ]
                 scatter.line [
-                    line.color (colors.rgb(0, 176, 246))
+                    line.color (color.rgb(0, 176, 246))
                 ]
                 scatter.mode.lines
                 scatter.name "Premium"
@@ -76,31 +76,31 @@ let chart () =
                 scatter.x [ 1 .. 10 ]
                 scatter.y [ 10; 8; 6; 4; 2; 0; 2; 4; 2; 0 ]
                 scatter.line [
-                    line.color (colors.rgb(231, 107, 243))
+                    line.color (color.rgb(231, 107, 243))
                 ]
                 scatter.mode.lines
                 scatter.name "Ideal"
             ]
         ]
         plot.layout [
-            layout.paperBgcolor (colors.rgb(255, 255, 255))
-            layout.plotBgcolor (colors.rgb(229, 229, 229))
+            layout.paperBgcolor (color.rgb(255, 255, 255))
+            layout.plotBgcolor (color.rgb(229, 229, 229))
             layout.xaxis [
-                xaxis.gridcolor (colors.rgb(255, 255, 255))
+                xaxis.gridcolor (color.rgb(255, 255, 255))
                 xaxis.range [ 1; 10 ]
                 xaxis.showgrid true
                 xaxis.showline false
                 xaxis.showticklabels true
-                xaxis.tickcolor (colors.rgb(127, 127, 127))
+                xaxis.tickcolor (color.rgb(127, 127, 127))
                 xaxis.ticks.outside
                 xaxis.zeroline false
             ]
             layout.yaxis [
-                yaxis.gridcolor (colors.rgb(255, 255, 255))
+                yaxis.gridcolor (color.rgb(255, 255, 255))
                 yaxis.showgrid true
                 yaxis.showline false
                 yaxis.showticklabels true
-                yaxis.tickcolor (colors.rgb(127, 127, 127))
+                yaxis.tickcolor (color.rgb(127, 127, 127))
                 yaxis.ticks.outside
                 yaxis.zeroline false
             ]

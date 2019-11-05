@@ -20,7 +20,7 @@ let linspace min max n =
     List.init n <| (float >> (fun num -> num * bw) >> ((+) min))
 
 let boxNumber = 30
-let boxColors = linspace 0. 360. boxNumber |> List.map (fun color -> colors.hsl(color, 50., 50.))
+let boxColors = linspace 0. 360. boxNumber |> List.map (fun col -> color.hsl(col, 50., 50.))
 
 let yData =
     [ 0. .. (boxNumber-1 |> float) ]
@@ -54,10 +54,10 @@ let chart () =
             ]
             layout.yaxis [
                 yaxis.zeroline false
-                yaxis.gridcolor colors.white
+                yaxis.gridcolor color.white
             ]
-            layout.paperBgcolor (colors.rgb(233, 233, 233))
-            layout.plotBgcolor (colors.rgb(233, 233, 233))
+            layout.paperBgcolor (color.rgb(233, 233, 233))
+            layout.plotBgcolor (color.rgb(233, 233, 233))
             layout.showlegend true
             layout.width 1000
         ]

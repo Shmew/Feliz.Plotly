@@ -27,10 +27,10 @@ let chart () =
                 scatter.mode.markers
                 scatter.marker [
                     marker.color [ 
-                        colors.hsl(0., 100., 40.)
-                        colors.hsl(33., 100., 40.)
-                        colors.hsl(66., 100., 40.)
-                        colors.hsl(99., 100., 40.) 
+                        color.hsl(0., 100., 40.)
+                        color.hsl(33., 100., 40.)
+                        color.hsl(66., 100., 40.)
+                        color.hsl(99., 100., 40.) 
                     ]
                     marker.size [ 12; 22; 32; 42 ]
                     marker.opacity [ 0.6; 0.7; 0.8; 0.9 ]
@@ -41,7 +41,7 @@ let chart () =
                 scatter.y [ 11; 12; 13; 14 ]
                 scatter.mode.markers
                 scatter.marker [
-                    marker.color (colors.rgb(31,119,180))
+                    marker.color (color.rgb(31,119,180))
                     marker.size 18
                     marker.symbol [
                         symbol.circle
@@ -59,10 +59,10 @@ let chart () =
                     marker.size 18
                     marker.line [
                        line.color [
-                            colors.rgb(120, 120, 120)
-                            colors.rgb(120, 120, 120)
-                            colors.red
-                            colors.rgb(120, 120, 120)
+                            color.rgb(120, 120, 120)
+                            color.rgb(120, 120, 120)
+                            color.red
+                            color.rgb(120, 120, 120)
                         ]
                        line.width [2; 2; 6; 2]
                     ]

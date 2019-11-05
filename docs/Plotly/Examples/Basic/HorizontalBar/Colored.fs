@@ -13,7 +13,7 @@ let chart () =
                 bar.name "SF Zoo"
                 bar.orientation.h
                 bar.marker [
-                    marker.color (colors.rgba(55, 128, 191, 0.6))
+                    marker.color (color.rgba(55, 128, 191, 0.6))
                 ]
             ]
             traces.bar [
@@ -22,7 +22,7 @@ let chart () =
                 bar.name "LA Zoo"
                 bar.orientation.h
                 bar.marker [
-                    marker.color (colors.rgba(255, 153, 51, 0.6))
+                    marker.color (color.rgba(255, 153, 51, 0.6))
                 ]
             ]
         ]

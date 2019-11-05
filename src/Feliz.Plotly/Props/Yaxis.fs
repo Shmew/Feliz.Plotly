@@ -405,6 +405,9 @@ module yaxis =
     /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
     [<Erase>]
     type rangemode =
+        static member inline auto = Interop.mkYaxisAttr "rangemode" "auto"
+        static member inline fixed' = Interop.mkYaxisAttr "rangemode" "fixed"
+        static member inline match' = Interop.mkYaxisAttr "rangemode" "match"
         static member inline nonnegative = Interop.mkYaxisAttr "rangemode" "nonnegative"
         static member inline normal = Interop.mkYaxisAttr "rangemode" "normal"
         static member inline tozero = Interop.mkYaxisAttr "rangemode" "tozero"

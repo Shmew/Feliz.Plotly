@@ -13,7 +13,7 @@ let chart () =
                 scatter.mode.lines
                 scatter.name "Red"
                 scatter.line [
-                    line.color (colors.rgb(219, 64, 82))
+                    line.color (color.rgb(219, 64, 82))
                     line.width 3
                 ]
             ]
@@ -23,7 +23,7 @@ let chart () =
                 scatter.mode.lines
                 scatter.name "Blue"
                 scatter.line [
-                    line.color (colors.rgb(55, 128, 191))
+                    line.color (color.rgb(55, 128, 191))
                     line.width 1
                 ]
             ]

@@ -24,9 +24,9 @@ let ann =
             annotation.y yData.[i]
             annotation.text textList.[i]
             annotation.font [
-                font.family fonts.arial
+                font.family font.arial
                 font.size 14
-                font.color (colors.rgba(245, 246, 249, 1))
+                font.color (color.rgba(245, 246, 249, 1))
             ]
             annotation.showarrow false
         ])
@@ -38,16 +38,16 @@ let chart () =
                 bar.x xData
                 bar.y [ 0; 430; 0; 570; 370; 370; 0 ]
                 bar.marker [
-                    marker.color (colors.rgba(1, 1, 1, 0.))
+                    marker.color (color.rgba(1, 1, 1, 0.))
                 ]
             ]
             traces.bar [
                 bar.x xData
                 bar.y [ 430; 260; 690; 0; 0; 0; 0 ]
                 bar.marker [
-                    marker.color (colors.rgba(55, 128, 191, 0.7))
+                    marker.color (color.rgba(55, 128, 191, 0.7))
                     marker.line [
-                        line.color (colors.rgba(55, 128, 191, 1.0))
+                        line.color (color.rgba(55, 128, 191, 1.0))
                         line.width 2
                     ]
                 ]
@@ -56,9 +56,9 @@ let chart () =
                 bar.x xData
                 bar.y [ 0; 0; 0; 120; 200; 320; 0 ]
                 bar.marker [
-                    marker.color (colors.rgba(219, 64, 82, 0.7))
+                    marker.color (color.rgba(219, 64, 82, 0.7))
                     marker.line [
-                        line.color (colors.rgba(219, 64, 82, 1.0))
+                        line.color (color.rgba(219, 64, 82, 1.0))
                         line.width 2
                     ]
                 ]
@@ -67,9 +67,9 @@ let chart () =
                 bar.x xData
                 bar.y [0; 0; 0; 0; 0; 0; 370]
                 bar.marker [
-                    marker.color (colors.rgba(50, 171, 96, 0.7))
+                    marker.color (color.rgba(50, 171, 96, 0.7))
                     marker.line [
-                        line.color (colors.rgba(50, 171, 96, 1.0))
+                        line.color (color.rgba(50, 171, 96, 1.0))
                         line.width 2
                     ]
                 ]
@@ -80,8 +80,8 @@ let chart () =
                 title.text "Annual Profit 2015"
             ]
             layout.barmode.stack
-            layout.paperBgcolor (colors.rgba(245, 246, 249, 1))
-            layout.plotBgcolor (colors.rgba(245, 246, 249, 1))
+            layout.paperBgcolor (color.rgba(245, 246, 249, 1))
+            layout.plotBgcolor (color.rgba(245, 246, 249, 1))
             layout.width 600
             layout.height 600
             layout.showlegend false

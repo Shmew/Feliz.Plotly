@@ -361,6 +361,7 @@ module baxis =
     [<Erase>]
     type tickmode =
         static member inline array = Interop.mkBaxisAttr "tickmode" "array"
+        static member inline auto = Interop.mkBaxisAttr "tickmode" "auto"
         static member inline linear = Interop.mkBaxisAttr "tickmode" "linear"
 
     /// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.

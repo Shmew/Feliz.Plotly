@@ -72,7 +72,7 @@ let chart () =
                 ]
                 scatter.name "steepest"
                 scatter.line [
-                    line.color colors.black
+                    line.color color.black
                 ]
             ]
         ]

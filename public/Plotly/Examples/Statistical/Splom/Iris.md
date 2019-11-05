@@ -81,7 +81,7 @@ let render (data: IrisData) =
                     marker.colorscale plotColorcale
                     marker.size 7
                     marker.line [
-                        line.color colors.white
+                        line.color color.white
                         line.width 0.5
                     ]
                 ]
@@ -96,7 +96,7 @@ let render (data: IrisData) =
             layout.autosize false
             layout.hovermode.closest
             layout.dragmode.select
-            layout.plotBgcolor (colors.rgba(240, 240, 240, 0.95))
+            layout.plotBgcolor (color.rgba(240, 240, 240, 0.95))
             layout.xaxis [
                 xaxis.showline false
                 xaxis.zeroline false
@@ -154,7 +154,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState IrisData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/iris-data.csv"
 
-    React.useEffect(fun _ ->
+    let loadDataset() = 
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -163,7 +163,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
                 let fullData =
                     responseText.Trim().Split('\n') 
                     |> Array.map (fun s -> s.Split(','))
-                
+
                 fullData
                 |> Array.tail
                 |> Array.fold (fun (state: IrisData) (values: string []) -> state.AddDataSet values) content
@@ -175,8 +175,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
         }
         |> Async.StartImmediate
 
-        React.createDisposable(ignore)
-    ,path)
+    React.useEffect(loadDataset, [| path :> obj |])
 
     match isLoading, error with
     | true, _ -> input.centeredSpinner

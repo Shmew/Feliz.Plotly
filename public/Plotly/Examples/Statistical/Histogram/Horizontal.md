@@ -17,7 +17,7 @@ let chart () =
             traces.histogram [
                 histogram.y ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble()))
                 histogram.marker [
-                    marker.color colors.pink
+                    marker.color color.pink
                 ]
             ]
         ]

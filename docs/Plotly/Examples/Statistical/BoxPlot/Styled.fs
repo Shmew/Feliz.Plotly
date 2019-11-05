@@ -28,11 +28,11 @@ let yData =
       getRandom 30 43. ]
 
 let colorValues =
-    [ colors.rgba(93, 164, 214, 0.5); colors.rgba(255, 144, 14, 0.5)
-      colors.rgba(44, 160, 101, 0.5); colors.rgba(255, 65, 54, 0.5)
-      colors.rgba(207, 114, 255, 0.5); colors.rgba(127, 96, 0, 0.5)
-      colors.rgba(255, 140, 184, 0.5); colors.rgba(79, 90, 117, 0.5)
-      colors.rgba(222, 223, 0, 0.5) ]
+    [ color.rgba(93, 164, 214, 0.5); color.rgba(255, 144, 14, 0.5)
+      color.rgba(44, 160, 101, 0.5); color.rgba(255, 65, 54, 0.5)
+      color.rgba(207, 114, 255, 0.5); color.rgba(127, 96, 0, 0.5)
+      color.rgba(255, 140, 184, 0.5); color.rgba(79, 90, 117, 0.5)
+      color.rgba(222, 223, 0, 0.5) ]
 
 let boxPlots =
     yData
@@ -65,9 +65,9 @@ let chart () =
                 yaxis.showgrid true
                 yaxis.zeroline true
                 yaxis.dtick 5
-                yaxis.gridcolor (colors.rgb(255, 255, 255))
+                yaxis.gridcolor (color.rgb(255, 255, 255))
                 yaxis.gridwidth 1
-                yaxis.zerolinecolor (colors.rgb(255, 255, 255))
+                yaxis.zerolinecolor (color.rgb(255, 255, 255))
                 yaxis.zerolinewidth 2
             ]
             layout.margin [
@@ -76,8 +76,8 @@ let chart () =
                 margin.b 80
                 margin.t 100
             ]
-            layout.paperBgcolor (colors.rgb(243, 243, 243))
-            layout.plotBgcolor (colors.rgb(243, 243, 243))
+            layout.paperBgcolor (color.rgb(243, 243, 243))
+            layout.plotBgcolor (color.rgb(243, 243, 243))
             layout.showlegend false
         ]
     ]
