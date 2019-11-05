@@ -26,7 +26,7 @@ let chart () =
                 pie.labels labels
                 pie.name "Starry Night"
                 pie.marker [
-                    marker.color piecolor.[0]
+                    marker.colors piecolor.[0]
                 ]
                 pie.domain [
                     domain.row 0
@@ -44,7 +44,7 @@ let chart () =
                 pie.labels labels
                 pie.name "Sunflowers"
                 pie.marker [
-                    marker.color piecolor.[1]
+                    marker.colors piecolor.[1]
                 ]
                 pie.domain [
                     domain.row 1
@@ -62,7 +62,7 @@ let chart () =
                 pie.labels labels
                 pie.name "Irises"
                 pie.marker [
-                    marker.color piecolor.[2]
+                    marker.colors piecolor.[2]
                 ]
                 pie.domain [
                     domain.row 0
@@ -80,7 +80,7 @@ let chart () =
                 pie.labels labels
                 pie.name "The Night Cafe"
                 pie.marker [
-                    marker.color piecolor.[3]
+                    marker.colors piecolor.[3]
                 ]
                 pie.domain [
                     domain.row 1
