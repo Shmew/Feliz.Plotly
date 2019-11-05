@@ -55,7 +55,7 @@ let render (data: ViolinData)  =
                     box.visible.true'
                 ]
                 violin.line [
-                    line.color colors.blue
+                    line.color color.blue
                     line.width 2
                 ]
                 violin.meanline [
@@ -73,7 +73,7 @@ let render (data: ViolinData)  =
                     box.visible.true'
                 ]
                 violin.line [
-                    line.color colors.green
+                    line.color color.green
                     line.width 2
                 ]
                 violin.meanline [
@@ -103,7 +103,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState ViolinData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv"
 
-    React.useEffect(fun _ ->
+    let loadDataset() = 
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -112,7 +112,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
                 let fullData =
                     responseText.Trim().Split('\n') 
                     |> Array.map (fun s -> s.Split(','))
-                
+
                 fullData
                 |> Array.tail
                 |> Array.fold (fun (state: ViolinData) (values: string []) -> state.AddDataSet values) content
@@ -124,8 +124,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
         }
         |> Async.StartImmediate
 
-        React.createDisposable(ignore)
-    ,path)
+    React.useEffect(loadDataset, [| path :> obj |])
 
     match isLoading, error with
     | true, _ -> input.centeredSpinner

@@ -52,7 +52,7 @@ let render (data: ViolinData)  =
                     box.boxpoints.false'
                 ]
                 violin.line [
-                    line.color colors.black
+                    line.color color.black
                 ]
                 violin.fillcolor "#8dd3c7"
                 violin.opacity 0.6
@@ -75,7 +75,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState ViolinData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv"
 
-    React.useEffect(fun _ ->
+    let loadDataset() = 
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -84,7 +84,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
                 let fullData =
                     responseText.Trim().Split('\n') 
                     |> Array.map (fun s -> s.Split(','))
-                
+
                 fullData
                 |> Array.tail
                 |> Array.fold (fun (state: ViolinData) (values: string []) -> state.AddDataSet values) content
@@ -96,8 +96,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
         }
         |> Async.StartImmediate
 
-        React.createDisposable(ignore)
-    ,path)
+    React.useEffect(loadDataset, [| path :> obj |])
 
     match isLoading, error with
     | true, _ -> input.centeredSpinner

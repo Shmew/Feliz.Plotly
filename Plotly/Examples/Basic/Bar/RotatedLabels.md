@@ -23,7 +23,7 @@ let chart () =
                 bar.textposition.auto
                 bar.hoverinfo.none
                 bar.marker [
-                    marker.color (colors.rgb(49, 130, 189))
+                    marker.color (color.rgb(49, 130, 189))
                     marker.opacity 0.7
                 ]
             ]
@@ -34,7 +34,7 @@ let chart () =
                 bar.textposition.auto
                 bar.hoverinfo.none
                 bar.marker [
-                    marker.color (colors.rgb(204, 204, 204))
+                    marker.color (color.rgb(204, 204, 204))
                     marker.opacity 0.5
                 ]
             ]

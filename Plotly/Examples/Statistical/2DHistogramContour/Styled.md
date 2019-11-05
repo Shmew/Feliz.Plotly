@@ -17,20 +17,20 @@ let chart () =
             traces.histogram2dcontour [
                 histogram2dcontour.x ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble()))
                 histogram2dcontour.y ([ 0 .. 499 ] |> List.map (fun _ -> rng.NextDouble() + 0.1))
-                histogram2dcontour.colorscale colors.colorscale.blues
+                histogram2dcontour.colorscale color.colorscale.blues
                 histogram2dcontour.contours [
                     contours.showlabels true
                     contours.labelfont [
                         labelfont.family "Raleway"
-                        labelfont.color colors.white
+                        labelfont.color color.white
                     ]
                 ]
                 histogram2dcontour.hoverlabel [
-                    hoverlabel.bgcolor colors.white
-                    hoverlabel.bordercolor colors.black
+                    hoverlabel.bgcolor color.white
+                    hoverlabel.bordercolor color.black
                     hoverlabel.font [
                         font.family "Raleway"
-                        font.color colors.black
+                        font.color color.black
                     ]
                 ]
             ]
