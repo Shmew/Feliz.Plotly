@@ -381,7 +381,7 @@ module MarkdownLoader =
             ]
 
     let loadMarkdown' (path: string list) =
-        React.elmishComponent("LoadMarkdown", init path, update, render path)
+        React.elmishComponent("LoadMarkdown", init path, update, render path, key = resolvePath path)
 
 let loadMarkdown (path: string list) = MarkdownLoader.loadMarkdown' path
 
