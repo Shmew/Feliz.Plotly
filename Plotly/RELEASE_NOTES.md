@@ -1,3 +1,8 @@
+### 0.16.0 - Saturday, November 9, 2019
+* Added additional static typings for ref properties
+* Removed some deprecated properties
+* Fixed some layout options not being where they should
+
 ### 0.15.0 - Tuesday, November 4, 2019
 * Add static typings for many properties
 * Created the `PlotData` type to deal with multiple typed inputs for 2D collections
