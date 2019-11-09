@@ -244,24 +244,28 @@ module annotation =
     type axref =
         static member inline pixel = Interop.mkAnnotationAttr "axref" "pixel"
         static member inline custom (value: string) = Interop.mkAnnotationAttr "axref" value
+        static member inline x (axisId: int) = Interop.mkAnnotationAttr "axref" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ay` is a relative offset in pixels  from `y`. If set to a y axis id (e.g. *y* or *y2*), `ay` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
     [<Erase>]
     type ayref =
         static member inline pixel = Interop.mkAnnotationAttr "ayref" "pixel"
         static member inline custom (value: string) = Interop.mkAnnotationAttr "ayref" value
+        static member inline y (axisId: int) = Interop.mkAnnotationAttr "ayref" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// Sets the annotation's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
     [<Erase>]
     type xref =
         static member inline paper = Interop.mkAnnotationAttr "xref" "paper"
         static member inline custom (value: string) = Interop.mkAnnotationAttr "xref" value
+        static member inline x (axisId: int) = Interop.mkAnnotationAttr "xref" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where 0 (1) corresponds to the bottom (top).
     [<Erase>]
     type yref =
         static member inline paper = Interop.mkAnnotationAttr "yref" "paper"
         static member inline custom (value: string) = Interop.mkAnnotationAttr "yref" value
+        static member inline y (axisId: int) = Interop.mkAnnotationAttr "yref" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// Makes this annotation respond to clicks on the plot. If you click a data point that exactly matches the `x` and `y` values of this annotation, and it is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again to make it disappear, so if you click multiple points, you can show multiple annotations. In *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this annotation. If you need to show/hide this annotation in response to different `x` or `y` values, you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To label markers though, `standoff` is preferred over `xclick` and `yclick`.
     [<Erase>]

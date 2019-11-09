@@ -291,7 +291,6 @@ module rec Domain =
             | _ when attributes.Explicit.IsEmpty |> not ->
                 ValType.ExplicitOverride
                     { attributes with Identity = Some <| getType propName { attribOverrides with Explicit = [] } jVal }
-            | "scaleanchor", true -> ValType.String attributes
             | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
             | "xy", true -> ValType.FloatArray
             | _, true ->

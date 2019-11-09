@@ -55,8 +55,11 @@ module ParserUtils =
         |> Array.toList
         |> List.map (JsonValue.asString >> trimJson)
 
-    let traceChildren =
+    let traceChildrenWithJson =
         schema?traces.Properties
+
+    let traceChildren =
+        traceChildrenWithJson
         |> Array.map fst
         |> List.ofArray
 
@@ -73,6 +76,27 @@ module ParserUtils =
 module rec ApiParser =
     open ParserUtils
 
+    let manualDeprecated = 
+        [ ("layout", [ "radialaxis"; "angularaxis" ]) ]
+
+    let isManualDeprecated componentName (name: string) =
+        match List.filter (fst >> fun n -> n = componentName) manualDeprecated with
+        | fList when fList.Length > 0 -> 
+            fList 
+            |> List.exists (snd >> List.exists (fun n -> n = name)) 
+        | _ -> false
+
+    /// Filter all JsonValue properties if deprecated
+    let parseWithfilterDeprecated componentName parentTree (props: (string * JsonValue) []) =
+        props
+        |> Array.choose (fun (pName, pJ) ->
+            if pJ.TryGetProperty("description")
+               |> Option.map (fun j -> j.AsString().Contains("deprecated!"))
+               |> Option.defaultValue false || pName = "_deprecated" 
+               || isManualDeprecated componentName pName
+            then None
+            else parseProp parentTree pName pJ |> Some)
+
     /// Parses a `JsonValue` with given information and returns a `Prop`
     let parseProp componentTree propName (jVal: JsonValue) =
         let jumpArray = [ "annotations"; "dimensions"; "styles"; "transforms" ]
@@ -86,13 +110,14 @@ module rec ApiParser =
             [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType"; "transform" ]
             |> List.contains propName
 
-        let isPropAxis = propName = "xaxis" || propName = "yaxis"
+        let isPropAxis = propName = "xaxis" || propName = "yaxis" || propName = "subplot"
+        let isExpandedLayout () = List.contains propName [ "xaxis"; "yaxis"; "geo"; "ternary"; "polar"; "mapbox" ]
 
         let isExpanded =
             match (componentTree
                    |> List.rev
                    |> List.head), propName with
-            | "Layout", _ when isPropAxis -> true
+            | "Layout", _ when isExpandedLayout() -> true
             | _ -> false
 
         let propMethodName =
@@ -112,7 +137,18 @@ module rec ApiParser =
         let mNameUpper = propMethodName |> String.upperFirst
 
         let isAnchorOrOverlay =
-            (componentParent = "Xaxis" || componentParent = "Yaxis") && (propName = "overlaying" || propName = "anchor")
+            (componentParent = "Xaxis" || componentParent = "Yaxis") 
+                && (propName = "overlaying" || propName = "anchor" || propName = "scaleanchor")
+
+        let isXAxisRef =
+            let targets = [ "xref"; "axref" ]
+
+            List.contains propName targets
+
+        let isYAxisRef =
+            let targets = [ "yref"; "ayref" ]
+            
+            List.contains propName targets
 
         let axisInt axisIdentity =
             ValType.intStrCustom "axisId"
@@ -191,7 +227,9 @@ module rec ApiParser =
                 |> Array.collect (fun j ->
                     match j |> JsonValue.asString with
                     | s when String.containsRegex s && isAnchorOrOverlay -> [| "x"; "y" |]
-                    | s when s |> String.containsRegex -> [||]
+                    | s when String.containsRegex s && isXAxisRef -> [| "x" |]
+                    | s when String.containsRegex s && isYAxisRef -> [| "y" |]
+                    | s when String.containsRegex s -> [||]
                     | s -> s |> Array.singleton)
                 |> Array.append [| "custom" |]
                 |> List.ofArray
@@ -227,7 +265,7 @@ module rec ApiParser =
                     |> appendApostropheToReservedKeywords
 
                 match propType with
-                | ValType.EnumeratedWithCustom when isAnchorOrOverlay && (v = "x" || v = "y") ->
+                | ValType.EnumeratedWithCustom when (isAnchorOrOverlay || isXAxisRef || isYAxisRef ) && (v = "x" || v = "y") ->
                     let paramsCode, valueCode = axisInt v
 
                     EnumPropOverload.create methodName valueCode
@@ -307,12 +345,7 @@ module rec ApiParser =
         let props =
             jVal.Properties
             |> filterAttributes
-            |> Array.choose (fun (pName, pJ) ->
-                if pJ.TryGetProperty("description")
-                   |> Option.map (fun j -> j.AsString().Contains("deprecated"))
-                   |> Option.defaultValue false
-                then None
-                else parseProp parentTree pName pJ |> Some)
+            |> parseWithfilterDeprecated componentName parentTree
             |> Array.distinctBy (fun p -> p.MethodName)
 
         let addProps comp = (comp, props) ||> Array.fold (flip Component.addProp)
@@ -342,8 +375,8 @@ module rec ApiParser =
         |> Array.distinct
         |> JsonValue.Array
 
-    /// Parses the root schema for components with the given name returning a JsonValue of a collected set of properties.
-    let getAllAttributes (property: string) =
+    /// Parses given JsonValue for components with the given name returning a JsonValue of a collected set of properties.
+    let getAttributesOf (source: JsonValue) (property: string) =
         let rec getAttributes attribList parent (jVal: JsonValue) =
             jVal.Properties
             |> Array.partition (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone)
@@ -354,7 +387,7 @@ module rec ApiParser =
                     |> Array.append attribList
                 Array.append addedAttribList (Array.collect (fun (pName, j) -> getAttributes [||] pName j) others)
 
-        getAttributes [||] property schema
+        getAttributes [||] property source
         |> Array.collect (snd >> JsonExtensions.Properties)
         |> Array.distinct
         |> Array.map (fun (name, jVal) ->
@@ -370,6 +403,9 @@ module rec ApiParser =
                 (name, jVal))
         |> JsonValue.Record
 
+    /// Parses the root schema for components with the given name returning a JsonValue of a collected set of properties.
+    let getAllAttributes (property: string) = getAttributesOf schema property
+
     /// Gets a list of all components within the schema with their collected properties
     let getAllComponents() =
         let fixComponentName =
@@ -381,6 +417,7 @@ module rec ApiParser =
             >> appendApostropheToReservedKeywords
 
         let jumps = [ "attributes"; "items"; "layoutAttributes" ]
+        let subLayouts = [ "ternary"; "geo"; "mapbox"; "polar" ]
 
         let rec allComponentNames (jVal: JsonValue): string list =
             let props =
@@ -388,9 +425,9 @@ module rec ApiParser =
                 | j when j.Length > 0 -> (j |> List.head).Properties
                 | _ -> jVal.Properties
                 |> List.ofArray
-                |> List.filter (fun (name, j) -> List.contains name skips
-                                                 |> not
-                                                 && j.TryGetProperty("valType").IsNone)
+                |> List.filter (fun (name, j) -> 
+                    List.contains name skips |> not
+                        && j.TryGetProperty("valType").IsNone)
 
             let newNames =
                 props
@@ -419,15 +456,33 @@ module rec ApiParser =
         |> List.map
             (((fun n ->
              n |> fixComponentName,
-
              getAllAttributes n
              |> fun res ->
-                 if n = "layout" then
+                 match n, List.filter ((=) n) subLayouts with
+                 | "layout", _ ->
                      res.Properties
                      |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
                      |> JsonValue.Record
-                 else
-                     res))
+                 | _, subL when subL.Length > 0 ->
+                     traceChildrenWithJson
+                     |> Array.choose (fun (traceName, traceJson) ->
+                         if traceName.Contains(n) then
+                             getAttributesOf traceJson "layoutAttributes"
+                             |> JsonExtensions.Properties
+                             |> Some
+                         else None)
+                     |> Array.concat
+                     |> Array.distinct
+                     |> Array.append res.Properties
+                     |> JsonValue.Record
+                 | _ -> res))
+             >> (fun (n, j) ->
+                match List.filter (fun (name, _) -> name = n) manualDeprecated |> List.collect snd with
+                | res when res.Length > 0 ->
+                    n,
+                    j.Properties |> Array.filter (fun (pName, _) -> List.contains pName res |> not)
+                    |> JsonValue.Record
+                | _ -> (n,j))
              >> (fun (n, j) -> parseComponent [ n |> String.upperFirst ] n j))
 
     /// Parse the Plotly.js json schema

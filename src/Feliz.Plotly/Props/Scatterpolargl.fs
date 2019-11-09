@@ -370,6 +370,8 @@ type scatterpolargl =
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScatterpolarglAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScatterpolarglAttr "unselected" (createObj !!properties)
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
+    static member inline subplot (axisId: int) = Interop.mkScatterpolarglAttr "subplot" (sprintf "s%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
     static member inline subplot (value: string) = Interop.mkScatterpolarglAttr "subplot" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkScatterpolarglAttr "idssrc" value

@@ -26,7 +26,6 @@ build/
 .fable/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
 [Pp]ublic/*bundle.js*
 [Pp]ublic/*.md
 

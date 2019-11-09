@@ -60,6 +60,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{7F29BFE8-02B
 		.yarnrc = .yarnrc
 		package.json = package.json
 		publish.js = publish.js
+		splitter.config.js = splitter.config.js
 		webpack.config.js = webpack.config.js
 	EndProjectSection
 EndProject
@@ -289,6 +290,101 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Violin", "Violin", "{3C85BE
 		public\Plotly\Examples\Statistical\Violin\Split.md = public\Plotly\Examples\Statistical\Violin\Split.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scientific", "Scientific", "{B0AF5F57-51CF-495D-93EF-AF2462F1B53C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Carpet", "Carpet", "{35E4A416-1E82-4BEC-A325-DEEA3C804D27}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\Carpet\AddAAndBAxis.md = public\Plotly\Examples\Scientific\Carpet\AddAAndBAxis.md
+		public\Plotly\Examples\Scientific\Carpet\Basic.md = public\Plotly\Examples\Scientific\Carpet\Basic.md
+		public\Plotly\Examples\Scientific\Carpet\StyleAAndBAxis.md = public\Plotly\Examples\Scientific\Carpet\StyleAAndBAxis.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CarpetContour", "CarpetContour", "{C26E931A-1EFF-43A9-8F13-46F98942C3BC}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\CarpetContour\Basic.md = public\Plotly\Examples\Scientific\CarpetContour\Basic.md
+		public\Plotly\Examples\Scientific\CarpetContour\MultipleTraces.md = public\Plotly\Examples\Scientific\CarpetContour\MultipleTraces.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CarpetScatter", "CarpetScatter", "{3AD6B2D9-7356-456A-BC63-7D8331DD6520}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\CarpetScatter\Basic.md = public\Plotly\Examples\Scientific\CarpetScatter\Basic.md
+		public\Plotly\Examples\Scientific\CarpetScatter\MultipleTraces.md = public\Plotly\Examples\Scientific\CarpetScatter\MultipleTraces.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contour", "Contour", "{BB51BE38-444B-44F8-95B0-4AC62699359A}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\Contour\Basic.md = public\Plotly\Examples\Scientific\Contour\Basic.md
+		public\Plotly\Examples\Scientific\Contour\ColorbarSize.md = public\Plotly\Examples\Scientific\Contour\ColorbarSize.md
+		public\Plotly\Examples\Scientific\Contour\ColorbarTitle.md = public\Plotly\Examples\Scientific\Contour\ColorbarTitle.md
+		public\Plotly\Examples\Scientific\Contour\Colorscale.md = public\Plotly\Examples\Scientific\Contour\Colorscale.md
+		public\Plotly\Examples\Scientific\Contour\ConnectingGapsInZMatrix.md = public\Plotly\Examples\Scientific\Contour\ConnectingGapsInZMatrix.md
+		public\Plotly\Examples\Scientific\Contour\CustomColorscale.md = public\Plotly\Examples\Scientific\Contour\CustomColorscale.md
+		public\Plotly\Examples\Scientific\Contour\CustomSizeAndRange.md = public\Plotly\Examples\Scientific\Contour\CustomSizeAndRange.md
+		public\Plotly\Examples\Scientific\Contour\CustomSpacing.md = public\Plotly\Examples\Scientific\Contour\CustomSpacing.md
+		public\Plotly\Examples\Scientific\Contour\LineLabels.md = public\Plotly\Examples\Scientific\Contour\LineLabels.md
+		public\Plotly\Examples\Scientific\Contour\Lines.md = public\Plotly\Examples\Scientific\Contour\Lines.md
+		public\Plotly\Examples\Scientific\Contour\SettingXAndYCoordinates.md = public\Plotly\Examples\Scientific\Contour\SettingXAndYCoordinates.md
+		public\Plotly\Examples\Scientific\Contour\Simple.md = public\Plotly\Examples\Scientific\Contour\Simple.md
+		public\Plotly\Examples\Scientific\Contour\SmoothColoring.md = public\Plotly\Examples\Scientific\Contour\SmoothColoring.md
+		public\Plotly\Examples\Scientific\Contour\SmoothingLines.md = public\Plotly\Examples\Scientific\Contour\SmoothingLines.md
+		public\Plotly\Examples\Scientific\Contour\StylingColorbar.md = public\Plotly\Examples\Scientific\Contour\StylingColorbar.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Heatmap", "Heatmap", "{B5489490-E7BE-4D44-9363-28701D8DA6AB}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\Heatmap\Annotated.md = public\Plotly\Examples\Scientific\Heatmap\Annotated.md
+		public\Plotly\Examples\Scientific\Heatmap\Basic.md = public\Plotly\Examples\Scientific\Heatmap\Basic.md
+		public\Plotly\Examples\Scientific\Heatmap\UnequalBlockSizes.md = public\Plotly\Examples\Scientific\Heatmap\UnequalBlockSizes.md
+		public\Plotly\Examples\Scientific\Heatmap\WebGL.md = public\Plotly\Examples\Scientific\Heatmap\WebGL.md
+		public\Plotly\Examples\Scientific\Heatmap\WithCategoricalAxisLabels.md = public\Plotly\Examples\Scientific\Heatmap\WithCategoricalAxisLabels.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Log", "Log", "{7F0F66C4-A648-41F8-BE1E-CD22470AB4AE}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\Log\LogarithmicAxes.md = public\Plotly\Examples\Scientific\Log\LogarithmicAxes.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ParallelCoordinates", "ParallelCoordinates", "{BD489F5D-8231-42F4-A1C7-B03603E05D01}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\ParallelCoordinates\AddingDimensions.md = public\Plotly\Examples\Scientific\ParallelCoordinates\AddingDimensions.md
+		public\Plotly\Examples\Scientific\ParallelCoordinates\Advanced.md = public\Plotly\Examples\Scientific\ParallelCoordinates\Advanced.md
+		public\Plotly\Examples\Scientific\ParallelCoordinates\Annotated.md = public\Plotly\Examples\Scientific\ParallelCoordinates\Annotated.md
+		public\Plotly\Examples\Scientific\ParallelCoordinates\Basic.md = public\Plotly\Examples\Scientific\ParallelCoordinates\Basic.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Polar", "Polar", "{7679734D-5F46-45C7-8641-95B6E1CE3CC8}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\Polar\Area.md = public\Plotly\Examples\Scientific\Polar\Area.md
+		public\Plotly\Examples\Scientific\Polar\Categorical.md = public\Plotly\Examples\Scientific\Polar\Categorical.md
+		public\Plotly\Examples\Scientific\Polar\Directions.md = public\Plotly\Examples\Scientific\Polar\Directions.md
+		public\Plotly\Examples\Scientific\Polar\Line.md = public\Plotly\Examples\Scientific\Polar\Line.md
+		public\Plotly\Examples\Scientific\Polar\Sector.md = public\Plotly\Examples\Scientific\Polar\Sector.md
+		public\Plotly\Examples\Scientific\Polar\Subplots.md = public\Plotly\Examples\Scientific\Polar\Subplots.md
+		public\Plotly\Examples\Scientific\Polar\WebGL.md = public\Plotly\Examples\Scientific\Polar\WebGL.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Radar", "Radar", "{5AF2842D-A42A-4EFB-A6A9-718D99FA958B}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\Radar\Basic.md = public\Plotly\Examples\Scientific\Radar\Basic.md
+		public\Plotly\Examples\Scientific\Radar\MultipleTraces.md = public\Plotly\Examples\Scientific\Radar\MultipleTraces.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ternary", "Ternary", "{3CCA1E00-38C6-495D-A261-E2CF93723833}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\Ternary\SoilTypes.md = public\Plotly\Examples\Scientific\Ternary\SoilTypes.md
+		public\Plotly\Examples\Scientific\Ternary\WithMarkers.md = public\Plotly\Examples\Scientific\Ternary\WithMarkers.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TernaryContour", "TernaryContour", "{5F4941F7-79D2-4318-B6EC-03A990B08F85}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\TernaryContour\Filled.md = public\Plotly\Examples\Scientific\TernaryContour\Filled.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindRose", "WindRose", "{D71CF41D-646D-480D-BC51-F7CDB5E55F3D}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Scientific\WindRose\Basic.md = public\Plotly\Examples\Scientific\WindRose\Basic.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -348,6 +444,19 @@ Global
 		{70059608-0DA4-4BA5-8F53-9A678EC20F58} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{F2CF1D23-5CAB-4802-A612-EF1E3799EBB7} = {0D457903-8E32-4932-893E-C26C4918366E}
 		{3C85BE5E-47D9-4B1D-8AAF-5ECD70AD60F0} = {0D457903-8E32-4932-893E-C26C4918366E}
+		{B0AF5F57-51CF-495D-93EF-AF2462F1B53C} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{35E4A416-1E82-4BEC-A325-DEEA3C804D27} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{C26E931A-1EFF-43A9-8F13-46F98942C3BC} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{3AD6B2D9-7356-456A-BC63-7D8331DD6520} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{BB51BE38-444B-44F8-95B0-4AC62699359A} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{B5489490-E7BE-4D44-9363-28701D8DA6AB} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{7F0F66C4-A648-41F8-BE1E-CD22470AB4AE} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{BD489F5D-8231-42F4-A1C7-B03603E05D01} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{7679734D-5F46-45C7-8641-95B6E1CE3CC8} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{5AF2842D-A42A-4EFB-A6A9-718D99FA958B} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{3CCA1E00-38C6-495D-A261-E2CF93723833} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{5F4941F7-79D2-4318-B6EC-03A990B08F85} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{D71CF41D-646D-480D-BC51-F7CDB5E55F3D} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

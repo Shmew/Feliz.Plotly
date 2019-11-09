@@ -47,6 +47,10 @@ type polar =
     static member inline uirevision (value: string) = Interop.mkPolarAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<string>) = Interop.mkPolarAttr "uirevision" (values |> Array.ofSeq)
+    /// Sets the gap between bars of adjacent location coordinates. Values are unitless, they represent fractions of the minimum difference in bar positions in the data.
+    static member inline bargap (value: int) = Interop.mkPolarAttr "bargap" value
+    /// Sets the gap between bars of adjacent location coordinates. Values are unitless, they represent fractions of the minimum difference in bar positions in the data.
+    static member inline bargap (value: float) = Interop.mkPolarAttr "bargap" value
 
 [<AutoOpen>]
 module polar =
@@ -55,4 +59,12 @@ module polar =
     type gridshape =
         static member inline circular = Interop.mkPolarAttr "gridshape" "circular"
         static member inline linear = Interop.mkPolarAttr "gridshape" "linear"
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    [<Erase>]
+    type barmode =
+        static member inline group = Interop.mkPolarAttr "barmode" "group"
+        static member inline overlay = Interop.mkPolarAttr "barmode" "overlay"
+        static member inline relative = Interop.mkPolarAttr "barmode" "relative"
+        static member inline stack = Interop.mkPolarAttr "barmode" "stack"
 

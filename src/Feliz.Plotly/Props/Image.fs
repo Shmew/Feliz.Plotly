@@ -105,10 +105,12 @@ module image =
     type xref =
         static member inline paper = Interop.mkImageAttr "xref" "paper"
         static member inline custom (value: string) = Interop.mkImageAttr "xref" value
+        static member inline x (axisId: int) = Interop.mkImageAttr "xref" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
     [<Erase>]
     type yref =
         static member inline paper = Interop.mkImageAttr "yref" "paper"
         static member inline custom (value: string) = Interop.mkImageAttr "yref" value
+        static member inline y (axisId: int) = Interop.mkImageAttr "yref" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
 

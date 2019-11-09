@@ -31,7 +31,6 @@ module IrisData =
           Class = [||] }
 
 let render (data: IrisData) =
-    JS.console.log (data.Class)
     let plotColors =
         data.Class
         |> Array.map (fun c ->

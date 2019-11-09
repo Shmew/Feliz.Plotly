@@ -105,5 +105,4 @@ let chart () =
                 yaxis.zeroline false
             ])
         ]
-        plot.debug true
     ]

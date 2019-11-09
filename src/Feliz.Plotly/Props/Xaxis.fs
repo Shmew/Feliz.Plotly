@@ -37,8 +37,6 @@ type xaxis =
     static member inline range (values: seq<string>) = Interop.mkXaxisAttr "range" (values |> ResizeArray)
     /// Determines whether or not this axis is zoom-able. If true, then zoom is disabled.
     static member inline fixedrange (value: bool) = Interop.mkXaxisAttr "fixedrange" value
-    /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
-    static member inline scaleanchor (value: string) = Interop.mkXaxisAttr "scaleanchor" value
     /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale ratio. For example, if this value is 10, then every unit on this axis spans 10 times the number of pixels as a unit on the linked axis. Use this for example to create an elevation profile where the vertical scale is exaggerated a fixed amount with respect to the horizontal.
     static member inline scaleratio (value: int) = Interop.mkXaxisAttr "scaleratio" value
     /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale ratio. For example, if this value is 10, then every unit on this axis spans 10 times the number of pixels as a unit on the linked axis. Use this for example to create an elevation profile where the vertical scale is exaggerated a fixed amount with respect to the horizontal.
@@ -402,6 +400,13 @@ module xaxis =
         static member inline nonnegative = Interop.mkXaxisAttr "rangemode" "nonnegative"
         static member inline normal = Interop.mkXaxisAttr "rangemode" "normal"
         static member inline tozero = Interop.mkXaxisAttr "rangemode" "tozero"
+
+    /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
+    [<Erase>]
+    type scaleanchor =
+        static member inline custom (value: string) = Interop.mkXaxisAttr "scaleanchor" value
+        static member inline x (axisId: int) = Interop.mkXaxisAttr "scaleanchor" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline y (axisId: int) = Interop.mkXaxisAttr "scaleanchor" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
 
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
     [<Erase>]

@@ -7,10 +7,12 @@ let [<Literal>] Examples = "Examples"
 let [<Literal>] Installation = "Installation"
 let [<Literal>] Overview = "Overview"
 let [<Literal>] ReleaseNotes = "ReleaseNotes"
+let [<Literal>] Scientific = "Scientific"
 let [<Literal>] Statistical = "Statistical"
 let [<Literal>] Subplots = "Subplots"
 
 // Non-exclusive Chart names
+let [<Literal>] Annotated = "Annotated"
 let [<Literal>] AsymmetricWithOffset = "AsymmetricWithOffset"
 let [<Literal>] Basic = "Basic"
 let [<Literal>] Grouped = "Grouped"
@@ -48,10 +50,39 @@ let [<Literal>] MarkerSizeAndColor = "MarkerSizeAndColor"
 let [<Literal>] MarkerSizeColorAndSymbolArray = "MarkerSizeColorAndSymbolArray"
 let [<Literal>] SizeScaling = "SizeScaling"
 
+// Carpet Examples
+let [<Literal>] Carpet = "Carpet"
+
+let [<Literal>] AddAAndBAxis = "AddAAndBAxis"
+let [<Literal>] StyleAAndBAxis = "StyleAAndBAxis"
+
+// Carpet Contour Examples
+let [<Literal>] CarpetContour = "CarpetContour"
+
+// Carpet Scatter Examples
+let [<Literal>] CarpetScatter = "CarpetScatter"
+
 // Continuous Error Bar Examples
 let [<Literal>] ContinuousErrorBar = "ContinuousErrorBar"
 
 let [<Literal>] FilledLines = "FilledLines"
+
+// Contour Examples
+let [<Literal>] Contour = "Contour"
+
+let [<Literal>] ColorbarSize = "ColorbarSize"
+let [<Literal>] ColorbarTitle = "ColorbarTitle"
+let [<Literal>] ConnectingGapsInZMatrix = "ConnectingGapsInZMatrix"
+let [<Literal>] CustomColorscale = "CustomColorscale"
+let [<Literal>] CustomSizeAndRange = "CustomSizeAndRange"
+let [<Literal>] CustomSpacing = "CustomSpacing"
+let [<Literal>] LineLabels = "LineLabels"
+let [<Literal>] Lines = "Lines"
+let [<Literal>] SettingXAndYCoordinates = "SettingXAndYCoordinates"
+let [<Literal>] Simple = "Simple"
+let [<Literal>] SmoothColoring = "SmoothColoring"
+let [<Literal>] SmoothingLines = "SmoothingLines"
+let [<Literal>] StylingColorbar = "StylingColorbar"
 
 // Dot Examples
 let [<Literal>] Dot = "Dot"
@@ -72,6 +103,12 @@ let [<Literal>] NormalizedStackedArea = "NormalizedStackedArea"
 let [<Literal>] OverlaidWithoutBoundary = "OverlaidWithoutBoundary"
 let [<Literal>] SelectHover = "SelectHover"
 let [<Literal>] StackedArea = "StackedArea"
+
+// Heatmap Examples
+let [<Literal>] Heatmap = "Heatmap"
+
+let [<Literal>] UnequalBlockSizes = "UnequalBlockSizes"
+let [<Literal>] WithCategoricalAxisLabels = "WithCategoricalAxisLabels"
 
 // Histogram Examples
 let [<Literal>] Histogram = "Histogram"
@@ -99,6 +136,11 @@ let [<Literal>] GraphAndAxesTitles = "GraphAndAxesTitles"
 let [<Literal>] NamedLineAndScatter = "NamedLineAndScatter"
 let [<Literal>] StylingLinePlot = "StylingLinePlot"
 
+// Log Examples
+let [<Literal>] Log = "Log"
+
+let [<Literal>] LogarithmicAxes = "LogarithmicAxes"
+
 // Multiple Axes Examples
 let [<Literal>] MultipleAxes = "MultipleAxes"
 
@@ -119,15 +161,31 @@ let [<Literal>] MultiColor = "MultiColor"
 let [<Literal>] LinkedBrushing = "LinkedBrushing"
 let [<Literal>] MultiColorLinkedBrushing = "MultiColorLinkedBrushing"
 
+// Parallel Coordinates Examples
+let [<Literal>] ParallelCoordinates = "ParallelCoordinates"
+
+let [<Literal>] AddingDimensions = "AddingDimensions"
+
 // Pie Examples
 let [<Literal>] Pie = "Pie"
 
 let [<Literal>] Donut = "Donut"
 
+// Polar Examples
+let [<Literal>] Polar = "Polar"
+
+let [<Literal>] Area = "Area"
+let [<Literal>] Directions = "Directions"
+let [<Literal>] Sector = "Sector"
+let [<Literal>] WebGL = "WebGL"
+
 // Point Cloud Examples
 let [<Literal>] PointCloud = "PointCloud"
 
 let [<Literal>] Advanced = "Advanced"
+
+// Radar Examples
+let [<Literal>] Radar = "Radar"
 
 // Sankey Examples
 let [<Literal>] Sankey = "Sankey"
@@ -165,6 +223,17 @@ let [<Literal>] AlternatingRowColors = "AlternatingRowColors"
 let [<Literal>] ChangingSizes = "ChangingSizes"
 let [<Literal>] FromCSV = "FromCSV"
 
+// Ternary Examples
+let [<Literal>] Ternary = "Ternary"
+
+let [<Literal>] SoilTypes = "SoilTypes"
+let [<Literal>] WithMarkers = "WithMarkers"
+
+// Ternary Contour Examples
+let [<Literal>] TernaryContour = "TernaryContour"
+
+let [<Literal>] Filled = "Filled"
+
 // Treemap Examples
 let [<Literal>] Treemap = "Treemap"
 
@@ -177,6 +246,9 @@ let [<Literal>] Violin = "Violin"
 
 let [<Literal>] MultipleTraces = "MultipleTraces"
 let [<Literal>] Split = "Split"
+
+// Wind Rose Examples
+let [<Literal>] WindRose = "WindRose"
 
 // 2D Density Examples
 let [<Literal>] TwoDimensionalDensity = "2DDensity"

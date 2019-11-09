@@ -45,6 +45,9 @@ module color =
                 [ i; color ]
             ) colors
 
+        let custom (scales: float list) (colors: string list) =
+            scales |> List.map2 (fun color scale -> [ (scale |> string); color ]) colors
+
         let greys =
             [ rgb (0, 0, 0)
               rgb (255, 255, 255) ]

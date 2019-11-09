@@ -348,6 +348,8 @@ type choroplethmapbox =
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     static member inline coloraxis (value: string) = Interop.mkChoroplethmapboxAttr "coloraxis" value
     /// Sets a reference between this trace's data coordinates and a mapbox subplot. If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer to `layout.mapbox2`, and so on.
+    static member inline subplot (axisId: int) = Interop.mkChoroplethmapboxAttr "subplot" (sprintf "s%s" (if axisId > 1 then (axisId |> string) else ""))
+    /// Sets a reference between this trace's data coordinates and a mapbox subplot. If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer to `layout.mapbox2`, and so on.
     static member inline subplot (value: string) = Interop.mkChoroplethmapboxAttr "subplot" value
     /// Sets the source reference on plot.ly for  ids .
     static member inline idssrc (value: string) = Interop.mkChoroplethmapboxAttr "idssrc" value

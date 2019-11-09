@@ -259,6 +259,90 @@ let samples =
           twoDimensionalHistogramContour ]
         |> List.concat
 
+    let scientificExamples =
+        let carpet =
+            [ "plotly-chart-carpet-addaandbaxis", Samples.Carpet.AddAAndBAxis.chart()
+              "plotly-chart-carpet-basic", Samples.Carpet.Basic.chart()
+              "plotly-chart-carpet-styleaandbaxis", Samples.Carpet.StyleAAndBAxis.chart() ]
+
+        let carpetContour = 
+            [ "plotly-chart-carpetcontour-basic", Samples.CarpetContour.Basic.chart()
+              "plotly-chart-carpetcontour-multipletraces", Samples.CarpetContour.MultipleTraces.chart(centeredSpinner) ]
+
+        let carpetScatter = 
+            [ "plotly-chart-carpetscatter-basic", Samples.CarpetScatter.Basic.chart()
+              "plotly-chart-carpetscatter-multipletraces", Samples.CarpetScatter.MultipleTraces.chart() ]
+
+        let contour = 
+            [ "plotly-chart-contour-basic", Samples.Contour.Basic.chart()
+              "plotly-chart-contour-colorbarsize", Samples.Contour.ColorbarSize.chart()
+              "plotly-chart-contour-colorbartitle", Samples.Contour.ColorbarTitle.chart()
+              "plotly-chart-contour-colorscale", Samples.Contour.Colorscale.chart()
+              "plotly-chart-contour-connectinggapsinzmatrix", Samples.Contour.ConnectingGapsInZMatrix.chart()
+              "plotly-chart-contour-customcolorscale", Samples.Contour.CustomColorscale.chart()
+              "plotly-chart-contour-customsizeandrange", Samples.Contour.CustomSizeAndRange.chart()
+              "plotly-chart-contour-customspacing", Samples.Contour.CustomSpacing.chart()
+              "plotly-chart-contour-lines", Samples.Contour.Lines.chart()
+              "plotly-chart-contour-linelabels", Samples.Contour.LineLabels.chart()
+              "plotly-chart-contour-settingxandycoordinates", Samples.Contour.SettingXAndYCoordinates.chart()
+              "plotly-chart-contour-simple", Samples.Contour.Simple.chart()
+              "plotly-chart-contour-smoothcoloring", Samples.Contour.SmoothColoring.chart()
+              "plotly-chart-contour-smoothinglines", Samples.Contour.SmoothingLines.chart()
+              "plotly-chart-contour-stylingcolorbar", Samples.Contour.StylingColorbar.chart() ]
+
+        let heatmap = 
+            [ "plotly-chart-heatmap-annotated", Samples.Heatmap.Annotated.chart()
+              "plotly-chart-heatmap-basic", Samples.Heatmap.Basic.chart()
+              "plotly-chart-heatmap-unequalblocksizes", Samples.Heatmap.UnequalBlockSizes.chart()
+              "plotly-chart-heatmap-withcategoricalaxislabels", Samples.Heatmap.WithCategoricalAxisLabels.chart()
+              "plotly-chart-heatmap-webgl", Samples.Heatmap.WebGL.chart() ]
+
+        let log = 
+            [ "plotly-chart-log-logarithmicaxes", Samples.Log.LogarithmicAxes.chart() ]        
+
+        let parallelCoordinates = 
+            [ "plotly-chart-parallelcoordinates-addingdimensions", Samples.ParallelCoordinates.AddingDimensions.chart(centeredSpinner)
+              "plotly-chart-parallelcoordinates-advanced", Samples.ParallelCoordinates.Advanced.chart(centeredSpinner)
+              "plotly-chart-parallelcoordinates-annotated", Samples.ParallelCoordinates.Annotated.chart(centeredSpinner)
+              "plotly-chart-parallelcoordinates-basic", Samples.ParallelCoordinates.Basic.chart() ]
+
+        let polar = 
+            [ "plotly-chart-polar-area", Samples.Polar.Area.chart()
+              "plotly-chart-polar-categorical", Samples.Polar.Categorical.chart()
+              "plotly-chart-polar-directions", Samples.Polar.Directions.chart()
+              "plotly-chart-polar-line", Samples.Polar.Line.chart(centeredSpinner)
+              "plotly-chart-polar-sector", Samples.Polar.Sector.chart()
+              "plotly-chart-polar-subplots", Samples.Polar.Subplots.chart()
+              "plotly-chart-polar-webgl", Samples.Polar.WebGL.chart() ]
+
+        let radar = 
+            [ "plotly-chart-radar-basic", Samples.Radar.Basic.chart()
+              "plotly-chart-radar-multipletraces", Samples.Radar.MultipleTraces.chart() ]
+
+        let ternary = 
+            [ "plotly-chart-ternary-soiltypes", Samples.Ternary.SoilTypes.chart(centeredSpinner)
+              "plotly-chart-ternary-withmarkers", Samples.Ternary.WithMarkers.chart() ]
+
+        let ternaryContour = 
+            [ "plotly-chart-ternarycontour-filled", Samples.TernaryContour.Filled .chart(centeredSpinner) ]
+
+        let windRose = 
+            [ "plotly-chart-windrose-basic", Samples.WindRose.Basic.chart() ]
+
+        [ carpet
+          carpetContour
+          carpetScatter
+          contour
+          log
+          heatmap
+          parallelCoordinates
+          polar
+          radar
+          ternary
+          ternaryContour
+          windRose ]
+        |> List.concat
+
     let subplotExamples =
         let multipleAxes =
             [ "plotly-chart-multipleaxes-twoyaxes", Samples.MultipleAxes.TwoYAxes.chart()
@@ -267,7 +351,7 @@ let samples =
         [ multipleAxes ]
         |> List.concat
 
-    [ basicSamples; statisticalExamples; subplotExamples ]
+    [ basicSamples; statisticalExamples; scientificExamples; subplotExamples ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -650,6 +734,77 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Styled" [ Urls.Styled ]
                         ]
                     ]
+                    nestedMenuList "Scientific" [ Urls.Plotly; Urls.Examples; Urls.Scientific ] [
+                        subNestedMenuList "Log" [ Urls.Log ] [
+                            nestedMenuItem "Logarithmic Axes" [ Urls.LogarithmicAxes ]
+                        ]
+                        subNestedMenuList "Contour" [ Urls.Contour ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Simple" [ Urls.Simple ]
+                            nestedMenuItem "Setting X and Y Coordinates" [ Urls.SettingXAndYCoordinates ]
+                            nestedMenuItem "Colorscale" [ Urls.Colorscale ]
+                            nestedMenuItem "Custom Size and Range" [ Urls.CustomSizeAndRange ]
+                            nestedMenuItem "Custom Spacing" [ Urls.CustomSpacing ]
+                            nestedMenuItem "Connecting Gaps In Z Matrix" [ Urls.ConnectingGapsInZMatrix ]
+                            nestedMenuItem "Smoothing Lines" [ Urls.SmoothingLines ]
+                            nestedMenuItem "Smooth Coloring" [ Urls.SmoothColoring ]
+                            nestedMenuItem "Lines" [ Urls.Lines ]
+                            nestedMenuItem "Line Labels" [ Urls.LineLabels ]
+                            nestedMenuItem "Custom Colorscale" [ Urls.CustomColorscale ]
+                            nestedMenuItem "Colorbar Title" [ Urls.ColorbarTitle ]
+                            nestedMenuItem "Colorbar Size" [ Urls.ColorbarSize ]
+                            nestedMenuItem "Styling Colorbar" [ Urls.StylingColorbar ]
+                        ]
+                        subNestedMenuList "Heatmap" [ Urls.Heatmap ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Annotated" [ Urls.Annotated ]
+                            nestedMenuItem "With Categorical Axis Labels" [ Urls.WithCategoricalAxisLabels ]
+                            nestedMenuItem "Unequal Block Sizes" [ Urls.UnequalBlockSizes ]
+                            nestedMenuItem "WebGL" [ Urls.WebGL ]
+                        ]
+                        subNestedMenuList "Wind Rose" [ Urls.WindRose ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                        ]
+                        subNestedMenuList "Ternary" [ Urls.Ternary ] [
+                            nestedMenuItem "With Markers" [ Urls.WithMarkers ]
+                            nestedMenuItem "Soil Types" [ Urls.SoilTypes ]
+                        ]
+                        subNestedMenuList "Ternary Contour" [ Urls.TernaryContour ] [
+                            nestedMenuItem "Filled" [ Urls.Filled ]
+                        ]
+                        subNestedMenuList "Radar" [ Urls.Radar ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                        ]
+                        subNestedMenuList "Parallel Coordinates" [ Urls.ParallelCoordinates ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Adding Dimensions" [ Urls.AddingDimensions ]
+                            nestedMenuItem "Annotated" [ Urls.Annotated ]
+                            nestedMenuItem "Advanced" [ Urls.Advanced ]
+                        ]
+                        subNestedMenuList "Carpet" [ Urls.Carpet ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Add A and B Axis" [ Urls.AddAAndBAxis ]
+                            nestedMenuItem "Style A and B Axis" [ Urls.StyleAAndBAxis ]
+                        ]
+                        subNestedMenuList "Carpet Scatter" [ Urls.CarpetScatter ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                        ]
+                        subNestedMenuList "Carpet Contour" [ Urls.CarpetContour ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                        ]
+                        //subNestedMenuList "Polar" [ Urls.Polar ] [
+                        //    nestedMenuItem "Line" [ Urls.Line ]
+                        //    nestedMenuItem "Area" [ Urls.Area ]
+                        //    nestedMenuItem "Categorical" [ Urls.Categorical ]
+                        //    nestedMenuItem "Directions" [ Urls.Directions ]
+                        //    nestedMenuItem "Sector" [ Urls.Sector ]
+                        //    nestedMenuItem "Subplots" [ Urls.Subplots ]
+                        //    nestedMenuItem "WebGL" [ Urls.WebGL ]
+                        //]
+                    ]
                     nestedMenuList "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Subplots ] [
                         subNestedMenuList "Multiple Axes" [ Urls.MultipleAxes ] [
                             nestedMenuItem "Two Y-Axes" [ Urls.TwoYAxes ]
@@ -898,6 +1053,106 @@ let statisticalExamples (currentPath: string list) =
         if path |> List.isEmpty then []
         else [ Urls.Statistical ] @ path
 
+let scientificExamples (currentPath: string list) =
+    match currentPath with
+    | Urls.Log :: rest ->
+        match rest with
+        | [ Urls.LogarithmicAxes ] -> [ "LogarithmicAxes.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Log ]
+    | Urls.Contour :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Simple ] -> [ "Simple.md" ]
+        | [ Urls.SettingXAndYCoordinates ] -> [ "SettingXAndYCoordinates.md" ]
+        | [ Urls.Colorscale ] -> [ "Colorscale.md" ]
+        | [ Urls.CustomSizeAndRange ] -> [ "CustomSizeAndRange.md" ]
+        | [ Urls.CustomSpacing ] -> [ "CustomSpacing.md" ]
+        | [ Urls.ConnectingGapsInZMatrix ] -> [ "ConnectingGapsInZMatrix.md" ]
+        | [ Urls.SmoothingLines ] -> [ "SmoothingLines.md" ]
+        | [ Urls.SmoothColoring ] -> [ "SmoothColoring.md" ]
+        | [ Urls.Lines ] -> [ "Lines.md" ]
+        | [ Urls.LineLabels ] -> [ "LineLabels.md" ]
+        | [ Urls.CustomColorscale ] -> [ "CustomColorscale.md" ]
+        | [ Urls.ColorbarTitle ] -> [ "ColorBarTitle.md" ]
+        | [ Urls.ColorbarSize ] -> [ "ColorBarSize.md" ]
+        | [ Urls.StylingColorbar ] -> [ "StylingColorBar.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Contour ]
+    | Urls.Heatmap :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.Annotated ] -> [ "Annotated.md" ]
+        | [ Urls.WithCategoricalAxisLabels ] -> [ "WithCategoricalAxisLabels.md" ]
+        | [ Urls.UnequalBlockSizes ] -> [ "UnequalBlockSizes.md" ]
+        | [ Urls.WebGL ] -> [ "WebGL.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Heatmap ]
+    | Urls.WindRose :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.WindRose ]
+    | Urls.Ternary :: rest ->
+        match rest with
+        | [ Urls.WithMarkers ] -> [ "WithMarkers.md" ]
+        | [ Urls.SoilTypes ] -> [ "SoilTypes.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Ternary ]
+    | Urls.TernaryContour :: rest ->
+        match rest with
+        | [ Urls.Filled ] -> [ "Filled.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.TernaryContour ]
+    | Urls.Radar :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.MultipleTraces ] -> [ "MultipleTraces.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Radar ]
+    | Urls.ParallelCoordinates :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.AddingDimensions ] -> [ "AddingDimensions.md" ]
+        | [ Urls.Annotated ] -> [ "Annotated.md" ]
+        | [ Urls.Advanced ] -> [ "Advanced.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.ParallelCoordinates ]
+    | Urls.Carpet :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.AddAAndBAxis ] -> [ "AddAAndBAxis.md" ]
+        | [ Urls.StyleAAndBAxis ] -> [ "StyleAAndBAxis.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Carpet ]
+    | Urls.CarpetScatter :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.MultipleTraces ] -> [ "MultipleTraces.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.CarpetScatter ]
+    | Urls.CarpetContour :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.MultipleTraces ] -> [ "MultipleTraces.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.CarpetContour ]
+    | Urls.Polar :: rest ->
+        match rest with
+        | [ Urls.Line ] -> [ "Line.md" ]
+        | [ Urls.Area ] -> [ "Area.md" ]
+        | [ Urls.Categorical ] -> [ "Categorical.md" ]
+        | [ Urls.Directions ] -> [ "Directions.md" ]
+        | [ Urls.Sector ] -> [ "Sector.md" ]
+        | [ Urls.Subplots ] -> [ "Subplots.md" ]
+        | [ Urls.WebGL ] -> [ "WebGL.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Polar ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Scientific ] @ path
+
 let subplotExamples (currentPath: string list) =
     match currentPath with
     | Urls.MultipleAxes :: rest ->
@@ -927,6 +1182,7 @@ let content state dispatch =
         match state.CurrentPath |> List.skip 2 with
         | basicPath when tryTakePath basicPath [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
         | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
+        | scientificPath when tryTakePath scientificPath [ Urls.Scientific ] -> scientificPath |> List.skip 1 |> scientificExamples
         | subplotsPath when tryTakePath subplotsPath [ Urls.Subplots ] -> subplotsPath |> List.skip 1 |> subplotExamples
         | _ -> [ ]
         |> fun path ->
