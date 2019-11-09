@@ -15,23 +15,23 @@ type cone =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkConeAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkConeAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkConeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkConeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkConeAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkConeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkConeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkConeAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkConeAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkConeAttr "ids" value
+    static member inline ids (value: float) = Interop.mkConeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkConeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkConeAttr "ids" value
+    static member inline ids (value: int) = Interop.mkConeAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkConeAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkConeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkConeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -71,23 +71,23 @@ type cone =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkConeAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkConeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkConeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkConeAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkConeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkConeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkConeAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkConeAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkConeAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkConeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkConeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkConeAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkConeAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkConeAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkConeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkConeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -149,25 +149,25 @@ type cone =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkConeAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (value: bool) = Interop.mkConeAttr "x" value
+    static member inline x (value: bool) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (values: seq<bool>) = Interop.mkConeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (value: System.DateTime) = Interop.mkConeAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (values: seq<System.DateTime>) = Interop.mkConeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (value: int) = Interop.mkConeAttr "x" value
+    static member inline x (value: float) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (values: seq<int>) = Interop.mkConeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (value: float) = Interop.mkConeAttr "x" value
+    static member inline x (value: int) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (values: seq<float>) = Interop.mkConeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (value: string) = Interop.mkConeAttr "x" value
+    static member inline x (value: string) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    static member inline x (values: seq<string>) = Interop.mkConeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<seq<bool>>) = Interop.mkConeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates of the vector field and of the displayed cones.
@@ -205,25 +205,25 @@ type cone =
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<string option>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (value: bool) = Interop.mkConeAttr "y" value
+    static member inline y (value: bool) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (values: seq<bool>) = Interop.mkConeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<bool>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (value: System.DateTime) = Interop.mkConeAttr "y" value
+    static member inline y (value: System.DateTime) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (values: seq<System.DateTime>) = Interop.mkConeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (value: int) = Interop.mkConeAttr "y" value
+    static member inline y (value: float) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (values: seq<int>) = Interop.mkConeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<float>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (value: float) = Interop.mkConeAttr "y" value
+    static member inline y (value: int) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (values: seq<float>) = Interop.mkConeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<int>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (value: string) = Interop.mkConeAttr "y" value
+    static member inline y (value: string) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    static member inline y (values: seq<string>) = Interop.mkConeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<string>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<seq<bool>>) = Interop.mkConeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y coordinates of the vector field and of the displayed cones.
@@ -261,25 +261,25 @@ type cone =
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<string option>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (value: bool) = Interop.mkConeAttr "z" value
+    static member inline z (value: bool) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (values: seq<bool>) = Interop.mkConeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<bool>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (value: System.DateTime) = Interop.mkConeAttr "z" value
+    static member inline z (value: System.DateTime) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (values: seq<System.DateTime>) = Interop.mkConeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (value: int) = Interop.mkConeAttr "z" value
+    static member inline z (value: float) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (values: seq<int>) = Interop.mkConeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<float>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (value: float) = Interop.mkConeAttr "z" value
+    static member inline z (value: int) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (values: seq<float>) = Interop.mkConeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<int>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (value: string) = Interop.mkConeAttr "z" value
+    static member inline z (value: string) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    static member inline z (values: seq<string>) = Interop.mkConeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<string>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (values: seq<seq<bool>>) = Interop.mkConeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the z coordinates of the vector field and of the displayed cones.
@@ -317,23 +317,23 @@ type cone =
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (values: seq<string option>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the x components of the vector field.
-    static member inline u (value: bool) = Interop.mkConeAttr "u" value
+    static member inline u (value: bool) = Interop.mkConeAttr "u" (value |> Array.singleton)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<bool>) = Interop.mkConeAttr "u" (values |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (value: System.DateTime) = Interop.mkConeAttr "u" value
+    static member inline u (value: System.DateTime) = Interop.mkConeAttr "u" (value |> Array.singleton)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<System.DateTime>) = Interop.mkConeAttr "u" (values |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (value: int) = Interop.mkConeAttr "u" value
-    /// Sets the x components of the vector field.
-    static member inline u (values: seq<int>) = Interop.mkConeAttr "u" (values |> Array.ofSeq)
-    /// Sets the x components of the vector field.
-    static member inline u (value: float) = Interop.mkConeAttr "u" value
+    static member inline u (value: float) = Interop.mkConeAttr "u" (value |> Array.singleton)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<float>) = Interop.mkConeAttr "u" (values |> Array.ofSeq)
     /// Sets the x components of the vector field.
-    static member inline u (value: string) = Interop.mkConeAttr "u" value
+    static member inline u (value: int) = Interop.mkConeAttr "u" (value |> Array.singleton)
+    /// Sets the x components of the vector field.
+    static member inline u (values: seq<int>) = Interop.mkConeAttr "u" (values |> Array.ofSeq)
+    /// Sets the x components of the vector field.
+    static member inline u (value: string) = Interop.mkConeAttr "u" (value |> Array.singleton)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<string>) = Interop.mkConeAttr "u" (values |> Array.ofSeq)
     /// Sets the x components of the vector field.
@@ -373,23 +373,23 @@ type cone =
     /// Sets the x components of the vector field.
     static member inline u (values: seq<string option>) = Interop.mkConeAttr "u" (values |> ResizeArray)
     /// Sets the y components of the vector field.
-    static member inline v (value: bool) = Interop.mkConeAttr "v" value
+    static member inline v (value: bool) = Interop.mkConeAttr "v" (value |> Array.singleton)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<bool>) = Interop.mkConeAttr "v" (values |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (value: System.DateTime) = Interop.mkConeAttr "v" value
+    static member inline v (value: System.DateTime) = Interop.mkConeAttr "v" (value |> Array.singleton)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<System.DateTime>) = Interop.mkConeAttr "v" (values |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (value: int) = Interop.mkConeAttr "v" value
-    /// Sets the y components of the vector field.
-    static member inline v (values: seq<int>) = Interop.mkConeAttr "v" (values |> Array.ofSeq)
-    /// Sets the y components of the vector field.
-    static member inline v (value: float) = Interop.mkConeAttr "v" value
+    static member inline v (value: float) = Interop.mkConeAttr "v" (value |> Array.singleton)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<float>) = Interop.mkConeAttr "v" (values |> Array.ofSeq)
     /// Sets the y components of the vector field.
-    static member inline v (value: string) = Interop.mkConeAttr "v" value
+    static member inline v (value: int) = Interop.mkConeAttr "v" (value |> Array.singleton)
+    /// Sets the y components of the vector field.
+    static member inline v (values: seq<int>) = Interop.mkConeAttr "v" (values |> Array.ofSeq)
+    /// Sets the y components of the vector field.
+    static member inline v (value: string) = Interop.mkConeAttr "v" (value |> Array.singleton)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<string>) = Interop.mkConeAttr "v" (values |> Array.ofSeq)
     /// Sets the y components of the vector field.
@@ -429,23 +429,23 @@ type cone =
     /// Sets the y components of the vector field.
     static member inline v (values: seq<string option>) = Interop.mkConeAttr "v" (values |> ResizeArray)
     /// Sets the z components of the vector field.
-    static member inline w (value: bool) = Interop.mkConeAttr "w" value
+    static member inline w (value: bool) = Interop.mkConeAttr "w" (value |> Array.singleton)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<bool>) = Interop.mkConeAttr "w" (values |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (value: System.DateTime) = Interop.mkConeAttr "w" value
+    static member inline w (value: System.DateTime) = Interop.mkConeAttr "w" (value |> Array.singleton)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<System.DateTime>) = Interop.mkConeAttr "w" (values |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (value: int) = Interop.mkConeAttr "w" value
-    /// Sets the z components of the vector field.
-    static member inline w (values: seq<int>) = Interop.mkConeAttr "w" (values |> Array.ofSeq)
-    /// Sets the z components of the vector field.
-    static member inline w (value: float) = Interop.mkConeAttr "w" value
+    static member inline w (value: float) = Interop.mkConeAttr "w" (value |> Array.singleton)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<float>) = Interop.mkConeAttr "w" (values |> Array.ofSeq)
     /// Sets the z components of the vector field.
-    static member inline w (value: string) = Interop.mkConeAttr "w" value
+    static member inline w (value: int) = Interop.mkConeAttr "w" (value |> Array.singleton)
+    /// Sets the z components of the vector field.
+    static member inline w (values: seq<int>) = Interop.mkConeAttr "w" (values |> Array.ofSeq)
+    /// Sets the z components of the vector field.
+    static member inline w (value: string) = Interop.mkConeAttr "w" (value |> Array.singleton)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<string>) = Interop.mkConeAttr "w" (values |> Array.ofSeq)
     /// Sets the z components of the vector field.
@@ -526,6 +526,8 @@ type cone =
     static member inline showscale (value: bool) = Interop.mkConeAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkConeAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    static member inline coloraxis (anchorId: int) = Interop.mkConeAttr "coloraxis" (sprintf "coloraxis%s" (if anchorId > 1 then (anchorId |> string) else ""))
+    /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     static member inline coloraxis (value: string) = Interop.mkConeAttr "coloraxis" value
     /// Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.
     static member inline opacity (value: int) = Interop.mkConeAttr "opacity" value
@@ -535,6 +537,8 @@ type cone =
     static member inline lighting (properties: #ILightingProperty list) = Interop.mkConeAttr "lighting" (createObj !!properties)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IConeProperty list) = Interop.mkConeAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
+    /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
+    static member inline scene (anchorId: int) = Interop.mkConeAttr "scene" (sprintf "scene%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
     static member inline scene (value: string) = Interop.mkConeAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .

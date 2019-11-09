@@ -21,23 +21,23 @@ type angularaxis =
     /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
     static member inline visible (value: bool) = Interop.mkAngularaxisAttr "visible" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkAngularaxisAttr "categoryarray" value
+    static member inline categoryarray (value: bool) = Interop.mkAngularaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkAngularaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: System.DateTime) = Interop.mkAngularaxisAttr "categoryarray" value
+    static member inline categoryarray (value: System.DateTime) = Interop.mkAngularaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkAngularaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkAngularaxisAttr "categoryarray" value
-    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int>) = Interop.mkAngularaxisAttr "categoryarray" (values |> Array.ofSeq)
-    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkAngularaxisAttr "categoryarray" value
+    static member inline categoryarray (value: float) = Interop.mkAngularaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkAngularaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkAngularaxisAttr "categoryarray" value
+    static member inline categoryarray (value: int) = Interop.mkAngularaxisAttr "categoryarray" (value |> Array.singleton)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<int>) = Interop.mkAngularaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: string) = Interop.mkAngularaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkAngularaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -167,25 +167,25 @@ type angularaxis =
     /// Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1* and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick` to *M3*. To set ticks every 4 years, set `dtick` to *M48*
     static member inline dtick (values: seq<string>) = Interop.mkAngularaxisAttr "dtick" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: bool) = Interop.mkAngularaxisAttr "tickvals" value
+    static member inline tickvals (value: bool) = Interop.mkAngularaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<bool>) = Interop.mkAngularaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: System.DateTime) = Interop.mkAngularaxisAttr "tickvals" value
+    static member inline tickvals (value: System.DateTime) = Interop.mkAngularaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkAngularaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: int) = Interop.mkAngularaxisAttr "tickvals" value
+    static member inline tickvals (value: float) = Interop.mkAngularaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<int>) = Interop.mkAngularaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<float>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: float) = Interop.mkAngularaxisAttr "tickvals" value
+    static member inline tickvals (value: int) = Interop.mkAngularaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<float>) = Interop.mkAngularaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<int>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: string) = Interop.mkAngularaxisAttr "tickvals" value
+    static member inline tickvals (value: string) = Interop.mkAngularaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<string>) = Interop.mkAngularaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<string>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<seq<bool>>) = Interop.mkAngularaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -223,25 +223,25 @@ type angularaxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: bool) = Interop.mkAngularaxisAttr "ticktext" value
+    static member inline ticktext (value: bool) = Interop.mkAngularaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<bool>) = Interop.mkAngularaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool>) = Interop.mkAngularaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: System.DateTime) = Interop.mkAngularaxisAttr "ticktext" value
+    static member inline ticktext (value: System.DateTime) = Interop.mkAngularaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkAngularaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkAngularaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: int) = Interop.mkAngularaxisAttr "ticktext" value
+    static member inline ticktext (value: float) = Interop.mkAngularaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<int>) = Interop.mkAngularaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<float>) = Interop.mkAngularaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: float) = Interop.mkAngularaxisAttr "ticktext" value
+    static member inline ticktext (value: int) = Interop.mkAngularaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<float>) = Interop.mkAngularaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<int>) = Interop.mkAngularaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: string) = Interop.mkAngularaxisAttr "ticktext" value
+    static member inline ticktext (value: string) = Interop.mkAngularaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<string>) = Interop.mkAngularaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<string>) = Interop.mkAngularaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<seq<bool>>) = Interop.mkAngularaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.

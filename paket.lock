@@ -221,7 +221,7 @@ NUGET
       FSharp.Core (>= 4.0.0.1) - restriction: >= net40
       FSharp.Core (>= 4.2.3) - restriction: && (< net40) (>= netstandard1.6)
       NETStandard.Library (>= 1.6.1) - restriction: && (< net40) (>= netstandard1.6)
-    FSharp.Compiler.Service (32.0) - restriction: || (>= net461) (>= netstandard2.0)
+    FSharp.Compiler.Service (33.0) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
       System.Collections.Immutable (>= 1.5) - restriction: || (>= net461) (>= netstandard2.0)
       System.Diagnostics.Process (>= 4.1) - restriction: && (< net461) (>= netstandard2.0)
@@ -1060,7 +1060,7 @@ NUGET
       FSharp.Core (>= 4.3.4) - restriction: && (< net45) (>= netstandard2.0)
 GITHUB
   remote: plotly/plotly.js
-    dist/plot-schema.json (bead43ff7d5cbcedfd2bf29c25cf01b1b4074df9)
+    dist/plot-schema.json (7665753449188f55438cfb4abda1b3caf227e4ac)
 GROUP Plotly
 NUGET
   remote: https://www.nuget.org/api/v2
@@ -1207,6 +1207,17 @@ NUGET
       Mono.Cecil (>= 0.11) - restriction: >= netstandard2.0
       Paket.Core (>= 5.226) - restriction: >= netstandard2.0
       System.Runtime.Loader (>= 4.3) - restriction: >= netstandard2.0
+    FSharp.Compiler.Service (33.0) - restriction: || (>= net461) (>= netstandard2.0)
+      FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
+      System.Collections.Immutable (>= 1.5) - restriction: || (>= net461) (>= netstandard2.0)
+      System.Diagnostics.Process (>= 4.1) - restriction: && (< net461) (>= netstandard2.0)
+      System.Diagnostics.TraceSource (>= 4.0) - restriction: && (< net461) (>= netstandard2.0)
+      System.Reflection.Emit (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
+      System.Reflection.Metadata (>= 1.6) - restriction: || (>= net461) (>= netstandard2.0)
+      System.Reflection.TypeExtensions (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
+      System.Runtime.Loader (>= 4.0) - restriction: && (< net461) (>= netstandard2.0)
+      System.Security.Cryptography.Algorithms (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
+      System.ValueTuple (>= 4.4) - restriction: >= net461
     FSharp.Core (4.7)
     Microsoft.DotNet.PlatformAbstractions (3.0) - restriction: >= netcoreapp2.0
     Microsoft.NETCore.App (2.2.7) - restriction: >= netcoreapp2.0
@@ -1249,17 +1260,6 @@ NUGET
       FSharp.Core (>= 4.0.0.1) - restriction: >= net40
       FSharp.Core (>= 4.2.3) - restriction: && (< net40) (>= netstandard1.6)
       NETStandard.Library (>= 1.6.1) - restriction: && (< net40) (>= netstandard1.6)
-    FSharp.Compiler.Service (32.0) - restriction: || (>= net461) (>= netstandard2.0)
-      FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
-      System.Collections.Immutable (>= 1.5) - restriction: || (>= net461) (>= netstandard2.0)
-      System.Diagnostics.Process (>= 4.1) - restriction: && (< net461) (>= netstandard2.0)
-      System.Diagnostics.TraceSource (>= 4.0) - restriction: && (< net461) (>= netstandard2.0)
-      System.Reflection.Emit (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
-      System.Reflection.Metadata (>= 1.6) - restriction: || (>= net461) (>= netstandard2.0)
-      System.Reflection.TypeExtensions (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
-      System.Runtime.Loader (>= 4.0) - restriction: && (< net461) (>= netstandard2.0)
-      System.Security.Cryptography.Algorithms (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
-      System.ValueTuple (>= 4.4) - restriction: >= net461
     FSharp.Json (0.3.7)
       FSharp.Core (>= 4.3.4) - restriction: >= netstandard2.0
     FSharpLint.Core (0.12.5)

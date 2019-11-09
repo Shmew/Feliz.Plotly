@@ -15,25 +15,25 @@ type dimension =
     /// Sets the label corresponding to this splom dimension.
     static member inline label (value: string) = Interop.mkDimensionAttr "label" value
     /// Sets the dimension values to be plotted.
-    static member inline values (value: bool) = Interop.mkDimensionAttr "values" value
+    static member inline values (value: bool) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<bool>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<bool>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: System.DateTime) = Interop.mkDimensionAttr "values" value
+    static member inline values (value: System.DateTime) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<System.DateTime>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<System.DateTime>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: int) = Interop.mkDimensionAttr "values" value
+    static member inline values (value: float) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<int>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<float>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: float) = Interop.mkDimensionAttr "values" value
+    static member inline values (value: int) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<float>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<int>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: string) = Interop.mkDimensionAttr "values" value
+    static member inline values (value: string) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (values: seq<string>) = Interop.mkDimensionAttr "values" (values |> Array.ofSeq)
+    static member inline values (values: seq<string>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<seq<bool>>) = Interop.mkDimensionAttr "values" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the dimension values to be plotted.
@@ -78,25 +78,25 @@ type dimension =
     /// Sets the source reference on plot.ly for  values .
     static member inline valuessrc (value: string) = Interop.mkDimensionAttr "valuessrc" value
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (value: bool) = Interop.mkDimensionAttr "tickvals" value
+    static member inline tickvals (value: bool) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<bool>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (value: System.DateTime) = Interop.mkDimensionAttr "tickvals" value
+    static member inline tickvals (value: System.DateTime) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (value: int) = Interop.mkDimensionAttr "tickvals" value
+    static member inline tickvals (value: float) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<int>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<float>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (value: float) = Interop.mkDimensionAttr "tickvals" value
+    static member inline tickvals (value: int) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<float>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<int>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (value: string) = Interop.mkDimensionAttr "tickvals" value
+    static member inline tickvals (value: string) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
-    static member inline tickvals (values: seq<string>) = Interop.mkDimensionAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<string>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<seq<bool>>) = Interop.mkDimensionAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear.
@@ -134,25 +134,25 @@ type dimension =
     /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<string option>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (value: bool) = Interop.mkDimensionAttr "ticktext" value
+    static member inline ticktext (value: bool) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<bool>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool>) = Interop.mkDimensionAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (value: System.DateTime) = Interop.mkDimensionAttr "ticktext" value
+    static member inline ticktext (value: System.DateTime) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkDimensionAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (value: int) = Interop.mkDimensionAttr "ticktext" value
+    static member inline ticktext (value: float) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<int>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<float>) = Interop.mkDimensionAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (value: float) = Interop.mkDimensionAttr "ticktext" value
+    static member inline ticktext (value: int) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<float>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<int>) = Interop.mkDimensionAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (value: string) = Interop.mkDimensionAttr "ticktext" value
+    static member inline ticktext (value: string) = Interop.mkDimensionAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
-    static member inline ticktext (values: seq<string>) = Interop.mkDimensionAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<string>) = Interop.mkDimensionAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (values: seq<seq<bool>>) = Interop.mkDimensionAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`.
@@ -214,23 +214,23 @@ type dimension =
     /// Sets the source reference on plot.ly for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkDimensionAttr "ticktextsrc" value
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkDimensionAttr "categoryarray" value
+    static member inline categoryarray (value: bool) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: System.DateTime) = Interop.mkDimensionAttr "categoryarray" value
+    static member inline categoryarray (value: System.DateTime) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkDimensionAttr "categoryarray" value
-    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
-    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkDimensionAttr "categoryarray" value
+    static member inline categoryarray (value: float) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkDimensionAttr "categoryarray" value
+    static member inline categoryarray (value: int) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<int>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: string) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkDimensionAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.

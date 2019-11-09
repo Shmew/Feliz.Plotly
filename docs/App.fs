@@ -313,7 +313,7 @@ let samples =
               "plotly-chart-polar-line", Samples.Polar.Line.chart(centeredSpinner)
               "plotly-chart-polar-sector", Samples.Polar.Sector.chart()
               "plotly-chart-polar-subplots", Samples.Polar.Subplots.chart()
-              "plotly-chart-polar-webgl", Samples.Polar.WebGL.chart() ]
+              "plotly-chart-polar-webgl", Samples.Polar.WebGL.chart(centeredSpinner) ]
 
         let radar = 
             [ "plotly-chart-radar-basic", Samples.Radar.Basic.chart()
@@ -795,15 +795,15 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Basic" [ Urls.Basic ]
                             nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
                         ]
-                        //subNestedMenuList "Polar" [ Urls.Polar ] [
-                        //    nestedMenuItem "Line" [ Urls.Line ]
-                        //    nestedMenuItem "Area" [ Urls.Area ]
-                        //    nestedMenuItem "Categorical" [ Urls.Categorical ]
-                        //    nestedMenuItem "Directions" [ Urls.Directions ]
-                        //    nestedMenuItem "Sector" [ Urls.Sector ]
-                        //    nestedMenuItem "Subplots" [ Urls.Subplots ]
-                        //    nestedMenuItem "WebGL" [ Urls.WebGL ]
-                        //]
+                        subNestedMenuList "Polar" [ Urls.Polar ] [
+                            nestedMenuItem "Line" [ Urls.Line ]
+                            nestedMenuItem "Area" [ Urls.Area ]
+                            nestedMenuItem "Categorical" [ Urls.Categorical ]
+                            nestedMenuItem "Directions" [ Urls.Directions ]
+                            nestedMenuItem "Sector" [ Urls.Sector ]
+                            nestedMenuItem "Subplots" [ Urls.Subplots ]
+                            nestedMenuItem "WebGL" [ Urls.WebGL ]
+                        ]
                     ]
                     nestedMenuList "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Subplots ] [
                         subNestedMenuList "Multiple Axes" [ Urls.MultipleAxes ] [

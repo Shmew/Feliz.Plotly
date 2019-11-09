@@ -4,112 +4,101 @@ Taken from [Plotly - Polar Plots](https://plot.ly/javascript/polar-chart/)
 
 ```fsharp:plotly-chart-polar-categorical
 [<RequireQualifiedAccess>]
-module Samples.TwoDimensionalDensity.WithHistogramSubplots
+module Samples.Polar.Categorical
 
 open Feliz
 open Feliz.Plotly
-open System
-
-let rng = Random()
-
-let normal () =
-    let x = rng.NextDouble() * 2. - 1.
-    let y = rng.NextDouble() * 2. - 1.
-    let rec boxMullerTransform rds =
-        if rds = 0. || rds > 1. then x * rds
-        else 
-            Math.Sqrt(-2. * Math.Log(rds) / rds)
-            |> boxMullerTransform
-
-    x * x + y * y
-    |> boxMullerTransform
-
-let xData, yData =
-    let step i = -1. + 2.2 / 1999. * i
-
-    [ 0. .. 1999. ]
-    |> List.map 
-        (step >>
-         fun step ->
-            Math.Pow(step, 3.) + (0.3 * normal()),
-            Math.Pow(step, 6.) + (0.3 * normal()))
-    |> List.unzip
 
 let chart () =
     Plotly.plot [
         plot.traces [
-            traces.scatter [
-                scatter.x xData
-                scatter.y yData
-                scatter.mode.markers
-                scatter.name "points"
-                scatter.marker [
-                    marker.color (color.rgb(102, 0, 0))
-                    marker.size 2
-                    marker.opacity 0.4
-                ]
+            traces.scatterpolar [
+                scatterpolar.r [ 5; 4; 2; 4; 5 ]
+                scatterpolar.theta [ "a"; "b"; "c"; "d"; "a" ]
+                scatterpolar.fill.toself
+                scatterpolar.name "angular categories"
             ]
-            traces.histogram2dcontour [
-                histogram2dcontour.x xData
-                histogram2dcontour.y yData
-                histogram2dcontour.name "density"
-                histogram2dcontour.ncontours 20
-                histogram2dcontour.colorscale color.colorscale.hot
-                histogram2dcontour.reversescale true
-                histogram2dcontour.showscale false
+            traces.scatterpolar [
+                scatterpolar.r [ "a"; "b"; "c"; "d"; "b"; "f"; "a" ]
+                scatterpolar.theta [ 1.; 4.; 2.; 1.5; 1.5; 6.; 5. ]
+                scatterpolar.thetaunit.radians
+                scatterpolar.fill.toself
+                scatterpolar.name "radial categories"
+                scatterpolar.subplot 2
             ]
-            traces.histogram [
-                histogram.x xData
-                histogram.name "x density"
-                histogram.marker [
-                    marker.color (color.rgb(102, 0, 0))
-                ]
-                histogram.yaxis 2
+            traces.scatterpolar [
+                scatterpolar.r [ 5; 4; 2; 4; 5 ]
+                scatterpolar.theta [ "a"; "b"; "c"; "d"; "a" ]
+                scatterpolar.fill.toself
+                scatterpolar.name "angular categories (w/ categoryarray)"
+                scatterpolar.subplot 3
             ]
-            traces.histogram [
-                histogram.y yData
-                histogram.name "y density"
-                histogram.marker [
-                    marker.color (color.rgb(102, 0, 0))
-                ]
-                histogram.xaxis 2
+            traces.scatterpolar [
+                scatterpolar.r [ "a"; "b"; "c"; "d"; "b"; "f"; "a"; "a" ]
+                scatterpolar.theta [ 45; 90; 180; 200; 300; 15; 20; 45 ]
+                scatterpolar.fill.toself
+                scatterpolar.name "radial categories (w/ category descending)"
+                scatterpolar.subplot 4
+            ]
+            traces.scatterpolar [
+                scatterpolar.r [ 5; 4; 2; 4; 5; 5 ]
+                scatterpolar.theta [ "b"; "c"; "d"; "e"; "a"; "b" ]
+                scatterpolar.fill.toself
+                scatterpolar.name "angular categories (w/ extra category)"
             ]
         ]
         plot.layout [
-            layout.showlegend false
-            layout.autosize false
-            layout.width 600
-            layout.height 550
-            layout.margin [
-                margin.t 50
+            layout.width 800
+            layout.height 500
+            layout.polar [
+                polar.domain [
+                    domain.x [ 0.; 0.46 ]
+                    domain.y [ 0.6; 1. ]
+                ]
+                polar.radialaxis [
+                    radialaxis.angle 45
+                ]
+                polar.angularaxis [
+                    angularaxis.direction.clockwise
+                    angularaxis.period 6
+                ]
             ]
-            layout.hovermode.closest
-            layout.bargap 0
-            layout.xaxis [
-                xaxis.domain [ 0.; 0.85 ]
-                xaxis.anchor.y 1
-                xaxis.showgrid false
-                xaxis.zeroline false
-            ]
-            layout.yaxis [
-                yaxis.anchor.x 1
-                yaxis.domain [ 0.; 0.85 ]
-                yaxis.showgrid false
-                yaxis.zeroline false
-            ]
-            layout.xaxis (2, [
-                xaxis.anchor.y 2
-                xaxis.domain [ 0.85; 1. ]
-                xaxis.showgrid false
-                xaxis.zeroline false
+            layout.polar (2, [
+                polar.domain [
+                    domain.x [ 0.; 0.46 ]
+                    domain.y [ 0.; 0.4 ]
+                ]
+                polar.radialaxis [
+                    radialaxis.angle 180
+                    radialaxis.tickangle -180
+                ]
             ])
-            layout.yaxis (2, [
-                yaxis.anchor.x 2
-                yaxis.domain [ 0.85; 1. ]
-                yaxis.showgrid false
-                yaxis.zeroline false
+            layout.polar (3, [
+                polar.domain [
+                    domain.x [ 0.54; 1. ]
+                    domain.y [ 0.6; 1. ]
+                ]
+                polar.sector [ 150; 400 ]
+                polar.radialaxis [
+                    radialaxis.angle -45
+                ]
+                polar.angularaxis [
+                    angularaxis.categoryarray [ "d"; "a"; "c"; "b" ]
+                ]
+            ])
+            layout.polar (4, [
+                polar.domain [
+                    domain.x [ 0.54; 1. ]
+                    domain.y [ 0.; 0.4 ]
+                ]
+                polar.radialaxis [
+                    radialaxis.categoryorder.categoryDescending
+                ]
+                polar.angularaxis [
+                    angularaxis.thetaunit.radians
+                    angularaxis.dtick 0.3141592653589793
+                ]
             ])
         ]
-        plot.debug true
     ]
 ```

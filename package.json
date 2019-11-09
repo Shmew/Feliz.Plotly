@@ -1,6 +1,6 @@
 {
   "name": "feliz.-plotly",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "Fable bindings written in the Feliz-style for plotly.js",
   "homepage": "https://github.com/Shmew/Feliz.Plotly",
   "bugs": {
@@ -20,12 +20,12 @@
   },
   "dependencies": {
     "mkdirp": "^0.5.1",
-    "plotly.js": "^1.50.0",
+    "plotly.js": "^1.51.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-highlight": "^0.12.0",
     "react-markdown": "^4.2.2",
-    "react-plotly.js": "^2.3.0",
+    "react-plotly.js": "^2.4.0",
     "source-map-support": "^0.5.12"
   },
   "devDependencies": {

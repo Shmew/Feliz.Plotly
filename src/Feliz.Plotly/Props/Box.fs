@@ -21,23 +21,23 @@ type box =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkBoxAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkBoxAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkBoxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkBoxAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkBoxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkBoxAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkBoxAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkBoxAttr "ids" value
+    static member inline ids (value: float) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkBoxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkBoxAttr "ids" value
+    static member inline ids (value: int) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkBoxAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkBoxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -77,23 +77,23 @@ type box =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkBoxAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkBoxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkBoxAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkBoxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkBoxAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkBoxAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkBoxAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkBoxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkBoxAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkBoxAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkBoxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -178,25 +178,25 @@ type box =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkBoxAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: bool) = Interop.mkBoxAttr "y" value
+    static member inline y (value: bool) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (values: seq<bool>) = Interop.mkBoxAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<bool>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: System.DateTime) = Interop.mkBoxAttr "y" value
+    static member inline y (value: System.DateTime) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (values: seq<System.DateTime>) = Interop.mkBoxAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: int) = Interop.mkBoxAttr "y" value
+    static member inline y (value: float) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (values: seq<int>) = Interop.mkBoxAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<float>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: float) = Interop.mkBoxAttr "y" value
+    static member inline y (value: int) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (values: seq<float>) = Interop.mkBoxAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<int>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: string) = Interop.mkBoxAttr "y" value
+    static member inline y (value: string) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (values: seq<string>) = Interop.mkBoxAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<string>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<seq<bool>>) = Interop.mkBoxAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the y sample data or coordinates. See overview for more info.
@@ -234,25 +234,25 @@ type box =
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<string option>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: bool) = Interop.mkBoxAttr "x" value
+    static member inline x (value: bool) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (values: seq<bool>) = Interop.mkBoxAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: System.DateTime) = Interop.mkBoxAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (values: seq<System.DateTime>) = Interop.mkBoxAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: int) = Interop.mkBoxAttr "x" value
+    static member inline x (value: float) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (values: seq<int>) = Interop.mkBoxAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: float) = Interop.mkBoxAttr "x" value
+    static member inline x (value: int) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (values: seq<float>) = Interop.mkBoxAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: string) = Interop.mkBoxAttr "x" value
+    static member inline x (value: string) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (values: seq<string>) = Interop.mkBoxAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<seq<bool>>) = Interop.mkBoxAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x sample data or coordinates. See overview for more info.
@@ -378,11 +378,11 @@ type box =
     /// Do the hover effects highlight individual boxes  or sample points or both?
     static member inline hoveron (properties: #IBoxProperty list) = Interop.mkBoxAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (axisId: int) = Interop.mkBoxAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline xaxis (anchorId: int) = Interop.mkBoxAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkBoxAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (axisId: int) = Interop.mkBoxAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline yaxis (anchorId: int) = Interop.mkBoxAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkBoxAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

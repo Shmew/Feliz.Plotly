@@ -31,17 +31,37 @@ type button =
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<System.DateTime>) = Interop.mkButtonAttr "args" (values |> ResizeArray)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
-    static member inline args (value: int) = Interop.mkButtonAttr "args" (value |> Array.singleton |> ResizeArray)
-    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
-    static member inline args (values: seq<int>) = Interop.mkButtonAttr "args" (values |> ResizeArray)
-    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (value: float) = Interop.mkButtonAttr "args" (value |> Array.singleton |> ResizeArray)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<float>) = Interop.mkButtonAttr "args" (values |> ResizeArray)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (value: int) = Interop.mkButtonAttr "args" (value |> Array.singleton |> ResizeArray)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (values: seq<int>) = Interop.mkButtonAttr "args" (values |> ResizeArray)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (value: string) = Interop.mkButtonAttr "args" (value |> Array.singleton |> ResizeArray)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<string>) = Interop.mkButtonAttr "args" (values |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (value: bool) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (values: seq<bool>) = Interop.mkButtonAttr "args2" (values |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (value: System.DateTime) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (values: seq<System.DateTime>) = Interop.mkButtonAttr "args2" (values |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (value: float) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (values: seq<float>) = Interop.mkButtonAttr "args2" (values |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (value: int) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (values: seq<int>) = Interop.mkButtonAttr "args2" (values |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (value: string) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (values: seq<string>) = Interop.mkButtonAttr "args2" (values |> ResizeArray)
     /// When true, the API method is executed. When false, all other behaviors are the same and command execution is skipped. This may be useful when hooking into, for example, the `plotly_buttonclicked` method and executing the API command manually without losing the benefit of the updatemenu automatically binding to the state of the plot through the specification of `method` and `args`.
     static member inline execute (value: bool) = Interop.mkButtonAttr "execute" value
 

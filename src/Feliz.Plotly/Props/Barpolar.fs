@@ -23,23 +23,23 @@ type barpolar =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkBarpolarAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkBarpolarAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkBarpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkBarpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkBarpolarAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkBarpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkBarpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkBarpolarAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkBarpolarAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkBarpolarAttr "ids" value
+    static member inline ids (value: float) = Interop.mkBarpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkBarpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkBarpolarAttr "ids" value
+    static member inline ids (value: int) = Interop.mkBarpolarAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkBarpolarAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkBarpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkBarpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -79,23 +79,23 @@ type barpolar =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkBarpolarAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkBarpolarAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkBarpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkBarpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkBarpolarAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkBarpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkBarpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkBarpolarAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkBarpolarAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkBarpolarAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkBarpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkBarpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkBarpolarAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkBarpolarAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkBarpolarAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkBarpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkBarpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -178,25 +178,25 @@ type barpolar =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkBarpolarAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the radial coordinates
-    static member inline r (value: bool) = Interop.mkBarpolarAttr "r" value
+    static member inline r (value: bool) = Interop.mkBarpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<bool>) = Interop.mkBarpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<bool>) = Interop.mkBarpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: System.DateTime) = Interop.mkBarpolarAttr "r" value
+    static member inline r (value: System.DateTime) = Interop.mkBarpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<System.DateTime>) = Interop.mkBarpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<System.DateTime>) = Interop.mkBarpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: int) = Interop.mkBarpolarAttr "r" value
+    static member inline r (value: float) = Interop.mkBarpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<int>) = Interop.mkBarpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<float>) = Interop.mkBarpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: float) = Interop.mkBarpolarAttr "r" value
+    static member inline r (value: int) = Interop.mkBarpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<float>) = Interop.mkBarpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<int>) = Interop.mkBarpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: string) = Interop.mkBarpolarAttr "r" value
+    static member inline r (value: string) = Interop.mkBarpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<string>) = Interop.mkBarpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<string>) = Interop.mkBarpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
     static member inline r (values: seq<seq<bool>>) = Interop.mkBarpolarAttr "r" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the radial coordinates
@@ -234,25 +234,25 @@ type barpolar =
     /// Sets the radial coordinates
     static member inline r (values: seq<string option>) = Interop.mkBarpolarAttr "r" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: bool) = Interop.mkBarpolarAttr "theta" value
+    static member inline theta (value: bool) = Interop.mkBarpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<bool>) = Interop.mkBarpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<bool>) = Interop.mkBarpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: System.DateTime) = Interop.mkBarpolarAttr "theta" value
+    static member inline theta (value: System.DateTime) = Interop.mkBarpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<System.DateTime>) = Interop.mkBarpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<System.DateTime>) = Interop.mkBarpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: int) = Interop.mkBarpolarAttr "theta" value
+    static member inline theta (value: float) = Interop.mkBarpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<int>) = Interop.mkBarpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<float>) = Interop.mkBarpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: float) = Interop.mkBarpolarAttr "theta" value
+    static member inline theta (value: int) = Interop.mkBarpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<float>) = Interop.mkBarpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<int>) = Interop.mkBarpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: string) = Interop.mkBarpolarAttr "theta" value
+    static member inline theta (value: string) = Interop.mkBarpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<string>) = Interop.mkBarpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<string>) = Interop.mkBarpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
     static member inline theta (values: seq<seq<bool>>) = Interop.mkBarpolarAttr "theta" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the angular coordinates
@@ -391,7 +391,7 @@ type barpolar =
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkBarpolarAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkBarpolarAttr "unselected" (createObj !!properties)
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
-    static member inline subplot (axisId: int) = Interop.mkBarpolarAttr "subplot" (sprintf "s%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline subplot (anchorId: int) = Interop.mkBarpolarAttr "subplot" (sprintf "polar%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
     static member inline subplot (value: string) = Interop.mkBarpolarAttr "subplot" value
     /// Sets the source reference on plot.ly for  ids .

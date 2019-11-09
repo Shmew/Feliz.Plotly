@@ -167,7 +167,7 @@ module shape =
     type xref =
         static member inline paper = Interop.mkShapeAttr "xref" "paper"
         static member inline custom (value: string) = Interop.mkShapeAttr "xref" value
-        static member inline x (axisId: int) = Interop.mkShapeAttr "xref" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline x (anchorId: int) = Interop.mkShapeAttr "xref" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
 
     /// Sets the shapes's sizing mode along the x axis. If set to *scaled*, `x0`, `x1` and x coordinates within `path` refer to data values on the x axis or a fraction of the plot area's width (`xref` set to *paper*). If set to *pixel*, `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed width while maintaining a position relative to data or plot fraction.
     [<Erase>]
@@ -180,7 +180,7 @@ module shape =
     type yref =
         static member inline paper = Interop.mkShapeAttr "yref" "paper"
         static member inline custom (value: string) = Interop.mkShapeAttr "yref" value
-        static member inline y (axisId: int) = Interop.mkShapeAttr "yref" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline y (anchorId: int) = Interop.mkShapeAttr "yref" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
 
     /// Sets the shapes's sizing mode along the y axis. If set to *scaled*, `y0`, `y1` and y coordinates within `path` refer to data values on the y axis or a fraction of the plot area's height (`yref` set to *paper*). If set to *pixel*, `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height while maintaining a position relative to data or plot fraction.
     [<Erase>]

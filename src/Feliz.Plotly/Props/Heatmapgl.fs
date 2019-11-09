@@ -19,23 +19,23 @@ type heatmapgl =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkHeatmapglAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkHeatmapglAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkHeatmapglAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkHeatmapglAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkHeatmapglAttr "ids" value
+    static member inline ids (value: float) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkHeatmapglAttr "ids" value
+    static member inline ids (value: int) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkHeatmapglAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -75,23 +75,23 @@ type heatmapgl =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkHeatmapglAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkHeatmapglAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkHeatmapglAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkHeatmapglAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkHeatmapglAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkHeatmapglAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -156,23 +156,23 @@ type heatmapgl =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkHeatmapglAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: bool) = Interop.mkHeatmapglAttr "z" value
+    static member inline z (value: bool) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton)
     /// Sets the z data.
     static member inline z (values: seq<bool>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: System.DateTime) = Interop.mkHeatmapglAttr "z" value
+    static member inline z (value: System.DateTime) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton)
     /// Sets the z data.
     static member inline z (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: int) = Interop.mkHeatmapglAttr "z" value
-    /// Sets the z data.
-    static member inline z (values: seq<int>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
-    /// Sets the z data.
-    static member inline z (value: float) = Interop.mkHeatmapglAttr "z" value
+    static member inline z (value: float) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton)
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
-    static member inline z (value: string) = Interop.mkHeatmapglAttr "z" value
+    static member inline z (value: int) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton)
+    /// Sets the z data.
+    static member inline z (values: seq<int>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
+    /// Sets the z data.
+    static member inline z (value: string) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton)
     /// Sets the z data.
     static member inline z (values: seq<string>) = Interop.mkHeatmapglAttr "z" (values |> Array.ofSeq)
     /// Sets the z data.
@@ -212,23 +212,23 @@ type heatmapgl =
     /// Sets the z data.
     static member inline z (values: seq<string option>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: bool) = Interop.mkHeatmapglAttr "x" value
+    static member inline x (value: bool) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: System.DateTime) = Interop.mkHeatmapglAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: int) = Interop.mkHeatmapglAttr "x" value
-    /// Sets the x coordinates.
-    static member inline x (values: seq<int>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
-    /// Sets the x coordinates.
-    static member inline x (value: float) = Interop.mkHeatmapglAttr "x" value
+    static member inline x (value: float) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
-    static member inline x (value: string) = Interop.mkHeatmapglAttr "x" value
+    static member inline x (value: int) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<int>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
+    /// Sets the x coordinates.
+    static member inline x (value: string) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton)
     /// Sets the x coordinates.
     static member inline x (values: seq<string>) = Interop.mkHeatmapglAttr "x" (values |> Array.ofSeq)
     /// Sets the x coordinates.
@@ -292,23 +292,23 @@ type heatmapgl =
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: float) = Interop.mkHeatmapglAttr "dx" value
     /// Sets the y coordinates.
-    static member inline y (value: bool) = Interop.mkHeatmapglAttr "y" value
+    static member inline y (value: bool) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: System.DateTime) = Interop.mkHeatmapglAttr "y" value
+    static member inline y (value: System.DateTime) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: int) = Interop.mkHeatmapglAttr "y" value
-    /// Sets the y coordinates.
-    static member inline y (values: seq<int>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
-    /// Sets the y coordinates.
-    static member inline y (value: float) = Interop.mkHeatmapglAttr "y" value
+    static member inline y (value: float) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
-    static member inline y (value: string) = Interop.mkHeatmapglAttr "y" value
+    static member inline y (value: int) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<int>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
+    /// Sets the y coordinates.
+    static member inline y (value: string) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton)
     /// Sets the y coordinates.
     static member inline y (values: seq<string>) = Interop.mkHeatmapglAttr "y" (values |> Array.ofSeq)
     /// Sets the y coordinates.
@@ -372,23 +372,23 @@ type heatmapgl =
     /// Sets the y coordinate step. See `y0` for more info.
     static member inline dy (value: float) = Interop.mkHeatmapglAttr "dy" value
     /// Sets the text elements associated with each z value.
-    static member inline text (value: bool) = Interop.mkHeatmapglAttr "text" value
+    static member inline text (value: bool) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<bool>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: System.DateTime) = Interop.mkHeatmapglAttr "text" value
+    static member inline text (value: System.DateTime) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: int) = Interop.mkHeatmapglAttr "text" value
-    /// Sets the text elements associated with each z value.
-    static member inline text (values: seq<int>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
-    /// Sets the text elements associated with each z value.
-    static member inline text (value: float) = Interop.mkHeatmapglAttr "text" value
+    static member inline text (value: float) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: string) = Interop.mkHeatmapglAttr "text" value
+    static member inline text (value: int) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<int>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
+    /// Sets the text elements associated with each z value.
+    static member inline text (value: string) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<string>) = Interop.mkHeatmapglAttr "text" (values |> Array.ofSeq)
     /// Sets the text elements associated with each z value.
@@ -455,13 +455,15 @@ type heatmapgl =
     static member inline showscale (value: bool) = Interop.mkHeatmapglAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkHeatmapglAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    static member inline coloraxis (anchorId: int) = Interop.mkHeatmapglAttr "coloraxis" (sprintf "coloraxis%s" (if anchorId > 1 then (anchorId |> string) else ""))
+    /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     static member inline coloraxis (value: string) = Interop.mkHeatmapglAttr "coloraxis" value
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (axisId: int) = Interop.mkHeatmapglAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline xaxis (anchorId: int) = Interop.mkHeatmapglAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkHeatmapglAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (axisId: int) = Interop.mkHeatmapglAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline yaxis (anchorId: int) = Interop.mkHeatmapglAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkHeatmapglAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

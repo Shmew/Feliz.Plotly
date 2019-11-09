@@ -23,23 +23,23 @@ type scattercarpet =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScattercarpetAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkScattercarpetAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkScattercarpetAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkScattercarpetAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkScattercarpetAttr "ids" value
+    static member inline ids (value: float) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkScattercarpetAttr "ids" value
+    static member inline ids (value: int) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkScattercarpetAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScattercarpetAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -79,23 +79,23 @@ type scattercarpet =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkScattercarpetAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkScattercarpetAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkScattercarpetAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkScattercarpetAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkScattercarpetAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkScattercarpetAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkScattercarpetAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScattercarpetAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -180,23 +180,23 @@ type scattercarpet =
     /// An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie
     static member inline carpet (value: string) = Interop.mkScattercarpetAttr "carpet" value
     /// Sets the a-axis coordinates.
-    static member inline a (value: bool) = Interop.mkScattercarpetAttr "a" value
+    static member inline a (value: bool) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<bool>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the a-axis coordinates.
-    static member inline a (value: System.DateTime) = Interop.mkScattercarpetAttr "a" value
+    static member inline a (value: System.DateTime) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<System.DateTime>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the a-axis coordinates.
-    static member inline a (value: int) = Interop.mkScattercarpetAttr "a" value
-    /// Sets the a-axis coordinates.
-    static member inline a (values: seq<int>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
-    /// Sets the a-axis coordinates.
-    static member inline a (value: float) = Interop.mkScattercarpetAttr "a" value
+    static member inline a (value: float) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<float>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the a-axis coordinates.
-    static member inline a (value: string) = Interop.mkScattercarpetAttr "a" value
+    static member inline a (value: int) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
+    /// Sets the a-axis coordinates.
+    static member inline a (values: seq<int>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
+    /// Sets the a-axis coordinates.
+    static member inline a (value: string) = Interop.mkScattercarpetAttr "a" (value |> Array.singleton)
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<string>) = Interop.mkScattercarpetAttr "a" (values |> Array.ofSeq)
     /// Sets the a-axis coordinates.
@@ -236,23 +236,23 @@ type scattercarpet =
     /// Sets the a-axis coordinates.
     static member inline a (values: seq<string option>) = Interop.mkScattercarpetAttr "a" (values |> ResizeArray)
     /// Sets the b-axis coordinates.
-    static member inline b (value: bool) = Interop.mkScattercarpetAttr "b" value
+    static member inline b (value: bool) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<bool>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
     /// Sets the b-axis coordinates.
-    static member inline b (value: System.DateTime) = Interop.mkScattercarpetAttr "b" value
+    static member inline b (value: System.DateTime) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<System.DateTime>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
     /// Sets the b-axis coordinates.
-    static member inline b (value: int) = Interop.mkScattercarpetAttr "b" value
-    /// Sets the b-axis coordinates.
-    static member inline b (values: seq<int>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
-    /// Sets the b-axis coordinates.
-    static member inline b (value: float) = Interop.mkScattercarpetAttr "b" value
+    static member inline b (value: float) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<float>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
     /// Sets the b-axis coordinates.
-    static member inline b (value: string) = Interop.mkScattercarpetAttr "b" value
+    static member inline b (value: int) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
+    /// Sets the b-axis coordinates.
+    static member inline b (values: seq<int>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
+    /// Sets the b-axis coordinates.
+    static member inline b (value: string) = Interop.mkScattercarpetAttr "b" (value |> Array.singleton)
     /// Sets the b-axis coordinates.
     static member inline b (values: seq<string>) = Interop.mkScattercarpetAttr "b" (values |> Array.ofSeq)
     /// Sets the b-axis coordinates.
@@ -326,11 +326,11 @@ type scattercarpet =
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkScattercarpetAttr "hovertemplate" (values |> ResizeArray)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (axisId: int) = Interop.mkScattercarpetAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline xaxis (anchorId: int) = Interop.mkScattercarpetAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkScattercarpetAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (axisId: int) = Interop.mkScattercarpetAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline yaxis (anchorId: int) = Interop.mkScattercarpetAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkScattercarpetAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

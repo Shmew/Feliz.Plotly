@@ -23,23 +23,23 @@ type scattermapbox =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScattermapboxAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkScattermapboxAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScattermapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkScattermapboxAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkScattermapboxAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkScattermapboxAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkScattermapboxAttr "ids" value
+    static member inline ids (value: float) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScattermapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkScattermapboxAttr "ids" value
+    static member inline ids (value: int) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkScattermapboxAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScattermapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -79,23 +79,23 @@ type scattermapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkScattermapboxAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkScattermapboxAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScattermapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkScattermapboxAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkScattermapboxAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkScattermapboxAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkScattermapboxAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScattermapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkScattermapboxAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkScattermapboxAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScattermapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -178,23 +178,23 @@ type scattermapbox =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkScattermapboxAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: bool) = Interop.mkScattermapboxAttr "lon" value
+    static member inline lon (value: bool) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<bool>) = Interop.mkScattermapboxAttr "lon" (values |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: System.DateTime) = Interop.mkScattermapboxAttr "lon" value
+    static member inline lon (value: System.DateTime) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "lon" (values |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: int) = Interop.mkScattermapboxAttr "lon" value
-    /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (values: seq<int>) = Interop.mkScattermapboxAttr "lon" (values |> Array.ofSeq)
-    /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: float) = Interop.mkScattermapboxAttr "lon" value
+    static member inline lon (value: float) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<float>) = Interop.mkScattermapboxAttr "lon" (values |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: string) = Interop.mkScattermapboxAttr "lon" value
+    static member inline lon (value: int) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<int>) = Interop.mkScattermapboxAttr "lon" (values |> Array.ofSeq)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (value: string) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<string>) = Interop.mkScattermapboxAttr "lon" (values |> Array.ofSeq)
     /// Sets the longitude coordinates (in degrees East).
@@ -234,23 +234,23 @@ type scattermapbox =
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<string option>) = Interop.mkScattermapboxAttr "lon" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: bool) = Interop.mkScattermapboxAttr "lat" value
+    static member inline lat (value: bool) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<bool>) = Interop.mkScattermapboxAttr "lat" (values |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: System.DateTime) = Interop.mkScattermapboxAttr "lat" value
+    static member inline lat (value: System.DateTime) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "lat" (values |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: int) = Interop.mkScattermapboxAttr "lat" value
-    /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (values: seq<int>) = Interop.mkScattermapboxAttr "lat" (values |> Array.ofSeq)
-    /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: float) = Interop.mkScattermapboxAttr "lat" value
+    static member inline lat (value: float) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<float>) = Interop.mkScattermapboxAttr "lat" (values |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: string) = Interop.mkScattermapboxAttr "lat" value
+    static member inline lat (value: int) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<int>) = Interop.mkScattermapboxAttr "lat" (values |> Array.ofSeq)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (value: string) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<string>) = Interop.mkScattermapboxAttr "lat" (values |> Array.ofSeq)
     /// Sets the latitude coordinates (in degrees North).
@@ -322,7 +322,7 @@ type scattermapbox =
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkScattermapboxAttr "hovertemplate" (values |> ResizeArray)
     /// Sets a reference between this trace's data coordinates and a mapbox subplot. If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer to `layout.mapbox2`, and so on.
-    static member inline subplot (axisId: int) = Interop.mkScattermapboxAttr "subplot" (sprintf "s%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline subplot (anchorId: int) = Interop.mkScattermapboxAttr "subplot" (sprintf "mapbox%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's data coordinates and a mapbox subplot. If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer to `layout.mapbox2`, and so on.
     static member inline subplot (value: string) = Interop.mkScattermapboxAttr "subplot" value
     /// Sets the source reference on plot.ly for  ids .

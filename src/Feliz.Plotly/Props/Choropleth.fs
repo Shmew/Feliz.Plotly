@@ -15,23 +15,23 @@ type choropleth =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkChoroplethAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkChoroplethAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkChoroplethAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkChoroplethAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkChoroplethAttr "ids" value
+    static member inline ids (value: float) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkChoroplethAttr "ids" value
+    static member inline ids (value: int) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkChoroplethAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkChoroplethAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -71,23 +71,23 @@ type choropleth =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkChoroplethAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkChoroplethAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkChoroplethAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkChoroplethAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkChoroplethAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkChoroplethAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkChoroplethAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkChoroplethAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -170,23 +170,23 @@ type choropleth =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkChoroplethAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: bool) = Interop.mkChoroplethAttr "locations" value
+    static member inline locations (value: bool) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<bool>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: System.DateTime) = Interop.mkChoroplethAttr "locations" value
+    static member inline locations (value: System.DateTime) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: int) = Interop.mkChoroplethAttr "locations" value
-    /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (values: seq<int>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
-    /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: float) = Interop.mkChoroplethAttr "locations" value
+    static member inline locations (value: float) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<float>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
-    static member inline locations (value: string) = Interop.mkChoroplethAttr "locations" value
+    static member inline locations (value: int) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
+    /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
+    static member inline locations (values: seq<int>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
+    /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
+    static member inline locations (value: string) = Interop.mkChoroplethAttr "locations" (value |> Array.singleton)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<string>) = Interop.mkChoroplethAttr "locations" (values |> Array.ofSeq)
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
@@ -226,23 +226,23 @@ type choropleth =
     /// Sets the coordinates via location IDs or names. See `locationmode` for more info.
     static member inline locations (values: seq<string option>) = Interop.mkChoroplethAttr "locations" (values |> ResizeArray)
     /// Sets the color values.
-    static member inline z (value: bool) = Interop.mkChoroplethAttr "z" value
+    static member inline z (value: bool) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<bool>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: System.DateTime) = Interop.mkChoroplethAttr "z" value
+    static member inline z (value: System.DateTime) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<System.DateTime>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: int) = Interop.mkChoroplethAttr "z" value
-    /// Sets the color values.
-    static member inline z (values: seq<int>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
-    /// Sets the color values.
-    static member inline z (value: float) = Interop.mkChoroplethAttr "z" value
+    static member inline z (value: float) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<float>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: string) = Interop.mkChoroplethAttr "z" value
+    static member inline z (value: int) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
+    /// Sets the color values.
+    static member inline z (values: seq<int>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
+    /// Sets the color values.
+    static member inline z (value: string) = Interop.mkChoroplethAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<string>) = Interop.mkChoroplethAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
@@ -324,7 +324,11 @@ type choropleth =
     static member inline showscale (value: bool) = Interop.mkChoroplethAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkChoroplethAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    static member inline coloraxis (anchorId: int) = Interop.mkChoroplethAttr "coloraxis" (sprintf "coloraxis%s" (if anchorId > 1 then (anchorId |> string) else ""))
+    /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     static member inline coloraxis (value: string) = Interop.mkChoroplethAttr "coloraxis" value
+    /// Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`, and so on.
+    static member inline geo (anchorId: int) = Interop.mkChoroplethAttr "geo" (sprintf "geo%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`, and so on.
     static member inline geo (value: string) = Interop.mkChoroplethAttr "geo" value
     /// Sets the source reference on plot.ly for  ids .

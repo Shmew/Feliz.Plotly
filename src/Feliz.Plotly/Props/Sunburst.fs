@@ -19,23 +19,23 @@ type sunburst =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkSunburstAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkSunburstAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkSunburstAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkSunburstAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkSunburstAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkSunburstAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkSunburstAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkSunburstAttr "ids" value
+    static member inline ids (value: float) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkSunburstAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkSunburstAttr "ids" value
+    static member inline ids (value: int) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkSunburstAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkSunburstAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -75,23 +75,23 @@ type sunburst =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkSunburstAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkSunburstAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkSunburstAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkSunburstAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkSunburstAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkSunburstAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkSunburstAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkSunburstAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkSunburstAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkSunburstAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkSunburstAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -154,23 +154,23 @@ type sunburst =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkSunburstAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: bool) = Interop.mkSunburstAttr "labels" value
+    static member inline labels (value: bool) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<bool>) = Interop.mkSunburstAttr "labels" (values |> Array.ofSeq)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: System.DateTime) = Interop.mkSunburstAttr "labels" value
+    static member inline labels (value: System.DateTime) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<System.DateTime>) = Interop.mkSunburstAttr "labels" (values |> Array.ofSeq)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: int) = Interop.mkSunburstAttr "labels" value
-    /// Sets the labels of each of the sectors.
-    static member inline labels (values: seq<int>) = Interop.mkSunburstAttr "labels" (values |> Array.ofSeq)
-    /// Sets the labels of each of the sectors.
-    static member inline labels (value: float) = Interop.mkSunburstAttr "labels" value
+    static member inline labels (value: float) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<float>) = Interop.mkSunburstAttr "labels" (values |> Array.ofSeq)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: string) = Interop.mkSunburstAttr "labels" value
+    static member inline labels (value: int) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
+    /// Sets the labels of each of the sectors.
+    static member inline labels (values: seq<int>) = Interop.mkSunburstAttr "labels" (values |> Array.ofSeq)
+    /// Sets the labels of each of the sectors.
+    static member inline labels (value: string) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<string>) = Interop.mkSunburstAttr "labels" (values |> Array.ofSeq)
     /// Sets the labels of each of the sectors.
@@ -210,23 +210,23 @@ type sunburst =
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<string option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: bool) = Interop.mkSunburstAttr "parents" value
+    static member inline parents (value: bool) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<bool>) = Interop.mkSunburstAttr "parents" (values |> Array.ofSeq)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: System.DateTime) = Interop.mkSunburstAttr "parents" value
+    static member inline parents (value: System.DateTime) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<System.DateTime>) = Interop.mkSunburstAttr "parents" (values |> Array.ofSeq)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: int) = Interop.mkSunburstAttr "parents" value
-    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (values: seq<int>) = Interop.mkSunburstAttr "parents" (values |> Array.ofSeq)
-    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: float) = Interop.mkSunburstAttr "parents" value
+    static member inline parents (value: float) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<float>) = Interop.mkSunburstAttr "parents" (values |> Array.ofSeq)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: string) = Interop.mkSunburstAttr "parents" value
+    static member inline parents (value: int) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
+    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+    static member inline parents (values: seq<int>) = Interop.mkSunburstAttr "parents" (values |> Array.ofSeq)
+    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+    static member inline parents (value: string) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<string>) = Interop.mkSunburstAttr "parents" (values |> Array.ofSeq)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
@@ -266,23 +266,23 @@ type sunburst =
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<string option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: bool) = Interop.mkSunburstAttr "values" value
+    static member inline values (value: bool) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<bool>) = Interop.mkSunburstAttr "values" (values |> Array.ofSeq)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: System.DateTime) = Interop.mkSunburstAttr "values" value
+    static member inline values (value: System.DateTime) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<System.DateTime>) = Interop.mkSunburstAttr "values" (values |> Array.ofSeq)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: int) = Interop.mkSunburstAttr "values" value
-    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (values: seq<int>) = Interop.mkSunburstAttr "values" (values |> Array.ofSeq)
-    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: float) = Interop.mkSunburstAttr "values" value
+    static member inline values (value: float) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<float>) = Interop.mkSunburstAttr "values" (values |> Array.ofSeq)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: string) = Interop.mkSunburstAttr "values" value
+    static member inline values (value: int) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
+    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+    static member inline values (values: seq<int>) = Interop.mkSunburstAttr "values" (values |> Array.ofSeq)
+    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+    static member inline values (value: string) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<string>) = Interop.mkSunburstAttr "values" (values |> Array.ofSeq)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
@@ -348,25 +348,25 @@ type sunburst =
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkSunburstAttr "marker" (createObj !!properties)
     static member inline leaf (properties: #ILeafProperty list) = Interop.mkSunburstAttr "leaf" (createObj !!properties)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (value: bool) = Interop.mkSunburstAttr "text" value
+    static member inline text (value: bool) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<bool>) = Interop.mkSunburstAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<bool>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (value: System.DateTime) = Interop.mkSunburstAttr "text" value
+    static member inline text (value: System.DateTime) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<System.DateTime>) = Interop.mkSunburstAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<System.DateTime>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (value: int) = Interop.mkSunburstAttr "text" value
+    static member inline text (value: float) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<int>) = Interop.mkSunburstAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<float>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (value: float) = Interop.mkSunburstAttr "text" value
+    static member inline text (value: int) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<float>) = Interop.mkSunburstAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<int>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (value: string) = Interop.mkSunburstAttr "text" value
+    static member inline text (value: string) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    static member inline text (values: seq<string>) = Interop.mkSunburstAttr "text" (values |> Array.ofSeq)
+    static member inline text (values: seq<string>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<seq<bool>>) = Interop.mkSunburstAttr "text" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.

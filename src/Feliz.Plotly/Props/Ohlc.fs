@@ -23,23 +23,23 @@ type ohlc =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkOhlcAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkOhlcAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkOhlcAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkOhlcAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkOhlcAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkOhlcAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkOhlcAttr "ids" value
+    static member inline ids (value: float) = Interop.mkOhlcAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkOhlcAttr "ids" value
+    static member inline ids (value: int) = Interop.mkOhlcAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkOhlcAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkOhlcAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -79,23 +79,23 @@ type ohlc =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkOhlcAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkOhlcAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkOhlcAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkOhlcAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkOhlcAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkOhlcAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkOhlcAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -179,25 +179,25 @@ type ohlc =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkOhlcAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: bool) = Interop.mkOhlcAttr "x" value
+    static member inline x (value: bool) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (values: seq<bool>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: System.DateTime) = Interop.mkOhlcAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (values: seq<System.DateTime>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: int) = Interop.mkOhlcAttr "x" value
+    static member inline x (value: float) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (values: seq<int>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: float) = Interop.mkOhlcAttr "x" value
+    static member inline x (value: int) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (values: seq<float>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: string) = Interop.mkOhlcAttr "x" value
+    static member inline x (value: string) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (values: seq<string>) = Interop.mkOhlcAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<seq<bool>>) = Interop.mkOhlcAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
@@ -235,23 +235,23 @@ type ohlc =
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<string option>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the open values.
-    static member inline open' (value: bool) = Interop.mkOhlcAttr "open" value
+    static member inline open' (value: bool) = Interop.mkOhlcAttr "open" (value |> Array.singleton)
     /// Sets the open values.
     static member inline open' (values: seq<bool>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
     /// Sets the open values.
-    static member inline open' (value: System.DateTime) = Interop.mkOhlcAttr "open" value
+    static member inline open' (value: System.DateTime) = Interop.mkOhlcAttr "open" (value |> Array.singleton)
     /// Sets the open values.
     static member inline open' (values: seq<System.DateTime>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
     /// Sets the open values.
-    static member inline open' (value: int) = Interop.mkOhlcAttr "open" value
-    /// Sets the open values.
-    static member inline open' (values: seq<int>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
-    /// Sets the open values.
-    static member inline open' (value: float) = Interop.mkOhlcAttr "open" value
+    static member inline open' (value: float) = Interop.mkOhlcAttr "open" (value |> Array.singleton)
     /// Sets the open values.
     static member inline open' (values: seq<float>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
     /// Sets the open values.
-    static member inline open' (value: string) = Interop.mkOhlcAttr "open" value
+    static member inline open' (value: int) = Interop.mkOhlcAttr "open" (value |> Array.singleton)
+    /// Sets the open values.
+    static member inline open' (values: seq<int>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
+    /// Sets the open values.
+    static member inline open' (value: string) = Interop.mkOhlcAttr "open" (value |> Array.singleton)
     /// Sets the open values.
     static member inline open' (values: seq<string>) = Interop.mkOhlcAttr "open" (values |> Array.ofSeq)
     /// Sets the open values.
@@ -291,23 +291,23 @@ type ohlc =
     /// Sets the open values.
     static member inline open' (values: seq<string option>) = Interop.mkOhlcAttr "open" (values |> ResizeArray)
     /// Sets the high values.
-    static member inline high (value: bool) = Interop.mkOhlcAttr "high" value
+    static member inline high (value: bool) = Interop.mkOhlcAttr "high" (value |> Array.singleton)
     /// Sets the high values.
     static member inline high (values: seq<bool>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
     /// Sets the high values.
-    static member inline high (value: System.DateTime) = Interop.mkOhlcAttr "high" value
+    static member inline high (value: System.DateTime) = Interop.mkOhlcAttr "high" (value |> Array.singleton)
     /// Sets the high values.
     static member inline high (values: seq<System.DateTime>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
     /// Sets the high values.
-    static member inline high (value: int) = Interop.mkOhlcAttr "high" value
-    /// Sets the high values.
-    static member inline high (values: seq<int>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
-    /// Sets the high values.
-    static member inline high (value: float) = Interop.mkOhlcAttr "high" value
+    static member inline high (value: float) = Interop.mkOhlcAttr "high" (value |> Array.singleton)
     /// Sets the high values.
     static member inline high (values: seq<float>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
     /// Sets the high values.
-    static member inline high (value: string) = Interop.mkOhlcAttr "high" value
+    static member inline high (value: int) = Interop.mkOhlcAttr "high" (value |> Array.singleton)
+    /// Sets the high values.
+    static member inline high (values: seq<int>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
+    /// Sets the high values.
+    static member inline high (value: string) = Interop.mkOhlcAttr "high" (value |> Array.singleton)
     /// Sets the high values.
     static member inline high (values: seq<string>) = Interop.mkOhlcAttr "high" (values |> Array.ofSeq)
     /// Sets the high values.
@@ -347,23 +347,23 @@ type ohlc =
     /// Sets the high values.
     static member inline high (values: seq<string option>) = Interop.mkOhlcAttr "high" (values |> ResizeArray)
     /// Sets the low values.
-    static member inline low (value: bool) = Interop.mkOhlcAttr "low" value
+    static member inline low (value: bool) = Interop.mkOhlcAttr "low" (value |> Array.singleton)
     /// Sets the low values.
     static member inline low (values: seq<bool>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
     /// Sets the low values.
-    static member inline low (value: System.DateTime) = Interop.mkOhlcAttr "low" value
+    static member inline low (value: System.DateTime) = Interop.mkOhlcAttr "low" (value |> Array.singleton)
     /// Sets the low values.
     static member inline low (values: seq<System.DateTime>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
     /// Sets the low values.
-    static member inline low (value: int) = Interop.mkOhlcAttr "low" value
-    /// Sets the low values.
-    static member inline low (values: seq<int>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
-    /// Sets the low values.
-    static member inline low (value: float) = Interop.mkOhlcAttr "low" value
+    static member inline low (value: float) = Interop.mkOhlcAttr "low" (value |> Array.singleton)
     /// Sets the low values.
     static member inline low (values: seq<float>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
     /// Sets the low values.
-    static member inline low (value: string) = Interop.mkOhlcAttr "low" value
+    static member inline low (value: int) = Interop.mkOhlcAttr "low" (value |> Array.singleton)
+    /// Sets the low values.
+    static member inline low (values: seq<int>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
+    /// Sets the low values.
+    static member inline low (value: string) = Interop.mkOhlcAttr "low" (value |> Array.singleton)
     /// Sets the low values.
     static member inline low (values: seq<string>) = Interop.mkOhlcAttr "low" (values |> Array.ofSeq)
     /// Sets the low values.
@@ -403,23 +403,23 @@ type ohlc =
     /// Sets the low values.
     static member inline low (values: seq<string option>) = Interop.mkOhlcAttr "low" (values |> ResizeArray)
     /// Sets the close values.
-    static member inline close (value: bool) = Interop.mkOhlcAttr "close" value
+    static member inline close (value: bool) = Interop.mkOhlcAttr "close" (value |> Array.singleton)
     /// Sets the close values.
     static member inline close (values: seq<bool>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
     /// Sets the close values.
-    static member inline close (value: System.DateTime) = Interop.mkOhlcAttr "close" value
+    static member inline close (value: System.DateTime) = Interop.mkOhlcAttr "close" (value |> Array.singleton)
     /// Sets the close values.
     static member inline close (values: seq<System.DateTime>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
     /// Sets the close values.
-    static member inline close (value: int) = Interop.mkOhlcAttr "close" value
-    /// Sets the close values.
-    static member inline close (values: seq<int>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
-    /// Sets the close values.
-    static member inline close (value: float) = Interop.mkOhlcAttr "close" value
+    static member inline close (value: float) = Interop.mkOhlcAttr "close" (value |> Array.singleton)
     /// Sets the close values.
     static member inline close (values: seq<float>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
     /// Sets the close values.
-    static member inline close (value: string) = Interop.mkOhlcAttr "close" value
+    static member inline close (value: int) = Interop.mkOhlcAttr "close" (value |> Array.singleton)
+    /// Sets the close values.
+    static member inline close (values: seq<int>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
+    /// Sets the close values.
+    static member inline close (value: string) = Interop.mkOhlcAttr "close" (value |> Array.singleton)
     /// Sets the close values.
     static member inline close (values: seq<string>) = Interop.mkOhlcAttr "close" (values |> Array.ofSeq)
     /// Sets the close values.
@@ -475,11 +475,11 @@ type ohlc =
     static member inline tickwidth (value: float) = Interop.mkOhlcAttr "tickwidth" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkOhlcAttr "hoverlabel" (createObj !!properties)
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    static member inline xaxis (axisId: int) = Interop.mkOhlcAttr "xaxis" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline xaxis (anchorId: int) = Interop.mkOhlcAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkOhlcAttr "xaxis" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    static member inline yaxis (axisId: int) = Interop.mkOhlcAttr "yaxis" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline yaxis (anchorId: int) = Interop.mkOhlcAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkOhlcAttr "yaxis" value
     /// Sets the source reference on plot.ly for  ids .

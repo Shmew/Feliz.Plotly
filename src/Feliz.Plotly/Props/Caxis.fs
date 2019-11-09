@@ -56,25 +56,25 @@ type caxis =
     /// Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1* and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick` to *M3*. To set ticks every 4 years, set `dtick` to *M48*
     static member inline dtick (values: seq<string>) = Interop.mkCaxisAttr "dtick" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: bool) = Interop.mkCaxisAttr "tickvals" value
+    static member inline tickvals (value: bool) = Interop.mkCaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<bool>) = Interop.mkCaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: System.DateTime) = Interop.mkCaxisAttr "tickvals" value
+    static member inline tickvals (value: System.DateTime) = Interop.mkCaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkCaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: int) = Interop.mkCaxisAttr "tickvals" value
+    static member inline tickvals (value: float) = Interop.mkCaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<int>) = Interop.mkCaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<float>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: float) = Interop.mkCaxisAttr "tickvals" value
+    static member inline tickvals (value: int) = Interop.mkCaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<float>) = Interop.mkCaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<int>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: string) = Interop.mkCaxisAttr "tickvals" value
+    static member inline tickvals (value: string) = Interop.mkCaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<string>) = Interop.mkCaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<string>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<seq<bool>>) = Interop.mkCaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -112,25 +112,25 @@ type caxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: bool) = Interop.mkCaxisAttr "ticktext" value
+    static member inline ticktext (value: bool) = Interop.mkCaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<bool>) = Interop.mkCaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool>) = Interop.mkCaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: System.DateTime) = Interop.mkCaxisAttr "ticktext" value
+    static member inline ticktext (value: System.DateTime) = Interop.mkCaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkCaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkCaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: int) = Interop.mkCaxisAttr "ticktext" value
+    static member inline ticktext (value: float) = Interop.mkCaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<int>) = Interop.mkCaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<float>) = Interop.mkCaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: float) = Interop.mkCaxisAttr "ticktext" value
+    static member inline ticktext (value: int) = Interop.mkCaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<float>) = Interop.mkCaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<int>) = Interop.mkCaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: string) = Interop.mkCaxisAttr "ticktext" value
+    static member inline ticktext (value: string) = Interop.mkCaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<string>) = Interop.mkCaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<string>) = Interop.mkCaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<seq<bool>>) = Interop.mkCaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.

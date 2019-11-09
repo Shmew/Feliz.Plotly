@@ -43,7 +43,6 @@ let render (data: PolarData) =
                 scatterpolar.name "Figure8"
                 scatterpolar.line [
                     line.shape.spline
-                    line.smoothing 1
                     line.color color.peru
                 ]
             ]
@@ -54,7 +53,6 @@ let render (data: PolarData) =
                 scatterpolar.name "Cardioid"
                 scatterpolar.line [
                     line.shape.spline
-                    line.smoothing 1
                     line.color color.darkViolet
                 ]
             ]
@@ -65,7 +63,6 @@ let render (data: PolarData) =
                 scatterpolar.name "Hypercardioid"
                 scatterpolar.line [
                     line.shape.spline
-                    line.smoothing 1
                     line.color color.deepSkyBlue
                 ]
             ]
@@ -76,7 +73,6 @@ let render (data: PolarData) =
                 scatterpolar.name "Subcardioid"
                 scatterpolar.line [
                     line.shape.spline
-                    line.smoothing 1
                     line.color color.orangeRed
                 ]
             ]
@@ -87,7 +83,6 @@ let render (data: PolarData) =
                 scatterpolar.name "Supercardioid"
                 scatterpolar.line [
                     line.shape.spline
-                    line.smoothing 1
                     line.color color.green
                 ]
             ]
@@ -103,9 +98,6 @@ let render (data: PolarData) =
             ]
             layout.showlegend true
             layout.polar [
-                polar.angularaxis [
-                    angularaxis.rotation 120
-                ]
                 polar.radialaxis [
                     radialaxis.range [ 0.; 1.1 ]
                 ]

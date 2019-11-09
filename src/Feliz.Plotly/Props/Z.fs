@@ -50,23 +50,23 @@ type z =
     /// Sets the width of the highlighted contour lines.
     static member inline highlightwidth (value: float) = Interop.mkZAttr "highlightwidth" value
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (value: bool) = Interop.mkZAttr "locations" value
+    static member inline locations (value: bool) = Interop.mkZAttr "locations" (value |> Array.singleton)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<bool>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (value: System.DateTime) = Interop.mkZAttr "locations" value
+    static member inline locations (value: System.DateTime) = Interop.mkZAttr "locations" (value |> Array.singleton)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (value: int) = Interop.mkZAttr "locations" value
-    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (values: seq<int>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
-    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (value: float) = Interop.mkZAttr "locations" value
+    static member inline locations (value: float) = Interop.mkZAttr "locations" (value |> Array.singleton)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<float>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
-    static member inline locations (value: string) = Interop.mkZAttr "locations" value
+    static member inline locations (value: int) = Interop.mkZAttr "locations" (value |> Array.singleton)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
+    static member inline locations (values: seq<int>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
+    static member inline locations (value: string) = Interop.mkZAttr "locations" (value |> Array.singleton)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<string>) = Interop.mkZAttr "locations" (values |> Array.ofSeq)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.

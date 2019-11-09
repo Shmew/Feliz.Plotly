@@ -15,7 +15,9 @@ type scene =
     static member inline domain (properties: #IDomainProperty list) = Interop.mkSceneAttr "domain" (createObj !!properties)
     /// Sets this scene's axis aspectratio.
     static member inline aspectratio (properties: #IAspectratioProperty list) = Interop.mkSceneAttr "aspectratio" (createObj !!properties)
+    static member inline xaxis (anchorId: int) = Interop.mkSceneAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     static member inline xaxis (properties: #IXaxisProperty list) = Interop.mkSceneAttr "xaxis" (createObj !!properties)
+    static member inline yaxis (anchorId: int) = Interop.mkSceneAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkSceneAttr "yaxis" (createObj !!properties)
     static member inline zaxis (properties: #IZaxisProperty list) = Interop.mkSceneAttr "zaxis" (createObj !!properties)
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.

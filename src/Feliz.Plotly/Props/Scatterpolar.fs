@@ -23,23 +23,23 @@ type scatterpolar =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScatterpolarAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkScatterpolarAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScatterpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkScatterpolarAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkScatterpolarAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkScatterpolarAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkScatterpolarAttr "ids" value
+    static member inline ids (value: float) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScatterpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkScatterpolarAttr "ids" value
+    static member inline ids (value: int) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkScatterpolarAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScatterpolarAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -79,23 +79,23 @@ type scatterpolar =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkScatterpolarAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkScatterpolarAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScatterpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkScatterpolarAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkScatterpolarAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkScatterpolarAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkScatterpolarAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScatterpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkScatterpolarAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkScatterpolarAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScatterpolarAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -180,25 +180,25 @@ type scatterpolar =
     /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     static member inline mode (properties: #IScatterpolarProperty list) = Interop.mkScatterpolarAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Sets the radial coordinates
-    static member inline r (value: bool) = Interop.mkScatterpolarAttr "r" value
+    static member inline r (value: bool) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<bool>) = Interop.mkScatterpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<bool>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: System.DateTime) = Interop.mkScatterpolarAttr "r" value
+    static member inline r (value: System.DateTime) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: int) = Interop.mkScatterpolarAttr "r" value
+    static member inline r (value: float) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<int>) = Interop.mkScatterpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<float>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: float) = Interop.mkScatterpolarAttr "r" value
+    static member inline r (value: int) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<float>) = Interop.mkScatterpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<int>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: string) = Interop.mkScatterpolarAttr "r" value
+    static member inline r (value: string) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (values: seq<string>) = Interop.mkScatterpolarAttr "r" (values |> Array.ofSeq)
+    static member inline r (values: seq<string>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
     static member inline r (values: seq<seq<bool>>) = Interop.mkScatterpolarAttr "r" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the radial coordinates
@@ -236,25 +236,25 @@ type scatterpolar =
     /// Sets the radial coordinates
     static member inline r (values: seq<string option>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: bool) = Interop.mkScatterpolarAttr "theta" value
+    static member inline theta (value: bool) = Interop.mkScatterpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<bool>) = Interop.mkScatterpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<bool>) = Interop.mkScatterpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: System.DateTime) = Interop.mkScatterpolarAttr "theta" value
+    static member inline theta (value: System.DateTime) = Interop.mkScatterpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: int) = Interop.mkScatterpolarAttr "theta" value
+    static member inline theta (value: float) = Interop.mkScatterpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<int>) = Interop.mkScatterpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<float>) = Interop.mkScatterpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: float) = Interop.mkScatterpolarAttr "theta" value
+    static member inline theta (value: int) = Interop.mkScatterpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<float>) = Interop.mkScatterpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<int>) = Interop.mkScatterpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (value: string) = Interop.mkScatterpolarAttr "theta" value
+    static member inline theta (value: string) = Interop.mkScatterpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
     /// Sets the angular coordinates
-    static member inline theta (values: seq<string>) = Interop.mkScatterpolarAttr "theta" (values |> Array.ofSeq)
+    static member inline theta (values: seq<string>) = Interop.mkScatterpolarAttr "theta" (values |> ResizeArray)
     /// Sets the angular coordinates
     static member inline theta (values: seq<seq<bool>>) = Interop.mkScatterpolarAttr "theta" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the angular coordinates
@@ -374,7 +374,7 @@ type scatterpolar =
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScatterpolarAttr "selected" (createObj !!properties)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScatterpolarAttr "unselected" (createObj !!properties)
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
-    static member inline subplot (axisId: int) = Interop.mkScatterpolarAttr "subplot" (sprintf "s%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline subplot (anchorId: int) = Interop.mkScatterpolarAttr "subplot" (sprintf "polar%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's data coordinates and a polar subplot. If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to `layout.polar2`, and so on.
     static member inline subplot (value: string) = Interop.mkScatterpolarAttr "subplot" value
     /// Sets the source reference on plot.ly for  ids .

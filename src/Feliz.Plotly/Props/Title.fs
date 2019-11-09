@@ -28,6 +28,10 @@ type title =
     static member inline y (value: float) = Interop.mkTitleAttr "y" value
     /// Sets the padding of the title. Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the respective anchor value is *middle*/*center*.
     static member inline pad (properties: #IPadProperty list) = Interop.mkTitleAttr "pad" (createObj !!properties)
+    /// Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. Note that the axis title position is always constrained within the margins, so the actual standoff distance is always less than the set or default value. By setting `standoff` and turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff distance.
+    static member inline standoff (value: int) = Interop.mkTitleAttr "standoff" value
+    /// Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. Note that the axis title position is always constrained within the margins, so the actual standoff distance is always less than the set or default value. By setting `standoff` and turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff distance.
+    static member inline standoff (value: float) = Interop.mkTitleAttr "standoff" value
 
 [<AutoOpen>]
 module title =

@@ -22,6 +22,7 @@ type traces =
     static member inline violin (properties: #IViolinProperty list) = Interop.mkTracesAttr "violin" (createObj !!(properties @ [ unbox (Interop.mkViolinAttr "type" "violin") ]))
     static member inline funnel (properties: #IFunnelProperty list) = Interop.mkTracesAttr "funnel" (createObj !!(properties @ [ unbox (Interop.mkFunnelAttr "type" "funnel") ]))
     static member inline waterfall (properties: #IWaterfallProperty list) = Interop.mkTracesAttr "waterfall" (createObj !!(properties @ [ unbox (Interop.mkWaterfallAttr "type" "waterfall") ]))
+    static member inline image (properties: #IImageProperty list) = Interop.mkTracesAttr "image" (createObj !!(properties @ [ unbox (Interop.mkImageAttr "type" "image") ]))
     static member inline pie (properties: #IPieProperty list) = Interop.mkTracesAttr "pie" (createObj !!(properties @ [ unbox (Interop.mkPieAttr "type" "pie") ]))
     static member inline sunburst (properties: #ISunburstProperty list) = Interop.mkTracesAttr "sunburst" (createObj !!(properties @ [ unbox (Interop.mkSunburstAttr "type" "sunburst") ]))
     static member inline treemap (properties: #ITreemapProperty list) = Interop.mkTracesAttr "treemap" (createObj !!(properties @ [ unbox (Interop.mkTreemapAttr "type" "treemap") ]))

@@ -51,23 +51,23 @@ type layout =
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
     static member inline waterfallgroupgap (value: float) = Interop.mkLayoutAttr "waterfallgroupgap" value
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: bool) = Interop.mkLayoutAttr "hiddenlabels" value
+    static member inline hiddenlabels (value: bool) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<bool>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: System.DateTime) = Interop.mkLayoutAttr "hiddenlabels" value
+    static member inline hiddenlabels (value: System.DateTime) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<System.DateTime>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: int) = Interop.mkLayoutAttr "hiddenlabels" value
-    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (values: seq<int>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
-    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: float) = Interop.mkLayoutAttr "hiddenlabels" value
+    static member inline hiddenlabels (value: float) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<float>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: string) = Interop.mkLayoutAttr "hiddenlabels" value
+    static member inline hiddenlabels (value: int) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (values: seq<int>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    static member inline hiddenlabels (value: string) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<string>) = Interop.mkLayoutAttr "hiddenlabels" (values |> Array.ofSeq)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
@@ -277,6 +277,7 @@ type layout =
     static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkLayoutAttr "yaxis" (createObj !!properties)
     static member inline ternary (id: int, properties: ITernaryProperty list) = Interop.mkLayoutAttr (sprintf "ternary%i" id) (createObj !!properties)
     static member inline ternary (properties: #ITernaryProperty list) = Interop.mkLayoutAttr "ternary" (createObj !!properties)
+    static member inline scene (id: int, properties: ISceneProperty list) = Interop.mkLayoutAttr (sprintf "scene%i" id) (createObj !!properties)
     static member inline scene (properties: #ISceneProperty list) = Interop.mkLayoutAttr "scene" (createObj !!properties)
     static member inline geo (id: int, properties: IGeoProperty list) = Interop.mkLayoutAttr (sprintf "geo%i" id) (createObj !!properties)
     static member inline geo (properties: #IGeoProperty list) = Interop.mkLayoutAttr "geo" (createObj !!properties)
@@ -291,6 +292,7 @@ type layout =
     static member inline updatemenus (properties: #IUpdatemenusProperty list) = Interop.mkLayoutAttr "updatemenus" (createObj !!properties)
     static member inline sliders (properties: #ISlidersProperty list) = Interop.mkLayoutAttr "sliders" (createObj !!properties)
     static member inline colorscale (properties: #IColorscaleProperty list) = Interop.mkLayoutAttr "colorscale" (createObj !!properties)
+    static member inline coloraxis (id: int, properties: IColoraxisProperty list) = Interop.mkLayoutAttr (sprintf "coloraxis%i" id) (createObj !!properties)
     static member inline coloraxis (properties: #IColoraxisProperty list) = Interop.mkLayoutAttr "coloraxis" (createObj !!properties)
     /// Sets the source reference on plot.ly for  meta .
     static member inline metasrc (value: string) = Interop.mkLayoutAttr "metasrc" value

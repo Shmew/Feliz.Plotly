@@ -72,6 +72,18 @@ module ParserUtils =
         jVal.TryGetProperty("valType")
         |> Option.map (JsonExtensions.AsString >> ((=) "enumerated"))
         |> Option.defaultValue false
+            
+    /// Gets anchor static mapping attributes
+    let layoutAnchorMappings (compName: string) (propName: string) =
+        [ "polar"; "geo"; "mapbox"; "ternary" ] 
+        |> List.tryFind compName.Contains
+        |> function
+        | _ when propName = "xaxes" || propName = "yaxes" -> {| Value = propName; Array = true |}
+        | _ when propName.StartsWith "x" || propName.StartsWith "y" -> {| Value = propName.Substring(0,1); Array = false |}
+        | _ when List.contains propName [ "coloraxis"; "scene" ] -> {| Value = propName; Array = false |}
+        | _ when compName = "Choropleth" && propName = "geo" -> {| Value = propName; Array = false |}
+        | Some aName -> {| Value = aName; Array = false |}
+        | _ -> failwith "Invalid anchor mapping call."
 
 module rec ApiParser =
     open ParserUtils
@@ -101,23 +113,21 @@ module rec ApiParser =
     let parseProp componentTree propName (jVal: JsonValue) =
         let jumpArray = [ "annotations"; "dimensions"; "styles"; "transforms" ]
         let typeAdders = [ "Traces"; "Transforms" ]
-
-        let typeAdderChildren =
-            [ yield! traceChildren
-              yield! transformsChildren ]
+        let typeAdderChildren = traceChildren @ transformsChildren
 
         let isSkip =
             [ "meta"; "categories"; "animatable"; "type"; "layoutAttributes"; "requiredOpts"; "otherOpts"; "valType"; "transform" ]
             |> List.contains propName
 
-        let isPropAxis = propName = "xaxis" || propName = "yaxis" || propName = "subplot"
-        let isExpandedLayout () = List.contains propName [ "xaxis"; "yaxis"; "geo"; "ternary"; "polar"; "mapbox" ]
-
         let isExpanded =
+            let isExpandedLayout = 
+                [ "xaxis"; "yaxis"; "geo"; "ternary"; "polar"; "mapbox"; "coloraxis"; "scene" ]
+                |> List.contains propName 
+
             match (componentTree
                    |> List.rev
                    |> List.head), propName with
-            | "Layout", _ when isExpandedLayout() -> true
+            | "Layout", _ when isExpandedLayout -> true
             | _ -> false
 
         let propMethodName =
@@ -129,39 +139,26 @@ module rec ApiParser =
             |> replaceAddSymbol
             |> appendApostropheToReservedKeywords
 
-        let componentParent =
-            componentTree
-            |> List.rev
-            |> List.head
+        let componentParent = componentTree |> List.rev |> List.head
 
         let mNameUpper = propMethodName |> String.upperFirst
 
-        let isAnchorOrOverlay =
-            (componentParent = "Xaxis" || componentParent = "Yaxis") 
-                && (propName = "overlaying" || propName = "anchor" || propName = "scaleanchor")
-
-        let isXAxisRef =
-            let targets = [ "xref"; "axref" ]
-
-            List.contains propName targets
-
-        let isYAxisRef =
-            let targets = [ "yref"; "ayref" ]
-            
-            List.contains propName targets
-
-        let axisInt axisIdentity =
-            ValType.intStrCustom "axisId"
-                (sprintf "(sprintf \"%s%s\" %s)" axisIdentity "%s" "(if axisId > 1 then (axisId |> string) else \"\")")
-
-        let axisIntSpecs =
-            { PrimSpecOverrides.empty with
-                  Explicit =
-                      propName.Substring(0, 1)
-                      |> axisInt
-                      |> List.singleton }
+        let axisInt axisIdentity isArray =
+            if isArray then
+                [ ValType.intSeqStrCustom "anchorIds"
+                    (sprintf "anchorIds |> Seq.map (fun anchorId -> (sprintf \"%s%s\" %s) |> ResizeArray)" axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
+                  ValType.intStrCustom "anchorId"
+                    (sprintf "(sprintf \"%s%s\" %s |> Array.singleton |> ResizeArray)" axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")") ]
+            else
+                ValType.intStrCustom "anchorId"
+                    (sprintf "(sprintf \"%s%s\" %s)" axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
+                |> List.singleton
 
         let propType =
+            let isPropAxis = 
+                [ "xaxis"; "yaxis"; "subplot"; "geo"; "coloraxis"; "scene" ]
+                |> List.contains propName
+
             match componentParent, propName with
             | "Line", "color"
             | "Line", "width" -> { PrimSpecOverrides.empty with ArrayOk = true, true }
@@ -175,7 +172,12 @@ module rec ApiParser =
                                >> String.upperFirst
                                >> ValType.compStrExplicit)
                           |> List.ofArray }
-            | _ when List.contains (componentParent.ToLower()) traceChildren && isPropAxis -> axisIntSpecs
+            | _, "theta" -> { PrimSpecOverrides.empty with IsCalcType = true, false }
+            | _ when componentParent <> "Layout" && isPropAxis ->
+                { PrimSpecOverrides.empty with
+                      Explicit =
+                          layoutAnchorMappings componentParent propName
+                          |> fun res -> axisInt res.Value res.Array }
             | _ when isExpanded ->
                 { PrimSpecOverrides.empty with
                       Explicit =
@@ -216,6 +218,13 @@ module rec ApiParser =
                 |> List.append explicitOverloadStrings
 
         let enumOverloads =
+            let isAnchorOrOverlay =
+                (componentParent = "Xaxis" || componentParent = "Yaxis") 
+                    && (propName = "overlaying" || propName = "anchor" || propName = "scaleanchor")
+
+            let isXAxisRef = [ "xref"; "axref" ] |> List.contains propName
+            let isYAxisRef = [ "yref"; "ayref" ] |> List.contains propName
+
             match propType with
             | ValType.Enumerated
             | ValType.EnumeratedArray ->
@@ -266,11 +275,11 @@ module rec ApiParser =
 
                 match propType with
                 | ValType.EnumeratedWithCustom when (isAnchorOrOverlay || isXAxisRef || isYAxisRef ) && (v = "x" || v = "y") ->
-                    let paramsCode, valueCode = axisInt v
-
-                    EnumPropOverload.create methodName valueCode
-                    |> EnumPropOverload.setParamsCode paramsCode
-                    |> List.singleton
+                    axisInt v false 
+                    |> List.unzip
+                    ||> List.map2 (fun paramsCode valueCode ->
+                        EnumPropOverload.create methodName valueCode
+                        |> EnumPropOverload.setParamsCode paramsCode)
                 | ValType.EnumeratedWithCustom when v = "custom" && componentParent = "Line" && propName = "dash" ->
                     let valueCode, paramsCode = [ ValType.intSeqResizeStr; ValType.floatSeqResizeStr ] |> List.unzip
 

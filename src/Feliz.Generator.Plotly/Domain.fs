@@ -111,7 +111,7 @@ module rec Domain =
         | Color of PrimSpecs
         | ColorArray
         | ColorScale
-        | DataArray
+        | DataArray of PrimSpecs
         | Enumerated
         | EnumeratedArray
         | EnumeratedWithCustom
@@ -191,6 +191,7 @@ module rec Domain =
 
         let intStr = "(value: int)", "value"
         let intStrCustom s f = sprintf "(%s: int)" s, sprintf "%s" f
+        let intSeqStrCustom s f = sprintf "(%s: seq<int>)" s, sprintf "%s" f
         let intResizeSingleton = "(value: int)", "(value |> Array.singleton |> ResizeArray)"
         let intSeqResizeStr = "(values: seq<int>)", "(values |> ResizeArray)"
         let intSeqResizeStrOpt = "(values: seq<int option>)", "(values |> ResizeArray)"
@@ -246,32 +247,49 @@ module rec Domain =
 
         let all2DStrs = all2DStrsNoUnions @ [ data2D ]
 
-        let allBoolArrStrs = [ boolResizeSingleton; boolSeqResizeStr ]
+        let allBoolArrStrs = [ boolSingleton; boolSeqStr ]
+        let allBoolArrResizeStrs = [ boolResizeSingleton; boolSeqResizeStr ]
 
-        let allDateArrStrs = [ dateResizeSingleton; dateSeqResizeStr ]
+        let allDateArrStrs = [ dateSingleton; dateSeqStr ]
+        let allDateArrResizeStrs = [ dateResizeSingleton; dateSeqResizeStr ]
 
-        let allFloatArrStrs = [ floatResizeSingleton; floatSeqResizeStr ]
+        let allFloatArrStrs = [ floatSingleton; floatSeqStr ]
+        let allFloatArrResizeStrs = [ floatResizeSingleton; floatSeqResizeStr ]
 
-        let allIntArrStrs = [ intResizeSingleton; intSeqResizeStr ]
+        let allIntArrStrs = [ intSingleton; intSeqStr ]
+        let allIntArrResizeStrs = [ intResizeSingleton; intSeqResizeStr ]
 
-        let allStringArrStrs = [ stringResizeSingleton; stringSeqResizeStr ]
+        let allStringArrStrs = [ stringSingleton; stringSeqStr ]
+        let allStringArrResizeStrs = [ stringResizeSingleton; stringSeqResizeStr ]
 
-        let allArrStrs = allBoolArrStrs @ allDateArrStrs @ allIntArrStrs @ allFloatArrStrs @ allStringArrStrs
+        let allArrStrs =
+            allBoolArrStrs 
+            @ allDateArrStrs 
+            @ allFloatArrStrs 
+            @ allIntArrStrs 
+            @ allStringArrStrs
 
-        let allArrOptStrs =
+        let allArrResizeStrs = 
+            allBoolArrResizeStrs 
+            @ allDateArrResizeStrs 
+            @ allFloatArrResizeStrs 
+            @ allIntArrResizeStrs 
+            @ allStringArrResizeStrs
+
+        let allArrResizeOptStrs =
             [ boolSeqResizeStrOpt; dateSeqResizeStrOpt; intSeqResizeStrOpt; floatSeqResizeStrOpt; stringSeqResizeStrOpt ]
 
         let getPrimativeOverloadSeq =
             function
-            | ValType.Any -> allArrStrs
-            | ValType.Bool _ -> allBoolArrStrs
+            | ValType.Any -> allArrResizeStrs
+            | ValType.Bool _ -> allBoolArrResizeStrs
             | ValType.ColorScale -> [ stringStr; string2DListStr ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedWithCustom -> []
             | ValType.FlagList -> []
-            | ValType.Int _ -> allIntArrStrs
-            | ValType.Number _ -> allIntArrStrs @ allFloatArrStrs
-            | ValType.String _ -> allStringArrStrs
+            | ValType.Int _ -> allIntArrResizeStrs
+            | ValType.Number _ -> allIntArrResizeStrs @ allFloatArrResizeStrs
+            | ValType.String _ -> allStringArrResizeStrs
             | s ->
                 printfn "%s" (s.ToString())
                 [ "(value: TODO)", "value" ]
@@ -307,7 +325,7 @@ module rec Domain =
                     | false -> ValType.String attributes
                 | "colorlist" -> ValType.String PrimSpecs.allFalse |> ValType.List
                 | "colorscale" -> ValType.ColorScale
-                | "data_array" -> ValType.DataArray
+                | "data_array" -> ValType.DataArray attributes
                 | "enumerated" when isEnumeratedWithCustom() -> ValType.EnumeratedWithCustom
                 | "enumerated" ->
                     if attributes.ArrayOk then ValType.EnumeratedArray
@@ -349,7 +367,9 @@ module rec Domain =
                       if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
             | ValType.ColorArray -> [ stringStr; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
             | ValType.ColorScale -> [ stringStr; string2DListStr ]
-            | ValType.DataArray -> allNormalStrs @ all2DStrs @ allArrOptStrs
+            | ValType.DataArray attrib -> 
+                if attrib.IsCalcType then allArrStrs @ all2DStrs @ allArrResizeOptStrs
+                else allArrResizeStrs @ all2DStrs @ allArrResizeOptStrs
             | ValType.Enumerated -> []
             | ValType.EnumeratedArray -> [ enumeratedArrayStrSeq parentName ]
             | ValType.EnumeratedWithCustom -> []

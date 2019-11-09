@@ -15,23 +15,23 @@ type volume =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkVolumeAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkVolumeAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkVolumeAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkVolumeAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkVolumeAttr "ids" value
+    static member inline ids (value: float) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkVolumeAttr "ids" value
+    static member inline ids (value: int) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkVolumeAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -71,23 +71,23 @@ type volume =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkVolumeAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkVolumeAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkVolumeAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkVolumeAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkVolumeAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkVolumeAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkVolumeAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -149,25 +149,25 @@ type volume =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkVolumeAttr "uirevision" (values |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: bool) = Interop.mkVolumeAttr "x" value
+    static member inline x (value: bool) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<bool>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<bool>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: System.DateTime) = Interop.mkVolumeAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<System.DateTime>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<System.DateTime>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: int) = Interop.mkVolumeAttr "x" value
+    static member inline x (value: float) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<int>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<float>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: float) = Interop.mkVolumeAttr "x" value
+    static member inline x (value: int) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<float>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<int>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: string) = Interop.mkVolumeAttr "x" value
+    static member inline x (value: string) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (values: seq<string>) = Interop.mkVolumeAttr "x" (values |> Array.ofSeq)
+    static member inline x (values: seq<string>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<seq<bool>>) = Interop.mkVolumeAttr "x" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the X coordinates of the vertices on X axis.
@@ -205,25 +205,25 @@ type volume =
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<string option>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: bool) = Interop.mkVolumeAttr "y" value
+    static member inline y (value: bool) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<bool>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<bool>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: System.DateTime) = Interop.mkVolumeAttr "y" value
+    static member inline y (value: System.DateTime) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<System.DateTime>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<System.DateTime>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: int) = Interop.mkVolumeAttr "y" value
+    static member inline y (value: float) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<int>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<float>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: float) = Interop.mkVolumeAttr "y" value
+    static member inline y (value: int) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<float>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<int>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: string) = Interop.mkVolumeAttr "y" value
+    static member inline y (value: string) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (values: seq<string>) = Interop.mkVolumeAttr "y" (values |> Array.ofSeq)
+    static member inline y (values: seq<string>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<seq<bool>>) = Interop.mkVolumeAttr "y" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the Y coordinates of the vertices on Y axis.
@@ -261,25 +261,25 @@ type volume =
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<string option>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: bool) = Interop.mkVolumeAttr "z" value
+    static member inline z (value: bool) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<bool>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<bool>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: System.DateTime) = Interop.mkVolumeAttr "z" value
+    static member inline z (value: System.DateTime) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<System.DateTime>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<System.DateTime>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: int) = Interop.mkVolumeAttr "z" value
+    static member inline z (value: float) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<int>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<float>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: float) = Interop.mkVolumeAttr "z" value
+    static member inline z (value: int) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<float>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<int>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: string) = Interop.mkVolumeAttr "z" value
+    static member inline z (value: string) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (values: seq<string>) = Interop.mkVolumeAttr "z" (values |> Array.ofSeq)
+    static member inline z (values: seq<string>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<seq<bool>>) = Interop.mkVolumeAttr "z" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the Z coordinates of the vertices on Z axis.
@@ -317,25 +317,25 @@ type volume =
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<string option>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: bool) = Interop.mkVolumeAttr "value" value
+    static member inline value (value: bool) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<bool>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<bool>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: System.DateTime) = Interop.mkVolumeAttr "value" value
+    static member inline value (value: System.DateTime) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<System.DateTime>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<System.DateTime>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: int) = Interop.mkVolumeAttr "value" value
+    static member inline value (value: float) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<int>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<float>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: float) = Interop.mkVolumeAttr "value" value
+    static member inline value (value: int) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<float>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<int>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: string) = Interop.mkVolumeAttr "value" value
+    static member inline value (value: string) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (values: seq<string>) = Interop.mkVolumeAttr "value" (values |> Array.ofSeq)
+    static member inline value (values: seq<string>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<seq<bool>>) = Interop.mkVolumeAttr "value" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the 4th dimension (value) of the vertices.
@@ -422,6 +422,8 @@ type volume =
     static member inline showscale (value: bool) = Interop.mkVolumeAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkVolumeAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    static member inline coloraxis (anchorId: int) = Interop.mkVolumeAttr "coloraxis" (sprintf "coloraxis%s" (if anchorId > 1 then (anchorId |> string) else ""))
+    /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     static member inline coloraxis (value: string) = Interop.mkVolumeAttr "coloraxis" value
     /// Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.
     static member inline opacity (value: int) = Interop.mkVolumeAttr "opacity" value
@@ -454,6 +456,8 @@ type volume =
     static member inline contour (properties: #IContourProperty list) = Interop.mkVolumeAttr "contour" (createObj !!properties)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IVolumeProperty list) = Interop.mkVolumeAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
+    /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
+    static member inline scene (anchorId: int) = Interop.mkVolumeAttr "scene" (sprintf "scene%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
     static member inline scene (value: string) = Interop.mkVolumeAttr "scene" value
     /// Sets the source reference on plot.ly for  ids .

@@ -15,23 +15,23 @@ type choroplethmapbox =
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkChoroplethmapboxAttr "uid" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkChoroplethmapboxAttr "ids" value
+    static member inline ids (value: bool) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "ids" value
+    static member inline ids (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkChoroplethmapboxAttr "ids" value
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (values: seq<int>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Array.ofSeq)
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkChoroplethmapboxAttr "ids" value
+    static member inline ids (value: float) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkChoroplethmapboxAttr "ids" value
+    static member inline ids (value: int) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<int>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Array.ofSeq)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: string) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkChoroplethmapboxAttr "ids" (values |> Array.ofSeq)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -71,23 +71,23 @@ type choroplethmapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkChoroplethmapboxAttr "customdata" value
+    static member inline customdata (value: bool) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "customdata" value
+    static member inline customdata (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkChoroplethmapboxAttr "customdata" value
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (values: seq<int>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Array.ofSeq)
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkChoroplethmapboxAttr "customdata" value
+    static member inline customdata (value: float) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkChoroplethmapboxAttr "customdata" value
+    static member inline customdata (value: int) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<int>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Array.ofSeq)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: string) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> Array.ofSeq)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -170,23 +170,23 @@ type choroplethmapbox =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkChoroplethmapboxAttr "uirevision" (values |> Array.ofSeq)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: bool) = Interop.mkChoroplethmapboxAttr "locations" value
+    static member inline locations (value: bool) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Array.ofSeq)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "locations" value
+    static member inline locations (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Array.ofSeq)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: int) = Interop.mkChoroplethmapboxAttr "locations" value
-    /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (values: seq<int>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Array.ofSeq)
-    /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: float) = Interop.mkChoroplethmapboxAttr "locations" value
+    static member inline locations (value: float) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<float>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Array.ofSeq)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: string) = Interop.mkChoroplethmapboxAttr "locations" value
+    static member inline locations (value: int) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
+    /// Sets which features found in *geojson* to plot using their feature `id` field.
+    static member inline locations (values: seq<int>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Array.ofSeq)
+    /// Sets which features found in *geojson* to plot using their feature `id` field.
+    static member inline locations (value: string) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<string>) = Interop.mkChoroplethmapboxAttr "locations" (values |> Array.ofSeq)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
@@ -226,23 +226,23 @@ type choroplethmapbox =
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<string option>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets the color values.
-    static member inline z (value: bool) = Interop.mkChoroplethmapboxAttr "z" value
+    static member inline z (value: bool) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "z" value
+    static member inline z (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: int) = Interop.mkChoroplethmapboxAttr "z" value
-    /// Sets the color values.
-    static member inline z (values: seq<int>) = Interop.mkChoroplethmapboxAttr "z" (values |> Array.ofSeq)
-    /// Sets the color values.
-    static member inline z (value: float) = Interop.mkChoroplethmapboxAttr "z" value
+    static member inline z (value: float) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<float>) = Interop.mkChoroplethmapboxAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
-    static member inline z (value: string) = Interop.mkChoroplethmapboxAttr "z" value
+    static member inline z (value: int) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
+    /// Sets the color values.
+    static member inline z (values: seq<int>) = Interop.mkChoroplethmapboxAttr "z" (values |> Array.ofSeq)
+    /// Sets the color values.
+    static member inline z (value: string) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
     /// Sets the color values.
     static member inline z (values: seq<string>) = Interop.mkChoroplethmapboxAttr "z" (values |> Array.ofSeq)
     /// Sets the color values.
@@ -346,9 +346,11 @@ type choroplethmapbox =
     static member inline showscale (value: bool) = Interop.mkChoroplethmapboxAttr "showscale" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkChoroplethmapboxAttr "colorbar" (createObj !!properties)
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    static member inline coloraxis (anchorId: int) = Interop.mkChoroplethmapboxAttr "coloraxis" (sprintf "coloraxis%s" (if anchorId > 1 then (anchorId |> string) else ""))
+    /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     static member inline coloraxis (value: string) = Interop.mkChoroplethmapboxAttr "coloraxis" value
     /// Sets a reference between this trace's data coordinates and a mapbox subplot. If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer to `layout.mapbox2`, and so on.
-    static member inline subplot (axisId: int) = Interop.mkChoroplethmapboxAttr "subplot" (sprintf "s%s" (if axisId > 1 then (axisId |> string) else ""))
+    static member inline subplot (anchorId: int) = Interop.mkChoroplethmapboxAttr "subplot" (sprintf "mapbox%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's data coordinates and a mapbox subplot. If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer to `layout.mapbox2`, and so on.
     static member inline subplot (value: string) = Interop.mkChoroplethmapboxAttr "subplot" value
     /// Sets the source reference on plot.ly for  ids .

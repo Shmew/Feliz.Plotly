@@ -4,112 +4,85 @@ Taken from [Plotly - Polar Plots](https://plot.ly/javascript/polar-chart/)
 
 ```fsharp:plotly-chart-polar-subplots
 [<RequireQualifiedAccess>]
-module Samples.TwoDimensionalDensity.WithHistogramSubplots
+module Samples.Polar.Subplots
 
 open Feliz
 open Feliz.Plotly
-open System
-
-let rng = Random()
-
-let normal () =
-    let x = rng.NextDouble() * 2. - 1.
-    let y = rng.NextDouble() * 2. - 1.
-    let rec boxMullerTransform rds =
-        if rds = 0. || rds > 1. then x * rds
-        else 
-            Math.Sqrt(-2. * Math.Log(rds) / rds)
-            |> boxMullerTransform
-
-    x * x + y * y
-    |> boxMullerTransform
-
-let xData, yData =
-    let step i = -1. + 2.2 / 1999. * i
-
-    [ 0. .. 1999. ]
-    |> List.map 
-        (step >>
-         fun step ->
-            Math.Pow(step, 3.) + (0.3 * normal()),
-            Math.Pow(step, 6.) + (0.3 * normal()))
-    |> List.unzip
 
 let chart () =
     Plotly.plot [
         plot.traces [
-            traces.scatter [
-                scatter.x xData
-                scatter.y yData
-                scatter.mode.markers
-                scatter.name "points"
-                scatter.marker [
-                    marker.color (color.rgb(102, 0, 0))
-                    marker.size 2
-                    marker.opacity 0.4
+            traces.scatterpolar [
+                scatterpolar.r [ 1; 2; 3 ]
+                scatterpolar.theta [ 50; 100; 200 ]
+                scatterpolar.marker [
+                    marker.symbol.square
                 ]
             ]
-            traces.histogram2dcontour [
-                histogram2dcontour.x xData
-                histogram2dcontour.y yData
-                histogram2dcontour.name "density"
-                histogram2dcontour.ncontours 20
-                histogram2dcontour.colorscale color.colorscale.hot
-                histogram2dcontour.reversescale true
-                histogram2dcontour.showscale false
+            traces.scatterpolar [
+                scatterpolar.r [ 1; 2; 3 ]
+                scatterpolar.theta [ 1; 2; 3 ]
+                scatterpolar.thetaunit.radians
             ]
-            traces.histogram [
-                histogram.x xData
-                histogram.name "x density"
-                histogram.marker [
-                    marker.color (color.rgb(102, 0, 0))
-                ]
-                histogram.yaxis 2
+            traces.scatterpolar [
+                scatterpolar.r [ "a"; "b"; "c"; "b" ]
+                scatterpolar.theta [ "D"; "C"; "B"; "A" ]
+                scatterpolar.subplot 2
             ]
-            traces.histogram [
-                histogram.y yData
-                histogram.name "y density"
-                histogram.marker [
-                    marker.color (color.rgb(102, 0, 0))
-                ]
-                histogram.xaxis 2
+            traces.scatterpolar [
+                scatterpolar.r [ 50; 300; 900 ]
+                scatterpolar.theta [ 0; 90; 190 ]
+                scatterpolar.subplot 3
+            ]
+            traces.scatterpolar [
+                scatterpolar.r [ 3; 3; 4; 3 ]
+                scatterpolar.theta [ 0; 45; 90; 270 ]
+                scatterpolar.fill.toself
+                scatterpolar.subplot 4
             ]
         ]
         plot.layout [
             layout.showlegend false
-            layout.autosize false
-            layout.width 600
-            layout.height 550
-            layout.margin [
-                margin.t 50
+            layout.height 500
+            layout.polar [
+                polar.domain [
+                    domain.x [ 0.; 0.46 ]
+                    domain.y [ 0.6; 1. ]
+                ]
+                polar.radialaxis [
+                    radialaxis.range [ 1; 4 ]
+                ]
+                polar.angularaxis [
+                    angularaxis.thetaunit.radians
+                ]
             ]
-            layout.hovermode.closest
-            layout.bargap 0
-            layout.xaxis [
-                xaxis.domain [ 0.; 0.85 ]
-                xaxis.anchor.y 1
-                xaxis.showgrid false
-                xaxis.zeroline false
-            ]
-            layout.yaxis [
-                yaxis.anchor.x 1
-                yaxis.domain [ 0.; 0.85 ]
-                yaxis.showgrid false
-                yaxis.zeroline false
-            ]
-            layout.xaxis (2, [
-                xaxis.anchor.y 2
-                xaxis.domain [ 0.85; 1. ]
-                xaxis.showgrid false
-                xaxis.zeroline false
+            layout.polar (2, [
+                polar.domain [
+                    domain.x [ 0.; 0.46 ]
+                    domain.y [ 0.; 0.4 ]
+                ]
             ])
-            layout.yaxis (2, [
-                yaxis.anchor.x 2
-                yaxis.domain [ 0.85; 1. ]
-                yaxis.showgrid false
-                yaxis.zeroline false
+            layout.polar (3, [
+                polar.domain [
+                    domain.x [ 0.54; 1. ]
+                    domain.y [ 0.6; 1. ]
+                ]
+                polar.radialaxis [
+                    radialaxis.type'.log
+                    radialaxis.tickangle 45
+                ]
+                polar.sector [ 0; 180 ]
+            ])
+            layout.polar (4, [
+                polar.domain [
+                    domain.x [ 0.54; 1. ]
+                    domain.y [ 0.; 0.4 ]
+                ]
+                polar.radialaxis [
+                    radialaxis.visible false
+                    radialaxis.range [ 0; 6 ]
+                ]
             ])
         ]
-        plot.debug true
     ]
 ```

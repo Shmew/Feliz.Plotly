@@ -24,13 +24,13 @@ type yaxis =
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<System.DateTime>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (value: int) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
-    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
-    static member inline range (values: seq<int>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
-    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (value: float) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<float>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (value: int) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
+    /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
+    static member inline range (values: seq<int>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (value: string) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
@@ -86,25 +86,25 @@ type yaxis =
     /// Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1* and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick` to *M3*. To set ticks every 4 years, set `dtick` to *M48*
     static member inline dtick (values: seq<string>) = Interop.mkYaxisAttr "dtick" (values |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: bool) = Interop.mkYaxisAttr "tickvals" value
+    static member inline tickvals (value: bool) = Interop.mkYaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<bool>) = Interop.mkYaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<bool>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: System.DateTime) = Interop.mkYaxisAttr "tickvals" value
+    static member inline tickvals (value: System.DateTime) = Interop.mkYaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkYaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<System.DateTime>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: int) = Interop.mkYaxisAttr "tickvals" value
+    static member inline tickvals (value: float) = Interop.mkYaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<int>) = Interop.mkYaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<float>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: float) = Interop.mkYaxisAttr "tickvals" value
+    static member inline tickvals (value: int) = Interop.mkYaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<float>) = Interop.mkYaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<int>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: string) = Interop.mkYaxisAttr "tickvals" value
+    static member inline tickvals (value: string) = Interop.mkYaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (values: seq<string>) = Interop.mkYaxisAttr "tickvals" (values |> Array.ofSeq)
+    static member inline tickvals (values: seq<string>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<seq<bool>>) = Interop.mkYaxisAttr "tickvals" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
@@ -142,25 +142,25 @@ type yaxis =
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: bool) = Interop.mkYaxisAttr "ticktext" value
+    static member inline ticktext (value: bool) = Interop.mkYaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<bool>) = Interop.mkYaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<bool>) = Interop.mkYaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: System.DateTime) = Interop.mkYaxisAttr "ticktext" value
+    static member inline ticktext (value: System.DateTime) = Interop.mkYaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkYaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<System.DateTime>) = Interop.mkYaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: int) = Interop.mkYaxisAttr "ticktext" value
+    static member inline ticktext (value: float) = Interop.mkYaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<int>) = Interop.mkYaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<float>) = Interop.mkYaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: float) = Interop.mkYaxisAttr "ticktext" value
+    static member inline ticktext (value: int) = Interop.mkYaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<float>) = Interop.mkYaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<int>) = Interop.mkYaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: string) = Interop.mkYaxisAttr "ticktext" value
+    static member inline ticktext (value: string) = Interop.mkYaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (values: seq<string>) = Interop.mkYaxisAttr "ticktext" (values |> Array.ofSeq)
+    static member inline ticktext (values: seq<string>) = Interop.mkYaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<seq<bool>>) = Interop.mkYaxisAttr "ticktext" (values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -283,23 +283,23 @@ type yaxis =
     /// Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to *free*.
     static member inline position (value: float) = Interop.mkYaxisAttr "position" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkYaxisAttr "categoryarray" value
+    static member inline categoryarray (value: bool) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkYaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: System.DateTime) = Interop.mkYaxisAttr "categoryarray" value
+    static member inline categoryarray (value: System.DateTime) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkYaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkYaxisAttr "categoryarray" value
-    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (values: seq<int>) = Interop.mkYaxisAttr "categoryarray" (values |> Array.ofSeq)
-    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkYaxisAttr "categoryarray" value
+    static member inline categoryarray (value: float) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkYaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkYaxisAttr "categoryarray" value
+    static member inline categoryarray (value: int) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (values: seq<int>) = Interop.mkYaxisAttr "categoryarray" (values |> Array.ofSeq)
+    /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    static member inline categoryarray (value: string) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkYaxisAttr "categoryarray" (values |> Array.ofSeq)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -406,8 +406,8 @@ module yaxis =
     [<Erase>]
     type scaleanchor =
         static member inline custom (value: string) = Interop.mkYaxisAttr "scaleanchor" value
-        static member inline x (axisId: int) = Interop.mkYaxisAttr "scaleanchor" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
-        static member inline y (axisId: int) = Interop.mkYaxisAttr "scaleanchor" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline x (anchorId: int) = Interop.mkYaxisAttr "scaleanchor" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
+        static member inline y (anchorId: int) = Interop.mkYaxisAttr "scaleanchor" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
 
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
     [<Erase>]
@@ -517,8 +517,8 @@ module yaxis =
     type anchor =
         static member inline free = Interop.mkYaxisAttr "anchor" "free"
         static member inline custom (value: string) = Interop.mkYaxisAttr "anchor" value
-        static member inline x (axisId: int) = Interop.mkYaxisAttr "anchor" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
-        static member inline y (axisId: int) = Interop.mkYaxisAttr "anchor" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline x (anchorId: int) = Interop.mkYaxisAttr "anchor" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
+        static member inline y (anchorId: int) = Interop.mkYaxisAttr "anchor" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
 
     /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
     [<Erase>]
@@ -533,8 +533,8 @@ module yaxis =
     type overlaying =
         static member inline free = Interop.mkYaxisAttr "overlaying" "free"
         static member inline custom (value: string) = Interop.mkYaxisAttr "overlaying" value
-        static member inline x (axisId: int) = Interop.mkYaxisAttr "overlaying" (sprintf "x%s" (if axisId > 1 then (axisId |> string) else ""))
-        static member inline y (axisId: int) = Interop.mkYaxisAttr "overlaying" (sprintf "y%s" (if axisId > 1 then (axisId |> string) else ""))
+        static member inline x (anchorId: int) = Interop.mkYaxisAttr "overlaying" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
+        static member inline y (anchorId: int) = Interop.mkYaxisAttr "overlaying" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
 
     /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
     [<Erase>]

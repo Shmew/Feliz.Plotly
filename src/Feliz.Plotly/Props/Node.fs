@@ -11,23 +11,23 @@ open Feliz
 [<Erase>]
 type node =
     /// The shown name of the node.
-    static member inline label (value: bool) = Interop.mkNodeAttr "label" value
+    static member inline label (value: bool) = Interop.mkNodeAttr "label" (value |> Array.singleton)
     /// The shown name of the node.
     static member inline label (values: seq<bool>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (value: System.DateTime) = Interop.mkNodeAttr "label" value
+    static member inline label (value: System.DateTime) = Interop.mkNodeAttr "label" (value |> Array.singleton)
     /// The shown name of the node.
     static member inline label (values: seq<System.DateTime>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (value: int) = Interop.mkNodeAttr "label" value
-    /// The shown name of the node.
-    static member inline label (values: seq<int>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
-    /// The shown name of the node.
-    static member inline label (value: float) = Interop.mkNodeAttr "label" value
+    static member inline label (value: float) = Interop.mkNodeAttr "label" (value |> Array.singleton)
     /// The shown name of the node.
     static member inline label (values: seq<float>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
     /// The shown name of the node.
-    static member inline label (value: string) = Interop.mkNodeAttr "label" value
+    static member inline label (value: int) = Interop.mkNodeAttr "label" (value |> Array.singleton)
+    /// The shown name of the node.
+    static member inline label (values: seq<int>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
+    /// The shown name of the node.
+    static member inline label (value: string) = Interop.mkNodeAttr "label" (value |> Array.singleton)
     /// The shown name of the node.
     static member inline label (values: seq<string>) = Interop.mkNodeAttr "label" (values |> Array.ofSeq)
     /// The shown name of the node.
@@ -75,23 +75,23 @@ type node =
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
     static member inline groups (values: seq<float>) = Interop.mkNodeAttr "groups" (values |> ResizeArray)
     /// The normalized horizontal position of the node.
-    static member inline x (value: bool) = Interop.mkNodeAttr "x" value
+    static member inline x (value: bool) = Interop.mkNodeAttr "x" (value |> Array.singleton)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<bool>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (value: System.DateTime) = Interop.mkNodeAttr "x" value
+    static member inline x (value: System.DateTime) = Interop.mkNodeAttr "x" (value |> Array.singleton)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<System.DateTime>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (value: int) = Interop.mkNodeAttr "x" value
-    /// The normalized horizontal position of the node.
-    static member inline x (values: seq<int>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
-    /// The normalized horizontal position of the node.
-    static member inline x (value: float) = Interop.mkNodeAttr "x" value
+    static member inline x (value: float) = Interop.mkNodeAttr "x" (value |> Array.singleton)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<float>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
     /// The normalized horizontal position of the node.
-    static member inline x (value: string) = Interop.mkNodeAttr "x" value
+    static member inline x (value: int) = Interop.mkNodeAttr "x" (value |> Array.singleton)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<int>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
+    /// The normalized horizontal position of the node.
+    static member inline x (value: string) = Interop.mkNodeAttr "x" (value |> Array.singleton)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<string>) = Interop.mkNodeAttr "x" (values |> Array.ofSeq)
     /// The normalized horizontal position of the node.
@@ -131,23 +131,23 @@ type node =
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<string option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
     /// The normalized vertical position of the node.
-    static member inline y (value: bool) = Interop.mkNodeAttr "y" value
+    static member inline y (value: bool) = Interop.mkNodeAttr "y" (value |> Array.singleton)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<bool>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (value: System.DateTime) = Interop.mkNodeAttr "y" value
+    static member inline y (value: System.DateTime) = Interop.mkNodeAttr "y" (value |> Array.singleton)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<System.DateTime>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (value: int) = Interop.mkNodeAttr "y" value
-    /// The normalized vertical position of the node.
-    static member inline y (values: seq<int>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
-    /// The normalized vertical position of the node.
-    static member inline y (value: float) = Interop.mkNodeAttr "y" value
+    static member inline y (value: float) = Interop.mkNodeAttr "y" (value |> Array.singleton)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<float>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
     /// The normalized vertical position of the node.
-    static member inline y (value: string) = Interop.mkNodeAttr "y" value
+    static member inline y (value: int) = Interop.mkNodeAttr "y" (value |> Array.singleton)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<int>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
+    /// The normalized vertical position of the node.
+    static member inline y (value: string) = Interop.mkNodeAttr "y" (value |> Array.singleton)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<string>) = Interop.mkNodeAttr "y" (values |> Array.ofSeq)
     /// The normalized vertical position of the node.
