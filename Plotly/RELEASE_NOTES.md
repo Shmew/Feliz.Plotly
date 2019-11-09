@@ -1,3 +1,8 @@
+### 0.17.0 - Saturday, November 9, 2019
+* Updated for latest Plotly releases
+* Fixed radial and angular data types not being set correctly
+* Added additional static typings for ref properties (this should be all of them) 
+
 ### 0.16.0 - Saturday, November 9, 2019
 * Added additional static typings for ref properties
 * Removed some deprecated properties

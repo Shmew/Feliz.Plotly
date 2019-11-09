@@ -2,116 +2,151 @@
 
 Taken from [Plotly - Polar Plots](https://plot.ly/javascript/polar-chart/)
 
-Something is wrong with this graph, a lot of the documentation isn't up to date, the data is the same as the example. Please let me know if you know how to resolve this.
-
 ```fsharp:plotly-chart-polar-line
 [<RequireQualifiedAccess>]
-module Samples.TwoDimensionalDensity.WithHistogramSubplots
+module Samples.Polar.Line
 
+open Fable.Core
+open Fable.SimpleHttp
 open Feliz
 open Feliz.Plotly
-open System
 
-let rng = Random()
+type PolarData =
+    { Headers: string []
+      Y: int [] 
+      X: float []
+      X2: float []
+      X3: float []
+      X4: float []
+      X5: float [] }
+    member this.AddDataSet (data: string []) =
+        { this with
+            Y = Array.append this.Y (data.[0] |> int |> Array.singleton)
+            X = Array.append this.X (data.[1] |> float |> Array.singleton)
+            X2 = Array.append this.X2 (data.[2] |> float |> Array.singleton)
+            X3 = Array.append this.X3 (data.[3] |> float |> Array.singleton)
+            X4 = Array.append this.X4 (data.[4] |> float |> Array.singleton)
+            X5 = Array.append this.X5 (data.[5] |> float |> Array.singleton) }
 
-let normal () =
-    let x = rng.NextDouble() * 2. - 1.
-    let y = rng.NextDouble() * 2. - 1.
-    let rec boxMullerTransform rds =
-        if rds = 0. || rds > 1. then x * rds
-        else 
-            Math.Sqrt(-2. * Math.Log(rds) / rds)
-            |> boxMullerTransform
+module PolarData =
+    let empty =
+        { Headers = [||]
+          Y = [||]
+          X = [||]
+          X2 = [||]
+          X3 = [||]
+          X4 = [||]
+          X5 = [||] }
 
-    x * x + y * y
-    |> boxMullerTransform
-
-let xData, yData =
-    let step i = -1. + 2.2 / 1999. * i
-
-    [ 0. .. 1999. ]
-    |> List.map 
-        (step >>
-         fun step ->
-            Math.Pow(step, 3.) + (0.3 * normal()),
-            Math.Pow(step, 6.) + (0.3 * normal()))
-    |> List.unzip
-
-let chart () =
+let render (data: PolarData) =
     Plotly.plot [
         plot.traces [
-            traces.scatter [
-                scatter.x xData
-                scatter.y yData
-                scatter.mode.markers
-                scatter.name "points"
-                scatter.marker [
-                    marker.color (color.rgb(102, 0, 0))
-                    marker.size 2
-                    marker.opacity 0.4
+            traces.scatterpolar [
+                scatterpolar.r data.X
+                scatterpolar.theta data.Y
+                scatterpolar.mode.lines
+                scatterpolar.name "Figure8"
+                scatterpolar.line [
+                    line.shape.spline
+                    line.color color.peru
                 ]
             ]
-            traces.histogram2dcontour [
-                histogram2dcontour.x xData
-                histogram2dcontour.y yData
-                histogram2dcontour.name "density"
-                histogram2dcontour.ncontours 20
-                histogram2dcontour.colorscale color.colorscale.hot
-                histogram2dcontour.reversescale true
-                histogram2dcontour.showscale false
-            ]
-            traces.histogram [
-                histogram.x xData
-                histogram.name "x density"
-                histogram.marker [
-                    marker.color (color.rgb(102, 0, 0))
+            traces.scatterpolar [
+                scatterpolar.r data.X2
+                scatterpolar.theta data.Y
+                scatterpolar.mode.lines
+                scatterpolar.name "Cardioid"
+                scatterpolar.line [
+                    line.shape.spline
+                    line.color color.darkViolet
                 ]
-                histogram.yaxis 2
             ]
-            traces.histogram [
-                histogram.y yData
-                histogram.name "y density"
-                histogram.marker [
-                    marker.color (color.rgb(102, 0, 0))
+            traces.scatterpolar [
+                scatterpolar.r data.X3
+                scatterpolar.theta data.Y
+                scatterpolar.mode.lines
+                scatterpolar.name "Hypercardioid"
+                scatterpolar.line [
+                    line.shape.spline
+                    line.color color.deepSkyBlue
                 ]
-                histogram.xaxis 2
+            ]
+            traces.scatterpolar [
+                scatterpolar.r data.X4
+                scatterpolar.theta data.Y
+                scatterpolar.mode.lines
+                scatterpolar.name "Subcardioid"
+                scatterpolar.line [
+                    line.shape.spline
+                    line.color color.orangeRed
+                ]
+            ]
+            traces.scatterpolar [
+                scatterpolar.r data.X5
+                scatterpolar.theta data.Y
+                scatterpolar.mode.lines
+                scatterpolar.name "Supercardioid"
+                scatterpolar.line [
+                    line.shape.spline
+                    line.color color.green
+                ]
             ]
         ]
         plot.layout [
-            layout.showlegend false
-            layout.autosize false
-            layout.width 600
-            layout.height 550
-            layout.margin [
-                margin.t 50
+            layout.title [
+                title.text "Mic Patterns"
             ]
-            layout.hovermode.closest
-            layout.bargap 0
-            layout.xaxis [
-                xaxis.domain [ 0.; 0.85 ]
-                xaxis.anchor.y 1
-                xaxis.showgrid false
-                xaxis.zeroline false
+            layout.font [
+                font.family "Arial, sans-serif"
+                font.size 12
+                font.color "#000"
             ]
-            layout.yaxis [
-                yaxis.anchor.x 1
-                yaxis.domain [ 0.; 0.85 ]
-                yaxis.showgrid false
-                yaxis.zeroline false
+            layout.showlegend true
+            layout.polar [
+                polar.radialaxis [
+                    radialaxis.range [ 0.; 1.1 ]
+                ]
             ]
-            layout.xaxis (2, [
-                xaxis.anchor.y 2
-                xaxis.domain [ 0.85; 1. ]
-                xaxis.showgrid false
-                xaxis.zeroline false
-            ])
-            layout.yaxis (2, [
-                yaxis.anchor.x 2
-                yaxis.domain [ 0.85; 1. ]
-                yaxis.showgrid false
-                yaxis.zeroline false
-            ])
         ]
-        plot.debug true
     ]
+
+let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactElement |}) ->
+    let isLoading, setLoading = React.useState false
+    let error, setError = React.useState<Option<string>> None
+    let content, setContent = React.useState PolarData.empty
+    let path = "https://raw.githubusercontent.com/plotly/datasets/master/polar_dataset.csv"
+
+    let loadDataset() = 
+        setLoading(true)
+        async {
+            let! (statusCode, responseText) = Http.get path
+            setLoading(false)
+            if statusCode = 200 then
+                let fullData =
+                    responseText.Trim().Split('\n') 
+                    |> Array.map (fun s -> s.Split(','))
+
+                fullData
+                |> Array.tail
+                |> Array.fold (fun (state: PolarData) (values: string []) -> state.AddDataSet values) content
+                |> fun newContent -> { newContent with Headers = fullData |> Array.head }
+                |> setContent
+                setError(None)
+            else
+                setError(Some (sprintf "Status %d: could not load %s" statusCode path))
+        }
+        |> Async.StartImmediate
+
+    React.useEffect(loadDataset, [| path :> obj |])
+
+    match isLoading, error with
+    | true, _ -> input.centeredSpinner
+    | false, None -> render content
+    | _, Some error ->
+        Html.h1 [
+            prop.style [ style.color.crimson ]
+            prop.text error
+        ])
+
+let chart (centeredSpinner: ReactElement) = chart' {| centeredSpinner = centeredSpinner |}
 ```
