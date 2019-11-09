@@ -1074,9 +1074,9 @@ let scientificExamples (currentPath: string list) =
         | [ Urls.Lines ] -> [ "Lines.md" ]
         | [ Urls.LineLabels ] -> [ "LineLabels.md" ]
         | [ Urls.CustomColorscale ] -> [ "CustomColorscale.md" ]
-        | [ Urls.ColorbarTitle ] -> [ "ColorBarTitle.md" ]
-        | [ Urls.ColorbarSize ] -> [ "ColorBarSize.md" ]
-        | [ Urls.StylingColorbar ] -> [ "StylingColorBar.md" ]
+        | [ Urls.ColorbarTitle ] -> [ "ColorbarTitle.md" ]
+        | [ Urls.ColorbarSize ] -> [ "ColorbarSize.md" ]
+        | [ Urls.StylingColorbar ] -> [ "StylingColorbar.md" ]
         | _ -> [ ]
         |> List.append [ Urls.Contour ]
     | Urls.Heatmap :: rest ->
