@@ -1,4 +1,4 @@
-### 0.17.1 - Saturday, November 16, 2019
+### 0.17.2 - Saturday, November 16, 2019
 * Fix nupkg
 
 ### 0.17.0 - Saturday, November 9, 2019
