@@ -16,11 +16,6 @@
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="*.fsproj; *.fs; *.js;" PackagePath="fable\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="plotly.js" Version="gte 1.51 lt 2" ResolutionStrategy="max" />

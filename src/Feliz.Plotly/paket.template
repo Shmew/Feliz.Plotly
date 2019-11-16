@@ -1,5 +1,5 @@
 ﻿type project
-id Feliz.Plotly
+licenseExpression https://github.com/Shmew/Feliz.Plotly/blob/master/LICENSE
 authors Cody Johnson
 description
     Fable bindings written in the Feliz-style for plotly.js
@@ -7,3 +7,7 @@ language
     F#
 tags
     fsharp, fable, react, visualization, graph, chart
+files
+    *.fsproj ==> fable
+    *.fs ==> fable
+    Props/*.fs ==> fable/Props

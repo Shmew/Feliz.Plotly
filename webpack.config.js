@@ -42,11 +42,21 @@ module.exports = {
     },
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'source-map' : 'eval-source-map',
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+            chunks: 'all'
+        },
+    },
     plugins: isProduction ?
         commonPlugins.concat([])
         : commonPlugins.concat([
             new webpack.HotModuleReplacementPlugin()
         ]),
+    resolve: {
+        // See https://github.com/fable-compiler/Fable/issues/1490
+        symlinks: false
+    },
     devServer: {
         contentBase: CONFIG.outputDir,
         hot: true,
