@@ -1,3 +1,6 @@
+### 0.17.1 - Saturday, November 16, 2019
+* Fix nupkg
+
 ### 0.17.0 - Saturday, November 9, 2019
 * Updated for latest Plotly releases
 * Fixed radial and angular data types not being set correctly
