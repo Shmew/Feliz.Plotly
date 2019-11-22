@@ -1,3 +1,6 @@
+### 0.18.0 - Thursday, November 21, 2019
+* Fixed layout buttons not being properly parsed
+
 ### 0.17.2 - Saturday, November 16, 2019
 * Fix nupkg
 
