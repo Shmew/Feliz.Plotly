@@ -35,7 +35,7 @@ type plot =
     /// Class applied to the <div> into which the plot is rendered
     static member inline className (value: string) = Interop.mkPlotAttr "className" value
     /// Styles the <div> into which the plot is rendered
-    static member inline style (properties: #IStyleAttribute list) = Interop.mkAttr "style" (createObj !!properties)
+    static member inline style (properties: #IStyleAttribute list) = Interop.mkPlotAttr "style" (createObj !!properties)
     /// Assign the graph div to window.gd for debugging
     static member inline debug (value: bool) = Interop.mkPlotAttr "debug" value
     /// When true, adds a call to Plotly.Plot.resize() as a window.resize event handler
