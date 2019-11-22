@@ -111,7 +111,7 @@ module rec ApiParser =
 
     /// Parses a `JsonValue` with given information and returns a `Prop`
     let parseProp componentTree propName (jVal: JsonValue) =
-        let jumpArray = [ "annotations"; "dimensions"; "styles"; "transforms" ]
+        let jumpArray = [ "annotations"; "dimensions"; "styles"; "transforms"; "buttons" ]
         let typeAdders = [ "Traces"; "Transforms" ]
         let typeAdderChildren = traceChildren @ transformsChildren
 

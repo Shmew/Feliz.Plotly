@@ -84,6 +84,11 @@ let [<Literal>] SmoothColoring = "SmoothColoring"
 let [<Literal>] SmoothingLines = "SmoothingLines"
 let [<Literal>] StylingColorbar = "StylingColorbar"
 
+// Custom Examples
+let [<Literal>] Custom = "Custom"
+
+let [<Literal>] Gantt = "Gantt"
+
 // Dot Examples
 let [<Literal>] Dot = "Dot"
 

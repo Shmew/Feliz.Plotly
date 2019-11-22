@@ -16,7 +16,7 @@ type updatemenu =
     static member inline active (value: int) = Interop.mkUpdatemenuAttr "active" value
     /// Highlights active dropdown item or active button if true.
     static member inline showactive (value: bool) = Interop.mkUpdatemenuAttr "showactive" value
-    static member inline buttons (properties: #IButtonsProperty list) = Interop.mkUpdatemenuAttr "buttons" (createObj !!properties)
+    static member inline buttons (properties: #IButtonsProperty list) = Interop.mkUpdatemenuAttr "buttons" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Sets the x position (in normalized coordinates) of the update menu.
     static member inline x (value: int) = Interop.mkUpdatemenuAttr "x" value
     /// Sets the x position (in normalized coordinates) of the update menu.

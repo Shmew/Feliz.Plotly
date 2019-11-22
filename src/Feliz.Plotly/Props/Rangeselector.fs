@@ -12,7 +12,7 @@ open Feliz
 type rangeselector =
     /// Determines whether or not this range selector is visible. Note that range selectors are only available for x axes of `type` set to or auto-typed to *date*.
     static member inline visible (value: bool) = Interop.mkRangeselectorAttr "visible" value
-    static member inline buttons (properties: #IButtonsProperty list) = Interop.mkRangeselectorAttr "buttons" (createObj !!properties)
+    static member inline buttons (properties: #IButtonsProperty list) = Interop.mkRangeselectorAttr "buttons" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Sets the x position (in normalized coordinates) of the range selector.
     static member inline x (value: int) = Interop.mkRangeselectorAttr "x" value
     /// Sets the x position (in normalized coordinates) of the range selector.

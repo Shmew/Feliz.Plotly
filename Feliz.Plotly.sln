@@ -385,6 +385,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindRose", "WindRose", "{D7
 		public\Plotly\Examples\Scientific\WindRose\Basic.md = public\Plotly\Examples\Scientific\WindRose\Basic.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Custom", "Custom", "{D31EE9FE-2CE4-43CC-8F34-770B98955493}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Custom\Gantt.md = public\Plotly\Examples\Custom\Gantt.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -457,6 +462,7 @@ Global
 		{3CCA1E00-38C6-495D-A261-E2CF93723833} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
 		{5F4941F7-79D2-4318-B6EC-03A990B08F85} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
 		{D71CF41D-646D-480D-BC51-F7CDB5E55F3D} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
+		{D31EE9FE-2CE4-43CC-8F34-770B98955493} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

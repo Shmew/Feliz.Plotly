@@ -351,7 +351,10 @@ let samples =
         [ multipleAxes ]
         |> List.concat
 
-    [ basicSamples; statisticalExamples; scientificExamples; subplotExamples ]
+    let customExamples =
+        [ "plotly-chart-custom-gantt", Samples.Custom.Gantt.chart() ]
+
+    [ basicSamples; statisticalExamples; scientificExamples; subplotExamples; customExamples ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -811,6 +814,9 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Multiple Y-Axes" [ Urls.MultipleYAxes ]
                         ]
                     ]
+                    nestedMenuList "Custom" [ Urls.Plotly; Urls.Examples; Urls.Custom ] [
+                        nestedMenuItem "Gantt" [ Urls.Gantt ]
+                    ]
                 ]
             ]
         ]
@@ -1166,6 +1172,14 @@ let subplotExamples (currentPath: string list) =
         if path |> List.isEmpty then []
         else [ Urls.Subplots ] @ path
 
+let customExamples (currentPath: string list) =
+    match currentPath with
+    | [ Urls.Gantt ] -> [ "Gantt.md" ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Custom ] @ path
+
 let content state dispatch =
     let tryTakePath (basePath: string list) (path: string list) =
         let num = path.Length
@@ -1184,6 +1198,7 @@ let content state dispatch =
         | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
         | scientificPath when tryTakePath scientificPath [ Urls.Scientific ] -> scientificPath |> List.skip 1 |> scientificExamples
         | subplotsPath when tryTakePath subplotsPath [ Urls.Subplots ] -> subplotsPath |> List.skip 1 |> subplotExamples
+        | customPath when tryTakePath customPath [ Urls.Custom ] -> customPath |> List.skip 1 |> customExamples
         | _ -> [ ]
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
