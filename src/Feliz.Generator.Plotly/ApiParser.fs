@@ -583,7 +583,45 @@ module rec ApiParser =
               "",
               "static member inline onUnhover (handler: Bindings.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onUnhover\" handler" ]
 
-        let api = ComponentApi.create "Feliz.Plotly" "Plot" "Plotly" bindings typePostlude |> addAllComponents
+        let customPropTypes =
+            [ { Name = "modeBarButtons"
+                Properties = 
+                    [ "autoScale2d"
+                      "editInChartStudio"
+                      "hoverClosest3d"
+                      "hoverClosestCartesian"
+                      "hoverClosestGeo"
+                      "hoverClosestPie"
+                      "hoverCompareCartesian"
+                      "lasso2d"
+                      "orbitRotation"
+                      "pan2d"
+                      "pan3d"
+                      "resetCameraDefault3d"
+                      "resetCameraLastSave3d"
+                      "resetGeo"
+                      "resetScale2d"
+                      "resetViewMapbox"
+                      "resetViews"
+                      "resetViewSankey"
+                      "sendDataToCloud"
+                      "select2d"
+                      "tableRotation"
+                      "toggleHover"
+                      "toggleSpikelines"
+                      "toImage"
+                      "zoom2d"
+                      "zoom3d"
+                      "zoomIn2d"
+                      "zoomInGeo"
+                      "zoomOutGeo"
+                      "zoomOut2d" ]
+                    |> List.map (fun s -> s, s) } ]
+
+        let api = 
+            ComponentApi.create "Feliz.Plotly" "Plot" "Plotly" bindings typePostlude 
+            |> addAllComponents
+            |> ComponentApi.addCustomPropertyTypes customPropTypes
 
         { GeneratorComponentApi = api
           PlotlyComponents = components }

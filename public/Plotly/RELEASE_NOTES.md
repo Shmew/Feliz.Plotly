@@ -1,3 +1,6 @@
+### 0.18.2 - Friday, November 22, 2019
+* Added modeBarButton static typings
+
 ### 0.18.1 - Friday, November 22, 2019
 * Fixed base plot style attribute
 

@@ -165,6 +165,16 @@ module Render =
             |> List.distinct
             |> List.sort
 
+        let buildCustomPropType (customPropType: CustomPropertyType) =
+            let customProps =
+                customPropType.Properties
+                |> List.map (fun (methodName, value) ->
+                    sprintf "static member inline %s = \"%s\"" methodName value |> indent 1)
+            
+            [ "[<Erase>]"
+              sprintf "type %s =" customPropType.Name
+              yield! customProps ]
+
     /// Generate the interop file
     let interopDocument (api: ComponentApi) =
         [ sprintf "namespace %s" api.Namespace
@@ -189,12 +199,16 @@ module Render =
           "/// THIS FILE IS AUTO-GENERATED //"
           "////////////////////////////////*)"
           ""
+          "open Fable.Core"
           "open System.ComponentModel"
           ""
           "[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]"
           "module Types ="
           sprintf "type I%sProperty = interface end" api.ComponentContainerTypeName |> indent 1
           yield! (GetLines.buildInterfaces api.Components |> List.distinct)
+          ""
+          for customPropTypes in api.CustomPropertyTypes do
+              yield! GetLines.buildCustomPropType customPropTypes
           "" ]
         |> String.concat Environment.NewLine
 

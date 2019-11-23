@@ -4,6 +4,7 @@ namespace Feliz.Plotly
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
 
+open Fable.Core
 open System.ComponentModel
 
 [<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]
@@ -183,3 +184,36 @@ module Types =
     type IYbinsProperty = interface end
     type IZProperty = interface end
     type IZaxisProperty = interface end
+
+[<Erase>]
+type modeBarButtons =
+    static member inline autoScale2d = "autoScale2d"
+    static member inline editInChartStudio = "editInChartStudio"
+    static member inline hoverClosest3d = "hoverClosest3d"
+    static member inline hoverClosestCartesian = "hoverClosestCartesian"
+    static member inline hoverClosestGeo = "hoverClosestGeo"
+    static member inline hoverClosestPie = "hoverClosestPie"
+    static member inline hoverCompareCartesian = "hoverCompareCartesian"
+    static member inline lasso2d = "lasso2d"
+    static member inline orbitRotation = "orbitRotation"
+    static member inline pan2d = "pan2d"
+    static member inline pan3d = "pan3d"
+    static member inline resetCameraDefault3d = "resetCameraDefault3d"
+    static member inline resetCameraLastSave3d = "resetCameraLastSave3d"
+    static member inline resetGeo = "resetGeo"
+    static member inline resetScale2d = "resetScale2d"
+    static member inline resetViewMapbox = "resetViewMapbox"
+    static member inline resetViews = "resetViews"
+    static member inline resetViewSankey = "resetViewSankey"
+    static member inline sendDataToCloud = "sendDataToCloud"
+    static member inline select2d = "select2d"
+    static member inline tableRotation = "tableRotation"
+    static member inline toggleHover = "toggleHover"
+    static member inline toggleSpikelines = "toggleSpikelines"
+    static member inline toImage = "toImage"
+    static member inline zoom2d = "zoom2d"
+    static member inline zoom3d = "zoom3d"
+    static member inline zoomIn2d = "zoomIn2d"
+    static member inline zoomInGeo = "zoomInGeo"
+    static member inline zoomOutGeo = "zoomOutGeo"
+    static member inline zoomOut2d = "zoomOut2d"

@@ -632,6 +632,11 @@ module rec Domain =
         let addParentComponentTree (tree: string list) (comp: Component) =
             { comp with ParentNameTree = comp.ParentNameTree @ (tree |> List.map String.upperFirst) }
 
+    /// Types that only contain properties, such as enums
+    type CustomPropertyType =
+        { Name: string
+          Properties: (string * string) list }
+
     type ComponentApi =
         { /// The namespace for the API.
           Namespace: string
@@ -648,7 +653,9 @@ module rec Domain =
           /// Bindings for the API.
           Bindings: (string * string) list
           /// Lines to insert after the component definitions.
-          TypePostlude: (string * string) list }
+          TypePostlude: (string * string) list
+          /// Types to insert after the Types file that only contain properties
+          CustomPropertyTypes: CustomPropertyType list }
 
     module ComponentApi =
         /// Creates a component API with the specified namespace and component type
@@ -661,7 +668,8 @@ module rec Domain =
               ComponentContainerTypeName = typeName
               Components = []
               Bindings = bindings
-              TypePostlude = typePostlude }
+              TypePostlude = typePostlude
+              CustomPropertyTypes = [] }
 
         /// Adds the specified component to the API.
         let addComponent component' api: ComponentApi = { api with Components = api.Components @ [ component' ] }
@@ -671,6 +679,9 @@ module rec Domain =
 
         /// Adds the specified props prelude to the API.
         let setPropsPrelude lines api = { api with PropsPrelude = lines }
+
+        /// Adds the specified CustomPropertyTypes
+        let addCustomPropertyTypes customPropertyTypes api = { api with CustomPropertyTypes = customPropertyTypes }
 
     type PlotlyComponentApi =
         { GeneratorComponentApi: ComponentApi
