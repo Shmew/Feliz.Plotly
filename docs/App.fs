@@ -351,11 +351,14 @@ let samples =
         [ multipleAxes ]
         |> List.concat
 
+    let transitionExamples =
+        [ "plotly-chart-transitions-basic", Samples.Transitions.Basic.chart() ]
+
     let customExamples =
         [ "plotly-chart-custom-gantt", Samples.Custom.Gantt.chart()
           "plotly-chart-custom-webglgantt", Samples.Custom.WebGLGantt.chart()]
 
-    [ basicSamples; statisticalExamples; scientificExamples; subplotExamples; customExamples ]
+    [ basicSamples; statisticalExamples; scientificExamples; subplotExamples; transitionExamples; customExamples ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -815,6 +818,9 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Multiple Y-Axes" [ Urls.MultipleYAxes ]
                         ]
                     ]
+                    nestedMenuList "Transitions" [ Urls.Plotly; Urls.Examples; Urls.Transitions ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                    ]
                     nestedMenuList "Custom" [ Urls.Plotly; Urls.Examples; Urls.Custom ] [
                         nestedMenuItem "Gantt" [ Urls.Gantt ]
                         nestedMenuItem "WebGL Gantt" [ Urls.WebGLGantt ]
@@ -1174,6 +1180,14 @@ let subplotExamples (currentPath: string list) =
         if path |> List.isEmpty then []
         else [ Urls.Subplots ] @ path
 
+let transitionExamples (currentPath: string list) =
+    match currentPath with
+    | [ Urls.Basic ] -> [ "Basic.md" ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Transitions ] @ path
+
 let customExamples (currentPath: string list) =
     match currentPath with
     | [ Urls.Gantt ] -> [ "Gantt.md" ]
@@ -1201,6 +1215,7 @@ let content state dispatch =
         | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
         | scientificPath when tryTakePath scientificPath [ Urls.Scientific ] -> scientificPath |> List.skip 1 |> scientificExamples
         | subplotsPath when tryTakePath subplotsPath [ Urls.Subplots ] -> subplotsPath |> List.skip 1 |> subplotExamples
+        | transitionPath when tryTakePath transitionPath [ Urls.Transitions ] -> transitionPath |> List.skip 1 |> transitionExamples
         | customPath when tryTakePath customPath [ Urls.Custom ] -> customPath |> List.skip 1 |> customExamples
         | _ -> [ ]
         |> fun path ->

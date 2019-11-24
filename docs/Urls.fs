@@ -240,6 +240,9 @@ let [<Literal>] TernaryContour = "TernaryContour"
 
 let [<Literal>] Filled = "Filled"
 
+// Transition Examples
+let [<Literal>] Transitions = "Transitions"
+
 // Treemap Examples
 let [<Literal>] Treemap = "Treemap"
 
