@@ -88,6 +88,7 @@ let [<Literal>] StylingColorbar = "StylingColorbar"
 let [<Literal>] Custom = "Custom"
 
 let [<Literal>] Gantt = "Gantt"
+let [<Literal>] WebGLGantt = "WebGLGantt"
 
 // Dot Examples
 let [<Literal>] Dot = "Dot"

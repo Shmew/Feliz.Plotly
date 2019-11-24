@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Plotly\Examples\Custom\Gantt.fs" />
+    <Compile Include="Plotly\Examples\Custom\WebGLGantt.fs" />
     <Compile Include="Plotly\Examples\Scientific\Carpet\Basic.fs" />
     <Compile Include="Plotly\Examples\Scientific\Carpet\AddAAndBAxis.fs" />
     <Compile Include="Plotly\Examples\Scientific\Carpet\StyleAAndBAxis.fs" />

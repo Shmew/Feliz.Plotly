@@ -388,6 +388,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Custom", "Custom", "{D31EE9FE-2CE4-43CC-8F34-770B98955493}"
 	ProjectSection(SolutionItems) = preProject
 		public\Plotly\Examples\Custom\Gantt.md = public\Plotly\Examples\Custom\Gantt.md
+		public\Plotly\Examples\Custom\WebGLGantt.md = public\Plotly\Examples\Custom\WebGLGantt.md
 	EndProjectSection
 EndProject
 Global

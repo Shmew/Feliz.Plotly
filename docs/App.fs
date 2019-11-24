@@ -352,7 +352,8 @@ let samples =
         |> List.concat
 
     let customExamples =
-        [ "plotly-chart-custom-gantt", Samples.Custom.Gantt.chart() ]
+        [ "plotly-chart-custom-gantt", Samples.Custom.Gantt.chart()
+          "plotly-chart-custom-webglgantt", Samples.Custom.WebGLGantt.chart()]
 
     [ basicSamples; statisticalExamples; scientificExamples; subplotExamples; customExamples ]
     |> List.concat
@@ -816,6 +817,7 @@ let sidebar (state: State) dispatch =
                     ]
                     nestedMenuList "Custom" [ Urls.Plotly; Urls.Examples; Urls.Custom ] [
                         nestedMenuItem "Gantt" [ Urls.Gantt ]
+                        nestedMenuItem "WebGL Gantt" [ Urls.WebGLGantt ]
                     ]
                 ]
             ]
@@ -1175,6 +1177,7 @@ let subplotExamples (currentPath: string list) =
 let customExamples (currentPath: string list) =
     match currentPath with
     | [ Urls.Gantt ] -> [ "Gantt.md" ]
+    | [ Urls.WebGLGantt ] -> [ "WebGLGantt.md" ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []

@@ -1,3 +1,6 @@
+### 0.18.3 - Saturday, November 22, 2019
+* Change import statement to fix issue with some webgl not importing properly
+
 ### 0.18.2 - Friday, November 22, 2019
 * Added modeBarButton static typings
 

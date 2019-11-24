@@ -76,7 +76,9 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'ify-loader'
+                use: [
+                    'ify-loader',
+                ]
             },
             {
                 test: /\.js$/,

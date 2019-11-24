@@ -1,0 +1,532 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20191123.232110.14680.0.001.json",
+    "dumpEventTime": "2019-11-23T23:21:10Z",
+    "dumpEventTimeStamp": "1574572870663",
+    "processId": 14680,
+    "cwd": "C:\\Users\\shmew\\source\\repos\\Feliz.Plotly",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\shmew\\source\\repos\\Feliz.Plotly\\node_modules\\.bin\\\\..\\webpack-dev-server\\bin\\webpack-dev-server.js"
+    ],
+    "nodejsVersion": "v12.7.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.7.0",
+      "v8": "7.5.288.22-node.16",
+      "uv": "1.30.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.1",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.7.0/node-v12.7.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.7.0/node-v12.7.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.7.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.18362",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      },
+      {
+        "model": "Intel(R) Core(TM) i9-9900K CPU @ 3.60GHz",
+        "speed": 3600,
+        "user": 63353890,
+        "nice": 0,
+        "sys": 54564546,
+        "idle": 1183863968,
+        "irq": 26126750
+      }
+    ],
+    "host": "DESKTOP-3K3VGBS"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6b2ec6b89",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10841"
+    },
+    {
+      "pc": "0x00007ff6b2eca4fc",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+25548"
+    },
+    {
+      "pc": "0x00007ff6b2ec94a8",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+21368"
+    },
+    {
+      "pc": "0x00007ff6b2fb33db",
+      "symbol": "v8::base::CPU::has_sse+37691"
+    },
+    {
+      "pc": "0x00007ff6b379a3de",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff6b378272a",
+      "symbol": "v8::SharedArrayBuffer::Externalize+842"
+    },
+    {
+      "pc": "0x00007ff6b3613e3c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff6b361bd5f",
+      "symbol": "v8::internal::Heap::OldGenerationSizeOfObjects+4879"
+    },
+    {
+      "pc": "0x00007ff6b3612003",
+      "symbol": "v8::internal::Heap::CollectGarbage+1235"
+    },
+    {
+      "pc": "0x00007ff6b3611434",
+      "symbol": "v8::internal::Heap::CollectAllAvailableGarbage+196"
+    },
+    {
+      "pc": "0x00007ff6b361090f",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2415"
+    },
+    {
+      "pc": "0x00007ff6b3627a8e",
+      "symbol": "v8::internal::Factory::AllocateRawFixedArray+94"
+    },
+    {
+      "pc": "0x00007ff6b362f534",
+      "symbol": "v8::internal::Factory::NewFixedArrayWithFiller+52"
+    },
+    {
+      "pc": "0x00007ff6b362f4f1",
+      "symbol": "v8::internal::Factory::NewUninitializedFixedArray+65"
+    },
+    {
+      "pc": "0x00007ff6b367cafe",
+      "symbol": "v8::Context::GetIsolate+5614"
+    },
+    {
+      "pc": "0x00007ff6b3410e23",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+181731"
+    },
+    {
+      "pc": "0x00007ff6b3bb982d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+614605"
+    },
+    {
+      "pc": "0x000001de8d6d8170",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2156474368,
+    "totalCommittedMemory": 2156474368,
+    "usedMemory": 2123757880,
+    "availableMemory": 43665456,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261832,
+        "used": 31960,
+        "available": 229872
+      },
+      "new_space": {
+        "memorySize": 2097152,
+        "committedMemory": 2097152,
+        "capacity": 1047328,
+        "used": 0,
+        "available": 1047328
+      },
+      "old_space": {
+        "memorySize": 2081042432,
+        "committedMemory": 2081042432,
+        "capacity": 2052103912,
+        "used": 2052103912,
+        "available": 0
+      },
+      "code_space": {
+        "memorySize": 3047424,
+        "committedMemory": 3047424,
+        "capacity": 2517856,
+        "used": 2517856,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 3149824,
+        "committedMemory": 3149824,
+        "capacity": 2390240,
+        "used": 2390240,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 66252800,
+        "committedMemory": 66252800,
+        "capacity": 66163608,
+        "used": 66163608,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 622592,
+        "committedMemory": 622592,
+        "capacity": 550304,
+        "used": 550304,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1047328,
+        "used": 0,
+        "available": 1047328
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 85.359,
+    "kernelCpuSeconds": 2.531,
+    "cpuConsumptionPercent": 139.508,
+    "maxRss": 2283261952,
+    "pageFaults": {
+      "IORequired": 1039436,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 7467,
+      "writes": 72
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=C:": "C:\\Users\\shmew\\source\\repos\\Feliz.Plotly",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\shmew\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132169447713402023",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-3K3VGBS",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "configsetroot": "C:\\WINDOWS\\ConfigSetRoot",
+    "CUDA_PATH": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v10.0",
+    "CUDA_PATH_V10_0": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v10.0",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "FSHARP_FORMATTING_LOG": "ALL",
+    "fsiargs-buildscriptargs": "--define:DOTNETCORE --define:FAKE",
+    "GD_KEY": "AIzaSyCadvcdvZ6BDbWL-QhEkFafzKdfSfcHBKQ",
+    "GH_TOKEN": "0b8c6b4075c8b6556e648fc933eb5de17cc67647",
+    "HOME": "C:\\Users\\shmew",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\shmew",
+    "INIT_CWD": "C:\\Users\\shmew\\source\\repos\\Feliz.Plotly",
+    "LOCALAPPDATA": "C:\\Users\\shmew\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-3K3VGBS",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start\"],\"original\":[\"start\"]}",
+    "npm_config_bin_links": "true",
+    "npm_config_ignore_optional": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_license": "MIT",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_network_timeout": "50000000",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "npm_config_save_prefix": "^",
+    "npm_config_strict_ssl": "",
+    "npm_config_user_agent": "yarn/1.19.1 npm/? node/v12.7.0 win32 x64",
+    "npm_config_version_commit_hooks": "true",
+    "npm_config_version_git_message": "v%s",
+    "npm_config_version_git_sign": "",
+    "npm_config_version_git_tag": "true",
+    "npm_config_version_tag_prefix": "v",
+    "npm_execpath": "C:\\Program Files (x86)\\Yarn\\bin\\yarn.js",
+    "npm_lifecycle_event": "start",
+    "npm_lifecycle_script": "webpack-dev-server",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_author_name": "Cody Johnson",
+    "npm_package_bugs_url": "https://github.com/Shmew/Feliz.Plotly/issues/new/choose",
+    "npm_package_dependencies_mkdirp": "^0.5.1",
+    "npm_package_dependencies_plotly_js": "^1.51.1",
+    "npm_package_dependencies_react": "^16.10.2",
+    "npm_package_dependencies_react_dom": "^16.10.2",
+    "npm_package_dependencies_react_highlight": "^0.12.0",
+    "npm_package_dependencies_react_markdown": "^4.2.2",
+    "npm_package_dependencies_react_plotly_js": "^2.4.0",
+    "npm_package_dependencies_source_map_support": "^0.5.12",
+    "npm_package_description": "Fable bindings written in the Feliz-style for plotly.js",
+    "npm_package_devDependencies_babel_loader": "^8.0.6",
+    "npm_package_devDependencies_core_js": "^3.2.1",
+    "npm_package_devDependencies_fable_compiler": "^2.4.9",
+    "npm_package_devDependencies_fable_loader": "^2.1.8",
+    "npm_package_devDependencies_file_loader": "^4.2.0",
+    "npm_package_devDependencies_gh_pages": "^2.1.1",
+    "npm_package_devDependencies_html_webpack_plugin": "^3.2.0",
+    "npm_package_devDependencies_ify_loader": "^1.1.0",
+    "npm_package_devDependencies_remotedev": "^0.2.9",
+    "npm_package_devDependencies_resolve_url_loader": "^3.1.0",
+    "npm_package_devDependencies_transform_loader": "^0.2.4",
+    "npm_package_devDependencies_webpack": "^4.41.0",
+    "npm_package_devDependencies_webpack_cli": "^3.3.9",
+    "npm_package_devDependencies_webpack_dev_server": "^3.8.2",
+    "npm_package_devDependencies__babel_core": "^7.6.2",
+    "npm_package_devDependencies__babel_preset_env": "^7.6.2",
+    "npm_package_homepage": "https://github.com/Shmew/Feliz.Plotly",
+    "npm_package_license": "MIT",
+    "npm_package_name": "feliz.-plotly",
+    "npm_package_private": "true",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_repository_type": "git",
+    "npm_package_repository_url": "https://github.com/Shmew/Feliz.Plotly",
+    "npm_package_scripts_build": "webpack -p",
+    "npm_package_scripts_compile_demo_raw": "fable-splitter",
+    "npm_package_scripts_publish_docs": "yarn build && node publish.js",
+    "npm_package_scripts_start": "webpack-dev-server",
+    "npm_package_version": "0.18.2",
+    "NUGET_KEY": "oy2oiwdub6qmrsfr5tlqogaftc7cnwaufk2537jhm7bupa",
+    "NUMBER_OF_PROCESSORS": "16",
+    "NVCUDASAMPLES10_0_ROOT": "C:\\ProgramData\\NVIDIA Corporation\\CUDA Samples\\v10.0",
+    "NVCUDASAMPLES_ROOT": "C:\\ProgramData\\NVIDIA Corporation\\CUDA Samples\\v10.0",
+    "NVTOOLSEXT_PATH": "C:\\Program Files\\NVIDIA Corporation\\NvToolsExt\\",
+    "OculusBase": "C:\\Program Files\\Oculus\\",
+    "OneDrive": "C:\\Users\\shmew\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\shmew\\OneDrive",
+    "OS": "Windows_NT",
+    "PaketExePath": "paket.exe",
+    "PAKET_DISABLE_RUNTIME_RESOLUTION": "true",
+    "Path": "C:\\Users\\shmew\\AppData\\Local\\Temp\\yarn--1574572806963-0.00835486654161044;C:\\Users\\shmew\\source\\repos\\Feliz.Plotly\\node_modules\\.bin;C:\\Users\\shmew\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\Oculus\\Support\\oculus-runtime;C:\\ProgramData\\DockerDesktop\\version-bin;C:\\Program Files\\Docker\\Docker\\Resources\\bin;C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v10.0\\bin;C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v10.0\\libnvvp;C:\\Rtools\\bin;C:\\windows\\system32;C:\\windows;C:\\windows\\System32\\Wbem;C:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\windows\\System32\\OpenSSH\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NGX;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files\\Git\\cmd;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files\\Oracle\\VirtualBox;C:\\Program Files\\TensorRT\\TensorRT-6.0.1.5\\lib;C:\\Program Files\\R\\R-3.6.1\\bin\\x64;C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64;C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64\\Scripts;C:\\Users\\shmew\\AppData\\Roaming\\Python\\Python37\\Scripts;C:\\Program Files\\ffmpeg-20191021-a174e5f-win64-static\\bin;C:\\Program Files\\MPV;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Users\\shmew\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\shmew\\AppData\\Local\\atom\\bin;C:\\Users\\shmew\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\shmew\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\shmew\\.dotnet\\tools;C:\\Users\\shmew\\AppData\\Roaming\\npm;C:\\Users\\shmew\\AppData\\Local\\Yarn\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 158 Stepping 12, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "9e0c",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Users\\shmew\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "PYTHONHOME": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python37_64",
+    "R_HOME": "C:\\Program Files\\R\\R-3.6.1",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\shmew\\AppData\\Local\\Temp",
+    "term": "xterm-256color",
+    "TERM_PROGRAM": "FluentTerminal",
+    "TERM_PROGRAM_VERSION": "0.6.1.0",
+    "TMP": "C:\\Users\\shmew\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-3K3VGBS",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-3K3VGBS",
+    "USERNAME": "Shmew",
+    "USERPROFILE": "C:\\Users\\shmew",
+    "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
+    "WEBPACK_DEV_SERVER": "true",
+    "windir": "C:\\WINDOWS",
+    "YARN_WRAP_OUTPUT": "false"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMMBASE.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\System32\\UMPDC.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll"
+  ]
+}
