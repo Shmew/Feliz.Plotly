@@ -10,7 +10,7 @@ open Feliz
 
 [<Erase>]
 type legend =
-    /// Sets the legend background color.
+    /// Sets the legend background color. Defaults to `layout.paper_bgcolor`.
     static member inline bgcolor (value: string) = Interop.mkLegendAttr "bgcolor" value
     /// Sets the color of the border enclosing the legend.
     static member inline bordercolor (value: string) = Interop.mkLegendAttr "bordercolor" value

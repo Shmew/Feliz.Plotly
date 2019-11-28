@@ -13,7 +13,7 @@ type Bulma = CssClasses<"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/
 let chart = React.functionComponent(fun () ->
     let xData,setXData = React.useState([ 1; 2; 3; 4 ])
 
-    Html.fragment [
+    React.fragment [
         Plotly.plot [
             plot.traces [
                 traces.scatter [
