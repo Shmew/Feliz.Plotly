@@ -121,7 +121,7 @@ let view = React.functionComponent (fun (input: {| model: Model; dispatch: Msg -
         ]
     ])
 
-let render () = React.elmishComponent("ElmishBasic",init(), update, (fun model dispatch -> view {| model = model; dispatch = dispatch |}))
+let render () = React.elmishComponent("ElmishWithReact",init(), update, (fun model dispatch -> view {| model = model; dispatch = dispatch |}))
 ```
 
 If you do not use [Feliz](https://github.com/Zaid-Ajaj/Feliz) or need inline alerts there are alternative bindings over at [Elmish.SweetAlert](https://github.com/Zaid-Ajaj/Elmish.SweetAlert).

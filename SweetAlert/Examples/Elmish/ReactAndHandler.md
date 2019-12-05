@@ -107,5 +107,5 @@ let view = React.functionComponent (fun (input: {| model: Model; dispatch: Msg -
         ]
     ])
 
-let render () = React.elmishComponent("ElmishBasic",init(), update, (fun model dispatch -> view {| model = model; dispatch = dispatch |}))
+let render () = React.elmishComponent("ElmishWithReact",init(), update, (fun model dispatch -> view {| model = model; dispatch = dispatch |}))
 ```
