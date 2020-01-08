@@ -1,4 +1,4 @@
-version 5.226.0
+version 5.241.2
 
 framework: auto-detect
 
@@ -37,18 +37,6 @@ group Docs
     nuget Zanaptak.TypedCssClasses ~> 0.2
 
     github Zaid-Ajaj/Feliz Feliz.Markdown/Markdown.fs
-
-group Testing
-	source https://nuget.org/api/v2
-	source https://api.nuget.org/v3/index.json
-
-	nuget Expecto ~> 8.11
-	nuget Expecto.BenchmarkDotNet ~> 8.11
-	nuget Expecto.FsCheck ~> 8.11
-	nuget Expecto.TestResults ~> 8.10
-	nuget Foq ~> 1.8
-	nuget FSharp.Core ~> 4.7
-	nuget FSharp.Data ~> 3.1
 
 group Tooling
 	source https://nuget.org/api/v2
