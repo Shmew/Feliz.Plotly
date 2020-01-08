@@ -1,3 +1,6 @@
+### 0.19.0 - Wednesday, January 8, 2020
+* Regenerate for plotly.js 1.52.0 release
+
 ### 0.18.4 - Saturday, November 22, 2019
 * Regenerate for plotly.js 1.51.2 release
 
