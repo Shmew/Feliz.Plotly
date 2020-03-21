@@ -918,7 +918,7 @@ let sidebar (state: State) dispatch =
                         nestedMenuItem "Mesh" [ Urls.Mesh ]
                         nestedMenuItem "Line" [ Urls.Line ]
                         nestedMenuItem "Tri-Surf" [ Urls.TriSurf ]
-                        nestedMenuItem "ClusterGraph" [ Urls.ClusterGraph ]
+                        nestedMenuItem "Cluster Graph" [ Urls.ClusterGraph ]
                         nestedMenuItem "Cone" [ Urls.Cone ]
                         nestedMenuItem "Streamtube" [ Urls.Streamtube ]
                         nestedMenuItem "Isosurface" [ Urls.Isosurface ]
