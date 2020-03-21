@@ -11,6 +11,8 @@
     <Compile Include="Types.fs" />
     <Compile Include="Interop.fs" />
     <Compile Include="Bindings.fs" />
+    <Compile Include="Events.fs" />
+    <Compile Include="CustomProps.fs" />
     <Compile Include="Props\Aaxis.fs" />
     <Compile Include="Props\Aggregate.fs" />
     <Compile Include="Props\Aggregation.fs" />
@@ -170,6 +172,7 @@
     <Compile Include="Props\Transforms.fs" />
     <Compile Include="Props\Transition.fs" />
     <Compile Include="Props\Treemap.fs" />
+    <Compile Include="Props\Uniformtext.fs" />
     <Compile Include="Props\Unselected.fs" />
     <Compile Include="Props\Up.fs" />
     <Compile Include="Props\Updatemenu.fs" />

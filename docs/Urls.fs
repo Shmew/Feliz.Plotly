@@ -9,6 +9,7 @@ let [<Literal>] Overview = "Overview"
 let [<Literal>] ReleaseNotes = "ReleaseNotes"
 let [<Literal>] Scientific = "Scientific"
 let [<Literal>] Statistical = "Statistical"
+let [<Literal>] Financial = "Financial"
 let [<Literal>] Subplots = "Subplots"
 
 // Non-exclusive Chart names
@@ -20,6 +21,7 @@ let [<Literal>] Horizontal = "Horizontal"
 let [<Literal>] HoverText = "HoverText"
 let [<Literal>] Stacked = "Stacked"
 let [<Literal>] Styled = "Styled"
+let [<Literal>] Waterfall = "Waterfall"
 
 // Bar Examples
 let [<Literal>] Bar = "Bar"
@@ -31,7 +33,6 @@ let [<Literal>] DirectLabels = "DirectLabels"
 let [<Literal>] GroupedDirectLabels = "GroupedDirectLabels"
 let [<Literal>] RelativeBarmode = "RelativeBarmode"
 let [<Literal>] RotatedLabels = "RotatedLabels"
-let [<Literal>] Waterfall = "Waterfall"
 let [<Literal>] Widths = "Widths"
 
 // Box Plot Examples
@@ -49,6 +50,9 @@ let [<Literal>] Bubble = "Bubble"
 let [<Literal>] MarkerSizeAndColor = "MarkerSizeAndColor"
 let [<Literal>] MarkerSizeColorAndSymbolArray = "MarkerSizeColorAndSymbolArray"
 let [<Literal>] SizeScaling = "SizeScaling"
+
+// Candlestick Examples
+let [<Literal>] Candlestick = "Candlestick"
 
 // Carpet Examples
 let [<Literal>] Carpet = "Carpet"
@@ -102,6 +106,14 @@ let [<Literal>] Asymmetric = "Asymmetric"
 let [<Literal>] PercentageOfYValue = "PercentageOfYValue"
 let [<Literal>] WithBarChart = "WithBarChart"
 
+// Event examples
+let [<Literal>] Events = "Events"
+
+let [<Literal>] Click = "Click"
+let [<Literal>] Hover = "Hover"
+let [<Literal>] Zoom = "Zoom"
+let [<Literal>] DisableZoom = "DisableZoom"
+
 // Filled Area Examples
 let [<Literal>] FilledArea = "FilledArea"
 
@@ -109,6 +121,11 @@ let [<Literal>] NormalizedStackedArea = "NormalizedStackedArea"
 let [<Literal>] OverlaidWithoutBoundary = "OverlaidWithoutBoundary"
 let [<Literal>] SelectHover = "SelectHover"
 let [<Literal>] StackedArea = "StackedArea"
+
+// Funnel Examples
+let [<Literal>] Funnel = "Funnel"
+
+let [<Literal>] FunnelArea = "FunnelArea"
 
 // Heatmap Examples
 let [<Literal>] Heatmap = "Heatmap"
@@ -130,6 +147,12 @@ let [<Literal>] HorizontalBar = "HorizontalBar"
 let [<Literal>] BarWithLinePlot = "BarWithLinePlot"
 let [<Literal>] Colored = "Colored"
 
+// Indicator Examples
+let [<Literal>] Indicators = "Indicators"
+
+let [<Literal>] Showcase = "Showcase"
+let [<Literal>] Overlay = "Overlay"
+
 // Line Examples
 let [<Literal>] Line = "Line"
 
@@ -147,6 +170,11 @@ let [<Literal>] Log = "Log"
 
 let [<Literal>] LogarithmicAxes = "LogarithmicAxes"
 
+// Map Examples
+let [<Literal>] Maps = "Maps"
+
+let [<Literal>] Choropleth = "Choropleth"
+
 // Multiple Axes Examples
 let [<Literal>] MultipleAxes = "MultipleAxes"
 
@@ -158,6 +186,9 @@ let [<Literal>] MultipleChartTypes = "MultipleChartTypes"
 
 let [<Literal>] ContourAndScatter = "ContourAndScatter"
 let [<Literal>] LineAndBar = "LineAndBar"
+
+// OHLC Examples
+let [<Literal>] OHLC = "OHLC"
 
 // Parallel Categories Examples
 let [<Literal>] ParallelCategories = "ParallelCategories"
@@ -215,6 +246,10 @@ let [<Literal>] Splom = "Splom"
 let [<Literal>] Iris = "Iris"
 let [<Literal>] Diabetes = "Diabetes"
 
+// Subplot Examples
+let [<Literal>] Inset = "Inset"
+let [<Literal>] Mixed = "Mixed"
+
 // Sunburst Examples
 let [<Literal>] Sunburst = "Sunburst"
 
@@ -240,8 +275,24 @@ let [<Literal>] TernaryContour = "TernaryContour"
 
 let [<Literal>] Filled = "Filled"
 
+// Time Series Examples
+let [<Literal>] TimeSeries = "TimeSeries"
+
+let [<Literal>] SetRange = "SetRange"
+let [<Literal>] RangeSlider = "RangeSlider"
+
+// Transform Examples
+let [<Literal>] Transforms = "Transforms"
+
+let [<Literal>] Filter = "Filter"
+let [<Literal>] Groupby = "Groupby"
+let [<Literal>] Aggregations = "Aggregations"
+let [<Literal>] Multiple = "Multiple"
+
 // Transition Examples
 let [<Literal>] Transitions = "Transitions"
+
+let [<Literal>] Lorenz = "Lorenz"
 
 // Treemap Examples
 let [<Literal>] Treemap = "Treemap"
@@ -255,6 +306,9 @@ let [<Literal>] Violin = "Violin"
 
 let [<Literal>] MultipleTraces = "MultipleTraces"
 let [<Literal>] Split = "Split"
+
+// Waterfall Examples
+let [<Literal>] MultiCategory = "MultiCategory"
 
 // Wind Rose Examples
 let [<Literal>] WindRose = "WindRose"
@@ -275,3 +329,15 @@ let [<Literal>] OverlaidWithScatter = "OverlaidWithScatter"
 let [<Literal>] TwoDimensionalHistogramContour = "2DHistogramContour"
 
 let [<Literal>] Colorscale = "Colorscale"
+
+// 3D Examples
+let [<Literal>] ThreeDimensional = "3D"
+
+let [<Literal>] Ribbon = "Ribbon"
+let [<Literal>] Surface = "Surface"
+let [<Literal>] Mesh = "Mesh"
+let [<Literal>] TriSurf = "TriSurf"
+let [<Literal>] ClusterGraph = "ClusterGraph"
+let [<Literal>] Cone = "Cone"
+let [<Literal>] Streamtube = "Streamtube"
+let [<Literal>] Isosurface = "Isosurface"

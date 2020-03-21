@@ -4,7 +4,44 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Plotly\Examples\Transitions\Basic.fs" />
+    <Compile Include="Plotly\Examples\Transforms\Filter.fs" />
+    <Compile Include="Plotly\Examples\Transforms\Groupby.fs" />
+    <Compile Include="Plotly\Examples\Transforms\Aggregations.fs" />
+    <Compile Include="Plotly\Examples\Transforms\Multiple.fs" />
+    <Compile Include="Plotly\Examples\Events\Click.fs" />
+    <Compile Include="Plotly\Examples\Events\Hover.fs" />
+    <Compile Include="Plotly\Examples\Events\Zoom.fs" />
+    <Compile Include="Plotly\Examples\Events\DisableZoom.fs" />
+    <Compile Include="Plotly\Examples\3D\Scatter.fs" />
+    <Compile Include="Plotly\Examples\3D\Ribbon.fs" />
+    <Compile Include="Plotly\Examples\3D\Surface.fs" />
+    <Compile Include="Plotly\Examples\3D\Mesh.fs" />
+    <Compile Include="Plotly\Examples\3D\Line.fs" />
+    <Compile Include="Plotly\Examples\3D\TriSurf.fs" />
+    <Compile Include="Plotly\Examples\3D\ClusterGraph.fs" />
+    <Compile Include="Plotly\Examples\3D\Cone.fs" />
+    <Compile Include="Plotly\Examples\3D\Streamtube.fs" />
+    <Compile Include="Plotly\Examples\3D\Isosurface.fs" />
+    <Compile Include="Plotly\Examples\Maps\Scatter.fs" />
+    <Compile Include="Plotly\Examples\Maps\Heatmap.fs" />
+    <Compile Include="Plotly\Examples\Maps\Lines.fs" />
+    <Compile Include="Plotly\Examples\Maps\Bubble.fs" />
+    <Compile Include="Plotly\Examples\Maps\FilledArea.fs" />
+    <Compile Include="Plotly\Examples\Maps\Choropleth.fs" />
+    <Compile Include="Plotly\Examples\Financial\Candlestick\Basic.fs" />
+    <Compile Include="Plotly\Examples\Financial\Funnel\Basic.fs" />
+    <Compile Include="Plotly\Examples\Financial\Funnel\FunnelArea.fs" />
+    <Compile Include="Plotly\Examples\Financial\Indicators\Showcase.fs" />
+    <Compile Include="Plotly\Examples\Financial\Indicators\Overlay.fs" />
+    <Compile Include="Plotly\Examples\Financial\OHLC\Basic.fs" />
+    <Compile Include="Plotly\Examples\Financial\TimeSeries\Basic.fs" />
+    <Compile Include="Plotly\Examples\Financial\TimeSeries\SetRange.fs" />
+    <Compile Include="Plotly\Examples\Financial\TimeSeries\RangeSlider.fs" />
+    <Compile Include="Plotly\Examples\Financial\Waterfall\Basic.fs" />
+    <Compile Include="Plotly\Examples\Financial\Waterfall\MultiCategory.fs" />
+    <Compile Include="Plotly\Examples\Financial\Waterfall\Horizontal.fs" />
+    <Compile Include="Plotly\Examples\Financial\Waterfall\Styled.fs" />
+    <Compile Include="Plotly\Examples\Transitions\Lorenz.fs" />
     <Compile Include="Plotly\Examples\Custom\Gantt.fs" />
     <Compile Include="Plotly\Examples\Custom\WebGLGantt.fs" />
     <Compile Include="Plotly\Examples\Scientific\Carpet\Basic.fs" />
@@ -54,6 +91,8 @@
     <Compile Include="Plotly\Examples\Scientific\WindRose\Basic.fs" />
     <Compile Include="Plotly\Examples\Subplots\MultipleAxes\TwoYAxes.fs" />
     <Compile Include="Plotly\Examples\Subplots\MultipleAxes\MultipleYAxes.fs" />
+    <Compile Include="Plotly\Examples\Subplots\Inset.fs" />
+    <Compile Include="Plotly\Examples\Subplots\Mixed.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DDensity\WithHistogramSubplots.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogram\BivariateNormalDistribution.fs" />
     <Compile Include="Plotly\Examples\Statistical\2DHistogram\BinningAndStyling.fs" />

@@ -12,15 +12,20 @@ module Render =
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
-            let attrValue = prop.ParentNameTree |> List.head
-
             let bodyCode =
                 match propOverload.BodyCode with
-                | ValueExprOnly expr -> sprintf "Interop.mk%sAttr \"%s\" %s" attrValue prop.RealPropName expr
+                | ValueExprOnly expr -> 
+                    sprintf "Interop.mk%sAttr \"%s\" %s" prop.ParentNameTree.Head prop.RealPropName expr
                 | CustomBody code -> code
-            sprintf "static member %s%s %s = %s"
+
+            let paramsCode =
+                match propOverload.ParamsCode with
+                | "" -> ""
+                | _ -> sprintf " %s" propOverload.ParamsCode
+
+            sprintf "static member %s%s%s = %s"
                 (if propOverload.IsInline then "inline "
-                 else "") prop.MethodName propOverload.ParamsCode bodyCode |> List.singleton
+                 else "") prop.MethodName paramsCode bodyCode |> List.singleton
 
         /// Gets the code lines for the implementation of a single regular (non-enum)
         /// prop overload. Does not include docs.
@@ -30,8 +35,21 @@ module Render =
                  else "") propOverload.MethodName
                 (match propOverload.ParamsCode with
                  | Some s -> s + " "
-                 | None -> "") (prop.ParentNameTree.Head) prop.RealPropName propOverload.ValueCode
+                 | None -> "") prop.ParentNameTree.Head prop.RealPropName propOverload.ValueCode
             |> emptStringToNone
+            |> List.singleton
+
+        /// Gets the code lines for the implementation of a single regular (non-enum)
+        /// prop overload. Does not include docs.
+        let singlePropCustomOverload (propOverload: CustomPropOverload) =
+            let paramsCode =
+                match propOverload.ParamsCode with
+                | "" -> ""
+                | _ -> sprintf " %s" propOverload.ParamsCode
+
+            sprintf "static member %s%s%s = %s"
+                (if propOverload.IsInline then "inline "
+                 else "") propOverload.MethodName paramsCode propOverload.BodyCode 
             |> List.singleton
 
         /// Builds non-extension prop strings for a given component
@@ -88,17 +106,18 @@ module Render =
                           yield! singlePropRegularOverload prop overload |> List.map (indent (indentLevel + 2)) ]
 
         /// Builds enumeration prop strings for a component
-        let enumPropsForComponent (comp: Component) indentLevel =
-            let propsAndEnumOverloads =
+        let enumAndCustomPropsForComponent (comp: Component) indentLevel =
+            let propsEnumOverloadsAndCustomOverloads =
                 comp.Props
                 |> List.choose (fun p ->
-                    if p.EnumOverloads.IsEmpty then None
-                    else Some(p, p.EnumOverloads))
+                    match p.EnumOverloads, p.CustomOverloads with
+                    | [], [] -> None
+                    | _ -> Some (p, p.EnumOverloads, p.CustomOverloads))
 
-            if propsAndEnumOverloads.IsEmpty then
+            if propsEnumOverloadsAndCustomOverloads.IsEmpty  then
                 []
             else
-                [ for prop, overloads in propsAndEnumOverloads do
+                [ for prop, overloads, customOverloads in propsEnumOverloadsAndCustomOverloads do
                     let allOverloadsAreInline = overloads |> List.forall (fun o -> o.IsInline)
                     yield! prop.DocLines
                            |> List.map
@@ -114,13 +133,20 @@ module Render =
                                     >> String.trim
                                     >> indent (indentLevel + 2))
                         yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
+                    for overload in customOverloads do
+                        yield! prop.DocLines
+                               |> List.map
+                                   (String.prefix "/// "
+                                    >> String.trim
+                                    >> indent (indentLevel + 2))
+                        yield! singlePropCustomOverload overload |> List.map (indent (indentLevel + 2))
                     "" ]
 
         /// Gets all prop strings for a component
         let rec propsForComponent indentStart (comp: Component) =
             let regularProps = regularNonExtensionPropsForComponent comp indentStart
             let regularExtensionProps = regularExtensionPropsForComponent comp indentStart
-            let enumProps = enumPropsForComponent comp indentStart
+            let enumAndCustomProps = enumAndCustomPropsForComponent comp indentStart
 
             [ if not regularProps.IsEmpty then
                 yield! regularProps
@@ -128,55 +154,87 @@ module Render =
               if not regularExtensionProps.IsEmpty then
                   yield! regularExtensionProps
                   ""
-              if enumProps.Length > 0 then
-                  sprintf "[<AutoOpen>]" |> indent indentStart
+              if enumAndCustomProps.Length > 0 then
+                  sprintf "[<RequireQualifiedAccess>]" |> indent indentStart
                   sprintf "module %s =" comp.MethodName |> indent indentStart
-              yield! enumProps ]
+              yield! enumAndCustomProps ]
 
-        let propHeadStrings (strFun: string -> string) (comp: Component) =
+        let propHeadStrings (strFun: string -> string) (filterFun: string -> bool) (comp: Component) =
             let propStr (prop: Prop) =
                 if not prop.RegularOverloads.IsEmpty || not prop.EnumOverloads.IsEmpty then
                     prop.ParentNameTree
-                    |> List.head
-                    |> strFun
-                    |> List.singleton
-                else
-                    []
+                    |> List.tryHead
+                    |> Option.bind (fun res ->
+                        if filterFun res then None
+                        else strFun res |> List.singleton |> Some)
+                    |> function
+                    | Some res -> res
+                    | None -> []
+                else []
 
             comp.Props |> List.collect propStr
 
         /// Builds the interface strings from a `Component list`
-        let buildInterfaces (comps: Component list) =
+        let buildInterfaces (comps: Component list) (manualInterfaces: string list) =
             let baseInterfaceStr s = sprintf "type I%sProperty = interface end" s |> indent 1
 
+            let filterFun s = List.contains s manualInterfaces
+
             comps
-            |> List.collect (propHeadStrings baseInterfaceStr)
+            |> List.collect (propHeadStrings baseInterfaceStr filterFun)
             |> List.distinct
             |> List.sort
 
         /// Builds the interop strings from a `Component list`
-        let buildInterops (comps: Component list) =
+        let buildInterops (comps: Component list) (preludeInterfaces: string list) (postludeInterfaces: string list) =
             let baseInteropStr s =
                 sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" s s
                 |> indent 1
 
-            comps
-            |> List.collect (propHeadStrings baseInteropStr)
-            |> List.distinct
-            |> List.sort
+            let allManualInterfaces = preludeInterfaces @ postludeInterfaces
+
+            let filterFun s = 
+                List.contains s allManualInterfaces
+
+            let compInterop =
+                comps
+                |> List.collect (propHeadStrings baseInteropStr filterFun)
+                |> List.distinct
+                |> List.sort
+
+            [ yield! preludeInterfaces |> List.map baseInteropStr
+              yield! compInterop
+              yield! postludeInterfaces |> List.map baseInteropStr ]
 
         let buildCustomPropType (customPropType: CustomPropertyType) =
             let customProps =
                 customPropType.Properties
-                |> List.map (fun (methodName, value) ->
-                    sprintf "static member inline %s = \"%s\"" methodName value |> indent 1)
+                |> List.map (fun value ->
+                    sprintf "static member inline %s = unbox<I%sProperty> \"%s\"" value (String.upperFirst customPropType.Name) value |> indent 1)
             
+            let customFuncs =
+                customPropType.Functions
+                |> List.collect (fun (docs, value) ->
+                    [ sprintf "/// %s" docs |> indent 1; value |> indent 1 ])
+
             [ "[<Erase>]"
               sprintf "type %s =" customPropType.Name
-              yield! customProps ]
+              yield! customProps
+              yield! customFuncs ]
 
     /// Generate the interop file
     let interopDocument (api: ComponentApi) =
+        let makeInterop s =
+            sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" s s
+
+        let preludeInterfaces = 
+            api.TypePrelude
+            |> List.map fst
+
+        let postludeInterfaces =
+            api.TypePostlude
+            |> List.map fst
+
         [ sprintf "namespace %s" api.Namespace
           ""
           "(*////////////////////////////////"
@@ -185,14 +243,16 @@ module Render =
           ""
           "[<RequireQualifiedAccess>]"
           "module Interop ="
-          sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)"
-              api.ComponentContainerTypeName api.ComponentContainerTypeName |> indent 1
-          yield! GetLines.buildInterops api.Components
+          makeInterop api.ComponentContainerTypeName |> indent 1
+          yield! GetLines.buildInterops api.Components preludeInterfaces postludeInterfaces
           "" ]
         |> String.concat Environment.NewLine
 
     /// Generate the interfaces type file
     let typesDocument (api: ComponentApi) =
+        let buildCustomInterfaceName name =
+            sprintf "I%sProperty" name
+        
         [ sprintf "namespace %s" api.Namespace
           ""
           "(*////////////////////////////////"
@@ -205,11 +265,31 @@ module Render =
           "[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]"
           "module Types ="
           sprintf "type I%sProperty = interface end" api.ComponentContainerTypeName |> indent 1
-          yield! (GetLines.buildInterfaces api.Components |> List.distinct)
+          if not api.TypePrelude.IsEmpty then
+              for (interfaceName, interfaceBody) in api.TypePrelude do
+                  sprintf "type %s = %s" (buildCustomInterfaceName interfaceName) interfaceBody |> indent 1
+          yield! (GetLines.buildInterfaces api.Components (api.TypePrelude @ api.TypePostlude |> List.map fst) |> List.distinct)
+          if not api.TypePostlude.IsEmpty then
+              for (interfaceName, interfaceBody) in api.TypePostlude do
+                  sprintf "type %s = %s" (buildCustomInterfaceName interfaceName) interfaceBody |> indent 1
+          "" ]
+        |> String.concat Environment.NewLine
+
+    /// Generate custom defined properties
+    let customPropsDocument (api: ComponentApi) =
+        [ sprintf "namespace %s" api.Namespace
+          ""
+          "(*////////////////////////////////"
+          "/// THIS FILE IS AUTO-GENERATED //"
+          "////////////////////////////////*)"
+          ""
+          "open Fable.Core"
+          "open Fable.Core.JsInterop"
+          "open System.ComponentModel"
           ""
           for customPropTypes in api.CustomPropertyTypes do
               yield! GetLines.buildCustomPropType customPropTypes
-          "" ]
+              "" ]
         |> String.concat Environment.NewLine
 
     /// Generate the base level Plotly component file
@@ -224,7 +304,6 @@ module Render =
           "open Browser.Types"
           "open Fable.Core"
           "open Fable.Core.JsInterop"
-          "open Fable.React"
           "open Feliz"
           ""
           if not api.ComponentsPrelude.IsEmpty then
@@ -233,10 +312,10 @@ module Render =
               ""
               yield! api.ComponentsPrelude
               ""
-          if not api.TypePostlude.IsEmpty then
+          if not api.BindingsPrelude.IsEmpty then
               "[<Erase>]"
               sprintf "type %s =" (api.ComponentContainerTypeName |> String.lowerFirst)
-              for doc, cont in api.TypePostlude do
+              for doc, cont in api.BindingsPrelude do
                   if doc
                      |> String.IsNullOrEmpty
                      |> not

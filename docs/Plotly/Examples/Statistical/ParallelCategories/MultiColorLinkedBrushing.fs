@@ -51,7 +51,7 @@ module Types =
     type State =
         { CarData: CarData
           ColorAction: ColorAction 
-          Colors: float []
+          Colors: int []
           DataLoaded: bool
           Error: string option }
 
@@ -59,7 +59,7 @@ module Types =
         | LoadData of string
         | SetCarData of CarData
         | SetColorAction of ColorAction
-        | SetColors of ResizeArray<Bindings.PlotDatum>
+        | SetColors of ResizeArray<Events.PlotDatum>
         | SetError of string option
 
 module State =
@@ -87,22 +87,22 @@ module State =
     let update msg (state: State) =
         match msg with
         | LoadData path -> state, Cmd.ofSub (loadDataset path state)
-        | SetCarData carData -> { state with CarData = carData; Colors = carData.Horsepower |> Array.map (fun _ -> 0.);  DataLoaded = true; Error = None }, Cmd.none
+        | SetCarData carData -> { state with CarData = carData; Colors = carData.Horsepower |> Array.map (fun _ -> 0);  DataLoaded = true; Error = None }, Cmd.none
         | SetColorAction colorAction -> { state with ColorAction = colorAction }, Cmd.none
         | SetColors points -> 
             let colorPre = 
                 points
                 |> Array.ofSeq
-                |> Array.map (fun pObj -> pObj.pointNumber)
+                |> Array.choose (fun pObj -> pObj.pointNumber)
 
             let colors =
                 state.Colors
                 |> Array.mapi (fun i origColor ->
-                    if Array.contains (i |> float) colorPre then
+                    if Array.contains i colorPre then
                         match state.ColorAction with
-                        | ColorAction.Erase -> 0.
-                        | ColorAction.Red -> 1.
-                        | ColorAction.Blue -> 2.
+                        | ColorAction.Erase -> 0
+                        | ColorAction.Red -> 1
+                        | ColorAction.Blue -> 2
                     else origColor)
             
             { state with Colors = colors }, Cmd.none

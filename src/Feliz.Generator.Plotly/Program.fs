@@ -9,6 +9,7 @@ module Program =
         let api = ApiParser.parseApi()
         let plotlyFile = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Plotly.fs"
         let interopFile = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Interop.fs"
+        let customPropFile = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/CustomProps.fs"
         let typesFile = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Types.fs"
         let propsDir = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Props"
 
@@ -17,6 +18,8 @@ module Program =
         Render.componentDocument api.GeneratorComponentApi |> File.writeString false plotlyFile
 
         Render.interopDocument api.GeneratorComponentApi |> File.writeString false interopFile
+
+        Render.customPropsDocument api.GeneratorComponentApi |> File.writeString false customPropFile 
 
         Render.typesDocument api.GeneratorComponentApi |> File.writeString false typesFile
 

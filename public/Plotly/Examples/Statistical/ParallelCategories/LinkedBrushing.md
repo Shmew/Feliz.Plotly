@@ -47,9 +47,9 @@ type State =
 let plot' = React.functionComponent (fun (input: {| carData: CarData |}) ->
     let (plotState, setPlotState) = React.useState({ Data = None; Layout = None })
     
-    let plotColors = input.carData.Horsepower |> Array.map (fun _ -> 0.)
+    let plotColors = input.carData.Horsepower |> Array.map (fun _ -> 0)
 
-    let plotData (selectedPoints: float []) (selectedPlotColors: float []) =
+    let plotData (selectedPoints: int []) (selectedPlotColors: int []) =
         plot.traces [
             traces.scatter [
                 scatter.x input.carData.Horsepower
@@ -127,21 +127,21 @@ let plot' = React.functionComponent (fun (input: {| carData: CarData |}) ->
 
     React.useEffect(initPlot, [| input.carData :> obj |])
 
-    let updatePoints (points: ResizeArray<Bindings.PlotDatum>) =
+    let updatePoints (points: ResizeArray<Events.PlotDatum>) =
         let points = points |> Array.ofSeq
 
         let colorPre,selections = 
             points
-            |> Array.map (fun pObj ->
-                pObj.pointNumber,
-                pObj.pointNumber)
+            |> Array.choose (fun datum ->
+                match datum.pointNumber with
+                | Some n -> Some(n,n)
+                | _ -> None)
             |> Array.unzip
         let colors =
             plotColors
             |> Array.mapi (fun i _ ->
-                if Array.contains (i |> float) colorPre then
-                    1.
-                else 0.)
+                if Array.contains i colorPre then 1
+                else 0)
 
         { plotState with Data = plotData selections colors |> Some }
         |> setPlotState

@@ -67,8 +67,10 @@ let chart () =
                 margin.pad 10
             ]
             layout.showlegend false
-            layout.title [
-                title.text "Task Schedule"
+            layout.title "Task Schedule"
+            layout.transition [
+                transition.duration 1000
+                transition.easing.cubicInOut
             ]
             layout.xaxis [
                 xaxis.rangeselector [

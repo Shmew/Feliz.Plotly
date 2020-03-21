@@ -85,7 +85,7 @@ module ParserUtils =
         | Some aName -> {| Value = aName; Array = false |}
         | _ -> failwith "Invalid anchor mapping call."
 
-module rec ApiParser =
+module ApiParser =
     open ParserUtils
 
     let manualDeprecated = 
@@ -98,20 +98,9 @@ module rec ApiParser =
             |> List.exists (snd >> List.exists (fun n -> n = name)) 
         | _ -> false
 
-    /// Filter all JsonValue properties if deprecated
-    let parseWithfilterDeprecated componentName parentTree (props: (string * JsonValue) []) =
-        props
-        |> Array.choose (fun (pName, pJ) ->
-            if pJ.TryGetProperty("description")
-               |> Option.map (fun j -> j.AsString().Contains("deprecated!"))
-               |> Option.defaultValue false || pName = "_deprecated" 
-               || isManualDeprecated componentName pName
-            then None
-            else parseProp parentTree pName pJ |> Some)
-
     /// Parses a `JsonValue` with given information and returns a `Prop`
     let parseProp componentTree propName (jVal: JsonValue) =
-        let jumpArray = [ "annotations"; "dimensions"; "styles"; "transforms"; "buttons" ]
+        let jumpArray = [ "annotations"; "dimensions"; "styles"; "buttons"; "aggregations"; "transforms" ]
         let typeAdders = [ "Traces"; "Transforms" ]
         let typeAdderChildren = traceChildren @ transformsChildren
 
@@ -146,12 +135,15 @@ module rec ApiParser =
         let axisInt axisIdentity isArray =
             if isArray then
                 [ ValType.intSeqStrCustom "anchorIds"
-                    (sprintf "anchorIds |> Seq.map (fun anchorId -> (sprintf \"%s%s\" %s) |> ResizeArray)" axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
+                    (sprintf "anchorIds |> Seq.map (fun anchorId -> (sprintf \"%s%s\" %s) |> ResizeArray)" 
+                        axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
                   ValType.intStrCustom "anchorId"
-                    (sprintf "(sprintf \"%s%s\" %s |> Array.singleton |> ResizeArray)" axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")") ]
+                    (sprintf "(sprintf \"%s%s\" %s |> Array.singleton |> ResizeArray)" 
+                        axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")") ]
             else
                 ValType.intStrCustom "anchorId"
-                    (sprintf "(sprintf \"%s%s\" %s)" axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
+                    (sprintf "(sprintf \"%s%s\" %s)" 
+                        axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
                 |> List.singleton
 
         let propType =
@@ -202,7 +194,8 @@ module rec ApiParser =
                                 RegularPropOverload.createCustom paramsCode bodyCode)
                         else
                             expOverStrs
-                            |> List.map (fun (paramsCode, valueCode) -> RegularPropOverload.create paramsCode valueCode)
+                            |> List.map (fun (paramsCode, valueCode) -> 
+                                RegularPropOverload.create paramsCode valueCode)
 
                 ValType.getOverloadStrings componentParent mNameUpper propType
                 |> List.map (fun (paramsCode, valueCode) ->
@@ -281,12 +274,14 @@ module rec ApiParser =
                         EnumPropOverload.create methodName valueCode
                         |> EnumPropOverload.setParamsCode paramsCode)
                 | ValType.EnumeratedWithCustom when v = "custom" && componentParent = "Line" && propName = "dash" ->
-                    let valueCode, paramsCode = [ ValType.intSeqResizeStr; ValType.floatSeqResizeStr ] |> List.unzip
+                    let valueCode, paramsCode = 
+                        [ ValType.intSeqResizeStr; ValType.floatSeqResizeStr ] |> List.unzip
 
                     paramsCode
                     |> List.map2
                         (fun pCode vCode ->
-                        EnumPropOverload.create methodName vCode |> EnumPropOverload.setParamsCode pCode) valueCode
+                        EnumPropOverload.create methodName vCode 
+                        |> EnumPropOverload.setParamsCode pCode) valueCode
 
                 | ValType.EnumeratedWithCustom when v = "custom" ->
                     let paramsCode, valueCode = ValType.stringStr
@@ -322,7 +317,8 @@ module rec ApiParser =
         let parentTree = parentTree |> List.map trimBypass
 
         let rec performJumps (name: string) (j: JsonValue) =
-            if List.contains name jumpComp then j.Properties |> Array.collect (fun (name, j) -> performJumps name j)
+            if List.contains name jumpComp then j.Properties |> Array.collect (fun (name, j) -> 
+                performJumps name j)
             else (name, j) |> Array.singleton
 
         let filterAttributes (props: (string * JsonValue) []) =
@@ -344,17 +340,25 @@ module rec ApiParser =
                  | (name, j) when List.contains name jumpComp -> performJumps name j
                  | _ -> prop)
                  >> (fun prop ->
-                 prop
-                 |> Array.filter
-                     (fun p ->
-                     Array.contains (fst p)
-                         ((skips |> List.filter (fun skip -> List.contains skip (jumpCompIf |> List.map snd) |> not))
-                          |> Array.ofList) |> not)))
+                     prop
+                     |> Array.filter (fun p ->
+                         skips 
+                         |> List.filter (fun skip -> 
+                             List.contains skip (jumpCompIf |> List.map snd) |> not)
+                         |> Array.ofList
+                         |> Array.contains (fst p)
+                         |> not)))
 
         let props =
             jVal.Properties
             |> filterAttributes
-            |> parseWithfilterDeprecated componentName parentTree
+            |> Array.choose (fun (pName, pJ) ->
+                if pJ.TryGetProperty("description")
+                   |> Option.map (fun j -> j.AsString().Contains("deprecated!"))
+                   |> Option.defaultValue false || pName = "_deprecated" 
+                   || isManualDeprecated componentName pName
+                then None
+                else parseProp parentTree pName pJ |> Some)
             |> Array.distinctBy (fun p -> p.MethodName)
 
         let addProps comp = (comp, props) ||> Array.fold (flip Component.addProp)
@@ -364,17 +368,21 @@ module rec ApiParser =
         |> Component.addParentComponentTree parentTree
         |> addProps
 
-    /// Parses the root schema for enumerated values with the given component name and enum name returning a JsonValue of the collected values.
+    /// Parses the root schema for enumerated values with the given component 
+    /// name and enum name returning a JsonValue of the collected values.
     let getAllEnumAttributes (property: string) (enumName: string) =
         let rec getEnumValues attribList parent (jVal: JsonValue) =
             jVal.Properties
-            |> Array.partition (fun (name, j) -> name = enumName && j |> hasEnums && parent = property)
+            |> Array.partition (fun (name, j) -> 
+                name = enumName && j |> hasEnums && parent = property)
             ||> fun matches others ->
                 let addedAttribList =
                     matches
                     |> Array.collect (fun (_, attrib) -> [| parent, attrib |])
                     |> Array.append attribList
-                Array.append addedAttribList (Array.collect (fun (pName, j) -> getEnumValues [||] pName j) others)
+                others
+                |> Array.collect (fun (pName, j) -> getEnumValues [||] pName j)
+                |> Array.append addedAttribList
 
         getEnumValues [||] property schema
         |> (Array.collect (snd >> JsonExtensions.Properties)
@@ -384,17 +392,20 @@ module rec ApiParser =
         |> Array.distinct
         |> JsonValue.Array
 
-    /// Parses given JsonValue for components with the given name returning a JsonValue of a collected set of properties.
+    /// Parses given JsonValue for components with the given name returning 
+    /// a JsonValue of a collected set of properties.
     let getAttributesOf (source: JsonValue) (property: string) =
         let rec getAttributes attribList parent (jVal: JsonValue) =
             jVal.Properties
-            |> Array.partition (fun (name, j) -> name = property && j.TryGetProperty("valType").IsNone)
+            |> Array.partition (fun (name, j) -> 
+                name = property && j.TryGetProperty("valType").IsNone)
             ||> fun matches others ->
                 let addedAttribList =
                     matches
                     |> Array.collect (fun (_, attrib) -> [| parent, attrib |])
                     |> Array.append attribList
-                Array.append addedAttribList (Array.collect (fun (pName, j) -> getAttributes [||] pName j) others)
+                Array.append addedAttribList (Array.collect (fun (pName, j) -> 
+                    getAttributes [||] pName j) others)
 
         getAttributes [||] property source
         |> Array.collect (snd >> JsonExtensions.Properties)
@@ -412,8 +423,52 @@ module rec ApiParser =
                 (name, jVal))
         |> JsonValue.Record
 
-    /// Parses the root schema for components with the given name returning a JsonValue of a collected set of properties.
+    /// Parses the root schema for components with the given name returning 
+    /// a JsonValue of a collected set of properties.
     let getAllAttributes (property: string) = getAttributesOf schema property
+
+    type ComponentCollector =
+        { Parent: string
+          Children: string list
+          AttributeName: string }
+
+    [<RequireQualifiedAccess>]
+    module ComponentCollector =
+        let fromParent name compCollector =
+            compCollector.Parent = name
+
+        let fromParentSeq name compCollectors =
+            List.tryFind (fromParent name) compCollectors
+
+        let fromChild name compCollector =
+            List.contains name compCollector.Children
+
+        let fromChildSeq name compCollectors =
+            List.tryFind (fromChild name) compCollectors
+
+        let fromParentAndChild name compCollectors =
+            fromParentSeq name compCollectors,
+            fromChildSeq name compCollectors
+
+    let collectAttributesUnderComponent (name: string) (compCollectors: ComponentCollector list) (jsonValue: JsonValue) =
+        match ComponentCollector.fromParentAndChild name compCollectors with
+        | Some cc, _ ->
+            jsonValue.Properties
+            |> Array.append (getAllAttributes cc.AttributeName |> JsonExtensions.Properties)
+            |> JsonValue.Record
+        | _, Some cc ->
+            traceChildrenWithJson
+            |> Array.choose (fun (traceName, traceJson) ->
+                if traceName.Contains(name) then
+                    getAttributesOf traceJson cc.AttributeName
+                    |> JsonExtensions.Properties
+                    |> Some
+                else None)
+            |> Array.concat
+            |> Array.distinct
+            |> Array.append jsonValue.Properties
+            |> JsonValue.Record
+        | _ -> jsonValue
 
     /// Gets a list of all components within the schema with their collected properties
     let getAllComponents() =
@@ -426,9 +481,14 @@ module rec ApiParser =
             >> appendApostropheToReservedKeywords
 
         let jumps = [ "attributes"; "items"; "layoutAttributes" ]
-        let subLayouts = [ "ternary"; "geo"; "mapbox"; "polar" ]
 
-        let rec allComponentNames (jVal: JsonValue): string list =
+        let componentCollectors = [
+            { Parent = "layout"
+              Children = [ "ternary"; "geo"; "mapbox"; "polar" ]
+              AttributeName = "layoutAttributes" }
+        ]
+
+        let rec allComponentNames (jVal: JsonValue) : string list =
             let props =
                 match jumps |> List.choose (jVal.TryGetProperty) with
                 | j when j.Length > 0 -> (j |> List.head).Properties
@@ -466,25 +526,7 @@ module rec ApiParser =
             (((fun n ->
              n |> fixComponentName,
              getAllAttributes n
-             |> fun res ->
-                 match n, List.filter ((=) n) subLayouts with
-                 | "layout", _ ->
-                     res.Properties
-                     |> Array.append (getAllAttributes "layoutAttributes" |> JsonExtensions.Properties)
-                     |> JsonValue.Record
-                 | _, subL when subL.Length > 0 ->
-                     traceChildrenWithJson
-                     |> Array.choose (fun (traceName, traceJson) ->
-                         if traceName.Contains(n) then
-                             getAttributesOf traceJson "layoutAttributes"
-                             |> JsonExtensions.Properties
-                             |> Some
-                         else None)
-                     |> Array.concat
-                     |> Array.distinct
-                     |> Array.append res.Properties
-                     |> JsonValue.Record
-                 | _ -> res))
+             |> collectAttributesUnderComponent n componentCollectors))
              >> (fun (n, j) ->
                 match List.filter (fun (name, _) -> name = n) manualDeprecated |> List.collect snd with
                 | res when res.Length > 0 ->
@@ -494,94 +536,166 @@ module rec ApiParser =
                 | _ -> (n,j))
              >> (fun (n, j) -> parseComponent [ n |> String.upperFirst ] n j))
 
+    let addSugaredOverloads (comps: Component list) =
+        let sugars =
+            [ "color",
+              [ "rgb", "(r,g,b)", sprintf "Interop.mk%sAttr \"color\" (Feliz.color.rgb(r,g,b))"
+                "rgba", "(r,g,b,a)", sprintf "Interop.mk%sAttr \"color\" (Feliz.color.rgba(r,g,b,a))"
+                "hsl", "(h,s,l)", sprintf "Interop.mk%sAttr \"color\" (Feliz.color.hsl(h,s,l))" ]
+              "target",
+              [ "i", "", sprintf "Interop.mk%sAttr \"target\" \"i\""
+                "j", "", sprintf "Interop.mk%sAttr \"target\" \"j\""
+                "k", "", sprintf "Interop.mk%sAttr \"target\" \"k\""
+                "u", "", sprintf "Interop.mk%sAttr \"target\" \"u\""
+                "v", "", sprintf "Interop.mk%sAttr \"target\" \"v\""
+                "w", "", sprintf "Interop.mk%sAttr \"target\" \"w\""
+                "x", "", sprintf "Interop.mk%sAttr \"target\" \"x\""
+                "y", "", sprintf "Interop.mk%sAttr \"target\" \"y\""
+                "z", "", sprintf "Interop.mk%sAttr \"target\" \"z\"" ] ]
+            |> Map.ofList
+            
+        comps
+        |> List.map (fun comp ->
+            { comp with 
+                Props = 
+                    comp.Props
+                    |> List.map (fun p ->
+                        match sugars.TryFind(p.MethodName) with
+                        | Some overloads -> 
+                            { p with
+                                CustomOverloads =
+                                    overloads
+                                    |> List.map (fun (methodName, pCode, bCodeFun) -> 
+                                        let bCode = bCodeFun (String.upperFirst comp.MethodName)
+                                        CustomPropOverload.create methodName pCode bCode) }
+                        | _ -> p) })
+
+    let applyPropOverrides (comps: Component list) =
+        let overrides =
+            [ "globalTransforms", 
+              fun (prop: Prop) -> 
+                  { prop with
+                      MethodName = "transforms"
+                      RegularOverloads = [
+                          ("(properties: #ITransformsProperty list)",
+                           "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)")
+                          ||> RegularPropOverload.create
+                      ] } ]
+            |> Map.ofList
+
+        comps
+        |> List.map (fun comp ->
+            { comp with 
+                Props = 
+                    comp.Props
+                    |> List.map (fun p ->
+                        match overrides.TryFind(p.MethodName) with
+                        | Some propMap -> propMap p
+                        | _ -> p) })
+
     /// Parse the Plotly.js json schema
     let parseApi() =
-        let components = getAllComponents()
+        let components =
+            getAllComponents()
+            |> addSugaredOverloads
+            |> applyPropOverrides
+            |> List.map (fun comp ->
+                { comp with
+                    Props =
+                        comp.Props
+                        |> List.sortBy (fun p -> p.MethodName) })
 
         let addAllComponents api = (api, components) ||> List.fold (flip ComponentApi.addComponent)
 
-        let bindings =
-            [ "Create a Plotly plot component.",
-              "static member inline plot (props: #IPlotProperty list) : ReactElement = Bindings.createPlot (createObj !!props)" ]
-
-        let typePostlude =
-            [ "Create the plotly traces",
+        let bindingsPrelude =
+            [ "Create the plotly traces.",
               "static member inline traces (properties: #ITracesProperty list) = Bindings.extractTraces properties"
-              "Create the plotly config",
+              "Create the plotly config.",
               "static member inline config (properties: #IConfigProperty list) = Interop.mkPlotAttr \"config\" (createObj !!properties)"
-              "Create the plotly layout",
+              "Create the plotly layout.",
               "static member inline layout (properties: #ILayoutProperty list) = Interop.mkPlotAttr \"layout\" (createObj !!properties)"
+              "Create plot frames.",
+              "static member inline frames (properties: #IFramesProperty list) = Interop.mkPlotAttr \"frames\" (createObj !!properties)"
               "When provided, causes the plot to update when the revision is incremented.",
               "static member inline revision (value: int) = Interop.mkPlotAttr \"revision\" value"
               "When provided, causes the plot to update when the revision is incremented.",
               "static member inline revision (value: float) = Interop.mkPlotAttr \"revision\" value"
               "Callback executed after plot is initialized.",
-              "static member inline onInitialized (handler: obj -> HTMLElement -> unit) = Interop.mkPlotAttr \"onInitialized\" handler"
+              "static member inline onInitialized (handler: Events.Figure -> HTMLElement -> unit) = Interop.mkPlotAttr \"onInitialized\" handler"
               "Callback executed when when a plot is updated due to new data or layout, or when user interacts with a plot.",
-              "static member inline onUpdate (handler: obj -> HTMLElement -> unit) = Interop.mkPlotAttr \"onUpdate\" handler"
+              "static member inline onUpdate (handler: Events.Figure -> HTMLElement -> unit) = Interop.mkPlotAttr \"onUpdate\" handler"
               "Callback executed when component unmounts, before Plotly.purge strips the graphDiv of all private attributes.",
-              "static member inline onPurge (handler: obj -> HTMLElement -> unit) = Interop.mkPlotAttr \"onPurge\" handler"
-              "Callback executed when a plotly.js API method rejects",
+              "static member inline onPurge (handler: Events.Figure -> HTMLElement -> unit) = Interop.mkPlotAttr \"onPurge\" handler"
+              "Callback executed when a plotly.js API method rejects.",
               "static member inline onError (handler: ErrorEvent -> unit) = Interop.mkPlotAttr \"onError\" handler"
               "Id assigned to the <div> into which the plot is rendered.",
               "static member inline divId (value: string) = Interop.mkPlotAttr \"divId\" value"
-              "Class applied to the <div> into which the plot is rendered",
+              "Class applied to the <div> into which the plot is rendered.",
               "static member inline className (value: string) = Interop.mkPlotAttr \"className\" value"
-              "Styles the <div> into which the plot is rendered",
+              "Styles the <div> into which the plot is rendered.",
               "static member inline style (properties: #IStyleAttribute list) = Interop.mkPlotAttr \"style\" (createObj !!properties)"
-              "Assign the graph div to window.gd for debugging",
+              "Assign the graph div to window.gd for debugging.",
               "static member inline debug (value: bool) = Interop.mkPlotAttr \"debug\" value"
-              "When true, adds a call to Plotly.Plot.resize() as a window.resize event handler",
+              "When true, adds a call to Plotly.Plot.resize() as a window.resize event handler.",
               "static member inline useResizeHandler (value: bool) = Interop.mkPlotAttr \"useResizeHandler\" value"
-              "", "static member inline onAfterExport (handler: unit -> unit) = Interop.mkPlotAttr \"onClick\" handler"
-              "",
+              "Callback executed when the plot is exported.", 
+              "static member inline onAfterExport (handler: unit -> unit) = Interop.mkPlotAttr \"onClick\" handler"
+              "Callback executed when the plot is drawn.",
               "static member inline onAfterPlot (handler: unit -> unit) = Interop.mkPlotAttr \"onAfterPlot\" handler"
-              "", "static member inline onAnimated (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimated\" handler"
-              "",
-              "static member inline onAnimatingFrame (handler: Bindings.FrameAnimationEvent -> unit) = Interop.mkPlotAttr \"onAnimatingFrame\" handler"
-              "",
+              "Callback executed when the plot has been animated.", 
+              "static member inline onAnimated (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimated\" handler"
+              "Callback executed when there is an animating frame.",
+              "static member inline onAnimatingFrame (handler: Events.FrameAnimationEvent -> unit) = Interop.mkPlotAttr \"onAnimatingFrame\" handler"
+              "Callback executed when an animation gets interrupted.",
               "static member inline onAnimationInterrupted (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimationInterrupted\" handler"
-              "", "static member inline onAutoSize (handler: unit -> unit) = Interop.mkPlotAttr \"onAutoSize\" handler"
-              "",
+              "Callback executed when the plot resizes automatically.", 
+              "static member inline onAutoSize (handler: unit -> unit) = Interop.mkPlotAttr \"onAutoSize\" handler"
+              "Callback executed when a plot is being exported, before the export occurs.",
               "static member inline onBeforeExport (handler: unit -> unit) = Interop.mkPlotAttr \"onBeforeExport\" handler"
-              "",
-              "static member inline onButtonClicked (handler: Bindings.ButtonClickEvent -> unit) = Interop.mkPlotAttr \"onButtonClicked\" handler"
-              "",
-              "static member inline onClick (handler: Bindings.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onClick\" handler"
-              "",
-              "static member inline onClickAnnotation (handler: Bindings.ClickAnnotationEvent -> unit) = Interop.mkPlotAttr \"onClickAnnotation\" handler"
-              "", "static member inline onDeselect (handler: unit -> unit) = Interop.mkPlotAttr \"onDeselect\" handler"
-              "",
+              "Callback executed when a menu button is clicked.",
+              "static member inline onButtonClicked (handler: Events.ButtonClickedEvent -> unit) = Interop.mkPlotAttr \"onButtonClicked\" handler"
+              "Callback executed when a plot item is clicked.",
+              "static member inline onClick (handler: Events.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onClick\" handler"
+              "Callback executed when an annotation is clicked.",
+              "static member inline onClickAnnotation (handler: Events.ClickAnnotationEvent -> unit) = Interop.mkPlotAttr \"onClickAnnotation\" handler"
+              "Callback executed when a plot item is deselected.", 
+              "static member inline onDeselect (handler: unit -> unit) = Interop.mkPlotAttr \"onDeselect\" handler"
+              "Callback executed when a plot point is double clicked.",
               "static member inline onDoubleClick (handler: unit -> unit) = Interop.mkPlotAttr \"onDoubleClick\" handler"
-              "",
+              "Callback executed when a plot creates or re-creates a framework.",
               "static member inline onFramework (handler: unit -> unit) = Interop.mkPlotAttr \"onFramework\" handler"
-              "",
-              "static member inline onHover (handler: Bindings.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onHover\" handler"
-              "",
-              "static member inline onLegendClick (handler: Bindings.LegendClickEvent -> unit) = Interop.mkPlotAttr \"onLegendClick\" handler"
-              "",
-              "static member inline onLegendDoubleClick (handler: Bindings.LegendClickEvent -> unit) = Interop.mkPlotAttr \"onLegendDoubleClick\" handler"
-              "",
-              "static member inline onRelayout (handler: Bindings.PlotRelayoutEvent -> unit) = Interop.mkPlotAttr \"onRelayout\" handler"
-              "",
-              "static member inline onRestyle (handler: Bindings.PlotRestyleEvent -> unit) = Interop.mkPlotAttr \"onRestyle\" handler"
-              "", "static member inline onRedraw (handler: unit -> unit) = Interop.mkPlotAttr \"onRedraw\" handler"
-              "",
-              "static member inline onSelected (handler: Bindings.PlotSelectionEvent -> unit) = Interop.mkPlotAttr \"onSelected\" handler"
-              "",
-              "static member inline onSelecting (handler: Bindings.PlotSelectionEvent -> unit) = Interop.mkPlotAttr \"onSelecting\" handler"
-              "",
-              "static member inline onSliderChange (handler: Bindings.SliderChangeEvent -> unit) = Interop.mkPlotAttr \"onSliderChange\" handler"
-              "",
-              "static member inline onSliderEnd (handler: Bindings.SliderEndEvent -> unit) = Interop.mkPlotAttr \"onSliderEnd\" handler"
-              "",
-              "static member inline onSliderStart (handler: Bindings.SliderStartEvent -> unit) = Interop.mkPlotAttr \"onSliderStart\" handler"
-              "",
+              "Callback executed when a plot item is hovered over.",
+              "static member inline onHover (handler: Events.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onHover\" handler"
+              "Callback executed when the legend is clicked.",
+              "static member inline onLegendClick (handler: Events.LegendClickEvent -> unit) = Interop.mkPlotAttr \"onLegendClick\" handler"
+              "Callback executed when the legend is double clicked.",
+              "static member inline onLegendDoubleClick (handler: Events.LegendClickEvent -> unit) = Interop.mkPlotAttr \"onLegendDoubleClick\" handler"
+              "Callback executed when the plot performs a relayout.",
+              "static member inline onRelayout (handler: Events.PlotRelayoutEvent -> unit) = Interop.mkPlotAttr \"onRelayout\" handler"
+              "Callback executed when the plot performs a restyle.",
+              "static member inline onRestyle (handler: Events.PlotRestyleEvent -> unit) = Interop.mkPlotAttr \"onRestyle\" handler"
+              "Callback executed when the plot is redrawn.", 
+              "static member inline onRedraw (handler: unit -> unit) = Interop.mkPlotAttr \"onRedraw\" handler"
+              "Callback executed when a plot item is selected.",
+              "static member inline onSelected (handler: Events.PlotSelectionEvent -> unit) = Interop.mkPlotAttr \"onSelected\" handler"
+              "Callback executed when a plot item is about to be selected.",
+              "static member inline onSelecting (handler: Events.PlotSelectionEvent -> unit) = Interop.mkPlotAttr \"onSelecting\" handler"
+              "Callback executed when a plot slider is changing.",
+              "static member inline onSliderChange (handler: Events.SliderChangeEvent -> unit) = Interop.mkPlotAttr \"onSliderChange\" handler"
+              "Callback executed when a plot slider finished changing.",
+              "static member inline onSliderEnd (handler: Events.SliderEndEvent -> unit) = Interop.mkPlotAttr \"onSliderEnd\" handler"
+              "Callback executed when a plot slider is about to change.",
+              "static member inline onSliderStart (handler: Events.SliderStartEvent -> unit) = Interop.mkPlotAttr \"onSliderStart\" handler"
+              "Callback executed when a plot is performing a transition.",
               "static member inline onTransitioning (handler: unit -> unit) = Interop.mkPlotAttr \"onTransitioning\" handler"
-              "",
+              "Callback executed when a plot transition is interrupted.",
               "static member inline onTransitionInterrupted (handler: unit -> unit) = Interop.mkPlotAttr \"onTransitionInterrupted\" handler"
-              "",
-              "static member inline onUnhover (handler: Bindings.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onUnhover\" handler" ]
+              "Callback executed when a plot item is unhovered.",
+              "static member inline onUnhover (handler: Events.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onUnhover\" handler" ]
+
+        let bindings =
+            [ "Create a Plotly plot component.",
+              "static member inline plot (props: #IPlotProperty list) : ReactElement = Bindings.createPlot (createObj !!props)" ]
 
         let customPropTypes =
             [ { Name = "modeBarButtons"
@@ -616,10 +730,35 @@ module rec ApiParser =
                       "zoomInGeo"
                       "zoomOutGeo"
                       "zoomOut2d" ]
-                    |> List.map (fun s -> s, s) } ]
+                Functions = 
+                    [ "Convert a custom buttons.button to a modeBarButton",
+                      "static member inline fromButton (button: IButtonsProperty) = unbox<IModeBarButtonsProperty> button"
+                      "Convert a list of buttons.button to a list of modeBarButtons",
+                      "static member inline fromButton (properties: #IButtonProperty list) = Interop.mkModeBarButtonsAttr \"button\" (createObj !!properties)" ] }
+              { Name = "measure"
+                Properties = 
+                    [ "absolute"
+                      "relative"
+                      "total" ]
+                Functions = [] }
+              { Name = "template"
+                Properties = []
+                Functions =
+                    [ "Create the plotly template traces",
+                      "static member inline traces (properties: ITracesProperty list) = Interop.mkTemplateAttr \"data\" (createObj !!(Bindings.convertTracesToTemplate properties))"
+                      "Create the plotly template layout",
+                      "static member inline layout (properties: #ILayoutProperty list) = Interop.mkTemplateAttr \"layout\" (createObj !!properties)" ] } ]
+
+        let typePrelude = 
+            [ "ModeBarButtons", "interface end" ]
+
+        let typePostlude =
+            [ "Buttons", "inherit IModeBarButtonsProperty"
+              "Measure", "interface end"
+              "Template", "interface end" ]
 
         let api = 
-            ComponentApi.create "Feliz.Plotly" "Plot" "Plotly" bindings typePostlude 
+            ComponentApi.create "Feliz.Plotly" "Plot" "Plotly" bindingsPrelude bindings typePrelude typePostlude
             |> addAllComponents
             |> ComponentApi.addCustomPropertyTypes customPropTypes
 

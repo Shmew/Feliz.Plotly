@@ -24,7 +24,7 @@ NUGET
       Fable.Browser.Event (>= 1.0) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
-    Fable.Core (3.1.4)
+    Fable.Core (3.1.5)
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
     Fable.Elmish (3.0.6) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
@@ -40,7 +40,7 @@ NUGET
     Fable.Promise (2.0)
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.5.2) - restriction: >= netstandard2.0
-    Fable.React (5.3.5) - restriction: >= netstandard2.0
+    Fable.React (5.3.6) - restriction: >= netstandard2.0
       Fable.Browser.Dom (>= 1.0) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
@@ -53,25 +53,25 @@ NUGET
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       Fable.Parsimmon (>= 4.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Feliz (0.68.10)
+    Feliz (0.69)
       Fable.Core (>= 3.1.3) - restriction: >= netstandard2.0
       Fable.React (>= 5.3.2) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Feliz.ElmishComponents (0.2.22)
+    Feliz.ElmishComponents (0.2.23)
       Fable.Elmish (>= 3.0.6) - restriction: >= netstandard2.0
-      Feliz (>= 0.68.10) - restriction: >= netstandard2.0
+      Feliz (>= 0.69) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Feliz.Router (1.7.2)
+    Feliz.Router (1.9)
       Fable.Core (>= 3.1.2) - restriction: >= netstandard2.0
       Fable.Elmish (>= 3.0.5) - restriction: >= netstandard2.0
       Feliz (>= 0.68.3) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    FSharp.Core (4.7)
+    FSharp.Core (4.7.1)
     Zanaptak.TypedCssClasses (0.2)
       FSharp.Core (>= 4.3.4) - restriction: || (>= net452) (>= netstandard2.0)
 GITHUB
   remote: Zaid-Ajaj/Feliz
-    Feliz.Markdown/Markdown.fs (67305a24433a944dac433fb6c0dd721d704035ca)
+    Feliz.Markdown/Markdown.fs (6d3b673e6a2bb879a1315ef7b3219d3c63320005)
 GROUP FakeBuild
 NUGET
   remote: https://api.nuget.org/v3/index.json
@@ -81,63 +81,63 @@ NUGET
     Dotnet.ProjInfo (0.37) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: || (>= net461) (>= netstandard2.0)
-    Fake.Core.CommandLineParsing (5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.CommandLineParsing (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FParsec (>= 1.0.3) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.Context (5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.Context (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.Environment (5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.Environment (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.FakeVar (5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Context (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.FakeVar (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Context (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.Process (5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.FakeVar (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.Process (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.FakeVar (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.Diagnostics.Process (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.ReleaseNotes (5.19)
-      Fake.Core.SemVer (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.ReleaseNotes (5.19.1)
+      Fake.Core.SemVer (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.SemVer (5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.SemVer (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.Runtime.Numerics (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.String (5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.String (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.Target (5.19)
-      Fake.Core.CommandLineParsing (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Context (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.FakeVar (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Process (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.Target (5.19.1)
+      Fake.Core.CommandLineParsing (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Context (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.FakeVar (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Process (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Control.Reactive (>= 4.2) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.Reactive.Compatibility (>= 4.3.1) - restriction: || (>= net462) (>= netstandard2.0)
-    Fake.Core.Tasks (5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.Tasks (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.Trace (5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.FakeVar (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.Trace (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.FakeVar (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Core.Xml (5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.Xml (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
       System.Xml.ReaderWriter (>= 4.3.1) - restriction: && (< net462) (>= netstandard2.0)
@@ -145,107 +145,109 @@ NUGET
       System.Xml.XPath (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.Xml.XPath.XDocument (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.Xml.XPath.XmlDocument (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
-    Fake.DotNet.AssemblyInfoFile (5.19)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.DotNet.AssemblyInfoFile (5.19.1)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.DotNet.Cli (5.19)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Process (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.DotNet.MSBuild (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.DotNet.NuGet (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.DotNet.Cli (5.19.1)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Process (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.DotNet.MSBuild (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.DotNet.NuGet (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       Mono.Posix.NETStandard (>= 1.0) - restriction: || (>= net462) (>= netstandard2.0)
       Newtonsoft.Json (>= 12.0.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.DotNet.FSFormatting (5.19)
-      Fake.Core.Process (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.DotNet.FSFormatting (5.19.1)
+      Fake.Core.Process (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.DotNet.MSBuild (5.19)
+    Fake.DotNet.MSBuild (5.19.1)
       BlackFox.VsWhere (>= 1.0) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Process (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Process (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       MSBuild.StructuredLogger (>= 2.0.152) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.DotNet.NuGet (5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Process (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.SemVer (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Tasks (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Xml (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Net.Http (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.DotNet.NuGet (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Process (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.SemVer (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Tasks (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Xml (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Net.Http (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       Newtonsoft.Json (>= 12.0.3) - restriction: || (>= net462) (>= netstandard2.0)
       NuGet.Protocol (>= 4.9.4) - restriction: || (>= net462) (>= netstandard2.0)
       System.Net.Http (>= 4.3.4) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.DotNet.Paket (5.19)
-      Fake.Core.Process (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.DotNet.Cli (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.DotNet.Paket (5.19.1)
+      Fake.Core.Process (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.DotNet.Cli (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.IO.FileSystem (5.19)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.IO.FileSystem (5.19.1)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.Diagnostics.FileVersionInfo (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.IO.FileSystem.Watcher (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.JavaScript.Npm (5.19)
-      Fake.Core.Environment (>= 5.19) - restriction: >= netstandard2.0
-      Fake.Core.Process (>= 5.19) - restriction: >= netstandard2.0
-      Fake.IO.FileSystem (>= 5.19) - restriction: >= netstandard2.0
-      Fake.Testing.Common (>= 5.19) - restriction: >= netstandard2.0
+    Fake.JavaScript.Npm (5.19.1)
+      Fake.Core.Environment (>= 5.19.1) - restriction: >= netstandard2.0
+      Fake.Core.Process (>= 5.19.1) - restriction: >= netstandard2.0
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: >= netstandard2.0
+      Fake.Testing.Common (>= 5.19.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Fake.JavaScript.Yarn (5.19)
-      Fake.Core.Environment (>= 5.19) - restriction: >= netstandard2.0
-      Fake.Core.Process (>= 5.19) - restriction: >= netstandard2.0
+    Fake.JavaScript.Yarn (5.19.1)
+      Fake.Core.Environment (>= 5.19.1) - restriction: >= netstandard2.0
+      Fake.Core.Process (>= 5.19.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Fake.Net.Http (5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Net.Http (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.Net.Http (>= 4.3.4) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Testing.Common (5.19) - restriction: >= netstandard2.0
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Testing.Common (5.19.1) - restriction: >= netstandard2.0
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.Tools.Git (5.19)
-      Fake.Core.Environment (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Process (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.SemVer (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.Core.Trace (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
-      Fake.IO.FileSystem (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Tools.Git (5.19.1)
+      Fake.Core.Environment (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Process (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.SemVer (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.Core.Trace (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
+      Fake.IO.FileSystem (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
     Fantomas (3.0)
       FSharp.Compiler.Service (>= 32.0) - restriction: >= netstandard2.0
-    FParsec (1.1) - restriction: || (>= net461) (>= netstandard2.0)
+    FParsec (1.1.1) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.3.4) - restriction: || (>= net45) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net45
-    FSharp.Compiler.Service (33.0.1) - restriction: || (>= net461) (>= netstandard2.0)
+    FSharp.Compiler.Service (34.1.1) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
+      System.Buffers (>= 4.5) - restriction: || (>= net461) (>= netstandard2.0)
       System.Collections.Immutable (>= 1.5) - restriction: || (>= net461) (>= netstandard2.0)
       System.Diagnostics.Process (>= 4.1) - restriction: && (< net461) (>= netstandard2.0)
       System.Diagnostics.TraceSource (>= 4.0) - restriction: && (< net461) (>= netstandard2.0)
+      System.Memory (>= 4.5.3) - restriction: || (>= net461) (>= netstandard2.0)
       System.Reflection.Emit (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
       System.Reflection.Metadata (>= 1.6) - restriction: || (>= net461) (>= netstandard2.0)
       System.Reflection.TypeExtensions (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
@@ -255,17 +257,17 @@ NUGET
     FSharp.Control.Reactive (4.2) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.2.3) - restriction: || (>= net46) (>= netstandard2.0)
       System.Reactive (>= 4.0) - restriction: || (>= net46) (>= netstandard2.0)
-    FSharp.Core (4.7) - restriction: || (>= net461) (>= netstandard2.0)
+    FSharp.Core (4.7.1) - restriction: || (>= net461) (>= netstandard2.0)
     FSharp.Json (0.4)
       FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
-    FSharpLint.Core (0.12.6)
+    FSharpLint.Core (0.13.3)
       Dotnet.ProjInfo (>= 0.31) - restriction: || (>= net461) (>= netstandard2.0)
       FParsec (>= 1.0.3) - restriction: || (>= net461) (>= netstandard2.0)
-      FSharp.Compiler.Service (>= 33.0) - restriction: || (>= net461) (>= netstandard2.0)
+      FSharp.Compiler.Service (>= 34.1) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
       Newtonsoft.Json (>= 12.0.2) - restriction: || (>= net461) (>= netstandard2.0)
-    Microsoft.Build (16.4) - restriction: || (>= net462) (>= netstandard2.0)
-      Microsoft.Build.Framework (>= 16.4) - restriction: || (>= net472) (>= netcoreapp2.1)
+    Microsoft.Build (16.5) - restriction: || (>= net462) (>= netstandard2.0)
+      Microsoft.Build.Framework (>= 16.5) - restriction: || (>= net472) (>= netcoreapp2.1)
       Microsoft.VisualStudio.Setup.Configuration.Interop (>= 1.16.30) - restriction: >= net472
       Microsoft.Win32.Registry (>= 4.3) - restriction: >= netcoreapp2.1
       System.Collections.Immutable (>= 1.5) - restriction: || (>= net472) (>= netcoreapp2.1)
@@ -277,12 +279,12 @@ NUGET
       System.Security.Principal.Windows (>= 4.3) - restriction: >= netcoreapp2.1
       System.Text.Encoding.CodePages (>= 4.0.1) - restriction: >= netcoreapp2.1
       System.Threading.Tasks.Dataflow (>= 4.9) - restriction: || (>= net472) (>= netcoreapp2.1)
-    Microsoft.Build.Framework (16.4) - restriction: || (>= net462) (>= netstandard2.0)
+    Microsoft.Build.Framework (16.5) - restriction: || (>= net462) (>= netstandard2.0)
       System.Runtime.Serialization.Primitives (>= 4.1.1) - restriction: && (< net472) (>= netstandard2.0)
       System.Threading.Thread (>= 4.0) - restriction: && (< net472) (>= netstandard2.0)
-    Microsoft.Build.Tasks.Core (16.4) - restriction: || (>= net462) (>= netstandard2.0)
-      Microsoft.Build.Framework (>= 16.4) - restriction: >= netstandard2.0
-      Microsoft.Build.Utilities.Core (>= 16.4) - restriction: >= netstandard2.0
+    Microsoft.Build.Tasks.Core (16.5) - restriction: || (>= net462) (>= netstandard2.0)
+      Microsoft.Build.Framework (>= 16.5) - restriction: >= netstandard2.0
+      Microsoft.Build.Utilities.Core (>= 16.5) - restriction: >= netstandard2.0
       Microsoft.VisualStudio.Setup.Configuration.Interop (>= 1.16.30) - restriction: >= net472
       Microsoft.Win32.Registry (>= 4.3) - restriction: && (< net472) (>= netstandard2.0)
       System.CodeDom (>= 4.4) - restriction: && (< net472) (>= netstandard2.0)
@@ -294,8 +296,8 @@ NUGET
       System.Resources.Extensions (>= 4.6) - restriction: >= netstandard2.0
       System.Resources.Writer (>= 4.0) - restriction: && (< net472) (>= netstandard2.0)
       System.Threading.Tasks.Dataflow (>= 4.9) - restriction: >= netstandard2.0
-    Microsoft.Build.Utilities.Core (16.4) - restriction: || (>= net462) (>= netstandard2.0)
-      Microsoft.Build.Framework (>= 16.4) - restriction: >= netstandard2.0
+    Microsoft.Build.Utilities.Core (16.5) - restriction: || (>= net462) (>= netstandard2.0)
+      Microsoft.Build.Framework (>= 16.5) - restriction: >= netstandard2.0
       Microsoft.VisualStudio.Setup.Configuration.Interop (>= 1.16.30) - restriction: >= net472
       Microsoft.Win32.Registry (>= 4.3) - restriction: && (< net472) (>= netstandard2.0)
       System.Collections.Immutable (>= 1.5) - restriction: >= netstandard2.0
@@ -378,7 +380,7 @@ NUGET
     runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.3) - restriction: || (&& (< net45) (>= net462) (>= netstandard1.6)) (&& (< net45) (>= netstandard2.0) (< xamarinios) (< xamarinmac))
     runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.3) - restriction: || (&& (< net45) (>= net462) (>= netstandard1.6)) (&& (< net45) (>= netstandard2.0) (< xamarinios) (< xamarinmac))
     runtime.ubuntu.18.04-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.3) - restriction: || (&& (< net45) (>= net462) (>= netstandard1.6)) (&& (< net45) (>= netstandard2.0) (< xamarinios) (< xamarinmac))
-    System.Buffers (4.5) - restriction: || (&& (>= monotouch) (>= netcoreapp2.1)) (&& (>= net461) (>= netcoreapp2.1)) (>= net472) (&& (< netcoreapp2.0) (>= netcoreapp2.1)) (&& (>= netcoreapp2.1) (< netstandard1.1)) (&& (>= netcoreapp2.1) (< netstandard2.0)) (&& (>= netcoreapp2.1) (>= xamarinios)) (&& (>= netcoreapp2.1) (>= xamarinmac)) (&& (>= netcoreapp2.1) (>= xamarintvos)) (&& (>= netcoreapp2.1) (>= xamarinwatchos))
+    System.Buffers (4.5) - restriction: || (>= net461) (>= netstandard2.0)
     System.CodeDom (4.7) - restriction: && (< net472) (>= netstandard2.0)
     System.Collections (4.3) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.6) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net45) (>= net462) (>= netstandard1.6)) (&& (< net45) (>= net462) (< netstandard1.6)) (&& (< net45) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net46) (>= net462))
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81))
@@ -555,7 +557,7 @@ NUGET
       System.Threading (>= 4.3) - restriction: && (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)
       System.Threading.Tasks (>= 4.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard1.3) (< win8) (< wpa81))
     System.Linq.Queryable (4.3) - restriction: || (&& (>= net462) (>= uap10.0)) (&& (>= netstandard2.0) (>= uap10.0))
-    System.Memory (4.5.3) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.6) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< net45) (>= net462) (< netstandard1.3)) (&& (< net45) (>= net462) (>= netstandard1.6)) (&& (< net45) (>= net462) (< netstandard1.6)) (&& (< net45) (>= net462) (>= netstandard2.0)) (&& (>= net46) (>= netstandard2.0)) (>= net461) (&& (>= net462) (>= uap10.1)) (>= netcoreapp2.1) (&& (>= netstandard2.0) (>= uap10.1)) (&& (>= netstandard2.0) (< xamarinios) (< xamarinmac))
+    System.Memory (4.5.3) - restriction: || (&& (< net45) (>= net462) (< netstandard1.3)) (&& (< net45) (>= net462) (>= netstandard1.6)) (&& (< net45) (>= net462) (< netstandard1.6)) (>= net461) (&& (>= net462) (>= uap10.1)) (>= netstandard2.0)
       System.Buffers (>= 4.4) - restriction: || (&& (>= monoandroid) (< netstandard2.0)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< netstandard1.1) (>= portable-net45+win8+wpa81) (< win8)) (>= monotouch) (&& (>= net45) (< netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (&& (< netstandard1.1) (>= win8)) (&& (< netstandard2.0) (< uap10.1) (>= wpa81)) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
       System.Numerics.Vectors (>= 4.4) - restriction: || (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (>= net461)
       System.Runtime.CompilerServices.Unsafe (>= 4.5.2) - restriction: || (&& (>= monoandroid) (< netstandard2.0)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< netstandard1.1) (>= portable-net45+win8+wpa81) (< win8)) (>= monotouch) (&& (>= net45) (< netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (&& (< netstandard1.1) (>= win8)) (&& (< netstandard2.0) (>= wpa81)) (>= uap10.1) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
@@ -591,7 +593,7 @@ NUGET
       Microsoft.NETCore.Targets (>= 1.1.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (>= netstandard1.0) (< netstandard1.1) (< win8) (< wp8))
       System.Runtime (>= 4.3.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (>= netstandard1.0) (< netstandard1.1) (< win8) (< wp8))
       System.Runtime.Handles (>= 4.3) - restriction: && (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)
-    System.Numerics.Vectors (4.5) - restriction: || (&& (>= net461) (>= netcoreapp2.1)) (>= net472) (&& (< netcoreapp2.0) (>= netcoreapp2.1))
+    System.Numerics.Vectors (4.5) - restriction: || (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (>= net461)
     System.ObjectModel (4.3) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard2.0) (< win8) (< wpa81) (< xamarinios) (< xamarinmac))
       System.Collections (>= 4.3) - restriction: && (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)
       System.Diagnostics.Debug (>= 4.3) - restriction: && (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)
@@ -687,7 +689,7 @@ NUGET
     System.Runtime (4.3.1) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.5) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.6) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net45) (>= net462)) (&& (< net45) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net46) (>= net462))
       Microsoft.NETCore.Platforms (>= 1.1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
       Microsoft.NETCore.Targets (>= 1.1.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
-    System.Runtime.CompilerServices.Unsafe (4.7) - restriction: || (&& (< monoandroid) (< netstandard1.0) (>= netstandard2.0) (< win8)) (&& (>= monotouch) (>= netcoreapp2.1)) (&& (>= net45) (>= netstandard2.0)) (&& (>= net461) (>= netcoreapp2.1)) (>= net462) (&& (< netcoreapp2.0) (>= netcoreapp2.1)) (&& (>= netcoreapp2.1) (< netcoreapp3.1)) (&& (>= netcoreapp2.1) (< netstandard1.1)) (&& (>= netcoreapp2.1) (< netstandard2.0)) (&& (>= netcoreapp2.1) (>= uap10.1)) (&& (>= netcoreapp2.1) (>= xamarinios)) (&& (>= netcoreapp2.1) (>= xamarinmac)) (&& (>= netcoreapp2.1) (>= xamarintvos)) (&& (>= netcoreapp2.1) (>= xamarinwatchos)) (&& (< netcoreapp2.1) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< netstandard1.0) (>= netstandard2.0) (>= win8)) (&& (>= netstandard2.0) (>= wp8))
+    System.Runtime.CompilerServices.Unsafe (4.7) - restriction: || (&& (< monoandroid) (< netstandard1.0) (>= netstandard2.0) (< win8)) (&& (< monoandroid) (< netstandard1.1) (>= netstandard2.0) (< win8)) (&& (>= monotouch) (>= netstandard2.0)) (&& (>= net45) (>= netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (&& (< netcoreapp2.0) (>= netcoreapp2.1)) (&& (>= netcoreapp2.1) (< netcoreapp3.1)) (&& (< netcoreapp2.1) (>= netstandard2.0)) (&& (< netstandard1.0) (>= netstandard2.0) (>= win8)) (&& (< netstandard1.1) (>= netstandard2.0) (>= win8)) (&& (>= netstandard2.0) (>= uap10.1)) (&& (>= netstandard2.0) (>= wp8)) (&& (>= netstandard2.0) (>= xamarintvos)) (&& (>= netstandard2.0) (>= xamarinwatchos)) (>= xamarinios) (>= xamarinmac)
     System.Runtime.Extensions (4.3.1) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.6) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net45) (>= net462)) (&& (< net45) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net46) (>= net462))
       Microsoft.NETCore.Platforms (>= 1.1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
       Microsoft.NETCore.Targets (>= 1.1.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
@@ -919,17 +921,17 @@ NUGET
 GROUP Generator
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Fake.Core.String (5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.String (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.IO.FileSystem (5.19)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.IO.FileSystem (5.19.1)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.Diagnostics.FileVersionInfo (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.IO.FileSystem.Watcher (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
   remote: https://www.nuget.org/api/v2
-    FSharp.Core (4.7)
+    FSharp.Core (4.7.1)
     FSharp.Data (3.3.3)
       FSharp.Core (>= 4.0.0.1) - restriction: >= net45
       FSharp.Core (>= 4.3.4) - restriction: && (< net45) (>= netstandard2.0)
@@ -1060,7 +1062,7 @@ NUGET
     System.ValueTuple (4.5) - restriction: >= net462
 GITHUB
   remote: plotly/plotly.js
-    dist/plot-schema.json (1b548048a659fe45408841aae8a3a3814ec35302)
+    dist/plot-schema.json (52a5d83609a8e3b5cc36b15430a8871a160dc996)
 GROUP Plotly
 NUGET
   remote: https://www.nuget.org/api/v2
@@ -1080,17 +1082,17 @@ NUGET
       Fable.Browser.Event (>= 1.0) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.5.2) - restriction: >= netstandard2.0
-    Fable.Core (3.1.4)
+    Fable.Core (3.1.5)
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Fable.React (5.3.5) - restriction: >= netstandard2.0
+    Fable.React (5.3.6) - restriction: >= netstandard2.0
       Fable.Browser.Dom (>= 1.0) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Feliz (0.68.10)
+    Feliz (0.69)
       Fable.Core (>= 3.1.3) - restriction: >= netstandard2.0
       Fable.React (>= 5.3.2) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    FSharp.Core (4.7)
+    FSharp.Core (4.7.1)
 
 GROUP Tooling
 NUGET
@@ -1114,26 +1116,32 @@ NUGET
     Dotnet.ProjInfo (0.37) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: || (>= net461) (>= netstandard2.0)
-    Fake.Runtime (5.19) - restriction: >= netcoreapp2.0
-      Fake.Core.Context (>= 5.19) - restriction: >= netstandard2.0
+    Fake.Runtime (5.19.1) - restriction: >= netcoreapp2.0
+      Fake.Core.Context (>= 5.19.1) - restriction: >= netstandard2.0
       FSharp.Compiler.Service (>= 33.0.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
       Microsoft.DotNet.PlatformAbstractions (>= 2.1) - restriction: >= netstandard2.0
       Mono.Cecil (>= 0.11.1) - restriction: >= netstandard2.0
       Paket.Core (>= 5.241.2) - restriction: >= netstandard2.0
       System.Runtime.Loader (>= 4.3) - restriction: >= netstandard2.0
-    FSharp.Core (4.7)
-    Microsoft.DotNet.PlatformAbstractions (3.1) - restriction: >= netcoreapp2.0
+    FSharp.Core (4.7.1)
+    FSharpLint.Core (0.13.3)
+      Dotnet.ProjInfo (>= 0.31) - restriction: || (>= net461) (>= netstandard2.0)
+      FParsec (>= 1.0.3) - restriction: || (>= net461) (>= netstandard2.0)
+      FSharp.Compiler.Service (>= 34.1) - restriction: || (>= net461) (>= netstandard2.0)
+      FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
+      Newtonsoft.Json (>= 12.0.2) - restriction: || (>= net461) (>= netstandard2.0)
+    Microsoft.DotNet.PlatformAbstractions (3.1.2) - restriction: >= netcoreapp2.0
     Microsoft.NETCore.App (2.2.8) - restriction: >= netcoreapp2.0
       Microsoft.NETCore.DotNetHostPolicy (>= 2.2.8) - restriction: >= netcoreapp2.2
       Microsoft.NETCore.Platforms (>= 2.2.4) - restriction: >= netcoreapp2.2
       Microsoft.NETCore.Targets (>= 2.0) - restriction: >= netcoreapp2.2
       NETStandard.Library (>= 2.0.3) - restriction: >= netcoreapp2.2
-    Microsoft.NETCore.DotNetAppHost (3.1) - restriction: >= netcoreapp2.2
-    Microsoft.NETCore.DotNetHostPolicy (3.1) - restriction: >= netcoreapp2.2
-      Microsoft.NETCore.DotNetHostResolver (>= 3.1)
-    Microsoft.NETCore.DotNetHostResolver (3.1) - restriction: >= netcoreapp2.2
-      Microsoft.NETCore.DotNetAppHost (>= 3.1)
+    Microsoft.NETCore.DotNetAppHost (3.1.2) - restriction: >= netcoreapp2.2
+    Microsoft.NETCore.DotNetHostPolicy (3.1.2) - restriction: >= netcoreapp2.2
+      Microsoft.NETCore.DotNetHostResolver (>= 3.1.2)
+    Microsoft.NETCore.DotNetHostResolver (3.1.2) - restriction: >= netcoreapp2.2
+      Microsoft.NETCore.DotNetAppHost (>= 3.1.2)
     Microsoft.NETCore.Platforms (3.1) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard2.0) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.5) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard2.0) (< win8) (< wpa81) (< xamarinios) (< xamarinmac)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (>= monotouch) (>= netcoreapp2.1)) (&& (< net45) (>= net462)) (&& (< net46) (>= net462)) (&& (>= net461) (>= netcoreapp2.1)) (>= netcoreapp2.0) (&& (>= netcoreapp2.1) (< netcoreapp3.0)) (&& (>= netcoreapp2.1) (>= xamarintvos)) (&& (>= netcoreapp2.1) (>= xamarinwatchos))
     Microsoft.NETCore.Targets (3.1) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard2.0) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.5) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard2.0) (< win8) (< wpa81) (< xamarinios) (< xamarinmac)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net45) (>= net462)) (&& (< net46) (>= net462)) (>= netcoreapp2.2)
     Microsoft.Win32.Primitives (4.3) - restriction: || (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net46) (>= net462))
@@ -1145,11 +1153,11 @@ NUGET
       System.Memory (>= 4.5.3) - restriction: || (&& (< net46) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (>= uap10.1)
       System.Security.AccessControl (>= 4.7) - restriction: || (&& (>= monoandroid) (< netstandard2.0)) (>= monotouch) (&& (< net46) (>= netstandard2.0)) (>= net461) (>= netcoreapp2.0) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
       System.Security.Principal.Windows (>= 4.7) - restriction: || (&& (>= monoandroid) (< netstandard2.0)) (>= monotouch) (&& (< net46) (>= netstandard2.0)) (>= net461) (>= netcoreapp2.0) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
-    Mono.Cecil (0.11.1) - restriction: >= netcoreapp2.0
+    Mono.Cecil (0.11.2) - restriction: >= netcoreapp2.0
     NETStandard.Library (2.0.3) - restriction: >= netcoreapp2.0
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: || (&& (>= net45) (< netstandard1.3)) (&& (< net45) (>= netstandard1.1) (< netstandard1.2) (< win8)) (&& (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.3) (< netstandard1.4) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.4) (< netstandard1.5) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.5) (< netstandard1.6) (< win8) (< wpa81)) (&& (< net45) (>= netstandard1.6) (< netstandard2.0) (< win8) (< wpa81)) (&& (< net45) (>= netstandard2.0)) (&& (>= net46) (< netstandard1.4)) (>= net461) (>= netcoreapp2.0) (&& (>= netstandard1.0) (< portable-net45+win8+wpa81)) (&& (< netstandard1.0) (>= portable-net45+win8) (< win8)) (&& (< netstandard1.0) (< portable-net45+win8) (>= portable-net45+win8+wpa81)) (&& (< netstandard1.0) (>= portable-net45+win8+wp8+wpa81) (< portable-net45+win8+wpa81)) (&& (< netstandard1.0) (>= win8)) (&& (< netstandard1.3) (< win8) (>= wpa81)) (&& (< netstandard1.5) (>= uap10.0)) (>= uap10.1) (>= wp8)
     Newtonsoft.Json (12.0.3) - restriction: || (>= net461) (>= netstandard2.0)
-    Paket.Core (5.241.6) - restriction: >= netcoreapp2.0
+    Paket.Core (5.242.2) - restriction: >= netcoreapp2.0
       Chessie (>= 0.6) - restriction: || (>= net45) (>= netstandard2.0)
       Mono.Cecil (>= 0.10.0-beta6) - restriction: || (>= net45) (>= netstandard2.0)
       Newtonsoft.Json (>= 10.0.3) - restriction: && (< net45) (>= netstandard2.0)
@@ -1192,7 +1200,7 @@ NUGET
     runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.3) - restriction: && (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)
     runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.3) - restriction: && (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)
     runtime.ubuntu.18.04-x64.runtime.native.System.Security.Cryptography.OpenSsl (4.3.3) - restriction: && (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)
-    System.Buffers (4.5) - restriction: || (&& (< monoandroid) (< net46) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< monoandroid) (< netstandard1.1) (>= netstandard2.0) (< win8)) (&& (>= monotouch) (>= netstandard2.0)) (&& (< net45) (>= net46) (>= netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (>= net46) (< netstandard1.1) (>= netstandard2.0)) (&& (>= net46) (>= xamarinios)) (&& (>= net46) (>= xamarinmac)) (>= net461) (&& (< netstandard1.1) (>= netstandard2.0) (>= win8)) (&& (>= netstandard2.0) (>= uap10.1)) (&& (>= netstandard2.0) (>= xamarintvos)) (&& (>= netstandard2.0) (>= xamarinwatchos)) (&& (>= uap10.1) (>= xamarinios)) (&& (>= uap10.1) (>= xamarinmac))
+    System.Buffers (4.5) - restriction: || (>= net461) (>= netstandard2.0)
     System.Collections (4.3) - restriction: || (&& (< monoandroid) (< net45) (>= netstandard2.0) (< win8) (< wpa81) (< xamarinios) (< xamarinmac)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net45) (>= net463) (>= netstandard2.0)) (&& (< net46) (>= net462))
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81))
       Microsoft.NETCore.Targets (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.3) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81))
@@ -1304,13 +1312,13 @@ NUGET
       System.Resources.ResourceManager (>= 4.3) - restriction: && (< monoandroid) (< monotouch) (< net45) (>= netstandard1.6) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)
       System.Runtime (>= 4.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.6) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.6) (< win8) (< wp8) (< wpa81))
       System.Runtime.Extensions (>= 4.3) - restriction: && (< monoandroid) (< monotouch) (< net45) (>= netstandard1.6) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)
-    System.Memory (4.5.3) - restriction: || (&& (< monoandroid) (< net46) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net45) (< netcoreapp2.1) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (>= net46) (>= netstandard2.0)) (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (&& (>= netcoreapp2.0) (>= uap10.1)) (&& (>= netstandard2.0) (>= uap10.1))
+    System.Memory (4.5.3) - restriction: || (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (&& (>= netcoreapp2.0) (>= uap10.1)) (>= netstandard2.0)
       System.Buffers (>= 4.4) - restriction: || (&& (>= monoandroid) (< netstandard2.0)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< netstandard1.1) (>= portable-net45+win8+wpa81) (< win8)) (>= monotouch) (&& (>= net45) (< netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (&& (< netstandard1.1) (>= win8)) (&& (< netstandard2.0) (< uap10.1) (>= wpa81)) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
       System.Numerics.Vectors (>= 4.4) - restriction: || (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (>= net461)
       System.Runtime.CompilerServices.Unsafe (>= 4.5.2) - restriction: || (&& (>= monoandroid) (< netstandard2.0)) (&& (< monoandroid) (< net45) (>= netstandard1.1) (< netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< netstandard1.1) (>= portable-net45+win8+wpa81) (< win8)) (>= monotouch) (&& (>= net45) (< netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (&& (< netstandard1.1) (>= win8)) (&& (< netstandard2.0) (>= wpa81)) (>= uap10.1) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
     System.Net.Http.WinHttpHandler (4.7) - restriction: >= netcoreapp2.0
       System.Memory (>= 4.5.3) - restriction: || (&& (< net46) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (>= uap10.1)
-    System.Numerics.Vectors (4.5) - restriction: || (&& (< net45) (>= net46) (>= netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (>= net461) (&& (>= netstandard2.0) (>= uap10.1))
+    System.Numerics.Vectors (4.5) - restriction: || (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (>= net461)
     System.Reflection (4.3) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.2) (>= netstandard2.0) (< win8)) (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.5) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard2.0) (< win8) (< wpa81) (< xamarinios) (< xamarinmac)) (&& (< net45) (>= net462)) (&& (>= net462) (>= netcoreapp1.1)) (&& (>= netcoreapp1.1) (>= netstandard2.0)) (>= netcoreapp2.0)
       Microsoft.NETCore.Platforms (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
       Microsoft.NETCore.Targets (>= 1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
@@ -1336,7 +1344,7 @@ NUGET
     System.Runtime (4.3.1) - restriction: || (&& (< monoandroid) (< net45) (< netstandard1.3) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (< netstandard1.5) (>= netstandard2.0) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard2.0) (< win8) (< wpa81) (< xamarinios) (< xamarinmac)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net45) (>= net462)) (&& (< net46) (>= net462)) (>= netcoreapp2.0)
       Microsoft.NETCore.Platforms (>= 1.1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
       Microsoft.NETCore.Targets (>= 1.1.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.2) (< win8) (< wp8)) (&& (< monoandroid) (< net45) (>= netstandard1.2) (< netstandard1.3) (< win8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
-    System.Runtime.CompilerServices.Unsafe (4.7) - restriction: || (&& (< monoandroid) (< netstandard1.1) (>= netstandard2.0) (< win8)) (&& (>= monotouch) (>= netstandard2.0)) (&& (< net45) (>= net46) (>= netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (>= net46) (>= netcoreapp2.0)) (&& (>= net46) (< netstandard1.1) (>= netstandard2.0)) (&& (>= net46) (>= xamarinios)) (&& (>= net46) (>= xamarinmac)) (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (&& (>= netcoreapp2.0) (>= uap10.1)) (&& (< netstandard1.1) (>= netstandard2.0) (>= win8)) (&& (>= netstandard2.0) (>= uap10.1)) (&& (>= netstandard2.0) (>= xamarintvos)) (&& (>= netstandard2.0) (>= xamarinwatchos)) (&& (>= uap10.1) (>= xamarinios)) (&& (>= uap10.1) (>= xamarinmac))
+    System.Runtime.CompilerServices.Unsafe (4.7) - restriction: || (&& (< monoandroid) (< netstandard1.1) (>= netstandard2.0) (< win8)) (&& (>= monotouch) (>= netstandard2.0)) (&& (< net45) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (&& (>= netcoreapp2.0) (< netcoreapp2.1)) (&& (< netstandard1.1) (>= netstandard2.0) (>= win8)) (&& (>= netstandard2.0) (>= uap10.1)) (&& (>= netstandard2.0) (>= xamarintvos)) (&& (>= netstandard2.0) (>= xamarinwatchos)) (>= xamarinios) (>= xamarinmac)
     System.Runtime.Extensions (4.3.1) - restriction: || (&& (< monoandroid) (< net45) (>= netstandard2.0) (< win8) (< wpa81) (< xamarinios) (< xamarinmac)) (&& (< monoandroid) (< net46) (>= netstandard2.0) (< xamarinios) (< xamarinmac)) (&& (< net46) (>= net462))
       Microsoft.NETCore.Platforms (>= 1.1.1) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
       Microsoft.NETCore.Targets (>= 1.1.3) - restriction: || (&& (< monoandroid) (< monotouch) (< net45) (>= netstandard1.5) (< win8) (< wpa81) (< xamarinios) (< xamarinmac) (< xamarintvos) (< xamarinwatchos)) (&& (< monoandroid) (< net45) (>= netstandard1.0) (< netstandard1.3) (< win8) (< wp8) (< wpa81)) (&& (< monoandroid) (< net45) (>= netstandard1.3) (< netstandard1.5) (< win8) (< wpa81))
@@ -1431,28 +1439,30 @@ NUGET
     System.ValueTuple (4.5) - restriction: || (>= net461) (>= netstandard2.0)
     Yarnpkg.Yarn (1.15.2)
   remote: https://api.nuget.org/v3/index.json
-    Fake.Core.CommandLineParsing (5.19) - restriction: >= netcoreapp2.0
+    Fake.Core.CommandLineParsing (5.19.1) - restriction: >= netcoreapp2.0
       FParsec (>= 1.0.3) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
-    Fake.Core.Context (5.19) - restriction: >= netcoreapp2.0
+    Fake.Core.Context (5.19.1) - restriction: >= netcoreapp2.0
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
-    Fake.Core.String (5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.Core.String (5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    Fake.IO.FileSystem (5.19)
-      Fake.Core.String (>= 5.19) - restriction: || (>= net462) (>= netstandard2.0)
+    Fake.IO.FileSystem (5.19.1)
+      Fake.Core.String (>= 5.19.1) - restriction: || (>= net462) (>= netstandard2.0)
       FSharp.Core (>= 4.7) - restriction: || (>= net462) (>= netstandard2.0)
       System.Diagnostics.FileVersionInfo (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.IO.FileSystem.Watcher (>= 4.3) - restriction: || (>= net462) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net462
-    FParsec (1.1) - restriction: || (>= net461) (>= netstandard2.0)
+    FParsec (1.1.1) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.3.4) - restriction: || (>= net45) (>= netstandard2.0)
       System.ValueTuple (>= 4.4) - restriction: >= net45
-    FSharp.Compiler.Service (33.0.1) - restriction: || (>= net461) (>= netstandard2.0)
+    FSharp.Compiler.Service (34.1.1) - restriction: || (>= net461) (>= netstandard2.0)
       FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
+      System.Buffers (>= 4.5) - restriction: || (>= net461) (>= netstandard2.0)
       System.Collections.Immutable (>= 1.5) - restriction: || (>= net461) (>= netstandard2.0)
       System.Diagnostics.Process (>= 4.1) - restriction: && (< net461) (>= netstandard2.0)
       System.Diagnostics.TraceSource (>= 4.0) - restriction: && (< net461) (>= netstandard2.0)
+      System.Memory (>= 4.5.3) - restriction: || (>= net461) (>= netstandard2.0)
       System.Reflection.Emit (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
       System.Reflection.Metadata (>= 1.6) - restriction: || (>= net461) (>= netstandard2.0)
       System.Reflection.TypeExtensions (>= 4.3) - restriction: && (< net461) (>= netstandard2.0)
@@ -1461,11 +1471,5 @@ NUGET
       System.ValueTuple (>= 4.4) - restriction: >= net461
     FSharp.Json (0.4)
       FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
-    FSharpLint.Core (0.12.6)
-      Dotnet.ProjInfo (>= 0.31) - restriction: || (>= net461) (>= netstandard2.0)
-      FParsec (>= 1.0.3) - restriction: || (>= net461) (>= netstandard2.0)
-      FSharp.Compiler.Service (>= 33.0) - restriction: || (>= net461) (>= netstandard2.0)
-      FSharp.Core (>= 4.6.2) - restriction: || (>= net461) (>= netstandard2.0)
-      Newtonsoft.Json (>= 12.0.2) - restriction: || (>= net461) (>= netstandard2.0)
     System.Security.Cryptography.ProtectedData (4.7) - restriction: >= netcoreapp2.0
       System.Memory (>= 4.5.3) - restriction: && (< net46) (< netcoreapp2.1) (>= netstandard2.0) (< xamarinios) (< xamarinmac)

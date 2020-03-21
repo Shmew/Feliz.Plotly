@@ -245,6 +245,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2DDensity", "2DDensity", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Subplots", "Subplots", "{075DB580-2D04-43B4-A3D8-025F5D569379}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Subplots\Inset.md = public\Plotly\Examples\Subplots\Inset.md
+		public\Plotly\Examples\Subplots\Mixed.md = public\Plotly\Examples\Subplots\Mixed.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MultipleAxes", "MultipleAxes", "{8B569A60-A3ED-4EE2-ABAF-3EE5E08CFD36}"
 	ProjectSection(SolutionItems) = preProject
@@ -393,7 +397,86 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Custom", "Custom", "{D31EE9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transitions", "Transitions", "{6C0E4FE8-AB7B-4D4A-9648-F602A53E72C6}"
 	ProjectSection(SolutionItems) = preProject
-		public\Plotly\Examples\Transitions\Basic.md = public\Plotly\Examples\Transitions\Basic.md
+		public\Plotly\Examples\Transitions\Lorenz.md = public\Plotly\Examples\Transitions\Lorenz.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Financial", "Financial", "{B088445D-77B6-4739-ABF0-D78A24C89E58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Candlestick", "Candlestick", "{3052EA28-E449-4B96-8DE6-D6029C1B28FF}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Financial\Candlestick\Basic.md = public\Plotly\Examples\Financial\Candlestick\Basic.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Funnel", "Funnel", "{003801FD-8747-498B-8AF8-4AC182E68ECA}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Financial\Funnel\Basic.md = public\Plotly\Examples\Financial\Funnel\Basic.md
+		public\Plotly\Examples\Financial\Funnel\FunnelArea.md = public\Plotly\Examples\Financial\Funnel\FunnelArea.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Indicators", "Indicators", "{4FF323B4-AF7F-4DFB-8009-C7D40415992C}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Financial\Indicators\Overlay.md = public\Plotly\Examples\Financial\Indicators\Overlay.md
+		public\Plotly\Examples\Financial\Indicators\Showcase.md = public\Plotly\Examples\Financial\Indicators\Showcase.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OHLC", "OHLC", "{F37941BD-BC4D-4B8B-813F-282F8255F9E6}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Financial\OHLC\Basic.md = public\Plotly\Examples\Financial\OHLC\Basic.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeSeries", "TimeSeries", "{F47EE33B-7BC2-4684-AFEE-D32775FB0B7A}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Financial\TimeSeries\Basic.md = public\Plotly\Examples\Financial\TimeSeries\Basic.md
+		public\Plotly\Examples\Financial\TimeSeries\RangeSlider.md = public\Plotly\Examples\Financial\TimeSeries\RangeSlider.md
+		public\Plotly\Examples\Financial\TimeSeries\SetRange.md = public\Plotly\Examples\Financial\TimeSeries\SetRange.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Waterfall", "Waterfall", "{BB466C76-680C-4C16-B02D-04200C0E3C56}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Financial\Waterfall\Basic.md = public\Plotly\Examples\Financial\Waterfall\Basic.md
+		public\Plotly\Examples\Financial\Waterfall\Horizontal.md = public\Plotly\Examples\Financial\Waterfall\Horizontal.md
+		public\Plotly\Examples\Financial\Waterfall\MultiCategory.md = public\Plotly\Examples\Financial\Waterfall\MultiCategory.md
+		public\Plotly\Examples\Financial\Waterfall\Styled.md = public\Plotly\Examples\Financial\Waterfall\Styled.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maps", "Maps", "{8E8BB852-4309-4F05-BCC2-621CD7324D03}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Maps\Bubble.md = public\Plotly\Examples\Maps\Bubble.md
+		public\Plotly\Examples\Maps\Choropleth.md = public\Plotly\Examples\Maps\Choropleth.md
+		public\Plotly\Examples\Maps\FilledArea.md = public\Plotly\Examples\Maps\FilledArea.md
+		public\Plotly\Examples\Maps\Heatmap.md = public\Plotly\Examples\Maps\Heatmap.md
+		public\Plotly\Examples\Maps\Lines.md = public\Plotly\Examples\Maps\Lines.md
+		public\Plotly\Examples\Maps\Scatter.md = public\Plotly\Examples\Maps\Scatter.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3D", "3D", "{8A89AFF4-51A1-41FF-B1B0-18145B7E234D}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\3D\ClusterGraph.md = public\Plotly\Examples\3D\ClusterGraph.md
+		public\Plotly\Examples\3D\Cone.md = public\Plotly\Examples\3D\Cone.md
+		public\Plotly\Examples\3D\Isosurface.md = public\Plotly\Examples\3D\Isosurface.md
+		public\Plotly\Examples\3D\Line.md = public\Plotly\Examples\3D\Line.md
+		public\Plotly\Examples\3D\Mesh.md = public\Plotly\Examples\3D\Mesh.md
+		public\Plotly\Examples\3D\Ribbon.md = public\Plotly\Examples\3D\Ribbon.md
+		public\Plotly\Examples\3D\Scatter.md = public\Plotly\Examples\3D\Scatter.md
+		public\Plotly\Examples\3D\Streamtube.md = public\Plotly\Examples\3D\Streamtube.md
+		public\Plotly\Examples\3D\Surface.md = public\Plotly\Examples\3D\Surface.md
+		public\Plotly\Examples\3D\TriSurf.md = public\Plotly\Examples\3D\TriSurf.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Events", "Events", "{460ED971-4B3A-43F3-8919-54FC663C549A}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Events\Click.md = public\Plotly\Examples\Events\Click.md
+		public\Plotly\Examples\Events\DisableZoom.md = public\Plotly\Examples\Events\DisableZoom.md
+		public\Plotly\Examples\Events\Hover.md = public\Plotly\Examples\Events\Hover.md
+		public\Plotly\Examples\Events\Zoom.md = public\Plotly\Examples\Events\Zoom.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transforms", "Transforms", "{786ECBC2-354B-4222-98FC-66B494684A2B}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Transforms\Aggregations.md = public\Plotly\Examples\Transforms\Aggregations.md
+		public\Plotly\Examples\Transforms\Filter.md = public\Plotly\Examples\Transforms\Filter.md
+		public\Plotly\Examples\Transforms\Groupby.md = public\Plotly\Examples\Transforms\Groupby.md
+		public\Plotly\Examples\Transforms\Multiple.md = public\Plotly\Examples\Transforms\Multiple.md
 	EndProjectSection
 EndProject
 Global
@@ -470,6 +553,17 @@ Global
 		{D71CF41D-646D-480D-BC51-F7CDB5E55F3D} = {B0AF5F57-51CF-495D-93EF-AF2462F1B53C}
 		{D31EE9FE-2CE4-43CC-8F34-770B98955493} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{6C0E4FE8-AB7B-4D4A-9648-F602A53E72C6} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{B088445D-77B6-4739-ABF0-D78A24C89E58} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{3052EA28-E449-4B96-8DE6-D6029C1B28FF} = {B088445D-77B6-4739-ABF0-D78A24C89E58}
+		{003801FD-8747-498B-8AF8-4AC182E68ECA} = {B088445D-77B6-4739-ABF0-D78A24C89E58}
+		{4FF323B4-AF7F-4DFB-8009-C7D40415992C} = {B088445D-77B6-4739-ABF0-D78A24C89E58}
+		{F37941BD-BC4D-4B8B-813F-282F8255F9E6} = {B088445D-77B6-4739-ABF0-D78A24C89E58}
+		{F47EE33B-7BC2-4684-AFEE-D32775FB0B7A} = {B088445D-77B6-4739-ABF0-D78A24C89E58}
+		{BB466C76-680C-4C16-B02D-04200C0E3C56} = {B088445D-77B6-4739-ABF0-D78A24C89E58}
+		{8E8BB852-4309-4F05-BCC2-621CD7324D03} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{8A89AFF4-51A1-41FF-B1B0-18145B7E234D} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{460ED971-4B3A-43F3-8919-54FC663C549A} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{786ECBC2-354B-4222-98FC-66B494684A2B} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

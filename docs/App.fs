@@ -324,7 +324,7 @@ let samples =
               "plotly-chart-ternary-withmarkers", Samples.Ternary.WithMarkers.chart() ]
 
         let ternaryContour = 
-            [ "plotly-chart-ternarycontour-filled", Samples.TernaryContour.Filled .chart(centeredSpinner) ]
+            [ "plotly-chart-ternarycontour-filled", Samples.TernaryContour.Filled.chart(centeredSpinner) ]
 
         let windRose = 
             [ "plotly-chart-windrose-basic", Samples.WindRose.Basic.chart() ]
@@ -343,22 +343,86 @@ let samples =
           windRose ]
         |> List.concat
 
+    let financialExamples =
+        let candlestick =
+            [ "plotly-chart-candlestick-basic", Samples.Candlestick.Basic.chart() ]
+
+        let funnel =
+            [ "plotly-chart-funnel-basic", Samples.Funnel.Basic.chart()
+              "plotly-chart-funnel-funnelarea", Samples.Funnel.FunnelArea.chart() ]
+
+        let indicators =
+            [ "plotly-chart-indicators-showcase", Samples.Indicators.Showcase.chart()
+              "plotly-chart-indicators-overlay", Samples.Indicators.Overlay.chart() ]
+
+        let ohlc =
+            [ "plotly-chart-ohlc-basic", Samples.OHLC.Basic.chart(centeredSpinner) ]
+            
+        let timeSeries =
+            [ "plotly-chart-timeseries-basic", Samples.TimeSeries.Basic.chart(centeredSpinner)
+              "plotly-chart-timeseries-setrange", Samples.TimeSeries.SetRange.chart(centeredSpinner)
+              "plotly-chart-timeseries-rangeslider", Samples.TimeSeries.RangeSlider.chart(centeredSpinner) ]
+
+        let waterfall =
+            [ "plotly-chart-waterfall-basic", Samples.Waterfall.Basic.chart()
+              "plotly-chart-waterfall-multicategory", Samples.Waterfall.MultiCategory.chart()
+              "plotly-chart-waterfall-horizontal", Samples.Waterfall.Horizontal.chart()
+              "plotly-chart-waterfall-styled", Samples.Waterfall.Styled.chart() ]
+
+        [ candlestick; funnel; indicators; ohlc; timeSeries; waterfall ]
+        |> List.concat
+
+    let mapExamples =
+        [ "plotly-chart-maps-scatter", Samples.Maps.Scatter.chart(centeredSpinner)
+          "plotly-chart-maps-heatmap", Samples.Maps.Heatmap.chart()
+          "plotly-chart-maps-lines", Samples.Maps.Lines.chart(centeredSpinner)
+          "plotly-chart-maps-bubble", Samples.Maps.Bubble.chart(centeredSpinner)
+          "plotly-chart-maps-filledarea", Samples.Maps.FilledArea.chart()
+          "plotly-chart-maps-choropleth", Samples.Maps.Choropleth.chart(centeredSpinner) ]
+
+    let threeDimensionalExamples =
+        [ "plotly-chart-3d-scatter", Samples.ThreeDimensional.Scatter.chart(centeredSpinner)
+          "plotly-chart-3d-ribbon", Samples.ThreeDimensional.Ribbon.chart(centeredSpinner)
+          "plotly-chart-3d-surface", Samples.ThreeDimensional.Surface.chart(centeredSpinner)
+          "plotly-chart-3d-mesh", Samples.ThreeDimensional.Mesh.chart()
+          "plotly-chart-3d-line", Samples.ThreeDimensional.Line.chart(centeredSpinner)
+          "plotly-chart-3d-trisurf", Samples.ThreeDimensional.TriSurf.chart()
+          "plotly-chart-3d-clustergraph", Samples.ThreeDimensional.ClusterGraph.chart(centeredSpinner)
+          "plotly-chart-3d-cone", Samples.ThreeDimensional.Cone.chart()
+          "plotly-chart-3d-streamtube", Samples.ThreeDimensional.Streamtube.chart(centeredSpinner)
+          "plotly-chart-3d-isosurface", Samples.ThreeDimensional.Isosurface.chart(centeredSpinner) ]
+
     let subplotExamples =
         let multipleAxes =
             [ "plotly-chart-multipleaxes-twoyaxes", Samples.MultipleAxes.TwoYAxes.chart()
               "plotly-chart-multipleaxes-multipleyaxes", Samples.MultipleAxes.MultipleYAxes.chart() ]
 
-        [ multipleAxes ]
-        |> List.concat
+        [ yield! multipleAxes
+          "plotly-chart-subplots-inset", Samples.Subplots.Inset.chart()
+          "plotly-chart-subplots-mixed", Samples.Subplots.Mixed.chart(centeredSpinner) ]
+
+    let eventExamples =
+        [ "plotly-chart-events-click", Samples.Events.Click.chart() 
+          "plotly-chart-events-hover", Samples.Events.Hover.chart() 
+          "plotly-chart-events-zoom", Samples.Events.Zoom.chart() 
+          "plotly-chart-events-disablezoom", Samples.Events.DisableZoom.chart(centeredSpinner) ]
+
+    let transformExamples =
+        [ "plotly-chart-transforms-filter", Samples.Transforms.Filter.chart() 
+          "plotly-chart-transforms-groupby", Samples.Transforms.Groupby.chart() 
+          "plotly-chart-transforms-aggregations", Samples.Transforms.Aggregations.chart() 
+          "plotly-chart-transforms-multiple", Samples.Transforms.Multiple.chart(centeredSpinner) ]
 
     let transitionExamples =
-        [ "plotly-chart-transitions-basic", Samples.Transitions.Basic.chart() ]
+        [ "plotly-chart-transitions-lorenz", Samples.Transitions.Lorenz.chart() ]
 
     let customExamples =
         [ "plotly-chart-custom-gantt", Samples.Custom.Gantt.chart()
           "plotly-chart-custom-webglgantt", Samples.Custom.WebGLGantt.chart()]
 
-    [ basicSamples; statisticalExamples; scientificExamples; subplotExamples; transitionExamples; customExamples ]
+    [ basicSamples; statisticalExamples; scientificExamples; financialExamples
+      mapExamples; threeDimensionalExamples; subplotExamples; eventExamples
+      transformExamples; transitionExamples; customExamples ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -575,7 +639,7 @@ let sidebar (state: State) dispatch =
                     menuItem "Release Notes" [ Urls.Plotly; Urls.ReleaseNotes ]
                     menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
                     menuLabel "Examples"
-                    nestedMenuList "Basic Plot Types" [ Urls.Plotly; Urls.Examples; Urls.Basic ] [
+                    nestedMenuList "Basic" [ Urls.Plotly; Urls.Examples; Urls.Basic ] [
                         subNestedMenuList "Scatter" [ Urls.Scatter ] [
                             nestedMenuItem "Basic" [ Urls.Basic ]
                             nestedMenuItem "Data Labels Hover" [ Urls.DataLabelsHover ]
@@ -668,7 +732,7 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "Contour and Scatter" [ Urls.ContourAndScatter ]
                         ]
                     ]
-                    nestedMenuList "Statistical Plot Types" [ Urls.Plotly; Urls.Examples; Urls.Statistical ] [
+                    nestedMenuList "Statistical" [ Urls.Plotly; Urls.Examples; Urls.Statistical ] [
                         subNestedMenuList "Error Bars" [ Urls.ErrorBar ] [
                             nestedMenuItem "Basic" [ Urls.Basic ]
                             nestedMenuItem "With Bar Chart" [ Urls.WithBarChart ]
@@ -812,14 +876,75 @@ let sidebar (state: State) dispatch =
                             nestedMenuItem "WebGL" [ Urls.WebGL ]
                         ]
                     ]
+                    nestedMenuList "Financial" [ Urls.Plotly; Urls.Examples; Urls.Financial ] [
+                        subNestedMenuList "Waterfall" [ Urls.Waterfall ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Multi Category" [ Urls.MultiCategory ]
+                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                            nestedMenuItem "Styled" [ Urls.Styled ]
+                        ]
+                        subNestedMenuList "Indicators" [ Urls.Indicators ] [
+                            nestedMenuItem "Showcase" [ Urls.Showcase ]
+                            nestedMenuItem "Overlay" [ Urls.Overlay ]
+                        ]
+                        subNestedMenuList "Candlestick" [ Urls.Candlestick ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                        ]
+                        subNestedMenuList "Funnel" [ Urls.Funnel ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Funnel Area" [ Urls.FunnelArea ]
+                        ]
+                        subNestedMenuList "Time Series" [ Urls.TimeSeries ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                            nestedMenuItem "Set Range" [ Urls.SetRange ]
+                            nestedMenuItem "Range Slider" [ Urls.RangeSlider ]
+                        ]
+                        subNestedMenuList "OHLC" [ Urls.OHLC ] [
+                            nestedMenuItem "Basic" [ Urls.Basic ]
+                        ]
+                    ]
+                    nestedMenuList "Maps" [ Urls.Plotly; Urls.Examples; Urls.Maps ] [
+                        nestedMenuItem "Scatter" [ Urls.Scatter ]
+                        nestedMenuItem "Heatmap" [ Urls.Heatmap ]
+                        nestedMenuItem "Lines" [ Urls.Lines ]
+                        nestedMenuItem "Bubble" [ Urls.Bubble ]
+                        nestedMenuItem "Filled Area" [ Urls.FilledArea ]
+                        nestedMenuItem "Choropleth" [ Urls.Choropleth ]
+                    ]
+                    nestedMenuList "3D" [ Urls.Plotly; Urls.Examples; Urls.ThreeDimensional ] [
+                        nestedMenuItem "Scatter" [ Urls.Scatter ]
+                        nestedMenuItem "Ribbon" [ Urls.Ribbon ]
+                        nestedMenuItem "Surface" [ Urls.Surface ]
+                        nestedMenuItem "Mesh" [ Urls.Mesh ]
+                        nestedMenuItem "Line" [ Urls.Line ]
+                        nestedMenuItem "Tri-Surf" [ Urls.TriSurf ]
+                        nestedMenuItem "ClusterGraph" [ Urls.ClusterGraph ]
+                        nestedMenuItem "Cone" [ Urls.Cone ]
+                        nestedMenuItem "Streamtube" [ Urls.Streamtube ]
+                        nestedMenuItem "Isosurface" [ Urls.Isosurface ]
+                    ]
                     nestedMenuList "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Subplots ] [
                         subNestedMenuList "Multiple Axes" [ Urls.MultipleAxes ] [
                             nestedMenuItem "Two Y-Axes" [ Urls.TwoYAxes ]
                             nestedMenuItem "Multiple Y-Axes" [ Urls.MultipleYAxes ]
                         ]
+                        nestedMenuItem "Inset" [ Urls.Inset ]
+                        nestedMenuItem "Mixed" [ Urls.Mixed ]
+                    ]
+                    nestedMenuList "Events" [ Urls.Plotly; Urls.Examples; Urls.Events ] [
+                        nestedMenuItem "Click" [ Urls.Click ]
+                        nestedMenuItem "Hover" [ Urls.Hover ]
+                        nestedMenuItem "Zoom" [ Urls.Zoom ]
+                        nestedMenuItem "Disable Zoom" [ Urls.DisableZoom ]
+                    ]
+                    nestedMenuList "Transforms" [ Urls.Plotly; Urls.Examples; Urls.Transforms ] [
+                        nestedMenuItem "Filter" [ Urls.Filter ]
+                        nestedMenuItem "Group By" [ Urls.Groupby ]
+                        nestedMenuItem "Aggregation" [ Urls.Aggregations ]
+                        nestedMenuItem "Multiple Transforms" [ Urls.Multiple ]
                     ]
                     nestedMenuList "Transitions" [ Urls.Plotly; Urls.Examples; Urls.Transitions ] [
-                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Lorenz Attractor" [ Urls.Lorenz ]
                     ]
                     nestedMenuList "Custom" [ Urls.Plotly; Urls.Examples; Urls.Custom ] [
                         nestedMenuItem "Gantt" [ Urls.Gantt ]
@@ -1167,6 +1292,80 @@ let scientificExamples (currentPath: string list) =
         if path |> List.isEmpty then []
         else [ Urls.Scientific ] @ path
 
+let financialExamples (currentPath: string list) =
+    match currentPath with
+    | Urls.Waterfall :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.MultiCategory ] -> [ "MultiCategory.md" ]
+        | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
+        | [ Urls.Styled ] -> [ "Styled.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Waterfall ]
+    | Urls.Indicators :: rest ->
+        match rest with
+        | [ Urls.Showcase ] -> [ "Showcase.md" ]
+        | [ Urls.Overlay ] -> [ "Overlay.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Indicators ]
+    | Urls.Candlestick :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Candlestick ]
+    | Urls.Funnel :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.FunnelArea ] -> [ "FunnelArea.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.Funnel ]
+    | Urls.TimeSeries :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.SetRange ] -> [ "SetRange.md" ]
+        | [ Urls.RangeSlider ] -> [ "RangeSlider.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.TimeSeries ]
+    | Urls.OHLC :: rest ->
+        match rest with
+        | [ Urls.Basic ] -> [ "Basic.md" ]
+        | _ -> [ ]
+        |> List.append [ Urls.OHLC ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Financial ] @ path
+
+let mapExamples (currentPath: string list) =
+    match currentPath with
+    | [ Urls.Scatter ] -> [ "Scatter.md" ]
+    | [ Urls.Heatmap ] -> [ "Heatmap.md" ]
+    | [ Urls.Lines ] -> [ "Lines.md" ]
+    | [ Urls.Bubble ] -> [ "Bubble.md" ]
+    | [ Urls.FilledArea ] -> [ "FilledArea.md" ]
+    | [ Urls.Choropleth ] -> [ "Choropleth.md" ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Maps ] @ path
+
+let threeDimensionalExamples (currentPath: string list) =
+    match currentPath with
+    | [ Urls.Scatter ] -> [ "Scatter.md" ]
+    | [ Urls.Ribbon ] -> [ "Ribbon.md" ]
+    | [ Urls.Surface ] -> [ "Surface.md" ]
+    | [ Urls.Mesh ] -> [ "Mesh.md" ]
+    | [ Urls.Line ] -> [ "Line.md" ]
+    | [ Urls.TriSurf ] -> [ "TriSurf.md" ]
+    | [ Urls.ClusterGraph ] -> [ "ClusterGraph.md" ]
+    | [ Urls.Cone ] -> [ "Cone.md" ]
+    | [ Urls.Streamtube ] -> [ "Streamtube.md" ]
+    | [ Urls.Isosurface ] -> [ "Isosurface.md" ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.ThreeDimensional ] @ path
+
 let subplotExamples (currentPath: string list) =
     match currentPath with
     | Urls.MultipleAxes :: rest ->
@@ -1175,14 +1374,38 @@ let subplotExamples (currentPath: string list) =
         | [ Urls.MultipleYAxes ] -> [ "MultipleYAxes.md" ]
         | _ -> [ ]
         |> List.append [ Urls.MultipleAxes ]
+    | [ Urls.Inset ] -> [ "Inset.md" ]
+    | [ Urls.Mixed ] -> [ "Mixed.md" ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []
         else [ Urls.Subplots ] @ path
 
+let eventExamples (currentPath: string list) =
+    match currentPath with
+    | [ Urls.Click ] -> [ "Click.md" ]
+    | [ Urls.Hover ] -> [ "Hover.md" ]
+    | [ Urls.Zoom ] -> [ "Zoom.md" ]
+    | [ Urls.DisableZoom ] -> [ "DisableZoom.md" ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Events ] @ path
+
+let transformExamples (currentPath: string list) =
+    match currentPath with
+    | [ Urls.Filter ] -> [ "Filter.md" ]
+    | [ Urls.Groupby ] -> [ "Groupby.md" ]
+    | [ Urls.Aggregations ] -> [ "Aggregations.md" ]
+    | [ Urls.Multiple ] -> [ "Multiple.md" ]
+    | _ -> [ ]
+    |> fun path ->
+        if path |> List.isEmpty then []
+        else [ Urls.Transforms ] @ path
+
 let transitionExamples (currentPath: string list) =
     match currentPath with
-    | [ Urls.Basic ] -> [ "Basic.md" ]
+    | [ Urls.Lorenz ] -> [ "Lorenz.md" ]
     | _ -> [ ]
     |> fun path ->
         if path |> List.isEmpty then []
@@ -1214,7 +1437,12 @@ let content state dispatch =
         | basicPath when tryTakePath basicPath [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
         | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
         | scientificPath when tryTakePath scientificPath [ Urls.Scientific ] -> scientificPath |> List.skip 1 |> scientificExamples
+        | financialPath when tryTakePath financialPath [ Urls.Financial ] -> financialPath |> List.skip 1 |> financialExamples
+        | mapsPath when tryTakePath mapsPath [ Urls.Maps ] -> mapsPath |> List.skip 1 |> mapExamples
+        | threeDimPath when tryTakePath threeDimPath [ Urls.ThreeDimensional ] -> threeDimPath |> List.skip 1 |> threeDimensionalExamples
         | subplotsPath when tryTakePath subplotsPath [ Urls.Subplots ] -> subplotsPath |> List.skip 1 |> subplotExamples
+        | eventsPath when tryTakePath eventsPath [ Urls.Events ] -> eventsPath |> List.skip 1 |> eventExamples
+        | transformsPath when tryTakePath transformsPath [ Urls.Transforms ] -> transformsPath |> List.skip 1 |> transformExamples
         | transitionPath when tryTakePath transitionPath [ Urls.Transitions ] -> transitionPath |> List.skip 1 |> transitionExamples
         | customPath when tryTakePath customPath [ Urls.Custom ] -> customPath |> List.skip 1 |> customExamples
         | _ -> [ ]

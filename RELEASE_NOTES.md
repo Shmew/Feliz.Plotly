@@ -1,3 +1,19 @@
+### 0.20.0 - Saturday, March 21st, 2020
+* Added event union active patterns
+* Added syntax sugar for `_.title` to accept a string
+* Added syntax sugar for `_.color` to allow things such as: `marker.color.rgb (255, 255, 255)` as opposed to `marker.color (color.rgb (255, 255, 255))`
+* Added proper event bindings
+* Added support for trace templating
+* Added additional string enum bindings
+* Some performance optimizations
+* Made transforms not require only strings
+* Changed module accessibility to avoid intellisense bloat
+* Fixed potential namespace collisions
+* Fixed modebar button functions not accepting normal plotly button objects
+* Fixed map plot serialization issues
+* Fixed transform serialization issues
+* Fixed 3D plot serialization issues
+
 ### 0.19.0 - Wednesday, January 8, 2020
 * Regenerate for plotly.js 1.52.0 release
 

@@ -35,12 +35,12 @@ module rec Domain =
               IsCalcType =
                   let editType =
                       jVal.TryGetProperty("editType")
-                      |> Option.map (JsonExtensions.AsString >> ((=) "calc"))
+                      |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains("calc")))
                       |> Option.defaultValue false
-
+                      
                   let role =
                       jVal.TryGetProperty("role")
-                      |> Option.map (JsonExtensions.AsString >> ((=) "data"))
+                      |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains("data")))
                       |> Option.defaultValue false
 
                   editType && role
@@ -111,6 +111,8 @@ module rec Domain =
         | Color of PrimSpecs
         | ColorArray
         | ColorScale
+        | Component of syntaxSugar: (string * string) list
+        | ComponentArray
         | DataArray of PrimSpecs
         | Enumerated
         | EnumeratedArray
@@ -121,40 +123,46 @@ module rec Domain =
         | InfoArray of ValType
         | Int of PrimSpecs
         | List of ValType
+        | Measure
+        | ModeBarButtons
+        | ModeBarButtonsInherited
         | Number of PrimSpecs
         | String of PrimSpecs
-        | Component
+        | StringArray
+        | Template
+        | TransformTarget
 
     module ValType =
         let boolStr = "(value: bool)", "value"
         let boolResizeSingleton = "(value: bool)", "(value |> Array.singleton |> ResizeArray)"
         let boolSeqResizeStr = "(values: seq<bool>)", "(values |> ResizeArray)"
         let boolSeqResizeStrOpt = "(values: seq<bool option>)", "(values |> ResizeArray)"
-        let boolSeqStr = "(values: seq<bool>)", "(values |> Array.ofSeq)"
-        let boolSeqStrOpt = "(values: seq<bool option>)", "(values |> Array.ofSeq)"
+        let boolSeqStr = "(values: seq<bool>)", "(values |> ResizeArray)"
+        let boolSeqStrOpt = "(values: seq<bool option>)", "(values |> ResizeArray)"
         let boolSingleton = "(value: bool)", "(value |> Array.singleton)"
-        let bool2DSeqStr = "(values: seq<seq<bool>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let bool2DSeqStr = "(values: seq<seq<bool>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let bool2DSeqStrOpt =
-            "(values: seq<seq<bool option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<seq<bool option>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let bool2DListStr =
-            "(values: seq<bool list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<bool list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let bool2DListStrOpt =
-            "(values: seq<bool option list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let bool2DArrayStr = "(values: seq<bool []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
-        let bool2DArrayStrOpt = "(values: seq<bool option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+            "(values: seq<bool option list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let bool2DArrayStr = "(values: seq<bool []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let bool2DArrayStrOpt = "(values: seq<bool option []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
 
+        let compArray s = sprintf "(properties: #I%sProperty list)" s, "(properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)"
         let compStr s = sprintf "(properties: #I%sProperty list)" s, "(createObj !!properties)"
         let compStrExplicit s = sprintf "(properties: I%sProperty list)" s, "(createObj !!properties)"
         let compStrExplicitExpanded s = sprintf "(id: int, properties: I%sProperty list)" s, "(createObj !!properties)"
 
-        let data2D = "(values: seq<PlotData>)", "(values |> Seq.map PlotData.asDataResize |> Array.ofSeq)"
+        let data2D = "(values: seq<PlotData>)", "(values |> Seq.map PlotData.asDataResize |> ResizeArray)"
 
         let dateStr = "(value: System.DateTime)", "value"
         let dateResizeSingleton = "(value: System.DateTime)", "(value |> Array.singleton |> ResizeArray)"
         let dateSeqResizeStr = "(values: seq<System.DateTime>)", "(values |> ResizeArray)"
         let dateSeqResizeStrOpt = "(values: seq<System.DateTime option>)", "(values |> ResizeArray)"
-        let dateSeqStr = "(values: seq<System.DateTime>)", "(values |> Array.ofSeq)"
-        let dateSeqStrOpt = "(values: seq<System.DateTime option>)", "(values |> Array.ofSeq)"
+        let dateSeqStr = "(values: seq<System.DateTime>)", "(values |> ResizeArray)"
+        let dateSeqStrOpt = "(values: seq<System.DateTime option>)", "(values |> ResizeArray)"
         let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
 
         let enumeratedArrayStrSeq s =
@@ -169,8 +177,8 @@ module rec Domain =
         let floatResizeSingleton = "(value: float)", "(value |> Array.singleton |> ResizeArray)"
         let floatSeqResizeStr = "(values: seq<float>)", "(values |> ResizeArray)"
         let floatSeqResizeStrOpt = "(values: seq<float option>)", "(values |> ResizeArray)"
-        let floatSeqStr = "(values: seq<float>)", "(values |> Array.ofSeq)"
-        let floatSeqStrOpt = "(values: seq<float option>)", "(values |> Array.ofSeq)"
+        let floatSeqStr = "(values: seq<float>)", "(values |> ResizeArray)"
+        let floatSeqStrOpt = "(values: seq<float option>)", "(values |> ResizeArray)"
         let floatSingleton = "(value: float)", "(value |> Array.singleton)"
         let float32FromFloatSeqStr = "(values: seq<float>)", "(values |> Seq.map float32 |> Array.ofSeq)"
         let float32FromFloatSeqStrOpt =
@@ -179,15 +187,15 @@ module rec Domain =
         let float32FromIntSeqStrOpt =
             "(values: seq<int option>)", "(values |> Seq.map (Option.map float32) |> Array.ofSeq)"
         let float2DSeqStr =
-            "(values: seq<seq<float>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<seq<float>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let float2DSeqStrOpt =
-            "(values: seq<seq<float option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<seq<float option>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let float2DListStr =
-            "(values: seq<float list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<float list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let float2DListStrOpt =
-            "(values: seq<float option list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let float2DArrayStr = "(values: seq<float []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
-        let float2DArrayStrOpt = "(values: seq<float option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+            "(values: seq<float option list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let float2DArrayStr = "(values: seq<float []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let float2DArrayStrOpt = "(values: seq<float option []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
 
         let intStr = "(value: int)", "value"
         let intStrCustom s f = sprintf "(%s: int)" s, sprintf "%s" f
@@ -195,35 +203,94 @@ module rec Domain =
         let intResizeSingleton = "(value: int)", "(value |> Array.singleton |> ResizeArray)"
         let intSeqResizeStr = "(values: seq<int>)", "(values |> ResizeArray)"
         let intSeqResizeStrOpt = "(values: seq<int option>)", "(values |> ResizeArray)"
-        let intSeqStr = "(values: seq<int>)", "(values |> Array.ofSeq)"
-        let intSeqStrOpt = "(values: seq<int option>)", "(values |> Array.ofSeq)"
+        let intSeqStr = "(values: seq<int>)", "(values |> ResizeArray)"
+        let intSeqStrOpt = "(values: seq<int option>)", "(values |> ResizeArray)"
         let intSingleton = "(value: int)", "(value |> Array.singleton)"
-        let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+        let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let int2DSeqStrOpt =
-            "(values: seq<seq<int option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let int2DListStr = "(values: seq<int list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<seq<int option>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let int2DListStr = "(values: seq<int list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let int2DListStrOpt =
-            "(values: seq<int option list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let int2DArrayStr = "(values: seq<int option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
-        let int2DArrayStrOpt = "(values: seq<int option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+            "(values: seq<int option list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let int2DArrayStr = "(values: seq<int []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let int2DArrayStrOpt = "(values: seq<int option []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+
+        let measureStr = [ "(values: seq<#IMeasureProperty>)", "(values |> ResizeArray)" ]
+
+        let modeBarButtons = 
+            [ "(value: #IModeBarButtonsProperty)", "(value |> Array.singleton)"
+              "(values: seq<#IModeBarButtonsProperty>)", "(values |> ResizeArray)" ]
+
+        let modeBarButtonsInherited = 
+            [ "(value: IButtonsProperty)", "(unbox<IModeBarButtonsProperty> value |> Array.singleton |> Array.singleton)"
+              "(value: IModeBarButtonsProperty)", "(value |> Array.singleton |> Array.singleton)"
+              "(values: seq<IModeBarButtonsProperty>)", "(values |> ResizeArray |> Array.singleton)"
+              "(values: seq<IButtonsProperty>)", "(values |> Seq.map unbox<IModeBarButtonsProperty> |> ResizeArray |> Array.singleton)"
+              "(values: seq<seq<#IModeBarButtonsProperty>>)", "(values |> Seq.map unbox<IModeBarButtonsProperty> |> ResizeArray)" ]
 
         let stringStr = "(value: string)", "value"
         let stringResizeSingleton = "(value: string)", "(value |> Array.singleton |> ResizeArray)"
         let stringSeqResizeStr = "(values: seq<string>)", "(values |> ResizeArray)"
         let stringSeqResizeStrOpt = "(values: seq<string option>)", "(values |> ResizeArray)"
-        let stringSeqStr = "(values: seq<string>)", "(values |> Array.ofSeq)"
-        let stringSeqStrOpt = "(values: seq<string option>)", "(values |> Array.ofSeq)"
+        let stringSeqStr = "(values: seq<string>)", "(values |> ResizeArray)"
+        let stringSeqStrOpt = "(values: seq<string option>)", "(values |> ResizeArray)"
         let stringSingleton = "(value: string)", "(value |> Array.singleton)"
         let string2DSeqStr =
-            "(values: seq<seq<string>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<seq<string>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let string2DSeqStrOpt =
-            "(values: seq<seq<string option>>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<seq<string option>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let string2DListStr =
-            "(values: seq<string list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
+            "(values: seq<string list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let string2DListStrOpt =
-            "(values: seq<string option list>)", "(values |> Seq.map (Array.ofSeq >> ResizeArray) |> Array.ofSeq)"
-        let string2DArrayStr = "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
-        let string2DArrayStrOpt = "(values: seq<string option []>)", "(values |> Seq.map ResizeArray |> Array.ofSeq)"
+            "(values: seq<string option list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let string2DArrayStr = "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+        let string2DArrayStrOpt = "(values: seq<string option []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+
+        let templateStr = [ "(properties: #ITemplateProperty list)", "(createObj !!properties)" ]
+
+        let titleStr = [ "(value: string)", "(createObj !!((Interop.mkTitleAttr \"text\" value) |> Array.singleton))" ]
+
+        let transformTargetStrs = [
+            "(value: string)", "value"
+            "(values: seq<string>)", "(values |> ResizeArray)"
+            "(values: seq<string option>)", "(values |> Seq.map Bindings.optToString |> ResizeArray)"
+            "(values: seq<seq<string>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+            "(values: seq<seq<string option>>)", "(values |> Seq.map (Seq.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<string list>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+            "(values: seq<string option list>)", "(values |> Seq.map (Seq.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
+            "(values: seq<string option []>)", "(values |> Seq.map (Array.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            
+            "(values: seq<int>)", "(values |> Seq.map string |> ResizeArray)"
+            "(values: seq<int option>)", "(values |> Seq.map Bindings.optToString |> ResizeArray)"
+            "(values: seq<seq<int>>)", "(values |> Seq.map (Seq.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<seq<int option>>)", "(values |> Seq.map (Seq.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<int list>)", "(values |> Seq.map (List.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<int option list>)", "(values |> Seq.map (List.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<int []>)", "(values |> Seq.map (Array.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<int option []>)", "(values |> Seq.map (Array.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+
+            "(values: seq<float>)", "(values |> Seq.map string |> ResizeArray)"
+            "(values: seq<float option>)", "(values |> Seq.map Bindings.optToString |> ResizeArray)"
+            "(values: seq<seq<float>>)", "(values |> Seq.map (Seq.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<seq<float option>>)", "(values |> Seq.map (Seq.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<float list>)", "(values |> Seq.map (List.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<float option list>)", "(values |> Seq.map (List.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<float []>)", "(values |> Seq.map (Array.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<float option []>)", "(values |> Seq.map (Array.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+
+            "(values: seq<System.DateTime>)", "(values |> Seq.map string |> ResizeArray)"
+            "(values: seq<System.DateTime option>)", "(values |> Seq.map Bindings.optToString |> ResizeArray)"
+
+            "(values: seq<bool>)", "(values |> Seq.map string |> ResizeArray)"
+            "(values: seq<bool option>)", "(values |> Seq.map Bindings.optToString |> ResizeArray)"
+            "(values: seq<seq<bool>>)", "(values |> Seq.map (Seq.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<seq<bool option>>)", "(values |> Seq.map (Seq.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<bool list>)", "(values |> Seq.map (List.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<bool option list>)", "(values |> Seq.map (List.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+            "(values: seq<bool []>)", "(values |> Seq.map (Array.map string >> ResizeArray) |> ResizeArray)"
+            "(values: seq<bool option []>)", "(values |> Seq.map (Array.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
+        ]
 
         let allNormalStrs =
             [ boolStr; boolSeqStr; dateStr; dateSeqStr; intStr; intSeqStr; floatStr; floatSeqStr; stringStr; stringSeqStr ]
@@ -283,7 +350,7 @@ module rec Domain =
             function
             | ValType.Any -> allArrResizeStrs
             | ValType.Bool _ -> allBoolArrResizeStrs
-            | ValType.ColorScale -> [ stringStr; string2DListStr ]
+            | ValType.ColorScale -> [ stringStr; yield! allStr2DStrs ]
             | ValType.Enumerated -> []
             | ValType.EnumeratedWithCustom -> []
             | ValType.FlagList -> []
@@ -311,6 +378,13 @@ module rec Domain =
                     { attributes with Identity = Some <| getType propName { attribOverrides with Explicit = [] } jVal }
             | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
             | "xy", true -> ValType.FloatArray
+            | "measure", true when jVal?valType.AsString() = "data_array" -> ValType.Measure
+            | "modeBarButtonsToRemove", true -> ValType.ModeBarButtons
+            | "modeBarButtons", true -> ValType.ModeBarButtonsInherited
+            | "template", true -> ValType.Template
+            | "layers", false when jVal?role.AsString() = "object" -> ValType.ComponentArray
+            | "source", true when jVal?valType.AsString() = "any" -> ValType.StringArray
+            | "target", true when jVal?valType.AsString() = "string" -> ValType.TransformTarget
             | _, true ->
                 match jVal?valType
                       |> JsonValue.asString
@@ -342,7 +416,8 @@ module rec Domain =
                 | "string" -> ValType.String attributes
                 | "subplotid" -> ValType.String attributes
                 | _ -> ValType.Any
-            | _ -> ValType.Component
+            | "title", _ -> ValType.Component titleStr
+            | _ -> ValType.Component []
 
         /// Returns a list of primative overloads for the `ValType`
         let rec getOverloadStrings (parentName: string) (compName: string) (vType: ValType) =
@@ -366,7 +441,9 @@ module rec Domain =
                       floatSeqStr
                       if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
             | ValType.ColorArray -> [ stringStr; stringSeqStr; intSingleton; intSeqStr; floatSingleton; floatSeqStr ]
-            | ValType.ColorScale -> [ stringStr; string2DListStr ]
+            | ValType.ColorScale -> [ stringStr; yield! allStr2DStrs ]
+            | ValType.Component sugar -> [ compStr compName; yield! sugar ]
+            | ValType.ComponentArray -> [ compArray compName ]
             | ValType.DataArray attrib -> 
                 if attrib.IsCalcType then allArrStrs @ all2DStrs @ allArrResizeOptStrs
                 else allArrResizeStrs @ all2DStrs @ allArrResizeOptStrs
@@ -393,6 +470,9 @@ module rec Domain =
                           intSeqResizeStr
                           if attrib.TwoDimArrayOk then yield! allInt2DStrs ]
             | ValType.List vt -> getPrimativeOverloadSeq vt
+            | ValType.Measure -> measureStr
+            | ValType.ModeBarButtons -> modeBarButtons
+            | ValType.ModeBarButtonsInherited -> modeBarButtonsInherited
             | ValType.Number attrib ->
                 [ intStr
                   floatStr
@@ -412,7 +492,10 @@ module rec Domain =
                       else
                           stringSeqResizeStr
                           if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
-            | ValType.Component -> [ compStr compName ]
+            | ValType.StringArray ->
+                [ stringSingleton; stringSeqStr ]
+            | ValType.Template -> templateStr
+            | ValType.TransformTarget -> transformTargetStrs
 
         /// Returns a list of primative overloads for explicit overrides if any are present
         let getExplicitOverloadStrings (vType: ValType) =
@@ -426,7 +509,7 @@ module rec Domain =
                 match attrib.Identity with
                 | Some vt -> isPrimative vt
                 | _ -> false
-            | ValType.Component
+            | ValType.Component _
             | ValType.Enumerated
             | ValType.EnumeratedArray
             | ValType.EnumeratedWithCustom
@@ -448,6 +531,7 @@ module rec Domain =
           /// Whether the member should be implemented as an extension member.
           IsExtension: bool }
 
+    [<RequireQualifiedAccess>]
     module RegularPropOverload =
         /// Creates an inline prop overload with the specified code for params and
         /// value expression, implemented as a regular (non-extension) member.
@@ -485,6 +569,7 @@ module rec Domain =
           /// Whether the member is inline.
           IsInline: bool }
 
+    [<RequireQualifiedAccess>]
     module EnumPropOverload =
         /// Creates an inline enum prop value/overload with the specified method name
         /// and code for value expression and no docs or params.
@@ -504,6 +589,38 @@ module rec Domain =
         /// Sets whether the overload is inline.
         let setInline isInline (overload: EnumPropOverload) = { overload with IsInline = isInline }
 
+    type CustomPropOverload =
+        { /// The doc lines for the enum prop's value/overload, without leading ///.
+          DocLines: string list
+          /// The name of the enum prop's value/overload.
+          MethodName: string
+          /// The code for the method parameters, e.g. `(value: string)`.
+          ParamsCode: string
+          /// The code for the prop value.
+          BodyCode: string
+          /// Whether the member is inline.
+          IsInline: bool }
+
+    [<RequireQualifiedAccess>]
+    module CustomPropOverload =
+        /// Creates an inline prop overload with the specified code for params and
+        /// value expression, implemented as a regular (non-extension) member.
+        let create methodName paramsCode bodyCode =
+            { DocLines = []
+              MethodName = methodName
+              ParamsCode = paramsCode
+              BodyCode = bodyCode
+              IsInline = true }
+
+        /// Sets the doc lines of the enum prop value/overload.
+        let setDocs docLines (overload: EnumPropOverload) = { overload with DocLines = docLines }
+
+        /// Sets whether the overload is inline.
+        let setInline isInline (overload: RegularPropOverload) = { overload with IsInline = isInline }
+
+        /// Sets the params code for the enum prop value/overload.
+        let setParamsCode code (overload: EnumPropOverload) = { overload with ParamsCode = Some code }
+
     type Prop =
         { /// The doc lines for the prop, without leading ///.
           DocLines: string list
@@ -515,6 +632,8 @@ module rec Domain =
           RegularOverloads: RegularPropOverload list
           /// The prop overloads.
           EnumOverloads: EnumPropOverload list
+          /// Custom prop overloads that are placed in the sub module for the component.
+          CustomOverloads: CustomPropOverload list
           /// The list of parent components
           ParentNameTree: string list
           /// The data type of the prop
@@ -529,6 +648,7 @@ module rec Domain =
               MethodName = methodName
               RegularOverloads = []
               EnumOverloads = []
+              CustomOverloads = []
               ParentNameTree = []
               PropType = propType }
 
@@ -540,6 +660,9 @@ module rec Domain =
 
         /// Adds the specified enum value/overload to the prop.
         let addEnumOverload overload prop = { prop with EnumOverloads = prop.EnumOverloads @ [ overload ] }
+
+        /// Adds the specified custom sub module prop overload.
+        let addCustomOverload overload prop = { prop with CustomOverloads = prop.CustomOverloads @ [ overload ] }
 
         /// Adds the specified component tree to the prop.
         let addParentComponentTree (tree: string list) (prop: Prop) =
@@ -559,6 +682,7 @@ module rec Domain =
           /// Whether the attribute should produce an attribute for a higher level component
           SkipAttr: bool }
 
+    [<RequireQualifiedAccess>]
     module ComponentOverload =
         /// A default overload that accepts and passes a list of props.
         let defaults =
@@ -601,6 +725,7 @@ module rec Domain =
           /// The list of parent components
           ParentNameTree: string list }
 
+    [<RequireQualifiedAccess>]
     module Component =
         /// Creates a component with the specified method name and import path, no
         /// documentation, import selector, or props, and the default component
@@ -635,7 +760,8 @@ module rec Domain =
     /// Types that only contain properties, such as enums
     type CustomPropertyType =
         { Name: string
-          Properties: (string * string) list }
+          Properties: string list
+          Functions: (string * string) list }
 
     type ComponentApi =
         { /// The namespace for the API.
@@ -651,24 +777,29 @@ module rec Domain =
           /// All components in the API.
           Components: Component list
           /// Bindings for the API.
+          BindingsPrelude: (string * string) list
           Bindings: (string * string) list
+          TypePrelude: (string * string) list
           /// Lines to insert after the component definitions.
           TypePostlude: (string * string) list
           /// Types to insert after the Types file that only contain properties
           CustomPropertyTypes: CustomPropertyType list }
 
+    [<RequireQualifiedAccess>]
     module ComponentApi =
         /// Creates a component API with the specified namespace and component type
         /// name and no components.
-        let create namespace' typeName containerName bindings typePostlude =
+        let create namespace' typeName containerName bindingsPrelude bindings typePrelude typesPostlude =
             { Namespace = namespace'
               ComponentsPrelude = []
               PropsPrelude = []
               ComponentContainerName = containerName
               ComponentContainerTypeName = typeName
               Components = []
+              BindingsPrelude = bindingsPrelude
               Bindings = bindings
-              TypePostlude = typePostlude
+              TypePrelude = typePrelude
+              TypePostlude = typesPostlude
               CustomPropertyTypes = [] }
 
         /// Adds the specified component to the API.
