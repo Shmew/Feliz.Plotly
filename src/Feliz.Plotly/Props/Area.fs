@@ -66,11 +66,11 @@ type area =
     static member inline customdata (values: seq<float option>) = Interop.mkAreaAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkAreaAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkAreaAttr "customdatasrc" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IAreaProperty list) = Interop.mkAreaAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkAreaAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkAreaAttr "hoverlabel" (createObj !!properties)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -129,12 +129,12 @@ type area =
     static member inline ids (values: seq<float option>) = Interop.mkAreaAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkAreaAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkAreaAttr "idssrc" value
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkAreaAttr "legendgroup" value
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkAreaAttr "marker" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkAreaAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkAreaAttr "name" value
@@ -142,13 +142,13 @@ type area =
     static member inline opacity (value: int) = Interop.mkAreaAttr "opacity" value
     /// Sets the opacity of the trace.
     static member inline opacity (value: float) = Interop.mkAreaAttr "opacity" value
-    /// Sets the source reference on plot.ly for  r .
+    /// Sets the source reference on Chart Studio Cloud for  r .
     static member inline rsrc (value: string) = Interop.mkAreaAttr "rsrc" value
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     static member inline showlegend (value: bool) = Interop.mkAreaAttr "showlegend" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkAreaAttr "stream" (createObj !!properties)
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkAreaAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
-    /// Sets the source reference on plot.ly for  t .
+    /// Sets the source reference on Chart Studio Cloud for  t .
     static member inline tsrc (value: string) = Interop.mkAreaAttr "tsrc" value
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkAreaAttr "uid" value

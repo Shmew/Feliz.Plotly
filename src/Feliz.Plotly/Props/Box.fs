@@ -68,7 +68,7 @@ type box =
     static member inline customdata (values: seq<float option>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkBoxAttr "customdatasrc" value
     /// Sets the x coordinate step for multi-box traces set using q1/median/q3.
     static member inline dx (value: int) = Interop.mkBoxAttr "dx" value
@@ -82,22 +82,22 @@ type box =
     static member inline fillcolor (value: string) = Interop.mkBoxAttr "fillcolor" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IBoxProperty list) = Interop.mkBoxAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkBoxAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkBoxAttr "hoverlabel" (createObj !!properties)
     /// Do the hover effects highlight individual boxes  or sample points or both?
     static member inline hoveron (properties: #IBoxProperty list) = Interop.mkBoxAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkBoxAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkBoxAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkBoxAttr "hovertemplatesrc" value
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkBoxAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkBoxAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkBoxAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
@@ -155,7 +155,7 @@ type box =
     static member inline ids (values: seq<float option>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkBoxAttr "idssrc" value
     /// Sets the amount of jitter in the sample points drawn. If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn in a random jitter of width equal to the width of the box(es).
     static member inline jitter (value: int) = Interop.mkBoxAttr "jitter" value
@@ -220,7 +220,7 @@ type box =
     static member inline lowerfence (values: seq<float option>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<string option>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  lowerfence .
+    /// Sets the source reference on Chart Studio Cloud for  lowerfence .
     static member inline lowerfencesrc (value: string) = Interop.mkBoxAttr "lowerfencesrc" value
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkBoxAttr "marker" (createObj !!properties)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
@@ -279,7 +279,7 @@ type box =
     static member inline mean (values: seq<float option>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<string option>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  mean .
+    /// Sets the source reference on Chart Studio Cloud for  mean .
     static member inline meansrc (value: string) = Interop.mkBoxAttr "meansrc" value
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (value: bool) = Interop.mkBoxAttr "median" (value |> Array.singleton)
@@ -337,9 +337,9 @@ type box =
     static member inline median (values: seq<float option>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<string option>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  median .
+    /// Sets the source reference on Chart Studio Cloud for  median .
     static member inline mediansrc (value: string) = Interop.mkBoxAttr "mediansrc" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkBoxAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover. For box traces, the name will also be used for the position coordinate, if `x` and `x0` (`y` and `y0` if horizontal) are missing and the position axis is categorical
     static member inline name (value: string) = Interop.mkBoxAttr "name" value
@@ -401,7 +401,7 @@ type box =
     static member inline notchspan (values: seq<float option>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<string option>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  notchspan .
+    /// Sets the source reference on Chart Studio Cloud for  notchspan .
     static member inline notchspansrc (value: string) = Interop.mkBoxAttr "notchspansrc" value
     /// Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).
     static member inline notchwidth (value: int) = Interop.mkBoxAttr "notchwidth" value
@@ -473,7 +473,7 @@ type box =
     static member inline q1 (values: seq<float option>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<string option>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  q1 .
+    /// Sets the source reference on Chart Studio Cloud for  q1 .
     static member inline q1src (value: string) = Interop.mkBoxAttr "q1src" value
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (value: bool) = Interop.mkBoxAttr "q3" (value |> Array.singleton)
@@ -531,7 +531,7 @@ type box =
     static member inline q3 (values: seq<float option>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<string option>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  q3 .
+    /// Sets the source reference on Chart Studio Cloud for  q3 .
     static member inline q3src (value: string) = Interop.mkBoxAttr "q3src" value
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (value: bool) = Interop.mkBoxAttr "sd" (value |> Array.singleton)
@@ -589,7 +589,7 @@ type box =
     static member inline sd (values: seq<float option>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<string option>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  sd .
+    /// Sets the source reference on Chart Studio Cloud for  sd .
     static member inline sdsrc (value: string) = Interop.mkBoxAttr "sdsrc" value
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkBoxAttr "selected" (createObj !!properties)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -619,7 +619,7 @@ type box =
     static member inline text (value: string) = Interop.mkBoxAttr "text" value
     /// Sets the text elements associated with each sample value. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline text (values: seq<string>) = Interop.mkBoxAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkBoxAttr "textsrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkBoxAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
@@ -701,7 +701,7 @@ type box =
     static member inline upperfence (values: seq<float option>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<string option>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  upperfence .
+    /// Sets the source reference on Chart Studio Cloud for  upperfence .
     static member inline upperfencesrc (value: string) = Interop.mkBoxAttr "upperfencesrc" value
     /// Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
     static member inline whiskerwidth (value: int) = Interop.mkBoxAttr "whiskerwidth" value
@@ -791,7 +791,7 @@ type box =
     static member inline xaxis (anchorId: int) = Interop.mkBoxAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkBoxAttr "xaxis" value
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkBoxAttr "xsrc" value
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (value: bool) = Interop.mkBoxAttr "y" (value |> Array.singleton)
@@ -873,7 +873,7 @@ type box =
     static member inline yaxis (anchorId: int) = Interop.mkBoxAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkBoxAttr "yaxis" value
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkBoxAttr "ysrc" value
 
 [<RequireQualifiedAccess>]

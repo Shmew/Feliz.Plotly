@@ -70,7 +70,7 @@ type scatter =
     static member inline customdata (values: seq<float option>) = Interop.mkScatterAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkScatterAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkScatterAttr "customdatasrc" value
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: int) = Interop.mkScatterAttr "dx" value
@@ -86,22 +86,22 @@ type scatter =
     static member inline fillcolor (value: string) = Interop.mkScatterAttr "fillcolor" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IScatterProperty list) = Interop.mkScatterAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkScatterAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkScatterAttr "hoverlabel" (createObj !!properties)
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
     static member inline hoveron (properties: #IScatterProperty list) = Interop.mkScatterAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkScatterAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkScatterAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkScatterAttr "hovertemplatesrc" value
     /// Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (value: string) = Interop.mkScatterAttr "hovertext" value
     /// Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (values: seq<string>) = Interop.mkScatterAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkScatterAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkScatterAttr "ids" (value |> Array.singleton)
@@ -159,13 +159,13 @@ type scatter =
     static member inline ids (values: seq<float option>) = Interop.mkScatterAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkScatterAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkScatterAttr "idssrc" value
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkScatterAttr "legendgroup" value
     static member inline line (properties: #ILineProperty list) = Interop.mkScatterAttr "line" (createObj !!properties)
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkScatterAttr "marker" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkScatterAttr "metasrc" value
     /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     static member inline mode (properties: #IScatterProperty list) = Interop.mkScatterAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
@@ -175,7 +175,7 @@ type scatter =
     static member inline opacity (value: int) = Interop.mkScatterAttr "opacity" value
     /// Sets the opacity of the trace.
     static member inline opacity (value: float) = Interop.mkScatterAttr "opacity" value
-    /// Sets the source reference on plot.ly for  r .
+    /// Sets the source reference on Chart Studio Cloud for  r .
     static member inline rsrc (value: string) = Interop.mkScatterAttr "rsrc" value
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkScatterAttr "selected" (createObj !!properties)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -211,18 +211,18 @@ type scatter =
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkScatterAttr "textfont" (createObj !!properties)
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     static member inline textposition (properties: #IScatterProperty list) = Interop.mkScatterAttr "textposition" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
-    /// Sets the source reference on plot.ly for  textposition .
+    /// Sets the source reference on Chart Studio Cloud for  textposition .
     static member inline textpositionsrc (value: string) = Interop.mkScatterAttr "textpositionsrc" value
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkScatterAttr "textsrc" value
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
     static member inline texttemplate (value: string) = Interop.mkScatterAttr "texttemplate" value
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
     static member inline texttemplate (values: seq<string>) = Interop.mkScatterAttr "texttemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  texttemplate .
+    /// Sets the source reference on Chart Studio Cloud for  texttemplate .
     static member inline texttemplatesrc (value: string) = Interop.mkScatterAttr "texttemplatesrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkScatterAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
-    /// Sets the source reference on plot.ly for  t .
+    /// Sets the source reference on Chart Studio Cloud for  t .
     static member inline tsrc (value: string) = Interop.mkScatterAttr "tsrc" value
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkScatterAttr "uid" value
@@ -327,7 +327,7 @@ type scatter =
     static member inline xaxis (anchorId: int) = Interop.mkScatterAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkScatterAttr "xaxis" value
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkScatterAttr "xsrc" value
     /// Sets the y coordinates.
     static member inline y (value: bool) = Interop.mkScatterAttr "y" (value |> Array.singleton)
@@ -409,7 +409,7 @@ type scatter =
     static member inline yaxis (anchorId: int) = Interop.mkScatterAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkScatterAttr "yaxis" value
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkScatterAttr "ysrc" value
 
 [<RequireQualifiedAccess>]

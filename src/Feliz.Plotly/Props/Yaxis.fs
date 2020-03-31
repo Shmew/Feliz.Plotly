@@ -70,7 +70,7 @@ type yaxis =
     static member inline categoryarray (values: seq<float option>) = Interop.mkYaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string option>) = Interop.mkYaxisAttr "categoryarray" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  categoryarray .
+    /// Sets the source reference on Chart Studio Cloud for  categoryarray .
     static member inline categoryarraysrc (value: string) = Interop.mkYaxisAttr "categoryarraysrc" value
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
     static member inline color (value: string) = Interop.mkYaxisAttr "color" value
@@ -152,6 +152,7 @@ type yaxis =
     static member inline range (value: string) = Interop.mkYaxisAttr "range" (value |> Array.singleton |> ResizeArray)
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.
     static member inline range (values: seq<string>) = Interop.mkYaxisAttr "range" (values |> ResizeArray)
+    static member inline rangebreaks (properties: #IRangebreaksProperty list) = Interop.mkYaxisAttr "rangebreaks" (createObj !!properties)
     /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale ratio. For example, if this value is 10, then every unit on this axis spans 10 times the number of pixels as a unit on the linked axis. Use this for example to create an elevation profile where the vertical scale is exaggerated a fixed amount with respect to the horizontal.
     static member inline scaleratio (value: int) = Interop.mkYaxisAttr "scaleratio" value
     /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale ratio. For example, if this value is 10, then every unit on this axis spans 10 times the number of pixels as a unit on the linked axis. Use this for example to create an elevation profile where the vertical scale is exaggerated a fixed amount with respect to the horizontal.
@@ -277,7 +278,7 @@ type yaxis =
     static member inline ticktext (values: seq<float option>) = Interop.mkYaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<string option>) = Interop.mkYaxisAttr "ticktext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ticktext .
+    /// Sets the source reference on Chart Studio Cloud for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkYaxisAttr "ticktextsrc" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (value: bool) = Interop.mkYaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
@@ -335,7 +336,7 @@ type yaxis =
     static member inline tickvals (values: seq<float option>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkYaxisAttr "tickvals" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  tickvals .
+    /// Sets the source reference on Chart Studio Cloud for  tickvals .
     static member inline tickvalssrc (value: string) = Interop.mkYaxisAttr "tickvalssrc" value
     /// Sets the tick width (in px).
     static member inline tickwidth (value: int) = Interop.mkYaxisAttr "tickwidth" value
@@ -562,6 +563,7 @@ module yaxis =
     type spikesnap =
         static member inline cursor = Interop.mkYaxisAttr "spikesnap" "cursor"
         static member inline data = Interop.mkYaxisAttr "spikesnap" "data"
+        static member inline hoveredData = Interop.mkYaxisAttr "spikesnap" "hovered data"
 
     /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
     [<Erase>]

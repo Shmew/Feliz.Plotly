@@ -68,25 +68,25 @@ type sunburst =
     static member inline customdata (values: seq<float option>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkSunburstAttr "customdatasrc" value
     static member inline domain (properties: #IDomainProperty list) = Interop.mkSunburstAttr "domain" (createObj !!properties)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #ISunburstProperty list) = Interop.mkSunburstAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkSunburstAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkSunburstAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkSunburstAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkSunburstAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkSunburstAttr "hovertemplatesrc" value
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (value: string) = Interop.mkSunburstAttr "hovertext" value
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
     static member inline hovertext (values: seq<string>) = Interop.mkSunburstAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkSunburstAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
@@ -144,7 +144,7 @@ type sunburst =
     static member inline ids (values: seq<float option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkSunburstAttr "idssrc" value
     /// Sets the font used for `textinfo` lying inside the sector.
     static member inline insidetextfont (properties: #IInsidetextfontProperty list) = Interop.mkSunburstAttr "insidetextfont" (createObj !!properties)
@@ -204,7 +204,7 @@ type sunburst =
     static member inline labels (values: seq<float option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<string option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  labels .
+    /// Sets the source reference on Chart Studio Cloud for  labels .
     static member inline labelssrc (value: string) = Interop.mkSunburstAttr "labelssrc" value
     static member inline leaf (properties: #ILeafProperty list) = Interop.mkSunburstAttr "leaf" (createObj !!properties)
     /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an \"id\" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
@@ -230,7 +230,7 @@ type sunburst =
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkSunburstAttr "marker" (createObj !!properties)
     /// Sets the number of rendered sectors from any given `level`. Set `maxdepth` to *-1* to render all the levels in the hierarchy.
     static member inline maxdepth (value: int) = Interop.mkSunburstAttr "maxdepth" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkSunburstAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkSunburstAttr "name" value
@@ -296,7 +296,7 @@ type sunburst =
     static member inline parents (values: seq<float option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<string option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  parents .
+    /// Sets the source reference on Chart Studio Cloud for  parents .
     static member inline parentssrc (value: string) = Interop.mkSunburstAttr "parentssrc" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkSunburstAttr "stream" (createObj !!properties)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -359,13 +359,13 @@ type sunburst =
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkSunburstAttr "textfont" (createObj !!properties)
     /// Determines which trace information appear on the graph.
     static member inline textinfo (properties: #ISunburstProperty list) = Interop.mkSunburstAttr "textinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkSunburstAttr "textsrc" value
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry`, `percentParent`, `label` and `value`.
     static member inline texttemplate (value: string) = Interop.mkSunburstAttr "texttemplate" value
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry`, `percentParent`, `label` and `value`.
     static member inline texttemplate (values: seq<string>) = Interop.mkSunburstAttr "texttemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  texttemplate .
+    /// Sets the source reference on Chart Studio Cloud for  texttemplate .
     static member inline texttemplatesrc (value: string) = Interop.mkSunburstAttr "texttemplatesrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkSunburstAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
@@ -446,7 +446,7 @@ type sunburst =
     static member inline values (values: seq<float option>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<string option>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  values .
+    /// Sets the source reference on Chart Studio Cloud for  values .
     static member inline valuessrc (value: string) = Interop.mkSunburstAttr "valuessrc" value
 
 [<RequireQualifiedAccess>]

@@ -67,7 +67,7 @@ type table =
     static member inline columnorder (values: seq<float option>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<string option>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  columnorder .
+    /// Sets the source reference on Chart Studio Cloud for  columnorder .
     static member inline columnordersrc (value: string) = Interop.mkTableAttr "columnordersrc" value
     /// The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.
     static member inline columnwidth (value: int) = Interop.mkTableAttr "columnwidth" value
@@ -77,7 +77,7 @@ type table =
     static member inline columnwidth (values: seq<int>) = Interop.mkTableAttr "columnwidth" (values |> ResizeArray)
     /// The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.
     static member inline columnwidth (values: seq<float>) = Interop.mkTableAttr "columnwidth" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  columnwidth .
+    /// Sets the source reference on Chart Studio Cloud for  columnwidth .
     static member inline columnwidthsrc (value: string) = Interop.mkTableAttr "columnwidthsrc" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkTableAttr "customdata" (value |> Array.singleton)
@@ -135,13 +135,13 @@ type table =
     static member inline customdata (values: seq<float option>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkTableAttr "customdatasrc" value
     static member inline domain (properties: #IDomainProperty list) = Interop.mkTableAttr "domain" (createObj !!properties)
     static member inline header (properties: #IHeaderProperty list) = Interop.mkTableAttr "header" (createObj !!properties)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #ITableProperty list) = Interop.mkTableAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkTableAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkTableAttr "hoverlabel" (createObj !!properties)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -200,9 +200,9 @@ type table =
     static member inline ids (values: seq<float option>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkTableAttr "idssrc" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkTableAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkTableAttr "name" value

@@ -75,26 +75,26 @@ type histogram =
     static member inline customdata (values: seq<float option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkHistogramAttr "customdatasrc" value
     static member inline errorX (properties: #IErrorXProperty list) = Interop.mkHistogramAttr "error_x" (createObj !!properties)
     static member inline errorY (properties: #IErrorYProperty list) = Interop.mkHistogramAttr "error_y" (createObj !!properties)
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IHistogramProperty list) = Interop.mkHistogramAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkHistogramAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHistogramAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkHistogramAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkHistogramAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkHistogramAttr "hovertemplatesrc" value
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkHistogramAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkHistogramAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkHistogramAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkHistogramAttr "ids" (value |> Array.singleton)
@@ -152,12 +152,12 @@ type histogram =
     static member inline ids (values: seq<float option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkHistogramAttr "idssrc" value
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkHistogramAttr "legendgroup" value
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkHistogramAttr "marker" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkHistogramAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkHistogramAttr "name" value
@@ -199,7 +199,7 @@ type histogram =
     static member inline text (value: string) = Interop.mkHistogramAttr "text" value
     /// Sets hover text elements associated with each bar. If a single string, the same string appears over all bars. If an array of string, the items are mapped in order to the this trace's coordinates.
     static member inline text (values: seq<string>) = Interop.mkHistogramAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkHistogramAttr "textsrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHistogramAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
@@ -286,7 +286,7 @@ type histogram =
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkHistogramAttr "xaxis" value
     static member inline xbins (properties: #IXbinsProperty list) = Interop.mkHistogramAttr "xbins" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkHistogramAttr "xsrc" value
     /// Sets the sample data to be binned on the y axis.
     static member inline y (value: bool) = Interop.mkHistogramAttr "y" (value |> Array.singleton)
@@ -349,7 +349,7 @@ type histogram =
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkHistogramAttr "yaxis" value
     static member inline ybins (properties: #IYbinsProperty list) = Interop.mkHistogramAttr "ybins" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkHistogramAttr "ysrc" value
 
 [<RequireQualifiedAccess>]

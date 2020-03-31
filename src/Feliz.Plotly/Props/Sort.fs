@@ -82,7 +82,7 @@ type sort =
     static member inline target (values: seq<bool []>) = Interop.mkSortAttr "target" (values |> Seq.map (Array.map string >> ResizeArray) |> ResizeArray)
     /// Sets the target by which the sort transform is applied. If a string, *target* is assumed to be a reference to a data array in the parent trace object. To sort about nested variables, use *.* to access them. For example, set `target` to *marker.size* to sort about the marker size array. If an array, *target* is then the data array by which the sort transform is applied.
     static member inline target (values: seq<bool option []>) = Interop.mkSortAttr "target" (values |> Seq.map (Array.map Bindings.optToString >> ResizeArray) |> ResizeArray)
-    /// Sets the source reference on plot.ly for  target .
+    /// Sets the source reference on Chart Studio Cloud for  target .
     static member inline targetsrc (value: string) = Interop.mkSortAttr "targetsrc" value
 
 [<RequireQualifiedAccess>]

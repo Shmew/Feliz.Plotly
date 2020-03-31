@@ -122,9 +122,9 @@ type errorZ =
     static member inline arrayminus (values: seq<float option>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<string option>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  arrayminus .
+    /// Sets the source reference on Chart Studio Cloud for  arrayminus .
     static member inline arrayminussrc (value: string) = Interop.mkErrorZAttr "arrayminussrc" value
-    /// Sets the source reference on plot.ly for  array .
+    /// Sets the source reference on Chart Studio Cloud for  array .
     static member inline arraysrc (value: string) = Interop.mkErrorZAttr "arraysrc" value
     /// Sets the stoke color of the error bars.
     static member inline color (value: string) = Interop.mkErrorZAttr "color" value

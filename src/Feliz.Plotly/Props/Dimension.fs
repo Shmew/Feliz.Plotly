@@ -67,7 +67,7 @@ type dimension =
     static member inline categoryarray (values: seq<float option>) = Interop.mkDimensionAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string option>) = Interop.mkDimensionAttr "categoryarray" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  categoryarray .
+    /// Sets the source reference on Chart Studio Cloud for  categoryarray .
     static member inline categoryarraysrc (value: string) = Interop.mkDimensionAttr "categoryarraysrc" value
     /// The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
     static member inline constraintrange (value: int) = Interop.mkDimensionAttr "constraintrange" (value |> Array.singleton |> ResizeArray)
@@ -153,7 +153,7 @@ type dimension =
     static member inline ticktext (values: seq<float option>) = Interop.mkDimensionAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`.
     static member inline ticktext (values: seq<string option>) = Interop.mkDimensionAttr "ticktext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ticktext .
+    /// Sets the source reference on Chart Studio Cloud for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkDimensionAttr "ticktextsrc" value
     /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (value: bool) = Interop.mkDimensionAttr "tickvals" (value |> Array.singleton |> ResizeArray)
@@ -211,7 +211,7 @@ type dimension =
     static member inline tickvals (values: seq<float option>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear.
     static member inline tickvals (values: seq<string option>) = Interop.mkDimensionAttr "tickvals" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  tickvals .
+    /// Sets the source reference on Chart Studio Cloud for  tickvals .
     static member inline tickvalssrc (value: string) = Interop.mkDimensionAttr "tickvalssrc" value
     /// Sets the dimension values to be plotted.
     static member inline values (value: bool) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
@@ -269,7 +269,7 @@ type dimension =
     static member inline values (values: seq<float option>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<string option>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  values .
+    /// Sets the source reference on Chart Studio Cloud for  values .
     static member inline valuessrc (value: string) = Interop.mkDimensionAttr "valuessrc" value
     /// Determines whether or not this dimension is shown on the graph. Note that even visible false dimension contribute to the default grid generate by this splom trace.
     static member inline visible (value: bool) = Interop.mkDimensionAttr "visible" value

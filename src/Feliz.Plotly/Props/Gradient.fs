@@ -18,9 +18,9 @@ type gradient =
     static member inline color (values: seq<int>) = Interop.mkGradientAttr "color" (values |> ResizeArray)
     /// Sets the final color of the gradient fill: the center color for radial, the right for horizontal, or the bottom for vertical.
     static member inline color (values: seq<float>) = Interop.mkGradientAttr "color" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  color .
+    /// Sets the source reference on Chart Studio Cloud for  color .
     static member inline colorsrc (value: string) = Interop.mkGradientAttr "colorsrc" value
-    /// Sets the source reference on plot.ly for  type .
+    /// Sets the source reference on Chart Studio Cloud for  type .
     static member inline typesrc (value: string) = Interop.mkGradientAttr "typesrc" value
 
 [<RequireQualifiedAccess>]

@@ -86,7 +86,7 @@ type contourcarpet =
     static member inline a0 (value: string) = Interop.mkContourcarpetAttr "a0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline a0 (values: seq<string>) = Interop.mkContourcarpetAttr "a0" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  a .
+    /// Sets the source reference on Chart Studio Cloud for  a .
     static member inline asrc (value: string) = Interop.mkContourcarpetAttr "asrc" value
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
     static member inline autocolorscale (value: bool) = Interop.mkContourcarpetAttr "autocolorscale" value
@@ -168,7 +168,7 @@ type contourcarpet =
     static member inline b0 (value: string) = Interop.mkContourcarpetAttr "b0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline b0 (values: seq<string>) = Interop.mkContourcarpetAttr "b0" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  b .
+    /// Sets the source reference on Chart Studio Cloud for  b .
     static member inline bsrc (value: string) = Interop.mkContourcarpetAttr "bsrc" value
     /// The `carpet` of the carpet axes on which this contour trace lies
     static member inline carpet (value: string) = Interop.mkContourcarpetAttr "carpet" value
@@ -242,7 +242,7 @@ type contourcarpet =
     static member inline customdata (values: seq<float option>) = Interop.mkContourcarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkContourcarpetAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkContourcarpetAttr "customdatasrc" value
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline da (value: int) = Interop.mkContourcarpetAttr "da" value
@@ -310,7 +310,7 @@ type contourcarpet =
     static member inline hovertext (values: seq<float option>) = Interop.mkContourcarpetAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<string option>) = Interop.mkContourcarpetAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkContourcarpetAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
@@ -368,12 +368,12 @@ type contourcarpet =
     static member inline ids (values: seq<float option>) = Interop.mkContourcarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkContourcarpetAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkContourcarpetAttr "idssrc" value
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkContourcarpetAttr "legendgroup" value
     static member inline line (properties: #ILineProperty list) = Interop.mkContourcarpetAttr "line" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkContourcarpetAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkContourcarpetAttr "name" value
@@ -446,7 +446,7 @@ type contourcarpet =
     static member inline text (values: seq<float option>) = Interop.mkContourcarpetAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<string option>) = Interop.mkContourcarpetAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkContourcarpetAttr "textsrc" value
     /// Transposes the z data.
     static member inline transpose (value: bool) = Interop.mkContourcarpetAttr "transpose" value
@@ -550,7 +550,7 @@ type contourcarpet =
     static member inline zmin (value: int) = Interop.mkContourcarpetAttr "zmin" value
     /// Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.
     static member inline zmin (value: float) = Interop.mkContourcarpetAttr "zmin" value
-    /// Sets the source reference on plot.ly for  z .
+    /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkContourcarpetAttr "zsrc" value
 
 [<RequireQualifiedAccess>]

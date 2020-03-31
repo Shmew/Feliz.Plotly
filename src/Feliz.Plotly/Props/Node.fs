@@ -18,8 +18,66 @@ type node =
     static member inline color (values: seq<int>) = Interop.mkNodeAttr "color" (values |> ResizeArray)
     /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
     static member inline color (values: seq<float>) = Interop.mkNodeAttr "color" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  color .
+    /// Sets the source reference on Chart Studio Cloud for  color .
     static member inline colorsrc (value: string) = Interop.mkNodeAttr "colorsrc" value
+    /// Assigns extra data to each node.
+    static member inline customdata (value: bool) = Interop.mkNodeAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<bool>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (value: System.DateTime) = Interop.mkNodeAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<System.DateTime>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (value: float) = Interop.mkNodeAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<float>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (value: int) = Interop.mkNodeAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<int>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (value: string) = Interop.mkNodeAttr "customdata" (value |> Array.singleton)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<string>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<seq<bool>>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<bool list>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<bool []>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<seq<string>>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<string list>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<string []>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<seq<int>>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<int list>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<int []>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<seq<float>>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<float list>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<float []>) = Interop.mkNodeAttr "customdata" (values |> Seq.map ResizeArray |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<PlotData>) = Interop.mkNodeAttr "customdata" (values |> Seq.map PlotData.asDataResize |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<bool option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<System.DateTime option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<int option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<float option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<string option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
+    static member inline customdatasrc (value: string) = Interop.mkNodeAttr "customdatasrc" value
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
     static member inline groups (value: int) = Interop.mkNodeAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
@@ -29,11 +87,11 @@ type node =
     /// Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can be specified.
     static member inline groups (values: seq<float>) = Interop.mkNodeAttr "groups" (values |> ResizeArray)
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkNodeAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkNodeAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkNodeAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkNodeAttr "hovertemplatesrc" value
     /// The shown name of the node.
     static member inline label (value: bool) = Interop.mkNodeAttr "label" (value |> Array.singleton)
@@ -91,7 +149,7 @@ type node =
     static member inline label (values: seq<float option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
     /// The shown name of the node.
     static member inline label (values: seq<string option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  label .
+    /// Sets the source reference on Chart Studio Cloud for  label .
     static member inline labelsrc (value: string) = Interop.mkNodeAttr "labelsrc" value
     static member inline line (properties: #ILineProperty list) = Interop.mkNodeAttr "line" (createObj !!properties)
     /// Sets the padding (in px) between the `nodes`.
@@ -158,7 +216,7 @@ type node =
     static member inline x (values: seq<float option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<string option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkNodeAttr "xsrc" value
     /// The normalized vertical position of the node.
     static member inline y (value: bool) = Interop.mkNodeAttr "y" (value |> Array.singleton)
@@ -216,7 +274,7 @@ type node =
     static member inline y (values: seq<float option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<string option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkNodeAttr "ysrc" value
 
 [<RequireQualifiedAccess>]

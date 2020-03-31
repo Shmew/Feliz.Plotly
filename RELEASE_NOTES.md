@@ -1,4 +1,7 @@
-### 0.20.1 - Saturday, March21st, 2020
+### 0.21.0 - Tuesday, March 31st, 2020
+* Regenerate for plotly.js 1.53.0 release
+
+### 0.20.1 - Saturday, March 21st, 2020
 * Remove duplicate prop files
 
 ### 0.20.0 - Saturday, March 21st, 2020

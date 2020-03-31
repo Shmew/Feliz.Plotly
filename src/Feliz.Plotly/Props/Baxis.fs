@@ -70,7 +70,7 @@ type baxis =
     static member inline categoryarray (values: seq<float option>) = Interop.mkBaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string option>) = Interop.mkBaxisAttr "categoryarray" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  categoryarray .
+    /// Sets the source reference on Chart Studio Cloud for  categoryarray .
     static member inline categoryarraysrc (value: string) = Interop.mkBaxisAttr "categoryarraysrc" value
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
     static member inline color (value: string) = Interop.mkBaxisAttr "color" value
@@ -237,7 +237,7 @@ type baxis =
     static member inline ticktext (values: seq<float option>) = Interop.mkBaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<string option>) = Interop.mkBaxisAttr "ticktext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ticktext .
+    /// Sets the source reference on Chart Studio Cloud for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkBaxisAttr "ticktextsrc" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (value: bool) = Interop.mkBaxisAttr "tickvals" (value |> Array.singleton)
@@ -295,7 +295,7 @@ type baxis =
     static member inline tickvals (values: seq<float option>) = Interop.mkBaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkBaxisAttr "tickvals" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  tickvals .
+    /// Sets the source reference on Chart Studio Cloud for  tickvals .
     static member inline tickvalssrc (value: string) = Interop.mkBaxisAttr "tickvalssrc" value
     /// Sets the tick width (in px).
     static member inline tickwidth (value: int) = Interop.mkBaxisAttr "tickwidth" value

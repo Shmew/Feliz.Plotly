@@ -163,9 +163,9 @@ type layout =
     static member inline hiddenlabels (values: seq<float option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<string option>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hiddenlabels .
+    /// Sets the source reference on Chart Studio Cloud for  hiddenlabels .
     static member inline hiddenlabelssrc (value: string) = Interop.mkLayoutAttr "hiddenlabelssrc" value
-    /// Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the plotly service (at https://plot.ly or on-premise).
+    /// Determines whether or not a text link citing the data source is placed at the bottom-right cored of the figure. Has only an effect only on graphs that have been generated via forked graphs from the Chart Studio Cloud (at https://chart-studio.plotly.com or on-premise).
     static member inline hidesources (value: bool) = Interop.mkLayoutAttr "hidesources" value
     /// Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff, 0 means no looking for data). This is only a real distance for hovering on point-like objects, like scatter points. For area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside, but these objects will not supersede hover on point-like objects in case of conflict.
     static member inline hoverdistance (value: int) = Interop.mkLayoutAttr "hoverdistance" value
@@ -175,7 +175,7 @@ type layout =
     static member inline mapbox (id: int, properties: IMapboxProperty list) = Interop.mkLayoutAttr (sprintf "mapbox%i" id) (createObj !!properties)
     static member inline mapbox (properties: #IMapboxProperty list) = Interop.mkLayoutAttr "mapbox" (createObj !!properties)
     static member inline margin (properties: #IMarginProperty list) = Interop.mkLayoutAttr "margin" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkLayoutAttr "metasrc" value
     static member inline modebar (properties: #IModebarProperty list) = Interop.mkLayoutAttr "modebar" (createObj !!properties)
     /// Sets the background color of the paper where the graph is drawn.
@@ -349,11 +349,13 @@ module layout =
         static member inline overlay = Interop.mkLayoutAttr "funnelmode" "overlay"
         static member inline stack = Interop.mkLayoutAttr "funnelmode" "stack"
 
-    /// Determines the mode of hover interactions. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation` value) for plots based on cartesian coordinates. For anything else the default value is *closest*.
+    /// Determines the mode of hover interactions. If *closest*, a single hoverlabel will appear for the *closest* point within the `hoverdistance`. If *x* (or *y*), multiple hoverlabels will appear for multiple points at the *closest* x- (or y-) coordinate within the `hoverdistance`, with the caveat that no more than one hoverlabel will appear per trace. If *x unified* (or *y unified*), a single hoverlabel will appear multiple points at the closest x- (or y-) coordinate within the `hoverdistance` with the caveat that no more than one hoverlabel will appear per trace. In this mode, spikelines are enabled by default perpendicular to the specified axis. If false, hover interactions are disabled. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation` value) for plots based on cartesian coordinates. For anything else the default value is *closest*.
     [<Erase>]
     type hovermode =
         static member inline closest = Interop.mkLayoutAttr "hovermode" "closest"
+        static member inline xUnified = Interop.mkLayoutAttr "hovermode" "x unified"
         static member inline x = Interop.mkLayoutAttr "hovermode" "x"
+        static member inline yUnified = Interop.mkLayoutAttr "hovermode" "y unified"
         static member inline y = Interop.mkLayoutAttr "hovermode" "y"
         static member inline false' = Interop.mkLayoutAttr "hovermode" false
 

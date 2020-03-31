@@ -110,9 +110,9 @@ type marker =
     static member inline colorscale (values: seq<string list>) = Interop.mkMarkerAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
     /// Sets the colorscale. Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
     static member inline colorscale (values: seq<string []>) = Interop.mkMarkerAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
-    /// Sets the source reference on plot.ly for  color .
+    /// Sets the source reference on Chart Studio Cloud for  color .
     static member inline colorsrc (value: string) = Interop.mkMarkerAttr "colorsrc" value
-    /// Sets the source reference on plot.ly for  colors .
+    /// Sets the source reference on Chart Studio Cloud for  colors .
     static member inline colorssrc (value: string) = Interop.mkMarkerAttr "colorssrc" value
     static member inline gradient (properties: #IGradientProperty list) = Interop.mkMarkerAttr "gradient" (createObj !!properties)
     static member inline line (properties: #ILineProperty list) = Interop.mkMarkerAttr "line" (createObj !!properties)
@@ -128,7 +128,7 @@ type marker =
     static member inline opacity (values: seq<int>) = Interop.mkMarkerAttr "opacity" (values |> ResizeArray)
     /// Sets the marker opacity.
     static member inline opacity (values: seq<float>) = Interop.mkMarkerAttr "opacity" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  opacity .
+    /// Sets the source reference on Chart Studio Cloud for  opacity .
     static member inline opacitysrc (value: string) = Interop.mkMarkerAttr "opacitysrc" value
     /// Sets the color of the outlier sample points.
     static member inline outliercolor (value: string) = Interop.mkMarkerAttr "outliercolor" value
@@ -157,11 +157,11 @@ type marker =
     static member inline sizeref (value: int) = Interop.mkMarkerAttr "sizeref" value
     /// Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin` and `sizemode`.
     static member inline sizeref (value: float) = Interop.mkMarkerAttr "sizeref" value
-    /// Sets the source reference on plot.ly for  size .
+    /// Sets the source reference on Chart Studio Cloud for  size .
     static member inline sizesrc (value: string) = Interop.mkMarkerAttr "sizesrc" value
     /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
     static member inline symbol (properties: #IMarkerProperty list) = Interop.mkMarkerAttr "symbol" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
-    /// Sets the source reference on plot.ly for  symbol .
+    /// Sets the source reference on Chart Studio Cloud for  symbol .
     static member inline symbolsrc (value: string) = Interop.mkMarkerAttr "symbolsrc" value
 
 [<RequireQualifiedAccess>]

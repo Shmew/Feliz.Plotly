@@ -83,7 +83,7 @@ type heatmap =
     static member inline customdata (values: seq<float option>) = Interop.mkHeatmapAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkHeatmapAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkHeatmapAttr "customdatasrc" value
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: int) = Interop.mkHeatmapAttr "dx" value
@@ -95,16 +95,16 @@ type heatmap =
     static member inline dy (value: float) = Interop.mkHeatmapAttr "dy" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IHeatmapProperty list) = Interop.mkHeatmapAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkHeatmapAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHeatmapAttr "hoverlabel" (createObj !!properties)
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data have hover labels associated with them.
     static member inline hoverongaps (value: bool) = Interop.mkHeatmapAttr "hoverongaps" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkHeatmapAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkHeatmapAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkHeatmapAttr "hovertemplatesrc" value
     /// Same as `text`.
     static member inline hovertext (value: bool) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
@@ -162,7 +162,7 @@ type heatmap =
     static member inline hovertext (values: seq<float option>) = Interop.mkHeatmapAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<string option>) = Interop.mkHeatmapAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkHeatmapAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
@@ -220,11 +220,11 @@ type heatmap =
     static member inline ids (values: seq<float option>) = Interop.mkHeatmapAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkHeatmapAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkHeatmapAttr "idssrc" value
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkHeatmapAttr "legendgroup" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkHeatmapAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkHeatmapAttr "name" value
@@ -295,7 +295,7 @@ type heatmap =
     static member inline text (values: seq<float option>) = Interop.mkHeatmapAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<string option>) = Interop.mkHeatmapAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkHeatmapAttr "textsrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHeatmapAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Transposes the z data.
@@ -406,7 +406,7 @@ type heatmap =
     static member inline xgap (value: int) = Interop.mkHeatmapAttr "xgap" value
     /// Sets the horizontal gap (in pixels) between bricks.
     static member inline xgap (value: float) = Interop.mkHeatmapAttr "xgap" value
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkHeatmapAttr "xsrc" value
     /// Sets the y coordinates.
     static member inline y (value: bool) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
@@ -492,7 +492,7 @@ type heatmap =
     static member inline ygap (value: int) = Interop.mkHeatmapAttr "ygap" value
     /// Sets the vertical gap (in pixels) between bricks.
     static member inline ygap (value: float) = Interop.mkHeatmapAttr "ygap" value
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkHeatmapAttr "ysrc" value
     /// Sets the z data.
     static member inline z (value: bool) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
@@ -566,7 +566,7 @@ type heatmap =
     static member inline zmin (value: int) = Interop.mkHeatmapAttr "zmin" value
     /// Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.
     static member inline zmin (value: float) = Interop.mkHeatmapAttr "zmin" value
-    /// Sets the source reference on plot.ly for  z .
+    /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkHeatmapAttr "zsrc" value
 
 [<RequireQualifiedAccess>]

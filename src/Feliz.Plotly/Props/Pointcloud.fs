@@ -66,11 +66,11 @@ type pointcloud =
     static member inline customdata (values: seq<float option>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkPointcloudAttr "customdatasrc" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IPointcloudProperty list) = Interop.mkPointcloudAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkPointcloudAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkPointcloudAttr "hoverlabel" (createObj !!properties)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -129,7 +129,7 @@ type pointcloud =
     static member inline ids (values: seq<float option>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkPointcloudAttr "idssrc" value
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (value: bool) = Interop.mkPointcloudAttr "indices" (value |> Array.singleton)
@@ -187,12 +187,12 @@ type pointcloud =
     static member inline indices (values: seq<float option>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (values: seq<string option>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  indices .
+    /// Sets the source reference on Chart Studio Cloud for  indices .
     static member inline indicessrc (value: string) = Interop.mkPointcloudAttr "indicessrc" value
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkPointcloudAttr "legendgroup" value
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkPointcloudAttr "marker" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkPointcloudAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkPointcloudAttr "name" value
@@ -207,7 +207,7 @@ type pointcloud =
     static member inline text (value: string) = Interop.mkPointcloudAttr "text" value
     /// Sets text elements associated with each (x,y) pair. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<string>) = Interop.mkPointcloudAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkPointcloudAttr "textsrc" value
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkPointcloudAttr "uid" value
@@ -347,15 +347,15 @@ type pointcloud =
     static member inline xbounds (values: seq<float option>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (values: seq<string option>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  xbounds .
+    /// Sets the source reference on Chart Studio Cloud for  xbounds .
     static member inline xboundssrc (value: string) = Interop.mkPointcloudAttr "xboundssrc" value
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkPointcloudAttr "xsrc" value
     /// Faster alternative to specifying `x` and `y` separately. If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2] = x[i]` and `xy[i * 2 + 1] = y[i]`
     static member inline xy (values: seq<int>) = Interop.mkPointcloudAttr "xy" (values |> Seq.map float32 |> Array.ofSeq)
     /// Faster alternative to specifying `x` and `y` separately. If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2] = x[i]` and `xy[i * 2 + 1] = y[i]`
     static member inline xy (values: seq<float>) = Interop.mkPointcloudAttr "xy" (values |> Seq.map float32 |> Array.ofSeq)
-    /// Sets the source reference on plot.ly for  xy .
+    /// Sets the source reference on Chart Studio Cloud for  xy .
     static member inline xysrc (value: string) = Interop.mkPointcloudAttr "xysrc" value
     /// Sets the y coordinates.
     static member inline y (value: bool) = Interop.mkPointcloudAttr "y" (value |> Array.singleton)
@@ -473,9 +473,9 @@ type pointcloud =
     static member inline ybounds (values: seq<float option>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (values: seq<string option>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ybounds .
+    /// Sets the source reference on Chart Studio Cloud for  ybounds .
     static member inline yboundssrc (value: string) = Interop.mkPointcloudAttr "yboundssrc" value
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkPointcloudAttr "ysrc" value
 
 [<RequireQualifiedAccess>]

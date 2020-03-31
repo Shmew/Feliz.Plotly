@@ -71,7 +71,7 @@ type carpet =
     /// Alternate to `a`. Builds a linear space of a coordinates. Use with `da` where `a0` is the starting coordinate and `da` the step.
     static member inline a0 (value: float) = Interop.mkCarpetAttr "a0" value
     static member inline aaxis (properties: #IAaxisProperty list) = Interop.mkCarpetAttr "aaxis" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  a .
+    /// Sets the source reference on Chart Studio Cloud for  a .
     static member inline asrc (value: string) = Interop.mkCarpetAttr "asrc" value
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (value: bool) = Interop.mkCarpetAttr "b" (value |> Array.singleton)
@@ -134,7 +134,7 @@ type carpet =
     /// Alternate to `b`. Builds a linear space of a coordinates. Use with `db` where `b0` is the starting coordinate and `db` the step.
     static member inline b0 (value: float) = Interop.mkCarpetAttr "b0" value
     static member inline baxis (properties: #IBaxisProperty list) = Interop.mkCarpetAttr "baxis" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  b .
+    /// Sets the source reference on Chart Studio Cloud for  b .
     static member inline bsrc (value: string) = Interop.mkCarpetAttr "bsrc" value
     /// An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie
     static member inline carpet (value: string) = Interop.mkCarpetAttr "carpet" value
@@ -200,7 +200,7 @@ type carpet =
     static member inline customdata (values: seq<float option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkCarpetAttr "customdatasrc" value
     /// Sets the a coordinate step. See `a0` for more info.
     static member inline da (value: int) = Interop.mkCarpetAttr "da" value
@@ -268,9 +268,9 @@ type carpet =
     static member inline ids (values: seq<float option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkCarpetAttr "idssrc" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkCarpetAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkCarpetAttr "name" value
@@ -361,7 +361,7 @@ type carpet =
     static member inline xaxis (anchorId: int) = Interop.mkCarpetAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkCarpetAttr "xaxis" value
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkCarpetAttr "xsrc" value
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (value: bool) = Interop.mkCarpetAttr "y" (value |> Array.singleton)
@@ -423,7 +423,7 @@ type carpet =
     static member inline yaxis (anchorId: int) = Interop.mkCarpetAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkCarpetAttr "yaxis" value
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkCarpetAttr "ysrc" value
 
 [<RequireQualifiedAccess>]

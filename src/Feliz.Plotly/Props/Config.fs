@@ -95,7 +95,7 @@ type config =
     static member inline plotGlPixelRatio (value: int) = Interop.mkConfigAttr "plotGlPixelRatio" value
     /// Set the pixel ratio during WebGL image export. This config option was formerly named `plot3dPixelRatio` which is now deprecated.
     static member inline plotGlPixelRatio (value: float) = Interop.mkConfigAttr "plotGlPixelRatio" value
-    /// Sets base URL for the 'Edit in Chart Studio' (aka sendDataToCloud) mode bar button and the showLink/sendData on-graph link
+    /// When set it determines base URL for the 'Edit in Chart Studio' `showEditInChartStudio`/`showSendToCloud` mode bar button and the showLink/sendData on-graph link. To enable sending your data to Chart Studio Cloud, you need to set both `plotlyServerURL` to 'https://chart-studio.plotly.com' and also set `showSendToCloud` to true.
     static member inline plotlyServerURL (value: string) = Interop.mkConfigAttr "plotlyServerURL" value
     /// Sets the length of the undo/redo queue.
     static member inline queueLength (value: int) = Interop.mkConfigAttr "queueLength" value
@@ -103,7 +103,7 @@ type config =
     static member inline responsive (value: bool) = Interop.mkConfigAttr "responsive" value
     /// Determines whether mouse wheel or two-finger scroll zooms is enable. Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false* to disable scrolling for all subplots.
     static member inline scrollZoom (properties: #IConfigProperty list) = Interop.mkConfigAttr "scrollZoom" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// If *showLink* is true, does it contain data just link to a plot.ly file?
+    /// If *showLink* is true, does it contain data just link to a Chart Studio Cloud file?
     static member inline sendData (value: bool) = Interop.mkConfigAttr "sendData" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: bool) = Interop.mkConfigAttr "setBackground" value
@@ -131,9 +131,9 @@ type config =
     static member inline showAxisRangeEntryBoxes (value: bool) = Interop.mkConfigAttr "showAxisRangeEntryBoxes" value
     /// Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk. Note that if both `showSendToCloud` and `showEditInChartStudio` are turned, only `showEditInChartStudio` will be honored.
     static member inline showEditInChartStudio (value: bool) = Interop.mkConfigAttr "showEditInChartStudio" value
-    /// Determines whether a link to plot.ly is displayed at the bottom right corner of resulting graphs. Use with `sendData` and `linkText`.
+    /// Determines whether a link to Chart Studio Cloud is displayed at the bottom right corner of resulting graphs. Use with `sendData` and `linkText`.
     static member inline showLink (value: bool) = Interop.mkConfigAttr "showLink" value
-    /// Should we include a ModeBar button, labeled \"Edit in Chart Studio\", that sends this chart to plot.ly or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0 this button was included by default, now it is opt-in using this flag. Note that this button can (depending on `plotlyServerURL`) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click \"Save\".
+    /// Should we include a ModeBar button, labeled \"Edit in Chart Studio\", that sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0 this button was included by default, now it is opt-in using this flag. Note that this button can (depending on `plotlyServerURL` being set) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click \"Save\".
     static member inline showSendToCloud (value: bool) = Interop.mkConfigAttr "showSendToCloud" value
     /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (value: bool) = Interop.mkConfigAttr "showSources" value

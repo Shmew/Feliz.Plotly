@@ -97,26 +97,26 @@ type isosurface =
     static member inline customdata (values: seq<float option>) = Interop.mkIsosurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkIsosurfaceAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkIsosurfaceAttr "customdatasrc" value
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     static member inline flatshading (value: bool) = Interop.mkIsosurfaceAttr "flatshading" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IIsosurfaceProperty list) = Interop.mkIsosurfaceAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkIsosurfaceAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkIsosurfaceAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkIsosurfaceAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkIsosurfaceAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkIsosurfaceAttr "hovertemplatesrc" value
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkIsosurfaceAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkIsosurfaceAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkIsosurfaceAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkIsosurfaceAttr "ids" (value |> Array.singleton)
@@ -174,7 +174,7 @@ type isosurface =
     static member inline ids (values: seq<float option>) = Interop.mkIsosurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkIsosurfaceAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkIsosurfaceAttr "idssrc" value
     /// Sets the maximum boundary for iso-surface plot.
     static member inline isomax (value: int) = Interop.mkIsosurfaceAttr "isomax" value
@@ -188,7 +188,7 @@ type isosurface =
     static member inline legendgroup (value: string) = Interop.mkIsosurfaceAttr "legendgroup" value
     static member inline lighting (properties: #ILightingProperty list) = Interop.mkIsosurfaceAttr "lighting" (createObj !!properties)
     static member inline lightposition (properties: #ILightpositionProperty list) = Interop.mkIsosurfaceAttr "lightposition" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkIsosurfaceAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkIsosurfaceAttr "name" value
@@ -214,7 +214,7 @@ type isosurface =
     static member inline text (value: string) = Interop.mkIsosurfaceAttr "text" value
     /// Sets the text elements associated with the vertices. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<string>) = Interop.mkIsosurfaceAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkIsosurfaceAttr "textsrc" value
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkIsosurfaceAttr "uid" value
@@ -294,7 +294,7 @@ type isosurface =
     static member inline value (values: seq<float option>) = Interop.mkIsosurfaceAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<string option>) = Interop.mkIsosurfaceAttr "value" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  value .
+    /// Sets the source reference on Chart Studio Cloud for  value .
     static member inline valuesrc (value: string) = Interop.mkIsosurfaceAttr "valuesrc" value
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (value: bool) = Interop.mkIsosurfaceAttr "x" (value |> Array.singleton)
@@ -352,7 +352,7 @@ type isosurface =
     static member inline x (values: seq<float option>) = Interop.mkIsosurfaceAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<string option>) = Interop.mkIsosurfaceAttr "x" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkIsosurfaceAttr "xsrc" value
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (value: bool) = Interop.mkIsosurfaceAttr "y" (value |> Array.singleton)
@@ -410,7 +410,7 @@ type isosurface =
     static member inline y (values: seq<float option>) = Interop.mkIsosurfaceAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<string option>) = Interop.mkIsosurfaceAttr "y" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkIsosurfaceAttr "ysrc" value
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (value: bool) = Interop.mkIsosurfaceAttr "z" (value |> Array.singleton)
@@ -468,7 +468,7 @@ type isosurface =
     static member inline z (values: seq<float option>) = Interop.mkIsosurfaceAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<string option>) = Interop.mkIsosurfaceAttr "z" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  z .
+    /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkIsosurfaceAttr "zsrc" value
 
 [<RequireQualifiedAccess>]

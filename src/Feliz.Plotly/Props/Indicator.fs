@@ -66,7 +66,7 @@ type indicator =
     static member inline customdata (values: seq<float option>) = Interop.mkIndicatorAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkIndicatorAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkIndicatorAttr "customdatasrc" value
     static member inline delta (properties: #IDeltaProperty list) = Interop.mkIndicatorAttr "delta" (createObj !!properties)
     static member inline domain (properties: #IDomainProperty list) = Interop.mkIndicatorAttr "domain" (createObj !!properties)
@@ -128,9 +128,9 @@ type indicator =
     static member inline ids (values: seq<float option>) = Interop.mkIndicatorAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkIndicatorAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkIndicatorAttr "idssrc" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkIndicatorAttr "metasrc" value
     /// Determines how the value is displayed on the graph. `number` displays the value numerically in text. `delta` displays the difference to a reference value in text. Finally, `gauge` displays the value graphically on an axis.
     static member inline mode (properties: #IIndicatorProperty list) = Interop.mkIndicatorAttr "mode" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")

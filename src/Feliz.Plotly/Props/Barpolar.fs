@@ -30,7 +30,7 @@ type barpolar =
     static member inline base' (value: string) = Interop.mkBarpolarAttr "base" value
     /// Sets where the bar base is drawn (in radial axis units). In *stack* barmode, traces that set *base* will be excluded and drawn in *overlay* mode instead.
     static member inline base' (values: seq<string>) = Interop.mkBarpolarAttr "base" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  base .
+    /// Sets the source reference on Chart Studio Cloud for  base .
     static member inline basesrc (value: string) = Interop.mkBarpolarAttr "basesrc" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkBarpolarAttr "customdata" (value |> Array.singleton)
@@ -88,7 +88,7 @@ type barpolar =
     static member inline customdata (values: seq<float option>) = Interop.mkBarpolarAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkBarpolarAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkBarpolarAttr "customdatasrc" value
     /// Sets the r coordinate step.
     static member inline dr (value: int) = Interop.mkBarpolarAttr "dr" value
@@ -100,20 +100,20 @@ type barpolar =
     static member inline dtheta (value: float) = Interop.mkBarpolarAttr "dtheta" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IBarpolarProperty list) = Interop.mkBarpolarAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkBarpolarAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkBarpolarAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkBarpolarAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkBarpolarAttr "hovertemplate" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertemplate .
+    /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkBarpolarAttr "hovertemplatesrc" value
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkBarpolarAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkBarpolarAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkBarpolarAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkBarpolarAttr "ids" (value |> Array.singleton)
@@ -171,12 +171,12 @@ type barpolar =
     static member inline ids (values: seq<float option>) = Interop.mkBarpolarAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkBarpolarAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkBarpolarAttr "idssrc" value
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkBarpolarAttr "legendgroup" value
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkBarpolarAttr "marker" (createObj !!properties)
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkBarpolarAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkBarpolarAttr "name" value
@@ -188,7 +188,7 @@ type barpolar =
     static member inline offset (values: seq<int>) = Interop.mkBarpolarAttr "offset" (values |> ResizeArray)
     /// Shifts the angular position where the bar is drawn (in *thetatunit* units).
     static member inline offset (values: seq<float>) = Interop.mkBarpolarAttr "offset" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  offset .
+    /// Sets the source reference on Chart Studio Cloud for  offset .
     static member inline offsetsrc (value: string) = Interop.mkBarpolarAttr "offsetsrc" value
     /// Sets the opacity of the trace.
     static member inline opacity (value: int) = Interop.mkBarpolarAttr "opacity" value
@@ -270,7 +270,7 @@ type barpolar =
     static member inline r0 (value: string) = Interop.mkBarpolarAttr "r0" value
     /// Alternate to `r`. Builds a linear space of r coordinates. Use with `dr` where `r0` is the starting coordinate and `dr` the step.
     static member inline r0 (values: seq<string>) = Interop.mkBarpolarAttr "r0" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  r .
+    /// Sets the source reference on Chart Studio Cloud for  r .
     static member inline rsrc (value: string) = Interop.mkBarpolarAttr "rsrc" value
     static member inline selected (properties: #ISelectedProperty list) = Interop.mkBarpolarAttr "selected" (createObj !!properties)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -304,7 +304,7 @@ type barpolar =
     static member inline text (value: string) = Interop.mkBarpolarAttr "text" value
     /// Sets hover text elements associated with each bar. If a single string, the same string appears over all bars. If an array of string, the items are mapped in order to the this trace's coordinates.
     static member inline text (values: seq<string>) = Interop.mkBarpolarAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkBarpolarAttr "textsrc" value
     /// Sets the angular coordinates
     static member inline theta (value: bool) = Interop.mkBarpolarAttr "theta" (value |> Array.singleton |> ResizeArray)
@@ -382,7 +382,7 @@ type barpolar =
     static member inline theta0 (value: string) = Interop.mkBarpolarAttr "theta0" value
     /// Alternate to `theta`. Builds a linear space of theta coordinates. Use with `dtheta` where `theta0` is the starting coordinate and `dtheta` the step.
     static member inline theta0 (values: seq<string>) = Interop.mkBarpolarAttr "theta0" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  theta .
+    /// Sets the source reference on Chart Studio Cloud for  theta .
     static member inline thetasrc (value: string) = Interop.mkBarpolarAttr "thetasrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkBarpolarAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
@@ -416,7 +416,7 @@ type barpolar =
     static member inline width (values: seq<int>) = Interop.mkBarpolarAttr "width" (values |> ResizeArray)
     /// Sets the bar angular width (in *thetaunit* units).
     static member inline width (values: seq<float>) = Interop.mkBarpolarAttr "width" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  width .
+    /// Sets the source reference on Chart Studio Cloud for  width .
     static member inline widthsrc (value: string) = Interop.mkBarpolarAttr "widthsrc" value
 
 [<RequireQualifiedAccess>]

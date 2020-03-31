@@ -84,7 +84,7 @@ type z =
     static member inline locations (values: seq<float option>) = Interop.mkZAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis z except start and end.
     static member inline locations (values: seq<string option>) = Interop.mkZAttr "locations" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  locations .
+    /// Sets the source reference on Chart Studio Cloud for  locations .
     static member inline locationssrc (value: string) = Interop.mkZAttr "locationssrc" value
     /// Sets the projection color.
     static member inline opacity (value: int) = Interop.mkZAttr "opacity" value

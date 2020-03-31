@@ -155,7 +155,7 @@ type caxis =
     static member inline ticktext (values: seq<float option>) = Interop.mkCaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<string option>) = Interop.mkCaxisAttr "ticktext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ticktext .
+    /// Sets the source reference on Chart Studio Cloud for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkCaxisAttr "ticktextsrc" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (value: bool) = Interop.mkCaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
@@ -213,7 +213,7 @@ type caxis =
     static member inline tickvals (values: seq<float option>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkCaxisAttr "tickvals" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  tickvals .
+    /// Sets the source reference on Chart Studio Cloud for  tickvals .
     static member inline tickvalssrc (value: string) = Interop.mkCaxisAttr "tickvalssrc" value
     /// Sets the tick width (in px).
     static member inline tickwidth (value: int) = Interop.mkCaxisAttr "tickwidth" value

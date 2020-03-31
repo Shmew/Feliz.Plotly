@@ -81,7 +81,7 @@ type heatmapgl =
     static member inline customdata (values: seq<float option>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkHeatmapglAttr "customdatasrc" value
     /// Sets the x coordinate step. See `x0` for more info.
     static member inline dx (value: int) = Interop.mkHeatmapglAttr "dx" value
@@ -93,7 +93,7 @@ type heatmapgl =
     static member inline dy (value: float) = Interop.mkHeatmapglAttr "dy" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #IHeatmapglProperty list) = Interop.mkHeatmapglAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkHeatmapglAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHeatmapglAttr "hoverlabel" (createObj !!properties)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -152,9 +152,9 @@ type heatmapgl =
     static member inline ids (values: seq<float option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkHeatmapglAttr "idssrc" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkHeatmapglAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkHeatmapglAttr "name" value
@@ -223,7 +223,7 @@ type heatmapgl =
     static member inline text (values: seq<float option>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<string option>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkHeatmapglAttr "textsrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkHeatmapglAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Transposes the z data.
@@ -330,7 +330,7 @@ type heatmapgl =
     static member inline xaxis (anchorId: int) = Interop.mkHeatmapglAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkHeatmapglAttr "xaxis" value
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkHeatmapglAttr "xsrc" value
     /// Sets the y coordinates.
     static member inline y (value: bool) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton)
@@ -412,7 +412,7 @@ type heatmapgl =
     static member inline yaxis (anchorId: int) = Interop.mkHeatmapglAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkHeatmapglAttr "yaxis" value
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkHeatmapglAttr "ysrc" value
     /// Sets the z data.
     static member inline z (value: bool) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton)
@@ -484,7 +484,7 @@ type heatmapgl =
     static member inline zmin (value: int) = Interop.mkHeatmapglAttr "zmin" value
     /// Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.
     static member inline zmin (value: float) = Interop.mkHeatmapglAttr "zmin" value
-    /// Sets the source reference on plot.ly for  z .
+    /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkHeatmapglAttr "zsrc" value
 
 [<RequireQualifiedAccess>]

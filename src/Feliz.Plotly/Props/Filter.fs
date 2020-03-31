@@ -84,7 +84,7 @@ type filter =
     static member inline target (values: seq<bool []>) = Interop.mkFilterAttr "target" (values |> Seq.map (Array.map string >> ResizeArray) |> ResizeArray)
     /// Sets the filter target by which the filter is applied. If a string, `target` is assumed to be a reference to a data array in the parent trace object. To filter about nested variables, use *.* to access them. For example, set `target` to *marker.color* to filter about the marker color array. If an array, `target` is then the data array by which the filter is applied.
     static member inline target (values: seq<bool option []>) = Interop.mkFilterAttr "target" (values |> Seq.map (Array.map Bindings.optToString >> ResizeArray) |> ResizeArray)
-    /// Sets the source reference on plot.ly for  target .
+    /// Sets the source reference on Chart Studio Cloud for  target .
     static member inline targetsrc (value: string) = Interop.mkFilterAttr "targetsrc" value
     /// Sets the value or values by which to filter. Values are expected to be in the same type as the data linked to `target`. When `operation` is set to one of the comparison values (=,!=,<,>=,>,<=) `value` is expected to be a number or a string. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) `value` is expected to be 2-item array where the first item is the lower bound and the second item is the upper bound. When `operation`, is set to one of the set values ({},}{) `value` is expected to be an array with as many items as the desired set elements.
     static member inline value (value: bool) = Interop.mkFilterAttr "value" value

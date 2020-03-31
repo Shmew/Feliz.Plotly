@@ -66,7 +66,7 @@ type angularaxis =
     static member inline categoryarray (values: seq<float option>) = Interop.mkAngularaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string option>) = Interop.mkAngularaxisAttr "categoryarray" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  categoryarray .
+    /// Sets the source reference on Chart Studio Cloud for  categoryarray .
     static member inline categoryarraysrc (value: string) = Interop.mkAngularaxisAttr "categoryarraysrc" value
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
     static member inline color (value: string) = Interop.mkAngularaxisAttr "color" value
@@ -225,7 +225,7 @@ type angularaxis =
     static member inline ticktext (values: seq<float option>) = Interop.mkAngularaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<string option>) = Interop.mkAngularaxisAttr "ticktext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ticktext .
+    /// Sets the source reference on Chart Studio Cloud for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkAngularaxisAttr "ticktextsrc" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (value: bool) = Interop.mkAngularaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
@@ -283,7 +283,7 @@ type angularaxis =
     static member inline tickvals (values: seq<float option>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkAngularaxisAttr "tickvals" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  tickvals .
+    /// Sets the source reference on Chart Studio Cloud for  tickvals .
     static member inline tickvalssrc (value: string) = Interop.mkAngularaxisAttr "tickvalssrc" value
     /// Sets the tick width (in px).
     static member inline tickwidth (value: int) = Interop.mkAngularaxisAttr "tickwidth" value

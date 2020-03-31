@@ -66,7 +66,7 @@ type starts =
     static member inline x (values: seq<float option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<string option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkStartsAttr "xsrc" value
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (value: bool) = Interop.mkStartsAttr "y" (value |> Array.singleton)
@@ -124,7 +124,7 @@ type starts =
     static member inline y (values: seq<float option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<string option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  y .
+    /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkStartsAttr "ysrc" value
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (value: bool) = Interop.mkStartsAttr "z" (value |> Array.singleton)
@@ -182,6 +182,6 @@ type starts =
     static member inline z (values: seq<float option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<string option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  z .
+    /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkStartsAttr "zsrc" value
 

@@ -70,7 +70,7 @@ type radialaxis =
     static member inline categoryarray (values: seq<float option>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string option>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  categoryarray .
+    /// Sets the source reference on Chart Studio Cloud for  categoryarray .
     static member inline categoryarraysrc (value: string) = Interop.mkRadialaxisAttr "categoryarraysrc" value
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
     static member inline color (value: string) = Interop.mkRadialaxisAttr "color" value
@@ -241,7 +241,7 @@ type radialaxis =
     static member inline ticktext (values: seq<float option>) = Interop.mkRadialaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<string option>) = Interop.mkRadialaxisAttr "ticktext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ticktext .
+    /// Sets the source reference on Chart Studio Cloud for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkRadialaxisAttr "ticktextsrc" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (value: bool) = Interop.mkRadialaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
@@ -299,7 +299,7 @@ type radialaxis =
     static member inline tickvals (values: seq<float option>) = Interop.mkRadialaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string option>) = Interop.mkRadialaxisAttr "tickvals" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  tickvals .
+    /// Sets the source reference on Chart Studio Cloud for  tickvals .
     static member inline tickvalssrc (value: string) = Interop.mkRadialaxisAttr "tickvalssrc" value
     /// Sets the tick width (in px).
     static member inline tickwidth (value: int) = Interop.mkRadialaxisAttr "tickwidth" value

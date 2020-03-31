@@ -66,7 +66,7 @@ type candlestick =
     static member inline close (values: seq<float option>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
     /// Sets the close values.
     static member inline close (values: seq<string option>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  close .
+    /// Sets the source reference on Chart Studio Cloud for  close .
     static member inline closesrc (value: string) = Interop.mkCandlestickAttr "closesrc" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: bool) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
@@ -124,7 +124,7 @@ type candlestick =
     static member inline customdata (values: seq<float option>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string option>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  customdata .
+    /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkCandlestickAttr "customdatasrc" value
     static member inline decreasing (properties: #IDecreasingProperty list) = Interop.mkCandlestickAttr "decreasing" (createObj !!properties)
     /// Sets the high values.
@@ -183,18 +183,18 @@ type candlestick =
     static member inline high (values: seq<float option>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
     /// Sets the high values.
     static member inline high (values: seq<string option>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  high .
+    /// Sets the source reference on Chart Studio Cloud for  high .
     static member inline highsrc (value: string) = Interop.mkCandlestickAttr "highsrc" value
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     static member inline hoverinfo (properties: #ICandlestickProperty list) = Interop.mkCandlestickAttr "hoverinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Sets the source reference on plot.ly for  hoverinfo .
+    /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkCandlestickAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkCandlestickAttr "hoverlabel" (createObj !!properties)
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkCandlestickAttr "hovertext" value
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkCandlestickAttr "hovertext" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  hovertext .
+    /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkCandlestickAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: bool) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton)
@@ -252,7 +252,7 @@ type candlestick =
     static member inline ids (values: seq<float option>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string option>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  ids .
+    /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkCandlestickAttr "idssrc" value
     static member inline increasing (properties: #IIncreasingProperty list) = Interop.mkCandlestickAttr "increasing" (createObj !!properties)
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
@@ -314,9 +314,9 @@ type candlestick =
     static member inline low (values: seq<float option>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
     /// Sets the low values.
     static member inline low (values: seq<string option>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  low .
+    /// Sets the source reference on Chart Studio Cloud for  low .
     static member inline lowsrc (value: string) = Interop.mkCandlestickAttr "lowsrc" value
-    /// Sets the source reference on plot.ly for  meta .
+    /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkCandlestickAttr "metasrc" value
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     static member inline name (value: string) = Interop.mkCandlestickAttr "name" value
@@ -380,7 +380,7 @@ type candlestick =
     static member inline open' (values: seq<float option>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
     /// Sets the open values.
     static member inline open' (values: seq<string option>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  open .
+    /// Sets the source reference on Chart Studio Cloud for  open .
     static member inline opensrc (value: string) = Interop.mkCandlestickAttr "opensrc" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: bool) = Interop.mkCandlestickAttr "selectedpoints" value
@@ -409,7 +409,7 @@ type candlestick =
     static member inline text (value: string) = Interop.mkCandlestickAttr "text" value
     /// Sets hover text elements associated with each sample point. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to this trace's sample points.
     static member inline text (values: seq<string>) = Interop.mkCandlestickAttr "text" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  text .
+    /// Sets the source reference on Chart Studio Cloud for  text .
     static member inline textsrc (value: string) = Interop.mkCandlestickAttr "textsrc" value
     static member inline transforms (properties: #ITransformsProperty list) = Interop.mkCandlestickAttr "transforms" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
@@ -498,7 +498,7 @@ type candlestick =
     static member inline xaxis (anchorId: int) = Interop.mkCandlestickAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkCandlestickAttr "xaxis" value
-    /// Sets the source reference on plot.ly for  x .
+    /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkCandlestickAttr "xsrc" value
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (anchorId: int) = Interop.mkCandlestickAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))

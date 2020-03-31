@@ -12,7 +12,7 @@ open Feliz
 type header =
     /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
     static member inline align (properties: #IHeaderProperty list) = Interop.mkHeaderAttr "align" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
-    /// Sets the source reference on plot.ly for  align .
+    /// Sets the source reference on Chart Studio Cloud for  align .
     static member inline alignsrc (value: string) = Interop.mkHeaderAttr "alignsrc" value
     static member inline fill (properties: #IFillProperty list) = Interop.mkHeaderAttr "fill" (createObj !!properties)
     static member inline font (properties: #IFontProperty list) = Interop.mkHeaderAttr "font" (createObj !!properties)
@@ -72,7 +72,7 @@ type header =
     static member inline format (values: seq<float option>) = Interop.mkHeaderAttr "format" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<string option>) = Interop.mkHeaderAttr "format" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  format .
+    /// Sets the source reference on Chart Studio Cloud for  format .
     static member inline formatsrc (value: string) = Interop.mkHeaderAttr "formatsrc" value
     /// The height of cells.
     static member inline height (value: int) = Interop.mkHeaderAttr "height" value
@@ -83,13 +83,13 @@ type header =
     static member inline prefix (value: string) = Interop.mkHeaderAttr "prefix" value
     /// Prefix for cell values.
     static member inline prefix (values: seq<string>) = Interop.mkHeaderAttr "prefix" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  prefix .
+    /// Sets the source reference on Chart Studio Cloud for  prefix .
     static member inline prefixsrc (value: string) = Interop.mkHeaderAttr "prefixsrc" value
     /// Suffix for cell values.
     static member inline suffix (value: string) = Interop.mkHeaderAttr "suffix" value
     /// Suffix for cell values.
     static member inline suffix (values: seq<string>) = Interop.mkHeaderAttr "suffix" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  suffix .
+    /// Sets the source reference on Chart Studio Cloud for  suffix .
     static member inline suffixsrc (value: string) = Interop.mkHeaderAttr "suffixsrc" value
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (value: bool) = Interop.mkHeaderAttr "values" (value |> Array.singleton)
@@ -147,7 +147,7 @@ type header =
     static member inline values (values: seq<float option>) = Interop.mkHeaderAttr "values" (values |> ResizeArray)
     /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<string option>) = Interop.mkHeaderAttr "values" (values |> ResizeArray)
-    /// Sets the source reference on plot.ly for  values .
+    /// Sets the source reference on Chart Studio Cloud for  values .
     static member inline valuessrc (value: string) = Interop.mkHeaderAttr "valuessrc" value
 
 [<RequireQualifiedAccess>]
