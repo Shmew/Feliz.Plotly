@@ -2,9 +2,9 @@ namespace Tools.Linting
 
 [<RequireQualifiedAccess>]
 module FSharpLinter =
+    open Fake.IO.FileSystemOperators
     open FSharp.Compiler.Range
     open FSharpLint.Application
-    open FSharpLint.Framework.Configuration
     open FSharpLint.Framework
     open System
 
@@ -30,14 +30,6 @@ module FSharpLinter =
             |> writeErrorLine
 
     let mutable private collectWarning = List.empty<string>
-
-    let private getWarnings() =
-        match collectWarning.Length = 0 with
-        | true -> None
-        | false ->
-            let warns = collectWarning
-            collectWarning <- List.empty<string>
-            Some(warns)
 
     let getErrorMessage (range:FSharp.Compiler.Range.range) =
         let error = Resources.GetString("LintSourceError")
@@ -74,58 +66,28 @@ module FSharpLinter =
 
     let private parseInfo (webFile: bool) =
         let config =
-            if webFile then
-                { Configuration.formatting = None
-                  Configuration.conventions =
-                    { ConventionsConfig.recursiveAsyncFunction = None
-                      ConventionsConfig.redundantNewKeyword = None
-                      ConventionsConfig.nestedStatements = None
-                      ConventionsConfig.reimplementsFunction = None
-                      ConventionsConfig.canBeReplacedWithComposition = None
-                      ConventionsConfig.raiseWithTooManyArgs = None
-                      ConventionsConfig.sourceLength = None
-                      ConventionsConfig.naming = 
-                        { NamesConfig.interfaceNames = Some { RuleConfig.enabled = false; config = None }
-                          NamesConfig.exceptionNames = None
-                          NamesConfig.typeNames = None
-                          NamesConfig.recordFieldNames = None
-                          NamesConfig.enumCasesNames = None
-                          NamesConfig.unionCasesNames = None
-                          NamesConfig.moduleNames = None
-                          NamesConfig.literalNames = None
-                          NamesConfig.namespaceNames = None
-                          NamesConfig.memberNames = Some { RuleConfig.enabled = false; config = None }
-                          NamesConfig.parameterNames = None
-                          NamesConfig.measureTypeNames = None
-                          NamesConfig.activePatternNames = None
-                          NamesConfig.publicValuesNames = None
-                          NamesConfig.nonPublicValuesNames = None }
-                        |> Some
-                      ConventionsConfig.binding = None
-                      ConventionsConfig.numberOfItems = None }
-                    |> Some
-                  Configuration.typography = None
-                  Configuration.ignoreFiles = None
-                  Configuration.hints = None }
-                |> ConfigurationParam.Configuration
+            if webFile then ConfigurationParam.FromFile (__SOURCE_DIRECTORY__ @@ "fsharplint.json")
             else ConfigurationParam.Default
         { CancellationToken = None
           ReceivedWarning = Some writeLintWarning
           Configuration = config
           ReportLinterProgress = Some parserProgress
           ReleaseConfiguration = None }
-
+          
     let lintFiles (fileList: (bool * string list) list) =
         let lintFile (webFile: bool) (file: string) =
             let sw = Diagnostics.Stopwatch.StartNew()
             try
                 Lint.lintFile (parseInfo webFile) file |> handleLintResult
                 sw.Stop()
+
             with e ->
                 sw.Stop()
+
                 let error =
                     "Lint failed while analysing " + file + "." + Environment.NewLine + "Failed with: " + e.Message
                     + Environment.NewLine + "Stack trace:" + e.StackTrace
+
                 error |> handleError
 
         fileList

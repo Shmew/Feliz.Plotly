@@ -10,6 +10,7 @@ open Feliz
 
 [<Erase>]
 type layout =
+    static member inline activeshape (properties: #IActiveshapeProperty list) = Interop.mkLayoutAttr "activeshape" (createObj !!properties)
     static member inline annotations (properties: #IAnnotationsProperty list) = Interop.mkLayoutAttr "annotations" (properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)
     /// Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.
     static member inline autosize (value: bool) = Interop.mkLayoutAttr "autosize" value
@@ -178,6 +179,7 @@ type layout =
     /// Sets the source reference on Chart Studio Cloud for  meta .
     static member inline metasrc (value: string) = Interop.mkLayoutAttr "metasrc" value
     static member inline modebar (properties: #IModebarProperty list) = Interop.mkLayoutAttr "modebar" (createObj !!properties)
+    static member inline newshape (properties: #INewshapeProperty list) = Interop.mkLayoutAttr "newshape" (createObj !!properties)
     /// Sets the background color of the paper where the graph is drawn.
     static member inline paperBgcolor (value: string) = Interop.mkLayoutAttr "paper_bgcolor" value
     /// Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
@@ -334,6 +336,11 @@ module layout =
     /// Determines the mode of drag interactions. *select* and *lasso* apply only to scatter traces with markers or text. *orbit* and *turntable* apply only to 3D scenes.
     [<Erase>]
     type dragmode =
+        static member inline drawcircle = Interop.mkLayoutAttr "dragmode" "drawcircle"
+        static member inline drawclosedpath = Interop.mkLayoutAttr "dragmode" "drawclosedpath"
+        static member inline drawline = Interop.mkLayoutAttr "dragmode" "drawline"
+        static member inline drawopenpath = Interop.mkLayoutAttr "dragmode" "drawopenpath"
+        static member inline drawrect = Interop.mkLayoutAttr "dragmode" "drawrect"
         static member inline lasso = Interop.mkLayoutAttr "dragmode" "lasso"
         static member inline orbit = Interop.mkLayoutAttr "dragmode" "orbit"
         static member inline pan = Interop.mkLayoutAttr "dragmode" "pan"
@@ -359,7 +366,7 @@ module layout =
         static member inline y = Interop.mkLayoutAttr "hovermode" "y"
         static member inline false' = Interop.mkLayoutAttr "hovermode" false
 
-    /// When \"dragmode\" is set to \"select\", this limits the selection of the drag to horizontal, vertical or diagonal. \"h\" only allows horizontal selection, \"v\" only vertical, \"d\" only diagonal and \"any\" sets no limit.
+    /// When `dragmode` is set to *select*, this limits the selection of the drag to horizontal, vertical or diagonal. *h* only allows horizontal selection, *v* only vertical, *d* only diagonal and *any* sets no limit.
     [<Erase>]
     type selectdirection =
         static member inline any = Interop.mkLayoutAttr "selectdirection" "any"

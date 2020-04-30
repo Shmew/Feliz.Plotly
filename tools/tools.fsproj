@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="fsharplint.json" />
     <Compile Include="FSharpLint.fs" />
     <Compile Include="Web.fs" />
     <None Include="paket.references" />

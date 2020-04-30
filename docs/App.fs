@@ -608,8 +608,8 @@ let sidebar (state: State) dispatch =
         Html.li [
             Html.anchor [
                 prop.className [
-                    state.CurrentPath = path, Bulma.IsActive
-                    state.CurrentPath = path, Bulma.HasBackgroundPrimary
+                    if state.CurrentPath = path then Bulma.IsActive
+                    if state.CurrentPath = path then Bulma.HasBackgroundPrimary
                 ]
                 prop.text name
                 prop.href (sprintf "#/%s" (String.concat "/" path))
@@ -618,16 +618,7 @@ let sidebar (state: State) dispatch =
 
     let nestedMenuItem (name: string) (extendedPath: string list) (basePath: string list) =
         let path = basePath @ extendedPath
-        Html.li [
-            Html.anchor [
-                prop.className [
-                    state.CurrentPath = path, Bulma.IsActive
-                    state.CurrentPath = path, Bulma.HasBackgroundPrimary
-                ]
-                prop.text name
-                prop.href (sprintf "#/%s" (String.concat "/" path))
-            ]
-        ]
+        menuItem name path
 
     let allItems =
         Html.div [

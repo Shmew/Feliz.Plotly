@@ -10,7 +10,9 @@ open Feliz
 
 [<Erase>]
 type shape =
-    /// Sets the color filling the shape's interior.
+    /// Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes mode is enabled via `config.editable` or `config.edits.shapePosition`.
+    static member inline editable (value: bool) = Interop.mkShapeAttr "editable" value
+    /// Sets the color filling the shape's interior. Only applies to closed shapes.
     static member inline fillcolor (value: string) = Interop.mkShapeAttr "fillcolor" value
     static member inline line (properties: #ILineProperty list) = Interop.mkShapeAttr "line" (createObj !!properties)
     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
@@ -148,6 +150,12 @@ type shape =
 
 [<RequireQualifiedAccess>]
 module shape =
+    /// Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
+    [<Erase>]
+    type fillrule =
+        static member inline evenodd = Interop.mkShapeAttr "fillrule" "evenodd"
+        static member inline nonzero = Interop.mkShapeAttr "fillrule" "nonzero"
+
     /// Specifies whether shapes are drawn below or above traces.
     [<Erase>]
     type layer =

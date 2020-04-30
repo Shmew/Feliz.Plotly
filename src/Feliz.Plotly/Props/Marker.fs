@@ -10,6 +10,18 @@ open Feliz
 
 [<Erase>]
 type marker =
+    /// Flag to draw all symbols, even if they overlap.
+    static member inline allowoverlap (value: bool) = Interop.mkMarkerAttr "allowoverlap" value
+    /// Sets the marker orientation from true North, in degrees clockwise. When using the *auto* default, no rotation would be applied in perspective views which is different from using a zero angle.
+    static member inline angle (value: int) = Interop.mkMarkerAttr "angle" value
+    /// Sets the marker orientation from true North, in degrees clockwise. When using the *auto* default, no rotation would be applied in perspective views which is different from using a zero angle.
+    static member inline angle (value: float) = Interop.mkMarkerAttr "angle" value
+    /// Sets the marker orientation from true North, in degrees clockwise. When using the *auto* default, no rotation would be applied in perspective views which is different from using a zero angle.
+    static member inline angle (values: seq<int>) = Interop.mkMarkerAttr "angle" (values |> ResizeArray)
+    /// Sets the marker orientation from true North, in degrees clockwise. When using the *auto* default, no rotation would be applied in perspective views which is different from using a zero angle.
+    static member inline angle (values: seq<float>) = Interop.mkMarkerAttr "angle" (values |> ResizeArray)
+    /// Sets the source reference on Chart Studio Cloud for  angle .
+    static member inline anglesrc (value: string) = Interop.mkMarkerAttr "anglesrc" value
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
     static member inline autocolorscale (value: bool) = Interop.mkMarkerAttr "autocolorscale" value
     /// Determines if colors are blended together for a translucency effect in case `opacity` is specified as a value less then `1`. Setting `blend` to `true` reduces zoom/pan speed if used with large numbers of points.

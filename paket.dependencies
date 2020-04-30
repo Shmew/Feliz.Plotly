@@ -6,35 +6,35 @@ group Plotly
 	source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
-    nuget Fable.Core ~> 3.1
-    nuget Fable.Browser.Dom ~> 1.1
-    nuget Feliz ~> 0.66
-    nuget FSharp.Core ~> 4.7
+    nuget Fable.Core ~> 3
+    nuget Fable.Browser.Dom ~> 1
+    nuget Feliz ~> 0
+    nuget FSharp.Core ~> 4.7 lowest_matching: true
 
 group Generator
     source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
     nuget Fake.IO.FileSystem ~> 5
-    nuget FSharp.Core ~> 4.7
-    nuget FSharp.Data ~> 3.3
+    nuget FSharp.Core ~> 4.7 lowest_matching: true
+    nuget FSharp.Data ~> 3
     
-    github plotly/plotly.js:d37895bd64227433229f2b3f91c9e14fd6ec7b89 dist/plot-schema.json
+    github plotly/plotly.js:f24c76598f038d0e8e3f275ca5fd43f4ab80abb5 dist/plot-schema.json
 
 group Docs
     source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
-    nuget Fable.Core ~> 3.1
-    nuget Fable.Elmish.React ~> 3.0
-    nuget Fable.Promise ~> 2.0
-    nuget Fable.SimpleHttp ~> 2.6
-    nuget Fable.SimpleJson ~> 3.7
-    nuget Feliz ~> 0.66
-    nuget Feliz.ElmishComponents ~> 0.2
-    nuget Feliz.Router ~> 1.4
-    nuget FSharp.Core ~> 4.7
-    nuget Zanaptak.TypedCssClasses ~> 0.2
+    nuget Fable.Core ~> 3
+    nuget Fable.Elmish.React ~> 3
+    nuget Fable.Promise ~> 2
+    nuget Fable.SimpleHttp ~> 2
+    nuget Fable.SimpleJson ~> 3
+    nuget Feliz ~> 0
+    nuget Feliz.ElmishComponents ~> 0
+    nuget Feliz.Router ~> 1
+    nuget FSharp.Core ~> 4.7 lowest_matching: true
+    nuget Zanaptak.TypedCssClasses ~> 0
 
     github Zaid-Ajaj/Feliz Feliz.Markdown/Markdown.fs
 
@@ -43,12 +43,12 @@ group Tooling
 	source https://api.nuget.org/v3/index.json
 
 	nuget Fake.IO.FileSystem ~> 5
-	nuget FSharp.Core ~> 4.7
-    nuget FSharp.Json ~> 0.3
-	nuget FSharpLint.Core ~> 0.12
-    nuget Yarnpkg.Yarn ~> 1.15
+	nuget FSharp.Core ~> 4.7 lowest_matching: true
+    nuget FSharp.Json ~> 0
+	nuget FSharpLint.Core ~> 0
+    nuget Yarnpkg.Yarn ~> 1
 
-	clitool dotnet-fable ~> 2.0
+	clitool dotnet-fable ~> 2
 	clitool dotnet-fake ~> 5
 
 group FakeBuild
@@ -65,6 +65,6 @@ group FakeBuild
     nuget Fake.JavaScript.Yarn ~> 5
 	nuget Fake.JavaScript.Npm ~> 5
 	nuget Fake.Tools.Git ~> 5
-    nuget FSharp.Json ~> 0.3
-	nuget FSharpLint.Core ~> 0.12
-	nuget Fantomas ~> 3.0.0
+    nuget FSharp.Json ~> 0
+	nuget FSharpLint.Core ~> 0
+    nuget Fantomas ~> 3
