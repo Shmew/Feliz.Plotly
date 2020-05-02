@@ -999,7 +999,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.DataLabelsHover ] -> [ "DataLabelsHover.md" ]
         | [ Urls.DataLabelsOnPlot ] -> [ "DataLabelsOnPlot.md" ]
         | [ Urls.ColorDimension ] -> [ "ColorDimension.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Scatter ]
     | Urls.Bubble :: rest ->
         match rest with
@@ -1008,12 +1008,12 @@ let basicExamples (currentPath: string list) =
         | [ Urls.MarkerSizeAndColor ] -> [ "MarkerSizeAndColor.md" ]
         | [ Urls.SizeScaling ] -> [ "SizeScaling.md" ]
         | [ Urls.MarkerSizeColorAndSymbolArray ] -> [ "MarkerSizeColorAndSymbolArray.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Bubble ]
     | Urls.Dot :: rest ->
         match rest with
         | [ Urls.Categorical ] -> [ "Categorical.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Dot ]
     | Urls.Line :: rest ->
         match rest with
@@ -1027,7 +1027,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.LineDash ] -> [ "LineDash.md" ]
         | [ Urls.ConnectGapsBetweenData ] -> [ "ConnectGapsBetweenData.md" ]
         | [ Urls.LabellingLinesWithAnnotations ] -> [ "LabellingLinesWithAnnotations.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Line ]
     | Urls.Bar :: rest ->
         match rest with
@@ -1044,7 +1044,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.ColoredAndStyled ] -> [ "ColoredAndStyled.md" ]
         | [ Urls.Waterfall ] -> [ "Waterfall.md" ]
         | [ Urls.RelativeBarmode ] -> [ "RelativeBarmode.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Bar ]
     | Urls.FilledArea :: rest ->
         match rest with
@@ -1053,21 +1053,21 @@ let basicExamples (currentPath: string list) =
         | [ Urls.StackedArea ] -> [ "StackedArea.md" ]
         | [ Urls.NormalizedStackedArea ] -> [ "NormalizedStackedArea.md" ]
         | [ Urls.SelectHover ] -> [ "SelectHover.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.FilledArea ]
     | Urls.HorizontalBar :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Colored ] -> [ "Colored.md" ]
         | [ Urls.BarWithLinePlot ] -> [ "BarWithLinePlot.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.HorizontalBar ]
     | Urls.Pie :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Subplots ] -> [ "Subplots.md" ]
         | [ Urls.Donut ] -> [ "Donut.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Pie ]
     | Urls.Sunburst :: rest ->
         match rest with
@@ -1075,19 +1075,19 @@ let basicExamples (currentPath: string list) =
         | [ Urls.Branchvalues ] -> [ "Branchvalues.md" ]
         | [ Urls.RepeatedLabels ] -> [ "RepeatedLabels.md" ]
         | [ Urls.LargeNumberSlices ] -> [ "LargeNumberSlices.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Sunburst ]
     | Urls.Sankey :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Sankey ]
     | Urls.PointCloud :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.PointCloud ]
     | Urls.Treemap :: rest ->
         match rest with
@@ -1095,7 +1095,7 @@ let basicExamples (currentPath: string list) =
         | [ Urls.DifferentAttributes ] -> [ "DifferentAttributes.md" ]
         | [ Urls.SectorColors ] -> [ "SectorColors.md" ]
         | [ Urls.NestedLayers ] -> [ "NestedLayers.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Treemap ]
     | Urls.Table :: rest ->
         match rest with
@@ -1104,18 +1104,16 @@ let basicExamples (currentPath: string list) =
         | [ Urls.FromCSV ] -> [ "FromCSV.md" ]
         | [ Urls.ChangingSizes ] -> [ "ChangingSizes.md" ]
         | [ Urls.AlternatingRowColors ] -> [ "AlternatingRowColors.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Table ]
     | Urls.MultipleChartTypes :: rest ->
         match rest with
         | [ Urls.LineAndBar ] -> [ "LineAndBar.md" ]
         | [ Urls.ContourAndScatter ] -> [ "ContourAndScatter.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.MultipleChartTypes ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Basic ] @ path
+    | _ -> []
+    |> List.append [ Urls.Basic ]
 
 let statisticalExamples (currentPath: string list) =
     match currentPath with
@@ -1128,13 +1126,13 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.Styled ] -> [ "Styled.md" ]
         | [ Urls.PercentageOfYValue ] -> [ "PercentageOfYValue.md" ]
         | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.ErrorBar ]
     | Urls.ContinuousErrorBar :: rest ->
         match rest with
         | [ Urls.FilledLines ] -> [ "FilledLines.md" ]
         | [ Urls.AsymmetricWithOffset ] -> [ "AsymmetricWithOffset.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.ContinuousErrorBar ]
     | Urls.BoxPlot :: rest ->
         match rest with
@@ -1148,7 +1146,7 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.Colored ] -> [ "Colored.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
         | [ Urls.Rainbow ] -> [ "Rainbow.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.BoxPlot ]
     | Urls.Histogram :: rest ->
         match rest with
@@ -1160,25 +1158,25 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.Cumulative ] -> [ "Cumulative.md" ]
         | [ Urls.Normalized ] -> [ "Normalized.md" ]
         | [ Urls.SpecifiedBinning ] -> [ "SpecifiedBinning.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Histogram ]
     | Urls.TwoDimensionalHistogram :: rest ->
         match rest with
         | [ Urls.BivariateNormalDistribution ] -> [ "BivariateNormalDistribution.md" ]
         | [ Urls.BinningAndStyling ] -> [ "BinningAndStyling.md" ]
         | [ Urls.OverlaidWithScatter ] -> [ "OverlaidWithScatter.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.TwoDimensionalHistogram ]
     | Urls.TwoDimensionalDensity :: rest ->
         match rest with
         | [ Urls.WithHistogramSubplots ] -> [ "WithHistogramSubplots.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.TwoDimensionalDensity ]
     | Urls.SPCControl :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Distribution ] -> [ "Distribution.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.SPCControl ]
     | Urls.Violin :: rest ->
         match rest with
@@ -1188,7 +1186,7 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
         | [ Urls.Split ] -> [ "Split.md" ]
         | [ Urls.Advanced ] -> [ "Advanced.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Violin ]
     | Urls.ParallelCategories :: rest ->
         match rest with
@@ -1197,32 +1195,30 @@ let statisticalExamples (currentPath: string list) =
         | [ Urls.MultiColor ] -> [ "MultiColor.md" ]
         | [ Urls.LinkedBrushing ] -> [ "LinkedBrushing.md" ]
         | [ Urls.MultiColorLinkedBrushing ] -> [ "MultiColorLinkedBrushing.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.ParallelCategories ]
     | Urls.Splom :: rest ->
         match rest with
         | [ Urls.Iris ] -> [ "Iris.md" ]
         | [ Urls.Diabetes ] -> [ "Diabetes.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Splom ]
     | Urls.TwoDimensionalHistogramContour :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.Colorscale ] -> [ "Colorscale.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.TwoDimensionalHistogramContour ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Statistical ] @ path
+    | _ -> []
+    |> List.append [ Urls.Statistical ]
 
 let scientificExamples (currentPath: string list) =
     match currentPath with
     | Urls.Log :: rest ->
         match rest with
         | [ Urls.LogarithmicAxes ] -> [ "LogarithmicAxes.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Log ]
     | Urls.Contour :: rest ->
         match rest with
@@ -1241,7 +1237,7 @@ let scientificExamples (currentPath: string list) =
         | [ Urls.ColorbarTitle ] -> [ "ColorbarTitle.md" ]
         | [ Urls.ColorbarSize ] -> [ "ColorbarSize.md" ]
         | [ Urls.StylingColorbar ] -> [ "StylingColorbar.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Contour ]
     | Urls.Heatmap :: rest ->
         match rest with
@@ -1250,29 +1246,29 @@ let scientificExamples (currentPath: string list) =
         | [ Urls.WithCategoricalAxisLabels ] -> [ "WithCategoricalAxisLabels.md" ]
         | [ Urls.UnequalBlockSizes ] -> [ "UnequalBlockSizes.md" ]
         | [ Urls.WebGL ] -> [ "WebGL.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Heatmap ]
     | Urls.WindRose :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.WindRose ]
     | Urls.Ternary :: rest ->
         match rest with
         | [ Urls.WithMarkers ] -> [ "WithMarkers.md" ]
         | [ Urls.SoilTypes ] -> [ "SoilTypes.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Ternary ]
     | Urls.TernaryContour :: rest ->
         match rest with
         | [ Urls.Filled ] -> [ "Filled.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.TernaryContour ]
     | Urls.Radar :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.MultipleTraces ] -> [ "MultipleTraces.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Radar ]
     | Urls.ParallelCoordinates :: rest ->
         match rest with
@@ -1280,26 +1276,26 @@ let scientificExamples (currentPath: string list) =
         | [ Urls.AddingDimensions ] -> [ "AddingDimensions.md" ]
         | [ Urls.Annotated ] -> [ "Annotated.md" ]
         | [ Urls.Advanced ] -> [ "Advanced.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.ParallelCoordinates ]
     | Urls.Carpet :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.AddAAndBAxis ] -> [ "AddAAndBAxis.md" ]
         | [ Urls.StyleAAndBAxis ] -> [ "StyleAAndBAxis.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Carpet ]
     | Urls.CarpetScatter :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.MultipleTraces ] -> [ "MultipleTraces.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.CarpetScatter ]
     | Urls.CarpetContour :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.MultipleTraces ] -> [ "MultipleTraces.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.CarpetContour ]
     | Urls.Polar :: rest ->
         match rest with
@@ -1310,12 +1306,10 @@ let scientificExamples (currentPath: string list) =
         | [ Urls.Sector ] -> [ "Sector.md" ]
         | [ Urls.Subplots ] -> [ "Subplots.md" ]
         | [ Urls.WebGL ] -> [ "WebGL.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Polar ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Scientific ] @ path
+    | _ -> []
+    |> List.append [ Urls.Scientific ]
 
 let financialExamples (currentPath: string list) =
     match currentPath with
@@ -1325,41 +1319,39 @@ let financialExamples (currentPath: string list) =
         | [ Urls.MultiCategory ] -> [ "MultiCategory.md" ]
         | [ Urls.Horizontal ] -> [ "Horizontal.md" ]
         | [ Urls.Styled ] -> [ "Styled.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Waterfall ]
     | Urls.Indicators :: rest ->
         match rest with
         | [ Urls.Showcase ] -> [ "Showcase.md" ]
         | [ Urls.Overlay ] -> [ "Overlay.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Indicators ]
     | Urls.Candlestick :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Candlestick ]
     | Urls.Funnel :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.FunnelArea ] -> [ "FunnelArea.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.Funnel ]
     | Urls.TimeSeries :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
         | [ Urls.SetRange ] -> [ "SetRange.md" ]
         | [ Urls.RangeSlider ] -> [ "RangeSlider.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.TimeSeries ]
     | Urls.OHLC :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.OHLC ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Financial ] @ path
+    | _ -> []
+    |> List.append [ Urls.Financial ]
 
 let mapExamples (currentPath: string list) =
     match currentPath with
@@ -1369,10 +1361,8 @@ let mapExamples (currentPath: string list) =
     | [ Urls.Bubble ] -> [ "Bubble.md" ]
     | [ Urls.FilledArea ] -> [ "FilledArea.md" ]
     | [ Urls.Choropleth ] -> [ "Choropleth.md" ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Maps ] @ path
+    | _ -> []
+    |> List.append [ Urls.Maps ]
 
 let threeDimensionalExamples (currentPath: string list) =
     match currentPath with
@@ -1386,10 +1376,8 @@ let threeDimensionalExamples (currentPath: string list) =
     | [ Urls.Cone ] -> [ "Cone.md" ]
     | [ Urls.Streamtube ] -> [ "Streamtube.md" ]
     | [ Urls.Isosurface ] -> [ "Isosurface.md" ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.ThreeDimensional ] @ path
+    | _ -> []
+    |> List.append [ Urls.ThreeDimensional ]
 
 let subplotExamples (currentPath: string list) =
     match currentPath with
@@ -1397,14 +1385,12 @@ let subplotExamples (currentPath: string list) =
         match rest with
         | [ Urls.TwoYAxes ] -> [ "TwoYAxes.md" ]
         | [ Urls.MultipleYAxes ] -> [ "MultipleYAxes.md" ]
-        | _ -> [ ]
+        | _ -> []
         |> List.append [ Urls.MultipleAxes ]
     | [ Urls.Inset ] -> [ "Inset.md" ]
     | [ Urls.Mixed ] -> [ "Mixed.md" ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Subplots ] @ path
+    | _ -> []
+    |> List.append [ Urls.Subplots ]
 
 let eventExamples (currentPath: string list) =
     match currentPath with
@@ -1412,10 +1398,8 @@ let eventExamples (currentPath: string list) =
     | [ Urls.Hover ] -> [ "Hover.md" ]
     | [ Urls.Zoom ] -> [ "Zoom.md" ]
     | [ Urls.DisableZoom ] -> [ "DisableZoom.md" ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Events ] @ path
+    | _ -> []
+    |> List.append [ Urls.Events ]
 
 let transformExamples (currentPath: string list) =
     match currentPath with
@@ -1423,27 +1407,21 @@ let transformExamples (currentPath: string list) =
     | [ Urls.Groupby ] -> [ "Groupby.md" ]
     | [ Urls.Aggregations ] -> [ "Aggregations.md" ]
     | [ Urls.Multiple ] -> [ "Multiple.md" ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Transforms ] @ path
+    | _ -> []
+    |> List.append [ Urls.Transforms ]
 
 let transitionExamples (currentPath: string list) =
     match currentPath with
     | [ Urls.Lorenz ] -> [ "Lorenz.md" ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Transitions ] @ path
+    | _ -> []
+    |> List.append [ Urls.Transitions ]
 
 let customExamples (currentPath: string list) =
     match currentPath with
     | [ Urls.Gantt ] -> [ "Gantt.md" ]
     | [ Urls.WebGLGantt ] -> [ "WebGLGantt.md" ]
-    | _ -> [ ]
-    |> fun path ->
-        if path |> List.isEmpty then []
-        else [ Urls.Custom ] @ path
+    | _ -> []
+    |> List.append [ Urls.Custom ]
 
 let (|PathPrefix|) (segments: string list) (path: string list) =
     if path.Length > segments.Length then
@@ -1472,9 +1450,7 @@ let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg
         | PathPrefix [ Urls.Transitions ] (Some innerRes) -> transitionExamples innerRes
         | PathPrefix [ Urls.Custom ] (Some innerRes) -> customExamples innerRes
         | _ -> []
-        |> fun path ->
-            if path |> List.isEmpty then Html.div [ for segment in input.state.CurrentPath -> Html.p segment ]
-            else [ Urls.Plotly; Urls.Examples ] @ path |> lazyView MarkdownLoader.load
+        |> fun path -> [ Urls.Plotly; Urls.Examples ] @ path |> lazyView MarkdownLoader.load
     | _ -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ])
 
 let main = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
