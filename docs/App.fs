@@ -982,7 +982,10 @@ let sidebar = React.functionComponent(fun (input: {| state: State; dispatch: Msg
         prop.style [
             style.width (length.perc 100)
         ]
-        prop.children [ menuLabel "Feliz.Plotly"; allItems {| state = input.state; dispatch = dispatch |} ]
+        prop.children [ 
+            menuLabel "Feliz.Plotly"
+            allItems {| state = input.state; dispatch = dispatch |} 
+        ]
     ])
 
 let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
@@ -1442,13 +1445,13 @@ let customExamples (currentPath: string list) =
         if path |> List.isEmpty then []
         else [ Urls.Custom ] @ path
 
-let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
-    let tryTakePath (basePath: string list) (path: string list) =
-        let num = path.Length
-        if basePath.Length >= num then
-            basePath |> List.take num = path
-        else false
+let tryTakePath (basePath: string list) (path: string list) =
+    let num = path.Length
+    if basePath.Length >= num then
+        basePath |> List.take num = path
+    else false
 
+let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
     match input.state.CurrentPath with
     | [ Urls.Plotly; Urls.Overview; ] -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> lazyView MarkdownLoader.load [ "Plotly"; "Installation.md" ]
