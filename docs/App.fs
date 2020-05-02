@@ -1,13 +1,12 @@
 module App
 
+open Browser.Dom
 open Elmish
 open Elmish.React
-open Fable.React
 open Feliz
 open Feliz.Markdown
 open Fable.SimpleHttp
 open Feliz.Router
-open Fable.Core
 open Fable.Core.JsInterop
 open Zanaptak.TypedCssClasses
 
@@ -22,9 +21,14 @@ type State =
     { CurrentPath : string list
       CurrentTab: string list }
 
-let init () = 
-    { CurrentPath = [ ]
-      CurrentTab = [ ] }, Cmd.none
+let init () =
+    let path = 
+        match document.URL.Split('#') with
+        | [| _ |] -> []
+        | [| _; path |] -> path.Split('/') |> List.ofArray |> List.tail
+        | _ -> []
+    { CurrentPath = path
+      CurrentTab = path }, Cmd.none
 
 type Msg =
     | TabToggled of string list
@@ -433,9 +437,9 @@ let githubPath (rawPath: string) =
 
 /// Renders a code block from markdown using react-highlight.
 /// Injects sample React components when the code block has language of the format <language>:<sample-name>
-let codeBlockRenderer (codeProps: Markdown.ICodeProperties) =
-    if codeProps.language <> null && codeProps.language.Contains ":" then
-        let languageParts = codeProps.language.Split(':')
+let codeBlockRenderer' = React.functionComponent(fun (input: {| codeProps: Markdown.ICodeProperties |}) ->
+    if input.codeProps.language <> null && input.codeProps.language.Contains ":" then
+        let languageParts = input.codeProps.language.Split(':')
         let sampleName = languageParts.[1]
         let sampleApp =
             samples
@@ -449,16 +453,18 @@ let codeBlockRenderer (codeProps: Markdown.ICodeProperties) =
             sampleApp
             Highlight.highlight [
                 prop.className "fsharp"
-                prop.text(codeProps.value)
+                prop.text(input.codeProps.value)
             ]
         ]
     else
         Highlight.highlight [
             prop.className "fsharp"
-            prop.text(codeProps.value)
-        ]
+            prop.text(input.codeProps.value)
+        ])
 
-let renderMarkdown (path: string) (content: string) =
+let codeBlockRenderer (codeProps: Markdown.ICodeProperties) = codeBlockRenderer' {| codeProps = codeProps |}
+
+let renderMarkdown = React.functionComponent(fun (input: {| path: string; content: string |}) ->
     Html.div [
         prop.className [ Bulma.Content; "scrollbar" ]
         prop.style [ 
@@ -466,28 +472,27 @@ let renderMarkdown (path: string) (content: string) =
             style.padding (0,20)
         ]
         prop.children [
-            if path.StartsWith "https://raw.githubusercontent.com" then
+            if input.path.StartsWith "https://raw.githubusercontent.com" then
                 Html.h2 [
                     Html.i [ prop.className [ FA.Fa; FA.FaGithub ] ]
                     Html.anchor [
                         prop.style [ style.marginLeft 10; style.color.lightGreen ]
-                        prop.href (githubPath path)
+                        prop.href (githubPath input.path)
                         prop.text "View on Github"
                     ]
                 ]
 
             Markdown.markdown [
-                markdown.source content
+                markdown.source input.content
                 markdown.escapeHtml false
                 markdown.renderers [
                     markdown.renderers.code codeBlockRenderer
                 ]
             ]
         ]
-    ]
+    ])
 
 module MarkdownLoader =
-
     open Feliz.ElmishComponents
 
     type State =
@@ -528,29 +533,26 @@ module MarkdownLoader =
         match state with
         | Initial -> Html.none
         | Loading -> centeredSpinner
-        | LoadedMarkdown content -> renderMarkdown (resolvePath path) content
+        | LoadedMarkdown content -> renderMarkdown {| path = (resolvePath path); content = content |}
         | Errored error ->
             Html.h1 [
                 prop.style [ style.color.crimson ]
                 prop.text error
             ]
 
-    let loadMarkdown' (path: string list) =
-        React.elmishComponent("LoadMarkdown", init path, update, render path, key = resolvePath path)
-
-let loadMarkdown (path: string list) = MarkdownLoader.loadMarkdown' path
+    let load (path: string list) = React.elmishComponent("LoadMarkdown", init path, update, render path, key = resolvePath path)
 
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
-let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, basePath: string list, elems: (string list -> Fable.React.ReactElement) list, dispatch) ->
+let nestedMenuList' = React.functionComponent(fun (input: {| state: State; name: string; basePath: string list; elems: (string list -> Fable.React.ReactElement) list; dispatch: Msg -> unit |}) ->
     let collapsed = 
-        match state.CurrentTab with
+        match input.state.CurrentTab with
         | [ ] -> false
         | _ -> 
-            basePath 
+            input.basePath 
             |> List.indexed 
             |> List.forall (fun (i, segment) -> 
-                List.tryItem i state.CurrentTab 
+                List.tryItem i input.state.CurrentTab 
                 |> Option.map ((=) segment) 
                 |> Option.defaultValue false) 
 
@@ -559,8 +561,8 @@ let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, bas
             prop.className Bulma.IsUnselectable
             prop.onClick <| fun _ -> 
                 match collapsed with
-                | true -> dispatch <| TabToggled (basePath |> List.rev |> List.tail |> List.rev)
-                | false -> dispatch <| TabToggled basePath
+                | true -> input.dispatch <| TabToggled (input.basePath |> List.rev |> List.tail |> List.rev)
+                | false -> input.dispatch <| TabToggled input.basePath
             prop.children [
                 Html.i [
                     prop.style [ style.marginRight 10 ]
@@ -569,7 +571,7 @@ let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, bas
                         if not collapsed then FA.FaAngleDown else FA.FaAngleUp
                     ]
                 ]
-                Html.span name
+                Html.span input.name
             ]
         ]
 
@@ -578,372 +580,401 @@ let nestedMenuList' = FunctionComponent.Of((fun (state: State, name: string, bas
             prop.style [ 
                 if not collapsed then yield! [ style.display.none ] 
             ]
-            prop.children (elems |> List.map (fun f -> f basePath))
+            prop.children (input.elems |> List.map (fun f -> f input.basePath))
         ]
-    ]), memoizeWith = memoEqualsButFunctions)
+    ])
 
-let sidebar (state: State) dispatch =
-    let nestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) =
-        nestedMenuList'(state, name, basePath, items, dispatch)
+// top level label
+let menuLabel' = React.functionComponent (fun (input: {| content: string |}) ->
+    Html.p [
+        prop.className [ Bulma.MenuLabel; Bulma.IsUnselectable ]
+        prop.text input.content
+    ])
 
-    let subNestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) (addedBasePath: string list) =
-        nestedMenuList'(state, name, (addedBasePath @ basePath), items, dispatch)
+// top level menu
+let menuList' = React.functionComponent(fun (input: {| items: Fable.React.ReactElement list |}) ->
+    Html.ul [
+        prop.className Bulma.MenuList
+        prop.style [ style.width (length.percent 95) ]
+        prop.children input.items
+    ])
 
-    // top level label
-    let menuLabel (content: string) =
-        Html.p [
-            prop.className [ Bulma.MenuLabel; Bulma.IsUnselectable ]
-            prop.text content
-        ]
-
-    // top level menu
-    let menuList (items: Fable.React.ReactElement list) =
-        Html.ul [
-            prop.className Bulma.MenuList
-            prop.style [ style.width (length.percent 95) ]
-            prop.children items
-        ]
-
-    let menuItem (name: string) (path: string list) =
-        Html.li [
-            Html.anchor [
-                prop.className [
-                    if state.CurrentPath = path then Bulma.IsActive
-                    if state.CurrentPath = path then Bulma.HasBackgroundPrimary
-                ]
-                prop.text name
-                prop.href (sprintf "#/%s" (String.concat "/" path))
+let menuItem' = React.functionComponent(fun (input: {| currentPath: string list; name: string; path: string list |}) ->
+    Html.li [
+        Html.anchor [
+            prop.className [
+                if input.currentPath = input.path then Bulma.IsActive
+                if input.currentPath = input.path then Bulma.HasBackgroundPrimary
             ]
+            prop.text input.name
+            prop.href (sprintf "#/%s" (String.concat "/" input.path))
         ]
+    ])
 
+let menuLabel (content: string) =
+    menuLabel' {| content = content |}
+
+let menuList (items: Fable.React.ReactElement list) =
+    menuList' {| items = items |}
+
+let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |} ) ->
+    let dispatch = React.useCallback(input.dispatch, [||])
+
+    let menuItem (name: string) (basePath: string list) =
+        menuItem' 
+            {| currentPath = input.state.CurrentPath
+               name = name
+               path = basePath |}
+    
     let nestedMenuItem (name: string) (extendedPath: string list) (basePath: string list) =
         let path = basePath @ extendedPath
-        menuItem name path
+        menuItem' 
+            {| currentPath = input.state.CurrentPath
+               name = name
+               path = path |}
 
-    let allItems =
-        Html.div [
-            prop.className "scrollbar"
-            prop.children [
-                menuList [
-                    menuItem "Overview" [ ]
-                    menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
-                    menuItem "Release Notes" [ Urls.Plotly; Urls.ReleaseNotes ]
-                    menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
-                    menuLabel "Examples"
-                    nestedMenuList "Basic" [ Urls.Plotly; Urls.Examples; Urls.Basic ] [
-                        subNestedMenuList "Scatter" [ Urls.Scatter ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Data Labels Hover" [ Urls.DataLabelsHover ]
-                            nestedMenuItem "Data Labels On Plot" [ Urls.DataLabelsOnPlot ]
-                            nestedMenuItem "Color Dimension" [ Urls.ColorDimension ]
-                        ]
-                        subNestedMenuList "Bubble" [ Urls.Bubble ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "HoverText" [ Urls.HoverText ]
-                            nestedMenuItem "Marker Size and Color" [ Urls.MarkerSizeAndColor ]
-                            nestedMenuItem "Size Scaling" [ Urls.SizeScaling ]
-                            nestedMenuItem "Marker Size Color and Symbol Array" [ Urls.MarkerSizeColorAndSymbolArray ]
-                        ]
-                        subNestedMenuList "Dot" [ Urls.Dot ] [
-                            nestedMenuItem "Categorical" [ Urls.Categorical ]
-                        ]
-                        subNestedMenuList "Line" [ Urls.Line ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Named Line and Scatter" [ Urls.NamedLineAndScatter ]
-                            nestedMenuItem "Line and Scatter Styling" [ Urls.LineAndScatterStyling ]
-                            nestedMenuItem "Styling Line Plot" [ Urls.StylingLinePlot ]
-                            nestedMenuItem "Colored and Styled Scatter" [ Urls.ColoredAndStyledScatter ]
-                            nestedMenuItem "Line Shape Options Interpolation" [ Urls.LineShapeOptionsInterpolation ]
-                            nestedMenuItem "Graph and Axes Titles" [ Urls.GraphAndAxesTitles ]
-                            nestedMenuItem "Line Dash" [ Urls.LineDash ]
-                            nestedMenuItem "Connect Gaps Between Data" [ Urls.ConnectGapsBetweenData ]
-                            nestedMenuItem "Labelling Lines With Annotations" [ Urls.LabellingLinesWithAnnotations ]
-                        ]
-                        subNestedMenuList "Bar" [ Urls.Bar ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Grouped" [ Urls.Grouped ]
-                            nestedMenuItem "Stacked" [ Urls.Stacked ]
-                            nestedMenuItem "Hover Text" [ Urls.HoverText ]
-                            nestedMenuItem "Direct Labels" [ Urls.DirectLabels ]
-                            nestedMenuItem "Grouped Direct Labels" [ Urls.GroupedDirectLabels ]
-                            nestedMenuItem "Rotated Labels" [ Urls.RotatedLabels ]
-                            nestedMenuItem "Colors" [ Urls.Colors ]
-                            nestedMenuItem "Widths" [ Urls.Widths ]
-                            nestedMenuItem "Base" [ Urls.Base ]
-                            nestedMenuItem "Colored and Styled" [ Urls.ColoredAndStyled ]
-                            nestedMenuItem "Waterfall" [ Urls.Waterfall ]
-                            nestedMenuItem "Relative Barmode" [ Urls.RelativeBarmode ]
-                        ]
-                        subNestedMenuList "Filled Area" [ Urls.FilledArea ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Overlaid Without Boundary" [ Urls.OverlaidWithoutBoundary ]
-                            nestedMenuItem "Stacked Area" [ Urls.StackedArea ]
-                            nestedMenuItem "Normalized Stacked Area" [ Urls.NormalizedStackedArea ]
-                            nestedMenuItem "Select Hover" [ Urls.SelectHover ]
-                        ]
-                        subNestedMenuList "Horizontal Bar" [ Urls.HorizontalBar ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Colored" [ Urls.Colored ]
-                            nestedMenuItem "Bar With Line Plot" [ Urls.BarWithLinePlot ]
-                        ]
-                        subNestedMenuList "Pie" [ Urls.Pie ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Subplots" [ Urls.Subplots ]
-                            nestedMenuItem "Donut" [ Urls.Donut ]
-                        ]
-                        subNestedMenuList "Sunburst" [ Urls.Sunburst ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Branch Values" [ Urls.Branchvalues ]
-                            nestedMenuItem "Repeated Labels" [ Urls.RepeatedLabels ]
-                            nestedMenuItem "Large Number of Slices" [ Urls.LargeNumberSlices ]
-                        ]
-                        subNestedMenuList "Sankey" [ Urls.Sankey ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                        ]
-                        subNestedMenuList "Point Cloud" [ Urls.PointCloud ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                        ]
-                        subNestedMenuList "Treemap" [ Urls.Treemap ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Different Attributes" [ Urls.DifferentAttributes ]
-                            nestedMenuItem "Sector Colors" [ Urls.SectorColors ]
-                            nestedMenuItem "Nested Layers" [ Urls.NestedLayers ]
-                        ]
-                        subNestedMenuList "Table" [ Urls.Table ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                            nestedMenuItem "From CSV" [ Urls.FromCSV ]
-                            nestedMenuItem "Changing Sizes" [ Urls.ChangingSizes ]
-                            nestedMenuItem "Alternating Row Colors" [ Urls.AlternatingRowColors ]
-                        ]
-                        subNestedMenuList "Multiple Chart Types" [ Urls.MultipleChartTypes ] [
-                            nestedMenuItem "Line and Bar" [ Urls.LineAndBar ]
-                            nestedMenuItem "Contour and Scatter" [ Urls.ContourAndScatter ]
-                        ]
+    let nestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) =
+        nestedMenuList' 
+            {| state = input.state
+               name = name
+               basePath = basePath
+               elems = items
+               dispatch = dispatch |}
+    
+    let subNestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) (addedBasePath: string list) =
+        nestedMenuList' 
+            {| state = input.state
+               name = name
+               basePath = (addedBasePath @ basePath)
+               elems = items
+               dispatch = dispatch |}
+
+    Html.div [
+        prop.className "scrollbar"
+        prop.children [
+            menuList [
+                menuItem "Overview" [ ]
+                menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
+                menuItem "Release Notes" [ Urls.Plotly; Urls.ReleaseNotes ]
+                menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
+                menuLabel "Examples"
+                nestedMenuList "Basic" [ Urls.Plotly; Urls.Examples; Urls.Basic ] [
+                    subNestedMenuList "Scatter" [ Urls.Scatter ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Data Labels Hover" [ Urls.DataLabelsHover ]
+                        nestedMenuItem "Data Labels On Plot" [ Urls.DataLabelsOnPlot ]
+                        nestedMenuItem "Color Dimension" [ Urls.ColorDimension ]
                     ]
-                    nestedMenuList "Statistical" [ Urls.Plotly; Urls.Examples; Urls.Statistical ] [
-                        subNestedMenuList "Error Bars" [ Urls.ErrorBar ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "With Bar Chart" [ Urls.WithBarChart ]
-                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
-                            nestedMenuItem "Asymmetric" [ Urls.Asymmetric ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                            nestedMenuItem "Percentage of Y Value" [ Urls.PercentageOfYValue ]
-                            nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
-                        ]
-                        subNestedMenuList "Continuous Error Bars" [ Urls.ContinuousErrorBar ] [
-                            nestedMenuItem "Filled Lines" [ Urls.FilledLines ]
-                            nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
-                        ]
-                        subNestedMenuList "Box" [ Urls.BoxPlot ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Underlying Data" [ Urls.UnderlyingData ]
-                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
-                            nestedMenuItem "Grouped" [ Urls.Grouped ]
-                            nestedMenuItem "Styled Outliers" [ Urls.StyledOutliers ]
-                            nestedMenuItem "Styled Mean and Std Dev" [ Urls.StyledMeanAndStdDev ]
-                            nestedMenuItem "Grouped Horizontal" [ Urls.GroupedHorizontal ]
-                            nestedMenuItem "Colored" [ Urls.Colored ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                            nestedMenuItem "Rainbow" [ Urls.Rainbow ]
-                        ]
-                        subNestedMenuList "Histogram" [ Urls.Histogram ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
-                            nestedMenuItem "Overlaid" [ Urls.Overlaid ]
-                            nestedMenuItem "Stacked" [ Urls.Stacked ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                            nestedMenuItem "Cumulative" [ Urls.Cumulative ]
-                            nestedMenuItem "Normalized" [ Urls.Normalized ]
-                            nestedMenuItem "Specified Binning" [ Urls.SpecifiedBinning ]
-                        ]
-                        subNestedMenuList "2D Histogram" [ Urls.TwoDimensionalHistogram ] [
-                            nestedMenuItem "Bivariate Normal Distribution" [ Urls.BivariateNormalDistribution ]
-                            nestedMenuItem "Binning and Styling" [ Urls.BinningAndStyling ]
-                            nestedMenuItem "Overlaid with Scatter" [ Urls.OverlaidWithScatter ]
-                        ]
-                        subNestedMenuList "2D Density" [ Urls.TwoDimensionalDensity ] [
-                            nestedMenuItem "With Histogram Subplots" [ Urls.WithHistogramSubplots ]
-                        ]
-                        subNestedMenuList "SPC Control" [ Urls.SPCControl ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Distribution" [ Urls.Distribution ]
-                        ]
-                        subNestedMenuList "Violin" [ Urls.Violin ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
-                            nestedMenuItem "Grouped" [ Urls.Grouped ]
-                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
-                            nestedMenuItem "Split" [ Urls.Split ]
-                            nestedMenuItem "Advanced" [ Urls.Advanced ]
-                        ]
-                        subNestedMenuList "Parallel Categories" [ Urls.ParallelCategories ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "With Counts" [ Urls.WithCounts ]
-                            nestedMenuItem "Multi Color" [ Urls.MultiColor ]
-                            nestedMenuItem "Linked Brushing" [ Urls.LinkedBrushing ]
-                            nestedMenuItem "Multi Color Linked Brushing" [ Urls.MultiColorLinkedBrushing ]
-                        ]
-                        subNestedMenuList "Splom" [ Urls.Splom ] [
-                            nestedMenuItem "Iris" [ Urls.Iris ]
-                            nestedMenuItem "Diabetes" [ Urls.Diabetes ]
-                        ]
-                        subNestedMenuList "2D Histogram Contour" [ Urls.TwoDimensionalHistogramContour ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Colorscale" [ Urls.Colorscale ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                        ]
+                    subNestedMenuList "Bubble" [ Urls.Bubble ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "HoverText" [ Urls.HoverText ]
+                        nestedMenuItem "Marker Size and Color" [ Urls.MarkerSizeAndColor ]
+                        nestedMenuItem "Size Scaling" [ Urls.SizeScaling ]
+                        nestedMenuItem "Marker Size Color and Symbol Array" [ Urls.MarkerSizeColorAndSymbolArray ]
                     ]
-                    nestedMenuList "Scientific" [ Urls.Plotly; Urls.Examples; Urls.Scientific ] [
-                        subNestedMenuList "Log" [ Urls.Log ] [
-                            nestedMenuItem "Logarithmic Axes" [ Urls.LogarithmicAxes ]
-                        ]
-                        subNestedMenuList "Contour" [ Urls.Contour ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Simple" [ Urls.Simple ]
-                            nestedMenuItem "Setting X and Y Coordinates" [ Urls.SettingXAndYCoordinates ]
-                            nestedMenuItem "Colorscale" [ Urls.Colorscale ]
-                            nestedMenuItem "Custom Size and Range" [ Urls.CustomSizeAndRange ]
-                            nestedMenuItem "Custom Spacing" [ Urls.CustomSpacing ]
-                            nestedMenuItem "Connecting Gaps In Z Matrix" [ Urls.ConnectingGapsInZMatrix ]
-                            nestedMenuItem "Smoothing Lines" [ Urls.SmoothingLines ]
-                            nestedMenuItem "Smooth Coloring" [ Urls.SmoothColoring ]
-                            nestedMenuItem "Lines" [ Urls.Lines ]
-                            nestedMenuItem "Line Labels" [ Urls.LineLabels ]
-                            nestedMenuItem "Custom Colorscale" [ Urls.CustomColorscale ]
-                            nestedMenuItem "Colorbar Title" [ Urls.ColorbarTitle ]
-                            nestedMenuItem "Colorbar Size" [ Urls.ColorbarSize ]
-                            nestedMenuItem "Styling Colorbar" [ Urls.StylingColorbar ]
-                        ]
-                        subNestedMenuList "Heatmap" [ Urls.Heatmap ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Annotated" [ Urls.Annotated ]
-                            nestedMenuItem "With Categorical Axis Labels" [ Urls.WithCategoricalAxisLabels ]
-                            nestedMenuItem "Unequal Block Sizes" [ Urls.UnequalBlockSizes ]
-                            nestedMenuItem "WebGL" [ Urls.WebGL ]
-                        ]
-                        subNestedMenuList "Wind Rose" [ Urls.WindRose ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                        ]
-                        subNestedMenuList "Ternary" [ Urls.Ternary ] [
-                            nestedMenuItem "With Markers" [ Urls.WithMarkers ]
-                            nestedMenuItem "Soil Types" [ Urls.SoilTypes ]
-                        ]
-                        subNestedMenuList "Ternary Contour" [ Urls.TernaryContour ] [
-                            nestedMenuItem "Filled" [ Urls.Filled ]
-                        ]
-                        subNestedMenuList "Radar" [ Urls.Radar ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
-                        ]
-                        subNestedMenuList "Parallel Coordinates" [ Urls.ParallelCoordinates ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Adding Dimensions" [ Urls.AddingDimensions ]
-                            nestedMenuItem "Annotated" [ Urls.Annotated ]
-                            nestedMenuItem "Advanced" [ Urls.Advanced ]
-                        ]
-                        subNestedMenuList "Carpet" [ Urls.Carpet ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Add A and B Axis" [ Urls.AddAAndBAxis ]
-                            nestedMenuItem "Style A and B Axis" [ Urls.StyleAAndBAxis ]
-                        ]
-                        subNestedMenuList "Carpet Scatter" [ Urls.CarpetScatter ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
-                        ]
-                        subNestedMenuList "Carpet Contour" [ Urls.CarpetContour ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
-                        ]
-                        subNestedMenuList "Polar" [ Urls.Polar ] [
-                            nestedMenuItem "Line" [ Urls.Line ]
-                            nestedMenuItem "Area" [ Urls.Area ]
-                            nestedMenuItem "Categorical" [ Urls.Categorical ]
-                            nestedMenuItem "Directions" [ Urls.Directions ]
-                            nestedMenuItem "Sector" [ Urls.Sector ]
-                            nestedMenuItem "Subplots" [ Urls.Subplots ]
-                            nestedMenuItem "WebGL" [ Urls.WebGL ]
-                        ]
+                    subNestedMenuList "Dot" [ Urls.Dot ] [
+                        nestedMenuItem "Categorical" [ Urls.Categorical ]
                     ]
-                    nestedMenuList "Financial" [ Urls.Plotly; Urls.Examples; Urls.Financial ] [
-                        subNestedMenuList "Waterfall" [ Urls.Waterfall ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Multi Category" [ Urls.MultiCategory ]
-                            nestedMenuItem "Horizontal" [ Urls.Horizontal ]
-                            nestedMenuItem "Styled" [ Urls.Styled ]
-                        ]
-                        subNestedMenuList "Indicators" [ Urls.Indicators ] [
-                            nestedMenuItem "Showcase" [ Urls.Showcase ]
-                            nestedMenuItem "Overlay" [ Urls.Overlay ]
-                        ]
-                        subNestedMenuList "Candlestick" [ Urls.Candlestick ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                        ]
-                        subNestedMenuList "Funnel" [ Urls.Funnel ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Funnel Area" [ Urls.FunnelArea ]
-                        ]
-                        subNestedMenuList "Time Series" [ Urls.TimeSeries ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                            nestedMenuItem "Set Range" [ Urls.SetRange ]
-                            nestedMenuItem "Range Slider" [ Urls.RangeSlider ]
-                        ]
-                        subNestedMenuList "OHLC" [ Urls.OHLC ] [
-                            nestedMenuItem "Basic" [ Urls.Basic ]
-                        ]
+                    subNestedMenuList "Line" [ Urls.Line ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Named Line and Scatter" [ Urls.NamedLineAndScatter ]
+                        nestedMenuItem "Line and Scatter Styling" [ Urls.LineAndScatterStyling ]
+                        nestedMenuItem "Styling Line Plot" [ Urls.StylingLinePlot ]
+                        nestedMenuItem "Colored and Styled Scatter" [ Urls.ColoredAndStyledScatter ]
+                        nestedMenuItem "Line Shape Options Interpolation" [ Urls.LineShapeOptionsInterpolation ]
+                        nestedMenuItem "Graph and Axes Titles" [ Urls.GraphAndAxesTitles ]
+                        nestedMenuItem "Line Dash" [ Urls.LineDash ]
+                        nestedMenuItem "Connect Gaps Between Data" [ Urls.ConnectGapsBetweenData ]
+                        nestedMenuItem "Labelling Lines With Annotations" [ Urls.LabellingLinesWithAnnotations ]
                     ]
-                    nestedMenuList "Maps" [ Urls.Plotly; Urls.Examples; Urls.Maps ] [
-                        nestedMenuItem "Scatter" [ Urls.Scatter ]
-                        nestedMenuItem "Heatmap" [ Urls.Heatmap ]
+                    subNestedMenuList "Bar" [ Urls.Bar ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Grouped" [ Urls.Grouped ]
+                        nestedMenuItem "Stacked" [ Urls.Stacked ]
+                        nestedMenuItem "Hover Text" [ Urls.HoverText ]
+                        nestedMenuItem "Direct Labels" [ Urls.DirectLabels ]
+                        nestedMenuItem "Grouped Direct Labels" [ Urls.GroupedDirectLabels ]
+                        nestedMenuItem "Rotated Labels" [ Urls.RotatedLabels ]
+                        nestedMenuItem "Colors" [ Urls.Colors ]
+                        nestedMenuItem "Widths" [ Urls.Widths ]
+                        nestedMenuItem "Base" [ Urls.Base ]
+                        nestedMenuItem "Colored and Styled" [ Urls.ColoredAndStyled ]
+                        nestedMenuItem "Waterfall" [ Urls.Waterfall ]
+                        nestedMenuItem "Relative Barmode" [ Urls.RelativeBarmode ]
+                    ]
+                    subNestedMenuList "Filled Area" [ Urls.FilledArea ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Overlaid Without Boundary" [ Urls.OverlaidWithoutBoundary ]
+                        nestedMenuItem "Stacked Area" [ Urls.StackedArea ]
+                        nestedMenuItem "Normalized Stacked Area" [ Urls.NormalizedStackedArea ]
+                        nestedMenuItem "Select Hover" [ Urls.SelectHover ]
+                    ]
+                    subNestedMenuList "Horizontal Bar" [ Urls.HorizontalBar ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Colored" [ Urls.Colored ]
+                        nestedMenuItem "Bar With Line Plot" [ Urls.BarWithLinePlot ]
+                    ]
+                    subNestedMenuList "Pie" [ Urls.Pie ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Subplots" [ Urls.Subplots ]
+                        nestedMenuItem "Donut" [ Urls.Donut ]
+                    ]
+                    subNestedMenuList "Sunburst" [ Urls.Sunburst ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Branch Values" [ Urls.Branchvalues ]
+                        nestedMenuItem "Repeated Labels" [ Urls.RepeatedLabels ]
+                        nestedMenuItem "Large Number of Slices" [ Urls.LargeNumberSlices ]
+                    ]
+                    subNestedMenuList "Sankey" [ Urls.Sankey ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
+                    ]
+                    subNestedMenuList "Point Cloud" [ Urls.PointCloud ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
+                    ]
+                    subNestedMenuList "Treemap" [ Urls.Treemap ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Different Attributes" [ Urls.DifferentAttributes ]
+                        nestedMenuItem "Sector Colors" [ Urls.SectorColors ]
+                        nestedMenuItem "Nested Layers" [ Urls.NestedLayers ]
+                    ]
+                    subNestedMenuList "Table" [ Urls.Table ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
+                        nestedMenuItem "From CSV" [ Urls.FromCSV ]
+                        nestedMenuItem "Changing Sizes" [ Urls.ChangingSizes ]
+                        nestedMenuItem "Alternating Row Colors" [ Urls.AlternatingRowColors ]
+                    ]
+                    subNestedMenuList "Multiple Chart Types" [ Urls.MultipleChartTypes ] [
+                        nestedMenuItem "Line and Bar" [ Urls.LineAndBar ]
+                        nestedMenuItem "Contour and Scatter" [ Urls.ContourAndScatter ]
+                    ]
+                ]
+                nestedMenuList "Statistical" [ Urls.Plotly; Urls.Examples; Urls.Statistical ] [
+                    subNestedMenuList "Error Bars" [ Urls.ErrorBar ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "With Bar Chart" [ Urls.WithBarChart ]
+                        nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                        nestedMenuItem "Asymmetric" [ Urls.Asymmetric ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
+                        nestedMenuItem "Percentage of Y Value" [ Urls.PercentageOfYValue ]
+                        nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
+                    ]
+                    subNestedMenuList "Continuous Error Bars" [ Urls.ContinuousErrorBar ] [
+                        nestedMenuItem "Filled Lines" [ Urls.FilledLines ]
+                        nestedMenuItem "Asymmetric with Offset" [ Urls.AsymmetricWithOffset ]
+                    ]
+                    subNestedMenuList "Box" [ Urls.BoxPlot ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Underlying Data" [ Urls.UnderlyingData ]
+                        nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                        nestedMenuItem "Grouped" [ Urls.Grouped ]
+                        nestedMenuItem "Styled Outliers" [ Urls.StyledOutliers ]
+                        nestedMenuItem "Styled Mean and Std Dev" [ Urls.StyledMeanAndStdDev ]
+                        nestedMenuItem "Grouped Horizontal" [ Urls.GroupedHorizontal ]
+                        nestedMenuItem "Colored" [ Urls.Colored ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
+                        nestedMenuItem "Rainbow" [ Urls.Rainbow ]
+                    ]
+                    subNestedMenuList "Histogram" [ Urls.Histogram ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                        nestedMenuItem "Overlaid" [ Urls.Overlaid ]
+                        nestedMenuItem "Stacked" [ Urls.Stacked ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
+                        nestedMenuItem "Cumulative" [ Urls.Cumulative ]
+                        nestedMenuItem "Normalized" [ Urls.Normalized ]
+                        nestedMenuItem "Specified Binning" [ Urls.SpecifiedBinning ]
+                    ]
+                    subNestedMenuList "2D Histogram" [ Urls.TwoDimensionalHistogram ] [
+                        nestedMenuItem "Bivariate Normal Distribution" [ Urls.BivariateNormalDistribution ]
+                        nestedMenuItem "Binning and Styling" [ Urls.BinningAndStyling ]
+                        nestedMenuItem "Overlaid with Scatter" [ Urls.OverlaidWithScatter ]
+                    ]
+                    subNestedMenuList "2D Density" [ Urls.TwoDimensionalDensity ] [
+                        nestedMenuItem "With Histogram Subplots" [ Urls.WithHistogramSubplots ]
+                    ]
+                    subNestedMenuList "SPC Control" [ Urls.SPCControl ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Distribution" [ Urls.Distribution ]
+                    ]
+                    subNestedMenuList "Violin" [ Urls.Violin ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                        nestedMenuItem "Grouped" [ Urls.Grouped ]
+                        nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                        nestedMenuItem "Split" [ Urls.Split ]
+                        nestedMenuItem "Advanced" [ Urls.Advanced ]
+                    ]
+                    subNestedMenuList "Parallel Categories" [ Urls.ParallelCategories ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "With Counts" [ Urls.WithCounts ]
+                        nestedMenuItem "Multi Color" [ Urls.MultiColor ]
+                        nestedMenuItem "Linked Brushing" [ Urls.LinkedBrushing ]
+                        nestedMenuItem "Multi Color Linked Brushing" [ Urls.MultiColorLinkedBrushing ]
+                    ]
+                    subNestedMenuList "Splom" [ Urls.Splom ] [
+                        nestedMenuItem "Iris" [ Urls.Iris ]
+                        nestedMenuItem "Diabetes" [ Urls.Diabetes ]
+                    ]
+                    subNestedMenuList "2D Histogram Contour" [ Urls.TwoDimensionalHistogramContour ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Colorscale" [ Urls.Colorscale ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
+                    ]
+                ]
+                nestedMenuList "Scientific" [ Urls.Plotly; Urls.Examples; Urls.Scientific ] [
+                    subNestedMenuList "Log" [ Urls.Log ] [
+                        nestedMenuItem "Logarithmic Axes" [ Urls.LogarithmicAxes ]
+                    ]
+                    subNestedMenuList "Contour" [ Urls.Contour ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Simple" [ Urls.Simple ]
+                        nestedMenuItem "Setting X and Y Coordinates" [ Urls.SettingXAndYCoordinates ]
+                        nestedMenuItem "Colorscale" [ Urls.Colorscale ]
+                        nestedMenuItem "Custom Size and Range" [ Urls.CustomSizeAndRange ]
+                        nestedMenuItem "Custom Spacing" [ Urls.CustomSpacing ]
+                        nestedMenuItem "Connecting Gaps In Z Matrix" [ Urls.ConnectingGapsInZMatrix ]
+                        nestedMenuItem "Smoothing Lines" [ Urls.SmoothingLines ]
+                        nestedMenuItem "Smooth Coloring" [ Urls.SmoothColoring ]
                         nestedMenuItem "Lines" [ Urls.Lines ]
-                        nestedMenuItem "Bubble" [ Urls.Bubble ]
-                        nestedMenuItem "Filled Area" [ Urls.FilledArea ]
-                        nestedMenuItem "Choropleth" [ Urls.Choropleth ]
+                        nestedMenuItem "Line Labels" [ Urls.LineLabels ]
+                        nestedMenuItem "Custom Colorscale" [ Urls.CustomColorscale ]
+                        nestedMenuItem "Colorbar Title" [ Urls.ColorbarTitle ]
+                        nestedMenuItem "Colorbar Size" [ Urls.ColorbarSize ]
+                        nestedMenuItem "Styling Colorbar" [ Urls.StylingColorbar ]
                     ]
-                    nestedMenuList "3D" [ Urls.Plotly; Urls.Examples; Urls.ThreeDimensional ] [
-                        nestedMenuItem "Scatter" [ Urls.Scatter ]
-                        nestedMenuItem "Ribbon" [ Urls.Ribbon ]
-                        nestedMenuItem "Surface" [ Urls.Surface ]
-                        nestedMenuItem "Mesh" [ Urls.Mesh ]
+                    subNestedMenuList "Heatmap" [ Urls.Heatmap ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Annotated" [ Urls.Annotated ]
+                        nestedMenuItem "With Categorical Axis Labels" [ Urls.WithCategoricalAxisLabels ]
+                        nestedMenuItem "Unequal Block Sizes" [ Urls.UnequalBlockSizes ]
+                        nestedMenuItem "WebGL" [ Urls.WebGL ]
+                    ]
+                    subNestedMenuList "Wind Rose" [ Urls.WindRose ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                    ]
+                    subNestedMenuList "Ternary" [ Urls.Ternary ] [
+                        nestedMenuItem "With Markers" [ Urls.WithMarkers ]
+                        nestedMenuItem "Soil Types" [ Urls.SoilTypes ]
+                    ]
+                    subNestedMenuList "Ternary Contour" [ Urls.TernaryContour ] [
+                        nestedMenuItem "Filled" [ Urls.Filled ]
+                    ]
+                    subNestedMenuList "Radar" [ Urls.Radar ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                    ]
+                    subNestedMenuList "Parallel Coordinates" [ Urls.ParallelCoordinates ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Adding Dimensions" [ Urls.AddingDimensions ]
+                        nestedMenuItem "Annotated" [ Urls.Annotated ]
+                        nestedMenuItem "Advanced" [ Urls.Advanced ]
+                    ]
+                    subNestedMenuList "Carpet" [ Urls.Carpet ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Add A and B Axis" [ Urls.AddAAndBAxis ]
+                        nestedMenuItem "Style A and B Axis" [ Urls.StyleAAndBAxis ]
+                    ]
+                    subNestedMenuList "Carpet Scatter" [ Urls.CarpetScatter ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                    ]
+                    subNestedMenuList "Carpet Contour" [ Urls.CarpetContour ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Multiple Traces" [ Urls.MultipleTraces ]
+                    ]
+                    subNestedMenuList "Polar" [ Urls.Polar ] [
                         nestedMenuItem "Line" [ Urls.Line ]
-                        nestedMenuItem "Tri-Surf" [ Urls.TriSurf ]
-                        nestedMenuItem "Cluster Graph" [ Urls.ClusterGraph ]
-                        nestedMenuItem "Cone" [ Urls.Cone ]
-                        nestedMenuItem "Streamtube" [ Urls.Streamtube ]
-                        nestedMenuItem "Isosurface" [ Urls.Isosurface ]
+                        nestedMenuItem "Area" [ Urls.Area ]
+                        nestedMenuItem "Categorical" [ Urls.Categorical ]
+                        nestedMenuItem "Directions" [ Urls.Directions ]
+                        nestedMenuItem "Sector" [ Urls.Sector ]
+                        nestedMenuItem "Subplots" [ Urls.Subplots ]
+                        nestedMenuItem "WebGL" [ Urls.WebGL ]
                     ]
-                    nestedMenuList "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Subplots ] [
-                        subNestedMenuList "Multiple Axes" [ Urls.MultipleAxes ] [
-                            nestedMenuItem "Two Y-Axes" [ Urls.TwoYAxes ]
-                            nestedMenuItem "Multiple Y-Axes" [ Urls.MultipleYAxes ]
-                        ]
-                        nestedMenuItem "Inset" [ Urls.Inset ]
-                        nestedMenuItem "Mixed" [ Urls.Mixed ]
+                ]
+                nestedMenuList "Financial" [ Urls.Plotly; Urls.Examples; Urls.Financial ] [
+                    subNestedMenuList "Waterfall" [ Urls.Waterfall ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Multi Category" [ Urls.MultiCategory ]
+                        nestedMenuItem "Horizontal" [ Urls.Horizontal ]
+                        nestedMenuItem "Styled" [ Urls.Styled ]
                     ]
-                    nestedMenuList "Events" [ Urls.Plotly; Urls.Examples; Urls.Events ] [
-                        nestedMenuItem "Click" [ Urls.Click ]
-                        nestedMenuItem "Hover" [ Urls.Hover ]
-                        nestedMenuItem "Zoom" [ Urls.Zoom ]
-                        nestedMenuItem "Disable Zoom" [ Urls.DisableZoom ]
+                    subNestedMenuList "Indicators" [ Urls.Indicators ] [
+                        nestedMenuItem "Showcase" [ Urls.Showcase ]
+                        nestedMenuItem "Overlay" [ Urls.Overlay ]
                     ]
-                    nestedMenuList "Transforms" [ Urls.Plotly; Urls.Examples; Urls.Transforms ] [
-                        nestedMenuItem "Filter" [ Urls.Filter ]
-                        nestedMenuItem "Group By" [ Urls.Groupby ]
-                        nestedMenuItem "Aggregation" [ Urls.Aggregations ]
-                        nestedMenuItem "Multiple Transforms" [ Urls.Multiple ]
+                    subNestedMenuList "Candlestick" [ Urls.Candlestick ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
                     ]
-                    nestedMenuList "Transitions" [ Urls.Plotly; Urls.Examples; Urls.Transitions ] [
-                        nestedMenuItem "Lorenz Attractor" [ Urls.Lorenz ]
+                    subNestedMenuList "Funnel" [ Urls.Funnel ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Funnel Area" [ Urls.FunnelArea ]
                     ]
-                    nestedMenuList "Custom" [ Urls.Plotly; Urls.Examples; Urls.Custom ] [
-                        nestedMenuItem "Gantt" [ Urls.Gantt ]
-                        nestedMenuItem "WebGL Gantt" [ Urls.WebGLGantt ]
+                    subNestedMenuList "Time Series" [ Urls.TimeSeries ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Set Range" [ Urls.SetRange ]
+                        nestedMenuItem "Range Slider" [ Urls.RangeSlider ]
                     ]
+                    subNestedMenuList "OHLC" [ Urls.OHLC ] [
+                        nestedMenuItem "Basic" [ Urls.Basic ]
+                    ]
+                ]
+                nestedMenuList "Maps" [ Urls.Plotly; Urls.Examples; Urls.Maps ] [
+                    nestedMenuItem "Scatter" [ Urls.Scatter ]
+                    nestedMenuItem "Heatmap" [ Urls.Heatmap ]
+                    nestedMenuItem "Lines" [ Urls.Lines ]
+                    nestedMenuItem "Bubble" [ Urls.Bubble ]
+                    nestedMenuItem "Filled Area" [ Urls.FilledArea ]
+                    nestedMenuItem "Choropleth" [ Urls.Choropleth ]
+                ]
+                nestedMenuList "3D" [ Urls.Plotly; Urls.Examples; Urls.ThreeDimensional ] [
+                    nestedMenuItem "Scatter" [ Urls.Scatter ]
+                    nestedMenuItem "Ribbon" [ Urls.Ribbon ]
+                    nestedMenuItem "Surface" [ Urls.Surface ]
+                    nestedMenuItem "Mesh" [ Urls.Mesh ]
+                    nestedMenuItem "Line" [ Urls.Line ]
+                    nestedMenuItem "Tri-Surf" [ Urls.TriSurf ]
+                    nestedMenuItem "Cluster Graph" [ Urls.ClusterGraph ]
+                    nestedMenuItem "Cone" [ Urls.Cone ]
+                    nestedMenuItem "Streamtube" [ Urls.Streamtube ]
+                    nestedMenuItem "Isosurface" [ Urls.Isosurface ]
+                ]
+                nestedMenuList "Subplots" [ Urls.Plotly; Urls.Examples; Urls.Subplots ] [
+                    subNestedMenuList "Multiple Axes" [ Urls.MultipleAxes ] [
+                        nestedMenuItem "Two Y-Axes" [ Urls.TwoYAxes ]
+                        nestedMenuItem "Multiple Y-Axes" [ Urls.MultipleYAxes ]
+                    ]
+                    nestedMenuItem "Inset" [ Urls.Inset ]
+                    nestedMenuItem "Mixed" [ Urls.Mixed ]
+                ]
+                nestedMenuList "Events" [ Urls.Plotly; Urls.Examples; Urls.Events ] [
+                    nestedMenuItem "Click" [ Urls.Click ]
+                    nestedMenuItem "Hover" [ Urls.Hover ]
+                    nestedMenuItem "Zoom" [ Urls.Zoom ]
+                    nestedMenuItem "Disable Zoom" [ Urls.DisableZoom ]
+                ]
+                nestedMenuList "Transforms" [ Urls.Plotly; Urls.Examples; Urls.Transforms ] [
+                    nestedMenuItem "Filter" [ Urls.Filter ]
+                    nestedMenuItem "Group By" [ Urls.Groupby ]
+                    nestedMenuItem "Aggregation" [ Urls.Aggregations ]
+                    nestedMenuItem "Multiple Transforms" [ Urls.Multiple ]
+                ]
+                nestedMenuList "Transitions" [ Urls.Plotly; Urls.Examples; Urls.Transitions ] [
+                    nestedMenuItem "Lorenz Attractor" [ Urls.Lorenz ]
+                ]
+                nestedMenuList "Custom" [ Urls.Plotly; Urls.Examples; Urls.Custom ] [
+                    nestedMenuItem "Gantt" [ Urls.Gantt ]
+                    nestedMenuItem "WebGL Gantt" [ Urls.WebGLGantt ]
                 ]
             ]
         ]
+    ])
+
+let sidebar = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
+    let dispatch = React.useCallback(input.dispatch, [||])
 
     // the actual nav bar
     Html.aside [
@@ -951,8 +982,8 @@ let sidebar (state: State) dispatch =
         prop.style [
             style.width (length.perc 100)
         ]
-        prop.children [ menuLabel "Feliz.Plotly"; allItems ]
-    ]
+        prop.children [ menuLabel "Feliz.Plotly"; allItems {| state = input.state; dispatch = dispatch |} ]
+    ])
 
 let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
 let contributing = sprintf "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/master/public/Feliz/Contributing.md"
@@ -1411,20 +1442,20 @@ let customExamples (currentPath: string list) =
         if path |> List.isEmpty then []
         else [ Urls.Custom ] @ path
 
-let content state dispatch =
+let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
     let tryTakePath (basePath: string list) (path: string list) =
         let num = path.Length
         if basePath.Length >= num then
             basePath |> List.take num = path
         else false
 
-    match state.CurrentPath with
-    | [ Urls.Plotly; Urls.Overview; ] -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
-    | [ Urls.Plotly; Urls.Installation ] -> lazyView loadMarkdown [ "Plotly"; "Installation.md" ]
-    | [ Urls.Plotly; Urls.ReleaseNotes ] -> lazyView loadMarkdown [ "Plotly"; "RELEASE_NOTES.md" ]
-    | [ Urls.Plotly; Urls.Contributing ] -> lazyView loadMarkdown [ contributing ]
-    | _ when tryTakePath state.CurrentPath [ Urls.Plotly; Urls.Examples ] -> 
-        match state.CurrentPath |> List.skip 2 with
+    match input.state.CurrentPath with
+    | [ Urls.Plotly; Urls.Overview; ] -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ]
+    | [ Urls.Plotly; Urls.Installation ] -> lazyView MarkdownLoader.load [ "Plotly"; "Installation.md" ]
+    | [ Urls.Plotly; Urls.ReleaseNotes ] -> lazyView MarkdownLoader.load [ "Plotly"; "RELEASE_NOTES.md" ]
+    | [ Urls.Plotly; Urls.Contributing ] -> lazyView MarkdownLoader.load [ contributing ]
+    | _ when tryTakePath input.state.CurrentPath [ Urls.Plotly; Urls.Examples ] -> 
+        match input.state.CurrentPath |> List.skip 2 with
         | basicPath when tryTakePath basicPath [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
         | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
         | scientificPath when tryTakePath scientificPath [ Urls.Scientific ] -> scientificPath |> List.skip 1 |> scientificExamples
@@ -1438,40 +1469,46 @@ let content state dispatch =
         | customPath when tryTakePath customPath [ Urls.Custom ] -> customPath |> List.skip 1 |> customExamples
         | _ -> [ ]
         |> fun path ->
-            if path |> List.isEmpty then Html.div [ for segment in state.CurrentPath -> Html.p segment ]
-            else [ Urls.Plotly; Urls.Examples ] @ path |> (lazyView loadMarkdown)
-    | _ -> lazyView loadMarkdown [ "Plotly"; "README.md" ]
+            if path |> List.isEmpty then Html.div [ for segment in input.state.CurrentPath -> Html.p segment ]
+            else [ Urls.Plotly; Urls.Examples ] @ path |> lazyView MarkdownLoader.load
+    | _ -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ])
 
-let main state dispatch =
+let main = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
+    let dispatch = React.useCallback(input.dispatch, [||])
+    
     Html.div [
         prop.className [ Bulma.Tile; Bulma.IsAncestor ]
         prop.children [
             Html.div [
                 prop.className [ Bulma.Tile; Bulma.Is2 ]
-                prop.children [ sidebar state dispatch ]
+                prop.children [ sidebar {| state = input.state; dispatch = dispatch |} ]
             ]
 
             Html.div [
                 prop.className Bulma.Tile
                 prop.style [ style.paddingTop 30 ]
-                prop.children [ content state dispatch ]
+                prop.children [ content {| state = input.state; dispatch = dispatch |} ]
             ]
         ]
-    ]
+    ])
 
-let render (state: State) dispatch =
+let render' = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
+    let dispatch = React.useCallback(input.dispatch, [||])
+    
     let application =
         Html.div [
             prop.style [ 
                 style.padding 30
             ]
-            prop.children [ main state dispatch ]
+            prop.children [ main {| state = input.state; dispatch = dispatch |} ]
         ]
 
     Router.router [
         Router.onUrlChanged (UrlChanged >> dispatch)
         Router.application application
-    ]
+    ])
+
+let render (state: State) dispatch = render' {| state = state; dispatch = dispatch |}
 
 Program.mkProgram init update render
 |> Program.withReactSynchronous "root"
