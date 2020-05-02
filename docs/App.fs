@@ -1445,11 +1445,12 @@ let customExamples (currentPath: string list) =
         if path |> List.isEmpty then []
         else [ Urls.Custom ] @ path
 
-let tryTakePath (basePath: string list) (path: string list) =
-    let num = path.Length
-    if basePath.Length >= num then
-        basePath |> List.take num = path
-    else false
+let (|PathPrefix|) (segments: string list) (path: string list) =
+    if path.Length > segments.Length then
+        match List.splitAt segments.Length path with
+        | start,end' when start = segments -> Some end'
+        | _ -> None
+    else None
 
 let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
     match input.state.CurrentPath with
@@ -1457,20 +1458,20 @@ let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg
     | [ Urls.Plotly; Urls.Installation ] -> lazyView MarkdownLoader.load [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.ReleaseNotes ] -> lazyView MarkdownLoader.load [ "Plotly"; "RELEASE_NOTES.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> lazyView MarkdownLoader.load [ contributing ]
-    | _ when tryTakePath input.state.CurrentPath [ Urls.Plotly; Urls.Examples ] -> 
-        match input.state.CurrentPath |> List.skip 2 with
-        | basicPath when tryTakePath basicPath [ Urls.Basic ] -> basicPath |> List.skip 1 |> basicExamples
-        | statisicalPath when tryTakePath statisicalPath [ Urls.Statistical ] -> statisicalPath |> List.skip 1 |> statisticalExamples
-        | scientificPath when tryTakePath scientificPath [ Urls.Scientific ] -> scientificPath |> List.skip 1 |> scientificExamples
-        | financialPath when tryTakePath financialPath [ Urls.Financial ] -> financialPath |> List.skip 1 |> financialExamples
-        | mapsPath when tryTakePath mapsPath [ Urls.Maps ] -> mapsPath |> List.skip 1 |> mapExamples
-        | threeDimPath when tryTakePath threeDimPath [ Urls.ThreeDimensional ] -> threeDimPath |> List.skip 1 |> threeDimensionalExamples
-        | subplotsPath when tryTakePath subplotsPath [ Urls.Subplots ] -> subplotsPath |> List.skip 1 |> subplotExamples
-        | eventsPath when tryTakePath eventsPath [ Urls.Events ] -> eventsPath |> List.skip 1 |> eventExamples
-        | transformsPath when tryTakePath transformsPath [ Urls.Transforms ] -> transformsPath |> List.skip 1 |> transformExamples
-        | transitionPath when tryTakePath transitionPath [ Urls.Transitions ] -> transitionPath |> List.skip 1 |> transitionExamples
-        | customPath when tryTakePath customPath [ Urls.Custom ] -> customPath |> List.skip 1 |> customExamples
-        | _ -> [ ]
+    | PathPrefix [ Urls.Plotly; Urls.Examples ] (Some res) ->
+        match res with
+        | PathPrefix [ Urls.Basic ] (Some innerRes) -> basicExamples innerRes
+        | PathPrefix [ Urls.Statistical ] (Some innerRes) -> statisticalExamples innerRes
+        | PathPrefix [ Urls.Scientific ] (Some innerRes) -> scientificExamples innerRes
+        | PathPrefix [ Urls.Financial ] (Some innerRes) -> financialExamples innerRes
+        | PathPrefix [ Urls.Maps ] (Some innerRes) -> mapExamples innerRes
+        | PathPrefix [ Urls.ThreeDimensional ] (Some innerRes) -> threeDimensionalExamples innerRes
+        | PathPrefix [ Urls.Subplots ] (Some innerRes) -> subplotExamples innerRes
+        | PathPrefix [ Urls.Events ] (Some innerRes) -> eventExamples innerRes
+        | PathPrefix [ Urls.Transforms ] (Some innerRes) -> transformExamples innerRes
+        | PathPrefix [ Urls.Transitions ] (Some innerRes) -> transitionExamples innerRes
+        | PathPrefix [ Urls.Custom ] (Some innerRes) -> customExamples innerRes
+        | _ -> []
         |> fun path ->
             if path |> List.isEmpty then Html.div [ for segment in input.state.CurrentPath -> Html.p segment ]
             else [ Urls.Plotly; Urls.Examples ] @ path |> lazyView MarkdownLoader.load
