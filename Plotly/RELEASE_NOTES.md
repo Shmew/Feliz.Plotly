@@ -1,3 +1,7 @@
+### 1.0.0 - Wednesday, May 20th, 2020
+* Stable release
+* Adds support for programmatic downloads
+
 ### 0.22.0 - Tuesday, April 30th, 2020
 * Regenerate for plotly.js 1.54.0 release
 
