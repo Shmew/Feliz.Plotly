@@ -113,6 +113,7 @@ let [<Literal>] Click = "Click"
 let [<Literal>] Hover = "Hover"
 let [<Literal>] Zoom = "Zoom"
 let [<Literal>] DisableZoom = "DisableZoom"
+let [<Literal>] DownloadImage = "DownloadImage"
 
 // Filled Area Examples
 let [<Literal>] FilledArea = "FilledArea"

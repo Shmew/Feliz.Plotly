@@ -12,6 +12,7 @@
     <Compile Include="Plotly\Examples\Events\Hover.fs" />
     <Compile Include="Plotly\Examples\Events\Zoom.fs" />
     <Compile Include="Plotly\Examples\Events\DisableZoom.fs" />
+    <Compile Include="Plotly\Examples\Events\DownloadImage.fs" />
     <Compile Include="Plotly\Examples\3D\Scatter.fs" />
     <Compile Include="Plotly\Examples\3D\Ribbon.fs" />
     <Compile Include="Plotly\Examples\3D\Surface.fs" />

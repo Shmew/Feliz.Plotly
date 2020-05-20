@@ -192,3 +192,4 @@ module Types =
     type IButtonsProperty = inherit IModeBarButtonsProperty
     type IMeasureProperty = interface end
     type ITemplateProperty = interface end
+    type IDownloadImageProperty = interface end

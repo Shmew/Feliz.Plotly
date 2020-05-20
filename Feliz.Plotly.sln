@@ -467,6 +467,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Events", "Events", "{460ED9
 	ProjectSection(SolutionItems) = preProject
 		public\Plotly\Examples\Events\Click.md = public\Plotly\Examples\Events\Click.md
 		public\Plotly\Examples\Events\DisableZoom.md = public\Plotly\Examples\Events\DisableZoom.md
+		public\Plotly\Examples\Events\DownloadImage.md = public\Plotly\Examples\Events\DownloadImage.md
 		public\Plotly\Examples\Events\Hover.md = public\Plotly\Examples\Events\Hover.md
 		public\Plotly\Examples\Events\Zoom.md = public\Plotly\Examples\Events\Zoom.md
 	EndProjectSection

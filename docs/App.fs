@@ -409,7 +409,8 @@ let samples =
         [ "plotly-chart-events-click", Samples.Events.Click.chart() 
           "plotly-chart-events-hover", Samples.Events.Hover.chart() 
           "plotly-chart-events-zoom", Samples.Events.Zoom.chart() 
-          "plotly-chart-events-disablezoom", Samples.Events.DisableZoom.chart(centeredSpinner) ]
+          "plotly-chart-events-disablezoom", Samples.Events.DisableZoom.chart(centeredSpinner)
+          "plotly-chart-events-downloadimage", Samples.Events.DownloadImage.chart() ]
 
     let transformExamples =
         [ "plotly-chart-transforms-filter", Samples.Transforms.Filter.chart() 
@@ -955,6 +956,7 @@ let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Ms
                     nestedMenuItem "Hover" [ Urls.Hover ]
                     nestedMenuItem "Zoom" [ Urls.Zoom ]
                     nestedMenuItem "Disable Zoom" [ Urls.DisableZoom ]
+                    nestedMenuItem "Downloading Images" [ Urls.DownloadImage ]
                 ]
                 nestedMenuList "Transforms" [ Urls.Plotly; Urls.Examples; Urls.Transforms ] [
                     nestedMenuItem "Filter" [ Urls.Filter ]
@@ -1398,6 +1400,7 @@ let eventExamples (currentPath: string list) =
     | [ Urls.Hover ] -> [ "Hover.md" ]
     | [ Urls.Zoom ] -> [ "Zoom.md" ]
     | [ Urls.DisableZoom ] -> [ "DisableZoom.md" ]
+    | [ Urls.DownloadImage ] -> [ "DownloadImage.md" ]
     | _ -> []
     |> List.append [ Urls.Events ]
 

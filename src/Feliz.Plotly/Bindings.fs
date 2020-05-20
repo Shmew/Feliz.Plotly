@@ -1,11 +1,16 @@
 namespace Feliz.Plotly
 
 module Bindings =
+    open Browser.Types
+    open Fable.Core
     open Fable.Core.JsInterop
     open Fable.React
 
-    let plotly: obj = importAll "plotly.js/dist/plotly"
-    let plotFactory: obj -> obj = importDefault "react-plotly.js/factory.js"
+    type Plotly =
+        abstract downloadImage: U2<#HTMLElement,string> * obj -> unit
+
+    let plotly: Plotly = importAll "plotly.js/dist/plotly"
+    let plotFactory: Plotly -> obj = importDefault "react-plotly.js/factory.js"
     let plotComponent = plotFactory plotly
     let createPlot props: ReactElement = 
         ReactBindings.React.createElement (plotComponent, props, [])
