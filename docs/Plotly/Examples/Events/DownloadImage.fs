@@ -38,7 +38,8 @@ let chart () =
                     prop.onClick <| fun _ -> 
                         Plotly.downloadImage("myChart", [
                             downloadImage.fileName "DownloadImageExample"
-                            downloadImage.format.webp
+                            // this is the default
+                            downloadImage.format.png
                             downloadImage.height 500
                             downloadImage.width 500
                         ])
@@ -47,4 +48,3 @@ let chart () =
             ]
         ]
     ]
-    
