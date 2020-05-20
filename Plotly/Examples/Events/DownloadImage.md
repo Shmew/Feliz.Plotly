@@ -2,68 +2,53 @@
 
 ```fsharp:plotly-chart-events-downloadimage
 [<RequireQualifiedAccess>]
-module Samples.Events.Click
+module Samples.Events.DownloadImage
 
-open Fable.Core
 open Feliz
 open Feliz.Plotly
+open Zanaptak.TypedCssClasses
 
-let rng = System.Random()
+type Bulma = CssClasses<"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css", Naming.PascalCase>
+type FA = CssClasses<"https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", Naming.PascalCase>
 
-let annotationText x y =
-    sprintf "x = %i%sy = %.4f" x System.Environment.NewLine y
-
-let getYData i =
-    List.init 100 (fun _ -> rng.NextDouble() * (float i))
-
-let xData = [ 1 .. 100 ]
-
-let yData = getYData 1
-let yData2 = getYData 2
-let yData3 = getYData 3
-
-let chart = React.functionComponent (fun () ->
-    let anns,setAnns = React.useState []
-
-    Plotly.plot [
-        plot.traces [
-            traces.scatter [
-                scatter.x xData
-                scatter.y yData
-                scatter.mode.lines
-                scatter.name "Jeff"
+let chart () =
+    Html.div [
+        Plotly.plot [
+            plot.traces [
+                traces.bar [
+                    bar.x [ "giraffes"; "orangutans"; "monkeys" ]
+                    bar.y [ 20; 14; 23 ]
+                ]
             ]
-            traces.scatter [
-                scatter.x xData
-                scatter.y yData2
-                scatter.mode.lines
-                scatter.name "Terren"
-            ]
-            traces.scatter [
-                scatter.x xData
-                scatter.y yData3
-                scatter.mode.lines
-                scatter.name "Arthur"
-            ]
+            plot.divId "myChart"
         ]
-        plot.layout [
-            layout.hovermode.closest // When this value is set click and hover events always return a singleton in `ev.points`
-            layout.title "Annotations on click"
-            layout.annotations anns
-        ]
-        plot.onClick <| fun ev ->
-            ev.points 
-            |> List.ofSeq
-            |> List.choose (fun datum -> 
-                match datum.x, datum.y with
-                | Events.Int x, Events.Float y ->
-                    annotations.annotation [
-                        annotation.x x
-                        annotation.y y
-                        annotation.text (annotationText x y)
+        Html.div [
+            prop.className Bulma.Control
+            prop.style [
+                style.paddingLeft (length.em 4)
+                style.paddingBottom (length.em 1)
+            ]
+            prop.children [
+                Html.button [
+                    prop.classes [ 
+                        Bulma.Button
+                        Bulma.HasBackgroundPrimary
+                        Bulma.HasTextWhite 
                     ]
-                    |> Some
-                | _ -> None)
-            |> setAnns
-    ])
+                    prop.style [
+                        style.maxWidth (length.em 5)
+                    ]
+                    prop.onClick <| fun _ -> 
+                        Plotly.downloadImage("myChart", [
+                            downloadImage.fileName "DownloadImageExample"
+                            // this is the default
+                            downloadImage.format.png
+                            downloadImage.height 500
+                            downloadImage.width 500
+                        ])
+                    prop.text "Download"
+                ]
+            ]
+        ]
+    ]
 ```
