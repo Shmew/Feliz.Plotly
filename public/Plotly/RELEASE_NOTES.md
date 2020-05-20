@@ -1,3 +1,6 @@
+### 1.0.1 - Wednesday, May 20th, 2020
+* Fix Feliz version range restriction
+
 ### 1.0.0 - Wednesday, May 20th, 2020
 * Stable release
 * Adds support for programmatic downloads

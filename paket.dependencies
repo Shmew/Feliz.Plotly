@@ -8,7 +8,7 @@ group Plotly
 
     nuget Fable.Core ~> 3
     nuget Fable.Browser.Dom ~> 1
-    nuget Feliz ~> 0
+    nuget Feliz ~> 1
     nuget FSharp.Core ~> 4.7 lowest_matching: true
 
 group Generator
@@ -30,7 +30,7 @@ group Docs
     nuget Fable.Promise ~> 2
     nuget Fable.SimpleHttp ~> 2
     nuget Fable.SimpleJson ~> 3
-    nuget Feliz ~> 0
+    nuget Feliz ~> 1
     nuget Feliz.ElmishComponents ~> 0
     nuget Feliz.Router ~> 1
     nuget FSharp.Core ~> 4.7 lowest_matching: true
