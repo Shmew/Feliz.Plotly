@@ -13,7 +13,7 @@
     <Compile Include="Bindings.fs" />
     <Compile Include="Events.fs" />
     <Compile Include="CustomProps.fs" />
-    <Compile Include="Props\*.fs" />
+    <Compile Include="Props/*.fs" />
     <Compile Include="Plotly.fs" />
     <Compile Include="PlotlyFunctions.fs" />
     <None Include="paket.references" />
