@@ -1,3 +1,6 @@
+### 1.0.2 - Friday, May 22nd, 2020
+* Fix fable packaging
+
 ### 1.0.1 - Wednesday, May 20th, 2020
 * Fix Feliz version range restriction
 
