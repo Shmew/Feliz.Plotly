@@ -31,6 +31,29 @@ module downloadImage =
         static member inline svg = Interop.mkDownloadImageAttr "format" "svg"
         static member inline webp = Interop.mkDownloadImageAttr "format" "webp"
 
+[<Erase>]
+type toImage =
+    /// Sets the height of the image.
+    static member inline height (value: float) = Interop.mkToImageAttr "height" value
+    /// Sets the height of the image.
+    static member inline height (value: int) = Interop.mkToImageAttr "height" value
+    
+    /// Sets the width of the image.
+    static member inline width (value: float) = Interop.mkToImageAttr "width" value
+    /// Sets the width of the image.
+    static member inline width (value: int) = Interop.mkToImageAttr "width" value
+
+[<Erase;RequireQualifiedAccess>]
+module toImage =
+    /// Sets the image format.
+    [<Erase>]
+    type format =
+        static member inline jpeg = Interop.mkToImageAttr "format" "jpeg"
+        static member inline jpg = Interop.mkToImageAttr "format" "jpg"
+        static member inline png = Interop.mkToImageAttr "format" "png"
+        static member inline svg = Interop.mkToImageAttr "format" "svg"
+        static member inline webp = Interop.mkToImageAttr "format" "webp"
+
 [<AutoOpen;Erase>]
 module PlotlyFunctions =
     type Plotly with
@@ -38,3 +61,12 @@ module PlotlyFunctions =
         static member inline downloadImage (element: #HTMLElement, settings: IDownloadImageProperty list) = Bindings.plotly.downloadImage(U2.Case1(element), createObj !!settings)
         /// Triggers a request to download the image of a Plotly plot.
         static member inline downloadImage (divId: string, settings: IDownloadImageProperty list) = Bindings.plotly.downloadImage(U2.Case2(divId), createObj !!settings)
+
+        /// Triggers a request to generate an image url of a Plotly plot.
+        static member inline toImage (element: #HTMLElement, settings: IToImageProperty list) = 
+            Bindings.plotly.toImage(U2.Case1(element), createObj !!settings)
+            |> Async.AwaitPromise
+        /// Triggers a request to generate an image url of a Plotly plot.
+        static member inline toImage (divId: string, settings: IToImageProperty list) = 
+            Bindings.plotly.toImage(U2.Case2(divId), createObj !!settings)
+            |> Async.AwaitPromise

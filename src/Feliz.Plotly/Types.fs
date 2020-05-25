@@ -193,3 +193,4 @@ module Types =
     type IMeasureProperty = interface end
     type ITemplateProperty = interface end
     type IDownloadImageProperty = interface end
+    type IToImageProperty = interface end

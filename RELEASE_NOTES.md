@@ -1,3 +1,6 @@
+### 1.1.0 - Friday, May 22nd, 2020
+* Add Plot.toImage
+
 ### 1.0.2 - Friday, May 22nd, 2020
 * Fix fable packaging
 

@@ -756,7 +756,8 @@ module ApiParser =
             [ "Buttons", "inherit IModeBarButtonsProperty"
               "Measure", "interface end"
               "Template", "interface end"
-              "DownloadImage", "interface end" ]
+              "DownloadImage", "interface end"
+              "ToImage", "interface end"]
 
         let api = 
             ComponentApi.create "Feliz.Plotly" "Plot" "Plotly" bindingsPrelude bindings typePrelude typePostlude

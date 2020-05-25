@@ -190,3 +190,4 @@ module Interop =
     let inline mkMeasureAttr (key: string) (value: obj) : IMeasureProperty = unbox (key, value)
     let inline mkTemplateAttr (key: string) (value: obj) : ITemplateProperty = unbox (key, value)
     let inline mkDownloadImageAttr (key: string) (value: obj) : IDownloadImageProperty = unbox (key, value)
+    let inline mkToImageAttr (key: string) (value: obj) : IToImageProperty = unbox (key, value)
