@@ -7,7 +7,10 @@ dotnet add package Feliz.Plotly
 # paket
 paket add Feliz.Plotly --project ./project/path
 ```
-Then you need to install the corresponding npm dependencies. In case of Feliz.Plotly, it is `react`, `react-dom`, `plotly.js`, and `react-plotly.js`
+Then you need to install the corresponding npm dependencies. In case of Feliz.Plotly, it is `react`, `react-dom`, `plotly.js`, and `react-plotly.js`.
+
+You probably already have react and react-dom installed if you're using any kind of template, you can skip those steps if so.
+
 ```bash
 npm install react
 npm install react-dom
@@ -31,18 +34,8 @@ femto install Feliz.Plotly
 ```
 Here, the nuget package will be installed using the package manager that the project is using (detected by Femto) and then the required npm packages will be resolved
 
-#### Webpack caveat
+### Issues
 
-If you use [Webpack](https://webpack.js.org) you need to use [ify-loader](https://github.com/browserify/ify-loader) in your `webpack.config.js`:
-```javascript
-...
-      module: {
-          rules: [
-              {
-                  test: /\.js$/,
-                  loader: 'ify-loader'
-              }
-          ]
-      },
-...
-```
+If you have any trouble getting plotly to work after these steps, **make sure your fable-compiler and other dependencies are updated!**
+
+If the problem isn't resolved after this please create an [issue](https://github.com/Shmew/Feliz.Plotly/issues/new/choose) and we can take a look.
