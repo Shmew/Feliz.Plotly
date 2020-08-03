@@ -2,6 +2,7 @@ module Urls
 
 let [<Literal>] Plotly = "Plotly"
 
+let [<Literal>] BundleSize = "BundleSize"
 let [<Literal>] Contributing = "Contributing"
 let [<Literal>] Examples = "Examples"
 let [<Literal>] Installation = "Installation"

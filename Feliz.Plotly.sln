@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{63297B
 		Nuget.Config = Nuget.Config
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
-		paket.references = paket.references
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{BF60BC93-E09B-4E5F-9D85-95A519479D54}"
@@ -30,7 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08
 	ProjectSection(SolutionItems) = preProject
 		build.cmd = build.cmd
 		build.fsx = build.fsx
-		build.proj = build.proj
 		build.sh = build.sh
 	EndProjectSection
 EndProject
@@ -52,6 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "public", "public", "{CABBED
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plotly", "Plotly", "{C3F9583A-523B-4835-B6BC-CD8FFD2178E3}"
 	ProjectSection(SolutionItems) = preProject
+		public\Plotly\BundleSize.md = public\Plotly\BundleSize.md
 		public\Plotly\Installation.md = public\Plotly\Installation.md
 	EndProjectSection
 EndProject

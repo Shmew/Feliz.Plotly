@@ -48,9 +48,6 @@ group Tooling
 	nuget FSharpLint.Core ~> 0
     nuget Yarnpkg.Yarn ~> 1
 
-	clitool dotnet-fable ~> 2
-	clitool dotnet-fake ~> 5
-
 group FakeBuild
 	source https://api.nuget.org/v3/index.json
 

@@ -657,6 +657,7 @@ let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Ms
                 menuItem "Overview" [ ]
                 menuItem "Installation" [ Urls.Plotly; Urls.Installation ]
                 menuItem "Release Notes" [ Urls.Plotly; Urls.ReleaseNotes ]
+                menuItem "Reducing Bundle Size" [ Urls.Plotly; Urls.BundleSize ]
                 menuItem "Contributing" [ Urls.Plotly; Urls.Contributing ]
                 menuLabel "Examples"
                 nestedMenuList "Basic" [ Urls.Plotly; Urls.Examples; Urls.Basic ] [
@@ -1438,6 +1439,7 @@ let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg
     | [ Urls.Plotly; Urls.Overview; ] -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> lazyView MarkdownLoader.load [ "Plotly"; "Installation.md" ]
     | [ Urls.Plotly; Urls.ReleaseNotes ] -> lazyView MarkdownLoader.load [ "Plotly"; "RELEASE_NOTES.md" ]
+    | [ Urls.Plotly; Urls.BundleSize ] -> lazyView MarkdownLoader.load [ "Plotly"; "BundleSize.md" ]
     | [ Urls.Plotly; Urls.Contributing ] -> lazyView MarkdownLoader.load [ contributing ]
     | PathPrefix [ Urls.Plotly; Urls.Examples ] (Some res) ->
         match res with
