@@ -16,7 +16,7 @@ module.exports = {
     ...
     resolve: {
         alias: {
-            'plotly.js/dist/plotly': resolve('node_modules/plotly.js/dist/plotly-cartesian.min.js')
+            'plotly.js/dist/plotly': path.join(__dirname, 'node_modules/plotly.js/dist/plotly-cartesian.min.js')
         }
     },
     ...
