@@ -1,3 +1,8 @@
+### 1.2.0 - Friday, May 22nd, 2020
+* Fix toImageButtonOptions signature resolution
+* Fixed localization signature resolution
+* Added pre-defined locales and hooks to make locale registration easier
+
 ### 1.1.0 - Friday, May 22nd, 2020
 * Add Plot.toImage
 
