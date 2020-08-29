@@ -33,7 +33,7 @@ type title =
     /// Sets the y position with respect to `yref` in normalized coordinates from *0* (bottom) to *1* (top). *auto* places the baseline of the title onto the vertical center of the top margin.
     static member inline y (value: float) = Interop.mkTitleAttr "y" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module title =
     /// Sets the horizontal alignment of the title. It defaults to `center` except for bullet charts for which it defaults to right.
     [<Erase>]

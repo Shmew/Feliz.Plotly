@@ -480,6 +480,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transforms", "Transforms", 
 		public\Plotly\Examples\Transforms\Multiple.md = public\Plotly\Examples\Transforms\Multiple.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Locales", "Locales", "{A36DCC5C-8715-4BF0-8210-8F553977492D}"
+	ProjectSection(SolutionItems) = preProject
+		public\Plotly\Examples\Locales\Config.md = public\Plotly\Examples\Locales\Config.md
+		public\Plotly\Examples\Locales\ModuleRegistration.md = public\Plotly\Examples\Locales\ModuleRegistration.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -565,6 +571,7 @@ Global
 		{8A89AFF4-51A1-41FF-B1B0-18145B7E234D} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{460ED971-4B3A-43F3-8919-54FC663C549A} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 		{786ECBC2-354B-4222-98FC-66B494684A2B} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
+		{A36DCC5C-8715-4BF0-8210-8F553977492D} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96DAE6A9-B1CC-4FF7-B08C-D5FBFD55B385}

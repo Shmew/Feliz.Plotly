@@ -24,7 +24,7 @@ type grid =
     /// Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.
     static member inline ygap (value: float) = Interop.mkGridAttr "ygap" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module grid =
     /// If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can generate defaults using consecutive axis IDs, in two ways: *coupled* gives one x axis per column and one y axis per row. *independent* uses a new xy pair for each cell, left-to-right across each row then iterating rows according to `roworder`.
     [<Erase>]

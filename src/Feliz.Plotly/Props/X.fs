@@ -112,7 +112,7 @@ type x =
     /// Sets the width of the contour lines.
     static member inline width (value: float) = Interop.mkXAttr "width" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module x =
     /// Sets the color of the contour lines.
     [<Erase>]

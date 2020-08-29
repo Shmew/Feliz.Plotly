@@ -16,7 +16,7 @@ type rangefont =
     static member inline size (value: int) = Interop.mkRangefontAttr "size" value
     static member inline size (value: float) = Interop.mkRangefontAttr "size" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module rangefont =
     [<Erase>]
     type color =

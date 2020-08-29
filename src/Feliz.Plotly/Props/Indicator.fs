@@ -168,7 +168,7 @@ type indicator =
     /// Sets the number to be displayed.
     static member inline value (value: float) = Interop.mkIndicatorAttr "value" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module indicator =
     /// Sets the horizontal alignment of the `text` within the box. Note that this attribute has no effect if an angular gauge is displayed: in this case, it is always centered
     [<Erase>]

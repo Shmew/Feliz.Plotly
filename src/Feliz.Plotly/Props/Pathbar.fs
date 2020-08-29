@@ -19,7 +19,7 @@ type pathbar =
     /// Determines if the path bar is drawn i.e. outside the trace `domain` and with one pixel gap.
     static member inline visible (value: bool) = Interop.mkPathbarAttr "visible" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module pathbar =
     /// Determines which shape is used for edges between `barpath` labels.
     [<Erase>]

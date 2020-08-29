@@ -392,7 +392,7 @@ type funnelarea =
     /// Sets the source reference on Chart Studio Cloud for  values .
     static member inline valuessrc (value: string) = Interop.mkFunnelareaAttr "valuessrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module funnelarea =
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]

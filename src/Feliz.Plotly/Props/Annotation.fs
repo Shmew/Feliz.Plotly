@@ -200,7 +200,7 @@ type annotation =
     /// Sets the annotation's z position.
     static member inline z (values: seq<string>) = Interop.mkAnnotationAttr "z" (values |> ResizeArray)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module annotation =
     /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
     [<Erase>]

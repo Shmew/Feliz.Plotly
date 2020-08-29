@@ -358,37 +358,6 @@ Target.create "RunTests" <| fun _ ->
         |> ignore)
 
 // --------------------------------------------------------------------------------------
-// Generate Paket load scripts
-Target.create "LoadScripts" <| fun _ ->
-    let frameworks =
-        __SOURCE_DIRECTORY__ @@ "bin"
-        |> Directory.EnumerateDirectories
-        |> Seq.map (fun d ->
-            Directory.EnumerateDirectories d
-            |> Seq.map (fun f -> DirectoryInfo(f).Name)
-            |> List.ofSeq)
-        |> List.ofSeq
-        |> List.reduce List.append
-        |> List.distinct
-        |> List.reduce (fun acc elem -> sprintf "%s --framework %s" elem acc)
-        |> function
-        | e when e.Length > 0 ->
-            Some (sprintf "--framework %s" e)
-        | _ -> None
-
-    let arguments =
-        [Some("generate-load-scripts"); frameworks]
-        |> List.choose id
-        |> List.reduce (fun acc elem -> sprintf "%s %s" acc elem)
-
-    arguments
-    |> CreateProcess.fromRawCommandLine ((__SOURCE_DIRECTORY__ @@ ".paket") @@ "paket.exe")
-    |> CreateProcess.withTimeout (TimeSpan.MaxValue)
-    |> CreateProcess.ensureExitCodeWithMessage "Failed to generate paket load scripts."
-    |> Proc.run
-    |> ignore
-
-// --------------------------------------------------------------------------------------
 // Update package.json version & name    
 
 Target.create "PackageJson" <| fun _ ->
@@ -531,8 +500,6 @@ Target.create "Publish" ignore
   ?=> "Build"
   ?=> "RunTests"
   ?=> "CleanDocs"
-
-"Restore" ==> "LoadScripts"
 
 "All"
   ==> "GitPush"

@@ -10,3 +10,4 @@ files
     *.fsproj ==> fable
     *.fs ==> fable
     Props/*.fs ==> fable/Props
+    Locales/*.js ==> fable/Locales

@@ -188,7 +188,7 @@ type sankey =
     /// Adds a unit to follow the value in the hover tooltip. Add a space if a separation is necessary from the value.
     static member inline valuesuffix (value: string) = Interop.mkSankeyAttr "valuesuffix" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module sankey =
     /// If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve space between nodes specified via `nodepad`. If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are stationary.
     [<Erase>]

@@ -54,7 +54,7 @@ type contours =
     static member inline y (properties: #IYProperty list) = Interop.mkContoursAttr "y" (createObj !!properties)
     static member inline z (properties: #IZProperty list) = Interop.mkContoursAttr "z" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module contours =
     /// Determines the coloring method showing the contour values. If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient coloring is applied between each contour level. If *lines*, coloring is done on the contour lines. If *none*, no coloring is applied on this trace.
     [<Erase>]

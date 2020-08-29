@@ -42,7 +42,7 @@ type updatemenu =
     /// Sets the y position (in normalized coordinates) of the update menu.
     static member inline y (value: float) = Interop.mkUpdatemenuAttr "y" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module updatemenu =
     /// Determines the direction in which the buttons are laid out, whether in a dropdown menu or a row/column of buttons. For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order respectively.
     [<Erase>]

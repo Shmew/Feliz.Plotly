@@ -107,7 +107,7 @@ type filter =
     /// Sets the value or values by which to filter. Values are expected to be in the same type as the data linked to `target`. When `operation` is set to one of the comparison values (=,!=,<,>=,>,<=) `value` is expected to be a number or a string. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) `value` is expected to be 2-item array where the first item is the lower bound and the second item is the upper bound. When `operation`, is set to one of the set values ({},}{) `value` is expected to be an array with as many items as the desired set elements.
     static member inline value (values: seq<string>) = Interop.mkFilterAttr "value" (values |> ResizeArray)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module filter =
     /// Sets the filter operation. *=* keeps items equal to `value` *!=* keeps items not equal to `value` *<* keeps items less than `value` *<=* keeps items less than or equal to `value` *>* keeps items greater than `value` *>=* keeps items greater than or equal to `value` *[]* keeps items inside `value[0]` to `value[1]` including both bounds *()* keeps items inside `value[0]` to `value[1]` excluding both bounds *[)* keeps items inside `value[0]` to `value[1]` including `value[0]` but excluding `value[1] *(]* keeps items inside `value[0]` to `value[1]` excluding `value[0]` but including `value[1] *][* keeps items outside `value[0]` to `value[1]` and equal to both bounds *)(* keeps items outside `value[0]` to `value[1]` *](* keeps items outside `value[0]` to `value[1]` and equal to `value[0]` *)[* keeps items outside `value[0]` to `value[1]` and equal to `value[1]` *{}* keeps items present in a set of values *}{* keeps items not present in a set of values
     [<Erase>]

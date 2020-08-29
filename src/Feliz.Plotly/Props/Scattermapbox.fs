@@ -346,7 +346,7 @@ type scattermapbox =
     static member inline uirevision (values: seq<string>) = Interop.mkScattermapboxAttr "uirevision" (values |> ResizeArray)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScattermapboxAttr "unselected" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module scattermapbox =
     /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
     [<Erase>]

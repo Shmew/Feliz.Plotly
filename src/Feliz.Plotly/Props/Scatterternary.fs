@@ -414,7 +414,7 @@ type scatterternary =
     static member inline uirevision (values: seq<string>) = Interop.mkScatterternaryAttr "uirevision" (values |> ResizeArray)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScatterternaryAttr "unselected" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module scatterternary =
     /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
     [<Erase>]

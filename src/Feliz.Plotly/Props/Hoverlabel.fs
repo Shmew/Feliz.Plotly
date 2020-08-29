@@ -45,7 +45,7 @@ type hoverlabel =
     /// Show hover information (open, close, high, low) in separate labels.
     static member inline split (value: bool) = Interop.mkHoverlabelAttr "split" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module hoverlabel =
     /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
     [<Erase>]

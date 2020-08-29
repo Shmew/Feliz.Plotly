@@ -29,7 +29,7 @@ type fill =
     /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color). Has an effect only when `type` is set to *fill*.
     static member inline outlinecolor (value: string) = Interop.mkFillAttr "outlinecolor" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module fill =
     /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
     [<Erase>]

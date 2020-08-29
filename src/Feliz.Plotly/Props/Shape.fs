@@ -148,7 +148,7 @@ type shape =
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (values: seq<string>) = Interop.mkShapeAttr "yanchor" (values |> ResizeArray)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module shape =
     /// Determines which regions of complex paths constitute the interior. For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
     [<Erase>]

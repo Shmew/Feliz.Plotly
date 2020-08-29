@@ -428,7 +428,7 @@ type scattergeo =
     static member inline uirevision (values: seq<string>) = Interop.mkScattergeoAttr "uirevision" (values |> ResizeArray)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkScattergeoAttr "unselected" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module scattergeo =
     /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
     [<Erase>]

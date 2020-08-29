@@ -7,7 +7,7 @@ namespace Feliz.Plotly
 open Fable.Core
 open System.ComponentModel
 
-[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]
+[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never);Erase>]
 module Types =
     type IPlotProperty = interface end
     type IModeBarButtonsProperty = interface end
@@ -190,7 +190,11 @@ module Types =
     type IZProperty = interface end
     type IZaxisProperty = interface end
     type IButtonsProperty = inherit IModeBarButtonsProperty
+    type IDownloadImageProperty = interface end
+    type IFormatProperty = interface end
+    type IToImageButtonOptionsProperty = interface end
+    type ILocaleProperty = interface end
+    type ILocalesProperty = interface end
     type IMeasureProperty = interface end
     type ITemplateProperty = interface end
-    type IDownloadImageProperty = interface end
     type IToImageProperty = interface end

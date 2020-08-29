@@ -283,7 +283,7 @@ type layout =
     static member inline yaxis (id: int, properties: IYaxisProperty list) = Interop.mkLayoutAttr (sprintf "yaxis%i" id) (createObj !!properties)
     static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkLayoutAttr "yaxis" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module layout =
     /// Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked on top of one another, with negative values below the axis, positive values above With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
     [<Erase>]

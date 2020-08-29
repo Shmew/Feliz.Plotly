@@ -61,7 +61,7 @@ type rangebreak =
     /// Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
     static member inline values (values: seq<string>) = Interop.mkRangebreakAttr "values" (values |> ResizeArray)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module rangebreak =
     /// Determines a pattern on the time line that generates breaks. If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is case-insensitive and considers only the first three characters), as well as Sunday-based integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24. for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] }  or simply { bounds: ['sat', 'mon'] }   breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour', bounds: [17, 8] }   breaks from 5pm to 8am (i.e. skips non-work hours).
     [<Erase>]

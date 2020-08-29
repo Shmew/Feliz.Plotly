@@ -15,7 +15,7 @@ type animation =
     static member inline fromcurrent (value: bool) = Interop.mkAnimationAttr "fromcurrent" value
     static member inline transition (properties: #ITransitionProperty list) = Interop.mkAnimationAttr "transition" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module animation =
     /// The direction in which to play the frames triggered by the animation call
     [<Erase>]

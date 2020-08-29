@@ -153,7 +153,7 @@ type errorX =
     /// Sets the width (in px) of the cross-bar at both ends of the error bars.
     static member inline width (value: float) = Interop.mkErrorXAttr "width" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module errorX =
     /// Sets the stoke color of the error bars.
     [<Erase>]

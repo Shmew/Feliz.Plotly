@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Plotly\Examples\Locales\Config.fs" />
+    <Compile Include="Plotly\Examples\Locales\ModuleRegistration.fs" />
     <Compile Include="Plotly\Examples\Transforms\Filter.fs" />
     <Compile Include="Plotly\Examples\Transforms\Groupby.fs" />
     <Compile Include="Plotly\Examples\Transforms\Aggregations.fs" />
@@ -206,10 +208,6 @@
     <Compile Include="Plotly\Examples\Basic\Treemap\DifferentAttributes.fs" />
     <Compile Include="Plotly\Examples\Basic\Treemap\SectorColors.fs" />
     <Compile Include="Plotly\Examples\Basic\Treemap\NestedLayers.fs" />
-    <Compile Include="..\paket-files\docs\Zaid-Ajaj\Feliz\Feliz.Markdown\Markdown.fs">
-      <Paket>True</Paket>
-      <Link>Feliz.Markdown/Markdown.fs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Urls.fs" />

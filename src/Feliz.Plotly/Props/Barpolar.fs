@@ -419,7 +419,7 @@ type barpolar =
     /// Sets the source reference on Chart Studio Cloud for  width .
     static member inline widthsrc (value: string) = Interop.mkBarpolarAttr "widthsrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module barpolar =
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     [<Erase>]

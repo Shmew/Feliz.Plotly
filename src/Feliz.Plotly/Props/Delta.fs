@@ -23,7 +23,7 @@ type delta =
     /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline valueformat (value: string) = Interop.mkDeltaAttr "valueformat" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module delta =
     /// Sets the position of delta with respect to the number.
     [<Erase>]

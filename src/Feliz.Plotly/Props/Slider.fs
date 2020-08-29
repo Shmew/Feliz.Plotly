@@ -64,7 +64,7 @@ type slider =
     /// Sets the y position (in normalized coordinates) of the slider.
     static member inline y (value: float) = Interop.mkSliderAttr "y" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module slider =
     /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. Use `len` to set the value.
     [<Erase>]

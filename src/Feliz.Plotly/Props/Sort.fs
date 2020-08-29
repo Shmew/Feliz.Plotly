@@ -85,7 +85,7 @@ type sort =
     /// Sets the source reference on Chart Studio Cloud for  target .
     static member inline targetsrc (value: string) = Interop.mkSortAttr "targetsrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module sort =
     /// Sets the sort transform order.
     [<Erase>]

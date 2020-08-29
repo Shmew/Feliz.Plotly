@@ -4,7 +4,9 @@ namespace Feliz.Plotly
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
 
-[<RequireQualifiedAccess>]
+open Fable.Core
+
+[<Erase;RequireQualifiedAccess>]
 module Interop =
     let inline mkPlotAttr (key: string) (value: obj) : IPlotProperty = unbox (key, value)
     let inline mkModeBarButtonsAttr (key: string) (value: obj) : IModeBarButtonsProperty = unbox (key, value)
@@ -187,7 +189,11 @@ module Interop =
     let inline mkZAttr (key: string) (value: obj) : IZProperty = unbox (key, value)
     let inline mkZaxisAttr (key: string) (value: obj) : IZaxisProperty = unbox (key, value)
     let inline mkButtonsAttr (key: string) (value: obj) : IButtonsProperty = unbox (key, value)
+    let inline mkDownloadImageAttr (key: string) (value: obj) : IDownloadImageProperty = unbox (key, value)
+    let inline mkFormatAttr (key: string) (value: obj) : IFormatProperty = unbox (key, value)
+    let inline mkToImageButtonOptionsAttr (key: string) (value: obj) : IToImageButtonOptionsProperty = unbox (key, value)
+    let inline mkLocaleAttr (key: string) (value: obj) : ILocaleProperty = unbox (key, value)
+    let inline mkLocalesAttr (key: string) (value: obj) : ILocalesProperty = unbox (key, value)
     let inline mkMeasureAttr (key: string) (value: obj) : IMeasureProperty = unbox (key, value)
     let inline mkTemplateAttr (key: string) (value: obj) : ITemplateProperty = unbox (key, value)
-    let inline mkDownloadImageAttr (key: string) (value: obj) : IDownloadImageProperty = unbox (key, value)
     let inline mkToImageAttr (key: string) (value: obj) : IToImageProperty = unbox (key, value)

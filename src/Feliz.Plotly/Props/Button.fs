@@ -65,7 +65,7 @@ type button =
     /// Determines whether or not this button is visible.
     static member inline visible (value: bool) = Interop.mkButtonAttr "visible" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module button =
     /// Sets the Plotly method to be called on click. If the `skip` method is used, the API updatemenu will function as normal but will perform no API calls and will not bind automatically to state updates. This may be used to create a component interface and attach to updatemenu events manually via JavaScript.
     [<Erase>]

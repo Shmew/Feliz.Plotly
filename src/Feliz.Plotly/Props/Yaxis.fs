@@ -375,7 +375,7 @@ type yaxis =
     /// Sets the width (in px) of the zero line.
     static member inline zerolinewidth (value: float) = Interop.mkYaxisAttr "zerolinewidth" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module yaxis =
     /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
     [<Erase>]

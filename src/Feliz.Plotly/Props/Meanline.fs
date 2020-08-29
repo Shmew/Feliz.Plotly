@@ -19,7 +19,7 @@ type meanline =
     /// Sets the mean line width.
     static member inline width (value: float) = Interop.mkMeanlineAttr "width" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module meanline =
     /// Sets the mean line color.
     [<Erase>]

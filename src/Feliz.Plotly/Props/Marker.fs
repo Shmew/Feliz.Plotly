@@ -176,7 +176,7 @@ type marker =
     /// Sets the source reference on Chart Studio Cloud for  symbol .
     static member inline symbolsrc (value: string) = Interop.mkMarkerAttr "symbolsrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module marker =
     /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     [<Erase>]

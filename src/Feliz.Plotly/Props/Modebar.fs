@@ -37,7 +37,7 @@ type modebar =
     /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<string>) = Interop.mkModebarAttr "uirevision" (values |> ResizeArray)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module modebar =
     /// Sets the color of the icons in the modebar.
     [<Erase>]

@@ -27,7 +27,7 @@ type projection =
     static member inline y (properties: #IYProperty list) = Interop.mkProjectionAttr "y" (createObj !!properties)
     static member inline z (properties: #IZProperty list) = Interop.mkProjectionAttr "z" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module projection =
     /// Sets the projection type. The projection type could be either *perspective* or *orthographic*. The default is *perspective*.
     [<Erase>]

@@ -462,7 +462,7 @@ type bar =
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkBarAttr "ysrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module bar =
     /// Sets the background color of the arc.
     [<Erase>]

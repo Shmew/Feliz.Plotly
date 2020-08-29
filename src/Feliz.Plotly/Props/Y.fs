@@ -112,7 +112,7 @@ type y =
     /// Sets the width of the contour lines.
     static member inline width (value: float) = Interop.mkYAttr "width" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module y =
     /// Sets the color of the contour lines.
     [<Erase>]

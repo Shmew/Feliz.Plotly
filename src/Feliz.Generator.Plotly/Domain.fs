@@ -123,6 +123,7 @@ module rec Domain =
         | InfoArray of ValType
         | Int of PrimSpecs
         | List of ValType
+        | Locales
         | Measure
         | ModeBarButtons
         | ModeBarButtonsInherited
@@ -130,6 +131,7 @@ module rec Domain =
         | String of PrimSpecs
         | StringArray
         | Template
+        | ToImageButtonOptions
         | TransformTarget
 
     module ValType =
@@ -215,18 +217,20 @@ module rec Domain =
         let int2DArrayStr = "(values: seq<int []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let int2DArrayStrOpt = "(values: seq<int option []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
 
-        let measureStr = [ "(values: seq<#IMeasureProperty>)", "(values |> ResizeArray)" ]
+        let locales = [ "(locales: ILocalesProperty list)", "(createObj !!locales)" ]
+
+        let measure = [ "(values: #IMeasureProperty list)", "(values |> ResizeArray)" ]
 
         let modeBarButtons = 
             [ "(value: #IModeBarButtonsProperty)", "(value |> Array.singleton)"
-              "(values: seq<#IModeBarButtonsProperty>)", "(values |> ResizeArray)" ]
+              "(values: #IModeBarButtonsProperty list)", "(values |> ResizeArray)" ]
 
         let modeBarButtonsInherited = 
             [ "(value: IButtonsProperty)", "(unbox<IModeBarButtonsProperty> value |> Array.singleton |> Array.singleton)"
               "(value: IModeBarButtonsProperty)", "(value |> Array.singleton |> Array.singleton)"
-              "(values: seq<IModeBarButtonsProperty>)", "(values |> ResizeArray |> Array.singleton)"
-              "(values: seq<IButtonsProperty>)", "(values |> Seq.map unbox<IModeBarButtonsProperty> |> ResizeArray |> Array.singleton)"
-              "(values: seq<seq<#IModeBarButtonsProperty>>)", "(values |> Seq.map unbox<IModeBarButtonsProperty> |> ResizeArray)" ]
+              "(values: IModeBarButtonsProperty list)", "(values |> ResizeArray |> Array.singleton)"
+              "(values: IButtonsProperty list)", "(values |> Seq.map unbox<IModeBarButtonsProperty> |> ResizeArray |> Array.singleton)"
+              "(values: seq<#IModeBarButtonsProperty> list)", "(values |> Seq.map ResizeArray |> ResizeArray)" ]
 
         let stringStr = "(value: string)", "value"
         let stringResizeSingleton = "(value: string)", "(value |> Array.singleton |> ResizeArray)"
@@ -246,9 +250,11 @@ module rec Domain =
         let string2DArrayStr = "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let string2DArrayStrOpt = "(values: seq<string option []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
 
-        let templateStr = [ "(properties: #ITemplateProperty list)", "(createObj !!properties)" ]
+        let template = [ "(properties: #ITemplateProperty list)", "(createObj !!properties)" ]
 
         let titleStr = [ "(value: string)", "(createObj !!((Interop.mkTitleAttr \"text\" value) |> Array.singleton))" ]
+
+        let toImageButtonOptions = [ "(properties: IToImageButtonOptionsProperty list)", "(createObj !!properties)" ]
 
         let transformTargetStrs = [
             "(value: string)", "value"
@@ -376,15 +382,18 @@ module rec Domain =
             | _ when attributes.Explicit.IsEmpty |> not ->
                 ValType.ExplicitOverride
                     { attributes with Identity = Some <| getType propName { attribOverrides with Explicit = [] } jVal }
-            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
-            | "xy", true -> ValType.FloatArray
-            | "measure", true when jVal?valType.AsString() = "data_array" -> ValType.Measure
-            | "modeBarButtonsToRemove", true -> ValType.ModeBarButtons
-            | "modeBarButtons", true -> ValType.ModeBarButtonsInherited
-            | "template", true -> ValType.Template
             | "layers", false when jVal?role.AsString() = "object" -> ValType.ComponentArray
+            | "locales", true when jVal?valType.AsString() = "any" -> ValType.Locales
+            | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
+            | "measure", true when jVal?valType.AsString() = "data_array" -> ValType.Measure
+            | "modeBarButtons", true -> ValType.ModeBarButtonsInherited
+            | "modeBarButtonsToAdd", true -> ValType.ModeBarButtons
+            | "modeBarButtonsToRemove", true -> ValType.ModeBarButtons
             | "source", true when jVal?valType.AsString() = "any" -> ValType.StringArray
             | "target", true when jVal?valType.AsString() = "string" -> ValType.TransformTarget
+            | "template", true -> ValType.Template
+            | "toImageButtonOptions", true -> ValType.ToImageButtonOptions
+            | "xy", true -> ValType.FloatArray
             | _, true ->
                 match jVal?valType
                       |> JsonValue.asString
@@ -470,7 +479,8 @@ module rec Domain =
                           intSeqResizeStr
                           if attrib.TwoDimArrayOk then yield! allInt2DStrs ]
             | ValType.List vt -> getPrimativeOverloadSeq vt
-            | ValType.Measure -> measureStr
+            | ValType.Locales -> locales
+            | ValType.Measure -> measure
             | ValType.ModeBarButtons -> modeBarButtons
             | ValType.ModeBarButtonsInherited -> modeBarButtonsInherited
             | ValType.Number attrib ->
@@ -494,7 +504,8 @@ module rec Domain =
                           if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
             | ValType.StringArray ->
                 [ stringSingleton; stringSeqStr ]
-            | ValType.Template -> templateStr
+            | ValType.Template -> template
+            | ValType.ToImageButtonOptions -> toImageButtonOptions
             | ValType.TransformTarget -> transformTargetStrs
 
         /// Returns a list of primative overloads for explicit overrides if any are present
@@ -589,6 +600,12 @@ module rec Domain =
         /// Sets whether the overload is inline.
         let setInline isInline (overload: EnumPropOverload) = { overload with IsInline = isInline }
 
+        /// Creates an EnumPropOverload with the Value and ParamsCode from ValType.stringStr.
+        let createStr methodName =
+            let paramsCode, valueCode = ValType.stringStr
+            create methodName valueCode
+            |> setParamsCode paramsCode
+
     type CustomPropOverload =
         { /// The doc lines for the enum prop's value/overload, without leading ///.
           DocLines: string list
@@ -613,13 +630,13 @@ module rec Domain =
               IsInline = true }
 
         /// Sets the doc lines of the enum prop value/overload.
-        let setDocs docLines (overload: EnumPropOverload) = { overload with DocLines = docLines }
+        let setDocs docLines (overload: CustomPropOverload) = { overload with DocLines = docLines }
 
         /// Sets whether the overload is inline.
-        let setInline isInline (overload: RegularPropOverload) = { overload with IsInline = isInline }
+        let setInline isInline (overload: CustomPropOverload) = { overload with IsInline = isInline }
 
         /// Sets the params code for the enum prop value/overload.
-        let setParamsCode code (overload: EnumPropOverload) = { overload with ParamsCode = Some code }
+        let setParamsCode code (overload: CustomPropOverload) = { overload with ParamsCode = code }
 
     type Prop =
         { /// The doc lines for the prop, without leading ///.
@@ -757,11 +774,53 @@ module rec Domain =
         let addParentComponentTree (tree: string list) (comp: Component) =
             { comp with ParentNameTree = comp.ParentNameTree @ (tree |> List.map String.upperFirst) }
 
-    /// Types that only contain properties, such as enums
+    /// Types that only contain properties, such as enums.
     type CustomPropertyType =
-        { Name: string
+        { ActualName: string
+          Name: string
+          Enums: EnumPropOverload list
           Properties: string list
-          Functions: (string * string) list }
+          Functions: (string * string) list
+          Children: CustomPropertyType list
+          ParentNameTree: string list
+          ParentActualNameTree: string list }
+
+    [<RequireQualifiedAccess>]
+    module CustomPropertyType =
+        /// Creates a custom property type with the given name.
+        let create name =
+            { ActualName = name
+              Name = name
+              Enums = []
+              Properties = []
+              Functions = [] 
+              Children = []
+              ParentNameTree = []
+              ParentActualNameTree = [] }
+
+        let addChildren (children: CustomPropertyType list) (cusProp: CustomPropertyType) =
+            cusProp
+            |> List.foldBack (fun child state ->
+                { state with 
+                    Children = 
+                        state.Children @ [ 
+                            { child with 
+                                ParentNameTree = child.ParentNameTree @ [ state.Name ]
+                                ParentActualNameTree = child.ParentActualNameTree @ [ state.ActualName ] } 
+                        ] }
+            ) children
+
+        let addEnums (enums: EnumPropOverload list) (cusProp: CustomPropertyType) =
+            { cusProp with Enums = cusProp.Enums @ enums }
+
+        let addFunctions (funcs: (string * string) list) (cusProp: CustomPropertyType) =
+            { cusProp with Functions = cusProp.Functions @ funcs }
+
+        let addProperties (props: string list) (cusProp: CustomPropertyType) =
+            { cusProp with Properties = cusProp.Properties @ props }
+
+        let setActualName (name: string) (cusProp: CustomPropertyType) =
+            { cusProp with ActualName = name }
 
     type ComponentApi =
         { /// The namespace for the API.

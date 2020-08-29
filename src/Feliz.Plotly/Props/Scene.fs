@@ -42,7 +42,7 @@ type scene =
     static member inline yaxis (properties: #IYaxisProperty list) = Interop.mkSceneAttr "yaxis" (createObj !!properties)
     static member inline zaxis (properties: #IZaxisProperty list) = Interop.mkSceneAttr "zaxis" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module scene =
     /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges. If *data*, this scene's axes are drawn in proportion with the axes' ranges. If *manual*, this scene's axes are drawn in proportion with the input of *aspectratio* (the default behavior if *aspectratio* is provided). If *auto*, this scene's axes are drawn using the results of *data* except when one axis is more than four times the size of the two others, where in that case the results of *cube* are used.
     [<Erase>]

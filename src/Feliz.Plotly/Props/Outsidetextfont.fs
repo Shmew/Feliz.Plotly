@@ -29,7 +29,7 @@ type outsidetextfont =
     /// Sets the source reference on Chart Studio Cloud for  size .
     static member inline sizesrc (value: string) = Interop.mkOutsidetextfontAttr "sizesrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module outsidetextfont =
     [<Erase>]
     type color =

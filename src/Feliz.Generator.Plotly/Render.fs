@@ -32,10 +32,14 @@ module Render =
         let singlePropEnumOverload (prop: Prop) (propOverload: EnumPropOverload) =
             sprintf "static member %s%s %s= Interop.mk%sAttr \"%s\" %s"
                 (if propOverload.IsInline then "inline "
-                 else "") propOverload.MethodName
+                 else "") 
+                propOverload.MethodName
                 (match propOverload.ParamsCode with
                  | Some s -> s + " "
-                 | None -> "") prop.ParentNameTree.Head prop.RealPropName propOverload.ValueCode
+                 | None -> "") 
+                prop.ParentNameTree.Head 
+                prop.RealPropName 
+                propOverload.ValueCode
             |> emptStringToNone
             |> List.singleton
 
@@ -91,7 +95,7 @@ module Render =
             if propsAndRegularExtensionOverloads.IsEmpty then
                 []
             else
-                [ "[<AutoOpen>]" |> indent indentLevel
+                [ "[<AutoOpen;Erase>]" |> indent indentLevel
                   sprintf "module %sExtensions =" comp.MethodName |> indent indentLevel
                   ""
                   sprintf "type %s with" comp.MethodName |> indent (indentLevel + 1)
@@ -134,11 +138,13 @@ module Render =
                                     >> indent (indentLevel + 2))
                         yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
                     for overload in customOverloads do
-                        yield! prop.DocLines
-                               |> List.map
-                                   (String.prefix "/// "
-                                    >> String.trim
-                                    >> indent (indentLevel + 2))
+                        yield! 
+                            if List.isEmpty overload.DocLines then prop.DocLines 
+                            else overload.DocLines
+                            |> List.map
+                                (String.prefix "/// "
+                                 >> String.trim
+                                 >> indent (indentLevel + 2))
                         yield! singlePropCustomOverload overload |> List.map (indent (indentLevel + 2))
                     "" ]
 
@@ -155,7 +161,7 @@ module Render =
                   yield! regularExtensionProps
                   ""
               if enumAndCustomProps.Length > 0 then
-                  sprintf "[<RequireQualifiedAccess>]" |> indent indentStart
+                  sprintf "[<Erase;RequireQualifiedAccess>]" |> indent indentStart
                   sprintf "module %s =" comp.MethodName |> indent indentStart
               yield! enumAndCustomProps ]
 
@@ -206,21 +212,59 @@ module Render =
               yield! compInterop
               yield! postludeInterfaces |> List.map baseInteropStr ]
 
-        let buildCustomPropType (customPropType: CustomPropertyType) =
-            let customProps =
-                customPropType.Properties
+        let rec buildCustomPropType (indentLevel: int) (isInline: bool) (propType: CustomPropertyType) =
+            let props =
+                propType.Properties
                 |> List.map (fun value ->
-                    sprintf "static member inline %s = unbox<I%sProperty> \"%s\"" value (String.upperFirst customPropType.Name) value |> indent 1)
-            
-            let customFuncs =
-                customPropType.Functions
-                |> List.collect (fun (docs, value) ->
-                    [ sprintf "/// %s" docs |> indent 1; value |> indent 1 ])
+                    sprintf "static member inline %s = unbox<I%sProperty> \"%s\"" 
+                        value (String.upperFirst propType.Name) value 
+                    |> indent indentLevel)
 
-            [ "[<Erase>]"
-              sprintf "type %s =" customPropType.Name
-              yield! customProps
-              yield! customFuncs ]
+            let enums = [ 
+                for propOverload in propType.Enums do
+                    yield! propOverload.DocLines 
+                           |> List.map 
+                              (String.prefix "/// " 
+                               >> String.trim 
+                               >> indent indentLevel)
+                    yield
+                        sprintf "static member %s%s %s= Interop.mk%sAttr \"%s\" %s"
+                            (if propOverload.IsInline then "inline "
+                             else "") 
+                            propOverload.MethodName
+                            (match propOverload.ParamsCode with
+                             | Some s -> s + " "
+                             | None -> "") 
+                            (String.upperFirst propType.ParentNameTree.Head)
+                            propType.ActualName
+                            propOverload.ValueCode
+                        |> indent indentLevel 
+            ]
+
+            let funcs =
+                propType.Functions
+                |> List.collect (fun (docs, value) ->
+                    [ if System.String.IsNullOrEmpty docs |> not then 
+                        sprintf "/// %s" docs |> indent indentLevel
+                      value |> indent indentLevel ])
+                |> List.append enums
+
+            let children =
+                propType.Children
+                |> List.map (buildCustomPropType (indentLevel + 1) isInline >> String.concat Environment.NewLine)
+                |> function
+                | [] -> []
+                | children ->
+                    [ ""
+                      "[<Erase;RequireQualifiedAccess>]"
+                      sprintf "module %s =" propType.Name
+                      yield! children ]
+
+            [ if isInline then "[<Erase>]" |> indent (indentLevel - 1)
+              sprintf "type %s =" propType.Name |> indent (indentLevel - 1)
+              yield! props
+              yield! funcs
+              yield! children ]
 
     /// Generate the interop file
     let interopDocument (api: ComponentApi) =
@@ -241,7 +285,9 @@ module Render =
           "/// THIS FILE IS AUTO-GENERATED //"
           "////////////////////////////////*)"
           ""
-          "[<RequireQualifiedAccess>]"
+          "open Fable.Core"
+          ""
+          "[<Erase;RequireQualifiedAccess>]"
           "module Interop ="
           makeInterop api.ComponentContainerTypeName |> indent 1
           yield! GetLines.buildInterops api.Components preludeInterfaces postludeInterfaces
@@ -262,7 +308,7 @@ module Render =
           "open Fable.Core"
           "open System.ComponentModel"
           ""
-          "[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]"
+          "[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never);Erase>]"
           "module Types ="
           sprintf "type I%sProperty = interface end" api.ComponentContainerTypeName |> indent 1
           if not api.TypePrelude.IsEmpty then
@@ -275,24 +321,37 @@ module Render =
           "" ]
         |> String.concat Environment.NewLine
 
-    /// Generate custom defined properties
-    let customPropsDocument (api: ComponentApi) =
-        [ sprintf "namespace %s" api.Namespace
-          ""
-          "(*////////////////////////////////"
-          "/// THIS FILE IS AUTO-GENERATED //"
-          "////////////////////////////////*)"
-          ""
-          "open Fable.Core"
-          "open Fable.Core.JsInterop"
-          "open System.ComponentModel"
-          ""
-          for customPropTypes in api.CustomPropertyTypes do
-              yield! GetLines.buildCustomPropType customPropTypes
-              "" ]
-        |> String.concat Environment.NewLine
+    /// Generate custom defined properties with chunking if enabled.
+    let customPropsDocument (chunk: bool) (api: ComponentApi) =
+        let buildDoc (comps: CustomPropertyType list) =
+            [ sprintf "namespace %s" api.Namespace
+              ""
+              "(*////////////////////////////////"
+              "/// THIS FILE IS AUTO-GENERATED //"
+              "////////////////////////////////*)"
+              ""
+              "open Fable.Core"
+              "open Fable.Core.JsInterop"
+              "open Feliz"
+              ""
+              for customPropTypes in comps do
+                  yield! GetLines.buildCustomPropType 1 true customPropTypes
+                  "" ]
+            |> String.concat Environment.NewLine
 
-    /// Generate the base level Plotly component file
+        if api.CustomPropertyTypes.IsEmpty then []
+        else
+            if chunk then
+                api.CustomPropertyTypes
+                |> List.map (fun comp ->
+                    comp.Name,
+                    comp
+                    |> List.singleton
+                    |> buildDoc)
+            else
+                [ "CustomProps", buildDoc api.CustomPropertyTypes ]
+
+    /// Generate the base level Plotly component file.
     let componentDocument (api: ComponentApi) =
         [ sprintf "namespace %s" api.Namespace
           ""
@@ -307,7 +366,7 @@ module Render =
           "open Feliz"
           ""
           if not api.ComponentsPrelude.IsEmpty then
-              "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
+              "[<AutoOpen;EditorBrowsable(EditorBrowsableState.Never)>]"
               sprintf "module %sHelpers =" api.ComponentContainerTypeName
               ""
               yield! api.ComponentsPrelude
@@ -342,7 +401,7 @@ module Render =
               "" ]
         |> String.concat Environment.NewLine
 
-    /// Builds the props documents with chunking if enabled
+    /// Builds the props documents with chunking if enabled.
     let propsDocument (chunk: bool) (api: ComponentApi) =
         let buildDoc (comps: Component list) =
             [ sprintf "namespace %s" api.Namespace
@@ -372,3 +431,19 @@ module Render =
                 |> buildDoc)
         else
             [ "Props", buildDoc api.Components ]
+
+    /// Builds the props documents with chunking if enabled.
+    let localesDocument (api: ComponentApi) (localeType: CustomPropertyType) =
+        [ sprintf "namespace %s" api.Namespace
+          ""
+          "(*////////////////////////////////"
+          "/// THIS FILE IS AUTO-GENERATED //"
+          "////////////////////////////////*)"
+          ""
+          "open Fable.Core"
+          "open Fable.Core.JsInterop"
+          "open Feliz"
+          ""
+          yield! GetLines.buildCustomPropType 1 false localeType
+          "" ]
+        |> String.concat Environment.NewLine

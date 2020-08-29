@@ -5,8 +5,8 @@ open Elmish
 open Fable.Core
 open Fable.SimpleHttp
 open Feliz
-open Feliz.ElmishComponents
 open Feliz.Plotly
+open Feliz.UseElmish
 open Zanaptak.TypedCssClasses
 
 module Types =
@@ -177,7 +177,9 @@ module View =
             ]
         ]
 
-    let render state dispatch =
+    let render = React.functionComponent(fun () ->
+        let state,dispatch = React.useElmish(State.init(), State.update, [||])
+
         match state.DataLoaded, state.Error with
         | false, _ ->
             Html.div [
@@ -251,6 +253,6 @@ module View =
             Html.h1 [
                 prop.style [ style.color.crimson ]
                 prop.text error
-            ]
+            ])
 
-let chart () = React.elmishComponent("Plot", State.init(), State.update, View.render)
+let inline chart () = View.render()

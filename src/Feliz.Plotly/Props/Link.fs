@@ -320,7 +320,7 @@ type link =
     /// Sets the source reference on Chart Studio Cloud for  value .
     static member inline valuesrc (value: string) = Interop.mkLinkAttr "valuesrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module link =
     /// Sets the `link` color. It can be a single value, or an array for specifying color for each `link`. If `link.color` is omitted, then by default, a translucent grey link will be used.
     [<Erase>]

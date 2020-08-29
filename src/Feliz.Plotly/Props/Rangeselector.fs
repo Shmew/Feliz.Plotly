@@ -34,7 +34,7 @@ type rangeselector =
     /// Sets the y position (in normalized coordinates) of the range selector.
     static member inline y (value: float) = Interop.mkRangeselectorAttr "y" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module rangeselector =
     /// Sets the range selector's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
     [<Erase>]

@@ -112,7 +112,7 @@ type z =
     /// Sets the width of the contour lines.
     static member inline width (value: float) = Interop.mkZAttr "width" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module z =
     /// Sets the color of the contour lines.
     [<Erase>]

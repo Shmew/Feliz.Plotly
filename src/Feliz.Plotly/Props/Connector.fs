@@ -16,7 +16,7 @@ type connector =
     /// Determines if connector regions and lines are drawn.
     static member inline visible (value: bool) = Interop.mkConnectorAttr "visible" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module connector =
     /// Sets the shape of connector lines.
     [<Erase>]

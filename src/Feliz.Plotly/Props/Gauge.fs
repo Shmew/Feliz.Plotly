@@ -24,7 +24,7 @@ type gauge =
     static member inline steps (properties: #IStepsProperty list) = Interop.mkGaugeAttr "steps" (createObj !!properties)
     static member inline threshold (properties: #IThresholdProperty list) = Interop.mkGaugeAttr "threshold" (createObj !!properties)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module gauge =
     /// Set the shape of the gauge
     [<Erase>]

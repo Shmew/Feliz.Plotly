@@ -19,7 +19,7 @@ type decreasing =
     /// Sets the symbol to display for increasing value
     static member inline symbol (value: string) = Interop.mkDecreasingAttr "symbol" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module decreasing =
     /// Sets the color for increasing value.
     [<Erase>]

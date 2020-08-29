@@ -155,6 +155,12 @@ let [<Literal>] Indicators = "Indicators"
 let [<Literal>] Showcase = "Showcase"
 let [<Literal>] Overlay = "Overlay"
 
+// Locale Examples
+let [<Literal>] Locales = "Locales"
+
+let [<Literal>] Config = "Config"
+let [<Literal>] ModuleRegistration = "ModuleRegistration"
+
 // Line Examples
 let [<Literal>] Line = "Line"
 

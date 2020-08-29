@@ -16,7 +16,7 @@ type tickfont =
     static member inline size (value: int) = Interop.mkTickfontAttr "size" value
     static member inline size (value: float) = Interop.mkTickfontAttr "size" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module tickfont =
     [<Erase>]
     type color =

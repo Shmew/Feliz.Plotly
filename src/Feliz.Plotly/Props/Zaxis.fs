@@ -322,7 +322,7 @@ type zaxis =
     /// Sets the width (in px) of the zero line.
     static member inline zerolinewidth (value: float) = Interop.mkZaxisAttr "zerolinewidth" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module zaxis =
     /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
     [<Erase>]

@@ -5,9 +5,8 @@ group Docs
     Fable.SimpleHttp
     Fable.SimpleJson
     Feliz
-    Feliz.ElmishComponents
+    Feliz.Markdown
     Feliz.Router
+    Feliz.UseElmish
     FSharp.Core
     Zanaptak.TypedCssClasses
-
-    File: Markdown.fs Feliz.Markdown

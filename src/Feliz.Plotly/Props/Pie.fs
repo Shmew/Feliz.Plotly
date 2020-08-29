@@ -408,7 +408,7 @@ type pie =
     /// Sets the source reference on Chart Studio Cloud for  values .
     static member inline valuessrc (value: string) = Interop.mkPieAttr "valuessrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module pie =
     /// Specifies the direction at which succeeding sectors follow one another.
     [<Erase>]

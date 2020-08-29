@@ -416,7 +416,7 @@ type funnel =
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkFunnelAttr "ysrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module funnel =
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     [<Erase>]

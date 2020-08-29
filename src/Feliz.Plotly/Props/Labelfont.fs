@@ -16,7 +16,7 @@ type labelfont =
     static member inline size (value: int) = Interop.mkLabelfontAttr "size" value
     static member inline size (value: float) = Interop.mkLabelfontAttr "size" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module labelfont =
     [<Erase>]
     type color =

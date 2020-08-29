@@ -29,7 +29,7 @@ type textfont =
     /// Sets the source reference on Chart Studio Cloud for  size .
     static member inline sizesrc (value: string) = Interop.mkTextfontAttr "sizesrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module textfont =
     [<Erase>]
     type color =

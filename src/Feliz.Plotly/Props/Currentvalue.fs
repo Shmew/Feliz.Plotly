@@ -23,7 +23,7 @@ type currentvalue =
     /// Shows the currently-selected value above the slider.
     static member inline visible (value: bool) = Interop.mkCurrentvalueAttr "visible" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module currentvalue =
     /// The alignment of the value readout relative to the length of the slider.
     [<Erase>]

@@ -80,7 +80,7 @@ type line =
     /// Sets the source reference on Chart Studio Cloud for  width .
     static member inline widthsrc (value: string) = Interop.mkLineAttr "widthsrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module line =
     /// Sets the line color.
     [<Erase>]

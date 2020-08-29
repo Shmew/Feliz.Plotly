@@ -70,3 +70,37 @@ module PlotlyFunctions =
         static member inline toImage (divId: string, settings: IToImageProperty list) = 
             Bindings.plotly.toImage(U2.Case2(divId), createObj !!settings)
             |> Async.AwaitPromise
+
+        /// Registers a plotly locale module.
+        ///
+        /// Any plotly graph that sets the config locale to the same name as 
+        /// the registered module will use that localization configuration.
+        static member inline useLocale (name: string) (locale: ILocaleProperty list) =
+            React.useEffect((fun () ->
+                createObj !![
+                    "moduleType" ==> "locale"
+                    "name" ==> name
+                    yield! (unbox locale)
+                ]
+                |> Bindings.plotly.register 
+            ), [| locale :> obj |])
+
+        /// Registers a plotly locale module.
+        ///
+        /// Any plotly graph that sets the config locale to the same name as 
+        /// the registered module will use that localization configuration.
+        ///
+        /// Predefined locales can be found in the Feliz.Plotly.Locales namespace
+        static member inline useLocales (locale: ILocalesProperty) =
+            React.useEffect((fun () -> Bindings.plotly.register locale), [| locale :> obj |])
+        /// Registers a plotly locale module.
+        ///
+        /// Any plotly graph that sets the config locale to the same name as 
+        /// the registered module will use that localization configuration.
+        ///
+        /// Predefined locales can be found in the Feliz.Plotly.Locales namespace
+        static member inline useLocales (locales: ILocalesProperty list) =
+            React.useEffect((fun () ->
+                locales 
+                |> List.iter (fun locale -> Bindings.plotly.register locale)
+            ), [| locales :> obj |])

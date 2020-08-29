@@ -324,7 +324,7 @@ type baxis =
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
     static member inline uirevision (values: seq<string>) = Interop.mkBaxisAttr "uirevision" (values |> ResizeArray)
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module baxis =
     /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
     [<Erase>]

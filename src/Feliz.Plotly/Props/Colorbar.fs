@@ -236,7 +236,7 @@ type colorbar =
     /// Sets the amount of padding (in px) along the y direction.
     static member inline ypad (value: float) = Interop.mkColorbarAttr "ypad" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module colorbar =
     /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
     [<Erase>]

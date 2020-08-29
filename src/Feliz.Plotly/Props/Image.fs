@@ -467,7 +467,7 @@ type image =
     /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkImageAttr "zsrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module image =
     /// Color model used to map the numerical color components described in `z` into colors.
     [<Erase>]

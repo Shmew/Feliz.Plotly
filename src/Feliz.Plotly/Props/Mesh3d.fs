@@ -755,7 +755,7 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkMesh3dAttr "zsrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module mesh3d =
     /// Sets the color of the whole mesh
     [<Erase>]

@@ -423,11 +423,15 @@ let samples =
 
     let customExamples =
         [ "plotly-chart-custom-gantt", Samples.Custom.Gantt.chart()
-          "plotly-chart-custom-webglgantt", Samples.Custom.WebGLGantt.chart()]
+          "plotly-chart-custom-webglgantt", Samples.Custom.WebGLGantt.chart() ]
+
+    let localeExamples =
+        [ "plotly-chart-locales-config", Samples.Locales.Config.chart()
+          "plotly-chart-locales-moduleregistration", Samples.Locales.ModuleRegistration.chart() ]
 
     [ basicSamples; statisticalExamples; scientificExamples; financialExamples
       mapExamples; threeDimensionalExamples; subplotExamples; eventExamples
-      transformExamples; transitionExamples; customExamples ]
+      transformExamples; transitionExamples; customExamples; localeExamples ]
     |> List.concat
 
 let githubPath (rawPath: string) =
@@ -494,7 +498,7 @@ let renderMarkdown = React.functionComponent(fun (input: {| path: string; conten
     ])
 
 module MarkdownLoader =
-    open Feliz.ElmishComponents
+    open Feliz.UseElmish
 
     type State =
         | Initial
@@ -530,18 +534,20 @@ module MarkdownLoader =
         | Loaded (Error (status, _)) ->
             State.LoadedMarkdown (sprintf "Status %d: could not load markdown" status), Cmd.none
 
-    let render path (state: State) dispatch =
+    let render = React.functionComponent(fun (input: {| path: string list |}) ->
+        let state,_ = React.useElmish(init input.path, update, [| input.path :> obj |])
+
         match state with
         | Initial -> Html.none
         | Loading -> centeredSpinner
-        | LoadedMarkdown content -> renderMarkdown {| path = (resolvePath path); content = content |}
+        | LoadedMarkdown content -> renderMarkdown {| path = (resolvePath input.path); content = content |}
         | Errored error ->
             Html.h1 [
                 prop.style [ style.color.crimson ]
                 prop.text error
-            ]
+            ])
 
-    let load (path: string list) = React.elmishComponent("LoadMarkdown", init path, update, render path, key = resolvePath path)
+    let inline load (path: string list) = render {| path = path |}
 
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
@@ -971,6 +977,10 @@ let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Ms
                 nestedMenuList "Custom" [ Urls.Plotly; Urls.Examples; Urls.Custom ] [
                     nestedMenuItem "Gantt" [ Urls.Gantt ]
                     nestedMenuItem "WebGL Gantt" [ Urls.WebGLGantt ]
+                ]
+                nestedMenuList "Locales" [ Urls.Plotly; Urls.Examples; Urls.Locales ] [
+                    nestedMenuItem "Config" [ Urls.Config ]
+                    nestedMenuItem "Module Registration" [ Urls.ModuleRegistration ]
                 ]
             ]
         ]
@@ -1427,6 +1437,13 @@ let customExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Custom ]
 
+let localeExamples (currentPath: string list) =
+    match currentPath with
+    | [ Urls.Config ] -> [ "Config.md" ]
+    | [ Urls.ModuleRegistration ] -> [ "ModuleRegistration.md" ]
+    | _ -> []
+    |> List.append [ Urls.Locales ]
+
 let (|PathPrefix|) (segments: string list) (path: string list) =
     if path.Length > segments.Length then
         match List.splitAt segments.Length path with
@@ -1454,6 +1471,7 @@ let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg
         | PathPrefix [ Urls.Transforms ] (Some innerRes) -> transformExamples innerRes
         | PathPrefix [ Urls.Transitions ] (Some innerRes) -> transitionExamples innerRes
         | PathPrefix [ Urls.Custom ] (Some innerRes) -> customExamples innerRes
+        | PathPrefix [ Urls.Locales ] (Some innerRes) -> localeExamples innerRes
         | _ -> []
         |> fun path -> [ Urls.Plotly; Urls.Examples ] @ path |> lazyView MarkdownLoader.load
     | _ -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ])
@@ -1488,9 +1506,9 @@ let render' = React.functionComponent(fun (input: {| state: State; dispatch: Msg
             prop.children [ main {| state = input.state; dispatch = dispatch |} ]
         ]
 
-    Router.router [
-        Router.onUrlChanged (UrlChanged >> dispatch)
-        Router.application application
+    React.router [
+        router.onUrlChanged (UrlChanged >> dispatch)
+        router.children application
     ])
 
 let render (state: State) dispatch = render' {| state = state; dispatch = dispatch |}

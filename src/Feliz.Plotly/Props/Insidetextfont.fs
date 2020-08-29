@@ -29,7 +29,7 @@ type insidetextfont =
     /// Sets the source reference on Chart Studio Cloud for  size .
     static member inline sizesrc (value: string) = Interop.mkInsidetextfontAttr "sizesrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module insidetextfont =
     [<Erase>]
     type color =

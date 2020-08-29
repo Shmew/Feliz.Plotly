@@ -330,7 +330,7 @@ type radialaxis =
     /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
     static member inline visible (value: bool) = Interop.mkRadialaxisAttr "visible" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module radialaxis =
     /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
     [<Erase>]

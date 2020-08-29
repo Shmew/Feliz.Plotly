@@ -58,7 +58,7 @@ type step =
     /// Determines whether or not this step is included in the slider.
     static member inline visible (value: bool) = Interop.mkStepAttr "visible" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module step =
     /// Sets the background color of the arc.
     [<Erase>]

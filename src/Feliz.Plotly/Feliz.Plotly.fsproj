@@ -6,19 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Locales/*.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="Data.fs" />
     <Compile Include="Colors.fs" />
     <Compile Include="Types.fs" />
     <Compile Include="Interop.fs" />
     <Compile Include="Bindings.fs" />
     <Compile Include="Events.fs" />
-    <Compile Include="CustomProps.fs" />
     <Compile Include="Props/*.fs" />
+    <Compile Include="Locales.fs" />
     <Compile Include="Plotly.fs" />
     <Compile Include="PlotlyFunctions.fs" />
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>
+
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="plotly.js" Version="gte 1.51 lt 2" ResolutionStrategy="max" />

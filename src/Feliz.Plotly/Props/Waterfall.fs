@@ -167,7 +167,7 @@ type waterfall =
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkWaterfallAttr "legendgroup" value
     /// An array containing types of values. By default the values are considered as 'relative'. However; it is possible to use 'total' to compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an initial value where needed.
-    static member inline measure (values: seq<#IMeasureProperty>) = Interop.mkWaterfallAttr "measure" (values |> ResizeArray)
+    static member inline measure (values: #IMeasureProperty list) = Interop.mkWaterfallAttr "measure" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  measure .
     static member inline measuresrc (value: string) = Interop.mkWaterfallAttr "measuresrc" value
     /// Sets the source reference on Chart Studio Cloud for  meta .
@@ -438,7 +438,7 @@ type waterfall =
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkWaterfallAttr "ysrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module waterfall =
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     [<Erase>]

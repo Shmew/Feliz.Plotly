@@ -577,7 +577,7 @@ type contour =
     /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkContourAttr "zsrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module contour =
     /// Sets the color of the contour lines.
     [<Erase>]

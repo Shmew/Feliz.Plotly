@@ -23,7 +23,7 @@ type gradient =
     /// Sets the source reference on Chart Studio Cloud for  type .
     static member inline typesrc (value: string) = Interop.mkGradientAttr "typesrc" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module gradient =
     /// Sets the final color of the gradient fill: the center color for radial, the right for horizontal, or the bottom for vertical.
     [<Erase>]

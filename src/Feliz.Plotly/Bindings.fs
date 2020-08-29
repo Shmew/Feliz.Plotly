@@ -9,6 +9,7 @@ module Bindings =
     type Plotly =
         abstract downloadImage: U2<#HTMLElement,string> * obj -> unit
         abstract toImage: U2<#HTMLElement,string> * obj -> JS.Promise<string>
+        abstract register: obj -> unit
 
     let plotly: Plotly = importAll "plotly.js/dist/plotly"
     let plotFactory: Plotly -> obj = importDefault "react-plotly.js/factory.js"

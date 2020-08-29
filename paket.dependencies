@@ -1,14 +1,15 @@
 version 5.241.2
 
 framework: auto-detect
+generate_load_scripts: true
 
 group Plotly
 	source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
     nuget Fable.Core ~> 3
-    nuget Fable.Browser.Dom ~> 1
-    nuget Feliz ~> 1
+    nuget Fable.Browser.Dom ~> 2
+    nuget Feliz ~> 1.13
     nuget FSharp.Core ~> 4.7 lowest_matching: true
 
 group Generator
@@ -25,18 +26,18 @@ group Docs
     source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
+    nuget Fable.Browser.Dom ~> 2
     nuget Fable.Core ~> 3
     nuget Fable.Elmish.React ~> 3
     nuget Fable.Promise ~> 2
     nuget Fable.SimpleHttp ~> 2
     nuget Fable.SimpleJson ~> 3
-    nuget Feliz ~> 1
-    nuget Feliz.ElmishComponents ~> 0
-    nuget Feliz.Router ~> 1
+    nuget Feliz ~> 1.13
+    nuget Feliz.Markdown ~> 1
+    nuget Feliz.Router ~> 3
+    nuget Feliz.UseElmish ~> 1
     nuget FSharp.Core ~> 4.7 lowest_matching: true
     nuget Zanaptak.TypedCssClasses ~> 0
-
-    github Zaid-Ajaj/Feliz Feliz.Markdown/Markdown.fs
 
 group Tooling
 	source https://nuget.org/api/v2
@@ -65,3 +66,4 @@ group FakeBuild
     nuget FSharp.Json ~> 0
 	nuget FSharpLint.Core ~> 0
     nuget Fantomas ~> 3
+    nuget NuGet.Packaging 5.6

@@ -15,7 +15,7 @@ type transition =
     /// The duration of the transition, in milliseconds. If equal to zero, updates are synchronous.
     static member inline duration (value: float) = Interop.mkTransitionAttr "duration" value
 
-[<RequireQualifiedAccess>]
+[<Erase;RequireQualifiedAccess>]
 module transition =
     /// The easing function used for the transition
     [<Erase>]
