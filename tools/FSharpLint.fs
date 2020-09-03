@@ -71,8 +71,7 @@ module FSharpLinter =
         { CancellationToken = None
           ReceivedWarning = Some writeLintWarning
           Configuration = config
-          ReportLinterProgress = Some parserProgress
-          ReleaseConfiguration = None }
+          ReportLinterProgress = Some parserProgress }
           
     let lintFiles (fileList: (bool * string list) list) =
         let lintFile (webFile: bool) (file: string) =

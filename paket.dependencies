@@ -10,17 +10,17 @@ group Plotly
     nuget Fable.Core ~> 3
     nuget Fable.Browser.Dom ~> 2
     nuget Feliz ~> 1.13
-    nuget FSharp.Core ~> 4.7 lowest_matching: true
+    nuget FSharp.Core ~> 4.7
 
 group Generator
     source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
     nuget Fake.IO.FileSystem ~> 5
-    nuget FSharp.Core ~> 4.7 lowest_matching: true
+    nuget FSharp.Core ~> 4.7
     nuget FSharp.Data ~> 3
     
-    github plotly/plotly.js:f24c76598f038d0e8e3f275ca5fd43f4ab80abb5 dist/plot-schema.json
+    github plotly/plotly.js:a816d3ca242d33aeec1bfdd3548881c98fd5ecba dist/plot-schema.json
 
 group Docs
     source https://nuget.org/api/v2
@@ -36,7 +36,7 @@ group Docs
     nuget Feliz.Markdown ~> 1
     nuget Feliz.Router ~> 3
     nuget Feliz.UseElmish ~> 1
-    nuget FSharp.Core ~> 4.7 lowest_matching: true
+    nuget FSharp.Core ~> 4.7
     nuget Zanaptak.TypedCssClasses ~> 0
 
 group Tooling
@@ -44,7 +44,7 @@ group Tooling
 	source https://api.nuget.org/v3/index.json
 
 	nuget Fake.IO.FileSystem ~> 5
-	nuget FSharp.Core ~> 4.7 lowest_matching: true
+	nuget FSharp.Core ~> 4.7
     nuget FSharp.Json ~> 0
 	nuget FSharpLint.Core ~> 0
     nuget Yarnpkg.Yarn ~> 1

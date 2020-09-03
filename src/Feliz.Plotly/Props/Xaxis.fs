@@ -116,7 +116,7 @@ type xaxis =
     static member inline gridwidth (value: int) = Interop.mkXaxisAttr "gridwidth" value
     /// Sets the width (in px) of the grid lines.
     static member inline gridwidth (value: float) = Interop.mkXaxisAttr "gridwidth" value
-    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline hoverformat (value: string) = Interop.mkXaxisAttr "hoverformat" value
     /// Sets the axis line color.
     static member inline linecolor (value: string) = Interop.mkXaxisAttr "linecolor" value
@@ -213,7 +213,7 @@ type xaxis =
     static member inline tickcolor (value: string) = Interop.mkXaxisAttr "tickcolor" value
     /// Sets the tick font.
     static member inline tickfont (properties: #ITickfontProperty list) = Interop.mkXaxisAttr "tickfont" (createObj !!properties)
-    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline tickformat (value: string) = Interop.mkXaxisAttr "tickformat" value
     static member inline tickformatstops (properties: #ITickformatstopsProperty list) = Interop.mkXaxisAttr "tickformatstops" (createObj !!properties)
     /// Sets the tick length (in px).
@@ -563,6 +563,12 @@ module xaxis =
         static member inline cursor = Interop.mkXaxisAttr "spikesnap" "cursor"
         static member inline data = Interop.mkXaxisAttr "spikesnap" "data"
         static member inline hoveredData = Interop.mkXaxisAttr "spikesnap" "hovered data"
+
+    /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines. Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the middle of the period between ticks.
+    [<Erase>]
+    type ticklabelmode =
+        static member inline instant = Interop.mkXaxisAttr "ticklabelmode" "instant"
+        static member inline period = Interop.mkXaxisAttr "ticklabelmode" "period"
 
     /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
     [<Erase>]

@@ -74,7 +74,7 @@ type axis =
     static member inline tickcolor (value: string) = Interop.mkAxisAttr "tickcolor" value
     /// Sets the color bar's tick label font
     static member inline tickfont (properties: #ITickfontProperty list) = Interop.mkAxisAttr "tickfont" (createObj !!properties)
-    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline tickformat (value: string) = Interop.mkAxisAttr "tickformat" value
     static member inline tickformatstops (properties: #ITickformatstopsProperty list) = Interop.mkAxisAttr "tickformatstops" (createObj !!properties)
     /// Sets the tick length (in px).

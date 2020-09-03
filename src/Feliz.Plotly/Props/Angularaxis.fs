@@ -104,7 +104,7 @@ type angularaxis =
     static member inline gridwidth (value: int) = Interop.mkAngularaxisAttr "gridwidth" value
     /// Sets the width (in px) of the grid lines.
     static member inline gridwidth (value: float) = Interop.mkAngularaxisAttr "gridwidth" value
-    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline hoverformat (value: string) = Interop.mkAngularaxisAttr "hoverformat" value
     /// Sets the axis line color.
     static member inline linecolor (value: string) = Interop.mkAngularaxisAttr "linecolor" value
@@ -158,7 +158,7 @@ type angularaxis =
     static member inline tickcolor (value: string) = Interop.mkAngularaxisAttr "tickcolor" value
     /// Sets the tick font.
     static member inline tickfont (properties: #ITickfontProperty list) = Interop.mkAngularaxisAttr "tickfont" (createObj !!properties)
-    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline tickformat (value: string) = Interop.mkAngularaxisAttr "tickformat" value
     static member inline tickformatstops (properties: #ITickformatstopsProperty list) = Interop.mkAngularaxisAttr "tickformatstops" (createObj !!properties)
     /// Sets the tick length (in px).

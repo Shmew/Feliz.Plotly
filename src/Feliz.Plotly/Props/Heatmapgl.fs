@@ -520,3 +520,9 @@ module heatmapgl =
         static member inline array = Interop.mkHeatmapglAttr "ytype" "array"
         static member inline scaled = Interop.mkHeatmapglAttr "ytype" "scaled"
 
+    /// Picks a smoothing algorithm use to smooth `z` data.
+    [<Erase>]
+    type zsmooth =
+        static member inline fast = Interop.mkHeatmapglAttr "zsmooth" "fast"
+        static member inline false' = Interop.mkHeatmapglAttr "zsmooth" false
+
