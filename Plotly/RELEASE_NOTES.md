@@ -1,3 +1,6 @@
+### 1.3.0 - Wednesday, September 2nd, 2020
+* Update for plotly.js 1.55.1 release
+
 ### 1.2.0 - Friday, May 22nd, 2020
 * Fix toImageButtonOptions signature resolution
 * Fixed localization signature resolution
