@@ -1109,6 +1109,8 @@ module ApiParser =
               "static member inline onLegendDoubleClick (handler: Events.LegendClickEvent -> unit) = Interop.mkPlotAttr \"onLegendDoubleClick\" handler"
               "Callback executed when the plot performs a relayout.",
               "static member inline onRelayout (handler: Events.PlotRelayoutEvent -> unit) = Interop.mkPlotAttr \"onRelayout\" handler"
+              "Callback executed when the plot is performing a relayout.",
+              "static member inline onRelayouting (handler: Events.PlotRelayoutEvent -> unit) = Interop.mkPlotAttr \"onRelayouting\" handler"
               "Callback executed when the plot performs a restyle.",
               "static member inline onRestyle (handler: Events.PlotRestyleEvent -> unit) = Interop.mkPlotAttr \"onRestyle\" handler"
               "Callback executed when the plot is redrawn.", 
@@ -1123,6 +1125,8 @@ module ApiParser =
               "static member inline onSliderEnd (handler: Events.SliderEndEvent -> unit) = Interop.mkPlotAttr \"onSliderEnd\" handler"
               "Callback executed when a plot slider is about to change.",
               "static member inline onSliderStart (handler: Events.SliderStartEvent -> unit) = Interop.mkPlotAttr \"onSliderStart\" handler"
+              "Callback executed when a sunburst trace is clicked.",
+              "static member inline onSunburstClick (handler: Events.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onSunburstClick\" handler"
               "Callback executed when a plot is performing a transition.",
               "static member inline onTransitioning (handler: unit -> unit) = Interop.mkPlotAttr \"onTransitioning\" handler"
               "Callback executed when a plot transition is interrupted.",
