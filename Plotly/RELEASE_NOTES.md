@@ -1,3 +1,6 @@
+### 1.4.0 - Monday, September 15th, 2020
+* Update for react-plotly.js 2.5.0 release
+
 ### 1.3.0 - Wednesday, September 2nd, 2020
 * Update for plotly.js 1.55.1 release
 
