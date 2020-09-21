@@ -349,7 +349,8 @@ let samples =
 
     let financialExamples =
         let candlestick =
-            [ "plotly-chart-candlestick-basic", Samples.Candlestick.Basic.chart() ]
+            [ "plotly-chart-candlestick-basic", Samples.Candlestick.Basic.chart()
+              "plotly-chart-candlestick-rangebreaks", Samples.Candlestick.RangeBreaks.chart() ]
 
         let funnel =
             [ "plotly-chart-funnel-basic", Samples.Funnel.Basic.chart()
@@ -916,6 +917,7 @@ let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Ms
                     ]
                     subNestedMenuList "Candlestick" [ Urls.Candlestick ] [
                         nestedMenuItem "Basic" [ Urls.Basic ]
+                        nestedMenuItem "Range Breaks" [ Urls.RangeBreaks ]
                     ]
                     subNestedMenuList "Funnel" [ Urls.Funnel ] [
                         nestedMenuItem "Basic" [ Urls.Basic ]
@@ -1343,6 +1345,7 @@ let financialExamples (currentPath: string list) =
     | Urls.Candlestick :: rest ->
         match rest with
         | [ Urls.Basic ] -> [ "Basic.md" ]
+        | [ Urls.RangeBreaks ] -> [ "RangeBreaks.md" ]
         | _ -> []
         |> List.append [ Urls.Candlestick ]
     | Urls.Funnel :: rest ->

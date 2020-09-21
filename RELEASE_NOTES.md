@@ -1,3 +1,6 @@
+### 1.4.1 - Sunday, September 20th, 2020
+* Fix issue with axis rangebreaks
+
 ### 1.4.0 - Monday, September 15th, 2020
 * Update for react-plotly.js 2.5.0 release
 

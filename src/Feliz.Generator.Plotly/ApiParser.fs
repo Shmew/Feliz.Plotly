@@ -275,7 +275,7 @@ module ApiParser =
                         |> EnumPropOverload.setParamsCode paramsCode)
                 | ValType.EnumeratedWithCustom when v = "custom" && componentParent = "Line" && propName = "dash" ->
                     let valueCode, paramsCode = 
-                        [ ValType.intSeqResizeStr; ValType.floatSeqResizeStr ] |> List.unzip
+                        [ ValType.intSeqStr; ValType.floatSeqStr ] |> List.unzip
 
                     paramsCode
                     |> List.map2
@@ -1015,6 +1015,15 @@ module ApiParser =
                       MethodName = "transforms"
                       RegularOverloads = [
                           ("(properties: #ITransformsProperty list)",
+                           "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)")
+                          ||> RegularPropOverload.create
+                      ] }
+              "rangebreaks", 
+              fun (prop: Prop) -> 
+                  { prop with 
+                      MethodName = "rangebreaks"
+                      RegularOverloads = [
+                          ("(properties: #IRangebreaksProperty list)",
                            "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)")
                           ||> RegularPropOverload.create
                       ] } ]

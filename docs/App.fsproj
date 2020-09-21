@@ -32,6 +32,7 @@
     <Compile Include="Plotly\Examples\Maps\FilledArea.fs" />
     <Compile Include="Plotly\Examples\Maps\Choropleth.fs" />
     <Compile Include="Plotly\Examples\Financial\Candlestick\Basic.fs" />
+    <Compile Include="Plotly\Examples\Financial\Candlestick\RangeBreaks.fs" />
     <Compile Include="Plotly\Examples\Financial\Funnel\Basic.fs" />
     <Compile Include="Plotly\Examples\Financial\Funnel\FunnelArea.fs" />
     <Compile Include="Plotly\Examples\Financial\Indicators\Showcase.fs" />

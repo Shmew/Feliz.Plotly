@@ -108,6 +108,7 @@ module rec Domain =
     type ValType =
         | Any
         | Bool of PrimSpecs
+        | Bounds
         | Color of PrimSpecs
         | ColorArray
         | ColorScale
@@ -137,8 +138,6 @@ module rec Domain =
     module ValType =
         let boolStr = "(value: bool)", "value"
         let boolResizeSingleton = "(value: bool)", "(value |> Array.singleton |> ResizeArray)"
-        let boolSeqResizeStr = "(values: seq<bool>)", "(values |> ResizeArray)"
-        let boolSeqResizeStrOpt = "(values: seq<bool option>)", "(values |> ResizeArray)"
         let boolSeqStr = "(values: seq<bool>)", "(values |> ResizeArray)"
         let boolSeqStrOpt = "(values: seq<bool option>)", "(values |> ResizeArray)"
         let boolSingleton = "(value: bool)", "(value |> Array.singleton)"
@@ -161,11 +160,12 @@ module rec Domain =
 
         let dateStr = "(value: System.DateTime)", "value"
         let dateResizeSingleton = "(value: System.DateTime)", "(value |> Array.singleton |> ResizeArray)"
-        let dateSeqResizeStr = "(values: seq<System.DateTime>)", "(values |> ResizeArray)"
-        let dateSeqResizeStrOpt = "(values: seq<System.DateTime option>)", "(values |> ResizeArray)"
         let dateSeqStr = "(values: seq<System.DateTime>)", "(values |> ResizeArray)"
         let dateSeqStrOpt = "(values: seq<System.DateTime option>)", "(values |> ResizeArray)"
         let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
+
+        let dayOfWeekSeqStr = "(days: seq<System.DayOfWeek>)", "(unbox<seq<int>> days)"
+        let dayOfWeekSeqStrOptNull = "(days: seq<System.DayOfWeek option>)", "(unbox<seq<int option>> days |> Seq.map (Option.defaultValue (unbox<int> null)) |> ResizeArray)"
 
         let enumeratedArrayStrSeq s =
             sprintf "(properties: #I%sProperty list)" s,
@@ -177,10 +177,9 @@ module rec Domain =
 
         let floatStr = "(value: float)", "value"
         let floatResizeSingleton = "(value: float)", "(value |> Array.singleton |> ResizeArray)"
-        let floatSeqResizeStr = "(values: seq<float>)", "(values |> ResizeArray)"
-        let floatSeqResizeStrOpt = "(values: seq<float option>)", "(values |> ResizeArray)"
         let floatSeqStr = "(values: seq<float>)", "(values |> ResizeArray)"
         let floatSeqStrOpt = "(values: seq<float option>)", "(values |> ResizeArray)"
+        let floatSeqStrOptNull = "(values: seq<float option>)", "(values |> Seq.map (Option.defaultValue (unbox<float> null)) |> ResizeArray)"
         let floatSingleton = "(value: float)", "(value |> Array.singleton)"
         let float32FromFloatSeqStr = "(values: seq<float>)", "(values |> Seq.map float32 |> Array.ofSeq)"
         let float32FromFloatSeqStrOpt =
@@ -203,10 +202,9 @@ module rec Domain =
         let intStrCustom s f = sprintf "(%s: int)" s, sprintf "%s" f
         let intSeqStrCustom s f = sprintf "(%s: seq<int>)" s, sprintf "%s" f
         let intResizeSingleton = "(value: int)", "(value |> Array.singleton |> ResizeArray)"
-        let intSeqResizeStr = "(values: seq<int>)", "(values |> ResizeArray)"
-        let intSeqResizeStrOpt = "(values: seq<int option>)", "(values |> ResizeArray)"
         let intSeqStr = "(values: seq<int>)", "(values |> ResizeArray)"
         let intSeqStrOpt = "(values: seq<int option>)", "(values |> ResizeArray)"
+        let intSeqStrOptNull = "(values: seq<int option>)", "(values |> Seq.map (Option.defaultValue (unbox<int> null)) |> ResizeArray)"
         let intSingleton = "(value: int)", "(value |> Array.singleton)"
         let int2DSeqStr = "(values: seq<seq<int>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
         let int2DSeqStrOpt =
@@ -234,10 +232,9 @@ module rec Domain =
 
         let stringStr = "(value: string)", "value"
         let stringResizeSingleton = "(value: string)", "(value |> Array.singleton |> ResizeArray)"
-        let stringSeqResizeStr = "(values: seq<string>)", "(values |> ResizeArray)"
-        let stringSeqResizeStrOpt = "(values: seq<string option>)", "(values |> ResizeArray)"
         let stringSeqStr = "(values: seq<string>)", "(values |> ResizeArray)"
         let stringSeqStrOpt = "(values: seq<string option>)", "(values |> ResizeArray)"
+        let stringSeqStrOptNull = "(values: seq<string option>)", "(values |> Seq.map (Option.defaultValue null) |> ResizeArray)"
         let stringSingleton = "(value: string)", "(value |> Array.singleton)"
         let string2DSeqStr =
             "(values: seq<seq<string>>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
@@ -321,19 +318,19 @@ module rec Domain =
         let all2DStrs = all2DStrsNoUnions @ [ data2D ]
 
         let allBoolArrStrs = [ boolSingleton; boolSeqStr ]
-        let allBoolArrResizeStrs = [ boolResizeSingleton; boolSeqResizeStr ]
+        let allBoolArrResizeStrs = [ boolResizeSingleton; boolSeqStr ]
 
         let allDateArrStrs = [ dateSingleton; dateSeqStr ]
-        let allDateArrResizeStrs = [ dateResizeSingleton; dateSeqResizeStr ]
+        let allDateArrResizeStrs = [ dateResizeSingleton; dateSeqStr ]
 
         let allFloatArrStrs = [ floatSingleton; floatSeqStr ]
-        let allFloatArrResizeStrs = [ floatResizeSingleton; floatSeqResizeStr ]
+        let allFloatArrResizeStrs = [ floatResizeSingleton; floatSeqStr ]
 
         let allIntArrStrs = [ intSingleton; intSeqStr ]
-        let allIntArrResizeStrs = [ intResizeSingleton; intSeqResizeStr ]
+        let allIntArrResizeStrs = [ intResizeSingleton; intSeqStr ]
 
         let allStringArrStrs = [ stringSingleton; stringSeqStr ]
-        let allStringArrResizeStrs = [ stringResizeSingleton; stringSeqResizeStr ]
+        let allStringArrResizeStrs = [ stringResizeSingleton; stringSeqStr ]
 
         let allArrStrs =
             allBoolArrStrs 
@@ -350,7 +347,7 @@ module rec Domain =
             @ allStringArrResizeStrs
 
         let allArrResizeOptStrs =
-            [ boolSeqResizeStrOpt; dateSeqResizeStrOpt; intSeqResizeStrOpt; floatSeqResizeStrOpt; stringSeqResizeStrOpt ]
+            [ boolSeqStrOpt; dateSeqStrOpt; intSeqStrOpt; floatSeqStrOpt; stringSeqStrOpt ]
 
         let getPrimativeOverloadSeq =
             function
@@ -382,6 +379,7 @@ module rec Domain =
             | _ when attributes.Explicit.IsEmpty |> not ->
                 ValType.ExplicitOverride
                     { attributes with Identity = Some <| getType propName { attribOverrides with Explicit = [] } jVal }
+            | "bounds", true when jVal?valType.AsString() = "info_array" -> ValType.Bounds
             | "layers", false when jVal?role.AsString() = "object" -> ValType.ComponentArray
             | "locales", true when jVal?valType.AsString() = "any" -> ValType.Locales
             | "matches", true when jVal?valType.AsString() = "enumerated" -> ValType.String attributes
@@ -438,14 +436,17 @@ module rec Domain =
                       if attrib.IsCalcType then
                           boolSeqStr
                       else
-                          boolSeqResizeStr
+                          boolSeqStr
                           if attrib.TwoDimArrayOk then yield! allBool2DStrs ]
+            | ValType.Bounds -> 
+                [ stringSeqStr; floatSeqStr; intSeqStr; dayOfWeekSeqStr 
+                  stringSeqStrOptNull; floatSeqStrOptNull; intSeqStrOptNull; dayOfWeekSeqStrOptNull ]
             | ValType.Color attrib ->
                 [ stringStr
                   if attrib.IsCalcType then
                       stringSeqStr
                   else
-                      stringSeqResizeStr
+                      stringSeqStr
                       intSeqStr
                       floatSeqStr
                       if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
@@ -476,7 +477,7 @@ module rec Domain =
                       if attrib.IsCalcType then
                           intSeqStr
                       else
-                          intSeqResizeStr
+                          intSeqStr
                           if attrib.TwoDimArrayOk then yield! allInt2DStrs ]
             | ValType.List vt -> getPrimativeOverloadSeq vt
             | ValType.Locales -> locales
@@ -490,7 +491,7 @@ module rec Domain =
                       if attrib.IsCalcType then
                           yield! [ intSeqStr; floatSeqStr ]
                       else
-                          yield! [ intSeqResizeStr; floatSeqResizeStr ]
+                          yield! [ intSeqStr; floatSeqStr ]
                           if attrib.TwoDimArrayOk then
                               yield! [ yield! allInt2DStrs
                                        yield! allFloat2DStrs ] ]
@@ -500,7 +501,7 @@ module rec Domain =
                       if attrib.IsCalcType then
                           stringSeqStr
                       else
-                          stringSeqResizeStr
+                          stringSeqStr
                           if attrib.TwoDimArrayOk then yield! allStr2DStrs ]
             | ValType.StringArray ->
                 [ stringSingleton; stringSeqStr ]

@@ -405,6 +405,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Candlestick", "Candlestick", "{3052EA28-E449-4B96-8DE6-D6029C1B28FF}"
 	ProjectSection(SolutionItems) = preProject
 		public\Plotly\Examples\Financial\Candlestick\Basic.md = public\Plotly\Examples\Financial\Candlestick\Basic.md
+		public\Plotly\Examples\Financial\Candlestick\RangeBreaks.md = public\Plotly\Examples\Financial\Candlestick\RangeBreaks.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Funnel", "Funnel", "{003801FD-8747-498B-8AF8-4AC182E68ECA}"

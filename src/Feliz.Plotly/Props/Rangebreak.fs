@@ -11,25 +11,21 @@ open Feliz
 [<Erase>]
 type rangebreak =
     /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (value: bool) = Interop.mkRangebreakAttr "bounds" (value |> Array.singleton |> ResizeArray)
-    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (values: seq<bool>) = Interop.mkRangebreakAttr "bounds" (values |> ResizeArray)
-    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (value: System.DateTime) = Interop.mkRangebreakAttr "bounds" (value |> Array.singleton |> ResizeArray)
-    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (values: seq<System.DateTime>) = Interop.mkRangebreakAttr "bounds" (values |> ResizeArray)
-    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (value: float) = Interop.mkRangebreakAttr "bounds" (value |> Array.singleton |> ResizeArray)
+    static member inline bounds (values: seq<string>) = Interop.mkRangebreakAttr "bounds" (values |> ResizeArray)
     /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
     static member inline bounds (values: seq<float>) = Interop.mkRangebreakAttr "bounds" (values |> ResizeArray)
     /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (value: int) = Interop.mkRangebreakAttr "bounds" (value |> Array.singleton |> ResizeArray)
-    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
     static member inline bounds (values: seq<int>) = Interop.mkRangebreakAttr "bounds" (values |> ResizeArray)
     /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (value: string) = Interop.mkRangebreakAttr "bounds" (value |> Array.singleton |> ResizeArray)
+    static member inline bounds (days: seq<System.DayOfWeek>) = Interop.mkRangebreakAttr "bounds" (unbox<seq<int>> days)
     /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    static member inline bounds (values: seq<string>) = Interop.mkRangebreakAttr "bounds" (values |> ResizeArray)
+    static member inline bounds (values: seq<string option>) = Interop.mkRangebreakAttr "bounds" (values |> Seq.map (Option.defaultValue null) |> ResizeArray)
+    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
+    static member inline bounds (values: seq<float option>) = Interop.mkRangebreakAttr "bounds" (values |> Seq.map (Option.defaultValue (unbox<float> null)) |> ResizeArray)
+    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
+    static member inline bounds (values: seq<int option>) = Interop.mkRangebreakAttr "bounds" (values |> Seq.map (Option.defaultValue (unbox<int> null)) |> ResizeArray)
+    /// Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
+    static member inline bounds (days: seq<System.DayOfWeek option>) = Interop.mkRangebreakAttr "bounds" (unbox<seq<int option>> days |> Seq.map (Option.defaultValue (unbox<int> null)) |> ResizeArray)
     /// Sets the size of each `values` item. The default is one day in milliseconds.
     static member inline dvalue (value: int) = Interop.mkRangebreakAttr "dvalue" value
     /// Sets the size of each `values` item. The default is one day in milliseconds.

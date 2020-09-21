@@ -55,6 +55,8 @@ let [<Literal>] SizeScaling = "SizeScaling"
 // Candlestick Examples
 let [<Literal>] Candlestick = "Candlestick"
 
+let [<Literal>] RangeBreaks = "RangeBreaks"
+
 // Carpet Examples
 let [<Literal>] Carpet = "Carpet"
 
