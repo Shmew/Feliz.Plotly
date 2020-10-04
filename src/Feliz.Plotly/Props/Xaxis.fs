@@ -126,6 +126,10 @@ type xaxis =
     static member inline linewidth (value: float) = Interop.mkXaxisAttr "linewidth" value
     /// If set to another axis id (e.g. `x2`, `y`), the range of this axis will match the range of the corresponding axis in data-coordinates space. Moreover, matching axes share auto-range values, category lists and histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden. Moreover, note that matching axes must have the same `type`.
     static member inline matches (value: string) = Interop.mkXaxisAttr "matches" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: int) = Interop.mkXaxisAttr "minexponent" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: float) = Interop.mkXaxisAttr "minexponent" value
     /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     static member inline nticks (value: int) = Interop.mkXaxisAttr "nticks" value
     /// Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to *free*.

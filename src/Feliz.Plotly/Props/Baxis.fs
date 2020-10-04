@@ -112,6 +112,10 @@ type baxis =
     static member inline min (value: int) = Interop.mkBaxisAttr "min" value
     /// The minimum value visible on this axis. The maximum is determined by the sum minus the minimum values of the other two axes. The full view corresponds to all the minima set to zero.
     static member inline min (value: float) = Interop.mkBaxisAttr "min" value
+    /// Hide SI prefix for 10^n if |n| is below this number
+    static member inline minexponent (value: int) = Interop.mkBaxisAttr "minexponent" value
+    /// Hide SI prefix for 10^n if |n| is below this number
+    static member inline minexponent (value: float) = Interop.mkBaxisAttr "minexponent" value
     /// Sets the color of the grid lines.
     static member inline minorgridcolor (value: string) = Interop.mkBaxisAttr "minorgridcolor" value
     /// Sets the number of minor grid ticks per major grid tick

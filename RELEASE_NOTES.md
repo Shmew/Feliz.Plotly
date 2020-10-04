@@ -1,3 +1,6 @@
+### 1.5.0 - Sunday, October 4th, 2020
+* Update for plotly.js 1.56.0 release
+
 ### 1.4.1 - Sunday, September 20th, 2020
 * Fix issue with axis rangebreaks
 

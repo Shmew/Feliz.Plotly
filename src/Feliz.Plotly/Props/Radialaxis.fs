@@ -116,6 +116,10 @@ type radialaxis =
     static member inline linewidth (value: int) = Interop.mkRadialaxisAttr "linewidth" value
     /// Sets the width (in px) of the axis line.
     static member inline linewidth (value: float) = Interop.mkRadialaxisAttr "linewidth" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: int) = Interop.mkRadialaxisAttr "minexponent" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: float) = Interop.mkRadialaxisAttr "minexponent" value
     /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     static member inline nticks (value: int) = Interop.mkRadialaxisAttr "nticks" value
     /// Sets the range of this axis. If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from zero in the order it appears.

@@ -50,6 +50,10 @@ type caxis =
     static member inline min (value: int) = Interop.mkCaxisAttr "min" value
     /// The minimum value visible on this axis. The maximum is determined by the sum minus the minimum values of the other two axes. The full view corresponds to all the minima set to zero.
     static member inline min (value: float) = Interop.mkCaxisAttr "min" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: int) = Interop.mkCaxisAttr "minexponent" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: float) = Interop.mkCaxisAttr "minexponent" value
     /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     static member inline nticks (value: int) = Interop.mkCaxisAttr "nticks" value
     /// If \"true\", even 4-digit integers are separated

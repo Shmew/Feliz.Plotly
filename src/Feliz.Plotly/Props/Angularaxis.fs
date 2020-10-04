@@ -112,6 +112,10 @@ type angularaxis =
     static member inline linewidth (value: int) = Interop.mkAngularaxisAttr "linewidth" value
     /// Sets the width (in px) of the axis line.
     static member inline linewidth (value: float) = Interop.mkAngularaxisAttr "linewidth" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: int) = Interop.mkAngularaxisAttr "minexponent" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: float) = Interop.mkAngularaxisAttr "minexponent" value
     /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     static member inline nticks (value: int) = Interop.mkAngularaxisAttr "nticks" value
     /// Set the angular period. Has an effect only when `angularaxis.type` is *category*.

@@ -42,6 +42,10 @@ type colorbar =
     static member inline len (value: int) = Interop.mkColorbarAttr "len" value
     /// Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is this length minus the padding on both ends.
     static member inline len (value: float) = Interop.mkColorbarAttr "len" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: int) = Interop.mkColorbarAttr "minexponent" value
+    /// Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
+    static member inline minexponent (value: float) = Interop.mkColorbarAttr "minexponent" value
     /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     static member inline nticks (value: int) = Interop.mkColorbarAttr "nticks" value
     /// Sets the axis line color.

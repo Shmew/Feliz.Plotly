@@ -112,6 +112,10 @@ type aaxis =
     static member inline min (value: int) = Interop.mkAaxisAttr "min" value
     /// The minimum value visible on this axis. The maximum is determined by the sum minus the minimum values of the other two axes. The full view corresponds to all the minima set to zero.
     static member inline min (value: float) = Interop.mkAaxisAttr "min" value
+    /// Hide SI prefix for 10^n if |n| is below this number
+    static member inline minexponent (value: int) = Interop.mkAaxisAttr "minexponent" value
+    /// Hide SI prefix for 10^n if |n| is below this number
+    static member inline minexponent (value: float) = Interop.mkAaxisAttr "minexponent" value
     /// Sets the color of the grid lines.
     static member inline minorgridcolor (value: string) = Interop.mkAaxisAttr "minorgridcolor" value
     /// Sets the number of minor grid ticks per major grid tick

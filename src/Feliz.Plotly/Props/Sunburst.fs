@@ -298,6 +298,8 @@ type sunburst =
     static member inline parents (values: seq<string option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  parents .
     static member inline parentssrc (value: string) = Interop.mkSunburstAttr "parentssrc" value
+    /// Determines whether or not the sectors are reordered from largest to smallest.
+    static member inline sort (value: bool) = Interop.mkSunburstAttr "sort" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkSunburstAttr "stream" (createObj !!properties)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: bool) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
