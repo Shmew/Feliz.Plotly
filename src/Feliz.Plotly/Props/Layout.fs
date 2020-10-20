@@ -39,6 +39,26 @@ type layout =
     static member inline colorway (value: string) = Interop.mkLayoutAttr "colorway" (value |> Array.singleton |> ResizeArray)
     /// Sets the default trace colors.
     static member inline colorway (values: seq<string>) = Interop.mkLayoutAttr "colorway" (values |> ResizeArray)
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (value: bool) = Interop.mkLayoutAttr "computed" value
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (values: seq<bool>) = Interop.mkLayoutAttr "computed" (values |> ResizeArray)
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (value: System.DateTime) = Interop.mkLayoutAttr "computed" value
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (values: seq<System.DateTime>) = Interop.mkLayoutAttr "computed" (values |> ResizeArray)
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (value: int) = Interop.mkLayoutAttr "computed" value
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (values: seq<int>) = Interop.mkLayoutAttr "computed" (values |> ResizeArray)
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (value: float) = Interop.mkLayoutAttr "computed" value
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (values: seq<float>) = Interop.mkLayoutAttr "computed" (values |> ResizeArray)
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (value: string) = Interop.mkLayoutAttr "computed" value
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode.
+    static member inline computed (values: seq<string>) = Interop.mkLayoutAttr "computed" (values |> ResizeArray)
     /// If provided, a changed value tells `Plotly.react` that one or more data arrays has changed. This way you can modify arrays in-place rather than making a complete new copy for an incremental change. If NOT provided, `Plotly.react` assumes that data arrays are being treated as immutable, thus any data array with a different identity from its predecessor contains new data.
     static member inline datarevision (value: bool) = Interop.mkLayoutAttr "datarevision" value
     /// If provided, a changed value tells `Plotly.react` that one or more data arrays has changed. This way you can modify arrays in-place rather than making a complete new copy for an incremental change. If NOT provided, `Plotly.react` assumes that data arrays are being treated as immutable, thus any data array with a different identity from its predecessor contains new data.

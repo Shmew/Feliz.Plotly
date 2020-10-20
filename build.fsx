@@ -247,22 +247,7 @@ Target.create "YarnInstall" <| fun _ ->
 // --------------------------------------------------------------------------------------
 // Build tasks
 
-Target.create "RunGenerators" <| fun _ ->
-    Trace.trace "Running generators..."
-    !! genGlob
-    |> List.ofSeq
-    |> List.iter (fun proj ->
-        let runArgs = sprintf "-c %s --no-restore -p %s" (configuration()) proj
-        
-        Trace.tracefn "Running dotnet command: %s" runArgs
-        
-        DotNet.exec id "run" runArgs
-        |> fun p ->
-            if p.ExitCode <> 0 then
-                p.Errors |> Seq.iter Trace.traceError
-                failwithf "Failed with exitcode %d" p.ExitCode)
-
-Target.create "Build" <| fun _ ->
+let buildProject (project: string) =
     let setParams (defaults:MSBuildParams) =
         { defaults with
             Verbosity = Some(Quiet)
@@ -275,14 +260,36 @@ Target.create "Build" <| fun _ ->
                     "Version", release.AssemblyVersion
                     "GenerateDocumentationFile", "true"
                     "DependsOnNETStandard", "true"
-                ]
-         }
+                ] }
+
+    TaskRunner.runWithRetries (fun () -> MSBuild.build setParams project) 10
+
+Target.create "RunGenerators" <| fun _ ->
+    let runGenerator (path: string) =
+        CreateProcess.fromCommand(setCmd path [])
+        |> CreateProcess.withTimeout (TimeSpan.MaxValue)
+        |> CreateProcess.ensureExitCodeWithMessage (sprintf "Generator %s failed." path)
+        |> Proc.run
+        |> ignore
+
+    Trace.trace "Running generators..."
+    !! genGlob
+    |> List.ofSeq
+    |> List.iter (fun proj ->
+        buildProject proj
+
+        !! ((FileInfo.ofPath proj).Directory.FullName @@ "bin" @@ (configuration()) @@ "**/*.Generator.*.exe")
+        |> List.ofSeq
+        |> List.tryHead
+        |> Option.iter (fun path -> TaskRunner.runWithRetries (fun () -> runGenerator path) 5))
+
+Target.create "Build" <| fun _ ->
     restoreSolution()
 
     !! libGlob
     -- genGlob
     |> List.ofSeq
-    |> List.iter (MSBuild.build setParams)
+    |> List.iter buildProject
 
 // --------------------------------------------------------------------------------------
 // Publish net core applications

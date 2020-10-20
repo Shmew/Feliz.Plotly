@@ -50,11 +50,11 @@ NUGET
       Fable.Browser.XMLHttpRequest (>= 1.1) - restriction: >= netstandard2.0
       Fable.Core (>= 3.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
-    Fable.SimpleJson (3.11)
+    Fable.SimpleJson (3.16)
       Fable.Core (>= 3.1.5) - restriction: >= netstandard2.0
       Fable.Parsimmon (>= 4.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
-    Feliz (1.14)
+    Feliz (1.14.1)
       Fable.Core (>= 3.1.5) - restriction: >= netstandard2.0
       Fable.React (>= 7.0.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7.2) - restriction: >= netstandard2.0
@@ -247,7 +247,7 @@ NUGET
     FSharp.Control.Reactive (4.4.2) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7.2) - restriction: || (>= net46) (>= netstandard2.0)
       System.Reactive (>= 4.4.1) - restriction: || (>= net46) (>= netstandard2.0)
-    FSharp.Core (4.7.2) - restriction: >= netstandard2.0
+    FSharp.Core (4.7.2)
     FSharp.Json (0.4)
       FSharp.Core (>= 4.6.2) - restriction: >= netstandard2.0
     FSharpLint.Core (0.16.5)
@@ -608,7 +608,7 @@ NUGET
       FSharp.Core (>= 4.3.4) - restriction: && (< net45) (>= netstandard2.0)
 GITHUB
   remote: plotly/plotly.js
-    dist/plot-schema.json (3a7f28e6e891429aa75d0d2b4d376c2d2f0bd531)
+    dist/plot-schema.json (24c740b55bd76ee121c165b54c970787d0a38404)
 GROUP Plotly
 NUGET
   remote: https://www.nuget.org/api/v2
@@ -634,7 +634,7 @@ NUGET
       Fable.Browser.Dom (>= 2.0.1) - restriction: >= netstandard2.0
       Fable.Core (>= 3.1.5) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7.1) - restriction: >= netstandard2.0
-    Feliz (1.14)
+    Feliz (1.14.1)
       Fable.Core (>= 3.1.5) - restriction: >= netstandard2.0
       Fable.React (>= 7.0.1) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7.2) - restriction: >= netstandard2.0

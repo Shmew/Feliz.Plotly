@@ -298,6 +298,10 @@ type sunburst =
     static member inline parents (values: seq<string option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  parents .
     static member inline parentssrc (value: string) = Interop.mkSunburstAttr "parentssrc" value
+    /// Rotates the whole diagram counterclockwise by some angle. By default the first slice starts at 3 o'clock.
+    static member inline rotation (value: int) = Interop.mkSunburstAttr "rotation" value
+    /// Rotates the whole diagram counterclockwise by some angle. By default the first slice starts at 3 o'clock.
+    static member inline rotation (value: float) = Interop.mkSunburstAttr "rotation" value
     /// Determines whether or not the sectors are reordered from largest to smallest.
     static member inline sort (value: bool) = Interop.mkSunburstAttr "sort" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkSunburstAttr "stream" (createObj !!properties)

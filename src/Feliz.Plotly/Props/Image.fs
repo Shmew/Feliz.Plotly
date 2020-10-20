@@ -211,13 +211,13 @@ type image =
     static member inline opacity (value: int) = Interop.mkImageAttr "opacity" value
     /// Sets the opacity of the trace.
     static member inline opacity (value: float) = Interop.mkImageAttr "opacity" value
-    /// Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width.
+    /// Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width. When `xref` ends with ` domain`, units are sized relative to the axis width.
     static member inline sizex (value: int) = Interop.mkImageAttr "sizex" value
-    /// Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width.
+    /// Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width. When `xref` ends with ` domain`, units are sized relative to the axis width.
     static member inline sizex (value: float) = Interop.mkImageAttr "sizex" value
-    /// Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height.
+    /// Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height. When `yref` ends with ` domain`, units are sized relative to the axis height.
     static member inline sizey (value: int) = Interop.mkImageAttr "sizey" value
-    /// Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height.
+    /// Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height. When `yref` ends with ` domain`, units are sized relative to the axis height.
     static member inline sizey (value: float) = Interop.mkImageAttr "sizey" value
     /// Specifies the data URI of the image to be visualized. The URI consists of \"data:image/[<media subtype>][;base64],<data>\
     static member inline source (value: string) = Interop.mkImageAttr "source" value
@@ -518,7 +518,7 @@ module image =
         static member inline left = Interop.mkImageAttr "xanchor" "left"
         static member inline right = Interop.mkImageAttr "xanchor" "right"
 
-    /// Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set to *paper*, the `x` position refers to the distance from the left of plot in normalized coordinates where *0* (*1*) corresponds to the left (right).
+    /// Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis.
     [<Erase>]
     type xref =
         static member inline paper = Interop.mkImageAttr "xref" "paper"
@@ -532,7 +532,7 @@ module image =
         static member inline middle = Interop.mkImageAttr "yanchor" "middle"
         static member inline top = Interop.mkImageAttr "yanchor" "top"
 
-    /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
+    /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis.
     [<Erase>]
     type yref =
         static member inline paper = Interop.mkImageAttr "yref" "paper"

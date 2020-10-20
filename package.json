@@ -1,6 +1,6 @@
 {
   "name": "feliz.-plotly",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Fable bindings written in the Feliz-style for plotly.js",
   "homepage": "https://github.com/Shmew/Feliz.Plotly",
   "bugs": {
