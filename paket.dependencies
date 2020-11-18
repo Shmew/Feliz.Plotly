@@ -1,7 +1,6 @@
-version 5.247.4
+version 5.251.0
 
 framework: auto-detect
-generate_load_scripts: true
 
 group Plotly
 	source https://nuget.org/api/v2
@@ -10,14 +9,14 @@ group Plotly
     nuget Fable.Core ~> 3
     nuget Fable.Browser.Dom ~> 2
     nuget Feliz ~> 1.13
-    nuget FSharp.Core ~> 4.7
+    nuget FSharp.Core >= 4.7.2 lowest_matching: true
 
 group Generator
     source https://nuget.org/api/v2
 	source https://api.nuget.org/v3/index.json
 
     nuget Fake.IO.FileSystem ~> 5
-    nuget FSharp.Core ~> 4.7
+    nuget FSharp.Core >= 4.7.2 lowest_matching: true
     nuget FSharp.Data ~> 3
     
     github plotly/plotly.js:24c740b55bd76ee121c165b54c970787d0a38404 dist/plot-schema.json
@@ -36,7 +35,7 @@ group Docs
     nuget Feliz.Markdown ~> 1
     nuget Feliz.Router ~> 3
     nuget Feliz.UseElmish ~> 1
-    nuget FSharp.Core ~> 4.7
+    nuget FSharp.Core >= 4.7.2 lowest_matching: true
     nuget Zanaptak.TypedCssClasses ~> 0
 
 group Tooling

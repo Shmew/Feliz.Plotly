@@ -1,3 +1,6 @@
+### 1.6.1 - Wednesday, November 18th, 2020
+* Support FSharp.Core 5.0
+
 ### 1.6.0 - Tuesday, October 10th, 2020
 * Update for plotly.js 1.57.0 release
 
