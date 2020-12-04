@@ -318,6 +318,12 @@ type angularaxis =
 
 [<Erase;RequireQualifiedAccess>]
 module angularaxis =
+    /// Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
+    [<Erase>]
+    type autotypenumbers =
+        static member inline convertTypes = Interop.mkAngularaxisAttr "autotypenumbers" "convert types"
+        static member inline strict = Interop.mkAngularaxisAttr "autotypenumbers" "strict"
+
     /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
     [<Erase>]
     type categoryorder =

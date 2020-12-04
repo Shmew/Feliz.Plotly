@@ -343,6 +343,12 @@ module radialaxis =
         static member inline false' = Interop.mkRadialaxisAttr "autorange" false
         static member inline true' = Interop.mkRadialaxisAttr "autorange" true
 
+    /// Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
+    [<Erase>]
+    type autotypenumbers =
+        static member inline convertTypes = Interop.mkRadialaxisAttr "autotypenumbers" "convert types"
+        static member inline strict = Interop.mkRadialaxisAttr "autotypenumbers" "strict"
+
     /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
     [<Erase>]
     type calendar =

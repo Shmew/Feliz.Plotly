@@ -128,6 +128,7 @@ module Types =
     type IRangefontProperty = interface end
     type IRangeselectorProperty = interface end
     type IRangesliderProperty = interface end
+    type IRootProperty = interface end
     type IRotationProperty = interface end
     type ISankeyProperty = interface end
     type IScatter3dProperty = interface end

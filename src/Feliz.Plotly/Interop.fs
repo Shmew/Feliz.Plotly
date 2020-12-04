@@ -127,6 +127,7 @@ module Interop =
     let inline mkRangefontAttr (key: string) (value: obj) : IRangefontProperty = unbox (key, value)
     let inline mkRangeselectorAttr (key: string) (value: obj) : IRangeselectorProperty = unbox (key, value)
     let inline mkRangesliderAttr (key: string) (value: obj) : IRangesliderProperty = unbox (key, value)
+    let inline mkRootAttr (key: string) (value: obj) : IRootProperty = unbox (key, value)
     let inline mkRotationAttr (key: string) (value: obj) : IRotationProperty = unbox (key, value)
     let inline mkSankeyAttr (key: string) (value: obj) : ISankeyProperty = unbox (key, value)
     let inline mkScatter3dAttr (key: string) (value: obj) : IScatter3dProperty = unbox (key, value)

@@ -1098,6 +1098,8 @@ module ApiParser =
               "static member inline onAutoSize (handler: unit -> unit) = Interop.mkPlotAttr \"onAutoSize\" handler"
               "Callback executed when a plot is being exported, before the export occurs.",
               "static member inline onBeforeExport (handler: unit -> unit) = Interop.mkPlotAttr \"onBeforeExport\" handler"
+              "Callback executed when a plot is about to be hovered.",
+              "static member inline onBeforeHover (handler: unit -> unit) = Interop.mkPlotAttr \"onBeforeHover\" handler"
               "Callback executed when a menu button is clicked.",
               "static member inline onButtonClicked (handler: Events.ButtonClickedEvent -> unit) = Interop.mkPlotAttr \"onButtonClicked\" handler"
               "Callback executed when a plot item is clicked.",

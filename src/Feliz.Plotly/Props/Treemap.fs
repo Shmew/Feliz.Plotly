@@ -298,6 +298,7 @@ type treemap =
     /// Sets the source reference on Chart Studio Cloud for  parents .
     static member inline parentssrc (value: string) = Interop.mkTreemapAttr "parentssrc" value
     static member inline pathbar (properties: #IPathbarProperty list) = Interop.mkTreemapAttr "pathbar" (createObj !!properties)
+    static member inline root (properties: #IRootProperty list) = Interop.mkTreemapAttr "root" (createObj !!properties)
     /// Determines whether or not the sectors are reordered from largest to smallest.
     static member inline sort (value: bool) = Interop.mkTreemapAttr "sort" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkTreemapAttr "stream" (createObj !!properties)

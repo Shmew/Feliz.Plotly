@@ -305,6 +305,12 @@ type layout =
 
 [<Erase;RequireQualifiedAccess>]
 module layout =
+    /// Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. This is the default value; however it could be overridden for individual axes.
+    [<Erase>]
+    type autotypenumbers =
+        static member inline convertTypes = Interop.mkLayoutAttr "autotypenumbers" "convert types"
+        static member inline strict = Interop.mkLayoutAttr "autotypenumbers" "strict"
+
     /// Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked on top of one another, with negative values below the axis, positive values above With *group*, the bars are plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
     [<Erase>]
     type barmode =

@@ -288,6 +288,16 @@ module colorbar =
         static member inline fraction = Interop.mkColorbarAttr "thicknessmode" "fraction"
         static member inline pixels = Interop.mkColorbarAttr "thicknessmode" "pixels"
 
+    /// Determines where tick labels are drawn.
+    [<Erase>]
+    type ticklabelposition =
+        static member inline insideBottom = Interop.mkColorbarAttr "ticklabelposition" "inside bottom"
+        static member inline insideTop = Interop.mkColorbarAttr "ticklabelposition" "inside top"
+        static member inline inside = Interop.mkColorbarAttr "ticklabelposition" "inside"
+        static member inline outsideBottom = Interop.mkColorbarAttr "ticklabelposition" "outside bottom"
+        static member inline outsideTop = Interop.mkColorbarAttr "ticklabelposition" "outside top"
+        static member inline outside = Interop.mkColorbarAttr "ticklabelposition" "outside"
+
     /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
     [<Erase>]
     type tickmode =

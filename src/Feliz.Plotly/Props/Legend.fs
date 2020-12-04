@@ -20,6 +20,10 @@ type legend =
     static member inline borderwidth (value: float) = Interop.mkLegendAttr "borderwidth" value
     /// Sets the font used to text the legend items.
     static member inline font (properties: #IFontProperty list) = Interop.mkLegendAttr "font" (createObj !!properties)
+    /// Sets the width (in px) of the legend item symbols (the part other than the title.text).
+    static member inline itemwidth (value: int) = Interop.mkLegendAttr "itemwidth" value
+    /// Sets the width (in px) of the legend item symbols (the part other than the title.text).
+    static member inline itemwidth (value: float) = Interop.mkLegendAttr "itemwidth" value
     static member inline title (properties: #ITitleProperty list) = Interop.mkLegendAttr "title" (createObj !!properties)
     static member inline title (value: string) = Interop.mkLegendAttr "title" (createObj !!((Interop.mkTitleAttr "text" value) |> Array.singleton))
     /// Sets the amount of vertical space (in px) between legend groups.

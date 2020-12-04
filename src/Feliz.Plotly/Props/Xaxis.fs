@@ -398,6 +398,12 @@ module xaxis =
         static member inline false' = Interop.mkXaxisAttr "autorange" false
         static member inline true' = Interop.mkXaxisAttr "autorange" true
 
+    /// Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers.
+    [<Erase>]
+    type autotypenumbers =
+        static member inline convertTypes = Interop.mkXaxisAttr "autotypenumbers" "convert types"
+        static member inline strict = Interop.mkXaxisAttr "autotypenumbers" "strict"
+
     /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
     [<Erase>]
     type calendar =
@@ -448,7 +454,7 @@ module xaxis =
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
         static member inline hsl (h,s,l) = Interop.mkXaxisAttr "color" (Feliz.color.hsl(h,s,l))
 
-    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*, or by decreasing the *domain*. Default is *domain* for axes containing image traces, *range* otherwise.
     [<Erase>]
     type constrain =
         static member inline domain = Interop.mkXaxisAttr "constrain" "domain"
@@ -573,6 +579,20 @@ module xaxis =
     type ticklabelmode =
         static member inline instant = Interop.mkXaxisAttr "ticklabelmode" "instant"
         static member inline period = Interop.mkXaxisAttr "ticklabelmode" "period"
+
+    /// Determines where tick labels are drawn with respect to the axis Please note that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*. Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has no effect on *multicategory* axes or when `tickson` is set to *boundaries*.
+    [<Erase>]
+    type ticklabelposition =
+        static member inline insideBottom = Interop.mkXaxisAttr "ticklabelposition" "inside bottom"
+        static member inline insideLeft = Interop.mkXaxisAttr "ticklabelposition" "inside left"
+        static member inline insideRight = Interop.mkXaxisAttr "ticklabelposition" "inside right"
+        static member inline insideTop = Interop.mkXaxisAttr "ticklabelposition" "inside top"
+        static member inline inside = Interop.mkXaxisAttr "ticklabelposition" "inside"
+        static member inline outsideBottom = Interop.mkXaxisAttr "ticklabelposition" "outside bottom"
+        static member inline outsideLeft = Interop.mkXaxisAttr "ticklabelposition" "outside left"
+        static member inline outsideRight = Interop.mkXaxisAttr "ticklabelposition" "outside right"
+        static member inline outsideTop = Interop.mkXaxisAttr "ticklabelposition" "outside top"
+        static member inline outside = Interop.mkXaxisAttr "ticklabelposition" "outside"
 
     /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
     [<Erase>]
