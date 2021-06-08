@@ -1,3 +1,6 @@
+### 2.0.0 - Tuesday, June 8th, 2021
+* Update for plotly.js 2.0.0 release
+
 ### 1.7.0 - Friday, December 4th, 2020
 * Update for plotly.js 1.58.0 release
 
