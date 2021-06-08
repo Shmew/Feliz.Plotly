@@ -11,23 +11,23 @@ open Feliz
 [<Erase>]
 type contourcarpet =
     /// Sets the x coordinates.
-    static member inline a (value: bool) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
+    static member inline a (value: bool) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline a (values: seq<bool>) = Interop.mkContourcarpetAttr "a" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline a (value: System.DateTime) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
+    static member inline a (value: System.DateTime) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline a (values: seq<System.DateTime>) = Interop.mkContourcarpetAttr "a" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline a (value: float) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
+    static member inline a (value: float) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline a (values: seq<float>) = Interop.mkContourcarpetAttr "a" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline a (value: int) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
+    static member inline a (value: int) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline a (values: seq<int>) = Interop.mkContourcarpetAttr "a" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline a (value: string) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton)
+    static member inline a (value: string) = Interop.mkContourcarpetAttr "a" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline a (values: seq<string>) = Interop.mkContourcarpetAttr "a" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -93,23 +93,23 @@ type contourcarpet =
     /// Determines whether or not the contour level attributes are picked by an algorithm. If *true*, the number of contour levels can be set in `ncontours`. If *false*, set the contour level attributes in `contours`.
     static member inline autocontour (value: bool) = Interop.mkContourcarpetAttr "autocontour" value
     /// Sets the y coordinates.
-    static member inline b (value: bool) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
+    static member inline b (value: bool) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline b (values: seq<bool>) = Interop.mkContourcarpetAttr "b" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline b (value: System.DateTime) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
+    static member inline b (value: System.DateTime) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline b (values: seq<System.DateTime>) = Interop.mkContourcarpetAttr "b" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline b (value: float) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
+    static member inline b (value: float) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline b (values: seq<float>) = Interop.mkContourcarpetAttr "b" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline b (value: int) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
+    static member inline b (value: int) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline b (values: seq<int>) = Interop.mkContourcarpetAttr "b" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline b (value: string) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton)
+    static member inline b (value: string) = Interop.mkContourcarpetAttr "b" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline b (values: seq<string>) = Interop.mkContourcarpetAttr "b" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -187,23 +187,23 @@ type contourcarpet =
     static member inline colorscale (values: seq<string []>) = Interop.mkContourcarpetAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
     static member inline contours (properties: #IContoursProperty list) = Interop.mkContourcarpetAttr "contours" (createObj !!properties)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkContourcarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkContourcarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkContourcarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkContourcarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkContourcarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkContourcarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -255,23 +255,23 @@ type contourcarpet =
     /// Sets the fill color if `contours.type` is *constraint*. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
     static member inline fillcolor (value: string) = Interop.mkContourcarpetAttr "fillcolor" value
     /// Same as `text`.
-    static member inline hovertext (value: bool) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: bool) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<bool>) = Interop.mkContourcarpetAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: System.DateTime) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: System.DateTime) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<System.DateTime>) = Interop.mkContourcarpetAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: float) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: float) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<float>) = Interop.mkContourcarpetAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: int) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: int) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<int>) = Interop.mkContourcarpetAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: string) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: string) = Interop.mkContourcarpetAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkContourcarpetAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
@@ -313,23 +313,23 @@ type contourcarpet =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkContourcarpetAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkContourcarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkContourcarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkContourcarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkContourcarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkContourcarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkContourcarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -391,23 +391,23 @@ type contourcarpet =
     static member inline showscale (value: bool) = Interop.mkContourcarpetAttr "showscale" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkContourcarpetAttr "stream" (createObj !!properties)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: bool) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
+    static member inline text (value: bool) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<bool>) = Interop.mkContourcarpetAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: System.DateTime) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
+    static member inline text (value: System.DateTime) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<System.DateTime>) = Interop.mkContourcarpetAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: float) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
+    static member inline text (value: float) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkContourcarpetAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: int) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
+    static member inline text (value: int) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int>) = Interop.mkContourcarpetAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: string) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton)
+    static member inline text (value: string) = Interop.mkContourcarpetAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<string>) = Interop.mkContourcarpetAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
@@ -481,23 +481,23 @@ type contourcarpet =
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkContourcarpetAttr "yaxis" value
     /// Sets the z data.
-    static member inline z (value: bool) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<bool>) = Interop.mkContourcarpetAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: System.DateTime) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<System.DateTime>) = Interop.mkContourcarpetAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: float) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkContourcarpetAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: int) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<int>) = Interop.mkContourcarpetAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: string) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkContourcarpetAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<string>) = Interop.mkContourcarpetAttr "z" (values |> ResizeArray)
     /// Sets the z data.

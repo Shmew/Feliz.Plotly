@@ -15,23 +15,23 @@ type yaxis =
     /// Sets the background color of this axis' wall.
     static member inline backgroundcolor (value: string) = Interop.mkYaxisAttr "backgroundcolor" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: bool) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkYaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: System.DateTime) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: System.DateTime) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkYaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: float) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkYaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: int) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int>) = Interop.mkYaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: string) = Interop.mkYaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkYaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -581,7 +581,14 @@ module yaxis =
         static member inline instant = Interop.mkYaxisAttr "ticklabelmode" "instant"
         static member inline period = Interop.mkYaxisAttr "ticklabelmode" "period"
 
-    /// Determines where tick labels are drawn with respect to the axis Please note that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*. Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has no effect on *multicategory* axes or when `tickson` is set to *boundaries*.
+    /// Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The default value for inside tick labels is *hide past domain*. Otherwise on *category* and *multicategory* axes the default is *allow*. In other cases the default is *hide past div*.
+    [<Erase>]
+    type ticklabeloverflow =
+        static member inline allow = Interop.mkYaxisAttr "ticklabeloverflow" "allow"
+        static member inline hidePastDiv = Interop.mkYaxisAttr "ticklabeloverflow" "hide past div"
+        static member inline hidePastDomain = Interop.mkYaxisAttr "ticklabeloverflow" "hide past domain"
+
+    /// Determines where tick labels are drawn with respect to the axis Please note that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*. Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has no effect on *multicategory* axes or when `tickson` is set to *boundaries*. When used on axes linked by `matches` or `scaleanchor`, no extra padding for inside labels would be added by autorange, so that the scales could match.
     [<Erase>]
     type ticklabelposition =
         static member inline insideBottom = Interop.mkYaxisAttr "ticklabelposition" "inside bottom"

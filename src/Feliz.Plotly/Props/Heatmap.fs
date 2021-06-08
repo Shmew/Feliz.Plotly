@@ -28,23 +28,23 @@ type heatmap =
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in. It is defaulted to true if `z` is a one dimensional array and `zsmooth` is not false; otherwise it is defaulted to false.
     static member inline connectgaps (value: bool) = Interop.mkHeatmapAttr "connectgaps" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkHeatmapAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHeatmapAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkHeatmapAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkHeatmapAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkHeatmapAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -100,30 +100,30 @@ type heatmap =
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHeatmapAttr "hoverlabel" (createObj !!properties)
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data have hover labels associated with them.
     static member inline hoverongaps (value: bool) = Interop.mkHeatmapAttr "hoverongaps" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkHeatmapAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkHeatmapAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkHeatmapAttr "hovertemplatesrc" value
     /// Same as `text`.
-    static member inline hovertext (value: bool) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: bool) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<bool>) = Interop.mkHeatmapAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: System.DateTime) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: System.DateTime) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: float) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: float) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<float>) = Interop.mkHeatmapAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: int) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: int) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<int>) = Interop.mkHeatmapAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
-    static member inline hovertext (value: string) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton)
+    static member inline hovertext (value: string) = Interop.mkHeatmapAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<string>) = Interop.mkHeatmapAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
@@ -165,23 +165,23 @@ type heatmap =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkHeatmapAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkHeatmapAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkHeatmapAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkHeatmapAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkHeatmapAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkHeatmapAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -240,23 +240,23 @@ type heatmap =
     static member inline showscale (value: bool) = Interop.mkHeatmapAttr "showscale" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkHeatmapAttr "stream" (createObj !!properties)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: bool) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: bool) = Interop.mkHeatmapAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<bool>) = Interop.mkHeatmapAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: System.DateTime) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: System.DateTime) = Interop.mkHeatmapAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: float) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: float) = Interop.mkHeatmapAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float>) = Interop.mkHeatmapAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: int) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: int) = Interop.mkHeatmapAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int>) = Interop.mkHeatmapAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
-    static member inline text (value: string) = Interop.mkHeatmapAttr "text" (value |> Array.singleton)
+    static member inline text (value: string) = Interop.mkHeatmapAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<string>) = Interop.mkHeatmapAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
@@ -323,23 +323,23 @@ type heatmap =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkHeatmapAttr "uirevision" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: bool) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkHeatmapAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkHeatmapAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: System.DateTime) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkHeatmapAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: float) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkHeatmapAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkHeatmapAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: int) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkHeatmapAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkHeatmapAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: string) = Interop.mkHeatmapAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkHeatmapAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<string>) = Interop.mkHeatmapAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -406,6 +406,8 @@ type heatmap =
     static member inline xgap (value: int) = Interop.mkHeatmapAttr "xgap" value
     /// Sets the horizontal gap (in pixels) between bricks.
     static member inline xgap (value: float) = Interop.mkHeatmapAttr "xgap" value
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkHeatmapAttr "xhoverformat" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: bool) = Interop.mkHeatmapAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -449,23 +451,23 @@ type heatmap =
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkHeatmapAttr "xsrc" value
     /// Sets the y coordinates.
-    static member inline y (value: bool) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkHeatmapAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkHeatmapAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: System.DateTime) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkHeatmapAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: float) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkHeatmapAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkHeatmapAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: int) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkHeatmapAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkHeatmapAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: string) = Interop.mkHeatmapAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkHeatmapAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<string>) = Interop.mkHeatmapAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -532,6 +534,8 @@ type heatmap =
     static member inline ygap (value: int) = Interop.mkHeatmapAttr "ygap" value
     /// Sets the vertical gap (in pixels) between bricks.
     static member inline ygap (value: float) = Interop.mkHeatmapAttr "ygap" value
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkHeatmapAttr "yhoverformat" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline yperiod (value: bool) = Interop.mkHeatmapAttr "yperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -575,23 +579,23 @@ type heatmap =
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkHeatmapAttr "ysrc" value
     /// Sets the z data.
-    static member inline z (value: bool) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkHeatmapAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<bool>) = Interop.mkHeatmapAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: System.DateTime) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkHeatmapAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<System.DateTime>) = Interop.mkHeatmapAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: float) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkHeatmapAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<float>) = Interop.mkHeatmapAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: int) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkHeatmapAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<int>) = Interop.mkHeatmapAttr "z" (values |> ResizeArray)
     /// Sets the z data.
-    static member inline z (value: string) = Interop.mkHeatmapAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkHeatmapAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<string>) = Interop.mkHeatmapAttr "z" (values |> ResizeArray)
     /// Sets the z data.
@@ -632,7 +636,7 @@ type heatmap =
     static member inline z (values: seq<string option>) = Interop.mkHeatmapAttr "z" (values |> ResizeArray)
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     static member inline zauto (value: bool) = Interop.mkHeatmapAttr "zauto" value
-    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    /// Sets the hover text formatting rule for `z`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format By default the values are formatted using generic number format.
     static member inline zhoverformat (value: string) = Interop.mkHeatmapAttr "zhoverformat" value
     /// Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.
     static member inline zmax (value: int) = Interop.mkHeatmapAttr "zmax" value

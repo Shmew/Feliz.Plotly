@@ -11,23 +11,23 @@ open Feliz
 [<Erase>]
 type splom =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkSplomAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkSplomAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkSplomAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkSplomAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkSplomAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkSplomAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkSplomAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkSplomAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkSplomAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkSplomAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkSplomAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -75,9 +75,9 @@ type splom =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkSplomAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkSplomAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkSplomAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkSplomAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkSplomAttr "hovertemplatesrc" value
@@ -88,23 +88,23 @@ type splom =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkSplomAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkSplomAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkSplomAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkSplomAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkSplomAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkSplomAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkSplomAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkSplomAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkSplomAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkSplomAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkSplomAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkSplomAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -218,10 +218,14 @@ type splom =
     static member inline xaxes (value: string) = Interop.mkSplomAttr "xaxes" (value |> Array.singleton |> ResizeArray)
     /// Sets the list of x axes corresponding to dimensions of this splom trace. By default, a splom will match the first N xaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     static member inline xaxes (values: seq<string>) = Interop.mkSplomAttr "xaxes" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkSplomAttr "xhoverformat" value
     /// Sets the list of y axes corresponding to dimensions of this splom trace. By default, a splom will match the first N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     static member inline yaxes (value: string) = Interop.mkSplomAttr "yaxes" (value |> Array.singleton |> ResizeArray)
     /// Sets the list of y axes corresponding to dimensions of this splom trace. By default, a splom will match the first N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     static member inline yaxes (values: seq<string>) = Interop.mkSplomAttr "yaxes" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkSplomAttr "yhoverformat" value
 
 [<Erase;RequireQualifiedAccess>]
 module splom =

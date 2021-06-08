@@ -20,23 +20,23 @@ type histogram =
     static member inline bingroup (value: string) = Interop.mkHistogramAttr "bingroup" value
     static member inline cumulative (properties: #ICumulativeProperty list) = Interop.mkHistogramAttr "cumulative" (createObj !!properties)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkHistogramAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkHistogramAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -84,9 +84,9 @@ type histogram =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkHistogramAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkHistogramAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkHistogramAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkHistogramAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkHistogramAttr "hovertemplatesrc" value
@@ -97,23 +97,23 @@ type histogram =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkHistogramAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkHistogramAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkHistogramAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkHistogramAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkHistogramAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkHistogramAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkHistogramAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkHistogramAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkHistogramAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkHistogramAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkHistogramAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkHistogramAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -226,23 +226,23 @@ type histogram =
     static member inline uirevision (values: seq<string>) = Interop.mkHistogramAttr "uirevision" (values |> ResizeArray)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkHistogramAttr "unselected" (createObj !!properties)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: bool) = Interop.mkHistogramAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkHistogramAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<bool>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: System.DateTime) = Interop.mkHistogramAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkHistogramAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<System.DateTime>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: float) = Interop.mkHistogramAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkHistogramAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<float>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: int) = Interop.mkHistogramAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkHistogramAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<int>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
-    static member inline x (value: string) = Interop.mkHistogramAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkHistogramAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<string>) = Interop.mkHistogramAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
@@ -286,26 +286,28 @@ type histogram =
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkHistogramAttr "xaxis" value
     static member inline xbins (properties: #IXbinsProperty list) = Interop.mkHistogramAttr "xbins" (createObj !!properties)
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkHistogramAttr "xhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkHistogramAttr "xsrc" value
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: bool) = Interop.mkHistogramAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkHistogramAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<bool>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: System.DateTime) = Interop.mkHistogramAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkHistogramAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<System.DateTime>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: float) = Interop.mkHistogramAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkHistogramAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<float>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: int) = Interop.mkHistogramAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkHistogramAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<int>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
-    static member inline y (value: string) = Interop.mkHistogramAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkHistogramAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<string>) = Interop.mkHistogramAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
@@ -349,6 +351,8 @@ type histogram =
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkHistogramAttr "yaxis" value
     static member inline ybins (properties: #IYbinsProperty list) = Interop.mkHistogramAttr "ybins" (createObj !!properties)
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkHistogramAttr "yhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkHistogramAttr "ysrc" value
 

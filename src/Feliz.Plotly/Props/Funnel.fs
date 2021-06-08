@@ -16,23 +16,23 @@ type funnel =
     static member inline cliponaxis (value: bool) = Interop.mkFunnelAttr "cliponaxis" value
     static member inline connector (properties: #IConnectorProperty list) = Interop.mkFunnelAttr "connector" (createObj !!properties)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkFunnelAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkFunnelAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkFunnelAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkFunnelAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkFunnelAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkFunnelAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -86,9 +86,9 @@ type funnel =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkFunnelAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkFunnelAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `percentInitial`, `percentPrevious` and `percentTotal`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `percentInitial`, `percentPrevious` and `percentTotal`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkFunnelAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `percentInitial`, `percentPrevious` and `percentTotal`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `percentInitial`, `percentPrevious` and `percentTotal`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkFunnelAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkFunnelAttr "hovertemplatesrc" value
@@ -99,23 +99,23 @@ type funnel =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkFunnelAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkFunnelAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkFunnelAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkFunnelAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkFunnelAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkFunnelAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkFunnelAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkFunnelAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkFunnelAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkFunnelAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkFunnelAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkFunnelAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkFunnelAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkFunnelAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkFunnelAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkFunnelAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -212,7 +212,7 @@ type funnel =
     static member inline textfont (properties: #ITextfontProperty list) = Interop.mkFunnelAttr "textfont" (createObj !!properties)
     /// Determines which trace information appear on the graph. In the case of having multiple funnels, percentages & totals are computed separately (per trace).
     static member inline textinfo (properties: #IFunnelProperty list) = Interop.mkFunnelAttr "textinfo" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside.
+    /// Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside. If *none*, no text appears.
     static member inline textposition (properties: #IFunnelProperty list) = Interop.mkFunnelAttr "textposition" (properties |> List.map (Bindings.getKV >> snd) |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  textposition .
     static member inline textpositionsrc (value: string) = Interop.mkFunnelAttr "textpositionsrc" value
@@ -252,23 +252,23 @@ type funnel =
     /// Sets the bar width (in position axis units).
     static member inline width (value: float) = Interop.mkFunnelAttr "width" value
     /// Sets the x coordinates.
-    static member inline x (value: bool) = Interop.mkFunnelAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkFunnelAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkFunnelAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: System.DateTime) = Interop.mkFunnelAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkFunnelAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkFunnelAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: float) = Interop.mkFunnelAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkFunnelAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkFunnelAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: int) = Interop.mkFunnelAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkFunnelAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkFunnelAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: string) = Interop.mkFunnelAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkFunnelAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<string>) = Interop.mkFunnelAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -331,6 +331,8 @@ type funnel =
     static member inline xaxis (anchorId: int) = Interop.mkFunnelAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkFunnelAttr "xaxis" value
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkFunnelAttr "xhoverformat" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: bool) = Interop.mkFunnelAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -374,23 +376,23 @@ type funnel =
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkFunnelAttr "xsrc" value
     /// Sets the y coordinates.
-    static member inline y (value: bool) = Interop.mkFunnelAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkFunnelAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkFunnelAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: System.DateTime) = Interop.mkFunnelAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkFunnelAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkFunnelAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: float) = Interop.mkFunnelAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkFunnelAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkFunnelAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: int) = Interop.mkFunnelAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkFunnelAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkFunnelAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: string) = Interop.mkFunnelAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkFunnelAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<string>) = Interop.mkFunnelAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -453,6 +455,8 @@ type funnel =
     static member inline yaxis (anchorId: int) = Interop.mkFunnelAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkFunnelAttr "yaxis" value
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkFunnelAttr "yhoverformat" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline yperiod (value: bool) = Interop.mkFunnelAttr "yperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -544,7 +548,7 @@ module funnel =
         static member inline text = Interop.mkFunnelAttr "textinfo" "text"
         static member inline value = Interop.mkFunnelAttr "textinfo" "value"
 
-    /// Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside.
+    /// Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another bar stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside the bar, but if the bar is too small and no bar is stacked on this one the text is moved outside. If *none*, no text appears.
     [<Erase>]
     type textposition =
         static member inline auto = Interop.mkFunnelAttr "textposition" "auto"

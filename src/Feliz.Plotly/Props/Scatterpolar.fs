@@ -15,23 +15,23 @@ type scatterpolar =
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
     static member inline connectgaps (value: bool) = Interop.mkScatterpolarAttr "connectgaps" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScatterpolarAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScatterpolarAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkScatterpolarAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkScatterpolarAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScatterpolarAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -89,9 +89,9 @@ type scatterpolar =
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkScatterpolarAttr "hoverlabel" (createObj !!properties)
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
     static member inline hoveron (properties: #IScatterpolarProperty list) = Interop.mkScatterpolarAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkScatterpolarAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkScatterpolarAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkScatterpolarAttr "hovertemplatesrc" value
@@ -102,23 +102,23 @@ type scatterpolar =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkScatterpolarAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScatterpolarAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScatterpolarAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkScatterpolarAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkScatterpolarAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScatterpolarAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -174,23 +174,23 @@ type scatterpolar =
     /// Sets the opacity of the trace.
     static member inline opacity (value: float) = Interop.mkScatterpolarAttr "opacity" value
     /// Sets the radial coordinates
-    static member inline r (value: bool) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton)
+    static member inline r (value: bool) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
     static member inline r (values: seq<bool>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: System.DateTime) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton)
+    static member inline r (value: System.DateTime) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
     static member inline r (values: seq<System.DateTime>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: float) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton)
+    static member inline r (value: float) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
     static member inline r (values: seq<float>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: int) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton)
+    static member inline r (value: int) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
     static member inline r (values: seq<int>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates
-    static member inline r (value: string) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton)
+    static member inline r (value: string) = Interop.mkScatterpolarAttr "r" (value |> Array.singleton |> ResizeArray)
     /// Sets the radial coordinates
     static member inline r (values: seq<string>) = Interop.mkScatterpolarAttr "r" (values |> ResizeArray)
     /// Sets the radial coordinates

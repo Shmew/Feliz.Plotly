@@ -4,6 +4,19 @@ module Program =
     open Fake.IO
     open Fake.IO.FileSystemOperators
 
+    let retry maxRuns f =
+        let rec retry run count f =
+            if run < count then
+                try f()
+                with _ -> 
+                    Async.Sleep 1000
+                    |> Async.RunSynchronously
+
+                    retry (run + 1) count f
+            else f()
+
+        retry 0 maxRuns f
+
     [<EntryPoint>]
     let main _ =
         let api = ApiParser.parseApi()
@@ -14,8 +27,11 @@ module Program =
         let localesDir  = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Locales"
         let localesFile = __SOURCE_DIRECTORY__ @@ "../Feliz.Plotly/Locales.fs"
 
-        Shell.cleanDir propsDir
-        Shell.cleanDir localesDir
+        fun () -> Shell.cleanDir propsDir
+        |> retry 10
+
+        fun () -> Shell.cleanDir localesDir
+        |> retry 10
 
         let locales = Locales.read()
         

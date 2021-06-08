@@ -29,23 +29,23 @@ type y =
     /// Sets the width of the highlighted contour lines.
     static member inline highlightwidth (value: float) = Interop.mkYAttr "highlightwidth" value
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
-    static member inline locations (value: bool) = Interop.mkYAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: bool) = Interop.mkYAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
     static member inline locations (values: seq<bool>) = Interop.mkYAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
-    static member inline locations (value: System.DateTime) = Interop.mkYAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: System.DateTime) = Interop.mkYAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkYAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
-    static member inline locations (value: float) = Interop.mkYAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: float) = Interop.mkYAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
     static member inline locations (values: seq<float>) = Interop.mkYAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
-    static member inline locations (value: int) = Interop.mkYAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: int) = Interop.mkYAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
     static member inline locations (values: seq<int>) = Interop.mkYAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
-    static member inline locations (value: string) = Interop.mkYAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: string) = Interop.mkYAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.
     static member inline locations (values: seq<string>) = Interop.mkYAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis y except start and end.

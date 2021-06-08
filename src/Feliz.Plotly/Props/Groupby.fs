@@ -13,23 +13,23 @@ type groupby =
     /// Determines whether this group-by transform is enabled or disabled.
     static member inline enabled (value: bool) = Interop.mkGroupbyAttr "enabled" value
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (value: bool) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton)
+    static member inline groups (value: bool) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<bool>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (value: System.DateTime) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton)
+    static member inline groups (value: System.DateTime) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<System.DateTime>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (value: float) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton)
+    static member inline groups (value: float) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<float>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (value: int) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton)
+    static member inline groups (value: int) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<int>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
-    static member inline groups (value: string) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton)
+    static member inline groups (value: string) = Interop.mkGroupbyAttr "groups" (value |> Array.singleton |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].
     static member inline groups (values: seq<string>) = Interop.mkGroupbyAttr "groups" (values |> ResizeArray)
     /// Sets the groups in which the trace data will be split. For example, with `x` set to *[1, 2, 3, 4]* and `groups` set to *['a', 'b', 'a', 'b']*, the groupby transform with split in one trace with `x` [1, 3] and one trace with `x` [2, 4].

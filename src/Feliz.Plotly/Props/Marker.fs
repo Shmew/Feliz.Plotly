@@ -59,23 +59,23 @@ type marker =
     static member inline coloraxis (value: string) = Interop.mkMarkerAttr "coloraxis" value
     static member inline colorbar (properties: #IColorbarProperty list) = Interop.mkMarkerAttr "colorbar" (createObj !!properties)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: bool) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: bool) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<bool>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: System.DateTime) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: System.DateTime) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<System.DateTime>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: float) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: float) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<float>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: int) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: int) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<int>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
-    static member inline colors (value: string) = Interop.mkMarkerAttr "colors" (value |> Array.singleton)
+    static member inline colors (value: string) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<string>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
@@ -145,6 +145,7 @@ type marker =
     /// Sets the color of the outlier sample points.
     static member inline outliercolor (value: string) = Interop.mkMarkerAttr "outliercolor" value
     static member inline pad (properties: #IPadProperty list) = Interop.mkMarkerAttr "pad" (createObj !!properties)
+    static member inline pattern (properties: #IPatternProperty list) = Interop.mkMarkerAttr "pattern" (createObj !!properties)
     /// Reverses the color mapping if true. Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will correspond to the last color in the array and `marker.cmax` will correspond to the first color.
     static member inline reversescale (value: bool) = Interop.mkMarkerAttr "reversescale" value
     /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color`is set to a numerical array.

@@ -45,23 +45,23 @@ type surface =
     /// Sets the number of iso-surfaces between minimum and maximum iso-values. By default this value is 2 meaning that only minimum and maximum surfaces would be drawn.
     static member inline count (value: int) = Interop.mkSurfaceAttr "count" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -113,9 +113,9 @@ type surface =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkSurfaceAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkSurfaceAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkSurfaceAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkSurfaceAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkSurfaceAttr "hovertemplatesrc" value
@@ -126,23 +126,23 @@ type surface =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkSurfaceAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -231,23 +231,23 @@ type surface =
     static member inline showscale (value: bool) = Interop.mkSurfaceAttr "showscale" value
     static member inline stream (properties: #IStreamProperty list) = Interop.mkSurfaceAttr "stream" (createObj !!properties)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: bool) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: bool) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<bool>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: System.DateTime) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: System.DateTime) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: float) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: float) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<float>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: int) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: int) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<int>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    static member inline surfacecolor (value: string) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton)
+    static member inline surfacecolor (value: string) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<string>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
@@ -317,23 +317,23 @@ type surface =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkSurfaceAttr "uirevision" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: bool) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<bool>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: System.DateTime) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: float) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<float>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: int) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<int>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
-    static member inline x (value: string) = Interop.mkSurfaceAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<string>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
@@ -372,26 +372,28 @@ type surface =
     static member inline x (values: seq<float option>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<string option>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkSurfaceAttr "xhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkSurfaceAttr "xsrc" value
     /// Sets the y coordinates.
-    static member inline y (value: bool) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<bool>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: System.DateTime) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: float) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<float>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: int) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<int>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
-    static member inline y (value: string) = Interop.mkSurfaceAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<string>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
@@ -430,26 +432,28 @@ type surface =
     static member inline y (values: seq<float option>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<string option>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkSurfaceAttr "yhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkSurfaceAttr "ysrc" value
     /// Sets the z coordinates.
-    static member inline z (value: bool) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<bool>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
-    static member inline z (value: System.DateTime) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
-    static member inline z (value: float) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<float>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
-    static member inline z (value: int) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<int>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
-    static member inline z (value: string) = Interop.mkSurfaceAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<string>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
@@ -488,6 +492,8 @@ type surface =
     static member inline z (values: seq<float option>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<string option>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `z`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `zaxis.hoverformat`.
+    static member inline zhoverformat (value: string) = Interop.mkSurfaceAttr "zhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkSurfaceAttr "zsrc" value
 

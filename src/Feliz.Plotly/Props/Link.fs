@@ -22,23 +22,23 @@ type link =
     /// Sets the source reference on Chart Studio Cloud for  color .
     static member inline colorsrc (value: string) = Interop.mkLinkAttr "colorsrc" value
     /// Assigns extra data to each link.
-    static member inline customdata (value: bool) = Interop.mkLinkAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each link.
     static member inline customdata (values: seq<bool>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
-    static member inline customdata (value: System.DateTime) = Interop.mkLinkAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each link.
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
-    static member inline customdata (value: float) = Interop.mkLinkAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each link.
     static member inline customdata (values: seq<float>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
-    static member inline customdata (value: int) = Interop.mkLinkAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each link.
     static member inline customdata (values: seq<int>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
-    static member inline customdata (value: string) = Interop.mkLinkAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each link.
     static member inline customdata (values: seq<string>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
@@ -80,30 +80,30 @@ type link =
     /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkLinkAttr "customdatasrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkLinkAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkLinkAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkLinkAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkLinkAttr "hovertemplatesrc" value
     /// The shown name of the link.
-    static member inline label (value: bool) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: bool) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the link.
     static member inline label (values: seq<bool>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
-    static member inline label (value: System.DateTime) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: System.DateTime) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the link.
     static member inline label (values: seq<System.DateTime>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
-    static member inline label (value: float) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: float) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the link.
     static member inline label (values: seq<float>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
-    static member inline label (value: int) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: int) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the link.
     static member inline label (values: seq<int>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
-    static member inline label (value: string) = Interop.mkLinkAttr "label" (value |> Array.singleton)
+    static member inline label (value: string) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the link.
     static member inline label (values: seq<string>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
@@ -146,23 +146,23 @@ type link =
     static member inline labelsrc (value: string) = Interop.mkLinkAttr "labelsrc" value
     static member inline line (properties: #ILineProperty list) = Interop.mkLinkAttr "line" (createObj !!properties)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: bool) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: bool) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<bool>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: System.DateTime) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: System.DateTime) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<System.DateTime>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: float) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: float) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<float>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: int) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: int) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<int>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
-    static member inline source (value: string) = Interop.mkLinkAttr "source" (value |> Array.singleton)
+    static member inline source (value: string) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<string>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
@@ -204,23 +204,23 @@ type link =
     /// Sets the source reference on Chart Studio Cloud for  source .
     static member inline sourcesrc (value: string) = Interop.mkLinkAttr "sourcesrc" value
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: bool) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: bool) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<bool>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: System.DateTime) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: System.DateTime) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<System.DateTime>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: float) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: float) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<float>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: int) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: int) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<int>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
-    static member inline target (value: string) = Interop.mkLinkAttr "target" (value |> Array.singleton)
+    static member inline target (value: string) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<string>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
@@ -262,23 +262,23 @@ type link =
     /// Sets the source reference on Chart Studio Cloud for  target .
     static member inline targetsrc (value: string) = Interop.mkLinkAttr "targetsrc" value
     /// A numeric value representing the flow volume value.
-    static member inline value (value: bool) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: bool) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<bool>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: System.DateTime) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: System.DateTime) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<System.DateTime>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: float) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: float) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<float>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: int) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: int) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<int>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.
-    static member inline value (value: string) = Interop.mkLinkAttr "value" (value |> Array.singleton)
+    static member inline value (value: string) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<string>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.

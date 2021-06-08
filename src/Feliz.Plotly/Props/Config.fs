@@ -47,9 +47,9 @@ type config =
     static member inline modeBarButtons (values: IButtonsProperty list) = Interop.mkConfigAttr "modeBarButtons" (values |> Seq.map unbox<IModeBarButtonsProperty> |> ResizeArray |> Array.singleton)
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button groups, and the inner arrays have buttons config objects or names of default buttons See ./components/modebar/buttons.js for more info.
     static member inline modeBarButtons (values: seq<#IModeBarButtonsProperty> list) = Interop.mkConfigAttr "modeBarButtons" (values |> Seq.map ResizeArray |> ResizeArray)
-    /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
+    /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments. To enable predefined modebar buttons e.g. shape drawing, hover and spikelines, simply provide their string name(s). This could include: *v1hovermode*, *hoverclosest*, *hovercompare*, *togglehover*, *togglespikelines*, *drawline*, *drawopenpath*, *drawclosedpath*, *drawcircle*, *drawrect* and *eraseshape*. Please note that these predefined buttons will only be shown if they are compatible with all trace types used in a graph.
     static member inline modeBarButtonsToAdd (value: #IModeBarButtonsProperty) = Interop.mkConfigAttr "modeBarButtonsToAdd" (value |> Array.singleton)
-    /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments.
+    /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of arguments. To enable predefined modebar buttons e.g. shape drawing, hover and spikelines, simply provide their string name(s). This could include: *v1hovermode*, *hoverclosest*, *hovercompare*, *togglehover*, *togglespikelines*, *drawline*, *drawopenpath*, *drawclosedpath*, *drawcircle*, *drawrect* and *eraseshape*. Please note that these predefined buttons will only be shown if they are compatible with all trace types used in a graph.
     static member inline modeBarButtonsToAdd (values: #IModeBarButtonsProperty list) = Interop.mkConfigAttr "modeBarButtonsToAdd" (values |> ResizeArray)
     /// Remove mode bar buttons by name. See ./components/modebar/buttons.js for the list of names.
     static member inline modeBarButtonsToRemove (value: #IModeBarButtonsProperty) = Interop.mkConfigAttr "modeBarButtonsToRemove" (value |> Array.singleton)
@@ -65,7 +65,7 @@ type config =
     static member inline plotlyServerURL (value: string) = Interop.mkConfigAttr "plotlyServerURL" value
     /// Sets the length of the undo/redo queue.
     static member inline queueLength (value: int) = Interop.mkConfigAttr "queueLength" value
-    /// Determines whether to change the layout size when window is resized. In v2, this option will be removed and will always be true.
+    /// Determines whether to change the layout size when window is resized. In v3, this option will be removed and will always be true.
     static member inline responsive (value: bool) = Interop.mkConfigAttr "responsive" value
     /// Determines whether mouse wheel or two-finger scroll zooms is enable. Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false* to disable scrolling for all subplots.
     static member inline scrollZoom (properties: #IConfigProperty list) = Interop.mkConfigAttr "scrollZoom" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")

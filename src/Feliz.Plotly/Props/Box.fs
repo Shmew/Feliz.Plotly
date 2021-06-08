@@ -13,23 +13,23 @@ type box =
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
     static member inline alignmentgroup (value: string) = Interop.mkBoxAttr "alignmentgroup" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkBoxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -87,9 +87,9 @@ type box =
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkBoxAttr "hoverlabel" (createObj !!properties)
     /// Do the hover effects highlight individual boxes  or sample points or both?
     static member inline hoveron (properties: #IBoxProperty list) = Interop.mkBoxAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkBoxAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkBoxAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkBoxAttr "hovertemplatesrc" value
@@ -100,23 +100,23 @@ type box =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkBoxAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkBoxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -165,23 +165,23 @@ type box =
     static member inline legendgroup (value: string) = Interop.mkBoxAttr "legendgroup" value
     static member inline line (properties: #ILineProperty list) = Interop.mkBoxAttr "line" (createObj !!properties)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
-    static member inline lowerfence (value: bool) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton)
+    static member inline lowerfence (value: bool) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<bool>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
-    static member inline lowerfence (value: System.DateTime) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton)
+    static member inline lowerfence (value: System.DateTime) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<System.DateTime>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
-    static member inline lowerfence (value: float) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton)
+    static member inline lowerfence (value: float) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<float>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
-    static member inline lowerfence (value: int) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton)
+    static member inline lowerfence (value: int) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<int>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
-    static member inline lowerfence (value: string) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton)
+    static member inline lowerfence (value: string) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<string>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
@@ -224,23 +224,23 @@ type box =
     static member inline lowerfencesrc (value: string) = Interop.mkBoxAttr "lowerfencesrc" value
     static member inline marker (properties: #IMarkerProperty list) = Interop.mkBoxAttr "marker" (createObj !!properties)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
-    static member inline mean (value: bool) = Interop.mkBoxAttr "mean" (value |> Array.singleton)
+    static member inline mean (value: bool) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<bool>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
-    static member inline mean (value: System.DateTime) = Interop.mkBoxAttr "mean" (value |> Array.singleton)
+    static member inline mean (value: System.DateTime) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<System.DateTime>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
-    static member inline mean (value: float) = Interop.mkBoxAttr "mean" (value |> Array.singleton)
+    static member inline mean (value: float) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<float>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
-    static member inline mean (value: int) = Interop.mkBoxAttr "mean" (value |> Array.singleton)
+    static member inline mean (value: int) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<int>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
-    static member inline mean (value: string) = Interop.mkBoxAttr "mean" (value |> Array.singleton)
+    static member inline mean (value: string) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<string>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
@@ -282,23 +282,23 @@ type box =
     /// Sets the source reference on Chart Studio Cloud for  mean .
     static member inline meansrc (value: string) = Interop.mkBoxAttr "meansrc" value
     /// Sets the median values. There should be as many items as the number of boxes desired.
-    static member inline median (value: bool) = Interop.mkBoxAttr "median" (value |> Array.singleton)
+    static member inline median (value: bool) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<bool>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
-    static member inline median (value: System.DateTime) = Interop.mkBoxAttr "median" (value |> Array.singleton)
+    static member inline median (value: System.DateTime) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<System.DateTime>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
-    static member inline median (value: float) = Interop.mkBoxAttr "median" (value |> Array.singleton)
+    static member inline median (value: float) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<float>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
-    static member inline median (value: int) = Interop.mkBoxAttr "median" (value |> Array.singleton)
+    static member inline median (value: int) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<int>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
-    static member inline median (value: string) = Interop.mkBoxAttr "median" (value |> Array.singleton)
+    static member inline median (value: string) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<string>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
@@ -346,23 +346,23 @@ type box =
     /// Determines whether or not notches are drawn. Notches displays a confidence interval around the median. We compute the confidence interval as median +/- 1.57 * IQR / sqrt(N), where IQR is the interquartile range and N is the sample size. If two boxes' notches do not overlap there is 95% confidence their medians differ. See https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to *false* unless `notchwidth` or `notchspan` is set.
     static member inline notched (value: bool) = Interop.mkBoxAttr "notched" value
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
-    static member inline notchspan (value: bool) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton)
+    static member inline notchspan (value: bool) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<bool>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
-    static member inline notchspan (value: System.DateTime) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton)
+    static member inline notchspan (value: System.DateTime) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<System.DateTime>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
-    static member inline notchspan (value: float) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton)
+    static member inline notchspan (value: float) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<float>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
-    static member inline notchspan (value: int) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton)
+    static member inline notchspan (value: int) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<int>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
-    static member inline notchspan (value: string) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton)
+    static member inline notchspan (value: string) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<string>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
@@ -418,23 +418,23 @@ type box =
     /// Sets the position of the sample points in relation to the box(es). If *0*, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes
     static member inline pointpos (value: float) = Interop.mkBoxAttr "pointpos" value
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
-    static member inline q1 (value: bool) = Interop.mkBoxAttr "q1" (value |> Array.singleton)
+    static member inline q1 (value: bool) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<bool>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
-    static member inline q1 (value: System.DateTime) = Interop.mkBoxAttr "q1" (value |> Array.singleton)
+    static member inline q1 (value: System.DateTime) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<System.DateTime>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
-    static member inline q1 (value: float) = Interop.mkBoxAttr "q1" (value |> Array.singleton)
+    static member inline q1 (value: float) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<float>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
-    static member inline q1 (value: int) = Interop.mkBoxAttr "q1" (value |> Array.singleton)
+    static member inline q1 (value: int) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<int>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
-    static member inline q1 (value: string) = Interop.mkBoxAttr "q1" (value |> Array.singleton)
+    static member inline q1 (value: string) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<string>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
@@ -476,23 +476,23 @@ type box =
     /// Sets the source reference on Chart Studio Cloud for  q1 .
     static member inline q1src (value: string) = Interop.mkBoxAttr "q1src" value
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
-    static member inline q3 (value: bool) = Interop.mkBoxAttr "q3" (value |> Array.singleton)
+    static member inline q3 (value: bool) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<bool>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
-    static member inline q3 (value: System.DateTime) = Interop.mkBoxAttr "q3" (value |> Array.singleton)
+    static member inline q3 (value: System.DateTime) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<System.DateTime>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
-    static member inline q3 (value: float) = Interop.mkBoxAttr "q3" (value |> Array.singleton)
+    static member inline q3 (value: float) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<float>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
-    static member inline q3 (value: int) = Interop.mkBoxAttr "q3" (value |> Array.singleton)
+    static member inline q3 (value: int) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<int>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
-    static member inline q3 (value: string) = Interop.mkBoxAttr "q3" (value |> Array.singleton)
+    static member inline q3 (value: string) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<string>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
@@ -534,23 +534,23 @@ type box =
     /// Sets the source reference on Chart Studio Cloud for  q3 .
     static member inline q3src (value: string) = Interop.mkBoxAttr "q3src" value
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
-    static member inline sd (value: bool) = Interop.mkBoxAttr "sd" (value |> Array.singleton)
+    static member inline sd (value: bool) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<bool>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
-    static member inline sd (value: System.DateTime) = Interop.mkBoxAttr "sd" (value |> Array.singleton)
+    static member inline sd (value: System.DateTime) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<System.DateTime>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
-    static member inline sd (value: float) = Interop.mkBoxAttr "sd" (value |> Array.singleton)
+    static member inline sd (value: float) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<float>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
-    static member inline sd (value: int) = Interop.mkBoxAttr "sd" (value |> Array.singleton)
+    static member inline sd (value: int) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<int>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
-    static member inline sd (value: string) = Interop.mkBoxAttr "sd" (value |> Array.singleton)
+    static member inline sd (value: string) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<string>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
@@ -646,23 +646,23 @@ type box =
     static member inline uirevision (values: seq<string>) = Interop.mkBoxAttr "uirevision" (values |> ResizeArray)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkBoxAttr "unselected" (createObj !!properties)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
-    static member inline upperfence (value: bool) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton)
+    static member inline upperfence (value: bool) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<bool>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
-    static member inline upperfence (value: System.DateTime) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton)
+    static member inline upperfence (value: System.DateTime) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<System.DateTime>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
-    static member inline upperfence (value: float) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton)
+    static member inline upperfence (value: float) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<float>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
-    static member inline upperfence (value: int) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton)
+    static member inline upperfence (value: int) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<int>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
-    static member inline upperfence (value: string) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton)
+    static member inline upperfence (value: string) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<string>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
@@ -712,23 +712,23 @@ type box =
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
     static member inline width (value: float) = Interop.mkBoxAttr "width" value
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: bool) = Interop.mkBoxAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<bool>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: System.DateTime) = Interop.mkBoxAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<System.DateTime>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: float) = Interop.mkBoxAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<float>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: int) = Interop.mkBoxAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<int>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: string) = Interop.mkBoxAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<string>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
@@ -791,6 +791,8 @@ type box =
     static member inline xaxis (anchorId: int) = Interop.mkBoxAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkBoxAttr "xaxis" value
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkBoxAttr "xhoverformat" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: bool) = Interop.mkBoxAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -834,23 +836,23 @@ type box =
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkBoxAttr "xsrc" value
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: bool) = Interop.mkBoxAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<bool>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: System.DateTime) = Interop.mkBoxAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<System.DateTime>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: float) = Interop.mkBoxAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<float>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: int) = Interop.mkBoxAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<int>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: string) = Interop.mkBoxAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<string>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
@@ -913,6 +915,8 @@ type box =
     static member inline yaxis (anchorId: int) = Interop.mkBoxAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkBoxAttr "yaxis" value
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkBoxAttr "yhoverformat" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline yperiod (value: bool) = Interop.mkBoxAttr "yperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.

@@ -12,23 +12,23 @@ open Feliz
 type table =
     static member inline cells (properties: #ICellsProperty list) = Interop.mkTableAttr "cells" (createObj !!properties)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (value: bool) = Interop.mkTableAttr "columnorder" (value |> Array.singleton)
+    static member inline columnorder (value: bool) = Interop.mkTableAttr "columnorder" (value |> Array.singleton |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<bool>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (value: System.DateTime) = Interop.mkTableAttr "columnorder" (value |> Array.singleton)
+    static member inline columnorder (value: System.DateTime) = Interop.mkTableAttr "columnorder" (value |> Array.singleton |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<System.DateTime>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (value: float) = Interop.mkTableAttr "columnorder" (value |> Array.singleton)
+    static member inline columnorder (value: float) = Interop.mkTableAttr "columnorder" (value |> Array.singleton |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<float>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (value: int) = Interop.mkTableAttr "columnorder" (value |> Array.singleton)
+    static member inline columnorder (value: int) = Interop.mkTableAttr "columnorder" (value |> Array.singleton |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<int>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    static member inline columnorder (value: string) = Interop.mkTableAttr "columnorder" (value |> Array.singleton)
+    static member inline columnorder (value: string) = Interop.mkTableAttr "columnorder" (value |> Array.singleton |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     static member inline columnorder (values: seq<string>) = Interop.mkTableAttr "columnorder" (values |> ResizeArray)
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
@@ -80,23 +80,23 @@ type table =
     /// Sets the source reference on Chart Studio Cloud for  columnwidth .
     static member inline columnwidthsrc (value: string) = Interop.mkTableAttr "columnwidthsrc" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkTableAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkTableAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkTableAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkTableAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkTableAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkTableAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkTableAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkTableAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkTableAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkTableAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkTableAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -145,23 +145,23 @@ type table =
     static member inline hoverinfosrc (value: string) = Interop.mkTableAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkTableAttr "hoverlabel" (createObj !!properties)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkTableAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkTableAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkTableAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkTableAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkTableAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkTableAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkTableAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkTableAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkTableAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkTableAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkTableAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.

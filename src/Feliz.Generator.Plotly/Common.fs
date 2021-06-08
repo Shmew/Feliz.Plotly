@@ -107,11 +107,26 @@ module Common =
         | @"\\" -> "leftSlant"
         | _ -> s
 
+    /// Converts Plotly marker pattern shape operators to text
+    let private transformMarkerPatternShape (s: string) =
+        match s with
+        | ""
+        | "none" -> "blank"
+        | "/" -> "rightDiagonalLine"
+        | @"\\" -> "leftDiagonalLine"
+        | "x" -> "diagonalCross"
+        | "-" -> "horizontalLine"
+        | "|" -> "verticalLine"
+        | "+" -> "cross"
+        | "." -> "dot"
+        | _ -> s
+
     /// Adjusts names with operators in them
     let fixMethodNameOperators methodName (s: string) =
         match methodName with
         | "edgeshape" -> transformShape s
         | "operation" -> transformOperations s
+        | "shape" -> transformMarkerPatternShape s
         | _ -> s
 
     /// Replace + symbols with "And"

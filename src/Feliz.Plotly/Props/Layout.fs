@@ -129,23 +129,23 @@ type layout =
     /// Sets the plot's height (in px).
     static member inline height (value: float) = Interop.mkLayoutAttr "height" value
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: bool) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    static member inline hiddenlabels (value: bool) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<bool>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: System.DateTime) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    static member inline hiddenlabels (value: System.DateTime) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<System.DateTime>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: float) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    static member inline hiddenlabels (value: float) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<float>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: int) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    static member inline hiddenlabels (value: int) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<int>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    static member inline hiddenlabels (value: string) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton)
+    static member inline hiddenlabels (value: string) = Interop.mkLayoutAttr "hiddenlabels" (value |> Array.singleton |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     static member inline hiddenlabels (values: seq<string>) = Interop.mkLayoutAttr "hiddenlabels" (values |> ResizeArray)
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
@@ -382,7 +382,7 @@ module layout =
         static member inline overlay = Interop.mkLayoutAttr "funnelmode" "overlay"
         static member inline stack = Interop.mkLayoutAttr "funnelmode" "stack"
 
-    /// Determines the mode of hover interactions. If *closest*, a single hoverlabel will appear for the *closest* point within the `hoverdistance`. If *x* (or *y*), multiple hoverlabels will appear for multiple points at the *closest* x- (or y-) coordinate within the `hoverdistance`, with the caveat that no more than one hoverlabel will appear per trace. If *x unified* (or *y unified*), a single hoverlabel will appear multiple points at the closest x- (or y-) coordinate within the `hoverdistance` with the caveat that no more than one hoverlabel will appear per trace. In this mode, spikelines are enabled by default perpendicular to the specified axis. If false, hover interactions are disabled. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation` value) for plots based on cartesian coordinates. For anything else the default value is *closest*.
+    /// Determines the mode of hover interactions. If *closest*, a single hoverlabel will appear for the *closest* point within the `hoverdistance`. If *x* (or *y*), multiple hoverlabels will appear for multiple points at the *closest* x- (or y-) coordinate within the `hoverdistance`, with the caveat that no more than one hoverlabel will appear per trace. If *x unified* (or *y unified*), a single hoverlabel will appear multiple points at the closest x- (or y-) coordinate within the `hoverdistance` with the caveat that no more than one hoverlabel will appear per trace. In this mode, spikelines are enabled by default perpendicular to the specified axis. If false, hover interactions are disabled.
     [<Erase>]
     type hovermode =
         static member inline closest = Interop.mkLayoutAttr "hovermode" "closest"

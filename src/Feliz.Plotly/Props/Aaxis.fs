@@ -15,23 +15,23 @@ type aaxis =
     /// The starting index of grid lines along the axis
     static member inline arraytick0 (value: int) = Interop.mkAaxisAttr "arraytick0" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: bool) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: System.DateTime) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: System.DateTime) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: float) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: int) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: string) = Interop.mkAaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkAaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -174,7 +174,7 @@ type aaxis =
     static member inline tickcolor (value: string) = Interop.mkAaxisAttr "tickcolor" value
     /// Sets the tick font.
     static member inline tickfont (properties: #ITickfontProperty list) = Interop.mkAaxisAttr "tickfont" (createObj !!properties)
-    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see:  We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     static member inline tickformat (value: string) = Interop.mkAaxisAttr "tickformat" value
     static member inline tickformatstops (properties: #ITickformatstopsProperty list) = Interop.mkAaxisAttr "tickformatstops" (createObj !!properties)
     /// Sets the tick length (in px).
@@ -186,23 +186,23 @@ type aaxis =
     /// Sets a tick label suffix.
     static member inline ticksuffix (value: string) = Interop.mkAaxisAttr "ticksuffix" value
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: bool) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: bool) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<bool>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: System.DateTime) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: System.DateTime) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<System.DateTime>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: float) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: float) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<float>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: int) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: int) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<int>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-    static member inline ticktext (value: string) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton)
+    static member inline ticktext (value: string) = Interop.mkAaxisAttr "ticktext" (value |> Array.singleton |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
     static member inline ticktext (values: seq<string>) = Interop.mkAaxisAttr "ticktext" (values |> ResizeArray)
     /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
@@ -244,23 +244,23 @@ type aaxis =
     /// Sets the source reference on Chart Studio Cloud for  ticktext .
     static member inline ticktextsrc (value: string) = Interop.mkAaxisAttr "ticktextsrc" value
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: bool) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: bool) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<bool>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: System.DateTime) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: System.DateTime) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<System.DateTime>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: float) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: float) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<float>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: int) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: int) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<int>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-    static member inline tickvals (value: string) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton)
+    static member inline tickvals (value: string) = Interop.mkAaxisAttr "tickvals" (value |> Array.singleton |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
     static member inline tickvals (values: seq<string>) = Interop.mkAaxisAttr "tickvals" (values |> ResizeArray)
     /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.

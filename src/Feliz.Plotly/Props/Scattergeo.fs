@@ -13,23 +13,23 @@ type scattergeo =
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
     static member inline connectgaps (value: bool) = Interop.mkScattergeoAttr "connectgaps" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkScattergeoAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkScattergeoAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -103,9 +103,9 @@ type scattergeo =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkScattergeoAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkScattergeoAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkScattergeoAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkScattergeoAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkScattergeoAttr "hovertemplatesrc" value
@@ -116,23 +116,23 @@ type scattergeo =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkScattergeoAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkScattergeoAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkScattergeoAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -174,23 +174,23 @@ type scattergeo =
     /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkScattergeoAttr "idssrc" value
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: bool) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: bool) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<bool>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: System.DateTime) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: System.DateTime) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<System.DateTime>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: float) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: float) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<float>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: int) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: int) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<int>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: string) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: string) = Interop.mkScattergeoAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<string>) = Interop.mkScattergeoAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
@@ -235,23 +235,23 @@ type scattergeo =
     static member inline legendgroup (value: string) = Interop.mkScattergeoAttr "legendgroup" value
     static member inline line (properties: #ILineProperty list) = Interop.mkScattergeoAttr "line" (createObj !!properties)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
-    static member inline locations (value: bool) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: bool) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<bool>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
-    static member inline locations (value: System.DateTime) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: System.DateTime) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
-    static member inline locations (value: float) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: float) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<float>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
-    static member inline locations (value: int) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: int) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<int>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
-    static member inline locations (value: string) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: string) = Interop.mkScattergeoAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
     static member inline locations (values: seq<string>) = Interop.mkScattergeoAttr "locations" (values |> ResizeArray)
     /// Sets the coordinates via location IDs or names. Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
@@ -293,23 +293,23 @@ type scattergeo =
     /// Sets the source reference on Chart Studio Cloud for  locations .
     static member inline locationssrc (value: string) = Interop.mkScattergeoAttr "locationssrc" value
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: bool) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: bool) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<bool>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: System.DateTime) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: System.DateTime) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<System.DateTime>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: float) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: float) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<float>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: int) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: int) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<int>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: string) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: string) = Interop.mkScattergeoAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<string>) = Interop.mkScattergeoAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).

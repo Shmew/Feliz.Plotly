@@ -288,6 +288,13 @@ module colorbar =
         static member inline fraction = Interop.mkColorbarAttr "thicknessmode" "fraction"
         static member inline pixels = Interop.mkColorbarAttr "thicknessmode" "pixels"
 
+    /// Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
+    [<Erase>]
+    type ticklabeloverflow =
+        static member inline allow = Interop.mkColorbarAttr "ticklabeloverflow" "allow"
+        static member inline hidePastDiv = Interop.mkColorbarAttr "ticklabeloverflow" "hide past div"
+        static member inline hidePastDomain = Interop.mkColorbarAttr "ticklabeloverflow" "hide past domain"
+
     /// Determines where tick labels are drawn.
     [<Erase>]
     type ticklabelposition =

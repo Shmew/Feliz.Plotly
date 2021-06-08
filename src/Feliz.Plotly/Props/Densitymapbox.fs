@@ -28,23 +28,23 @@ type densitymapbox =
     /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
     static member inline colorscale (values: seq<string []>) = Interop.mkDensitymapboxAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -90,9 +90,9 @@ type densitymapbox =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkDensitymapboxAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkDensitymapboxAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkDensitymapboxAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkDensitymapboxAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkDensitymapboxAttr "hovertemplatesrc" value
@@ -103,23 +103,23 @@ type densitymapbox =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkDensitymapboxAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -161,23 +161,23 @@ type densitymapbox =
     /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkDensitymapboxAttr "idssrc" value
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: bool) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: bool) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<bool>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: System.DateTime) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: System.DateTime) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: float) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: float) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<float>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: int) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: int) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<int>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
-    static member inline lat (value: string) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton)
+    static member inline lat (value: string) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<string>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
@@ -221,23 +221,23 @@ type densitymapbox =
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkDensitymapboxAttr "legendgroup" value
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: bool) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: bool) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<bool>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: System.DateTime) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: System.DateTime) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: float) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: float) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<float>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: int) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: int) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<int>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
-    static member inline lon (value: string) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton)
+    static member inline lon (value: string) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<string>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
@@ -337,23 +337,23 @@ type densitymapbox =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkDensitymapboxAttr "uirevision" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
-    static member inline z (value: bool) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<bool>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
-    static member inline z (value: System.DateTime) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
-    static member inline z (value: float) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<float>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
-    static member inline z (value: int) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<int>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
-    static member inline z (value: string) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<string>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot

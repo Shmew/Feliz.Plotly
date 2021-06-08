@@ -257,8 +257,8 @@ module ApiParser =
                     v
                     |> emptStringToNone
                     |> trimJson
-                    |> replaceAddSymbol
                     |> fixMethodNameOperators propMethodName
+                    |> replaceAddSymbol
                     |> dashStringToDash
                     |> spaceCaseTokebabCase
                     |> kebabCaseToCamelCase

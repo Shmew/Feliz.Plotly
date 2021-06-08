@@ -28,23 +28,23 @@ type choroplethmapbox =
     /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
     static member inline colorscale (values: seq<string []>) = Interop.mkChoroplethmapboxAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -112,9 +112,9 @@ type choroplethmapbox =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkChoroplethmapboxAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkChoroplethmapboxAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkChoroplethmapboxAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkChoroplethmapboxAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkChoroplethmapboxAttr "hovertemplatesrc" value
@@ -125,23 +125,23 @@ type choroplethmapbox =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkChoroplethmapboxAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -185,23 +185,23 @@ type choroplethmapbox =
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
     static member inline legendgroup (value: string) = Interop.mkChoroplethmapboxAttr "legendgroup" value
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: bool) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: bool) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: float) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: float) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<float>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: int) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: int) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<int>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
-    static member inline locations (value: string) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton)
+    static member inline locations (value: string) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<string>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
@@ -310,23 +310,23 @@ type choroplethmapbox =
     static member inline uirevision (values: seq<string>) = Interop.mkChoroplethmapboxAttr "uirevision" (values |> ResizeArray)
     static member inline unselected (properties: #IUnselectedProperty list) = Interop.mkChoroplethmapboxAttr "unselected" (createObj !!properties)
     /// Sets the color values.
-    static member inline z (value: bool) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the color values.
     static member inline z (values: seq<bool>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.
-    static member inline z (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the color values.
     static member inline z (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.
-    static member inline z (value: float) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the color values.
     static member inline z (values: seq<float>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.
-    static member inline z (value: int) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the color values.
     static member inline z (values: seq<int>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.
-    static member inline z (value: string) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the color values.
     static member inline z (values: seq<string>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.

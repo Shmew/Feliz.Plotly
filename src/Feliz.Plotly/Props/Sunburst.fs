@@ -13,23 +13,23 @@ type sunburst =
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
     static member inline count (properties: #ISunburstProperty list) = Interop.mkSunburstAttr "count" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -76,9 +76,9 @@ type sunburst =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkSunburstAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkSunburstAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkSunburstAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkSunburstAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkSunburstAttr "hovertemplatesrc" value
@@ -89,23 +89,23 @@ type sunburst =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkSunburstAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkSunburstAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -149,23 +149,23 @@ type sunburst =
     /// Sets the font used for `textinfo` lying inside the sector.
     static member inline insidetextfont (properties: #IInsidetextfontProperty list) = Interop.mkSunburstAttr "insidetextfont" (createObj !!properties)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: bool) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
+    static member inline labels (value: bool) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<bool>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: System.DateTime) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
+    static member inline labels (value: System.DateTime) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<System.DateTime>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: float) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
+    static member inline labels (value: float) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<float>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: int) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
+    static member inline labels (value: int) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<int>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
-    static member inline labels (value: string) = Interop.mkSunburstAttr "labels" (value |> Array.singleton)
+    static member inline labels (value: string) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<string>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
@@ -241,23 +241,23 @@ type sunburst =
     /// Sets the font used for `textinfo` lying outside the sector. This option refers to the root of the hierarchy presented at the center of a sunburst graph. Please note that if a hierarchy has multiple root nodes, this option won't have any effect and `insidetextfont` would be used.
     static member inline outsidetextfont (properties: #IOutsidetextfontProperty list) = Interop.mkSunburstAttr "outsidetextfont" (createObj !!properties)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: bool) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
+    static member inline parents (value: bool) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<bool>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: System.DateTime) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
+    static member inline parents (value: System.DateTime) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<System.DateTime>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: float) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
+    static member inline parents (value: float) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<float>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: int) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
+    static member inline parents (value: int) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<int>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    static member inline parents (value: string) = Interop.mkSunburstAttr "parents" (value |> Array.singleton)
+    static member inline parents (value: string) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<string>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
@@ -398,23 +398,23 @@ type sunburst =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkSunburstAttr "uirevision" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: bool) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
+    static member inline values (value: bool) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<bool>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: System.DateTime) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
+    static member inline values (value: System.DateTime) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<System.DateTime>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: float) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
+    static member inline values (value: float) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<float>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: int) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
+    static member inline values (value: int) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<int>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    static member inline values (value: string) = Interop.mkSunburstAttr "values" (value |> Array.singleton)
+    static member inline values (value: string) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<string>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.

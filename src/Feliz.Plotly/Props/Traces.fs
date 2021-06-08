@@ -10,7 +10,6 @@ open Feliz
 
 [<Erase>]
 type traces =
-    static member inline area (properties: #IAreaProperty list) = Interop.mkTracesAttr "area" (createObj !!(properties @ [ unbox (Interop.mkAreaAttr "type" "area") ]))
     static member inline bar (properties: #IBarProperty list) = Interop.mkTracesAttr "bar" (createObj !!(properties @ [ unbox (Interop.mkBarAttr "type" "bar") ]))
     static member inline barpolar (properties: #IBarpolarProperty list) = Interop.mkTracesAttr "barpolar" (createObj !!(properties @ [ unbox (Interop.mkBarpolarAttr "type" "barpolar") ]))
     static member inline box (properties: #IBoxProperty list) = Interop.mkTracesAttr "box" (createObj !!(properties @ [ unbox (Interop.mkBoxAttr "type" "box") ]))

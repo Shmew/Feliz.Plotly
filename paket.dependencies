@@ -19,7 +19,7 @@ group Generator
     nuget FSharp.Core >= 4.7.2 lowest_matching: true
     nuget FSharp.Data ~> 3
     
-    github plotly/plotly.js:4492a372150a6715af75643c59c5c77f02201a60 dist/plot-schema.json
+    github plotly/plotly.js:c80644edd923500883e57597cddfb695d5815440 dist/plot-schema.json
 
 group Docs
     source https://nuget.org/api/v2

@@ -47,23 +47,23 @@ type mesh3d =
     static member inline colorscale (values: seq<string []>) = Interop.mkMesh3dAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
     static member inline contour (properties: #IContourProperty list) = Interop.mkMesh3dAttr "contour" (createObj !!properties)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkMesh3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkMesh3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkMesh3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkMesh3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkMesh3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -105,23 +105,23 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  customdata .
     static member inline customdatasrc (value: string) = Interop.mkMesh3dAttr "customdatasrc" value
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    static member inline facecolor (value: bool) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton)
+    static member inline facecolor (value: bool) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     static member inline facecolor (values: seq<bool>) = Interop.mkMesh3dAttr "facecolor" (values |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    static member inline facecolor (value: System.DateTime) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton)
+    static member inline facecolor (value: System.DateTime) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     static member inline facecolor (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "facecolor" (values |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    static member inline facecolor (value: float) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton)
+    static member inline facecolor (value: float) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     static member inline facecolor (values: seq<float>) = Interop.mkMesh3dAttr "facecolor" (values |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    static member inline facecolor (value: int) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton)
+    static member inline facecolor (value: int) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     static member inline facecolor (values: seq<int>) = Interop.mkMesh3dAttr "facecolor" (values |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    static member inline facecolor (value: string) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton)
+    static member inline facecolor (value: string) = Interop.mkMesh3dAttr "facecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     static member inline facecolor (values: seq<string>) = Interop.mkMesh3dAttr "facecolor" (values |> ResizeArray)
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
@@ -169,9 +169,9 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkMesh3dAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkMesh3dAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkMesh3dAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkMesh3dAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkMesh3dAttr "hovertemplatesrc" value
@@ -182,23 +182,23 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkMesh3dAttr "hovertextsrc" value
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
-    static member inline i (value: bool) = Interop.mkMesh3dAttr "i" (value |> Array.singleton)
+    static member inline i (value: bool) = Interop.mkMesh3dAttr "i" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<bool>) = Interop.mkMesh3dAttr "i" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
-    static member inline i (value: System.DateTime) = Interop.mkMesh3dAttr "i" (value |> Array.singleton)
+    static member inline i (value: System.DateTime) = Interop.mkMesh3dAttr "i" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "i" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
-    static member inline i (value: float) = Interop.mkMesh3dAttr "i" (value |> Array.singleton)
+    static member inline i (value: float) = Interop.mkMesh3dAttr "i" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<float>) = Interop.mkMesh3dAttr "i" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
-    static member inline i (value: int) = Interop.mkMesh3dAttr "i" (value |> Array.singleton)
+    static member inline i (value: int) = Interop.mkMesh3dAttr "i" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<int>) = Interop.mkMesh3dAttr "i" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
-    static member inline i (value: string) = Interop.mkMesh3dAttr "i" (value |> Array.singleton)
+    static member inline i (value: string) = Interop.mkMesh3dAttr "i" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<string>) = Interop.mkMesh3dAttr "i" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
@@ -238,23 +238,23 @@ type mesh3d =
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `i` represents a point in space, which is the first vertex of a triangle.
     static member inline i (values: seq<string option>) = Interop.mkMesh3dAttr "i" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkMesh3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkMesh3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkMesh3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkMesh3dAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkMesh3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -296,23 +296,23 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  ids .
     static member inline idssrc (value: string) = Interop.mkMesh3dAttr "idssrc" value
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
-    static member inline intensity (value: bool) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton)
+    static member inline intensity (value: bool) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
     static member inline intensity (values: seq<bool>) = Interop.mkMesh3dAttr "intensity" (values |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
-    static member inline intensity (value: System.DateTime) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton)
+    static member inline intensity (value: System.DateTime) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
     static member inline intensity (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "intensity" (values |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
-    static member inline intensity (value: float) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton)
+    static member inline intensity (value: float) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
     static member inline intensity (values: seq<float>) = Interop.mkMesh3dAttr "intensity" (values |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
-    static member inline intensity (value: int) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton)
+    static member inline intensity (value: int) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
     static member inline intensity (values: seq<int>) = Interop.mkMesh3dAttr "intensity" (values |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
-    static member inline intensity (value: string) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton)
+    static member inline intensity (value: string) = Interop.mkMesh3dAttr "intensity" (value |> Array.singleton |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
     static member inline intensity (values: seq<string>) = Interop.mkMesh3dAttr "intensity" (values |> ResizeArray)
     /// Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields on meshes.
@@ -356,23 +356,23 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  i .
     static member inline isrc (value: string) = Interop.mkMesh3dAttr "isrc" value
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
-    static member inline j (value: bool) = Interop.mkMesh3dAttr "j" (value |> Array.singleton)
+    static member inline j (value: bool) = Interop.mkMesh3dAttr "j" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
     static member inline j (values: seq<bool>) = Interop.mkMesh3dAttr "j" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
-    static member inline j (value: System.DateTime) = Interop.mkMesh3dAttr "j" (value |> Array.singleton)
+    static member inline j (value: System.DateTime) = Interop.mkMesh3dAttr "j" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
     static member inline j (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "j" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
-    static member inline j (value: float) = Interop.mkMesh3dAttr "j" (value |> Array.singleton)
+    static member inline j (value: float) = Interop.mkMesh3dAttr "j" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
     static member inline j (values: seq<float>) = Interop.mkMesh3dAttr "j" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
-    static member inline j (value: int) = Interop.mkMesh3dAttr "j" (value |> Array.singleton)
+    static member inline j (value: int) = Interop.mkMesh3dAttr "j" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
     static member inline j (values: seq<int>) = Interop.mkMesh3dAttr "j" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
-    static member inline j (value: string) = Interop.mkMesh3dAttr "j" (value |> Array.singleton)
+    static member inline j (value: string) = Interop.mkMesh3dAttr "j" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
     static member inline j (values: seq<string>) = Interop.mkMesh3dAttr "j" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `j` represents a point in space, which is the second vertex of a triangle.
@@ -414,23 +414,23 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  j .
     static member inline jsrc (value: string) = Interop.mkMesh3dAttr "jsrc" value
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
-    static member inline k (value: bool) = Interop.mkMesh3dAttr "k" (value |> Array.singleton)
+    static member inline k (value: bool) = Interop.mkMesh3dAttr "k" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
     static member inline k (values: seq<bool>) = Interop.mkMesh3dAttr "k" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
-    static member inline k (value: System.DateTime) = Interop.mkMesh3dAttr "k" (value |> Array.singleton)
+    static member inline k (value: System.DateTime) = Interop.mkMesh3dAttr "k" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
     static member inline k (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "k" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
-    static member inline k (value: float) = Interop.mkMesh3dAttr "k" (value |> Array.singleton)
+    static member inline k (value: float) = Interop.mkMesh3dAttr "k" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
     static member inline k (values: seq<float>) = Interop.mkMesh3dAttr "k" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
-    static member inline k (value: int) = Interop.mkMesh3dAttr "k" (value |> Array.singleton)
+    static member inline k (value: int) = Interop.mkMesh3dAttr "k" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
     static member inline k (values: seq<int>) = Interop.mkMesh3dAttr "k" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
-    static member inline k (value: string) = Interop.mkMesh3dAttr "k" (value |> Array.singleton)
+    static member inline k (value: string) = Interop.mkMesh3dAttr "k" (value |> Array.singleton |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
     static member inline k (values: seq<string>) = Interop.mkMesh3dAttr "k" (values |> ResizeArray)
     /// A vector of vertex indices, i.e. integer values between 0 and the length of the vertex vectors, representing the *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element in `k` represents a point in space, which is the third vertex of a triangle.
@@ -523,23 +523,23 @@ type mesh3d =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkMesh3dAttr "uirevision" (values |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    static member inline vertexcolor (value: bool) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton)
+    static member inline vertexcolor (value: bool) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
     static member inline vertexcolor (values: seq<bool>) = Interop.mkMesh3dAttr "vertexcolor" (values |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    static member inline vertexcolor (value: System.DateTime) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton)
+    static member inline vertexcolor (value: System.DateTime) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
     static member inline vertexcolor (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "vertexcolor" (values |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    static member inline vertexcolor (value: float) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton)
+    static member inline vertexcolor (value: float) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
     static member inline vertexcolor (values: seq<float>) = Interop.mkMesh3dAttr "vertexcolor" (values |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    static member inline vertexcolor (value: int) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton)
+    static member inline vertexcolor (value: int) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
     static member inline vertexcolor (values: seq<int>) = Interop.mkMesh3dAttr "vertexcolor" (values |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    static member inline vertexcolor (value: string) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton)
+    static member inline vertexcolor (value: string) = Interop.mkMesh3dAttr "vertexcolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
     static member inline vertexcolor (values: seq<string>) = Interop.mkMesh3dAttr "vertexcolor" (values |> ResizeArray)
     /// Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
@@ -581,23 +581,23 @@ type mesh3d =
     /// Sets the source reference on Chart Studio Cloud for  vertexcolor .
     static member inline vertexcolorsrc (value: string) = Interop.mkMesh3dAttr "vertexcolorsrc" value
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline x (value: bool) = Interop.mkMesh3dAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkMesh3dAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<bool>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline x (value: System.DateTime) = Interop.mkMesh3dAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkMesh3dAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline x (value: float) = Interop.mkMesh3dAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkMesh3dAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<float>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline x (value: int) = Interop.mkMesh3dAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkMesh3dAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<int>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline x (value: string) = Interop.mkMesh3dAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkMesh3dAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<string>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
@@ -636,26 +636,28 @@ type mesh3d =
     static member inline x (values: seq<float option>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline x (values: seq<string option>) = Interop.mkMesh3dAttr "x" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkMesh3dAttr "xhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkMesh3dAttr "xsrc" value
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline y (value: bool) = Interop.mkMesh3dAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkMesh3dAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<bool>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline y (value: System.DateTime) = Interop.mkMesh3dAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkMesh3dAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline y (value: float) = Interop.mkMesh3dAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkMesh3dAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<float>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline y (value: int) = Interop.mkMesh3dAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkMesh3dAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<int>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline y (value: string) = Interop.mkMesh3dAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkMesh3dAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<string>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
@@ -694,26 +696,28 @@ type mesh3d =
     static member inline y (values: seq<float option>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline y (values: seq<string option>) = Interop.mkMesh3dAttr "y" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkMesh3dAttr "yhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkMesh3dAttr "ysrc" value
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline z (value: bool) = Interop.mkMesh3dAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkMesh3dAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<bool>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline z (value: System.DateTime) = Interop.mkMesh3dAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkMesh3dAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<System.DateTime>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline z (value: float) = Interop.mkMesh3dAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkMesh3dAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<float>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline z (value: int) = Interop.mkMesh3dAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkMesh3dAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<int>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
-    static member inline z (value: string) = Interop.mkMesh3dAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkMesh3dAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<string>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
@@ -752,6 +756,8 @@ type mesh3d =
     static member inline z (values: seq<float option>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the nth vertex.
     static member inline z (values: seq<string option>) = Interop.mkMesh3dAttr "z" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `z`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `zaxis.hoverformat`.
+    static member inline zhoverformat (value: string) = Interop.mkMesh3dAttr "zhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkMesh3dAttr "zsrc" value
 

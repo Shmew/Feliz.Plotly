@@ -15,23 +15,23 @@ type radialaxis =
     /// Sets the angle (in degrees) from which the radial axis is drawn. Note that by default, radial axis line on the theta=0 line corresponds to a line pointing right (like what mathematicians prefer). Defaults to the first `polar.sector` angle.
     static member inline angle (value: float) = Interop.mkRadialaxisAttr "angle" value
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: bool) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: System.DateTime) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: System.DateTime) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: float) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: int) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: string) = Interop.mkRadialaxisAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkRadialaxisAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -74,14 +74,6 @@ type radialaxis =
     static member inline categoryarraysrc (value: string) = Interop.mkRadialaxisAttr "categoryarraysrc" value
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
     static member inline color (value: string) = Interop.mkRadialaxisAttr "color" value
-    /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (value: int) = Interop.mkRadialaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
-    /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (values: seq<int>) = Interop.mkRadialaxisAttr "domain" (values |> ResizeArray)
-    /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (value: float) = Interop.mkRadialaxisAttr "domain" (value |> Array.singleton |> ResizeArray)
-    /// Polar chart subplots are not supported yet. This key has currently no effect.
-    static member inline domain (values: seq<float>) = Interop.mkRadialaxisAttr "domain" (values |> ResizeArray)
     /// Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1* and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick` to *M3*. To set ticks every 4 years, set `dtick` to *M48*
     static member inline dtick (value: bool) = Interop.mkRadialaxisAttr "dtick" value
     /// Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1* and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick` to *M3*. To set ticks every 4 years, set `dtick` to *M48*

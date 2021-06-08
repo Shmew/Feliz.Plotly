@@ -173,8 +173,6 @@ type style =
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
     static member inline value (properties: IBarpolarProperty list) = Interop.mkStyleAttr "value" (createObj !!properties)
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
-    static member inline value (properties: IAreaProperty list) = Interop.mkStyleAttr "value" (createObj !!properties)
-    /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
     static member inline value (value: bool) = Interop.mkStyleAttr "value" value
     /// Sets each group styles. For example, with `groups` set to *['a', 'b', 'a', 'b']* and `styles` set to *[{target: 'a', value: { marker: { color: 'red' } }}] marker points in group *'a'* will be drawn in red.
     static member inline value (values: seq<bool>) = Interop.mkStyleAttr "value" (values |> ResizeArray)

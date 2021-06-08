@@ -150,7 +150,7 @@ module filter =
         /// Sets the filter target by which the filter is applied. If a string, `target` is assumed to be a reference to a data array in the parent trace object. To filter about nested variables, use *.* to access them. For example, set `target` to *marker.color* to filter about the marker color array. If an array, `target` is then the data array by which the filter is applied.
         static member inline z = Interop.mkFilterAttr "target" "z"
 
-    /// Sets the calendar system to use for `target`, if it is an array of dates. If `target` is a string (eg *x*) we use the corresponding trace attribute (eg `xcalendar`) if it exists, even if `targetcalendar` is provided.
+    /// WARNING: All transforms are deprecated and may be removed from the API in next major version. Sets the calendar system to use for `target`, if it is an array of dates. If `target` is a string (eg *x*) we use the corresponding trace attribute (eg `xcalendar`) if it exists, even if `targetcalendar` is provided.
     [<Erase>]
     type targetcalendar =
         static member inline chinese = Interop.mkFilterAttr "targetcalendar" "chinese"
@@ -170,7 +170,7 @@ module filter =
         static member inline thai = Interop.mkFilterAttr "targetcalendar" "thai"
         static member inline ummalqura = Interop.mkFilterAttr "targetcalendar" "ummalqura"
 
-    /// Sets the calendar system to use for `value`, if it is a date.
+    /// WARNING: All transforms are deprecated and may be removed from the API in next major version. Sets the calendar system to use for `value`, if it is a date.
     [<Erase>]
     type valuecalendar =
         static member inline chinese = Interop.mkFilterAttr "valuecalendar" "chinese"

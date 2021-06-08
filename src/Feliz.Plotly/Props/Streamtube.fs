@@ -40,23 +40,23 @@ type streamtube =
     /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
     static member inline colorscale (values: seq<string []>) = Interop.mkStreamtubeAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -102,32 +102,32 @@ type streamtube =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkStreamtubeAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkStreamtubeAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `tubex`, `tubey`, `tubez`, `tubeu`, `tubev`, `tubew`, `norm` and `divergence`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `tubex`, `tubey`, `tubez`, `tubeu`, `tubev`, `tubew`, `norm` and `divergence`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkStreamtubeAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `tubex`, `tubey`, `tubez`, `tubeu`, `tubev`, `tubew`, `norm` and `divergence`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `tubex`, `tubey`, `tubez`, `tubeu`, `tubev`, `tubew`, `norm` and `divergence`. Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkStreamtubeAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkStreamtubeAttr "hovertemplatesrc" value
     /// Same as `text`.
     static member inline hovertext (value: string) = Interop.mkStreamtubeAttr "hovertext" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -201,23 +201,23 @@ type streamtube =
     /// Sets a text element associated with this trace. If trace `hoverinfo` contains a *text* flag, this text element will be seen in all hover labels. Note that streamtube traces do not support array `text` values.
     static member inline text (value: string) = Interop.mkStreamtubeAttr "text" value
     /// Sets the x components of the vector field.
-    static member inline u (value: bool) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton)
+    static member inline u (value: bool) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<bool>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
-    static member inline u (value: System.DateTime) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton)
+    static member inline u (value: System.DateTime) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
-    static member inline u (value: float) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton)
+    static member inline u (value: float) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<float>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
-    static member inline u (value: int) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton)
+    static member inline u (value: int) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<int>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
-    static member inline u (value: string) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton)
+    static member inline u (value: string) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<string>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
@@ -256,6 +256,8 @@ type streamtube =
     static member inline u (values: seq<float option>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<string option>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `u`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format By default the values are formatted using generic number format.
+    static member inline uhoverformat (value: string) = Interop.mkStreamtubeAttr "uhoverformat" value
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     static member inline uid (value: string) = Interop.mkStreamtubeAttr "uid" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -281,23 +283,23 @@ type streamtube =
     /// Sets the source reference on Chart Studio Cloud for  u .
     static member inline usrc (value: string) = Interop.mkStreamtubeAttr "usrc" value
     /// Sets the y components of the vector field.
-    static member inline v (value: bool) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton)
+    static member inline v (value: bool) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<bool>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
-    static member inline v (value: System.DateTime) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton)
+    static member inline v (value: System.DateTime) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
-    static member inline v (value: float) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton)
+    static member inline v (value: float) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<float>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
-    static member inline v (value: int) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton)
+    static member inline v (value: int) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<int>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
-    static member inline v (value: string) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton)
+    static member inline v (value: string) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<string>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
@@ -336,26 +338,28 @@ type streamtube =
     static member inline v (values: seq<float option>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<string option>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `v`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format By default the values are formatted using generic number format.
+    static member inline vhoverformat (value: string) = Interop.mkStreamtubeAttr "vhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  v .
     static member inline vsrc (value: string) = Interop.mkStreamtubeAttr "vsrc" value
     /// Sets the z components of the vector field.
-    static member inline w (value: bool) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton)
+    static member inline w (value: bool) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<bool>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
-    static member inline w (value: System.DateTime) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton)
+    static member inline w (value: System.DateTime) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
-    static member inline w (value: float) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton)
+    static member inline w (value: float) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<float>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
-    static member inline w (value: int) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton)
+    static member inline w (value: int) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<int>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
-    static member inline w (value: string) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton)
+    static member inline w (value: string) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<string>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
@@ -394,26 +398,28 @@ type streamtube =
     static member inline w (values: seq<float option>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<string option>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `w`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format By default the values are formatted using generic number format.
+    static member inline whoverformat (value: string) = Interop.mkStreamtubeAttr "whoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  w .
     static member inline wsrc (value: string) = Interop.mkStreamtubeAttr "wsrc" value
     /// Sets the x coordinates of the vector field.
-    static member inline x (value: bool) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<bool>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
-    static member inline x (value: System.DateTime) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
-    static member inline x (value: float) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<float>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
-    static member inline x (value: int) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<int>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
-    static member inline x (value: string) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<string>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
@@ -452,26 +458,28 @@ type streamtube =
     static member inline x (values: seq<float option>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<string option>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkStreamtubeAttr "xhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkStreamtubeAttr "xsrc" value
     /// Sets the y coordinates of the vector field.
-    static member inline y (value: bool) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<bool>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
-    static member inline y (value: System.DateTime) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
-    static member inline y (value: float) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<float>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
-    static member inline y (value: int) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<int>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
-    static member inline y (value: string) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<string>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
@@ -510,26 +518,28 @@ type streamtube =
     static member inline y (values: seq<float option>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<string option>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkStreamtubeAttr "yhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkStreamtubeAttr "ysrc" value
     /// Sets the z coordinates of the vector field.
-    static member inline z (value: bool) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<bool>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
-    static member inline z (value: System.DateTime) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
-    static member inline z (value: float) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<float>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
-    static member inline z (value: int) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<int>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
-    static member inline z (value: string) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<string>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
@@ -568,6 +578,8 @@ type streamtube =
     static member inline z (values: seq<float option>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<string option>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `z`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `zaxis.hoverformat`.
+    static member inline zhoverformat (value: string) = Interop.mkStreamtubeAttr "zhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkStreamtubeAttr "zsrc" value
 

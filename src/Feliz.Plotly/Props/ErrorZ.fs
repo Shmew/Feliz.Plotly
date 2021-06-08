@@ -11,23 +11,23 @@ open Feliz
 [<Erase>]
 type errorZ =
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    static member inline array (value: bool) = Interop.mkErrorZAttr "array" (value |> Array.singleton)
+    static member inline array (value: bool) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<bool>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    static member inline array (value: System.DateTime) = Interop.mkErrorZAttr "array" (value |> Array.singleton)
+    static member inline array (value: System.DateTime) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<System.DateTime>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    static member inline array (value: float) = Interop.mkErrorZAttr "array" (value |> Array.singleton)
+    static member inline array (value: float) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<float>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    static member inline array (value: int) = Interop.mkErrorZAttr "array" (value |> Array.singleton)
+    static member inline array (value: int) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<int>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    static member inline array (value: string) = Interop.mkErrorZAttr "array" (value |> Array.singleton)
+    static member inline array (value: string) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<string>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
@@ -67,23 +67,23 @@ type errorZ =
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<string option>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    static member inline arrayminus (value: bool) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton)
+    static member inline arrayminus (value: bool) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<bool>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    static member inline arrayminus (value: System.DateTime) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton)
+    static member inline arrayminus (value: System.DateTime) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<System.DateTime>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    static member inline arrayminus (value: float) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton)
+    static member inline arrayminus (value: float) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<float>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    static member inline arrayminus (value: int) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton)
+    static member inline arrayminus (value: int) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<int>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    static member inline arrayminus (value: string) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton)
+    static member inline arrayminus (value: string) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<string>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
@@ -163,7 +163,7 @@ module errorZ =
         /// Sets the stoke color of the error bars.
         static member inline hsl (h,s,l) = Interop.mkErrorZAttr "color" (Feliz.color.hsl(h,s,l))
 
-    /// Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`.
+    /// Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`.
     [<Erase>]
     type type' =
         static member inline constant = Interop.mkErrorZAttr "type" "constant"

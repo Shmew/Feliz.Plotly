@@ -11,23 +11,23 @@ open Feliz
 [<Erase>]
 type candlestick =
     /// Sets the close values.
-    static member inline close (value: bool) = Interop.mkCandlestickAttr "close" (value |> Array.singleton)
+    static member inline close (value: bool) = Interop.mkCandlestickAttr "close" (value |> Array.singleton |> ResizeArray)
     /// Sets the close values.
     static member inline close (values: seq<bool>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
     /// Sets the close values.
-    static member inline close (value: System.DateTime) = Interop.mkCandlestickAttr "close" (value |> Array.singleton)
+    static member inline close (value: System.DateTime) = Interop.mkCandlestickAttr "close" (value |> Array.singleton |> ResizeArray)
     /// Sets the close values.
     static member inline close (values: seq<System.DateTime>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
     /// Sets the close values.
-    static member inline close (value: float) = Interop.mkCandlestickAttr "close" (value |> Array.singleton)
+    static member inline close (value: float) = Interop.mkCandlestickAttr "close" (value |> Array.singleton |> ResizeArray)
     /// Sets the close values.
     static member inline close (values: seq<float>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
     /// Sets the close values.
-    static member inline close (value: int) = Interop.mkCandlestickAttr "close" (value |> Array.singleton)
+    static member inline close (value: int) = Interop.mkCandlestickAttr "close" (value |> Array.singleton |> ResizeArray)
     /// Sets the close values.
     static member inline close (values: seq<int>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
     /// Sets the close values.
-    static member inline close (value: string) = Interop.mkCandlestickAttr "close" (value |> Array.singleton)
+    static member inline close (value: string) = Interop.mkCandlestickAttr "close" (value |> Array.singleton |> ResizeArray)
     /// Sets the close values.
     static member inline close (values: seq<string>) = Interop.mkCandlestickAttr "close" (values |> ResizeArray)
     /// Sets the close values.
@@ -69,23 +69,23 @@ type candlestick =
     /// Sets the source reference on Chart Studio Cloud for  close .
     static member inline closesrc (value: string) = Interop.mkCandlestickAttr "closesrc" value
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkCandlestickAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkCandlestickAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -128,23 +128,23 @@ type candlestick =
     static member inline customdatasrc (value: string) = Interop.mkCandlestickAttr "customdatasrc" value
     static member inline decreasing (properties: #IDecreasingProperty list) = Interop.mkCandlestickAttr "decreasing" (createObj !!properties)
     /// Sets the high values.
-    static member inline high (value: bool) = Interop.mkCandlestickAttr "high" (value |> Array.singleton)
+    static member inline high (value: bool) = Interop.mkCandlestickAttr "high" (value |> Array.singleton |> ResizeArray)
     /// Sets the high values.
     static member inline high (values: seq<bool>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
     /// Sets the high values.
-    static member inline high (value: System.DateTime) = Interop.mkCandlestickAttr "high" (value |> Array.singleton)
+    static member inline high (value: System.DateTime) = Interop.mkCandlestickAttr "high" (value |> Array.singleton |> ResizeArray)
     /// Sets the high values.
     static member inline high (values: seq<System.DateTime>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
     /// Sets the high values.
-    static member inline high (value: float) = Interop.mkCandlestickAttr "high" (value |> Array.singleton)
+    static member inline high (value: float) = Interop.mkCandlestickAttr "high" (value |> Array.singleton |> ResizeArray)
     /// Sets the high values.
     static member inline high (values: seq<float>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
     /// Sets the high values.
-    static member inline high (value: int) = Interop.mkCandlestickAttr "high" (value |> Array.singleton)
+    static member inline high (value: int) = Interop.mkCandlestickAttr "high" (value |> Array.singleton |> ResizeArray)
     /// Sets the high values.
     static member inline high (values: seq<int>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
     /// Sets the high values.
-    static member inline high (value: string) = Interop.mkCandlestickAttr "high" (value |> Array.singleton)
+    static member inline high (value: string) = Interop.mkCandlestickAttr "high" (value |> Array.singleton |> ResizeArray)
     /// Sets the high values.
     static member inline high (values: seq<string>) = Interop.mkCandlestickAttr "high" (values |> ResizeArray)
     /// Sets the high values.
@@ -197,23 +197,23 @@ type candlestick =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkCandlestickAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkCandlestickAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkCandlestickAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -259,23 +259,23 @@ type candlestick =
     static member inline legendgroup (value: string) = Interop.mkCandlestickAttr "legendgroup" value
     static member inline line (properties: #ILineProperty list) = Interop.mkCandlestickAttr "line" (createObj !!properties)
     /// Sets the low values.
-    static member inline low (value: bool) = Interop.mkCandlestickAttr "low" (value |> Array.singleton)
+    static member inline low (value: bool) = Interop.mkCandlestickAttr "low" (value |> Array.singleton |> ResizeArray)
     /// Sets the low values.
     static member inline low (values: seq<bool>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
     /// Sets the low values.
-    static member inline low (value: System.DateTime) = Interop.mkCandlestickAttr "low" (value |> Array.singleton)
+    static member inline low (value: System.DateTime) = Interop.mkCandlestickAttr "low" (value |> Array.singleton |> ResizeArray)
     /// Sets the low values.
     static member inline low (values: seq<System.DateTime>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
     /// Sets the low values.
-    static member inline low (value: float) = Interop.mkCandlestickAttr "low" (value |> Array.singleton)
+    static member inline low (value: float) = Interop.mkCandlestickAttr "low" (value |> Array.singleton |> ResizeArray)
     /// Sets the low values.
     static member inline low (values: seq<float>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
     /// Sets the low values.
-    static member inline low (value: int) = Interop.mkCandlestickAttr "low" (value |> Array.singleton)
+    static member inline low (value: int) = Interop.mkCandlestickAttr "low" (value |> Array.singleton |> ResizeArray)
     /// Sets the low values.
     static member inline low (values: seq<int>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
     /// Sets the low values.
-    static member inline low (value: string) = Interop.mkCandlestickAttr "low" (value |> Array.singleton)
+    static member inline low (value: string) = Interop.mkCandlestickAttr "low" (value |> Array.singleton |> ResizeArray)
     /// Sets the low values.
     static member inline low (values: seq<string>) = Interop.mkCandlestickAttr "low" (values |> ResizeArray)
     /// Sets the low values.
@@ -325,23 +325,23 @@ type candlestick =
     /// Sets the opacity of the trace.
     static member inline opacity (value: float) = Interop.mkCandlestickAttr "opacity" value
     /// Sets the open values.
-    static member inline open' (value: bool) = Interop.mkCandlestickAttr "open" (value |> Array.singleton)
+    static member inline open' (value: bool) = Interop.mkCandlestickAttr "open" (value |> Array.singleton |> ResizeArray)
     /// Sets the open values.
     static member inline open' (values: seq<bool>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
     /// Sets the open values.
-    static member inline open' (value: System.DateTime) = Interop.mkCandlestickAttr "open" (value |> Array.singleton)
+    static member inline open' (value: System.DateTime) = Interop.mkCandlestickAttr "open" (value |> Array.singleton |> ResizeArray)
     /// Sets the open values.
     static member inline open' (values: seq<System.DateTime>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
     /// Sets the open values.
-    static member inline open' (value: float) = Interop.mkCandlestickAttr "open" (value |> Array.singleton)
+    static member inline open' (value: float) = Interop.mkCandlestickAttr "open" (value |> Array.singleton |> ResizeArray)
     /// Sets the open values.
     static member inline open' (values: seq<float>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
     /// Sets the open values.
-    static member inline open' (value: int) = Interop.mkCandlestickAttr "open" (value |> Array.singleton)
+    static member inline open' (value: int) = Interop.mkCandlestickAttr "open" (value |> Array.singleton |> ResizeArray)
     /// Sets the open values.
     static member inline open' (values: seq<int>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
     /// Sets the open values.
-    static member inline open' (value: string) = Interop.mkCandlestickAttr "open" (value |> Array.singleton)
+    static member inline open' (value: string) = Interop.mkCandlestickAttr "open" (value |> Array.singleton |> ResizeArray)
     /// Sets the open values.
     static member inline open' (values: seq<string>) = Interop.mkCandlestickAttr "open" (values |> ResizeArray)
     /// Sets the open values.
@@ -439,23 +439,23 @@ type candlestick =
     /// Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
     static member inline whiskerwidth (value: float) = Interop.mkCandlestickAttr "whiskerwidth" value
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: bool) = Interop.mkCandlestickAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkCandlestickAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<bool>) = Interop.mkCandlestickAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: System.DateTime) = Interop.mkCandlestickAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkCandlestickAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<System.DateTime>) = Interop.mkCandlestickAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: float) = Interop.mkCandlestickAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkCandlestickAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<float>) = Interop.mkCandlestickAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: int) = Interop.mkCandlestickAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkCandlestickAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<int>) = Interop.mkCandlestickAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
-    static member inline x (value: string) = Interop.mkCandlestickAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkCandlestickAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<string>) = Interop.mkCandlestickAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
@@ -498,6 +498,8 @@ type candlestick =
     static member inline xaxis (anchorId: int) = Interop.mkCandlestickAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkCandlestickAttr "xaxis" value
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkCandlestickAttr "xhoverformat" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: bool) = Interop.mkCandlestickAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -544,6 +546,8 @@ type candlestick =
     static member inline yaxis (anchorId: int) = Interop.mkCandlestickAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkCandlestickAttr "yaxis" value
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkCandlestickAttr "yhoverformat" value
 
 [<Erase;RequireQualifiedAccess>]
 module candlestick =

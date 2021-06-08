@@ -18,23 +18,23 @@ type violin =
     static member inline bandwidth (value: float) = Interop.mkViolinAttr "bandwidth" value
     static member inline box (properties: #IBoxProperty list) = Interop.mkViolinAttr "box" (createObj !!properties)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkViolinAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkViolinAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkViolinAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkViolinAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkViolinAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -84,9 +84,9 @@ type violin =
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkViolinAttr "hoverlabel" (createObj !!properties)
     /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
     static member inline hoveron (properties: #IViolinProperty list) = Interop.mkViolinAttr "hoveron" (properties |> List.map (Bindings.getKV >> snd >> unbox) |> String.concat "+")
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkViolinAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkViolinAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkViolinAttr "hovertemplatesrc" value
@@ -97,23 +97,23 @@ type violin =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkViolinAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkViolinAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkViolinAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkViolinAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkViolinAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkViolinAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -258,23 +258,23 @@ type violin =
     /// Sets the width of the violin in data coordinates. If *0* (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.
     static member inline width (value: float) = Interop.mkViolinAttr "width" value
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: bool) = Interop.mkViolinAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<bool>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: System.DateTime) = Interop.mkViolinAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<System.DateTime>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: float) = Interop.mkViolinAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<float>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: int) = Interop.mkViolinAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<int>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
-    static member inline x (value: string) = Interop.mkViolinAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<string>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
@@ -337,26 +337,28 @@ type violin =
     static member inline xaxis (anchorId: int) = Interop.mkViolinAttr "xaxis" (sprintf "x%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     static member inline xaxis (value: string) = Interop.mkViolinAttr "xaxis" value
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkViolinAttr "xhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkViolinAttr "xsrc" value
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: bool) = Interop.mkViolinAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<bool>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: System.DateTime) = Interop.mkViolinAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<System.DateTime>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: float) = Interop.mkViolinAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<float>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: int) = Interop.mkViolinAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<int>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
-    static member inline y (value: string) = Interop.mkViolinAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<string>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
@@ -419,6 +421,8 @@ type violin =
     static member inline yaxis (anchorId: int) = Interop.mkViolinAttr "yaxis" (sprintf "y%s" (if anchorId > 1 then (anchorId |> string) else ""))
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     static member inline yaxis (value: string) = Interop.mkViolinAttr "yaxis" value
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkViolinAttr "yhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkViolinAttr "ysrc" value
 

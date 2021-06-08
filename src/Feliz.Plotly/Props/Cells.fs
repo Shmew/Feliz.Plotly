@@ -17,23 +17,23 @@ type cells =
     static member inline fill (properties: #IFillProperty list) = Interop.mkCellsAttr "fill" (createObj !!properties)
     static member inline font (properties: #IFontProperty list) = Interop.mkCellsAttr "font" (createObj !!properties)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (value: bool) = Interop.mkCellsAttr "format" (value |> Array.singleton)
+    static member inline format (value: bool) = Interop.mkCellsAttr "format" (value |> Array.singleton |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<bool>) = Interop.mkCellsAttr "format" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (value: System.DateTime) = Interop.mkCellsAttr "format" (value |> Array.singleton)
+    static member inline format (value: System.DateTime) = Interop.mkCellsAttr "format" (value |> Array.singleton |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<System.DateTime>) = Interop.mkCellsAttr "format" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (value: float) = Interop.mkCellsAttr "format" (value |> Array.singleton)
+    static member inline format (value: float) = Interop.mkCellsAttr "format" (value |> Array.singleton |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<float>) = Interop.mkCellsAttr "format" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (value: int) = Interop.mkCellsAttr "format" (value |> Array.singleton)
+    static member inline format (value: int) = Interop.mkCellsAttr "format" (value |> Array.singleton |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<int>) = Interop.mkCellsAttr "format" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    static member inline format (value: string) = Interop.mkCellsAttr "format" (value |> Array.singleton)
+    static member inline format (value: string) = Interop.mkCellsAttr "format" (value |> Array.singleton |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
     static member inline format (values: seq<string>) = Interop.mkCellsAttr "format" (values |> ResizeArray)
     /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
@@ -92,23 +92,23 @@ type cells =
     /// Sets the source reference on Chart Studio Cloud for  suffix .
     static member inline suffixsrc (value: string) = Interop.mkCellsAttr "suffixsrc" value
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (value: bool) = Interop.mkCellsAttr "values" (value |> Array.singleton)
+    static member inline values (value: bool) = Interop.mkCellsAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<bool>) = Interop.mkCellsAttr "values" (values |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (value: System.DateTime) = Interop.mkCellsAttr "values" (value |> Array.singleton)
+    static member inline values (value: System.DateTime) = Interop.mkCellsAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<System.DateTime>) = Interop.mkCellsAttr "values" (values |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (value: float) = Interop.mkCellsAttr "values" (value |> Array.singleton)
+    static member inline values (value: float) = Interop.mkCellsAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<float>) = Interop.mkCellsAttr "values" (values |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (value: int) = Interop.mkCellsAttr "values" (value |> Array.singleton)
+    static member inline values (value: int) = Interop.mkCellsAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<int>) = Interop.mkCellsAttr "values" (values |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-    static member inline values (value: string) = Interop.mkCellsAttr "values" (value |> Array.singleton)
+    static member inline values (value: string) = Interop.mkCellsAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
     static member inline values (values: seq<string>) = Interop.mkCellsAttr "values" (values |> ResizeArray)
     /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.

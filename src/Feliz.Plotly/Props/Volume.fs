@@ -42,23 +42,23 @@ type volume =
     static member inline colorscale (values: seq<string []>) = Interop.mkVolumeAttr "colorscale" (values |> Seq.map ResizeArray |> ResizeArray)
     static member inline contour (properties: #IContourProperty list) = Interop.mkVolumeAttr "contour" (createObj !!properties)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: bool) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: bool) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<bool>) = Interop.mkVolumeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: System.DateTime) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: System.DateTime) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkVolumeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: float) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: float) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float>) = Interop.mkVolumeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: int) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: int) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int>) = Interop.mkVolumeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    static member inline customdata (value: string) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton)
+    static member inline customdata (value: string) = Interop.mkVolumeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<string>) = Interop.mkVolumeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -106,9 +106,9 @@ type volume =
     /// Sets the source reference on Chart Studio Cloud for  hoverinfo .
     static member inline hoverinfosrc (value: string) = Interop.mkVolumeAttr "hoverinfosrc" value
     static member inline hoverlabel (properties: #IHoverlabelProperty list) = Interop.mkVolumeAttr "hoverlabel" (createObj !!properties)
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (value: string) = Interop.mkVolumeAttr "hovertemplate" value
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example \"y: %{y}\" as well as %{xother}, {%_xother}, {%_xother_}, {%xother_}. When showing info for several points, *xother* will be added to those with different x positions from the first point. An underscore before or after *(x|y)other* will add a space on that side, only when this field is shown. Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example \"Price: %{y:$.2f}\". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example \"Day: %{2019-01-01|%A}\". https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example \"<extra>{fullData.name}</extra>\". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     static member inline hovertemplate (values: seq<string>) = Interop.mkVolumeAttr "hovertemplate" (values |> ResizeArray)
     /// Sets the source reference on Chart Studio Cloud for  hovertemplate .
     static member inline hovertemplatesrc (value: string) = Interop.mkVolumeAttr "hovertemplatesrc" value
@@ -119,23 +119,23 @@ type volume =
     /// Sets the source reference on Chart Studio Cloud for  hovertext .
     static member inline hovertextsrc (value: string) = Interop.mkVolumeAttr "hovertextsrc" value
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: bool) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: bool) = Interop.mkVolumeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<bool>) = Interop.mkVolumeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: System.DateTime) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: System.DateTime) = Interop.mkVolumeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkVolumeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: float) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: float) = Interop.mkVolumeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float>) = Interop.mkVolumeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: int) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: int) = Interop.mkVolumeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int>) = Interop.mkVolumeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    static member inline ids (value: string) = Interop.mkVolumeAttr "ids" (value |> Array.singleton)
+    static member inline ids (value: string) = Interop.mkVolumeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<string>) = Interop.mkVolumeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -259,23 +259,23 @@ type volume =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<string>) = Interop.mkVolumeAttr "uirevision" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: bool) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: bool) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<bool>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: System.DateTime) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: System.DateTime) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<System.DateTime>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: float) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: float) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<float>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: int) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: int) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<int>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
-    static member inline value (value: string) = Interop.mkVolumeAttr "value" (value |> Array.singleton)
+    static member inline value (value: string) = Interop.mkVolumeAttr "value" (value |> Array.singleton |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<string>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
@@ -314,26 +314,28 @@ type volume =
     static member inline value (values: seq<float option>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
     /// Sets the 4th dimension (value) of the vertices.
     static member inline value (values: seq<string option>) = Interop.mkVolumeAttr "value" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `value`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format By default the values are formatted using generic number format.
+    static member inline valuehoverformat (value: string) = Interop.mkVolumeAttr "valuehoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  value .
     static member inline valuesrc (value: string) = Interop.mkVolumeAttr "valuesrc" value
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: bool) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: bool) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<bool>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: System.DateTime) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: System.DateTime) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<System.DateTime>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: float) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: float) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<float>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: int) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: int) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<int>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
-    static member inline x (value: string) = Interop.mkVolumeAttr "x" (value |> Array.singleton)
+    static member inline x (value: string) = Interop.mkVolumeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<string>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
@@ -372,26 +374,28 @@ type volume =
     static member inline x (values: seq<float option>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
     /// Sets the X coordinates of the vertices on X axis.
     static member inline x (values: seq<string option>) = Interop.mkVolumeAttr "x" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `x`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `xaxis.hoverformat`.
+    static member inline xhoverformat (value: string) = Interop.mkVolumeAttr "xhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  x .
     static member inline xsrc (value: string) = Interop.mkVolumeAttr "xsrc" value
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: bool) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: bool) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<bool>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: System.DateTime) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: System.DateTime) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<System.DateTime>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: float) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: float) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<float>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: int) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: int) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<int>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
-    static member inline y (value: string) = Interop.mkVolumeAttr "y" (value |> Array.singleton)
+    static member inline y (value: string) = Interop.mkVolumeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<string>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
@@ -430,26 +434,28 @@ type volume =
     static member inline y (values: seq<float option>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
     /// Sets the Y coordinates of the vertices on Y axis.
     static member inline y (values: seq<string option>) = Interop.mkVolumeAttr "y" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `y`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `yaxis.hoverformat`.
+    static member inline yhoverformat (value: string) = Interop.mkVolumeAttr "yhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  y .
     static member inline ysrc (value: string) = Interop.mkVolumeAttr "ysrc" value
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: bool) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: bool) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<bool>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: System.DateTime) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: System.DateTime) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<System.DateTime>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: float) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: float) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<float>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: int) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: int) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<int>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
-    static member inline z (value: string) = Interop.mkVolumeAttr "z" (value |> Array.singleton)
+    static member inline z (value: string) = Interop.mkVolumeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<string>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
@@ -488,6 +494,8 @@ type volume =
     static member inline z (values: seq<float option>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
     /// Sets the Z coordinates of the vertices on Z axis.
     static member inline z (values: seq<string option>) = Interop.mkVolumeAttr "z" (values |> ResizeArray)
+    /// Sets the hover text formatting rule for `z`  using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-time-format#locale_format By default the values are formatted using `zaxis.hoverformat`.
+    static member inline zhoverformat (value: string) = Interop.mkVolumeAttr "zhoverformat" value
     /// Sets the source reference on Chart Studio Cloud for  z .
     static member inline zsrc (value: string) = Interop.mkVolumeAttr "zsrc" value
 

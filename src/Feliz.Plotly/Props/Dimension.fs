@@ -12,23 +12,23 @@ open Feliz
 type dimension =
     static member inline axis (properties: #IAxisProperty list) = Interop.mkDimensionAttr "axis" (createObj !!properties)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: bool) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: bool) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<bool>) = Interop.mkDimensionAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: System.DateTime) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: System.DateTime) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<System.DateTime>) = Interop.mkDimensionAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: float) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: float) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<float>) = Interop.mkDimensionAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: int) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: int) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<int>) = Interop.mkDimensionAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-    static member inline categoryarray (value: string) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton)
+    static member inline categoryarray (value: string) = Interop.mkDimensionAttr "categoryarray" (value |> Array.singleton |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
     static member inline categoryarray (values: seq<string>) = Interop.mkDimensionAttr "categoryarray" (values |> ResizeArray)
     /// Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
@@ -214,23 +214,23 @@ type dimension =
     /// Sets the source reference on Chart Studio Cloud for  tickvals .
     static member inline tickvalssrc (value: string) = Interop.mkDimensionAttr "tickvalssrc" value
     /// Sets the dimension values to be plotted.
-    static member inline values (value: bool) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
+    static member inline values (value: bool) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<bool>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: System.DateTime) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
+    static member inline values (value: System.DateTime) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<System.DateTime>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: float) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
+    static member inline values (value: float) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<float>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: int) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
+    static member inline values (value: int) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<int>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
-    static member inline values (value: string) = Interop.mkDimensionAttr "values" (value |> Array.singleton)
+    static member inline values (value: string) = Interop.mkDimensionAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the dimension values to be plotted.
     static member inline values (values: seq<string>) = Interop.mkDimensionAttr "values" (values |> ResizeArray)
     /// Sets the dimension values to be plotted.
