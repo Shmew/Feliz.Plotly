@@ -17,7 +17,11 @@ type button =
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (value: System.DateTime) = Interop.mkButtonAttr "args" (value |> Array.singleton |> ResizeArray)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (value: System.DateTimeOffset) = Interop.mkButtonAttr "args" (value |> Array.singleton |> ResizeArray)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (values: seq<System.DateTime>) = Interop.mkButtonAttr "args" (values |> ResizeArray)
+    /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+    static member inline args (values: seq<System.DateTimeOffset>) = Interop.mkButtonAttr "args" (values |> ResizeArray)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
     static member inline args (value: float) = Interop.mkButtonAttr "args" (value |> Array.singleton |> ResizeArray)
     /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
@@ -37,7 +41,11 @@ type button =
     /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
     static member inline args2 (value: System.DateTime) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
     /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (value: System.DateTimeOffset) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
     static member inline args2 (values: seq<System.DateTime>) = Interop.mkButtonAttr "args2" (values |> ResizeArray)
+    /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
+    static member inline args2 (values: seq<System.DateTimeOffset>) = Interop.mkButtonAttr "args2" (values |> ResizeArray)
     /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.
     static member inline args2 (value: float) = Interop.mkButtonAttr "args2" (value |> Array.singleton |> ResizeArray)
     /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. Use this to create toggle buttons.

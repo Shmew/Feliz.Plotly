@@ -38,7 +38,11 @@ type polar =
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: System.DateTime) = Interop.mkPolarAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkPolarAttr "uirevision" value
+    /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkPolarAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkPolarAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkPolarAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes. Defaults to `layout.uirevision`.

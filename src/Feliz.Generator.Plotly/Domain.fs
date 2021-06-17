@@ -164,6 +164,12 @@ module rec Domain =
         let dateSeqStrOpt = "(values: seq<System.DateTime option>)", "(values |> ResizeArray)"
         let dateSingleton = "(value: System.DateTime)", "(value |> Array.singleton)"
 
+        let dateOffsetStr = "(value: System.DateTimeOffset)", "value"
+        let dateOffsetResizeSingleton = "(value: System.DateTimeOffset)", "(value |> Array.singleton |> ResizeArray)"
+        let dateOffsetSeqStr = "(values: seq<System.DateTimeOffset>)", "(values |> ResizeArray)"
+        let dateOffsetSeqStrOpt = "(values: seq<System.DateTimeOffset option>)", "(values |> ResizeArray)"
+        let dateOffsetSingleton = "(value: System.DateTimeOffset)", "(value |> Array.singleton)"
+
         let dayOfWeekSeqStr = "(days: seq<System.DayOfWeek>)", "(unbox<seq<int>> days)"
         let dayOfWeekSeqStrOptNull = "(days: seq<System.DayOfWeek option>)", "(unbox<seq<int option>> days |> Seq.map (Option.defaultValue (unbox<int> null)) |> ResizeArray)"
 
@@ -296,9 +302,9 @@ module rec Domain =
         ]
 
         let allNormalStrs =
-            [ boolStr; boolSeqStr; dateStr; dateSeqStr; intStr; intSeqStr; floatStr; floatSeqStr; stringStr; stringSeqStr ]
+            [ boolStr; boolSeqStr; dateStr; dateOffsetStr; dateSeqStr; dateOffsetSeqStr; intStr; intSeqStr; floatStr; floatSeqStr; stringStr; stringSeqStr ]
 
-        let allNormalOptStrs = [ boolSeqStrOpt; dateSeqStrOpt; intSeqStrOpt; floatSeqStrOpt; stringSeqStrOpt ]
+        let allNormalOptStrs = [ boolSeqStrOpt; dateSeqStrOpt; dateOffsetSeqStrOpt; intSeqStrOpt; floatSeqStrOpt; stringSeqStrOpt ]
 
         let allBool2DStrs = [ bool2DSeqStr; bool2DListStr; bool2DArrayStr ]
         let allBool2DStrOpt = [ bool2DSeqStrOpt; bool2DListStrOpt; bool2DArrayStrOpt ]
@@ -320,8 +326,8 @@ module rec Domain =
         let allBoolArrStrs = [ boolSingleton; boolSeqStr ]
         let allBoolArrResizeStrs = [ boolResizeSingleton; boolSeqStr ]
 
-        let allDateArrStrs = [ dateSingleton; dateSeqStr ]
-        let allDateArrResizeStrs = [ dateResizeSingleton; dateSeqStr ]
+        let allDateArrStrs = [ dateSingleton; dateOffsetSingleton; dateSeqStr; dateOffsetSeqStr ]
+        let allDateArrResizeStrs = [ dateResizeSingleton; dateOffsetResizeSingleton; dateSeqStr; dateOffsetSeqStr ]
 
         let allFloatArrStrs = [ floatSingleton; floatSeqStr ]
         let allFloatArrResizeStrs = [ floatResizeSingleton; floatSeqStr ]
@@ -347,7 +353,7 @@ module rec Domain =
             @ allStringArrResizeStrs
 
         let allArrResizeOptStrs =
-            [ boolSeqStrOpt; dateSeqStrOpt; intSeqStrOpt; floatSeqStrOpt; stringSeqStrOpt ]
+            [ boolSeqStrOpt; dateSeqStrOpt; dateOffsetSeqStrOpt; intSeqStrOpt; floatSeqStrOpt; stringSeqStrOpt ]
 
         let getPrimativeOverloadSeq =
             function

@@ -51,7 +51,11 @@ type surface =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkSurfaceAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -95,6 +99,8 @@ type surface =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkSurfaceAttr "customdata" (values |> ResizeArray)
@@ -132,7 +138,11 @@ type surface =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkSurfaceAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -176,6 +186,8 @@ type surface =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkSurfaceAttr "ids" (values |> ResizeArray)
@@ -202,7 +214,11 @@ type surface =
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
     static member inline opacityscale (value: System.DateTime) = Interop.mkSurfaceAttr "opacityscale" value
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
+    static member inline opacityscale (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "opacityscale" value
+    /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
     static member inline opacityscale (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "opacityscale" (values |> ResizeArray)
+    /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
+    static member inline opacityscale (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "opacityscale" (values |> ResizeArray)
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
     static member inline opacityscale (value: int) = Interop.mkSurfaceAttr "opacityscale" value
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
@@ -237,7 +253,11 @@ type surface =
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (value: System.DateTime) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
+    static member inline surfacecolor (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
+    /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
+    /// Sets the surface color values, used for setting a color scale independent of `z`.
+    static member inline surfacecolor (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (value: float) = Interop.mkSurfaceAttr "surfacecolor" (value |> Array.singleton |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
@@ -281,6 +301,8 @@ type surface =
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<System.DateTime option>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
+    static member inline surfacecolor (values: seq<System.DateTimeOffset option>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
+    /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<int option>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
     /// Sets the surface color values, used for setting a color scale independent of `z`.
     static member inline surfacecolor (values: seq<float option>) = Interop.mkSurfaceAttr "surfacecolor" (values |> ResizeArray)
@@ -303,7 +325,11 @@ type surface =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkSurfaceAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkSurfaceAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -323,7 +349,11 @@ type surface =
     /// Sets the x coordinates.
     static member inline x (value: System.DateTime) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (value: float) = Interop.mkSurfaceAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
@@ -367,6 +397,8 @@ type surface =
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<int option>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<float option>) = Interop.mkSurfaceAttr "x" (values |> ResizeArray)
@@ -383,7 +415,11 @@ type surface =
     /// Sets the y coordinates.
     static member inline y (value: System.DateTime) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (value: float) = Interop.mkSurfaceAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
@@ -427,6 +463,8 @@ type surface =
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<int option>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<float option>) = Interop.mkSurfaceAttr "y" (values |> ResizeArray)
@@ -443,7 +481,11 @@ type surface =
     /// Sets the z coordinates.
     static member inline z (value: System.DateTime) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z coordinates.
     static member inline z (values: seq<System.DateTime>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (value: float) = Interop.mkSurfaceAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
@@ -486,6 +528,8 @@ type surface =
     static member inline z (values: seq<bool option>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<int option>) = Interop.mkSurfaceAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.

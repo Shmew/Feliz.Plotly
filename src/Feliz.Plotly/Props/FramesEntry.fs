@@ -19,7 +19,11 @@ type framesEntry =
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
     static member inline data (value: System.DateTime) = Interop.mkFramesEntryAttr "data" value
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
+    static member inline data (value: System.DateTimeOffset) = Interop.mkFramesEntryAttr "data" value
+    /// A list of traces this frame modifies. The format is identical to the normal trace definition.
     static member inline data (values: seq<System.DateTime>) = Interop.mkFramesEntryAttr "data" (values |> ResizeArray)
+    /// A list of traces this frame modifies. The format is identical to the normal trace definition.
+    static member inline data (values: seq<System.DateTimeOffset>) = Interop.mkFramesEntryAttr "data" (values |> ResizeArray)
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
     static member inline data (value: int) = Interop.mkFramesEntryAttr "data" value
     /// A list of traces this frame modifies. The format is identical to the normal trace definition.
@@ -41,7 +45,11 @@ type framesEntry =
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
     static member inline layout (value: System.DateTime) = Interop.mkFramesEntryAttr "layout" value
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
+    static member inline layout (value: System.DateTimeOffset) = Interop.mkFramesEntryAttr "layout" value
+    /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
     static member inline layout (values: seq<System.DateTime>) = Interop.mkFramesEntryAttr "layout" (values |> ResizeArray)
+    /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
+    static member inline layout (values: seq<System.DateTimeOffset>) = Interop.mkFramesEntryAttr "layout" (values |> ResizeArray)
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.
     static member inline layout (value: int) = Interop.mkFramesEntryAttr "layout" value
     /// Layout properties which this frame modifies. The format is identical to the normal layout definition.

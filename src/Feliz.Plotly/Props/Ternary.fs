@@ -27,7 +27,11 @@ type ternary =
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: System.DateTime) = Interop.mkTernaryAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkTernaryAttr "uirevision" value
+    /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkTernaryAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkTernaryAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkTernaryAttr "uirevision" value
     /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.

@@ -17,7 +17,11 @@ type tickformatstop =
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
     static member inline dtickrange (value: System.DateTime) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+    static member inline dtickrange (value: System.DateTimeOffset) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
+    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
     static member inline dtickrange (values: seq<System.DateTime>) = Interop.mkTickformatstopAttr "dtickrange" (values |> ResizeArray)
+    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
+    static member inline dtickrange (values: seq<System.DateTimeOffset>) = Interop.mkTickformatstopAttr "dtickrange" (values |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
     static member inline dtickrange (value: float) = Interop.mkTickformatstopAttr "dtickrange" (value |> Array.singleton |> ResizeArray)
     /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*

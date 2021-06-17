@@ -98,7 +98,11 @@ type annotation =
     /// Sets the annotation's x position.
     static member inline x (value: System.DateTime) = Interop.mkAnnotationAttr "x" value
     /// Sets the annotation's x position.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkAnnotationAttr "x" value
+    /// Sets the annotation's x position.
     static member inline x (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "x" (values |> ResizeArray)
+    /// Sets the annotation's x position.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkAnnotationAttr "x" (values |> ResizeArray)
     /// Sets the annotation's x position.
     static member inline x (value: int) = Interop.mkAnnotationAttr "x" value
     /// Sets the annotation's x position.
@@ -118,7 +122,11 @@ type annotation =
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
     static member inline xclick (value: System.DateTime) = Interop.mkAnnotationAttr "xclick" value
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+    static member inline xclick (value: System.DateTimeOffset) = Interop.mkAnnotationAttr "xclick" value
+    /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
     static member inline xclick (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "xclick" (values |> ResizeArray)
+    /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+    static member inline xclick (values: seq<System.DateTimeOffset>) = Interop.mkAnnotationAttr "xclick" (values |> ResizeArray)
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
     static member inline xclick (value: int) = Interop.mkAnnotationAttr "xclick" value
     /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
@@ -142,7 +150,11 @@ type annotation =
     /// Sets the annotation's y position.
     static member inline y (value: System.DateTime) = Interop.mkAnnotationAttr "y" value
     /// Sets the annotation's y position.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkAnnotationAttr "y" value
+    /// Sets the annotation's y position.
     static member inline y (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "y" (values |> ResizeArray)
+    /// Sets the annotation's y position.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkAnnotationAttr "y" (values |> ResizeArray)
     /// Sets the annotation's y position.
     static member inline y (value: int) = Interop.mkAnnotationAttr "y" value
     /// Sets the annotation's y position.
@@ -162,7 +174,11 @@ type annotation =
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
     static member inline yclick (value: System.DateTime) = Interop.mkAnnotationAttr "yclick" value
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+    static member inline yclick (value: System.DateTimeOffset) = Interop.mkAnnotationAttr "yclick" value
+    /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
     static member inline yclick (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "yclick" (values |> ResizeArray)
+    /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+    static member inline yclick (values: seq<System.DateTimeOffset>) = Interop.mkAnnotationAttr "yclick" (values |> ResizeArray)
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
     static member inline yclick (value: int) = Interop.mkAnnotationAttr "yclick" value
     /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
@@ -186,7 +202,11 @@ type annotation =
     /// Sets the annotation's z position.
     static member inline z (value: System.DateTime) = Interop.mkAnnotationAttr "z" value
     /// Sets the annotation's z position.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkAnnotationAttr "z" value
+    /// Sets the annotation's z position.
     static member inline z (values: seq<System.DateTime>) = Interop.mkAnnotationAttr "z" (values |> ResizeArray)
+    /// Sets the annotation's z position.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkAnnotationAttr "z" (values |> ResizeArray)
     /// Sets the annotation's z position.
     static member inline z (value: int) = Interop.mkAnnotationAttr "z" value
     /// Sets the annotation's z position.

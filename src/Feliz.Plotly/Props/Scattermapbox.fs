@@ -21,7 +21,11 @@ type scattermapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkScattermapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkScattermapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -65,6 +69,8 @@ type scattermapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkScattermapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkScattermapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkScattermapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkScattermapboxAttr "customdata" (values |> ResizeArray)
@@ -98,7 +104,11 @@ type scattermapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkScattermapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkScattermapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -142,6 +152,8 @@ type scattermapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkScattermapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkScattermapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkScattermapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkScattermapboxAttr "ids" (values |> ResizeArray)
@@ -156,7 +168,11 @@ type scattermapbox =
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (value: System.DateTime) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (value: System.DateTimeOffset) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<System.DateTimeOffset>) = Interop.mkScattermapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (value: float) = Interop.mkScattermapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
@@ -200,6 +216,8 @@ type scattermapbox =
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<System.DateTime option>) = Interop.mkScattermapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<System.DateTimeOffset option>) = Interop.mkScattermapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<int option>) = Interop.mkScattermapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<float option>) = Interop.mkScattermapboxAttr "lat" (values |> ResizeArray)
@@ -217,7 +235,11 @@ type scattermapbox =
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (value: System.DateTime) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (value: System.DateTimeOffset) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<System.DateTimeOffset>) = Interop.mkScattermapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (value: float) = Interop.mkScattermapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
@@ -261,6 +283,8 @@ type scattermapbox =
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<System.DateTime option>) = Interop.mkScattermapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<System.DateTimeOffset option>) = Interop.mkScattermapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<int option>) = Interop.mkScattermapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<float option>) = Interop.mkScattermapboxAttr "lon" (values |> ResizeArray)
@@ -287,7 +311,11 @@ type scattermapbox =
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: System.DateTime) = Interop.mkScattermapboxAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (value: System.DateTimeOffset) = Interop.mkScattermapboxAttr "selectedpoints" value
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "selectedpoints" (values |> ResizeArray)
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (values: seq<System.DateTimeOffset>) = Interop.mkScattermapboxAttr "selectedpoints" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: int) = Interop.mkScattermapboxAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -331,7 +359,11 @@ type scattermapbox =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkScattermapboxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkScattermapboxAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkScattermapboxAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkScattermapboxAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkScattermapboxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.

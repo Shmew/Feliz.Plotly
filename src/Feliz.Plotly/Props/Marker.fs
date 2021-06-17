@@ -65,7 +65,11 @@ type marker =
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (value: System.DateTime) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (value: System.DateTimeOffset) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<System.DateTime>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<System.DateTimeOffset>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (value: float) = Interop.mkMarkerAttr "colors" (value |> Array.singleton |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
@@ -108,6 +112,8 @@ type marker =
     static member inline colors (values: seq<bool option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<System.DateTime option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
+    /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+    static member inline colors (values: seq<System.DateTimeOffset option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
     static member inline colors (values: seq<int option>) = Interop.mkMarkerAttr "colors" (values |> ResizeArray)
     /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.

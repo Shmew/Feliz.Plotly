@@ -19,7 +19,11 @@ type sunburst =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkSunburstAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -63,6 +67,8 @@ type sunburst =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkSunburstAttr "customdata" (values |> ResizeArray)
@@ -95,7 +101,11 @@ type sunburst =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkSunburstAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -139,6 +149,8 @@ type sunburst =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkSunburstAttr "ids" (values |> ResizeArray)
@@ -155,7 +167,11 @@ type sunburst =
     /// Sets the labels of each of the sectors.
     static member inline labels (value: System.DateTime) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
     /// Sets the labels of each of the sectors.
+    static member inline labels (value: System.DateTimeOffset) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
+    /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<System.DateTime>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
+    /// Sets the labels of each of the sectors.
+    static member inline labels (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (value: float) = Interop.mkSunburstAttr "labels" (value |> Array.singleton |> ResizeArray)
     /// Sets the labels of each of the sectors.
@@ -199,6 +215,8 @@ type sunburst =
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<System.DateTime option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
+    static member inline labels (values: seq<System.DateTimeOffset option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
+    /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<int option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
     /// Sets the labels of each of the sectors.
     static member inline labels (values: seq<float option>) = Interop.mkSunburstAttr "labels" (values |> ResizeArray)
@@ -214,7 +232,11 @@ type sunburst =
     /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an \"id\" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
     static member inline level (value: System.DateTime) = Interop.mkSunburstAttr "level" value
     /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an \"id\" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
+    static member inline level (value: System.DateTimeOffset) = Interop.mkSunburstAttr "level" value
+    /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an \"id\" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
     static member inline level (values: seq<System.DateTime>) = Interop.mkSunburstAttr "level" (values |> ResizeArray)
+    /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an \"id\" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
+    static member inline level (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "level" (values |> ResizeArray)
     /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an \"id\" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
     static member inline level (value: int) = Interop.mkSunburstAttr "level" value
     /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an \"id\" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
@@ -247,7 +269,11 @@ type sunburst =
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (value: System.DateTime) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+    static member inline parents (value: System.DateTimeOffset) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
+    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<System.DateTime>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
+    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+    static member inline parents (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (value: float) = Interop.mkSunburstAttr "parents" (value |> Array.singleton |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
@@ -291,6 +317,8 @@ type sunburst =
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<System.DateTime option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
+    static member inline parents (values: seq<System.DateTimeOffset option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
+    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<int option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
     /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be \"ids\" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
     static member inline parents (values: seq<float option>) = Interop.mkSunburstAttr "parents" (values |> ResizeArray)
@@ -313,7 +341,11 @@ type sunburst =
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: System.DateTime) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (value: System.DateTimeOffset) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<System.DateTime>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (value: float) = Interop.mkSunburstAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -357,6 +389,8 @@ type sunburst =
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<System.DateTime option>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    static member inline text (values: seq<System.DateTimeOffset option>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
+    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<int option>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     static member inline text (values: seq<float option>) = Interop.mkSunburstAttr "text" (values |> ResizeArray)
@@ -384,7 +418,11 @@ type sunburst =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkSunburstAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkSunburstAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkSunburstAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkSunburstAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -404,7 +442,11 @@ type sunburst =
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (value: System.DateTime) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+    static member inline values (value: System.DateTimeOffset) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
+    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<System.DateTime>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
+    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+    static member inline values (values: seq<System.DateTimeOffset>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (value: float) = Interop.mkSunburstAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
@@ -447,6 +489,8 @@ type sunburst =
     static member inline values (values: seq<bool option>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<System.DateTime option>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
+    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
+    static member inline values (values: seq<System.DateTimeOffset option>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
     static member inline values (values: seq<int option>) = Interop.mkSunburstAttr "values" (values |> ResizeArray)
     /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.

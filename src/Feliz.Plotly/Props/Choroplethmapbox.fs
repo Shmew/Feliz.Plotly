@@ -34,7 +34,11 @@ type choroplethmapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkChoroplethmapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -78,6 +82,8 @@ type choroplethmapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkChoroplethmapboxAttr "customdata" (values |> ResizeArray)
@@ -94,7 +100,11 @@ type choroplethmapbox =
     /// Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
     static member inline geojson (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "geojson" value
     /// Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
+    static member inline geojson (value: System.DateTimeOffset) = Interop.mkChoroplethmapboxAttr "geojson" value
+    /// Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
     static member inline geojson (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "geojson" (values |> ResizeArray)
+    /// Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
+    static member inline geojson (values: seq<System.DateTimeOffset>) = Interop.mkChoroplethmapboxAttr "geojson" (values |> ResizeArray)
     /// Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
     static member inline geojson (value: int) = Interop.mkChoroplethmapboxAttr "geojson" value
     /// Sets the GeoJSON data associated with this trace. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
@@ -131,7 +141,11 @@ type choroplethmapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkChoroplethmapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -175,6 +189,8 @@ type choroplethmapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkChoroplethmapboxAttr "ids" (values |> ResizeArray)
@@ -191,7 +207,11 @@ type choroplethmapbox =
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
+    static member inline locations (value: System.DateTimeOffset) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
+    /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
+    /// Sets which features found in *geojson* to plot using their feature `id` field.
+    static member inline locations (values: seq<System.DateTimeOffset>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (value: float) = Interop.mkChoroplethmapboxAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
@@ -235,6 +255,8 @@ type choroplethmapbox =
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<System.DateTime option>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
+    static member inline locations (values: seq<System.DateTimeOffset option>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
+    /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<int option>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
     /// Sets which features found in *geojson* to plot using their feature `id` field.
     static member inline locations (values: seq<float option>) = Interop.mkChoroplethmapboxAttr "locations" (values |> ResizeArray)
@@ -257,7 +279,11 @@ type choroplethmapbox =
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (value: System.DateTimeOffset) = Interop.mkChoroplethmapboxAttr "selectedpoints" value
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "selectedpoints" (values |> ResizeArray)
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (values: seq<System.DateTimeOffset>) = Interop.mkChoroplethmapboxAttr "selectedpoints" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: int) = Interop.mkChoroplethmapboxAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -295,7 +321,11 @@ type choroplethmapbox =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkChoroplethmapboxAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkChoroplethmapboxAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkChoroplethmapboxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -316,7 +346,11 @@ type choroplethmapbox =
     /// Sets the color values.
     static member inline z (value: System.DateTime) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the color values.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the color values.
     static member inline z (values: seq<System.DateTime>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
+    /// Sets the color values.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.
     static member inline z (value: float) = Interop.mkChoroplethmapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the color values.
@@ -359,6 +393,8 @@ type choroplethmapbox =
     static member inline z (values: seq<bool option>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
+    /// Sets the color values.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.
     static member inline z (values: seq<int option>) = Interop.mkChoroplethmapboxAttr "z" (values |> ResizeArray)
     /// Sets the color values.

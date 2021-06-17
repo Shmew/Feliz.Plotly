@@ -17,7 +17,11 @@ type starts =
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (value: System.DateTime) = Interop.mkStartsAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the starting position of the streamtubes
+    static member inline x (value: System.DateTimeOffset) = Interop.mkStartsAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<System.DateTime>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
+    /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (value: float) = Interop.mkStartsAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the starting position of the streamtubes
@@ -61,6 +65,8 @@ type starts =
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<System.DateTime option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
     /// Sets the x components of the starting position of the streamtubes
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
+    /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<int option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
     /// Sets the x components of the starting position of the streamtubes
     static member inline x (values: seq<float option>) = Interop.mkStartsAttr "x" (values |> ResizeArray)
@@ -75,7 +81,11 @@ type starts =
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (value: System.DateTime) = Interop.mkStartsAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the starting position of the streamtubes
+    static member inline y (value: System.DateTimeOffset) = Interop.mkStartsAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<System.DateTime>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
+    /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (value: float) = Interop.mkStartsAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the starting position of the streamtubes
@@ -119,6 +129,8 @@ type starts =
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<System.DateTime option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
     /// Sets the y components of the starting position of the streamtubes
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
+    /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<int option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
     /// Sets the y components of the starting position of the streamtubes
     static member inline y (values: seq<float option>) = Interop.mkStartsAttr "y" (values |> ResizeArray)
@@ -133,7 +145,11 @@ type starts =
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (value: System.DateTime) = Interop.mkStartsAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes
+    static member inline z (value: System.DateTimeOffset) = Interop.mkStartsAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<System.DateTime>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (value: float) = Interop.mkStartsAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes
@@ -176,6 +192,8 @@ type starts =
     static member inline z (values: seq<bool option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<System.DateTime option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
+    /// Sets the z components of the starting position of the streamtubes
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes
     static member inline z (values: seq<int option>) = Interop.mkStartsAttr "z" (values |> ResizeArray)
     /// Sets the z components of the starting position of the streamtubes

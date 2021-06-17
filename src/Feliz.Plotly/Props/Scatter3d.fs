@@ -19,7 +19,11 @@ type scatter3d =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkScatter3dAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkScatter3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkScatter3dAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -63,6 +67,8 @@ type scatter3d =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkScatter3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkScatter3dAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkScatter3dAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkScatter3dAttr "customdata" (values |> ResizeArray)
@@ -97,7 +103,11 @@ type scatter3d =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkScatter3dAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkScatter3dAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkScatter3dAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkScatter3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkScatter3dAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -140,6 +150,8 @@ type scatter3d =
     static member inline ids (values: seq<bool option>) = Interop.mkScatter3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkScatter3dAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkScatter3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkScatter3dAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -199,7 +211,11 @@ type scatter3d =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkScatter3dAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkScatter3dAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkScatter3dAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkScatter3dAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkScatter3dAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -219,7 +235,11 @@ type scatter3d =
     /// Sets the x coordinates.
     static member inline x (value: System.DateTime) = Interop.mkScatter3dAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkScatter3dAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkScatter3dAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkScatter3dAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (value: float) = Interop.mkScatter3dAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
@@ -263,6 +283,8 @@ type scatter3d =
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkScatter3dAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkScatter3dAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<int option>) = Interop.mkScatter3dAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<float option>) = Interop.mkScatter3dAttr "x" (values |> ResizeArray)
@@ -279,7 +301,11 @@ type scatter3d =
     /// Sets the y coordinates.
     static member inline y (value: System.DateTime) = Interop.mkScatter3dAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkScatter3dAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkScatter3dAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkScatter3dAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (value: float) = Interop.mkScatter3dAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
@@ -323,6 +349,8 @@ type scatter3d =
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkScatter3dAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkScatter3dAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<int option>) = Interop.mkScatter3dAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<float option>) = Interop.mkScatter3dAttr "y" (values |> ResizeArray)
@@ -339,7 +367,11 @@ type scatter3d =
     /// Sets the z coordinates.
     static member inline z (value: System.DateTime) = Interop.mkScatter3dAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkScatter3dAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z coordinates.
     static member inline z (values: seq<System.DateTime>) = Interop.mkScatter3dAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkScatter3dAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (value: float) = Interop.mkScatter3dAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates.
@@ -382,6 +414,8 @@ type scatter3d =
     static member inline z (values: seq<bool option>) = Interop.mkScatter3dAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkScatter3dAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkScatter3dAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.
     static member inline z (values: seq<int option>) = Interop.mkScatter3dAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates.

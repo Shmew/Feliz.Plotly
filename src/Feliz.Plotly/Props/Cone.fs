@@ -46,7 +46,11 @@ type cone =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkConeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkConeAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkConeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkConeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -90,6 +94,8 @@ type cone =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkConeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkConeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkConeAttr "customdata" (values |> ResizeArray)
@@ -121,7 +127,11 @@ type cone =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkConeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkConeAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkConeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -164,6 +174,8 @@ type cone =
     static member inline ids (values: seq<bool option>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkConeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -212,7 +224,11 @@ type cone =
     /// Sets the x components of the vector field.
     static member inline u (value: System.DateTime) = Interop.mkConeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
+    static member inline u (value: System.DateTimeOffset) = Interop.mkConeAttr "u" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x components of the vector field.
     static member inline u (values: seq<System.DateTime>) = Interop.mkConeAttr "u" (values |> ResizeArray)
+    /// Sets the x components of the vector field.
+    static member inline u (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (value: float) = Interop.mkConeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
@@ -256,6 +272,8 @@ type cone =
     /// Sets the x components of the vector field.
     static member inline u (values: seq<System.DateTime option>) = Interop.mkConeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
+    static member inline u (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "u" (values |> ResizeArray)
+    /// Sets the x components of the vector field.
     static member inline u (values: seq<int option>) = Interop.mkConeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<float option>) = Interop.mkConeAttr "u" (values |> ResizeArray)
@@ -272,7 +290,11 @@ type cone =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkConeAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkConeAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkConeAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkConeAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -294,7 +316,11 @@ type cone =
     /// Sets the y components of the vector field.
     static member inline v (value: System.DateTime) = Interop.mkConeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
+    static member inline v (value: System.DateTimeOffset) = Interop.mkConeAttr "v" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y components of the vector field.
     static member inline v (values: seq<System.DateTime>) = Interop.mkConeAttr "v" (values |> ResizeArray)
+    /// Sets the y components of the vector field.
+    static member inline v (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (value: float) = Interop.mkConeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
@@ -338,6 +364,8 @@ type cone =
     /// Sets the y components of the vector field.
     static member inline v (values: seq<System.DateTime option>) = Interop.mkConeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
+    static member inline v (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "v" (values |> ResizeArray)
+    /// Sets the y components of the vector field.
     static member inline v (values: seq<int option>) = Interop.mkConeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<float option>) = Interop.mkConeAttr "v" (values |> ResizeArray)
@@ -354,7 +382,11 @@ type cone =
     /// Sets the z components of the vector field.
     static member inline w (value: System.DateTime) = Interop.mkConeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
+    static member inline w (value: System.DateTimeOffset) = Interop.mkConeAttr "w" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z components of the vector field.
     static member inline w (values: seq<System.DateTime>) = Interop.mkConeAttr "w" (values |> ResizeArray)
+    /// Sets the z components of the vector field.
+    static member inline w (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (value: float) = Interop.mkConeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
@@ -398,6 +430,8 @@ type cone =
     /// Sets the z components of the vector field.
     static member inline w (values: seq<System.DateTime option>) = Interop.mkConeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
+    static member inline w (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "w" (values |> ResizeArray)
+    /// Sets the z components of the vector field.
     static member inline w (values: seq<int option>) = Interop.mkConeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<float option>) = Interop.mkConeAttr "w" (values |> ResizeArray)
@@ -414,7 +448,11 @@ type cone =
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (value: System.DateTime) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<System.DateTime>) = Interop.mkConeAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates of the vector field and of the displayed cones.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (value: float) = Interop.mkConeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
@@ -458,6 +496,8 @@ type cone =
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<int option>) = Interop.mkConeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field and of the displayed cones.
     static member inline x (values: seq<float option>) = Interop.mkConeAttr "x" (values |> ResizeArray)
@@ -474,7 +514,11 @@ type cone =
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (value: System.DateTime) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<System.DateTime>) = Interop.mkConeAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates of the vector field and of the displayed cones.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (value: float) = Interop.mkConeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
@@ -518,6 +562,8 @@ type cone =
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<int option>) = Interop.mkConeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field and of the displayed cones.
     static member inline y (values: seq<float option>) = Interop.mkConeAttr "y" (values |> ResizeArray)
@@ -534,7 +580,11 @@ type cone =
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (value: System.DateTime) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (values: seq<System.DateTime>) = Interop.mkConeAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates of the vector field and of the displayed cones.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (value: float) = Interop.mkConeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
@@ -577,6 +627,8 @@ type cone =
     static member inline z (values: seq<bool option>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkConeAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates of the vector field and of the displayed cones.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.
     static member inline z (values: seq<int option>) = Interop.mkConeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field and of the displayed cones.

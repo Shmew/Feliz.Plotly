@@ -17,7 +17,11 @@ type image =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkImageAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkImageAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkImageAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkImageAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -61,6 +65,8 @@ type image =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkImageAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkImageAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkImageAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkImageAttr "customdata" (values |> ResizeArray)
@@ -94,7 +100,11 @@ type image =
     /// Same as `text`.
     static member inline hovertext (value: System.DateTime) = Interop.mkImageAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
+    static member inline hovertext (value: System.DateTimeOffset) = Interop.mkImageAttr "hovertext" (value |> Array.singleton |> ResizeArray)
+    /// Same as `text`.
     static member inline hovertext (values: seq<System.DateTime>) = Interop.mkImageAttr "hovertext" (values |> ResizeArray)
+    /// Same as `text`.
+    static member inline hovertext (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (value: float) = Interop.mkImageAttr "hovertext" (value |> Array.singleton |> ResizeArray)
     /// Same as `text`.
@@ -138,6 +148,8 @@ type image =
     /// Same as `text`.
     static member inline hovertext (values: seq<System.DateTime option>) = Interop.mkImageAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
+    static member inline hovertext (values: seq<System.DateTimeOffset option>) = Interop.mkImageAttr "hovertext" (values |> ResizeArray)
+    /// Same as `text`.
     static member inline hovertext (values: seq<int option>) = Interop.mkImageAttr "hovertext" (values |> ResizeArray)
     /// Same as `text`.
     static member inline hovertext (values: seq<float option>) = Interop.mkImageAttr "hovertext" (values |> ResizeArray)
@@ -152,7 +164,11 @@ type image =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkImageAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkImageAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkImageAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkImageAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -196,6 +212,8 @@ type image =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkImageAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkImageAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkImageAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkImageAttr "ids" (values |> ResizeArray)
@@ -231,7 +249,11 @@ type image =
     /// Sets the text elements associated with each z value.
     static member inline text (value: System.DateTime) = Interop.mkImageAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
+    static member inline text (value: System.DateTimeOffset) = Interop.mkImageAttr "text" (value |> Array.singleton |> ResizeArray)
+    /// Sets the text elements associated with each z value.
     static member inline text (values: seq<System.DateTime>) = Interop.mkImageAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (value: float) = Interop.mkImageAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
@@ -275,6 +297,8 @@ type image =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<System.DateTime option>) = Interop.mkImageAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<System.DateTimeOffset option>) = Interop.mkImageAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int option>) = Interop.mkImageAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float option>) = Interop.mkImageAttr "text" (values |> ResizeArray)
@@ -291,7 +315,11 @@ type image =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkImageAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkImageAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkImageAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkImageAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -311,7 +339,11 @@ type image =
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
     static member inline x (value: System.DateTime) = Interop.mkImageAttr "x" value
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+    static member inline x (value: System.DateTimeOffset) = Interop.mkImageAttr "x" value
+    /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
     static member inline x (values: seq<System.DateTime>) = Interop.mkImageAttr "x" (values |> ResizeArray)
+    /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "x" (values |> ResizeArray)
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
     static member inline x (value: int) = Interop.mkImageAttr "x" value
     /// Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more info
@@ -331,7 +363,11 @@ type image =
     /// Set the image's x position.
     static member inline x0 (value: System.DateTime) = Interop.mkImageAttr "x0" value
     /// Set the image's x position.
+    static member inline x0 (value: System.DateTimeOffset) = Interop.mkImageAttr "x0" value
+    /// Set the image's x position.
     static member inline x0 (values: seq<System.DateTime>) = Interop.mkImageAttr "x0" (values |> ResizeArray)
+    /// Set the image's x position.
+    static member inline x0 (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "x0" (values |> ResizeArray)
     /// Set the image's x position.
     static member inline x0 (value: int) = Interop.mkImageAttr "x0" value
     /// Set the image's x position.
@@ -355,7 +391,11 @@ type image =
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
     static member inline y (value: System.DateTime) = Interop.mkImageAttr "y" value
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+    static member inline y (value: System.DateTimeOffset) = Interop.mkImageAttr "y" value
+    /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
     static member inline y (values: seq<System.DateTime>) = Interop.mkImageAttr "y" (values |> ResizeArray)
+    /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "y" (values |> ResizeArray)
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
     static member inline y (value: int) = Interop.mkImageAttr "y" value
     /// Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more info
@@ -375,7 +415,11 @@ type image =
     /// Set the image's y position.
     static member inline y0 (value: System.DateTime) = Interop.mkImageAttr "y0" value
     /// Set the image's y position.
+    static member inline y0 (value: System.DateTimeOffset) = Interop.mkImageAttr "y0" value
+    /// Set the image's y position.
     static member inline y0 (values: seq<System.DateTime>) = Interop.mkImageAttr "y0" (values |> ResizeArray)
+    /// Set the image's y position.
+    static member inline y0 (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "y0" (values |> ResizeArray)
     /// Set the image's y position.
     static member inline y0 (value: int) = Interop.mkImageAttr "y0" value
     /// Set the image's y position.
@@ -399,7 +443,11 @@ type image =
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     static member inline z (value: System.DateTime) = Interop.mkImageAttr "z" (value |> Array.singleton |> ResizeArray)
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkImageAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     static member inline z (values: seq<System.DateTime>) = Interop.mkImageAttr "z" (values |> ResizeArray)
+    /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkImageAttr "z" (values |> ResizeArray)
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     static member inline z (value: float) = Interop.mkImageAttr "z" (value |> Array.singleton |> ResizeArray)
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
@@ -442,6 +490,8 @@ type image =
     static member inline z (values: seq<bool option>) = Interop.mkImageAttr "z" (values |> ResizeArray)
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkImageAttr "z" (values |> ResizeArray)
+    /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkImageAttr "z" (values |> ResizeArray)
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     static member inline z (values: seq<int option>) = Interop.mkImageAttr "z" (values |> ResizeArray)
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.

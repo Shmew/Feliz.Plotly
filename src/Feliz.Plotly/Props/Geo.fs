@@ -76,7 +76,11 @@ type geo =
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
     static member inline uirevision (value: System.DateTime) = Interop.mkGeoAttr "uirevision" value
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkGeoAttr "uirevision" value
+    /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkGeoAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkGeoAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkGeoAttr "uirevision" value
     /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.

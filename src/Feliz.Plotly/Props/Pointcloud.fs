@@ -17,7 +17,11 @@ type pointcloud =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkPointcloudAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkPointcloudAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -61,6 +65,8 @@ type pointcloud =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkPointcloudAttr "customdata" (values |> ResizeArray)
@@ -80,7 +86,11 @@ type pointcloud =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkPointcloudAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkPointcloudAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -124,6 +134,8 @@ type pointcloud =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkPointcloudAttr "ids" (values |> ResizeArray)
@@ -138,7 +150,11 @@ type pointcloud =
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (value: System.DateTime) = Interop.mkPointcloudAttr "indices" (value |> Array.singleton |> ResizeArray)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
+    static member inline indices (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "indices" (value |> Array.singleton |> ResizeArray)
+    /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
+    /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
+    static member inline indices (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (value: float) = Interop.mkPointcloudAttr "indices" (value |> Array.singleton |> ResizeArray)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
@@ -182,6 +198,8 @@ type pointcloud =
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (values: seq<System.DateTime option>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
+    static member inline indices (values: seq<System.DateTimeOffset option>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
+    /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (values: seq<int option>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. If specified, it must be a typed `Int32Array` array. Its length must be equal to or greater than the number of points. For the best performance and memory use, create one large `indices` typed array that is guaranteed to be at least as long as the largest number of points during use, and reuse it on each `Plotly.restyle()` call.
     static member inline indices (values: seq<float option>) = Interop.mkPointcloudAttr "indices" (values |> ResizeArray)
@@ -218,7 +236,11 @@ type pointcloud =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkPointcloudAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkPointcloudAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -238,7 +260,11 @@ type pointcloud =
     /// Sets the x coordinates.
     static member inline x (value: System.DateTime) = Interop.mkPointcloudAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (value: float) = Interop.mkPointcloudAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
@@ -282,6 +308,8 @@ type pointcloud =
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkPointcloudAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkPointcloudAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<int option>) = Interop.mkPointcloudAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<float option>) = Interop.mkPointcloudAttr "x" (values |> ResizeArray)
@@ -298,7 +326,11 @@ type pointcloud =
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (value: System.DateTime) = Interop.mkPointcloudAttr "xbounds" (value |> Array.singleton |> ResizeArray)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
+    static member inline xbounds (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "xbounds" (value |> Array.singleton |> ResizeArray)
+    /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
+    /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
+    static member inline xbounds (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (value: float) = Interop.mkPointcloudAttr "xbounds" (value |> Array.singleton |> ResizeArray)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
@@ -342,6 +374,8 @@ type pointcloud =
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (values: seq<System.DateTime option>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
+    static member inline xbounds (values: seq<System.DateTimeOffset option>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
+    /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (values: seq<int option>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `ybounds` for the performance benefits.
     static member inline xbounds (values: seq<float option>) = Interop.mkPointcloudAttr "xbounds" (values |> ResizeArray)
@@ -364,7 +398,11 @@ type pointcloud =
     /// Sets the y coordinates.
     static member inline y (value: System.DateTime) = Interop.mkPointcloudAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (value: float) = Interop.mkPointcloudAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
@@ -408,6 +446,8 @@ type pointcloud =
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkPointcloudAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkPointcloudAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<int option>) = Interop.mkPointcloudAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<float option>) = Interop.mkPointcloudAttr "y" (values |> ResizeArray)
@@ -424,7 +464,11 @@ type pointcloud =
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (value: System.DateTime) = Interop.mkPointcloudAttr "ybounds" (value |> Array.singleton |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
+    static member inline ybounds (value: System.DateTimeOffset) = Interop.mkPointcloudAttr "ybounds" (value |> Array.singleton |> ResizeArray)
+    /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (values: seq<System.DateTime>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
+    /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
+    static member inline ybounds (values: seq<System.DateTimeOffset>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (value: float) = Interop.mkPointcloudAttr "ybounds" (value |> Array.singleton |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
@@ -467,6 +511,8 @@ type pointcloud =
     static member inline ybounds (values: seq<bool option>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (values: seq<System.DateTime option>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
+    /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
+    static member inline ybounds (values: seq<System.DateTimeOffset option>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.
     static member inline ybounds (values: seq<int option>) = Interop.mkPointcloudAttr "ybounds" (values |> ResizeArray)
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. Use it in conjunction with `xy` and `xbounds` for the performance benefits.

@@ -78,7 +78,11 @@ type config =
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: System.DateTime) = Interop.mkConfigAttr "setBackground" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
+    static member inline setBackground (value: System.DateTimeOffset) = Interop.mkConfigAttr "setBackground" value
+    /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (values: seq<System.DateTime>) = Interop.mkConfigAttr "setBackground" (values |> ResizeArray)
+    /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
+    static member inline setBackground (values: seq<System.DateTimeOffset>) = Interop.mkConfigAttr "setBackground" (values |> ResizeArray)
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
     static member inline setBackground (value: int) = Interop.mkConfigAttr "setBackground" value
     /// Set function to add the background color (i.e. `layout.paper_color`) to a different container. This function take the graph div as first argument and the current background color as second argument. Alternatively, set to string *opaque* to ensure there is white behind it.
@@ -108,7 +112,11 @@ type config =
     /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (value: System.DateTime) = Interop.mkConfigAttr "showSources" value
     /// Adds a source-displaying function to show sources on the resulting graphs.
+    static member inline showSources (value: System.DateTimeOffset) = Interop.mkConfigAttr "showSources" value
+    /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (values: seq<System.DateTime>) = Interop.mkConfigAttr "showSources" (values |> ResizeArray)
+    /// Adds a source-displaying function to show sources on the resulting graphs.
+    static member inline showSources (values: seq<System.DateTimeOffset>) = Interop.mkConfigAttr "showSources" (values |> ResizeArray)
     /// Adds a source-displaying function to show sources on the resulting graphs.
     static member inline showSources (value: int) = Interop.mkConfigAttr "showSources" value
     /// Adds a source-displaying function to show sources on the resulting graphs.

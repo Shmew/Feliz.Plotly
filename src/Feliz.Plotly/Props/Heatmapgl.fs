@@ -32,7 +32,11 @@ type heatmapgl =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkHeatmapglAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -76,6 +80,8 @@ type heatmapgl =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkHeatmapglAttr "customdata" (values |> ResizeArray)
@@ -103,7 +109,11 @@ type heatmapgl =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkHeatmapglAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -147,6 +157,8 @@ type heatmapgl =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkHeatmapglAttr "ids" (values |> ResizeArray)
@@ -174,7 +186,11 @@ type heatmapgl =
     /// Sets the text elements associated with each z value.
     static member inline text (value: System.DateTime) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
+    static member inline text (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton |> ResizeArray)
+    /// Sets the text elements associated with each z value.
     static member inline text (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (value: float) = Interop.mkHeatmapglAttr "text" (value |> Array.singleton |> ResizeArray)
     /// Sets the text elements associated with each z value.
@@ -218,6 +234,8 @@ type heatmapgl =
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<System.DateTime option>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
+    static member inline text (values: seq<System.DateTimeOffset option>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
+    /// Sets the text elements associated with each z value.
     static member inline text (values: seq<int option>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
     /// Sets the text elements associated with each z value.
     static member inline text (values: seq<float option>) = Interop.mkHeatmapglAttr "text" (values |> ResizeArray)
@@ -237,7 +255,11 @@ type heatmapgl =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkHeatmapglAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkHeatmapglAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -257,7 +279,11 @@ type heatmapgl =
     /// Sets the x coordinates.
     static member inline x (value: System.DateTime) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (value: float) = Interop.mkHeatmapglAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates.
@@ -301,6 +327,8 @@ type heatmapgl =
     /// Sets the x coordinates.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkHeatmapglAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkHeatmapglAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates.
     static member inline x (values: seq<int option>) = Interop.mkHeatmapglAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates.
     static member inline x (values: seq<float option>) = Interop.mkHeatmapglAttr "x" (values |> ResizeArray)
@@ -313,7 +341,11 @@ type heatmapgl =
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (value: System.DateTime) = Interop.mkHeatmapglAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+    static member inline x0 (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "x0" value
+    /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "x0" (values |> ResizeArray)
+    /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
+    static member inline x0 (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "x0" (values |> ResizeArray)
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
     static member inline x0 (value: int) = Interop.mkHeatmapglAttr "x0" value
     /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
@@ -339,7 +371,11 @@ type heatmapgl =
     /// Sets the y coordinates.
     static member inline y (value: System.DateTime) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (value: float) = Interop.mkHeatmapglAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates.
@@ -383,6 +419,8 @@ type heatmapgl =
     /// Sets the y coordinates.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkHeatmapglAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkHeatmapglAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates.
     static member inline y (values: seq<int option>) = Interop.mkHeatmapglAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates.
     static member inline y (values: seq<float option>) = Interop.mkHeatmapglAttr "y" (values |> ResizeArray)
@@ -395,7 +433,11 @@ type heatmapgl =
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (value: System.DateTime) = Interop.mkHeatmapglAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+    static member inline y0 (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "y0" value
+    /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "y0" (values |> ResizeArray)
+    /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
+    static member inline y0 (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "y0" (values |> ResizeArray)
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
     static member inline y0 (value: int) = Interop.mkHeatmapglAttr "y0" value
     /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
@@ -421,7 +463,11 @@ type heatmapgl =
     /// Sets the z data.
     static member inline z (value: System.DateTime) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z data.
     static member inline z (values: seq<System.DateTime>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
+    /// Sets the z data.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
     /// Sets the z data.
     static member inline z (value: float) = Interop.mkHeatmapglAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z data.
@@ -464,6 +510,8 @@ type heatmapgl =
     static member inline z (values: seq<bool option>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
+    /// Sets the z data.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
     /// Sets the z data.
     static member inline z (values: seq<int option>) = Interop.mkHeatmapglAttr "z" (values |> ResizeArray)
     /// Sets the z data.

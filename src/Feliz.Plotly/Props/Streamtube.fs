@@ -46,7 +46,11 @@ type streamtube =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkStreamtubeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -90,6 +94,8 @@ type streamtube =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkStreamtubeAttr "customdata" (values |> ResizeArray)
@@ -117,7 +123,11 @@ type streamtube =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkStreamtubeAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -160,6 +170,8 @@ type streamtube =
     static member inline ids (values: seq<bool option>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkStreamtubeAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -207,7 +219,11 @@ type streamtube =
     /// Sets the x components of the vector field.
     static member inline u (value: System.DateTime) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
+    static member inline u (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x components of the vector field.
     static member inline u (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
+    /// Sets the x components of the vector field.
+    static member inline u (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (value: float) = Interop.mkStreamtubeAttr "u" (value |> Array.singleton |> ResizeArray)
     /// Sets the x components of the vector field.
@@ -251,6 +267,8 @@ type streamtube =
     /// Sets the x components of the vector field.
     static member inline u (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
+    static member inline u (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
+    /// Sets the x components of the vector field.
     static member inline u (values: seq<int option>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
     /// Sets the x components of the vector field.
     static member inline u (values: seq<float option>) = Interop.mkStreamtubeAttr "u" (values |> ResizeArray)
@@ -267,7 +285,11 @@ type streamtube =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkStreamtubeAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkStreamtubeAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -289,7 +311,11 @@ type streamtube =
     /// Sets the y components of the vector field.
     static member inline v (value: System.DateTime) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
+    static member inline v (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y components of the vector field.
     static member inline v (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
+    /// Sets the y components of the vector field.
+    static member inline v (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (value: float) = Interop.mkStreamtubeAttr "v" (value |> Array.singleton |> ResizeArray)
     /// Sets the y components of the vector field.
@@ -333,6 +359,8 @@ type streamtube =
     /// Sets the y components of the vector field.
     static member inline v (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
+    static member inline v (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
+    /// Sets the y components of the vector field.
     static member inline v (values: seq<int option>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
     /// Sets the y components of the vector field.
     static member inline v (values: seq<float option>) = Interop.mkStreamtubeAttr "v" (values |> ResizeArray)
@@ -349,7 +377,11 @@ type streamtube =
     /// Sets the z components of the vector field.
     static member inline w (value: System.DateTime) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
+    static member inline w (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z components of the vector field.
     static member inline w (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
+    /// Sets the z components of the vector field.
+    static member inline w (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (value: float) = Interop.mkStreamtubeAttr "w" (value |> Array.singleton |> ResizeArray)
     /// Sets the z components of the vector field.
@@ -393,6 +425,8 @@ type streamtube =
     /// Sets the z components of the vector field.
     static member inline w (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
+    static member inline w (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
+    /// Sets the z components of the vector field.
     static member inline w (values: seq<int option>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
     /// Sets the z components of the vector field.
     static member inline w (values: seq<float option>) = Interop.mkStreamtubeAttr "w" (values |> ResizeArray)
@@ -409,7 +443,11 @@ type streamtube =
     /// Sets the x coordinates of the vector field.
     static member inline x (value: System.DateTime) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates of the vector field.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (value: float) = Interop.mkStreamtubeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates of the vector field.
@@ -453,6 +491,8 @@ type streamtube =
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<int option>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates of the vector field.
     static member inline x (values: seq<float option>) = Interop.mkStreamtubeAttr "x" (values |> ResizeArray)
@@ -469,7 +509,11 @@ type streamtube =
     /// Sets the y coordinates of the vector field.
     static member inline y (value: System.DateTime) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates of the vector field.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (value: float) = Interop.mkStreamtubeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y coordinates of the vector field.
@@ -513,6 +557,8 @@ type streamtube =
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
+    /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<int option>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
     /// Sets the y coordinates of the vector field.
     static member inline y (values: seq<float option>) = Interop.mkStreamtubeAttr "y" (values |> ResizeArray)
@@ -529,7 +575,11 @@ type streamtube =
     /// Sets the z coordinates of the vector field.
     static member inline z (value: System.DateTime) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<System.DateTime>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates of the vector field.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (value: float) = Interop.mkStreamtubeAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the z coordinates of the vector field.
@@ -572,6 +622,8 @@ type streamtube =
     static member inline z (values: seq<bool option>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
+    /// Sets the z coordinates of the vector field.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.
     static member inline z (values: seq<int option>) = Interop.mkStreamtubeAttr "z" (values |> ResizeArray)
     /// Sets the z coordinates of the vector field.

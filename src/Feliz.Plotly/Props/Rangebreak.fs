@@ -43,7 +43,11 @@ type rangebreak =
     /// Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
     static member inline values (value: System.DateTime) = Interop.mkRangebreakAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
+    static member inline values (value: System.DateTimeOffset) = Interop.mkRangebreakAttr "values" (value |> Array.singleton |> ResizeArray)
+    /// Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
     static member inline values (values: seq<System.DateTime>) = Interop.mkRangebreakAttr "values" (values |> ResizeArray)
+    /// Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
+    static member inline values (values: seq<System.DateTimeOffset>) = Interop.mkRangebreakAttr "values" (values |> ResizeArray)
     /// Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
     static member inline values (value: float) = Interop.mkRangebreakAttr "values" (value |> Array.singleton |> ResizeArray)
     /// Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.

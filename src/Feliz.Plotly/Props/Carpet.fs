@@ -17,7 +17,11 @@ type carpet =
     /// An array containing values of the first parameter value
     static member inline a (value: System.DateTime) = Interop.mkCarpetAttr "a" (value |> Array.singleton |> ResizeArray)
     /// An array containing values of the first parameter value
+    static member inline a (value: System.DateTimeOffset) = Interop.mkCarpetAttr "a" (value |> Array.singleton |> ResizeArray)
+    /// An array containing values of the first parameter value
     static member inline a (values: seq<System.DateTime>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
+    /// An array containing values of the first parameter value
+    static member inline a (values: seq<System.DateTimeOffset>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
     /// An array containing values of the first parameter value
     static member inline a (value: float) = Interop.mkCarpetAttr "a" (value |> Array.singleton |> ResizeArray)
     /// An array containing values of the first parameter value
@@ -61,6 +65,8 @@ type carpet =
     /// An array containing values of the first parameter value
     static member inline a (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
     /// An array containing values of the first parameter value
+    static member inline a (values: seq<System.DateTimeOffset option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
+    /// An array containing values of the first parameter value
     static member inline a (values: seq<int option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
     /// An array containing values of the first parameter value
     static member inline a (values: seq<float option>) = Interop.mkCarpetAttr "a" (values |> ResizeArray)
@@ -80,7 +86,11 @@ type carpet =
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (value: System.DateTime) = Interop.mkCarpetAttr "b" (value |> Array.singleton |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (value: System.DateTimeOffset) = Interop.mkCarpetAttr "b" (value |> Array.singleton |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<System.DateTime>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (values: seq<System.DateTimeOffset>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (value: float) = Interop.mkCarpetAttr "b" (value |> Array.singleton |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
@@ -124,6 +134,8 @@ type carpet =
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
+    static member inline b (values: seq<System.DateTimeOffset option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<int option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline b (values: seq<float option>) = Interop.mkCarpetAttr "b" (values |> ResizeArray)
@@ -151,7 +163,11 @@ type carpet =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkCarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkCarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkCarpetAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -195,6 +211,8 @@ type carpet =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkCarpetAttr "customdata" (values |> ResizeArray)
@@ -219,7 +237,11 @@ type carpet =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkCarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkCarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkCarpetAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -263,6 +285,8 @@ type carpet =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkCarpetAttr "ids" (values |> ResizeArray)
@@ -288,7 +312,11 @@ type carpet =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkCarpetAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkCarpetAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkCarpetAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkCarpetAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkCarpetAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -308,7 +336,11 @@ type carpet =
     /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (value: System.DateTime) = Interop.mkCarpetAttr "x" (value |> Array.singleton |> ResizeArray)
     /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkCarpetAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<System.DateTime>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
+    /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
     /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (value: float) = Interop.mkCarpetAttr "x" (value |> Array.singleton |> ResizeArray)
     /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
@@ -352,6 +384,8 @@ type carpet =
     /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
     /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
+    /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<int option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
     /// A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.
     static member inline x (values: seq<float option>) = Interop.mkCarpetAttr "x" (values |> ResizeArray)
@@ -370,7 +404,11 @@ type carpet =
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (value: System.DateTime) = Interop.mkCarpetAttr "y" (value |> Array.singleton |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkCarpetAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<System.DateTime>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (value: float) = Interop.mkCarpetAttr "y" (value |> Array.singleton |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
@@ -413,6 +451,8 @@ type carpet =
     static member inline y (values: seq<bool option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
+    /// A two dimensional array of y coordinates at each carpet point.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.
     static member inline y (values: seq<int option>) = Interop.mkCarpetAttr "y" (values |> ResizeArray)
     /// A two dimensional array of y coordinates at each carpet point.

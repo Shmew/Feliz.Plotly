@@ -19,7 +19,11 @@ type box =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkBoxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -62,6 +66,8 @@ type box =
     static member inline customdata (values: seq<bool option>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkBoxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -106,7 +112,11 @@ type box =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkBoxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -150,6 +160,8 @@ type box =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkBoxAttr "ids" (values |> ResizeArray)
@@ -171,7 +183,11 @@ type box =
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (value: System.DateTime) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
+    static member inline lowerfence (value: System.DateTimeOffset) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
+    /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<System.DateTime>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
+    /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
+    static member inline lowerfence (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (value: float) = Interop.mkBoxAttr "lowerfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
@@ -215,6 +231,8 @@ type box =
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<System.DateTime option>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
+    static member inline lowerfence (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
+    /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<int option>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
     /// Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point below 1.5 times the IQR.
     static member inline lowerfence (values: seq<float option>) = Interop.mkBoxAttr "lowerfence" (values |> ResizeArray)
@@ -230,7 +248,11 @@ type box =
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (value: System.DateTime) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
+    static member inline mean (value: System.DateTimeOffset) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
+    /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<System.DateTime>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
+    /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
+    static member inline mean (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (value: float) = Interop.mkBoxAttr "mean" (value |> Array.singleton |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
@@ -274,6 +296,8 @@ type box =
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<System.DateTime option>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
+    static member inline mean (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
+    /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<int option>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
     /// Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute the mean for each box using the sample values.
     static member inline mean (values: seq<float option>) = Interop.mkBoxAttr "mean" (values |> ResizeArray)
@@ -288,7 +312,11 @@ type box =
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (value: System.DateTime) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
+    static member inline median (value: System.DateTimeOffset) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
+    /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<System.DateTime>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
+    /// Sets the median values. There should be as many items as the number of boxes desired.
+    static member inline median (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (value: float) = Interop.mkBoxAttr "median" (value |> Array.singleton |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
@@ -332,6 +360,8 @@ type box =
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<System.DateTime option>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
+    static member inline median (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
+    /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<int option>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
     /// Sets the median values. There should be as many items as the number of boxes desired.
     static member inline median (values: seq<float option>) = Interop.mkBoxAttr "median" (values |> ResizeArray)
@@ -352,7 +382,11 @@ type box =
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (value: System.DateTime) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
+    static member inline notchspan (value: System.DateTimeOffset) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
+    /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<System.DateTime>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
+    /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
+    static member inline notchspan (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (value: float) = Interop.mkBoxAttr "notchspan" (value |> Array.singleton |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
@@ -396,6 +430,8 @@ type box =
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<System.DateTime option>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
+    static member inline notchspan (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
+    /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<int option>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
     /// Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
     static member inline notchspan (values: seq<float option>) = Interop.mkBoxAttr "notchspan" (values |> ResizeArray)
@@ -424,7 +460,11 @@ type box =
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (value: System.DateTime) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
+    static member inline q1 (value: System.DateTimeOffset) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
+    /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<System.DateTime>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
+    /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
+    static member inline q1 (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (value: float) = Interop.mkBoxAttr "q1" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
@@ -468,6 +508,8 @@ type box =
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<System.DateTime option>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
+    static member inline q1 (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
+    /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<int option>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
     /// Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
     static member inline q1 (values: seq<float option>) = Interop.mkBoxAttr "q1" (values |> ResizeArray)
@@ -482,7 +524,11 @@ type box =
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (value: System.DateTime) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
+    static member inline q3 (value: System.DateTimeOffset) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
+    /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<System.DateTime>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
+    /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
+    static member inline q3 (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (value: float) = Interop.mkBoxAttr "q3" (value |> Array.singleton |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
@@ -526,6 +572,8 @@ type box =
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<System.DateTime option>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
+    static member inline q3 (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
+    /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<int option>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
     /// Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
     static member inline q3 (values: seq<float option>) = Interop.mkBoxAttr "q3" (values |> ResizeArray)
@@ -540,7 +588,11 @@ type box =
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (value: System.DateTime) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
+    static member inline sd (value: System.DateTimeOffset) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
+    /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<System.DateTime>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
+    /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
+    static member inline sd (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (value: float) = Interop.mkBoxAttr "sd" (value |> Array.singleton |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
@@ -584,6 +636,8 @@ type box =
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<System.DateTime option>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
+    static member inline sd (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
+    /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<int option>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
     /// Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we compute the standard deviation for each box using the sample values.
     static member inline sd (values: seq<float option>) = Interop.mkBoxAttr "sd" (values |> ResizeArray)
@@ -599,7 +653,11 @@ type box =
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: System.DateTime) = Interop.mkBoxAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (value: System.DateTimeOffset) = Interop.mkBoxAttr "selectedpoints" value
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<System.DateTime>) = Interop.mkBoxAttr "selectedpoints" (values |> ResizeArray)
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "selectedpoints" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: int) = Interop.mkBoxAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -631,7 +689,11 @@ type box =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkBoxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkBoxAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkBoxAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkBoxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -652,7 +714,11 @@ type box =
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (value: System.DateTime) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
+    static member inline upperfence (value: System.DateTimeOffset) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
+    /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<System.DateTime>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
+    /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
+    static member inline upperfence (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (value: float) = Interop.mkBoxAttr "upperfence" (value |> Array.singleton |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
@@ -696,6 +762,8 @@ type box =
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<System.DateTime option>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
+    static member inline upperfence (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
+    /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<int option>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
     /// Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is set, we compute the lower as the last sample point above 1.5 times the IQR.
     static member inline upperfence (values: seq<float option>) = Interop.mkBoxAttr "upperfence" (values |> ResizeArray)
@@ -718,7 +786,11 @@ type box =
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (value: System.DateTime) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<System.DateTime>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (value: float) = Interop.mkBoxAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
@@ -762,6 +834,8 @@ type box =
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<int option>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<float option>) = Interop.mkBoxAttr "x" (values |> ResizeArray)
@@ -774,7 +848,11 @@ type box =
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline x0 (value: System.DateTime) = Interop.mkBoxAttr "x0" value
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline x0 (value: System.DateTimeOffset) = Interop.mkBoxAttr "x0" value
+    /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline x0 (values: seq<System.DateTime>) = Interop.mkBoxAttr "x0" (values |> ResizeArray)
+    /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline x0 (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "x0" (values |> ResizeArray)
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline x0 (value: int) = Interop.mkBoxAttr "x0" value
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
@@ -800,7 +878,11 @@ type box =
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: System.DateTime) = Interop.mkBoxAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
+    static member inline xperiod (value: System.DateTimeOffset) = Interop.mkBoxAttr "xperiod" value
+    /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (values: seq<System.DateTime>) = Interop.mkBoxAttr "xperiod" (values |> ResizeArray)
+    /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
+    static member inline xperiod (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "xperiod" (values |> ResizeArray)
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: int) = Interop.mkBoxAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -820,7 +902,11 @@ type box =
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline xperiod0 (value: System.DateTime) = Interop.mkBoxAttr "xperiod0" value
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+    static member inline xperiod0 (value: System.DateTimeOffset) = Interop.mkBoxAttr "xperiod0" value
+    /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline xperiod0 (values: seq<System.DateTime>) = Interop.mkBoxAttr "xperiod0" (values |> ResizeArray)
+    /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+    static member inline xperiod0 (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "xperiod0" (values |> ResizeArray)
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline xperiod0 (value: int) = Interop.mkBoxAttr "xperiod0" value
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
@@ -842,7 +928,11 @@ type box =
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (value: System.DateTime) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<System.DateTime>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (value: float) = Interop.mkBoxAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
@@ -886,6 +976,8 @@ type box =
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<int option>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<float option>) = Interop.mkBoxAttr "y" (values |> ResizeArray)
@@ -898,7 +990,11 @@ type box =
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline y0 (value: System.DateTime) = Interop.mkBoxAttr "y0" value
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline y0 (value: System.DateTimeOffset) = Interop.mkBoxAttr "y0" value
+    /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline y0 (values: seq<System.DateTime>) = Interop.mkBoxAttr "y0" (values |> ResizeArray)
+    /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline y0 (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "y0" (values |> ResizeArray)
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline y0 (value: int) = Interop.mkBoxAttr "y0" value
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
@@ -924,7 +1020,11 @@ type box =
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline yperiod (value: System.DateTime) = Interop.mkBoxAttr "yperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
+    static member inline yperiod (value: System.DateTimeOffset) = Interop.mkBoxAttr "yperiod" value
+    /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline yperiod (values: seq<System.DateTime>) = Interop.mkBoxAttr "yperiod" (values |> ResizeArray)
+    /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
+    static member inline yperiod (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "yperiod" (values |> ResizeArray)
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline yperiod (value: int) = Interop.mkBoxAttr "yperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -944,7 +1044,11 @@ type box =
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline yperiod0 (value: System.DateTime) = Interop.mkBoxAttr "yperiod0" value
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+    static member inline yperiod0 (value: System.DateTimeOffset) = Interop.mkBoxAttr "yperiod0" value
+    /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline yperiod0 (values: seq<System.DateTime>) = Interop.mkBoxAttr "yperiod0" (values |> ResizeArray)
+    /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+    static member inline yperiod0 (values: seq<System.DateTimeOffset>) = Interop.mkBoxAttr "yperiod0" (values |> ResizeArray)
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline yperiod0 (value: int) = Interop.mkBoxAttr "yperiod0" value
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.

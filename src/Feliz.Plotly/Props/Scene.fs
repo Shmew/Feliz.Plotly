@@ -23,7 +23,11 @@ type scene =
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: System.DateTime) = Interop.mkSceneAttr "uirevision" value
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkSceneAttr "uirevision" value
+    /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkSceneAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkSceneAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkSceneAttr "uirevision" value
     /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.

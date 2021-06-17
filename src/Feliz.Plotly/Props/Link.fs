@@ -28,7 +28,11 @@ type link =
     /// Assigns extra data to each link.
     static member inline customdata (value: System.DateTime) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each link.
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data to each link.
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each link.
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
     static member inline customdata (value: float) = Interop.mkLinkAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each link.
@@ -72,6 +76,8 @@ type link =
     /// Assigns extra data to each link.
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each link.
     static member inline customdata (values: seq<int option>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each link.
     static member inline customdata (values: seq<float option>) = Interop.mkLinkAttr "customdata" (values |> ResizeArray)
@@ -93,7 +99,11 @@ type link =
     /// The shown name of the link.
     static member inline label (value: System.DateTime) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the link.
+    static member inline label (value: System.DateTimeOffset) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
+    /// The shown name of the link.
     static member inline label (values: seq<System.DateTime>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
+    /// The shown name of the link.
+    static member inline label (values: seq<System.DateTimeOffset>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
     static member inline label (value: float) = Interop.mkLinkAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the link.
@@ -137,6 +147,8 @@ type link =
     /// The shown name of the link.
     static member inline label (values: seq<System.DateTime option>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
+    static member inline label (values: seq<System.DateTimeOffset option>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
+    /// The shown name of the link.
     static member inline label (values: seq<int option>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
     /// The shown name of the link.
     static member inline label (values: seq<float option>) = Interop.mkLinkAttr "label" (values |> ResizeArray)
@@ -152,7 +164,11 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (value: System.DateTime) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (value: System.DateTimeOffset) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<System.DateTime>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (values: seq<System.DateTimeOffset>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (value: float) = Interop.mkLinkAttr "source" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
@@ -196,6 +212,8 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<System.DateTime option>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
+    static member inline source (values: seq<System.DateTimeOffset option>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
+    /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<int option>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the source node.
     static member inline source (values: seq<float option>) = Interop.mkLinkAttr "source" (values |> ResizeArray)
@@ -210,7 +228,11 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (value: System.DateTime) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (value: System.DateTimeOffset) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<System.DateTime>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (values: seq<System.DateTimeOffset>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (value: float) = Interop.mkLinkAttr "target" (value |> Array.singleton |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
@@ -254,6 +276,8 @@ type link =
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<System.DateTime option>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
+    static member inline target (values: seq<System.DateTimeOffset option>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
+    /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<int option>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
     /// An integer number `[0..nodes.length - 1]` that represents the target node.
     static member inline target (values: seq<float option>) = Interop.mkLinkAttr "target" (values |> ResizeArray)
@@ -268,7 +292,11 @@ type link =
     /// A numeric value representing the flow volume value.
     static member inline value (value: System.DateTime) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
     /// A numeric value representing the flow volume value.
+    static member inline value (value: System.DateTimeOffset) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
+    /// A numeric value representing the flow volume value.
     static member inline value (values: seq<System.DateTime>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
+    /// A numeric value representing the flow volume value.
+    static member inline value (values: seq<System.DateTimeOffset>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (value: float) = Interop.mkLinkAttr "value" (value |> Array.singleton |> ResizeArray)
     /// A numeric value representing the flow volume value.
@@ -311,6 +339,8 @@ type link =
     static member inline value (values: seq<bool option>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<System.DateTime option>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
+    /// A numeric value representing the flow volume value.
+    static member inline value (values: seq<System.DateTimeOffset option>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.
     static member inline value (values: seq<int option>) = Interop.mkLinkAttr "value" (values |> ResizeArray)
     /// A numeric value representing the flow volume value.

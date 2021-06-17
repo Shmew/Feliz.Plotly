@@ -27,7 +27,11 @@ type node =
     /// Assigns extra data to each node.
     static member inline customdata (value: System.DateTime) = Interop.mkNodeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each node.
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkNodeAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data to each node.
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each node.
     static member inline customdata (value: float) = Interop.mkNodeAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data to each node.
@@ -71,6 +75,8 @@ type node =
     /// Assigns extra data to each node.
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each node.
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data to each node.
     static member inline customdata (values: seq<int option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data to each node.
     static member inline customdata (values: seq<float option>) = Interop.mkNodeAttr "customdata" (values |> ResizeArray)
@@ -100,7 +106,11 @@ type node =
     /// The shown name of the node.
     static member inline label (value: System.DateTime) = Interop.mkNodeAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the node.
+    static member inline label (value: System.DateTimeOffset) = Interop.mkNodeAttr "label" (value |> Array.singleton |> ResizeArray)
+    /// The shown name of the node.
     static member inline label (values: seq<System.DateTime>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
+    /// The shown name of the node.
+    static member inline label (values: seq<System.DateTimeOffset>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
     /// The shown name of the node.
     static member inline label (value: float) = Interop.mkNodeAttr "label" (value |> Array.singleton |> ResizeArray)
     /// The shown name of the node.
@@ -144,6 +154,8 @@ type node =
     /// The shown name of the node.
     static member inline label (values: seq<System.DateTime option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
     /// The shown name of the node.
+    static member inline label (values: seq<System.DateTimeOffset option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
+    /// The shown name of the node.
     static member inline label (values: seq<int option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
     /// The shown name of the node.
     static member inline label (values: seq<float option>) = Interop.mkNodeAttr "label" (values |> ResizeArray)
@@ -167,7 +179,11 @@ type node =
     /// The normalized horizontal position of the node.
     static member inline x (value: System.DateTime) = Interop.mkNodeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// The normalized horizontal position of the node.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkNodeAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// The normalized horizontal position of the node.
     static member inline x (values: seq<System.DateTime>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
+    /// The normalized horizontal position of the node.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
     /// The normalized horizontal position of the node.
     static member inline x (value: float) = Interop.mkNodeAttr "x" (value |> Array.singleton |> ResizeArray)
     /// The normalized horizontal position of the node.
@@ -211,6 +227,8 @@ type node =
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
     /// The normalized horizontal position of the node.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
+    /// The normalized horizontal position of the node.
     static member inline x (values: seq<int option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
     /// The normalized horizontal position of the node.
     static member inline x (values: seq<float option>) = Interop.mkNodeAttr "x" (values |> ResizeArray)
@@ -225,7 +243,11 @@ type node =
     /// The normalized vertical position of the node.
     static member inline y (value: System.DateTime) = Interop.mkNodeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// The normalized vertical position of the node.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkNodeAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// The normalized vertical position of the node.
     static member inline y (values: seq<System.DateTime>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
     /// The normalized vertical position of the node.
     static member inline y (value: float) = Interop.mkNodeAttr "y" (value |> Array.singleton |> ResizeArray)
     /// The normalized vertical position of the node.
@@ -268,6 +290,8 @@ type node =
     static member inline y (values: seq<bool option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
+    /// The normalized vertical position of the node.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
     /// The normalized vertical position of the node.
     static member inline y (values: seq<int option>) = Interop.mkNodeAttr "y" (values |> ResizeArray)
     /// The normalized vertical position of the node.

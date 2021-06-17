@@ -1,3 +1,6 @@
+### 2.1.0 - Thursday, June 17th, 2021
+* Add support for DateTimeOffset
+
 ### 2.0.0 - Tuesday, June 8th, 2021
 * Update for plotly.js 2.0.0 release
 

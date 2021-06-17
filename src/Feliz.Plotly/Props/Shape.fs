@@ -34,7 +34,11 @@ type shape =
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     static member inline x0 (value: System.DateTime) = Interop.mkShapeAttr "x0" value
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+    static member inline x0 (value: System.DateTimeOffset) = Interop.mkShapeAttr "x0" value
+    /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     static member inline x0 (values: seq<System.DateTime>) = Interop.mkShapeAttr "x0" (values |> ResizeArray)
+    /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
+    static member inline x0 (values: seq<System.DateTimeOffset>) = Interop.mkShapeAttr "x0" (values |> ResizeArray)
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     static member inline x0 (value: int) = Interop.mkShapeAttr "x0" value
     /// Sets the shape's starting x position. See `type` and `xsizemode` for more info.
@@ -54,7 +58,11 @@ type shape =
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
     static member inline x1 (value: System.DateTime) = Interop.mkShapeAttr "x1" value
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+    static member inline x1 (value: System.DateTimeOffset) = Interop.mkShapeAttr "x1" value
+    /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
     static member inline x1 (values: seq<System.DateTime>) = Interop.mkShapeAttr "x1" (values |> ResizeArray)
+    /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
+    static member inline x1 (values: seq<System.DateTimeOffset>) = Interop.mkShapeAttr "x1" (values |> ResizeArray)
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
     static member inline x1 (value: int) = Interop.mkShapeAttr "x1" value
     /// Sets the shape's end x position. See `type` and `xsizemode` for more info.
@@ -74,7 +82,11 @@ type shape =
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
     static member inline xanchor (value: System.DateTime) = Interop.mkShapeAttr "xanchor" value
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+    static member inline xanchor (value: System.DateTimeOffset) = Interop.mkShapeAttr "xanchor" value
+    /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
     static member inline xanchor (values: seq<System.DateTime>) = Interop.mkShapeAttr "xanchor" (values |> ResizeArray)
+    /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
+    static member inline xanchor (values: seq<System.DateTimeOffset>) = Interop.mkShapeAttr "xanchor" (values |> ResizeArray)
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
     static member inline xanchor (value: int) = Interop.mkShapeAttr "xanchor" value
     /// Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `xsizemode` not set to *pixel*.
@@ -94,7 +106,11 @@ type shape =
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     static member inline y0 (value: System.DateTime) = Interop.mkShapeAttr "y0" value
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+    static member inline y0 (value: System.DateTimeOffset) = Interop.mkShapeAttr "y0" value
+    /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     static member inline y0 (values: seq<System.DateTime>) = Interop.mkShapeAttr "y0" (values |> ResizeArray)
+    /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
+    static member inline y0 (values: seq<System.DateTimeOffset>) = Interop.mkShapeAttr "y0" (values |> ResizeArray)
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     static member inline y0 (value: int) = Interop.mkShapeAttr "y0" value
     /// Sets the shape's starting y position. See `type` and `ysizemode` for more info.
@@ -114,7 +130,11 @@ type shape =
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
     static member inline y1 (value: System.DateTime) = Interop.mkShapeAttr "y1" value
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+    static member inline y1 (value: System.DateTimeOffset) = Interop.mkShapeAttr "y1" value
+    /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
     static member inline y1 (values: seq<System.DateTime>) = Interop.mkShapeAttr "y1" (values |> ResizeArray)
+    /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
+    static member inline y1 (values: seq<System.DateTimeOffset>) = Interop.mkShapeAttr "y1" (values |> ResizeArray)
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
     static member inline y1 (value: int) = Interop.mkShapeAttr "y1" value
     /// Sets the shape's end y position. See `type` and `ysizemode` for more info.
@@ -134,7 +154,11 @@ type shape =
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (value: System.DateTime) = Interop.mkShapeAttr "yanchor" value
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+    static member inline yanchor (value: System.DateTimeOffset) = Interop.mkShapeAttr "yanchor" value
+    /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (values: seq<System.DateTime>) = Interop.mkShapeAttr "yanchor" (values |> ResizeArray)
+    /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
+    static member inline yanchor (values: seq<System.DateTimeOffset>) = Interop.mkShapeAttr "yanchor" (values |> ResizeArray)
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.
     static member inline yanchor (value: int) = Interop.mkShapeAttr "yanchor" value
     /// Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when `ysizemode` not set to *pixel*.

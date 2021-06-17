@@ -35,7 +35,11 @@ type modebar =
     /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.
     static member inline uirevision (value: System.DateTime) = Interop.mkModebarAttr "uirevision" value
     /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkModebarAttr "uirevision" value
+    /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkModebarAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkModebarAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkModebarAttr "uirevision" value
     /// Controls persistence of user-driven changes related to the modebar, including `hovermode`, `dragmode`, and `showspikes` at both the root level and inside subplots. Defaults to `layout.uirevision`.

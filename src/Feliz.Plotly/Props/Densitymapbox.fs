@@ -34,7 +34,11 @@ type densitymapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkDensitymapboxAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -78,6 +82,8 @@ type densitymapbox =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkDensitymapboxAttr "customdata" (values |> ResizeArray)
@@ -109,7 +115,11 @@ type densitymapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkDensitymapboxAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -153,6 +163,8 @@ type densitymapbox =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkDensitymapboxAttr "ids" (values |> ResizeArray)
@@ -167,7 +179,11 @@ type densitymapbox =
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (value: System.DateTime) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (value: System.DateTimeOffset) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<System.DateTimeOffset>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (value: float) = Interop.mkDensitymapboxAttr "lat" (value |> Array.singleton |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
@@ -211,6 +227,8 @@ type densitymapbox =
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
+    static member inline lat (values: seq<System.DateTimeOffset option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
+    /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<int option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
     /// Sets the latitude coordinates (in degrees North).
     static member inline lat (values: seq<float option>) = Interop.mkDensitymapboxAttr "lat" (values |> ResizeArray)
@@ -227,7 +245,11 @@ type densitymapbox =
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (value: System.DateTime) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (value: System.DateTimeOffset) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<System.DateTimeOffset>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (value: float) = Interop.mkDensitymapboxAttr "lon" (value |> Array.singleton |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
@@ -270,6 +292,8 @@ type densitymapbox =
     static member inline lon (values: seq<bool option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
+    /// Sets the longitude coordinates (in degrees East).
+    static member inline lon (values: seq<System.DateTimeOffset option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
     static member inline lon (values: seq<int option>) = Interop.mkDensitymapboxAttr "lon" (values |> ResizeArray)
     /// Sets the longitude coordinates (in degrees East).
@@ -323,7 +347,11 @@ type densitymapbox =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkDensitymapboxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkDensitymapboxAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkDensitymapboxAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkDensitymapboxAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -343,7 +371,11 @@ type densitymapbox =
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (value: System.DateTime) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (value: System.DateTimeOffset) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<System.DateTime>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (value: float) = Interop.mkDensitymapboxAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
@@ -386,6 +418,8 @@ type densitymapbox =
     static member inline z (values: seq<bool option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<System.DateTime option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
+    /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     static member inline z (values: seq<int option>) = Interop.mkDensitymapboxAttr "z" (values |> ResizeArray)
     /// Sets the points' weight. For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot

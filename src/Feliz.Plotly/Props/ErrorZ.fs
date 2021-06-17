@@ -17,7 +17,11 @@ type errorZ =
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (value: System.DateTime) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (value: System.DateTimeOffset) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<System.DateTime>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<System.DateTimeOffset>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (value: float) = Interop.mkErrorZAttr "array" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
@@ -61,6 +65,8 @@ type errorZ =
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<System.DateTime option>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
+    static member inline array (values: seq<System.DateTimeOffset option>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
+    /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<int option>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     static member inline array (values: seq<float option>) = Interop.mkErrorZAttr "array" (values |> ResizeArray)
@@ -73,7 +79,11 @@ type errorZ =
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (value: System.DateTime) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (value: System.DateTimeOffset) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<System.DateTime>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<System.DateTimeOffset>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (value: float) = Interop.mkErrorZAttr "arrayminus" (value |> Array.singleton |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
@@ -116,6 +126,8 @@ type errorZ =
     static member inline arrayminus (values: seq<bool option>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<System.DateTime option>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    static member inline arrayminus (values: seq<System.DateTimeOffset option>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
     static member inline arrayminus (values: seq<int option>) = Interop.mkErrorZAttr "arrayminus" (values |> ResizeArray)
     /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.

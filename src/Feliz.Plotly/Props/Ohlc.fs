@@ -17,7 +17,11 @@ type ohlc =
     /// Sets the close values.
     static member inline close (value: System.DateTime) = Interop.mkOhlcAttr "close" (value |> Array.singleton |> ResizeArray)
     /// Sets the close values.
+    static member inline close (value: System.DateTimeOffset) = Interop.mkOhlcAttr "close" (value |> Array.singleton |> ResizeArray)
+    /// Sets the close values.
     static member inline close (values: seq<System.DateTime>) = Interop.mkOhlcAttr "close" (values |> ResizeArray)
+    /// Sets the close values.
+    static member inline close (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "close" (values |> ResizeArray)
     /// Sets the close values.
     static member inline close (value: float) = Interop.mkOhlcAttr "close" (value |> Array.singleton |> ResizeArray)
     /// Sets the close values.
@@ -61,6 +65,8 @@ type ohlc =
     /// Sets the close values.
     static member inline close (values: seq<System.DateTime option>) = Interop.mkOhlcAttr "close" (values |> ResizeArray)
     /// Sets the close values.
+    static member inline close (values: seq<System.DateTimeOffset option>) = Interop.mkOhlcAttr "close" (values |> ResizeArray)
+    /// Sets the close values.
     static member inline close (values: seq<int option>) = Interop.mkOhlcAttr "close" (values |> ResizeArray)
     /// Sets the close values.
     static member inline close (values: seq<float option>) = Interop.mkOhlcAttr "close" (values |> ResizeArray)
@@ -75,7 +81,11 @@ type ohlc =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkOhlcAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkOhlcAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -119,6 +129,8 @@ type ohlc =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkOhlcAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkOhlcAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkOhlcAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkOhlcAttr "customdata" (values |> ResizeArray)
@@ -134,7 +146,11 @@ type ohlc =
     /// Sets the high values.
     static member inline high (value: System.DateTime) = Interop.mkOhlcAttr "high" (value |> Array.singleton |> ResizeArray)
     /// Sets the high values.
+    static member inline high (value: System.DateTimeOffset) = Interop.mkOhlcAttr "high" (value |> Array.singleton |> ResizeArray)
+    /// Sets the high values.
     static member inline high (values: seq<System.DateTime>) = Interop.mkOhlcAttr "high" (values |> ResizeArray)
+    /// Sets the high values.
+    static member inline high (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "high" (values |> ResizeArray)
     /// Sets the high values.
     static member inline high (value: float) = Interop.mkOhlcAttr "high" (value |> Array.singleton |> ResizeArray)
     /// Sets the high values.
@@ -178,6 +194,8 @@ type ohlc =
     /// Sets the high values.
     static member inline high (values: seq<System.DateTime option>) = Interop.mkOhlcAttr "high" (values |> ResizeArray)
     /// Sets the high values.
+    static member inline high (values: seq<System.DateTimeOffset option>) = Interop.mkOhlcAttr "high" (values |> ResizeArray)
+    /// Sets the high values.
     static member inline high (values: seq<int option>) = Interop.mkOhlcAttr "high" (values |> ResizeArray)
     /// Sets the high values.
     static member inline high (values: seq<float option>) = Interop.mkOhlcAttr "high" (values |> ResizeArray)
@@ -203,7 +221,11 @@ type ohlc =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkOhlcAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkOhlcAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkOhlcAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkOhlcAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -247,6 +269,8 @@ type ohlc =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkOhlcAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkOhlcAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkOhlcAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkOhlcAttr "ids" (values |> ResizeArray)
@@ -265,7 +289,11 @@ type ohlc =
     /// Sets the low values.
     static member inline low (value: System.DateTime) = Interop.mkOhlcAttr "low" (value |> Array.singleton |> ResizeArray)
     /// Sets the low values.
+    static member inline low (value: System.DateTimeOffset) = Interop.mkOhlcAttr "low" (value |> Array.singleton |> ResizeArray)
+    /// Sets the low values.
     static member inline low (values: seq<System.DateTime>) = Interop.mkOhlcAttr "low" (values |> ResizeArray)
+    /// Sets the low values.
+    static member inline low (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "low" (values |> ResizeArray)
     /// Sets the low values.
     static member inline low (value: float) = Interop.mkOhlcAttr "low" (value |> Array.singleton |> ResizeArray)
     /// Sets the low values.
@@ -309,6 +337,8 @@ type ohlc =
     /// Sets the low values.
     static member inline low (values: seq<System.DateTime option>) = Interop.mkOhlcAttr "low" (values |> ResizeArray)
     /// Sets the low values.
+    static member inline low (values: seq<System.DateTimeOffset option>) = Interop.mkOhlcAttr "low" (values |> ResizeArray)
+    /// Sets the low values.
     static member inline low (values: seq<int option>) = Interop.mkOhlcAttr "low" (values |> ResizeArray)
     /// Sets the low values.
     static member inline low (values: seq<float option>) = Interop.mkOhlcAttr "low" (values |> ResizeArray)
@@ -331,7 +361,11 @@ type ohlc =
     /// Sets the open values.
     static member inline open' (value: System.DateTime) = Interop.mkOhlcAttr "open" (value |> Array.singleton |> ResizeArray)
     /// Sets the open values.
+    static member inline open' (value: System.DateTimeOffset) = Interop.mkOhlcAttr "open" (value |> Array.singleton |> ResizeArray)
+    /// Sets the open values.
     static member inline open' (values: seq<System.DateTime>) = Interop.mkOhlcAttr "open" (values |> ResizeArray)
+    /// Sets the open values.
+    static member inline open' (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "open" (values |> ResizeArray)
     /// Sets the open values.
     static member inline open' (value: float) = Interop.mkOhlcAttr "open" (value |> Array.singleton |> ResizeArray)
     /// Sets the open values.
@@ -375,6 +409,8 @@ type ohlc =
     /// Sets the open values.
     static member inline open' (values: seq<System.DateTime option>) = Interop.mkOhlcAttr "open" (values |> ResizeArray)
     /// Sets the open values.
+    static member inline open' (values: seq<System.DateTimeOffset option>) = Interop.mkOhlcAttr "open" (values |> ResizeArray)
+    /// Sets the open values.
     static member inline open' (values: seq<int option>) = Interop.mkOhlcAttr "open" (values |> ResizeArray)
     /// Sets the open values.
     static member inline open' (values: seq<float option>) = Interop.mkOhlcAttr "open" (values |> ResizeArray)
@@ -389,7 +425,11 @@ type ohlc =
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: System.DateTime) = Interop.mkOhlcAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (value: System.DateTimeOffset) = Interop.mkOhlcAttr "selectedpoints" value
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<System.DateTime>) = Interop.mkOhlcAttr "selectedpoints" (values |> ResizeArray)
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "selectedpoints" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: int) = Interop.mkOhlcAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -425,7 +465,11 @@ type ohlc =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkOhlcAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkOhlcAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkOhlcAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkOhlcAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -445,7 +489,11 @@ type ohlc =
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (value: System.DateTime) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<System.DateTime>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (value: float) = Interop.mkOhlcAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
@@ -489,6 +537,8 @@ type ohlc =
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
+    /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<int option>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     static member inline x (values: seq<float option>) = Interop.mkOhlcAttr "x" (values |> ResizeArray)
@@ -507,7 +557,11 @@ type ohlc =
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: System.DateTime) = Interop.mkOhlcAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
+    static member inline xperiod (value: System.DateTimeOffset) = Interop.mkOhlcAttr "xperiod" value
+    /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (values: seq<System.DateTime>) = Interop.mkOhlcAttr "xperiod" (values |> ResizeArray)
+    /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
+    static member inline xperiod (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "xperiod" (values |> ResizeArray)
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
     static member inline xperiod (value: int) = Interop.mkOhlcAttr "xperiod" value
     /// Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.
@@ -527,7 +581,11 @@ type ohlc =
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline xperiod0 (value: System.DateTime) = Interop.mkOhlcAttr "xperiod0" value
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+    static member inline xperiod0 (value: System.DateTimeOffset) = Interop.mkOhlcAttr "xperiod0" value
+    /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline xperiod0 (values: seq<System.DateTime>) = Interop.mkOhlcAttr "xperiod0" (values |> ResizeArray)
+    /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
+    static member inline xperiod0 (values: seq<System.DateTimeOffset>) = Interop.mkOhlcAttr "xperiod0" (values |> ResizeArray)
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.
     static member inline xperiod0 (value: int) = Interop.mkOhlcAttr "xperiod0" value
     /// Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.

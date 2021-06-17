@@ -41,7 +41,11 @@ type histogram2dcontour =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkHistogram2dcontourAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -85,6 +89,8 @@ type histogram2dcontour =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkHistogram2dcontourAttr "customdata" (values |> ResizeArray)
@@ -110,7 +116,11 @@ type histogram2dcontour =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkHistogram2dcontourAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkHistogram2dcontourAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkHistogram2dcontourAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -154,6 +164,8 @@ type histogram2dcontour =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkHistogram2dcontourAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkHistogram2dcontourAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkHistogram2dcontourAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkHistogram2dcontourAttr "ids" (values |> ResizeArray)
@@ -196,7 +208,11 @@ type histogram2dcontour =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkHistogram2dcontourAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkHistogram2dcontourAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkHistogram2dcontourAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -216,7 +232,11 @@ type histogram2dcontour =
     /// Sets the sample data to be binned on the x axis.
     static member inline x (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkHistogram2dcontourAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "x" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkHistogram2dcontourAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (value: float) = Interop.mkHistogram2dcontourAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
@@ -260,6 +280,8 @@ type histogram2dcontour =
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkHistogram2dcontourAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkHistogram2dcontourAttr "x" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<int option>) = Interop.mkHistogram2dcontourAttr "x" (values |> ResizeArray)
     /// Sets the sample data to be binned on the x axis.
     static member inline x (values: seq<float option>) = Interop.mkHistogram2dcontourAttr "x" (values |> ResizeArray)
@@ -283,7 +305,11 @@ type histogram2dcontour =
     /// Sets the sample data to be binned on the y axis.
     static member inline y (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkHistogram2dcontourAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "y" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkHistogram2dcontourAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (value: float) = Interop.mkHistogram2dcontourAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
@@ -327,6 +353,8 @@ type histogram2dcontour =
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkHistogram2dcontourAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkHistogram2dcontourAttr "y" (values |> ResizeArray)
+    /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<int option>) = Interop.mkHistogram2dcontourAttr "y" (values |> ResizeArray)
     /// Sets the sample data to be binned on the y axis.
     static member inline y (values: seq<float option>) = Interop.mkHistogram2dcontourAttr "y" (values |> ResizeArray)
@@ -350,7 +378,11 @@ type histogram2dcontour =
     /// Sets the aggregation data.
     static member inline z (value: System.DateTime) = Interop.mkHistogram2dcontourAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the aggregation data.
+    static member inline z (value: System.DateTimeOffset) = Interop.mkHistogram2dcontourAttr "z" (value |> Array.singleton |> ResizeArray)
+    /// Sets the aggregation data.
     static member inline z (values: seq<System.DateTime>) = Interop.mkHistogram2dcontourAttr "z" (values |> ResizeArray)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<System.DateTimeOffset>) = Interop.mkHistogram2dcontourAttr "z" (values |> ResizeArray)
     /// Sets the aggregation data.
     static member inline z (value: float) = Interop.mkHistogram2dcontourAttr "z" (value |> Array.singleton |> ResizeArray)
     /// Sets the aggregation data.
@@ -393,6 +425,8 @@ type histogram2dcontour =
     static member inline z (values: seq<bool option>) = Interop.mkHistogram2dcontourAttr "z" (values |> ResizeArray)
     /// Sets the aggregation data.
     static member inline z (values: seq<System.DateTime option>) = Interop.mkHistogram2dcontourAttr "z" (values |> ResizeArray)
+    /// Sets the aggregation data.
+    static member inline z (values: seq<System.DateTimeOffset option>) = Interop.mkHistogram2dcontourAttr "z" (values |> ResizeArray)
     /// Sets the aggregation data.
     static member inline z (values: seq<int option>) = Interop.mkHistogram2dcontourAttr "z" (values |> ResizeArray)
     /// Sets the aggregation data.

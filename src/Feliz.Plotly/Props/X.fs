@@ -35,7 +35,11 @@ type x =
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
     static member inline locations (value: System.DateTime) = Interop.mkXAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
+    static member inline locations (value: System.DateTimeOffset) = Interop.mkXAttr "locations" (value |> Array.singleton |> ResizeArray)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
     static member inline locations (values: seq<System.DateTime>) = Interop.mkXAttr "locations" (values |> ResizeArray)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
+    static member inline locations (values: seq<System.DateTimeOffset>) = Interop.mkXAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
     static member inline locations (value: float) = Interop.mkXAttr "locations" (value |> Array.singleton |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
@@ -78,6 +82,8 @@ type x =
     static member inline locations (values: seq<bool option>) = Interop.mkXAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
     static member inline locations (values: seq<System.DateTime option>) = Interop.mkXAttr "locations" (values |> ResizeArray)
+    /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
+    static member inline locations (values: seq<System.DateTimeOffset option>) = Interop.mkXAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.
     static member inline locations (values: seq<int option>) = Interop.mkXAttr "locations" (values |> ResizeArray)
     /// Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the axis x except start and end.

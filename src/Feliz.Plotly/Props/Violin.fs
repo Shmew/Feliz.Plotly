@@ -24,7 +24,11 @@ type violin =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: System.DateTime) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (value: System.DateTimeOffset) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (value: float) = Interop.mkViolinAttr "customdata" (value |> Array.singleton |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
@@ -68,6 +72,8 @@ type violin =
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<System.DateTime option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    static member inline customdata (values: seq<System.DateTimeOffset option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<int option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
     static member inline customdata (values: seq<float option>) = Interop.mkViolinAttr "customdata" (values |> ResizeArray)
@@ -103,7 +109,11 @@ type violin =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: System.DateTime) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (value: System.DateTimeOffset) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (value: float) = Interop.mkViolinAttr "ids" (value |> Array.singleton |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
@@ -147,6 +157,8 @@ type violin =
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<System.DateTime option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    static member inline ids (values: seq<System.DateTimeOffset option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<int option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
     static member inline ids (values: seq<float option>) = Interop.mkViolinAttr "ids" (values |> ResizeArray)
@@ -187,7 +199,11 @@ type violin =
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: System.DateTime) = Interop.mkViolinAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (value: System.DateTimeOffset) = Interop.mkViolinAttr "selectedpoints" value
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (values: seq<System.DateTime>) = Interop.mkViolinAttr "selectedpoints" (values |> ResizeArray)
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    static member inline selectedpoints (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "selectedpoints" (values |> ResizeArray)
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     static member inline selectedpoints (value: int) = Interop.mkViolinAttr "selectedpoints" value
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
@@ -209,7 +225,11 @@ type violin =
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
     static member inline span (value: System.DateTime) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
+    static member inline span (value: System.DateTimeOffset) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
+    /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
     static member inline span (values: seq<System.DateTime>) = Interop.mkViolinAttr "span" (values |> ResizeArray)
+    /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
+    static member inline span (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "span" (values |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
     static member inline span (value: float) = Interop.mkViolinAttr "span" (value |> Array.singleton |> ResizeArray)
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
@@ -239,7 +259,11 @@ type violin =
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: System.DateTime) = Interop.mkViolinAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkViolinAttr "uirevision" value
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkViolinAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     static member inline uirevision (value: int) = Interop.mkViolinAttr "uirevision" value
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -264,7 +288,11 @@ type violin =
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (value: System.DateTime) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (value: System.DateTimeOffset) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<System.DateTime>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (value: float) = Interop.mkViolinAttr "x" (value |> Array.singleton |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
@@ -308,6 +336,8 @@ type violin =
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<System.DateTime option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
+    static member inline x (values: seq<System.DateTimeOffset option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
+    /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<int option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
     /// Sets the x sample data or coordinates. See overview for more info.
     static member inline x (values: seq<float option>) = Interop.mkViolinAttr "x" (values |> ResizeArray)
@@ -320,7 +350,11 @@ type violin =
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline x0 (value: System.DateTime) = Interop.mkViolinAttr "x0" value
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline x0 (value: System.DateTimeOffset) = Interop.mkViolinAttr "x0" value
+    /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline x0 (values: seq<System.DateTime>) = Interop.mkViolinAttr "x0" (values |> ResizeArray)
+    /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline x0 (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "x0" (values |> ResizeArray)
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline x0 (value: int) = Interop.mkViolinAttr "x0" value
     /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
@@ -348,7 +382,11 @@ type violin =
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (value: System.DateTime) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (value: System.DateTimeOffset) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<System.DateTime>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (value: float) = Interop.mkViolinAttr "y" (value |> Array.singleton |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
@@ -392,6 +430,8 @@ type violin =
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<System.DateTime option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
+    static member inline y (values: seq<System.DateTimeOffset option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
+    /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<int option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
     /// Sets the y sample data or coordinates. See overview for more info.
     static member inline y (values: seq<float option>) = Interop.mkViolinAttr "y" (values |> ResizeArray)
@@ -404,7 +444,11 @@ type violin =
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline y0 (value: System.DateTime) = Interop.mkViolinAttr "y0" value
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline y0 (value: System.DateTimeOffset) = Interop.mkViolinAttr "y0" value
+    /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline y0 (values: seq<System.DateTime>) = Interop.mkViolinAttr "y0" (values |> ResizeArray)
+    /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
+    static member inline y0 (values: seq<System.DateTimeOffset>) = Interop.mkViolinAttr "y0" (values |> ResizeArray)
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.
     static member inline y0 (value: int) = Interop.mkViolinAttr "y0" value
     /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set using q1/median/q3. See overview for more info.

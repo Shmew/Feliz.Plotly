@@ -39,7 +39,11 @@ type legend =
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
     static member inline uirevision (value: System.DateTime) = Interop.mkLegendAttr "uirevision" value
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
+    static member inline uirevision (value: System.DateTimeOffset) = Interop.mkLegendAttr "uirevision" value
+    /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
     static member inline uirevision (values: seq<System.DateTime>) = Interop.mkLegendAttr "uirevision" (values |> ResizeArray)
+    /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
+    static member inline uirevision (values: seq<System.DateTimeOffset>) = Interop.mkLegendAttr "uirevision" (values |> ResizeArray)
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
     static member inline uirevision (value: int) = Interop.mkLegendAttr "uirevision" value
     /// Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.

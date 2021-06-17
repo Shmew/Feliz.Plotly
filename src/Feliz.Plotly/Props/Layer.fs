@@ -22,7 +22,11 @@ type layer =
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     static member inline coordinates (value: System.DateTime) = Interop.mkLayerAttr "coordinates" value
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+    static member inline coordinates (value: System.DateTimeOffset) = Interop.mkLayerAttr "coordinates" value
+    /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     static member inline coordinates (values: seq<System.DateTime>) = Interop.mkLayerAttr "coordinates" (values |> ResizeArray)
+    /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
+    static member inline coordinates (values: seq<System.DateTimeOffset>) = Interop.mkLayerAttr "coordinates" (values |> ResizeArray)
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     static member inline coordinates (value: int) = Interop.mkLayerAttr "coordinates" value
     /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
