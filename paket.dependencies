@@ -6,64 +6,63 @@ group Plotly
     source https://nuget.org/api/v2
     source https://api.nuget.org/v3/index.json
 
-    nuget Fable.Core ~> 3
-    nuget Fable.Browser.Dom ~> 2
-    nuget Feliz ~> 1.13
-    nuget FSharp.Core >= 4.7.2 lowest_matching: true
+    nuget Fable.Core ~> 4.0.0-theta-007
+    nuget Fable.Browser.Dom ~> 2.14
+    nuget Feliz ~> 2.4
+    nuget FSharp.Core ~> 7.0
 
 group Generator
     source https://nuget.org/api/v2
     source https://api.nuget.org/v3/index.json
 
-    nuget Fake.IO.FileSystem ~> 5
-    nuget FSharp.Core >= 4.7.2 lowest_matching: true
-    nuget FSharp.Data ~> 3
+    nuget Fake.IO.FileSystem ~> 6.0
+    nuget FSharp.Core ~> 7.0
+    nuget FSharp.Data ~> 6.0.1-beta002
 
-    github plotly/plotly.js:c80644edd923500883e57597cddfb695d5815440 dist/plot-schema.json
+    github plotly/plotly.js:7427f14 dist/plot-schema.json
 
 group Docs
     source https://nuget.org/api/v2
     source https://api.nuget.org/v3/index.json
 
-    nuget Fable.Browser.Dom ~> 2
-    nuget Fable.Core ~> 3
-    nuget Fable.Elmish.React ~> 3
-    nuget Fable.Promise ~> 2
-    nuget Fable.SimpleHttp ~> 2
-    nuget Fable.SimpleJson ~> 3
-    nuget Feliz ~> 1.13
-    nuget Feliz.Markdown ~> 1
-    nuget Feliz.Router ~> 3
-    nuget Feliz.UseElmish ~> 1
-    nuget FSharp.Core >= 4.7.2 lowest_matching: true
-    nuget Zanaptak.TypedCssClasses ~> 0
+    nuget Fable.Browser.Dom ~> 2.14
+    nuget Fable.Core ~> 4.0.0-theta-007
+    nuget Fable.Elmish.React ~> 4.0
+    nuget Feliz.UseElmish ~> 2.3
+    nuget Fable.Promise ~> 3.2
+    nuget Fable.SimpleHttp ~> 3.5
+    nuget Fable.SimpleJson ~> 3.24
+    nuget Feliz ~> 2.4
+    nuget Feliz.Markdown ~> 2.4
+    nuget Feliz.Router ~> 4.0
+    nuget FSharp.Core ~> 7.0
+    nuget Zanaptak.TypedCssClasses ~> 1.0
 
 group Tooling
     source https://nuget.org/api/v2
     source https://api.nuget.org/v3/index.json
 
-    nuget Fake.IO.FileSystem ~> 5
-    nuget FSharp.Core ~> 4.7
-    nuget FSharp.Json ~> 0
-    nuget FSharpLint.Core ~> 0
-    nuget Yarnpkg.Yarn ~> 1
+    nuget Fake.IO.FileSystem ~> 6.0
+    nuget FSharp.Core ~> 7.0
+    nuget FSharp.Json ~> 0.4
+    nuget FSharpLint.Core ~> 0.21
+    nuget Yarnpkg.Yarn ~> 1.22
 
 group FakeBuild
     source https://api.nuget.org/v3/index.json
 
-    nuget Fake.Core.Target ~> 5
-    nuget Fake.Core.ReleaseNotes ~> 5
-    nuget Fake.DotNet.AssemblyInfoFile ~> 5
-    nuget Fake.DotNet.Cli ~> 5
-    nuget Fake.DotNet.FSFormatting ~> 5
-    nuget Fake.DotNet.MSBuild ~> 5
-    nuget Fake.DotNet.Paket ~> 5
-    nuget Fake.IO.FileSystem ~> 5
-    nuget Fake.JavaScript.Yarn ~> 5
-    nuget Fake.JavaScript.Npm ~> 5
-    nuget Fake.Tools.Git ~> 5
-    nuget FSharp.Core ~> 4.7
-    nuget FSharp.Json ~> 0
-    nuget FSharpLint.Core ~> 0
-    nuget Fantomas ~> 3
-    nuget NuGet.Packaging 5.6
+    nuget Fake.Core.Target ~> 6.0
+    nuget Fake.Core.ReleaseNotes ~> 6.0
+    nuget Fake.DotNet.AssemblyInfoFile ~> 6.0
+    nuget Fake.DotNet.Cli ~> 6.0
+    nuget Fake.DotNet.FSFormatting ~> 6.0
+    nuget Fake.DotNet.MSBuild ~> 6.0
+    nuget Fake.DotNet.Paket ~> 6.0
+    nuget Fake.IO.FileSystem ~> 6.0
+    nuget Fake.JavaScript.Yarn ~> 6.0
+    nuget Fake.JavaScript.Npm ~> 6.0
+    nuget Fake.Tools.Git ~> 6.0
+    nuget FSharp.Core ~> 7.0
+    nuget FSharp.Json ~> 0.4
+    nuget FSharpLint.Core ~> 0.21
+    nuget NuGet.Packaging ~> 6.5
