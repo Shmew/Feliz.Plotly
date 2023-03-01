@@ -3,8 +3,8 @@ version 5.251.0
 framework: auto-detect
 
 group Plotly
-	source https://nuget.org/api/v2
-	source https://api.nuget.org/v3/index.json
+    source https://nuget.org/api/v2
+    source https://api.nuget.org/v3/index.json
 
     nuget Fable.Core ~> 3
     nuget Fable.Browser.Dom ~> 2
@@ -13,17 +13,17 @@ group Plotly
 
 group Generator
     source https://nuget.org/api/v2
-	source https://api.nuget.org/v3/index.json
+    source https://api.nuget.org/v3/index.json
 
     nuget Fake.IO.FileSystem ~> 5
     nuget FSharp.Core >= 4.7.2 lowest_matching: true
     nuget FSharp.Data ~> 3
-    
+
     github plotly/plotly.js:c80644edd923500883e57597cddfb695d5815440 dist/plot-schema.json
 
 group Docs
     source https://nuget.org/api/v2
-	source https://api.nuget.org/v3/index.json
+    source https://api.nuget.org/v3/index.json
 
     nuget Fable.Browser.Dom ~> 2
     nuget Fable.Core ~> 3
@@ -39,31 +39,31 @@ group Docs
     nuget Zanaptak.TypedCssClasses ~> 0
 
 group Tooling
-	source https://nuget.org/api/v2
-	source https://api.nuget.org/v3/index.json
+    source https://nuget.org/api/v2
+    source https://api.nuget.org/v3/index.json
 
-	nuget Fake.IO.FileSystem ~> 5
-	nuget FSharp.Core ~> 4.7
+    nuget Fake.IO.FileSystem ~> 5
+    nuget FSharp.Core ~> 4.7
     nuget FSharp.Json ~> 0
-	nuget FSharpLint.Core ~> 0
+    nuget FSharpLint.Core ~> 0
     nuget Yarnpkg.Yarn ~> 1
 
 group FakeBuild
-	source https://api.nuget.org/v3/index.json
+    source https://api.nuget.org/v3/index.json
 
-	nuget Fake.Core.Target ~> 5
-	nuget Fake.Core.ReleaseNotes ~> 5
-	nuget Fake.DotNet.AssemblyInfoFile ~> 5
-	nuget Fake.DotNet.Cli ~> 5
-	nuget Fake.DotNet.FSFormatting ~> 5
-	nuget Fake.DotNet.MSBuild ~> 5
-	nuget Fake.DotNet.Paket ~> 5
-	nuget Fake.IO.FileSystem ~> 5
+    nuget Fake.Core.Target ~> 5
+    nuget Fake.Core.ReleaseNotes ~> 5
+    nuget Fake.DotNet.AssemblyInfoFile ~> 5
+    nuget Fake.DotNet.Cli ~> 5
+    nuget Fake.DotNet.FSFormatting ~> 5
+    nuget Fake.DotNet.MSBuild ~> 5
+    nuget Fake.DotNet.Paket ~> 5
+    nuget Fake.IO.FileSystem ~> 5
     nuget Fake.JavaScript.Yarn ~> 5
-	nuget Fake.JavaScript.Npm ~> 5
-	nuget Fake.Tools.Git ~> 5
+    nuget Fake.JavaScript.Npm ~> 5
+    nuget Fake.Tools.Git ~> 5
     nuget FSharp.Core ~> 4.7
     nuget FSharp.Json ~> 0
-	nuget FSharpLint.Core ~> 0
+    nuget FSharpLint.Core ~> 0
     nuget Fantomas ~> 3
     nuget NuGet.Packaging 5.6
