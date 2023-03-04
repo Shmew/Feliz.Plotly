@@ -45,7 +45,7 @@ group Tooling
     nuget Fake.IO.FileSystem ~> 6.0
     nuget FSharp.Core ~> 7.0
     nuget FSharp.Json ~> 0.4
-    nuget FSharpLint.Core ~> 0.21
+    nuget FSharpLint.Core ~> 0.21 copy_local: false
     nuget Yarnpkg.Yarn ~> 1.22
 
 group FakeBuild
@@ -64,5 +64,5 @@ group FakeBuild
     nuget Fake.Tools.Git ~> 6.0
     nuget FSharp.Core ~> 7.0
     nuget FSharp.Json ~> 0.4
-    nuget FSharpLint.Core ~> 0.21
+    nuget FSharpLint.Core ~> 0.21 copy_local: false
     nuget NuGet.Packaging ~> 6.5
