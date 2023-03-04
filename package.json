@@ -1,6 +1,6 @@
 {
   "name": "feliz.-plotly",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Fable bindings written in the Feliz-style for plotly.js",
   "homepage": "https://github.com/Shmew/Feliz.Plotly",
   "bugs": {
@@ -19,29 +19,29 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "plotly.js": "^1",
-    "react": "^16",
-    "react-dom": "^16",
-    "react-highlight": "^0",
-    "react-markdown": "^4",
-    "react-plotly.js": "^2",
-    "source-map-support": "^0"
+    "plotly.js": "^2.18.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-highlight": "^0.15.0",
+    "react-markdown": "^4.3.1",
+    "react-plotly.js": "^2.6.0",
+    "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@babel/core": "^7",
-    "@babel/preset-env": "^7",
-    "babel-loader": "^8",
-    "core-js": "^3",
-    "fable-compiler": "^2",
-    "fable-loader": "^2",
-    "file-loader": "^4",
-    "gh-pages": "^2",
-    "html-webpack-plugin": "^3",
-    "remotedev": "^0",
-    "resolve-url-loader": "^3",
-    "webpack": "^4",
-    "webpack-cli": "^3",
-    "webpack-dev-server": "^3"
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^8.3.0",
+    "core-js": "^3.29.0",
+    "fable-compiler": "^2.13.0",
+    "fable-loader": "^2.1.9",
+    "file-loader": "^4.3.0",
+    "gh-pages": "^2.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "remotedev": "^0.2.9",
+    "resolve-url-loader": "^3.1.5",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.3"
   },
   "private": true
 }
