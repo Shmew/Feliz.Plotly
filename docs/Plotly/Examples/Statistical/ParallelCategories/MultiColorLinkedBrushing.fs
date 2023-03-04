@@ -23,12 +23,12 @@ module Types =
         member this.AddDataSet (data: string []) =
             { this with
                 HighwayMPG = Array.append this.HighwayMPG (data.[23] |> int |> Array.singleton)
-                Horsepower = 
+                Horsepower =
                     match data.[21] with
                     | hp when hp |> string = "NA" -> None
                     | hp -> hp |> int |> Some
                     |> Array.singleton
-                    |> Array.append this.Horsepower 
+                    |> Array.append this.Horsepower
                 BodyStyle = Array.append this.BodyStyle (data.[6] |> Array.singleton)
                 DriveWheels = Array.append this.DriveWheels (data.[7] |> Array.singleton)
                 FuelType = Array.append this.FuelType (data.[3] |> Array.singleton) }
@@ -50,7 +50,7 @@ module Types =
 
     type State =
         { CarData: CarData
-          ColorAction: ColorAction 
+          ColorAction: ColorAction
           Colors: int []
           DataLoaded: bool
           Error: string option }
@@ -65,12 +65,12 @@ module Types =
 module State =
     open Types
 
-    let loadDataset path state dispatch = 
+    let loadDataset path state dispatch =
         async {
             let! (statusCode, responseText) = Http.get path
             if statusCode = 200 then
                 let fullData =
-                    responseText.Trim().Split('\n') 
+                    responseText.Trim().Split('\n')
                     |> Array.map (fun s -> s.Split(','))
 
                 fullData
@@ -86,11 +86,11 @@ module State =
 
     let update msg (state: State) =
         match msg with
-        | LoadData path -> state, Cmd.ofSub (loadDataset path state)
+        | LoadData path -> state, Cmd.ofEffect (loadDataset path state)
         | SetCarData carData -> { state with CarData = carData; Colors = carData.Horsepower |> Array.map (fun _ -> 0);  DataLoaded = true; Error = None }, Cmd.none
         | SetColorAction colorAction -> { state with ColorAction = colorAction }, Cmd.none
-        | SetColors points -> 
-            let colorPre = 
+        | SetColors points ->
+            let colorPre =
                 points
                 |> Array.ofSeq
                 |> Array.choose (fun pObj -> pObj.pointNumber)
@@ -104,7 +104,7 @@ module State =
                         | ColorAction.Red -> 1
                         | ColorAction.Blue -> 2
                     else origColor)
-            
+
             { state with Colors = colors }, Cmd.none
         | SetError err -> { state with Error = err }, Cmd.none
 
@@ -200,7 +200,7 @@ module View =
                     ]
                 ]
             ]
-        | true, None -> 
+        | true, None ->
             Html.div [
                 Plotly.plot [
                     plotData state

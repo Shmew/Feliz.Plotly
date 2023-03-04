@@ -3,7 +3,7 @@ namespace Tools.Linting
 [<RequireQualifiedAccess>]
 module FSharpLinter =
     open Fake.IO.FileSystemOperators
-    open FSharp.Compiler.Range
+    open FSharp.Compiler.Text.Range
     open FSharpLint.Application
     open FSharpLint.Framework
     open System
@@ -31,12 +31,12 @@ module FSharpLinter =
 
     let mutable private collectWarning = List.empty<string>
 
-    let getErrorMessage (range:FSharp.Compiler.Range.range) =
+    let getErrorMessage (range: FSharp.Compiler.Text.Range) =
         let error = Resources.GetString("LintSourceError")
 
         String.Format(error, range.StartLine, range.StartColumn)
 
-    let highlightErrorText (range:range) (errorLine:string) =
+    let highlightErrorText (range: FSharp.Compiler.Text.Range) (errorLine:string) =
         let highlightColumnLine =
             if String.length errorLine = 0 then "^"
             else
@@ -46,7 +46,7 @@ module FSharpLinter =
 
         errorLine + Environment.NewLine + highlightColumnLine
 
-    let private writeLintWarning (warning : Suggestion.LintWarning) =
+    let private writeLintWarning (warning : Suggestion.LintWarning) : unit =
         let highlightedErrorText = highlightErrorText warning.Details.Range (getErrorMessage warning.Details.Range)
         let warnMsg = warning.Details.Message + Environment.NewLine + highlightedErrorText + Environment.NewLine + warning.ErrorText
 
@@ -57,7 +57,7 @@ module FSharpLinter =
         warnMsg |> writeWarningLine
         String.replicate 80 "*" |> writeInfoLine
 
-    let private handleError (str: string) = writeErrorLine str
+    let private handleError (str: string) : unit = writeErrorLine str
 
     let private handleLintResult =
         function
@@ -72,7 +72,7 @@ module FSharpLinter =
           ReceivedWarning = Some writeLintWarning
           Configuration = config
           ReportLinterProgress = Some parserProgress }
-          
+
     let lintFiles (fileList: (bool * string list) list) =
         let lintFile (webFile: bool) (file: string) =
             let sw = Diagnostics.Stopwatch.StartNew()
