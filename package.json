@@ -13,7 +13,7 @@
     "url": "https://github.com/Shmew/Feliz.Plotly"
   },
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack",
     "compile-demo-raw": "fable-splitter",
     "publish-docs": "yarn build && node publish.js",
     "start": "webpack-dev-server"
