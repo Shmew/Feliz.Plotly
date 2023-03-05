@@ -38,7 +38,7 @@ module.exports = {
     entry: resolve(CONFIG.fsharpEntry),
     output: {
         path: resolve(CONFIG.outputDir),
-        filename: 'bundle.[hash].js',
+        filename: 'bundle.[name].[hash].js',
     },
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'source-map' : 'eval-source-map',
@@ -48,20 +48,17 @@ module.exports = {
             chunks: 'all'
         },
     },
-    plugins: isProduction ?
-        commonPlugins.concat([])
-        : commonPlugins.concat([
-            new webpack.HotModuleReplacementPlugin()
-        ]),
+    plugins: commonPlugins.concat([]),
     resolve: {
         // See https://github.com/fable-compiler/Fable/issues/1490
         symlinks: false
     },
     devServer: {
-        contentBase: CONFIG.outputDir,
         hot: true,
-        inline: true,
-        port: CONFIG.devServerPort
+        port: CONFIG.devServerPort,
+        static: {
+            publicPath: CONFIG.outputDir,
+        }
     },
     module: {
         rules: [
