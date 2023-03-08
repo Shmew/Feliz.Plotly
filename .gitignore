@@ -378,3 +378,6 @@ $RECYCLE.BIN/
 
 # Temp directory
 temp/
+
+*.fs.js
+*.fs.js.map
