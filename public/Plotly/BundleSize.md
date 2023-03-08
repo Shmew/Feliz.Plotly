@@ -1,7 +1,7 @@
 # Feliz.Plotly - Reducing Bundle Size
 
 The library itself references the global plotly.js library to ensure
-all freatures are available, but when it's time to use in production 
+all features are available, but when it's time to use in production 
 it is a heafty load coming in at about 1MB minified and gzipped. 
 
 Luckily there is an easy resolution for this, webpack module aliasing.
