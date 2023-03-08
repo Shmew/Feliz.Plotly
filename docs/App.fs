@@ -444,38 +444,34 @@ let githubPath (rawPath: string) =
 /// Renders a code block from markdown using react-highlight.
 /// Injects sample React components when the code block has language of the format <language>:<sample-name>
 let codeBlockRenderer' = React.functionComponent(fun (input: {| codeProps: Markdown.ICodeProperties |}) ->
-    // let code = markdown.components.code input.codeProps
+    let className = input.codeProps.className
+    if className <> null && className.Contains(":") then
+        let languageParts = className.Split(':')
+        let sampleName = languageParts.[1]
+        let sampleApp =
+            samples
+            |> List.tryFind (fun (name, _) -> name = sampleName)
+            |> Option.map snd
+            |> Option.defaultValue (Html.h1 [
+                prop.style [ style.color.crimson ];
+                prop.text (sprintf "Could not find sample app '%s'" sampleName)
+            ])
 
-    // if input.codeProps.language <> null && input.codeProps.language.Contains ":" then
-    //     let languageParts = input.codeProps.language.Split(':')
-    //     let sampleName = languageParts.[1]
-    //     let sampleApp =
-    //         samples
-    //         |> List.tryFind (fun (name, _) -> name = sampleName)
-    //         |> Option.map snd
-    //         |> Option.defaultValue (Html.h1 [
-    //             prop.style [ style.color.crimson ];
-    //             prop.text (sprintf "Could not find sample app '%s'" sampleName)
-    //         ])
-    //     Html.div [
-    //         prop.children [
-    //             sampleApp
-    //             Highlight.highlight [
-    //                 prop.className "fsharp"
-    //                 prop.text(input.codeProps.value)
-    //             ]
-    //         ]
-    //     ]
-    // else
-    //     Highlight.highlight [
-    //         prop.className "fsharp"
-    //         prop.text(input.codeProps.value)
-    //     ])
-
-    Highlight.highlight [
-        prop.className "fsharp"
-        prop.text "code block render goes here"
-    ])
+        Html.div [
+            prop.children [
+                sampleApp
+                Highlight.highlight [
+                    prop.className "fsharp"
+                    prop.children input.codeProps.children
+                ]
+            ]
+        ]
+    else
+        Highlight.highlight [
+            prop.className "fsharp"
+            prop.children input.codeProps.children
+        ]
+)
 
 let codeBlockRenderer (codeProps: Markdown.ICodeProperties) = codeBlockRenderer' {| codeProps = codeProps |}
 
@@ -505,7 +501,8 @@ let renderMarkdown = React.functionComponent(fun (input: {| path: string; conten
                 ]
             ]
         ]
-    ])
+    ]
+)
 
 module MarkdownLoader =
     open Feliz.UseElmish
