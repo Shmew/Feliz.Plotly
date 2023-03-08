@@ -13,10 +13,10 @@
     "url": "https://github.com/Shmew/Feliz.Plotly"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "dotnet fable ./docs && webpack",
     "compile-demo-raw": "fable-splitter",
     "publish-docs": "yarn build && node publish.js",
-    "start": "webpack-dev-server"
+    "start": "dotnet fable watch ./docs -s --run webpack-dev-server"
   },
   "dependencies": {
     "@types/react": "^18.0.28",
