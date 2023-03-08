@@ -19,6 +19,12 @@
       "commands": [
         "fantomas"
       ]
+    },
+    "fable": {
+      "version": "4.0.0-theta-018",
+      "commands": [
+        "fable"
+      ]
     }
   }
 }
