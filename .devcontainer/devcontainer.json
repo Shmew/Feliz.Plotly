@@ -19,7 +19,8 @@
                 "Ionide.Ionide-fsharp",
                 "ms-dotnettools.csharp",
                 "Ionide.Ionide-Paket",
-                "ms-azuretools.vscode-docker"
+                "ms-azuretools.vscode-docker",
+                "eamodio.gitlens"
             ],
             "features": {
                 "ghcr.io/devcontainers/features/git:1": {}
