@@ -51,7 +51,7 @@ group Tooling
 group FakeBuild
     source https://api.nuget.org/v3/index.json
 
-    nuget Fantomas
+    nuget Fantomas ~> 5.2
     nuget Fake.Core.Target ~> 6.0
     nuget Fake.Core.ReleaseNotes ~> 6.0
     nuget Fake.DotNet.AssemblyInfoFile ~> 6.0

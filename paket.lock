@@ -209,7 +209,7 @@ NUGET
       Fake.Core.Trace (>= 6.0) - restriction: >= netstandard2.0
       Fake.IO.FileSystem (>= 6.0) - restriction: >= netstandard2.0
       FSharp.Core (>= 6.0.3) - restriction: >= netstandard2.0
-    Fantomas (5.2.2)
+    Fantomas (5.2.3)
     FParsec (1.1.1) - copy_local: false, restriction: >= netstandard2.0
       FSharp.Core (>= 4.3.4) - restriction: || (>= net45) (>= netstandard2.0)
     FSharp.Compiler.Service (43.7.200) - copy_local: false, restriction: >= net5.0
@@ -306,7 +306,7 @@ NUGET
     MSBuild.StructuredLogger (2.1.787) - restriction: >= netstandard2.0
       Microsoft.Build.Framework (>= 16.10) - restriction: >= netstandard2.0
       Microsoft.Build.Utilities.Core (>= 16.10) - restriction: >= netstandard2.0
-    Newtonsoft.Json (13.0.2) - copy_local: false, restriction: >= netstandard2.0
+    Newtonsoft.Json (13.0.3) - copy_local: false, restriction: >= netstandard2.0
     NuGet.Common (6.5) - restriction: >= netstandard2.0
       NuGet.Frameworks (>= 6.5) - restriction: >= netstandard2.0
     NuGet.Configuration (6.5) - restriction: >= netstandard2.0
@@ -600,7 +600,7 @@ NUGET
       System.Security.AccessControl (>= 5.0) - restriction: || (&& (>= monoandroid) (< netstandard1.3)) (&& (< monoandroid) (>= netcoreapp2.0)) (>= monotouch) (&& (< net46) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (>= netcoreapp2.1) (>= uap10.1) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
       System.Security.Principal.Windows (>= 5.0) - restriction: || (&& (>= monoandroid) (< netstandard1.3)) (&& (< monoandroid) (>= netcoreapp2.0)) (>= monotouch) (&& (< net46) (< netcoreapp2.0) (>= netstandard2.0)) (>= net461) (>= netcoreapp2.1) (>= uap10.1) (>= xamarinios) (>= xamarinmac) (>= xamarintvos) (>= xamarinwatchos)
     Microsoft.Win32.SystemEvents (7.0) - copy_local: false, restriction: >= net6.0
-    Newtonsoft.Json (13.0.2) - copy_local: false, restriction: >= net5.0
+    Newtonsoft.Json (13.0.3) - copy_local: false, restriction: >= net5.0
     SemanticVersioning (2.0.2) - copy_local: false, restriction: >= net6.0
     System.Buffers (4.5.1) - copy_local: false, restriction: >= net5.0
     System.CodeDom (7.0) - copy_local: false, restriction: >= net5.0
