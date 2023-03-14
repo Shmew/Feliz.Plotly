@@ -12,3 +12,5 @@ RUN chmod +x /usr/bin/docker-entrypoint.sh
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
 COPY --chown=${USER}:${USER} . ${WORKDIR}
+
+WORKDIR ${WORKDIR}
