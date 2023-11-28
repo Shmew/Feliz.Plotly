@@ -17,12 +17,12 @@ type Highlight =
     static member inline highlight (properties: IReactProperty list) =
         Interop.reactApi.createElement(importDefault "react-highlight", createObj !!properties)
 
-type State = 
+type State =
     { CurrentPath : string list
       CurrentTab: string list }
 
 let init () =
-    let path = 
+    let path =
         match document.URL.Split('#') with
         | [| _ |] -> []
         | [| _; path |] -> path.Split('/') |> List.ofArray |> List.tail
@@ -36,10 +36,10 @@ type Msg =
 
 let update msg state =
     match msg with
-    | UrlChanged segments -> 
-        { state with CurrentPath = segments }, 
+    | UrlChanged segments ->
+        { state with CurrentPath = segments },
         match state.CurrentTab with
-        | [ ] when segments.Length > 2 -> 
+        | [ ] when segments.Length > 2 ->
             segments
             |> TabToggled
             |> Cmd.ofMsg
@@ -69,14 +69,14 @@ let centeredSpinner =
         ]
     ]
 
-let samples = 
+let samples =
     let basicSamples =
         let scatter =
             [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
               "plotly-chart-scatter-datalabelshover", Samples.Scatter.DataLabelsHover.chart()
               "plotly-chart-scatter-datalabelsonplot", Samples.Scatter.DataLabelsOnPlot.chart()
               "plotly-chart-scatter-colordimension", Samples.Scatter.ColorDimension.chart() ]
-        
+
         let bubble =
             [ "plotly-chart-bubble-basic", Samples.Bubble.Basic.chart()
               "plotly-chart-bubble-hovertext", Samples.Bubble.HoverText.chart()
@@ -87,7 +87,7 @@ let samples =
         let dot =
             [ "plotly-chart-dot-categorical", Samples.Dot.Categorical.chart() ]
 
-        let line = 
+        let line =
             [ "plotly-chart-line-basic", Samples.Line.Basic.chart()
               "plotly-chart-line-namedlineandscatter", Samples.Line.NamedLineAndScatter.chart()
               "plotly-chart-line-lineandscatterstyling", Samples.Line.LineAndScatterStyling.chart()
@@ -151,7 +151,7 @@ let samples =
               "plotly-chart-treemap-sectorcolors", Samples.Treemap.SectorColors.chart()
               "plotly-chart-treemap-nestedlayers", Samples.Treemap.NestedLayers.chart(centeredSpinner) ]
 
-        let table = 
+        let table =
             [ "plotly-chart-table-basic", Samples.Table.Basic.chart()
               "plotly-chart-table-styled", Samples.Table.Styled.chart()
               "plotly-chart-table-fromcsv", Samples.Table.FromCSV.chart(centeredSpinner)
@@ -215,18 +215,18 @@ let samples =
               "plotly-chart-histogram-specifiedbinning", Samples.Histogram.SpecifiedBinning.chart() ]
 
         let twoDimensionalHistograms =
-            [ "plotly-chart-twodimensionalhistogram-bivariatenormaldistribution", Samples.TwoDimensionalHistogram.BivariateNormalDistribution.chart() 
-              "plotly-chart-twodimensionalhistogram-binningandstyling", Samples.TwoDimensionalHistogram.BinningAndStyling.chart() 
+            [ "plotly-chart-twodimensionalhistogram-bivariatenormaldistribution", Samples.TwoDimensionalHistogram.BivariateNormalDistribution.chart()
+              "plotly-chart-twodimensionalhistogram-binningandstyling", Samples.TwoDimensionalHistogram.BinningAndStyling.chart()
               "plotly-chart-twodimensionalhistogram-overlaidwithscatter", Samples.TwoDimensionalHistogram.OverlaidWithScatter.chart() ]
 
         let twoDimensionalDensity =
             [ "plotly-chart-twodimensionaldensity-withhistogramsubplots", Samples.TwoDimensionalDensity.WithHistogramSubplots.chart() ]
 
-        let spcControl = 
+        let spcControl =
             [ "plotly-chart-spccontrol-basic", Samples.SPCControl.Basic.chart()
               "plotly-chart-spccontrol-distribution", Samples.SPCControl.Distribution.chart() ]
 
-        let violin = 
+        let violin =
             [ "plotly-chart-violin-basic", Samples.Violin.Basic.chart(centeredSpinner)
               "plotly-chart-violin-multipletraces", Samples.Violin.MultipleTraces.chart(centeredSpinner)
               "plotly-chart-violin-grouped", Samples.Violin.Grouped.chart(centeredSpinner)
@@ -234,18 +234,18 @@ let samples =
               "plotly-chart-violin-split", Samples.Violin.Split.chart(centeredSpinner)
               "plotly-chart-violin-advanced", Samples.Violin.Advanced.chart() ]
 
-        let parallelCategories = 
+        let parallelCategories =
             [ "plotly-chart-parallelcategories-basic", Samples.ParallelCategories.Basic.chart()
               "plotly-chart-parallelcategories-withcounts", Samples.ParallelCategories.WithCounts.chart()
               "plotly-chart-parallelcategories-multicolor", Samples.ParallelCategories.MultiColor.chart(centeredSpinner)
               "plotly-chart-parallelcategories-linkedbrushing", Samples.ParallelCategories.LinkedBrushing.chart(centeredSpinner)
               "plotly-chart-parallelcategories-multicolorlinkedbrushing", Samples.ParallelCategories.MultiColorLinkedBrushing.chart() ]
 
-        let splom = 
+        let splom =
             [ "plotly-chart-splom-iris", Samples.Splom.Iris.chart(centeredSpinner)
               "plotly-chart-splom-diabetes", Samples.Splom.Diabetes.chart(centeredSpinner) ]
 
-        let twoDimensionalHistogramContour = 
+        let twoDimensionalHistogramContour =
             [ "plotly-chart-twodimensionalhistogramcontour-basic", Samples.TwoDimensionalHistogramContour.Basic.chart()
               "plotly-chart-twodimensionalhistogramcontour-colorscale", Samples.TwoDimensionalHistogramContour.Colorscale.chart()
               "plotly-chart-twodimensionalhistogramcontour-styled", Samples.TwoDimensionalHistogramContour.Styled.chart() ]
@@ -269,15 +269,15 @@ let samples =
               "plotly-chart-carpet-basic", Samples.Carpet.Basic.chart()
               "plotly-chart-carpet-styleaandbaxis", Samples.Carpet.StyleAAndBAxis.chart() ]
 
-        let carpetContour = 
+        let carpetContour =
             [ "plotly-chart-carpetcontour-basic", Samples.CarpetContour.Basic.chart()
               "plotly-chart-carpetcontour-multipletraces", Samples.CarpetContour.MultipleTraces.chart(centeredSpinner) ]
 
-        let carpetScatter = 
+        let carpetScatter =
             [ "plotly-chart-carpetscatter-basic", Samples.CarpetScatter.Basic.chart()
               "plotly-chart-carpetscatter-multipletraces", Samples.CarpetScatter.MultipleTraces.chart() ]
 
-        let contour = 
+        let contour =
             [ "plotly-chart-contour-basic", Samples.Contour.Basic.chart()
               "plotly-chart-contour-colorbarsize", Samples.Contour.ColorbarSize.chart()
               "plotly-chart-contour-colorbartitle", Samples.Contour.ColorbarTitle.chart()
@@ -294,23 +294,23 @@ let samples =
               "plotly-chart-contour-smoothinglines", Samples.Contour.SmoothingLines.chart()
               "plotly-chart-contour-stylingcolorbar", Samples.Contour.StylingColorbar.chart() ]
 
-        let heatmap = 
+        let heatmap =
             [ "plotly-chart-heatmap-annotated", Samples.Heatmap.Annotated.chart()
               "plotly-chart-heatmap-basic", Samples.Heatmap.Basic.chart()
               "plotly-chart-heatmap-unequalblocksizes", Samples.Heatmap.UnequalBlockSizes.chart()
               "plotly-chart-heatmap-withcategoricalaxislabels", Samples.Heatmap.WithCategoricalAxisLabels.chart()
               "plotly-chart-heatmap-webgl", Samples.Heatmap.WebGL.chart() ]
 
-        let log = 
-            [ "plotly-chart-log-logarithmicaxes", Samples.Log.LogarithmicAxes.chart() ]        
+        let log =
+            [ "plotly-chart-log-logarithmicaxes", Samples.Log.LogarithmicAxes.chart() ]
 
-        let parallelCoordinates = 
+        let parallelCoordinates =
             [ "plotly-chart-parallelcoordinates-addingdimensions", Samples.ParallelCoordinates.AddingDimensions.chart(centeredSpinner)
               "plotly-chart-parallelcoordinates-advanced", Samples.ParallelCoordinates.Advanced.chart(centeredSpinner)
               "plotly-chart-parallelcoordinates-annotated", Samples.ParallelCoordinates.Annotated.chart(centeredSpinner)
               "plotly-chart-parallelcoordinates-basic", Samples.ParallelCoordinates.Basic.chart() ]
 
-        let polar = 
+        let polar =
             [ "plotly-chart-polar-area", Samples.Polar.Area.chart()
               "plotly-chart-polar-categorical", Samples.Polar.Categorical.chart()
               "plotly-chart-polar-directions", Samples.Polar.Directions.chart()
@@ -319,18 +319,18 @@ let samples =
               "plotly-chart-polar-subplots", Samples.Polar.Subplots.chart()
               "plotly-chart-polar-webgl", Samples.Polar.WebGL.chart(centeredSpinner) ]
 
-        let radar = 
+        let radar =
             [ "plotly-chart-radar-basic", Samples.Radar.Basic.chart()
               "plotly-chart-radar-multipletraces", Samples.Radar.MultipleTraces.chart() ]
 
-        let ternary = 
+        let ternary =
             [ "plotly-chart-ternary-soiltypes", Samples.Ternary.SoilTypes.chart(centeredSpinner)
               "plotly-chart-ternary-withmarkers", Samples.Ternary.WithMarkers.chart() ]
 
-        let ternaryContour = 
+        let ternaryContour =
             [ "plotly-chart-ternarycontour-filled", Samples.TernaryContour.Filled.chart(centeredSpinner) ]
 
-        let windRose = 
+        let windRose =
             [ "plotly-chart-windrose-basic", Samples.WindRose.Basic.chart() ]
 
         [ carpet
@@ -362,7 +362,7 @@ let samples =
 
         let ohlc =
             [ "plotly-chart-ohlc-basic", Samples.OHLC.Basic.chart(centeredSpinner) ]
-            
+
         let timeSeries =
             [ "plotly-chart-timeseries-basic", Samples.TimeSeries.Basic.chart(centeredSpinner)
               "plotly-chart-timeseries-setrange", Samples.TimeSeries.SetRange.chart(centeredSpinner)
@@ -407,16 +407,16 @@ let samples =
           "plotly-chart-subplots-mixed", Samples.Subplots.Mixed.chart(centeredSpinner) ]
 
     let eventExamples =
-        [ "plotly-chart-events-click", Samples.Events.Click.chart() 
-          "plotly-chart-events-hover", Samples.Events.Hover.chart() 
-          "plotly-chart-events-zoom", Samples.Events.Zoom.chart() 
+        [ "plotly-chart-events-click", Samples.Events.Click.chart()
+          "plotly-chart-events-hover", Samples.Events.Hover.chart()
+          "plotly-chart-events-zoom", Samples.Events.Zoom.chart()
           "plotly-chart-events-disablezoom", Samples.Events.DisableZoom.chart(centeredSpinner)
           "plotly-chart-events-downloadimage", Samples.Events.DownloadImage.chart() ]
 
     let transformExamples =
-        [ "plotly-chart-transforms-filter", Samples.Transforms.Filter.chart() 
-          "plotly-chart-transforms-groupby", Samples.Transforms.Groupby.chart() 
-          "plotly-chart-transforms-aggregations", Samples.Transforms.Aggregations.chart() 
+        [ "plotly-chart-transforms-filter", Samples.Transforms.Filter.chart()
+          "plotly-chart-transforms-groupby", Samples.Transforms.Groupby.chart()
+          "plotly-chart-transforms-aggregations", Samples.Transforms.Aggregations.chart()
           "plotly-chart-transforms-multiple", Samples.Transforms.Multiple.chart(centeredSpinner) ]
 
     let transitionExamples =
@@ -444,8 +444,9 @@ let githubPath (rawPath: string) =
 /// Renders a code block from markdown using react-highlight.
 /// Injects sample React components when the code block has language of the format <language>:<sample-name>
 let codeBlockRenderer' = React.functionComponent(fun (input: {| codeProps: Markdown.ICodeProperties |}) ->
-    if input.codeProps.language <> null && input.codeProps.language.Contains ":" then
-        let languageParts = input.codeProps.language.Split(':')
+    let className = input.codeProps.className
+    if className <> null && className.Contains(":") then
+        let languageParts = className.Split(':')
         let sampleName = languageParts.[1]
         let sampleApp =
             samples
@@ -455,25 +456,29 @@ let codeBlockRenderer' = React.functionComponent(fun (input: {| codeProps: Markd
                 prop.style [ style.color.crimson ];
                 prop.text (sprintf "Could not find sample app '%s'" sampleName)
             ])
+
         Html.div [
-            sampleApp
-            Highlight.highlight [
-                prop.className "fsharp"
-                prop.text(input.codeProps.value)
+            prop.children [
+                sampleApp
+                Highlight.highlight [
+                    prop.className "fsharp"
+                    prop.children input.codeProps.children
+                ]
             ]
         ]
     else
         Highlight.highlight [
             prop.className "fsharp"
-            prop.text(input.codeProps.value)
-        ])
+            prop.children input.codeProps.children
+        ]
+)
 
 let codeBlockRenderer (codeProps: Markdown.ICodeProperties) = codeBlockRenderer' {| codeProps = codeProps |}
 
 let renderMarkdown = React.functionComponent(fun (input: {| path: string; content: string |}) ->
     Html.div [
         prop.className [ Bulma.Content; "scrollbar" ]
-        prop.style [ 
+        prop.style [
             style.width (length.percent 100)
             style.padding (0,20)
         ]
@@ -489,14 +494,15 @@ let renderMarkdown = React.functionComponent(fun (input: {| path: string; conten
                 ]
 
             Markdown.markdown [
-                markdown.source input.content
+                markdown.children input.content
                 markdown.escapeHtml false
-                markdown.renderers [
-                    markdown.renderers.code codeBlockRenderer
+                markdown.components [
+                    markdown.components.code codeBlockRenderer
                 ]
             ]
         ]
-    ])
+    ]
+)
 
 module MarkdownLoader =
     open Feliz.UseElmish
@@ -553,21 +559,21 @@ module MarkdownLoader =
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
 let nestedMenuList' = React.functionComponent(fun (input: {| state: State; name: string; basePath: string list; elems: (string list -> Fable.React.ReactElement) list; dispatch: Msg -> unit |}) ->
-    let collapsed = 
+    let collapsed =
         match input.state.CurrentTab with
         | [ ] -> false
-        | _ -> 
-            input.basePath 
-            |> List.indexed 
-            |> List.forall (fun (i, segment) -> 
-                List.tryItem i input.state.CurrentTab 
-                |> Option.map ((=) segment) 
-                |> Option.defaultValue false) 
+        | _ ->
+            input.basePath
+            |> List.indexed
+            |> List.forall (fun (i, segment) ->
+                List.tryItem i input.state.CurrentTab
+                |> Option.map ((=) segment)
+                |> Option.defaultValue false)
 
     Html.li [
         Html.anchor [
             prop.className Bulma.IsUnselectable
-            prop.onClick <| fun _ -> 
+            prop.onClick <| fun _ ->
                 match collapsed with
                 | true -> input.dispatch <| TabToggled (input.basePath |> List.rev |> List.tail |> List.rev)
                 | false -> input.dispatch <| TabToggled input.basePath
@@ -585,8 +591,8 @@ let nestedMenuList' = React.functionComponent(fun (input: {| state: State; name:
 
         Html.ul [
             prop.className Bulma.MenuList
-            prop.style [ 
-                if not collapsed then yield! [ style.display.none ] 
+            prop.style [
+                if not collapsed then yield! [ style.display.none ]
             ]
             prop.children (input.elems |> List.map (fun f -> f input.basePath))
         ]
@@ -629,28 +635,28 @@ let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Ms
     let dispatch = React.useCallback(input.dispatch, [||])
 
     let menuItem (name: string) (basePath: string list) =
-        menuItem' 
+        menuItem'
             {| currentPath = input.state.CurrentPath
                name = name
                path = basePath |}
-    
+
     let nestedMenuItem (name: string) (extendedPath: string list) (basePath: string list) =
         let path = basePath @ extendedPath
-        menuItem' 
+        menuItem'
             {| currentPath = input.state.CurrentPath
                name = name
                path = path |}
 
     let nestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) =
-        nestedMenuList' 
+        nestedMenuList'
             {| state = input.state
                name = name
                basePath = basePath
                elems = items
                dispatch = dispatch |}
-    
+
     let subNestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) (addedBasePath: string list) =
-        nestedMenuList' 
+        nestedMenuList'
             {| state = input.state
                name = name
                basePath = (addedBasePath @ basePath)
@@ -997,9 +1003,9 @@ let sidebar = React.functionComponent(fun (input: {| state: State; dispatch: Msg
         prop.style [
             style.width (length.perc 100)
         ]
-        prop.children [ 
+        prop.children [
             menuLabel "Feliz.Plotly"
-            allItems {| state = input.state; dispatch = dispatch |} 
+            allItems {| state = input.state; dispatch = dispatch |}
         ]
     ])
 
@@ -1481,7 +1487,7 @@ let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg
 
 let main = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
     let dispatch = React.useCallback(input.dispatch, [||])
-    
+
     Html.div [
         prop.className [ Bulma.Tile; Bulma.IsAncestor ]
         prop.children [
@@ -1500,10 +1506,10 @@ let main = React.functionComponent(fun (input: {| state: State; dispatch: Msg ->
 
 let render' = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
     let dispatch = React.useCallback(input.dispatch, [||])
-    
+
     let application =
         Html.div [
-            prop.style [ 
+            prop.style [
                 style.padding 30
             ]
             prop.children [ main {| state = input.state; dispatch = dispatch |} ]

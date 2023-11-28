@@ -1,5 +1,5 @@
 group Tooling
-	Fake.IO.FileSystem
-	FSharp.Core
+    Fake.IO.FileSystem
+    FSharp.Core
     FSharp.Json
-	FSharpLint.Core
+    FSharpLint.Core copy_local: false

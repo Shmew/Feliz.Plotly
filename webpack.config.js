@@ -1,11 +1,17 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { patchGracefulFileSystem } = require("./webpack.common.js");
+patchGracefulFileSystem();
 
 var CONFIG = {
-    indexHtmlTemplate: 'public/index.html',
-    fsharpEntry: 'docs/App.fsproj',
-    outputDir: 'public',
+    indexHtmlTemplate: './src/index.html',
+    fsharpEntry: 'docs/App.fs.js',
+    outputDir: './dist',
+    assetsDir: './public',
     devServerPort: 8080,
     // Use babel-preset-env to generate JS compatible with most-used browsers.
     // More info at https://babeljs.io/docs/en/next/babel-preset-env.html
@@ -18,7 +24,7 @@ var CONFIG = {
                 // Note that you still need to add custom polyfills if necessary (e.g. whatwg-fetch)
                 useBuiltIns: 'usage',
                 corejs: 3
-            }]
+            }, "@babel/preset-react"]
         ],
     }
 }
@@ -35,61 +41,97 @@ var commonPlugins = [
 ];
 
 module.exports = {
-    entry: resolve(CONFIG.fsharpEntry),
+    entry: {
+        app: [resolve(CONFIG.fsharpEntry)]
+    },
     output: {
         path: resolve(CONFIG.outputDir),
-        filename: 'bundle.[hash].js',
+        filename: isProduction ? 'bundle.[name].[chunkhash].js' : 'bundle.[name].js',
     },
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? 'source-map' : 'eval-source-map',
     optimization: {
-        runtimeChunk: 'single',
+        // Split the code coming from npm packages into a different file.
+        // 3rd party dependencies change less often, let the browser cache them.
         splitChunks: {
-            chunks: 'all'
+            cacheGroups: {
+                commons: {
+                    test: /node_modules/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
         },
     },
     plugins: isProduction ?
-        commonPlugins.concat([])
+        commonPlugins.concat([
+            new MiniCssExtractPlugin({ filename: 'style.[contenthash].css' }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    { from: resolve(CONFIG.assetsDir) }
+                ]
+            }),
+        ])
         : commonPlugins.concat([
-            new webpack.HotModuleReplacementPlugin()
+            new ReactRefreshWebpackPlugin()
         ]),
     resolve: {
         // See https://github.com/fable-compiler/Fable/issues/1490
-        symlinks: false
+        symlinks: false,
+        modules: [resolve("./node_modules")],
+        alias: {
+            // Some old libraries still use an old specific version of core-js
+            // Redirect the imports of these libraries to the newer core-js
+            'core-js/es6': 'core-js/es'
+        }
     },
     devServer: {
-        contentBase: CONFIG.outputDir,
         hot: true,
-        inline: true,
-        port: CONFIG.devServerPort
+        port: CONFIG.devServerPort,
+        static: {
+            directory: resolve(CONFIG.assetsDir),
+            publicPath: CONFIG.outputDir,
+            publicPath: "/",
+            serveIndex: true,
+            watch: true,
+        }
+    },
+    stats: {
+        errorDetails: true
     },
     module: {
         rules: [
             {
-                test: /\.fs(x|proj)?$/,
-                use: {
-                    loader: 'fable-loader',
-                    options: {
-                        define: isProduction ? [] : ['DEBUG']
-                    }
-                }
-            },
-            {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
                     options: CONFIG.babel
-                }
+                },
+            },
+            {
+                test: /\.(sass|scss|css)$/,
+                use: [
+                    isProduction
+                        ? MiniCssExtractPlugin.loader
+                        : 'style-loader',
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: { implementation: require("sass") }
+                    }
+                ],
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|md)(\?.*)?$/,
-                use: ['file-loader']
+                use: ["file-loader"]
             }
         ]
     }
 };
 
 function resolve(filePath) {
-    return path.join(__dirname, filePath);
+    return path.isAbsolute(filePath) ? filePath : path.join(__dirname, filePath);
 }
