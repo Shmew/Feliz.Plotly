@@ -6,7 +6,6 @@
 #load "./tools/FSharpLint.fs"
 #load "./tools/Web.fs"
 #load "./.fake/build.fsx/intellisense.fsx"
-
 open Fake.Core
 open Fake.Core.TargetOperators
 open Fake.DotNet
@@ -15,8 +14,6 @@ open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.Tools
-open Fantomas.FakeHelpers
-open Fantomas.FormatConfig
 open Tools.Linting
 open Tools.Web
 open System
@@ -144,7 +141,7 @@ Target.create "AssemblyInfo" <| fun _ ->
           AssemblyInfo.Configuration <| configuration()
           AssemblyInfo.InternalsVisibleTo (sprintf "%s.Tests" projectName) ]
 
-    let getProjectDetails projectPath =
+    let getProjectDetails (projectPath: string) =
         let projectName = Path.GetFileNameWithoutExtension(projectPath)
         ( projectPath,
           projectName,
@@ -327,17 +324,20 @@ Target.create "PublishDotNet" <| fun _ ->
 // Lint and format source code to ensure consistency
 
 Target.create "Format" <| fun _ ->
-     let config =
-         { FormatConfig.Default with
-             PageWidth = 120
-             SpaceBeforeColon = false }
- 
-     fsSrcAndTest
-     |> (fun src -> List.fold foldExcludeGlobs src excludeFantomas)
-     |> List.ofSeq
-     |> formatCode config
-     |> Async.RunSynchronously
-     |> printfn "Formatted files: %A"
+     // see https://github.com/fsprojects/fantomas/issues/2269
+     ()
+     //let config =
+     //    { FormatConfig.Default with
+     //        PageWidth = 120
+     //        SpaceBeforeColon = false }
+     //
+     //fsSrcAndTest
+     //|> (fun src -> List.fold foldExcludeGlobs src excludeFantomas)
+     //|> List.ofSeq
+     //|> formatCode config
+     //|> Async.RunSynchronously
+     //|> printfn "Formatted files: %A"
+     
 
 Target.create "Lint" <| fun _ ->
     fsSrcAndTest

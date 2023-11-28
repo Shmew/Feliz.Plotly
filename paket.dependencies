@@ -19,7 +19,7 @@ group Generator
     nuget FSharp.Core ~> 7.0
     nuget FSharp.Data ~> 6.0.1-beta002
 
-    github plotly/plotly.js:7427f14 dist/plot-schema.json
+    github plotly/plotly.js:c80644edd923500883e57597cddfb695d5815440 dist/plot-schema.json
 
 group Docs
     source https://nuget.org/api/v2
@@ -45,13 +45,12 @@ group Tooling
     nuget Fake.IO.FileSystem ~> 6.0
     nuget FSharp.Core ~> 7.0
     nuget FSharp.Json ~> 0.4
-    nuget FSharpLint.Core ~> 0.21 copy_local: false
+    nuget FSharpLint.Core
     nuget Yarnpkg.Yarn ~> 1.22
 
 group FakeBuild
     source https://api.nuget.org/v3/index.json
 
-    nuget Fantomas ~> 5.2
     nuget Fake.Core.Target ~> 6.0
     nuget Fake.Core.ReleaseNotes ~> 6.0
     nuget Fake.DotNet.AssemblyInfoFile ~> 6.0
@@ -65,5 +64,5 @@ group FakeBuild
     nuget Fake.Tools.Git ~> 6.0
     nuget FSharp.Core ~> 7.0
     nuget FSharp.Json ~> 0.4
-    nuget FSharpLint.Core ~> 0.21 copy_local: false
+    nuget FSharpLint.Core
     nuget NuGet.Packaging ~> 6.5
