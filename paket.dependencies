@@ -46,6 +46,7 @@ group Tooling
     nuget FSharp.Core ~> 8.0
     nuget FSharp.Json ~> 0.4
     nuget Yarnpkg.Yarn ~> 1.22
+    nuget FSharp.Compiler.Service ~> 43.8
 
 group FakeBuild
     source https://api.nuget.org/v3/index.json
