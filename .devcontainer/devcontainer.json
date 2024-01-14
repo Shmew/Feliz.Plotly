@@ -22,7 +22,8 @@
                 "ms-azuretools.vscode-docker",
                 "eamodio.gitlens",
                 "ms-dotnettools.csdevkit",
-                "shardulm94.trailing-spaces"
+                "shardulm94.trailing-spaces",
+                "github.vscode-github-actions"
             ],
             "features": {
                 "ghcr.io/devcontainers/features/git:1": {}
