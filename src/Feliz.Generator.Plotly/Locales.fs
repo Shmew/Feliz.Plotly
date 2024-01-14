@@ -31,7 +31,7 @@ module Locales =
     let buildType (locales: string list) =
         let createLocaleFunction (name: string) =
             let formattedName =
-                name.Replace("plotly-locale-", "").Split("-")
+                name.Replace("plotly-locale-", "").Split('-')
                 |> List.ofArray
                 |> function
                 | [] -> failwith "Invalid locale file"
