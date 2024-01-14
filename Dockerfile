@@ -13,3 +13,6 @@ ENTRYPOINT [ "docker-entrypoint.sh" ]
 COPY --chown=${USER}:${USER} . ${WORKDIR}
 
 WORKDIR ${WORKDIR}
+
+RUN dotnet tool restore && \
+    dotnet paket restore
