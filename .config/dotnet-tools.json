@@ -25,6 +25,12 @@
       "commands": [
         "paket"
       ]
+    },
+    "dotnet-fsharplint": {
+      "version": "0.24.0",
+      "commands": [
+        "dotnet-fsharplint"
+      ]
     }
   }
 }
