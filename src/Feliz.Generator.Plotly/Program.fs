@@ -8,7 +8,7 @@ module Program =
         let rec retry run count f =
             if run < count then
                 try f()
-                with _ -> 
+                with _ ->
                     Async.Sleep 1000
                     |> Async.RunSynchronously
 
@@ -34,13 +34,13 @@ module Program =
         |> retry 10
 
         let locales = Locales.read()
-        
+
         Locales.generate locales
-        
-        locales 
-        |> List.map fst 
-        |> Locales.buildType 
-        |> Render.localesDocument api.GeneratorComponentApi 
+
+        locales
+        |> List.map fst
+        |> Locales.buildType
+        |> Render.localesDocument api.GeneratorComponentApi
         |> File.writeString false localesFile
 
         Render.componentDocument api.GeneratorComponentApi |> File.writeString false plotlyFile
@@ -52,10 +52,10 @@ module Program =
         let props =
             api.GeneratorComponentApi
             |> Render.propsDocument true
-            
+
         let customProps =
             api.GeneratorComponentApi
-            |> Render.customPropsDocument true 
+            |> Render.customPropsDocument true
 
         props @ customProps
         |> List.sortBy fst

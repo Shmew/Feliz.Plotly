@@ -37,7 +37,7 @@ module rec Domain =
                       jVal.TryGetProperty("editType")
                       |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains("calc")))
                       |> Option.defaultValue false
-                      
+
                   let role =
                       jVal.TryGetProperty("role")
                       |> Option.map (JsonExtensions.AsString >> (fun s -> s.Contains("data")))
@@ -225,11 +225,11 @@ module rec Domain =
 
         let measure = [ "(values: #IMeasureProperty list)", "(values |> ResizeArray)" ]
 
-        let modeBarButtons = 
+        let modeBarButtons =
             [ "(value: #IModeBarButtonsProperty)", "(value |> Array.singleton)"
               "(values: #IModeBarButtonsProperty list)", "(values |> ResizeArray)" ]
 
-        let modeBarButtonsInherited = 
+        let modeBarButtonsInherited =
             [ "(value: IButtonsProperty)", "(unbox<IModeBarButtonsProperty> value |> Array.singleton |> Array.singleton)"
               "(value: IModeBarButtonsProperty)", "(value |> Array.singleton |> Array.singleton)"
               "(values: IModeBarButtonsProperty list)", "(values |> ResizeArray |> Array.singleton)"
@@ -269,7 +269,7 @@ module rec Domain =
             "(values: seq<string option list>)", "(values |> Seq.map (Seq.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
             "(values: seq<string []>)", "(values |> Seq.map ResizeArray |> ResizeArray)"
             "(values: seq<string option []>)", "(values |> Seq.map (Array.map Bindings.optToString >> ResizeArray) |> ResizeArray)"
-            
+
             "(values: seq<int>)", "(values |> Seq.map string |> ResizeArray)"
             "(values: seq<int option>)", "(values |> Seq.map Bindings.optToString |> ResizeArray)"
             "(values: seq<seq<int>>)", "(values |> Seq.map (Seq.map string >> ResizeArray) |> ResizeArray)"
@@ -339,17 +339,17 @@ module rec Domain =
         let allStringArrResizeStrs = [ stringResizeSingleton; stringSeqStr ]
 
         let allArrStrs =
-            allBoolArrStrs 
-            @ allDateArrStrs 
-            @ allFloatArrStrs 
-            @ allIntArrStrs 
+            allBoolArrStrs
+            @ allDateArrStrs
+            @ allFloatArrStrs
+            @ allIntArrStrs
             @ allStringArrStrs
 
-        let allArrResizeStrs = 
-            allBoolArrResizeStrs 
-            @ allDateArrResizeStrs 
-            @ allFloatArrResizeStrs 
-            @ allIntArrResizeStrs 
+        let allArrResizeStrs =
+            allBoolArrResizeStrs
+            @ allDateArrResizeStrs
+            @ allFloatArrResizeStrs
+            @ allIntArrResizeStrs
             @ allStringArrResizeStrs
 
         let allArrResizeOptStrs =
@@ -444,8 +444,8 @@ module rec Domain =
                       else
                           boolSeqStr
                           if attrib.TwoDimArrayOk then yield! allBool2DStrs ]
-            | ValType.Bounds -> 
-                [ stringSeqStr; floatSeqStr; intSeqStr; dayOfWeekSeqStr 
+            | ValType.Bounds ->
+                [ stringSeqStr; floatSeqStr; intSeqStr; dayOfWeekSeqStr
                   stringSeqStrOptNull; floatSeqStrOptNull; intSeqStrOptNull; dayOfWeekSeqStrOptNull ]
             | ValType.Color attrib ->
                 [ stringStr
@@ -460,7 +460,7 @@ module rec Domain =
             | ValType.ColorScale -> [ stringStr; yield! allStr2DStrs ]
             | ValType.Component sugar -> [ compStr compName; yield! sugar ]
             | ValType.ComponentArray -> [ compArray compName ]
-            | ValType.DataArray attrib -> 
+            | ValType.DataArray attrib ->
                 if attrib.IsCalcType then allArrStrs @ all2DStrs @ allArrResizeOptStrs
                 else allArrResizeStrs @ all2DStrs @ allArrResizeOptStrs
             | ValType.Enumerated -> []
@@ -800,7 +800,7 @@ module rec Domain =
               Name = name
               Enums = []
               Properties = []
-              Functions = [] 
+              Functions = []
               Children = []
               ParentNameTree = []
               ParentActualNameTree = [] }
@@ -808,12 +808,12 @@ module rec Domain =
         let addChildren (children: CustomPropertyType list) (cusProp: CustomPropertyType) =
             cusProp
             |> List.foldBack (fun child state ->
-                { state with 
-                    Children = 
-                        state.Children @ [ 
-                            { child with 
+                { state with
+                    Children =
+                        state.Children @ [
+                            { child with
                                 ParentNameTree = child.ParentNameTree @ [ state.Name ]
-                                ParentActualNameTree = child.ParentActualNameTree @ [ state.ActualName ] } 
+                                ParentActualNameTree = child.ParentActualNameTree @ [ state.ActualName ] }
                         ] }
             ) children
 

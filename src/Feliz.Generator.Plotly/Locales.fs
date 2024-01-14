@@ -15,7 +15,7 @@ module Locales =
         |> List.ofSeq
         |> List.map (fun s ->
             let raw = localeRegex.Match(File.readAsString s).Groups.Item(1).Value
-            
+
             FileInfo(s).Name.Split('.').[0],
             raw)
 
@@ -30,20 +30,20 @@ module Locales =
 
     let buildType (locales: string list) =
         let createLocaleFunction (name: string) =
-            let formattedName = 
+            let formattedName =
                 name.Replace("plotly-locale-", "").Split("-")
                 |> List.ofArray
                 |> function
                 | [] -> failwith "Invalid locale file"
                 | [ name ] -> name
                 | [ baseName; extName ] -> baseName + extName.ToUpperInvariant()
-                | baseName::extNames -> 
+                | baseName::extNames ->
                     extNames
                     |> List.map String.upperFirst
                     |> String.concat ""
                     |> sprintf "%s%s" baseName
 
-            sprintf "static member %s : ILocalesProperty = (import \"locale\" \"./Locales/%s.js\")()" 
+            sprintf "static member %s : ILocalesProperty = (import \"locale\" \"./Locales/%s.js\")()"
                 formattedName name
 
         let localeFunctions =

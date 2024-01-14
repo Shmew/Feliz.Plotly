@@ -21,7 +21,7 @@ module color =
                 | min when min >= 0. -> false, min
                 | _ -> true, 0.
 
-            let exceededMax, newMax = 
+            let exceededMax, newMax =
                 match mid + threshold with
                 | max when max <= 1. -> false, max
                 | _ -> true, 1.
@@ -29,7 +29,7 @@ module color =
             let diverge n = newMin + n * (newMax - newMin) / (colorListSize - 2.)
 
             match exceededMin, exceededMax with
-            | true, false -> 
+            | true, false ->
                 [ 0. .. (colorListSize - 2.) ]
                 |> List.map (diverge >> string)
                 |> fun res -> [ yield! res; "1." ]
