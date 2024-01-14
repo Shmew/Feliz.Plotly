@@ -24,7 +24,7 @@ let xNetWorth =
       66090.179999999993
       122379.3 ]
 
-let y = 
+let y =
     [ "Japan"
       "United Kingdom"
       "Canada"
@@ -49,7 +49,7 @@ let dataAnns =
                 font.color (color.rgb(50, 171, 96))
             ]
             annotation.showarrow false
-          ] 
+          ]
           annotations.annotation [
             annotation.xref.custom "x2"
             annotation.yref.custom "y"
@@ -139,7 +139,7 @@ let chart () =
                     annotation.yref.paper
                     annotation.x -0.2
                     annotation.y -0.109
-                    annotation.text 
+                    annotation.text
                         "OECD (2015); Household savings (indicator); \
                         Household net worth (indicator). doi: \
                         10.1787/cfc6f499-en (Accessed on 05 June 2015)"

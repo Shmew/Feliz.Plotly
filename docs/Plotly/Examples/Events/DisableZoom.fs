@@ -75,10 +75,10 @@ let render (data: AppleStocks) =
             layout.title [
                 title.text "Zoom disabled"
             ]
-            layout.xaxis [ 
+            layout.xaxis [
                 xaxis.fixedrange true // Disables zoom on x-axis
             ]
-            layout.yaxis [ 
+            layout.yaxis [
                 yaxis.fixedrange true // Disables zoom on y-axis
             ]
         ]
@@ -90,14 +90,14 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState AppleStocks.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv"
 
-    let loadDataset() = 
+    let loadDataset() =
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
             setLoading(false)
             if statusCode = 200 then
                 let fullData =
-                    responseText.Trim().Split('\n') 
+                    responseText.Trim().Split('\n')
                     |> Array.map (fun s -> s.Split(','))
 
                 fullData

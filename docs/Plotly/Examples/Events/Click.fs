@@ -49,9 +49,9 @@ let chart = React.functionComponent (fun () ->
             layout.annotations anns
         ]
         plot.onClick <| fun ev ->
-            ev.points 
+            ev.points
             |> List.ofSeq
-            |> List.choose (fun datum -> 
+            |> List.choose (fun datum ->
                 match datum.x, datum.y with
                 | Events.Int x, Events.Float y ->
                     annotations.annotation [

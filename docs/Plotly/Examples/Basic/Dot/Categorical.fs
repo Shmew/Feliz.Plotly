@@ -4,7 +4,7 @@ module Samples.Dot.Categorical
 open Feliz
 open Feliz.Plotly
 
-let country = 
+let country =
     [ "Switzerland (2011)"
       "Chile (2013)"
       "Japan (2014)"

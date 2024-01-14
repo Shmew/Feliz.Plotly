@@ -8,7 +8,7 @@ open Feliz.Plotly
 
 type BTCMiningData =
     { Headers: string []
-      Ids: int [] 
+      Ids: int []
       Date: string []
       NumberTransactions: int []
       OutputVolue: int []
@@ -111,14 +111,14 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState BTCMiningData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/Mining-BTC-180.csv"
 
-    let loadDataset() = 
+    let loadDataset() =
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
             setLoading(false)
             if statusCode = 200 then
                 let fullData =
-                    responseText.Trim().Split('\n') 
+                    responseText.Trim().Split('\n')
                     |> Array.map (fun s -> s.Split(','))
 
                 fullData

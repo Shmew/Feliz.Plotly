@@ -10,7 +10,7 @@ let rng = Random()
 type GanttData =
     { Task: string
       Start: System.DateTime
-      Finish: System.DateTime } 
+      Finish: System.DateTime }
 
 type Task =
     { x0: System.DateTime
@@ -22,9 +22,9 @@ type Task =
 let chart () =
     let tasks =
         [ 0 .. 20 ]
-        |> List.map (fun i -> 
+        |> List.map (fun i ->
             let month = rng.Next(1,12)
-            let start = rng.Next(1, 29) 
+            let start = rng.Next(1, 29)
             { Task = sprintf "Task %i" i
               Start = DateTime(2019, (if month > 1 then month-1 else month), start)
               Finish = DateTime(2019, month, rng.Next(start, 30)) })

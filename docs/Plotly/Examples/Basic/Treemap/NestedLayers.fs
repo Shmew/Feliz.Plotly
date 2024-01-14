@@ -6,7 +6,7 @@ open Feliz
 open Feliz.Plotly
 
 type CoffeeData =
-    { Ids: string [] 
+    { Ids: string []
       Labels: string []
       Parents: string [] }
     member this.AddDataSet (data: string []) =
@@ -17,7 +17,7 @@ type CoffeeData =
 
 module CoffeeData =
     let empty =
-        { Ids = [||] 
+        { Ids = [||]
           Labels = [||]
           Parents = [||] }
 
@@ -42,13 +42,13 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState CoffeeData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/coffee-flavors.csv"
 
-    let loadDataset() = 
+    let loadDataset() =
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
             setLoading(false)
             if statusCode = 200 then
-                responseText.Trim().Split('\n') 
+                responseText.Trim().Split('\n')
                 |> Array.map (fun s -> s.Split(','))
                 |> Array.tail
                 |> Array.fold (fun (state: CoffeeData) (values: string []) -> state.AddDataSet values) content

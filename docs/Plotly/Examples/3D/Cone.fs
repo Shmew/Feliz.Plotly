@@ -11,10 +11,10 @@ let chart () =
           "lighting.ambient:0.3", 3, [ cone.lighting [ lighting.ambient 0.3 ] ]
           "lighting.diffuse:0.3", 4, [ cone.lighting [ lighting.diffuse 0.3 ] ]
           "lighting.specular:2", 5, [ cone.lighting [ lighting.specular 2 ] ]
-          "lighting.roughness:1", 6, [ cone.lighting [ lighting.roughness 1 ] ] 
+          "lighting.roughness:1", 6, [ cone.lighting [ lighting.roughness 1 ] ]
           "lighting.fresnel:2", 7, [ cone.lighting [ lighting.fresnel 2 ] ]
-          "lighting.position x:0,y:0,z:1e5", 8, 
-          [ cone.lightposition [  
+          "lighting.position x:0,y:0,z:1e5", 8,
+          [ cone.lightposition [
                 lightposition.x 0
                 lightposition.y 0
                 lightposition.z 1e5 ] ] ]

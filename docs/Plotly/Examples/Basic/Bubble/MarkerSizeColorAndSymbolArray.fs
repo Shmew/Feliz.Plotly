@@ -7,8 +7,8 @@ open System
 
 let desiredMaximumMarkerSize = 40.
 let size = [ 400.; 600.; 800.; 1000. ]
-let sizeRef = 
-    size 
+let sizeRef =
+    size
     |> List.max
     |> fun x -> x * 2.0
     |> fun res ->  res / Math.Pow(desiredMaximumMarkerSize, 2.0)
@@ -21,11 +21,11 @@ let chart () =
                 scatter.y [ 10; 11; 12; 13 ]
                 scatter.mode.markers
                 scatter.marker [
-                    marker.color [ 
+                    marker.color [
                         color.hsl(0., 100., 40.)
                         color.hsl(33., 100., 40.)
                         color.hsl(66., 100., 40.)
-                        color.hsl(99., 100., 40.) 
+                        color.hsl(99., 100., 40.)
                     ]
                     marker.size [ 12; 22; 32; 42 ]
                     marker.opacity [ 0.6; 0.7; 0.8; 0.9 ]
