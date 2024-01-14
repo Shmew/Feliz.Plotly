@@ -20,7 +20,9 @@
                 "ms-dotnettools.csharp",
                 "Ionide.Ionide-Paket",
                 "ms-azuretools.vscode-docker",
-                "eamodio.gitlens"
+                "eamodio.gitlens",
+                "ms-dotnettools.csdevkit",
+                "shardulm94.trailing-spaces"
             ],
             "features": {
                 "ghcr.io/devcontainers/features/git:1": {}
