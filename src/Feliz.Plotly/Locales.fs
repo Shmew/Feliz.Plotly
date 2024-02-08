@@ -67,6 +67,7 @@ type Locales =
     static member rm : ILocalesProperty = (import "locale" "./Locales/plotly-locale-rm.js")()
     static member ro : ILocalesProperty = (import "locale" "./Locales/plotly-locale-ro.js")()
     static member ru : ILocalesProperty = (import "locale" "./Locales/plotly-locale-ru.js")()
+    static member si : ILocalesProperty = (import "locale" "./Locales/plotly-locale-si.js")()
     static member sk : ILocalesProperty = (import "locale" "./Locales/plotly-locale-sk.js")()
     static member sl : ILocalesProperty = (import "locale" "./Locales/plotly-locale-sl.js")()
     static member sq : ILocalesProperty = (import "locale" "./Locales/plotly-locale-sq.js")()
