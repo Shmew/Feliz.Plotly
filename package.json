@@ -15,7 +15,7 @@
   "scripts": {
     "build": "dotnet tool restore && dotnet fable ./docs --run vite build",
     "compile-demo-raw": "fable-splitter",
-    "publish-docs": "yarn build && node publish.js",
+    "publish-docs": "yarn build && gh-pages -d dist",
     "start": "dotnet tool restore && dotnet fable watch ./docs --runFast vite"
   },
   "dependencies": {
