@@ -3,10 +3,11 @@ set -e
 
 CONTAINER_ALREADY_STARTED="CONTAINER_STARTED"
 
+# one-time startup commands here
 if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
-    dotnet tool restore
-    dotnet paket install
-    dotnet build
+    # dotnet tool restore
+    # dotnet paket install
+    # dotnet build
 
     sudo touch $CONTAINER_ALREADY_STARTED
 fi
