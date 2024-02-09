@@ -346,17 +346,17 @@ let formatCode configIndent input =
     }
 
 Target.create "Format" <| fun _ ->
-     let config =
-         { FormatConfig.Default with
-             SpaceBeforeColon = false }
+    let config =
+        { FormatConfig.Default with
+            SpaceBeforeColon = false }
 
-     fsSrcAndTest
-     |> (fun src -> List.fold foldExcludeGlobs src excludeFantomas)
-     |> List.ofSeq
-     |> Seq.map (formatCode config)
-     |> Async.Parallel
-     |> Async.RunSynchronously
-     |> printfn "Formatted files: %A"
+    fsSrcAndTest
+    |> (fun src -> List.fold foldExcludeGlobs src excludeFantomas)
+    |> List.ofSeq
+    |> Seq.map (formatCode config)
+    |> Async.Parallel
+    |> Async.RunSynchronously
+    |> printfn "Formatted files: %A"
 
 Target.create "Lint" <| fun _ ->
     fsSrcAndTest
