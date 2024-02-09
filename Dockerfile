@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/dotnet:8.0-bookworm
+FROM mcr.microsoft.com/devcontainers/dotnet:8.0-bookworm-slim
 
 ARG USER='vscode'
 
