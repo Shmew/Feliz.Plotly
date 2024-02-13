@@ -23,7 +23,8 @@
                 "eamodio.gitlens",
                 "ms-dotnettools.csdevkit",
                 "shardulm94.trailing-spaces",
-                "github.vscode-github-actions"
+                "github.vscode-github-actions",
+                "DavidAnson.vscode-markdownlint"
             ],
             "features": {
                 "ghcr.io/devcontainers/features/git:1": {}
