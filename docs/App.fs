@@ -8,6 +8,7 @@ open Feliz.Markdown
 open Fable.SimpleHttp
 open Feliz.Router
 open Fable.Core.JsInterop
+open Feliz.UseElmish
 open Zanaptak.TypedCssClasses
 
 type Bulma = CssClasses<"https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css", Naming.PascalCase>
@@ -443,7 +444,7 @@ let githubPath (rawPath: string) : string =
 
 /// Renders a code block from markdown using react-highlight.
 /// Injects sample React components when the code block has language of the format <language>:<sample-name>
-let codeBlockRenderer' = React.functionComponent(fun (input: {| codeProps: Markdown.ICodeProperties |}) ->
+let codeBlockRenderer' (input: {| codeProps: Markdown.ICodeProperties |}) =
     let className = input.codeProps.className
     if className <> null && className.Contains(":") then
         let languageParts = className.Split(':')
@@ -471,11 +472,10 @@ let codeBlockRenderer' = React.functionComponent(fun (input: {| codeProps: Markd
             prop.className "fsharp"
             prop.children input.codeProps.children
         ]
-)
 
 let codeBlockRenderer (codeProps: Markdown.ICodeProperties) = codeBlockRenderer' {| codeProps = codeProps |}
 
-let renderMarkdown = React.functionComponent(fun (input: {| path: string; content: string |}) ->
+let renderMarkdown (input: {| path: string; content: string |}) =
     Html.div [
         prop.className [ Bulma.Content; "scrollbar" ]
         prop.style [
@@ -502,7 +502,6 @@ let renderMarkdown = React.functionComponent(fun (input: {| path: string; conten
             ]
         ]
     ]
-)
 
 module MarkdownLoader =
     open Feliz.UseElmish
@@ -537,12 +536,12 @@ module MarkdownLoader =
             Loading, Cmd.OfAsync.perform loadMarkdownAsync () id
 
         | Loaded (Ok content) ->
-            State.LoadedMarkdown content, Cmd.none
+            LoadedMarkdown content, Cmd.none
 
         | Loaded (Error (status, _)) ->
-            State.LoadedMarkdown (sprintf "Status %d: could not load markdown" status), Cmd.none
+            LoadedMarkdown (sprintf "Status %d: could not load markdown" status), Cmd.none
 
-    let render = React.functionComponent(fun (input: {| path: string list |}) ->
+    let render (input: {| path: string list |}) : ReactElement =
         let state,_ = React.useElmish(init input.path, update, [| input.path :> obj |])
 
         match state with
@@ -553,13 +552,13 @@ module MarkdownLoader =
             Html.h1 [
                 prop.style [ style.color.crimson ]
                 prop.text error
-            ])
+            ]
 
-    let inline load (path: string list) = render {| path = path |}
+    let inline load (path: string list) : ReactElement = render {| path = path |}
 
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
-let nestedMenuList' = React.functionComponent(fun (input: {| state: State; name: string; basePath: string list; elems: (string list -> Fable.React.ReactElement) list; dispatch: Msg -> unit |}) ->
+let nestedMenuList' (input: {| state: State; name: string; basePath: string list; elems: (string list -> ReactElement) list; dispatch: Msg -> unit |}) : ReactElement =
     let collapsed =
         match input.state.CurrentTab with
         | [ ] -> false
@@ -597,24 +596,24 @@ let nestedMenuList' = React.functionComponent(fun (input: {| state: State; name:
             ]
             prop.children (input.elems |> List.map (fun f -> f input.basePath))
         ]
-    ])
+    ]
 
 // top level label
-let menuLabel' = React.functionComponent (fun (input: {| content: string |}) ->
+let menuLabel' (input: {| content: string |}) =
     Html.p [
         prop.className [ Bulma.MenuLabel; Bulma.IsUnselectable ]
         prop.text input.content
-    ])
+    ]
 
 // top level menu
-let menuList' = React.functionComponent(fun (input: {| items: Fable.React.ReactElement list |}) ->
+let menuList' (input: {| items: Fable.React.ReactElement list |}) =
     Html.ul [
         prop.className Bulma.MenuList
         prop.style [ style.width (length.percent 95) ]
         prop.children input.items
-    ])
+    ]
 
-let menuItem' = React.functionComponent(fun (input: {| currentPath: string list; name: string; path: string list |}) ->
+let menuItem' (input: {| currentPath: string list; name: string; path: string list |}) : ReactElement =
     Html.li [
         Html.anchor [
             prop.className [
@@ -624,7 +623,7 @@ let menuItem' = React.functionComponent(fun (input: {| currentPath: string list;
             prop.text input.name
             prop.href (sprintf "#/%s" (String.concat "/" input.path))
         ]
-    ])
+    ]
 
 let menuLabel (content: string) : ReactElement =
     menuLabel' {| content = content |}
@@ -632,7 +631,7 @@ let menuLabel (content: string) : ReactElement =
 let menuList (items: Fable.React.ReactElement list) : ReactElement =
     menuList' {| items = items |}
 
-let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |} ) ->
+let allItems (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
     let dispatch = React.useCallback(input.dispatch, [||])
 
     let menuItem (name: string) (basePath: string list) =
@@ -993,9 +992,9 @@ let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Ms
                 ]
             ]
         ]
-    ])
+    ]
 
-let sidebar = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
+let sidebar (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
     let dispatch = React.useCallback(input.dispatch, [||])
 
     // the actual nav bar
@@ -1008,7 +1007,7 @@ let sidebar = React.functionComponent(fun (input: {| state: State; dispatch: Msg
             menuLabel "Feliz.Plotly"
             allItems {| state = input.state; dispatch = dispatch |}
         ]
-    ])
+    ]
 
 let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
 let contributing = sprintf "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/master/public/Feliz/Contributing.md"
@@ -1461,7 +1460,7 @@ let (|PathPrefix|) (segments: string list) (path: string list) : (string list) o
         | _ -> None
     else None
 
-let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
+let content (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
     match input.state.CurrentPath with
     | [ Urls.Plotly; Urls.Overview; ] -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ]
     | [ Urls.Plotly; Urls.Installation ] -> lazyView MarkdownLoader.load [ "Plotly"; "Installation.md" ]
@@ -1484,46 +1483,46 @@ let content = React.functionComponent(fun (input: {| state: State; dispatch: Msg
         | PathPrefix [ Urls.Locales ] (Some innerRes) -> localeExamples innerRes
         | _ -> []
         |> fun path -> [ Urls.Plotly; Urls.Examples ] @ path |> lazyView MarkdownLoader.load
-    | _ -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ])
+    | _ -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ]
 
-let main = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
-    let dispatch = React.useCallback(input.dispatch, [||])
+let main (state: State) (dispatch: Msg -> unit) : ReactElement =
+    let dispatch = React.useCallback(dispatch, [||])
 
     Html.div [
         prop.className [ Bulma.Tile; Bulma.IsAncestor ]
         prop.children [
             Html.div [
                 prop.className [ Bulma.Tile; Bulma.Is2 ]
-                prop.children [ sidebar {| state = input.state; dispatch = dispatch |} ]
+                prop.children [ sidebar {| state = state; dispatch = dispatch |} ]
             ]
 
             Html.div [
                 prop.className Bulma.Tile
                 prop.style [ style.paddingTop 30 ]
-                prop.children [ content {| state = input.state; dispatch = dispatch |} ]
+                prop.children [ content {| state = state; dispatch = dispatch |} ]
             ]
         ]
-    ])
+    ]
 
-let render' = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
-    let dispatch = React.useCallback(input.dispatch, [||])
+[<ReactComponent>]
+let render () : ReactElement =
+    let state, dispatch = React.useElmish(init, update, [| |])
+    let dispatch = React.useCallback(dispatch, [||])
 
     let application : ReactElement =
         Html.div [
             prop.style [
                 style.padding 30
             ]
-            prop.children [ main {| state = input.state; dispatch = dispatch |} ]
+            prop.children [ main state dispatch ]
         ]
 
     React.router [
         router.onUrlChanged (UrlChanged >> dispatch)
         router.children application
-    ])
+    ]
 
-let render (state: State) dispatch = render' {| state = state; dispatch = dispatch |}
+let htmlElement= document.getElementById "root"
+let root = ReactDOM.createRoot htmlElement
 
-Program.mkProgram init update render
-|> Program.withReactSynchronous "root"
-|> Program.withConsoleTrace
-|> Program.run
+root.render (render())
