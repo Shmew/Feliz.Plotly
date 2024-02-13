@@ -14,17 +14,18 @@ type Bulma = CssClasses<"https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.
 type FA = CssClasses<"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css", Naming.PascalCase>
 
 type Highlight =
-    static member inline highlight (properties: IReactProperty list) =
+    static member inline highlight (properties: IReactProperty list) : ReactElement =
         Interop.reactApi.createElement(importDefault "react-highlight", createObj !!properties)
 
 type State =
     { CurrentPath : string list
       CurrentTab: string list }
 
-let init () =
 type Msg =
     | TabToggled of string list
     | UrlChanged of string list
+
+let init () : State * Cmd<Msg> =
     let path =
         match document.URL.Split('#') with
         | [| _ |] -> []
@@ -33,8 +34,7 @@ type Msg =
     { CurrentPath = path
       CurrentTab = path }, Cmd.none
 
-
-let update msg state =
+let update (msg: Msg) (state: State) : State * Cmd<Msg> =
     match msg with
     | UrlChanged segments ->
         { state with CurrentPath = segments },
@@ -49,7 +49,7 @@ let update msg state =
         | [ ] -> { state with CurrentTab = [ ] }, Cmd.none
         | _ -> { state with CurrentTab = tabs }, Cmd.none
 
-let centeredSpinner =
+let centeredSpinner : ReactElement =
     Html.div [
         prop.style [
             style.textAlign.center
@@ -69,7 +69,7 @@ let centeredSpinner =
         ]
     ]
 
-let samples =
+let samples : (string * ReactElement) list =
     let basicSamples =
         let scatter =
             [ "plotly-chart-scatter-basic", Samples.Scatter.Basic.chart()
@@ -397,7 +397,7 @@ let samples =
           "plotly-chart-3d-streamtube", Samples.ThreeDimensional.Streamtube.chart(centeredSpinner)
           "plotly-chart-3d-isosurface", Samples.ThreeDimensional.Isosurface.chart(centeredSpinner) ]
 
-    let subplotExamples =
+    let subplotExamples : (string * ReactElement) list =
         let multipleAxes =
             [ "plotly-chart-multipleaxes-twoyaxes", Samples.MultipleAxes.TwoYAxes.chart()
               "plotly-chart-multipleaxes-multipleyaxes", Samples.MultipleAxes.MultipleYAxes.chart() ]
@@ -435,7 +435,7 @@ let samples =
       transformExamples; transitionExamples; customExamples; localeExamples ]
     |> List.concat
 
-let githubPath (rawPath: string) =
+let githubPath (rawPath: string) : string =
     let parts = rawPath.Split('/')
     if parts.Length > 5
     then sprintf "http://www.github.com/%s/%s" parts.[3] parts.[4]
@@ -517,13 +517,14 @@ module MarkdownLoader =
         | StartLoading of path: string list
         | Loaded of Result<string, int * string>
 
-    let init (path: string list) = Initial, Cmd.ofMsg (StartLoading path)
+    let init (path: string list) : State * Cmd<Msg> =
+        Initial, Cmd.ofMsg (StartLoading path)
 
     let resolvePath = function
     | [ one: string ] when one.StartsWith "http" -> one
     | segments -> String.concat "/" segments
 
-    let update (msg: Msg) (state: State) =
+    let update (msg: Msg) (state: State) : State * Cmd<Msg> =
         match msg with
         | StartLoading path ->
             let loadMarkdownAsync() = async {
@@ -625,10 +626,10 @@ let menuItem' = React.functionComponent(fun (input: {| currentPath: string list;
         ]
     ])
 
-let menuLabel (content: string) =
+let menuLabel (content: string) : ReactElement =
     menuLabel' {| content = content |}
 
-let menuList (items: Fable.React.ReactElement list) =
+let menuList (items: Fable.React.ReactElement list) : ReactElement =
     menuList' {| items = items |}
 
 let allItems = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |} ) ->
@@ -1012,7 +1013,7 @@ let sidebar = React.functionComponent(fun (input: {| state: State; dispatch: Msg
 let readme = sprintf "https://raw.githubusercontent.com/%s/%s/master/README.md"
 let contributing = sprintf "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/master/public/Feliz/Contributing.md"
 
-let basicExamples (currentPath: string list) =
+let basicExamples (currentPath: string list) : string list =
     match currentPath with
     | Urls.Scatter :: rest ->
         match rest with
@@ -1234,7 +1235,7 @@ let statisticalExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Statistical ]
 
-let scientificExamples (currentPath: string list) =
+let scientificExamples (currentPath: string list) : string list =
     match currentPath with
     | Urls.Log :: rest ->
         match rest with
@@ -1332,7 +1333,7 @@ let scientificExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Scientific ]
 
-let financialExamples (currentPath: string list) =
+let financialExamples (currentPath: string list) : string list =
     match currentPath with
     | Urls.Waterfall :: rest ->
         match rest with
@@ -1375,7 +1376,7 @@ let financialExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Financial ]
 
-let mapExamples (currentPath: string list) =
+let mapExamples (currentPath: string list) : string list =
     match currentPath with
     | [ Urls.Scatter ] -> [ "Scatter.md" ]
     | [ Urls.Heatmap ] -> [ "Heatmap.md" ]
@@ -1386,7 +1387,7 @@ let mapExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Maps ]
 
-let threeDimensionalExamples (currentPath: string list) =
+let threeDimensionalExamples (currentPath: string list) : string list =
     match currentPath with
     | [ Urls.Scatter ] -> [ "Scatter.md" ]
     | [ Urls.Ribbon ] -> [ "Ribbon.md" ]
@@ -1401,7 +1402,7 @@ let threeDimensionalExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.ThreeDimensional ]
 
-let subplotExamples (currentPath: string list) =
+let subplotExamples (currentPath: string list) : string list =
     match currentPath with
     | Urls.MultipleAxes :: rest ->
         match rest with
@@ -1414,7 +1415,7 @@ let subplotExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Subplots ]
 
-let eventExamples (currentPath: string list) =
+let eventExamples (currentPath: string list) : string list =
     match currentPath with
     | [ Urls.Click ] -> [ "Click.md" ]
     | [ Urls.Hover ] -> [ "Hover.md" ]
@@ -1424,7 +1425,7 @@ let eventExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Events ]
 
-let transformExamples (currentPath: string list) =
+let transformExamples (currentPath: string list) : string list =
     match currentPath with
     | [ Urls.Filter ] -> [ "Filter.md" ]
     | [ Urls.Groupby ] -> [ "Groupby.md" ]
@@ -1433,27 +1434,27 @@ let transformExamples (currentPath: string list) =
     | _ -> []
     |> List.append [ Urls.Transforms ]
 
-let transitionExamples (currentPath: string list) =
+let transitionExamples (currentPath: string list) : string list =
     match currentPath with
     | [ Urls.Lorenz ] -> [ "Lorenz.md" ]
     | _ -> []
     |> List.append [ Urls.Transitions ]
 
-let customExamples (currentPath: string list) =
+let customExamples (currentPath: string list) : string list =
     match currentPath with
     | [ Urls.Gantt ] -> [ "Gantt.md" ]
     | [ Urls.WebGLGantt ] -> [ "WebGLGantt.md" ]
     | _ -> []
     |> List.append [ Urls.Custom ]
 
-let localeExamples (currentPath: string list) =
+let localeExamples (currentPath: string list) : string list =
     match currentPath with
     | [ Urls.Config ] -> [ "Config.md" ]
     | [ Urls.ModuleRegistration ] -> [ "ModuleRegistration.md" ]
     | _ -> []
     |> List.append [ Urls.Locales ]
 
-let (|PathPrefix|) (segments: string list) (path: string list) =
+let (|PathPrefix|) (segments: string list) (path: string list) : (string list) option =
     if path.Length > segments.Length then
         match List.splitAt segments.Length path with
         | start,end' when start = segments -> Some end'
@@ -1507,7 +1508,7 @@ let main = React.functionComponent(fun (input: {| state: State; dispatch: Msg ->
 let render' = React.functionComponent(fun (input: {| state: State; dispatch: Msg -> unit |}) ->
     let dispatch = React.useCallback(input.dispatch, [||])
 
-    let application =
+    let application : ReactElement =
         Html.div [
             prop.style [
                 style.padding 30
