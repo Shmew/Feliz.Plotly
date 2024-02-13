@@ -22,6 +22,9 @@ type State =
       CurrentTab: string list }
 
 let init () =
+type Msg =
+    | TabToggled of string list
+    | UrlChanged of string list
     let path =
         match document.URL.Split('#') with
         | [| _ |] -> []
@@ -30,9 +33,6 @@ let init () =
     { CurrentPath = path
       CurrentTab = path }, Cmd.none
 
-type Msg =
-    | TabToggled of string list
-    | UrlChanged of string list
 
 let update msg state =
     match msg with
