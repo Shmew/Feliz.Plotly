@@ -2,15 +2,15 @@
   "name": "feliz.-plotly",
   "version": "2.1.0",
   "description": "Fable bindings written in the Feliz-style for plotly.js",
-  "homepage": "https://github.com/Shmew/Feliz.Plotly",
+  "homepage": "https://github.com/EverybodyKurts/Feliz.Plotly",
   "bugs": {
-    "url": "https://github.com/Shmew/Feliz.Plotly/issues/new/choose"
+    "url": "https://github.com/EverybodyKurts/Feliz.Plotly/issues/new/choose"
   },
   "license": "MIT",
-  "author": "Cody Johnson",
+  "author": "Cody Johnson, Kurt Mueller",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Shmew/Feliz.Plotly"
+    "url": "https://github.com/EverybodyKurts/Feliz.Plotly"
   },
   "scripts": {
     "build": "dotnet tool restore && dotnet fable ./docs --run vite build",

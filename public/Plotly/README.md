@@ -4,7 +4,7 @@ Fable bindings for [plotly.js](https://github.com/plotly/plotly.js) and [react-p
 
 Lets you build visualizations in an easy, discoverable, and safe fashion.
 
-See the full documentation with live examples [here](https://shmew.github.io/Feliz.Plotly/).
+See the full documentation with live examples [here](https://EverybodyKurts.github.io/Feliz.Plotly/).
 
 A quick look:
 

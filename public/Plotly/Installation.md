@@ -38,4 +38,4 @@ Here, the nuget package will be installed using the package manager that the pro
 
 If you have any trouble getting plotly to work after these steps, **make sure your fable-compiler and other dependencies are updated!**
 
-If the problem isn't resolved after this please create an [issue](https://github.com/Shmew/Feliz.Plotly/issues/new/choose) and we can take a look.
+If the problem isn't resolved after this please create an [issue](https://github.com/EverybodyKurts/Feliz.Plotly/issues/new/choose) and we can take a look.

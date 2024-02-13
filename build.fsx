@@ -50,7 +50,7 @@ let author = "Cody Johnson"
 let solutionFile = "Feliz.Plotly.sln"
 
 // Github repo
-let repo = "https://github.com/everybodykurts/Feliz.Plotly"
+let repo = "https://github.com/EverybodyKurts/Feliz.Plotly"
 
 // Files to skip Fantomas formatting
 let excludeFantomas =
@@ -400,7 +400,7 @@ Target.create "PackageJson" <| fun _ ->
                 |> Some
             Bugs =
                 { Json.BugsValue.Url =
-                    @"https://github.com/Shmew/Feliz.Plotly/issues/new/choose" |> Some } |> Some
+                    @"https://github.com/EverybodyKurts/Feliz.Plotly/issues/new/choose" |> Some } |> Some
             License = "MIT" |> Some
             Author = author |> Some
             Private = true |> Some }
