@@ -1501,7 +1501,7 @@ let main (state: State) (dispatch: Msg -> unit) : ReactElement =
     ]
 
 [<ReactComponent>]
-let render () : ReactElement =
+let Render () : ReactElement =
     let state, dispatch = React.useElmish(init, update, [| |])
     let dispatch = React.useCallback(dispatch, [||])
 
@@ -1521,4 +1521,4 @@ let render () : ReactElement =
 let htmlElement= document.getElementById "root"
 let root = ReactDOM.createRoot htmlElement
 
-root.render (render())
+root.render (Render())
