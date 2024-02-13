@@ -19,7 +19,7 @@
     "start": "dotnet tool restore && dotnet fable watch ./docs --runFast vite"
   },
   "dependencies": {
-    "@types/react": "^18.2.47",
+    "@types/react": "^18.2.55",
     "plotly.js": "^2.28.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
