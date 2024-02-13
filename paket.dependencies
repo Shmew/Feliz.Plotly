@@ -38,17 +38,6 @@ group Docs
     nuget FSharp.Core ~> 8.0
     nuget Zanaptak.TypedCssClasses ~> 1.0
 
-group Tooling
-    source https://nuget.org/api/v2
-    source https://api.nuget.org/v3/index.json
-
-    nuget Fake.IO.FileSystem ~> 6.0
-    nuget FSharp.Core ~> 8.0
-    nuget FSharp.Json ~> 0.4
-    #nuget FSharpLint.Core
-    nuget Yarnpkg.Yarn ~> 1.22
-    nuget FSharp.Compiler.Service ~> 43.8
-
 group FakeBuild
     source https://api.nuget.org/v3/index.json
 
