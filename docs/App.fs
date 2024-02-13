@@ -163,23 +163,22 @@ let samples : (string * ReactElement) list =
             [ "plotly-chart-multiplecharttypes-lineandbar", Samples.MultipleChartTypes.LineAndBar.chart()
               "plotly-chart-multiplecharttypes-contourandscatter", Samples.MultipleChartTypes.ContourAndScatter.chart() ]
 
-        [ scatter
-          bubble
-          dot
-          line
-          bar
-          filledArea
-          horiontalBar
-          pie
-          sunburst
-          sankey
-          pointCloud
-          treemap
-          table
-          multipleChartTypes ]
-        |> List.concat
+        scatter @
+        bubble @
+        dot @
+        line @
+        bar @
+        filledArea @
+        horiontalBar @
+        pie @
+        sunburst @
+        sankey @
+        pointCloud @
+        treemap @
+        table @
+        multipleChartTypes
 
-    let statisticalExamples =
+    let statisticalExamples : (string * ReactElement) list =
         let errorBars =
             [ "plotly-chart-errorbar-basic", Samples.ErrorBar.Basic.chart()
               "plotly-chart-errorbar-withbarchart", Samples.ErrorBar.WithBarChart.chart()
@@ -251,20 +250,19 @@ let samples : (string * ReactElement) list =
               "plotly-chart-twodimensionalhistogramcontour-colorscale", Samples.TwoDimensionalHistogramContour.Colorscale.chart()
               "plotly-chart-twodimensionalhistogramcontour-styled", Samples.TwoDimensionalHistogramContour.Styled.chart() ]
 
-        [ errorBars
-          continuousErrorBars
-          boxPlots
-          histograms
-          twoDimensionalHistograms
-          twoDimensionalDensity
-          spcControl
-          violin
-          parallelCategories
-          splom
-          twoDimensionalHistogramContour ]
-        |> List.concat
+        errorBars @
+        continuousErrorBars @
+        boxPlots @
+        histograms @
+        twoDimensionalHistograms @
+        twoDimensionalDensity @
+        spcControl @
+        violin @
+        parallelCategories @
+        splom @
+        twoDimensionalHistogramContour
 
-    let scientificExamples =
+    let scientificExamples : (string * ReactElement) list =
         let carpet =
             [ "plotly-chart-carpet-addaandbaxis", Samples.Carpet.AddAAndBAxis.chart()
               "plotly-chart-carpet-basic", Samples.Carpet.Basic.chart()
@@ -334,21 +332,20 @@ let samples : (string * ReactElement) list =
         let windRose =
             [ "plotly-chart-windrose-basic", Samples.WindRose.Basic.chart() ]
 
-        [ carpet
-          carpetContour
-          carpetScatter
-          contour
-          log
-          heatmap
-          parallelCoordinates
-          polar
-          radar
-          ternary
-          ternaryContour
-          windRose ]
-        |> List.concat
+        carpet @
+        carpetContour @
+        carpetScatter @
+        contour @
+        log @
+        heatmap @
+        parallelCoordinates @
+        polar @
+        radar @
+        ternary @
+        ternaryContour @
+        windRose
 
-    let financialExamples =
+    let financialExamples : (string * ReactElement) list =
         let candlestick =
             [ "plotly-chart-candlestick-basic", Samples.Candlestick.Basic.chart()
               "plotly-chart-candlestick-rangebreaks", Samples.Candlestick.RangeBreaks.chart() ]
@@ -375,8 +372,7 @@ let samples : (string * ReactElement) list =
               "plotly-chart-waterfall-horizontal", Samples.Waterfall.Horizontal.chart()
               "plotly-chart-waterfall-styled", Samples.Waterfall.Styled.chart() ]
 
-        [ candlestick; funnel; indicators; ohlc; timeSeries; waterfall ]
-        |> List.concat
+        candlestick @ funnel @ indicators @ ohlc @ timeSeries @ waterfall
 
     let mapExamples =
         [ "plotly-chart-maps-scatter", Samples.Maps.Scatter.chart(centeredSpinner)
