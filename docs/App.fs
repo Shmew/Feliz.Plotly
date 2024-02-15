@@ -440,8 +440,9 @@ let githubPath (rawPath: string) : string =
 
 /// Renders a code block from markdown using react-highlight.
 /// Injects sample React components when the code block has language of the format <language>:<sample-name>
-let codeBlockRenderer' (input: {| codeProps: Markdown.ICodeProperties |}) =
-    let className = input.codeProps.className
+let codeBlockRenderer (codeProps: Markdown.ICodeProperties) : ReactElement =
+    let className = codeProps.className
+
     if className <> null && className.Contains(":") then
         let languageParts = className.Split(':')
         let sampleName = languageParts.[1]
@@ -459,14 +460,14 @@ let codeBlockRenderer' (input: {| codeProps: Markdown.ICodeProperties |}) =
                 sampleApp
                 Highlight.highlight [
                     prop.className "fsharp"
-                    prop.children input.codeProps.children
+                    prop.children codeProps.children
                 ]
             ]
         ]
     else
         Highlight.highlight [
             prop.className "fsharp"
-            prop.children input.codeProps.children
+            prop.children codeProps.children
         ]
 
 let codeBlockRenderer (codeProps: Markdown.ICodeProperties) = codeBlockRenderer' {| codeProps = codeProps |}
