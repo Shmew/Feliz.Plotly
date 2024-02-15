@@ -454,7 +454,7 @@ let codeBlockRenderer (codeProps: Markdown.ICodeProperties) : ReactElement =
             |> Option.map snd
             |> Option.defaultValue (Html.h1 [
                 prop.style [ style.color.crimson ];
-                prop.text (sprintf "Could not find sample app '%s'" sampleName)
+                prop.text $"Could not find sample app '{sampleName}'"
             ])
 
         Html.div [
