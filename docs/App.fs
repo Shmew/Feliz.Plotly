@@ -595,14 +595,14 @@ let nestedMenuList' (input: {| state: State; name: string; basePath: string list
     ]
 
 // top level label
-let menuLabel' (input: {| content: string |}) =
+let menuLabel' (input: {| content: string |}) : ReactElement =
     Html.p [
         prop.className [ Bulma.MenuLabel; Bulma.IsUnselectable ]
         prop.text input.content
     ]
 
 // top level menu
-let menuList' (input: {| items: Fable.React.ReactElement list |}) =
+let menuList' (input: {| items: Fable.React.ReactElement list |}) : ReactElement =
     Html.ul [
         prop.className Bulma.MenuList
         prop.style [ style.width (length.percent 95) ]
@@ -643,7 +643,7 @@ let allItems (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
                name = name
                path = path |}
 
-    let nestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) =
+    let nestedMenuList (name: string) (basePath: string list) (items: (string list -> ReactElement) list) : ReactElement =
         nestedMenuList'
             {| state = input.state
                name = name
@@ -651,7 +651,7 @@ let allItems (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
                elems = items
                dispatch = dispatch |}
 
-    let subNestedMenuList (name: string) (basePath: string list) (items: (string list -> Fable.React.ReactElement) list) (addedBasePath: string list) =
+    let subNestedMenuList (name: string) (basePath: string list) (items: (string list -> ReactElement) list) (addedBasePath: string list) : ReactElement =
         nestedMenuList'
             {| state = input.state
                name = name
@@ -1132,7 +1132,7 @@ let basicExamples (currentPath: string list) : string list =
     | _ -> []
     |> List.append [ Urls.Basic ]
 
-let statisticalExamples (currentPath: string list) =
+let statisticalExamples (currentPath: string list) : string list =
     match currentPath with
     | Urls.ErrorBar :: rest ->
         match rest with
