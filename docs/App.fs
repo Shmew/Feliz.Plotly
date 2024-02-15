@@ -427,16 +427,18 @@ let samples : (string * ReactElement) list =
         [ "plotly-chart-locales-config", Samples.Locales.Config.chart()
           "plotly-chart-locales-moduleregistration", Samples.Locales.ModuleRegistration.chart() ]
 
-    [ basicSamples; statisticalExamples; scientificExamples; financialExamples
-      mapExamples; threeDimensionalExamples; subplotExamples; eventExamples
-      transformExamples; transitionExamples; customExamples; localeExamples ]
-    |> List.concat
-
-let githubPath (rawPath: string) : string =
-    let parts = rawPath.Split('/')
-    if parts.Length > 5
-    then sprintf "http://www.github.com/%s/%s" parts.[3] parts.[4]
-    else rawPath
+    basicSamples @
+    statisticalExamples @
+    scientificExamples @
+    financialExamples @
+    mapExamples @
+    threeDimensionalExamples @
+    subplotExamples @
+    eventExamples @
+    transformExamples @
+    transitionExamples @
+    customExamples @
+    localeExamples
 
 /// Renders a code block from markdown using react-highlight.
 /// Injects sample React components when the code block has language of the format <language>:<sample-name>
