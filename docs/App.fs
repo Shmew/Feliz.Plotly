@@ -595,18 +595,18 @@ let nestedMenuList' (input: {| state: State; name: string; basePath: string list
     ]
 
 // top level label
-let menuLabel' (input: {| content: string |}) : ReactElement =
+let menuLabel (content : string) : ReactElement =
     Html.p [
         prop.className [ Bulma.MenuLabel; Bulma.IsUnselectable ]
-        prop.text input.content
+        prop.text content
     ]
 
 // top level menu
-let menuList' (input: {| items: Fable.React.ReactElement list |}) : ReactElement =
+let menuList (items: ReactElement list) : ReactElement =
     Html.ul [
         prop.className Bulma.MenuList
         prop.style [ style.width (length.percent 95) ]
-        prop.children input.items
+        prop.children items
     ]
 
 let menuItem' (input: {| currentPath: string list; name: string; path: string list |}) : ReactElement =
@@ -620,12 +620,6 @@ let menuItem' (input: {| currentPath: string list; name: string; path: string li
             prop.href (sprintf "#/%s" (String.concat "/" input.path))
         ]
     ]
-
-let menuLabel (content: string) : ReactElement =
-    menuLabel' {| content = content |}
-
-let menuList (items: Fable.React.ReactElement list) : ReactElement =
-    menuList' {| items = items |}
 
 let allItems (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
     let dispatch = React.useCallback(input.dispatch, [||])
