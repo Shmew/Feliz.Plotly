@@ -18,38 +18,6 @@ type Highlight =
     static member inline highlight (properties: IReactProperty list) : ReactElement =
         Interop.reactApi.createElement(importDefault "react-highlight", createObj !!properties)
 
-type State =
-    { CurrentPath : string list
-      CurrentTab: string list }
-
-type Msg =
-    | TabToggled of string list
-    | UrlChanged of string list
-
-let init () : State * Cmd<Msg> =
-    let path =
-        match document.URL.Split('#') with
-        | [| _ |] -> []
-        | [| _; path |] -> path.Split('/') |> List.ofArray |> List.tail
-        | _ -> []
-    { CurrentPath = path
-      CurrentTab = path }, Cmd.none
-
-let update (msg: Msg) (state: State) : State * Cmd<Msg> =
-    match msg with
-    | UrlChanged segments ->
-        { state with CurrentPath = segments },
-        match state.CurrentTab with
-        | [ ] when segments.Length > 2 ->
-            segments
-            |> TabToggled
-            |> Cmd.ofMsg
-        | _ -> Cmd.none
-    | TabToggled tabs ->
-        match tabs with
-        | [ ] -> { state with CurrentTab = [ ] }, Cmd.none
-        | _ -> { state with CurrentTab = tabs }, Cmd.none
-
 let centeredSpinner : ReactElement =
     Html.div [
         prop.style [
@@ -69,6 +37,7 @@ let centeredSpinner : ReactElement =
             ]
         ]
     ]
+
 
 let samples : (string * ReactElement) list =
     let basicSamples =
@@ -472,9 +441,13 @@ let codeBlockRenderer (codeProps: Markdown.ICodeProperties) : ReactElement =
             prop.children codeProps.children
         ]
 
-let codeBlockRenderer (codeProps: Markdown.ICodeProperties) = codeBlockRenderer' {| codeProps = codeProps |}
+let renderMarkdown (input: {| path: string; content: string |}) : ReactElement =
+    let githubPath (rawPath: string) : string =
+        let parts = rawPath.Split('/')
+        if parts.Length > 5
+        then sprintf "http://www.github.com/%s/%s" parts.[3] parts.[4]
+        else rawPath
 
-let renderMarkdown (input: {| path: string; content: string |}) =
     Html.div [
         prop.className [ Bulma.Content; "scrollbar" ]
         prop.style [
@@ -503,8 +476,6 @@ let renderMarkdown (input: {| path: string; content: string |}) =
     ]
 
 module MarkdownLoader =
-    open Feliz.UseElmish
-
     type State =
         | Initial
         | Loading
@@ -525,12 +496,13 @@ module MarkdownLoader =
     let update (msg: Msg) (state: State) : State * Cmd<Msg> =
         match msg with
         | StartLoading path ->
-            let loadMarkdownAsync() = async {
-                let! (statusCode, responseText) = Http.get (resolvePath path)
-                if statusCode = 200
-                then return Loaded (Ok responseText)
-                else return Loaded (Error (statusCode, responseText))
-            }
+            let loadMarkdownAsync() =
+                async {
+                    let! (statusCode, responseText) = Http.get (resolvePath path)
+                    if statusCode = 200
+                    then return Loaded (Ok responseText)
+                    else return Loaded (Error (statusCode, responseText))
+                }
 
             Loading, Cmd.OfAsync.perform loadMarkdownAsync () id
 
@@ -538,10 +510,10 @@ module MarkdownLoader =
             LoadedMarkdown content, Cmd.none
 
         | Loaded (Error (status, _)) ->
-            LoadedMarkdown (sprintf "Status %d: could not load markdown" status), Cmd.none
+            LoadedMarkdown $"Status {status}: could not load markdown", Cmd.none
 
     let render (input: {| path: string list |}) : ReactElement =
-        let state,_ = React.useElmish(init input.path, update, [| input.path :> obj |])
+        let state, _ = React.useElmish(init input.path, update, [| input.path :> obj |])
 
         match state with
         | Initial -> Html.none
@@ -554,6 +526,38 @@ module MarkdownLoader =
             ]
 
     let inline load (path: string list) : ReactElement = render {| path = path |}
+
+type State =
+    { CurrentPath : string list
+      CurrentTab: string list }
+
+type Msg =
+    | TabToggled of string list
+    | UrlChanged of string list
+
+let init () : State * Cmd<Msg> =
+    let path =
+        match document.URL.Split('#') with
+        | [| _ |] -> []
+        | [| _; path |] -> path.Split('/') |> List.ofArray |> List.tail
+        | _ -> []
+    { CurrentPath = path
+      CurrentTab = path }, Cmd.none
+
+let update (msg: Msg) (state: State) : State * Cmd<Msg> =
+    match msg with
+    | UrlChanged segments ->
+        { state with CurrentPath = segments },
+        match state.CurrentTab with
+        | [ ] when segments.Length > 2 ->
+            segments
+            |> TabToggled
+            |> Cmd.ofMsg
+        | _ -> Cmd.none
+    | TabToggled tabs ->
+        match tabs with
+        | [ ] -> { state with CurrentTab = [ ] }, Cmd.none
+        | _ -> { state with CurrentTab = tabs }, Cmd.none
 
 // A collapsable nested menu for the sidebar
 // keeps internal state on whether the items should be visible or not based on the collapsed state
