@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -32,10 +32,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7C6D08
 		build.fsx = build.fsx
 		build.sh = build.sh
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{55637037-300B-4FA5-8D14-B2CECCCD4B0D}"
-EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "tools", "tools\tools.fsproj", "{E03A3045-EEAB-4616-B0D8-A50A1B75F72B}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.Plotly", "src\Feliz.Plotly\Feliz.Plotly.fsproj", "{CD7DB804-3DF3-4973-97DE-A8B9325948EC}"
 EndProject
@@ -493,10 +489,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD7DB804-3DF3-4973-97DE-A8B9325948EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD7DB804-3DF3-4973-97DE-A8B9325948EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD7DB804-3DF3-4973-97DE-A8B9325948EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -514,7 +506,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E03A3045-EEAB-4616-B0D8-A50A1B75F72B} = {55637037-300B-4FA5-8D14-B2CECCCD4B0D}
 		{C3F9583A-523B-4835-B6BC-CD8FFD2178E3} = {CABBED80-2F75-4DFE-8F77-7F7FDFDC8008}
 		{AB994CC4-9A55-4156-9D53-E08C67F09B25} = {C3F9583A-523B-4835-B6BC-CD8FFD2178E3}
 		{A8B7BBE8-88F4-41CA-9FA2-58D7FB0C412F} = {AB994CC4-9A55-4156-9D53-E08C67F09B25}
