@@ -213,6 +213,7 @@
   <ItemGroup>
     <Compile Include="Urls.fs" />
     <Compile Include="Paths.fs" />
+    <Compile Include="Html.fs" />
     <Compile Include="App.fs" />
     <Content Include="index.html" />
     <None Include="paket.references" />
