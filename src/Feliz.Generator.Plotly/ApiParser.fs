@@ -9,13 +9,13 @@ module ParserUtils =
     open Fake.IO.FileSystemOperators
 
     /// The Plotly.js schema
-    let schema =
+    let schema : JsonValue =
         File.readAsString (__SOURCE_DIRECTORY__ @@ "../../paket-files/generator/plotly/plotly.js/dist/plot-schema.json")
         |> JsonValue.Parse
 
     /// Returns `true` if the `JsonValue` is a component
-    let private isComp (jVal: JsonValue) =
-        jVal
+    let private isComp (jsonValue: JsonValue) : bool =
+        jsonValue
         |> JsonValue.tryGetProp "role"
         |> Option.map (JsonValue.asString >> ((=) "object"))
         |> function
@@ -23,34 +23,35 @@ module ParserUtils =
         | None -> false
 
     /// Gets the description from the specified `JsonValue` when it is a component
-    let private getCompDoc (jVal: JsonValue) =
+    let private getCompDoc (jVal: JsonValue) : string list =
         jVal.TryGetProperty("meta")
         |> Option.bind (JsonValue.tryGetProp "description")
         |> Option.map JsonValue.asString
         |> Option.toList
 
     /// Gets the description from the specified `JsonValue` when it is a prop
-    let private getPropDoc (jVal: JsonValue) =
+    let private getPropDoc (jVal: JsonValue) : string list =
         jVal.TryGetProperty("description")
         |> Option.map JsonValue.asString
         |> Option.toList
 
     /// Gets the documentation of a specified `JsonValue`
-    let getDocs (jVal: JsonValue) =
+    let getDocs (jVal: JsonValue) : string list =
         if isComp jVal then getCompDoc jVal
         else getPropDoc jVal
         |> List.map (fun s -> s.Trim().Trim('"'))
         |> List.filter (fun s -> s <> "")
 
-    let trimBypass (s: string) =
-        if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7)
-        else s
+    let trimBypass (s: string) : string =
+        // if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7)
+        // else s
+        s.Replace("_BYPASS", "")
 
     let trimBypassWith (s: string) trueFun falseFun =
         if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7) |> trueFun
         else falseFun s
 
-    let skips =
+    let skips : string list =
         schema?defs?metaKeys.AsArray()
         |> Array.toList
         |> List.map (JsonValue.asString >> trimJson)
@@ -58,23 +59,23 @@ module ParserUtils =
     let traceChildrenWithJson =
         schema?traces.Properties
 
-    let traceChildren =
+    let traceChildren : string list =
         traceChildrenWithJson
         |> Array.map fst
         |> List.ofArray
 
-    let transformsChildren =
+    let transformsChildren : string list =
         schema?transforms.Properties
         |> Array.map fst
         |> List.ofArray
 
-    let hasEnums (jVal: JsonValue) =
+    let hasEnums (jVal: JsonValue) : bool =
         jVal.TryGetProperty("valType")
         |> Option.map (JsonExtensions.AsString >> ((=) "enumerated"))
         |> Option.defaultValue false
 
     /// Gets anchor static mapping attributes
-    let layoutAnchorMappings (compName: string) (propName: string) =
+    let layoutAnchorMappings (compName: string) (propName: string) : {| Array: bool; Value: string |} =
         [ "polar"; "geo"; "mapbox"; "ternary" ]
         |> List.tryFind compName.Contains
         |> function
