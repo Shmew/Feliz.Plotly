@@ -106,9 +106,7 @@ let update (msg: Msg) (state: State) : State * Cmd<Msg> =
         { state with CurrentPath = segments },
         match state.CurrentTab with
         | [ ] when segments.Length > 2 ->
-            segments
-            |> TabToggled
-            |> Cmd.ofMsg
+            Cmd.ofMsg <| TabToggled segments
         | _ -> Cmd.none
 
     | TabToggled tabs ->
@@ -126,8 +124,8 @@ let update (msg: Msg) (state: State) : State * Cmd<Msg> =
 
         state, Cmd.map MarkdownMsg cmd
 
-// A collapsable nested menu for the sidebar
-// keeps internal state on whether the items should be visible or not based on the collapsed state
+/// A collapsable nested menu for the sidebar...
+/// keeps internal state on whether the items should be visible or not based on the collapsed state
 let nestedMenuList' (input: {| state: State; name: string; basePath: string list; elems: (string list -> ReactElement) list; dispatch: Msg -> unit |}) : ReactElement =
     let collapsed =
         match input.state.CurrentTab with
