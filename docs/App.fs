@@ -14,7 +14,9 @@ open HTML
 type Bulma = CssClasses<"https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css", Naming.PascalCase>
 type FA = CssClasses<"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css", Naming.PascalCase>
 
+/// Logic for loading the markdown content from the given path
 module MarkdownLoader =
+    /// Once a path is resolved, load the markdown content
     type State =
         | Initial
         | Loading
@@ -32,7 +34,7 @@ module MarkdownLoader =
     | [ one: string ] when one.StartsWith "http" -> one
     | segments -> String.concat "/" segments
 
-    let update (msg: Msg) (state: State) : State * Cmd<Msg> =
+    let update (msg: Msg) (_: State) : State * Cmd<Msg> =
         match msg with
         | StartLoading path ->
             let loadMarkdownAsync() =
@@ -57,21 +59,12 @@ module MarkdownLoader =
 
         match state with
         | Initial ->
-            console.log "Initial state"
-            console.log input.path
-
             Html.none
-            // renderMarkdown {| path = (resolvePath input.path); content = content |}
+        // display a spinner when loading
         | Loading ->
-            console.log "Loading state"
-            console.log input.path
-
             centeredSpinner
+        // render the markdown content when loaded
         | LoadedMarkdown content ->
-            console.log "Loaded state"
-            console.log input.path
-
-            console.log content
             renderMarkdown {| path = (resolvePath input.path); content = content |}
         | Errored error ->
             Html.h1 [
@@ -113,7 +106,6 @@ let update (msg: Msg) (state: State) : State * Cmd<Msg> =
         | _ -> Cmd.none
 
     | TabToggled tabs ->
-
         { state with CurrentTab = tabs }, Cmd.none
 
     | MarkdownMsg msg->
