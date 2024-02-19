@@ -51,13 +51,17 @@ module MarkdownLoader =
         | Loaded (Error (status, _)) ->
             LoadedMarkdown $"Status {status}: could not load markdown", Cmd.none
 
-    let render (input: {| state: State; path: string list |}) : ReactElement =
-        match input.state with
+    [<ReactComponent>]
+    let render (input: {| path: string list |}) : ReactElement =
+        let state,_ = React.useElmish(init input.path, update, [| input.path :> obj |])
+
+        match state with
         | Initial ->
             console.log "Initial state"
             console.log input.path
 
             Html.none
+            // renderMarkdown {| path = (resolvePath input.path); content = content |}
         | Loading ->
             console.log "Loading state"
             console.log input.path
@@ -74,6 +78,8 @@ module MarkdownLoader =
                 prop.style [ style.color.crimson ]
                 prop.text error
             ]
+
+    let inline load (path: string list) = render {| path = path |}
 
 type State = {
     CurrentPath : string list
@@ -100,9 +106,6 @@ let init () : State * Cmd<Msg> =
 let update (msg: Msg) (state: State) : State * Cmd<Msg> =
     match msg with
     | UrlChanged segments ->
-        console.log "UrlChanged"
-        console.log segments
-
         { state with CurrentPath = segments },
         match state.CurrentTab with
         | [ ] when segments.Length > 2 ->
@@ -110,14 +113,10 @@ let update (msg: Msg) (state: State) : State * Cmd<Msg> =
         | _ -> Cmd.none
 
     | TabToggled tabs ->
-        console.log "TabToggled"
-        match tabs with
-        | [ ] -> { state with CurrentTab = [ ] }, Cmd.none
-        | _ -> { state with CurrentTab = tabs }, Cmd.none
+
+        { state with CurrentTab = tabs }, Cmd.none
 
     | MarkdownMsg msg->
-        console.log "MarkdownMsg"
-        console.log msg
         let (updated, cmd) = MarkdownLoader.update msg state.MarkdownLoader
 
         let state = { state with MarkdownLoader = updated }
@@ -555,11 +554,11 @@ let content (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
     let contributing = "https://raw.githubusercontent.com/Zaid-Ajaj/Feliz/master/public/Feliz/Contributing.md"
 
     match input.state.CurrentPath with
-    | [ Urls.Plotly; Urls.Overview; ] -> lazyView MarkdownLoader.render {| state = input.state.MarkdownLoader; path = [ "Plotly"; "README.md" ] |}
-    | [ Urls.Plotly; Urls.Installation ] -> lazyView MarkdownLoader.render {| state = input.state.MarkdownLoader; path = [ "Plotly"; "Installation.md" ] |}
-    | [ Urls.Plotly; Urls.ReleaseNotes ] -> lazyView MarkdownLoader.render {| state = input.state.MarkdownLoader; path = [ "Plotly"; "RELEASE_NOTES.md" ] |}
-    | [ Urls.Plotly; Urls.BundleSize ] -> lazyView MarkdownLoader.render {| state = input.state.MarkdownLoader; path = [ "Plotly"; "BundleSize.md" ] |}
-    | [ Urls.Plotly; Urls.Contributing ] -> lazyView MarkdownLoader.render {| state = input.state.MarkdownLoader; path = [ contributing ] |}
+    | [ Urls.Plotly; Urls.Overview; ] -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ]
+    | [ Urls.Plotly; Urls.Installation ] -> lazyView MarkdownLoader.load [ "Plotly"; "Installation.md" ]
+    | [ Urls.Plotly; Urls.ReleaseNotes ] -> lazyView MarkdownLoader.load [ "Plotly"; "RELEASE_NOTES.md" ]
+    | [ Urls.Plotly; Urls.BundleSize ] -> lazyView MarkdownLoader.load [ "Plotly"; "BundleSize.md" ]
+    | [ Urls.Plotly; Urls.Contributing ] -> lazyView MarkdownLoader.load [ contributing ]
     | PathPrefix [ Urls.Plotly; Urls.Examples ] (Some res) ->
         match res with
         | PathPrefix [ Urls.Basic ] (Some innerRes) -> Paths.basicExamples innerRes
@@ -575,8 +574,8 @@ let content (input: {| state: State; dispatch: Msg -> unit |}) : ReactElement =
         | PathPrefix [ Urls.Custom ] (Some innerRes) -> Paths.customExamples innerRes
         | PathPrefix [ Urls.Locales ] (Some innerRes) -> Paths.localeExamples innerRes
         | _ -> []
-        |> fun path -> lazyView MarkdownLoader.render {| state = input.state.MarkdownLoader; path = [ Urls.Plotly; Urls.Examples ] @ path|}
-    | _ -> lazyView MarkdownLoader.render {| state = input.state.MarkdownLoader; path = [ "Plotly"; "README.md" ] |}
+        |> fun path -> lazyView MarkdownLoader.load ([ Urls.Plotly; Urls.Examples ] @ path)
+    | _ -> lazyView MarkdownLoader.load [ "Plotly"; "README.md" ]
 
 let main (state: State) (dispatch: Msg -> unit) : ReactElement =
     let dispatch = React.useCallback(dispatch, [||])
