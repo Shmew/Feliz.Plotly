@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "dotnet tool restore && dotnet fable ./docs --run vite build",
-    "compile-demo-raw": "fable-splitter",
+    "compile-demo-raw": "npx fable-splitter",
+    "generate": "dotnet run --project ./src/Feliz.Generator.Plotly",
     "publish-docs": "yarn build && gh-pages -d dist",
     "start": "dotnet tool restore && dotnet fable watch ./docs --runFast vite"
   },
