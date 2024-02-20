@@ -17,7 +17,8 @@
     "compile-demo-raw": "npx fable-splitter",
     "generate": "dotnet run --project ./src/Feliz.Generator.Plotly",
     "publish-docs": "yarn build && gh-pages -d dist",
-    "start": "dotnet tool restore && dotnet fable watch ./docs --runFast vite"
+    "start": "dotnet tool restore && dotnet fable watch ./docs --runFast vite",
+    "dotnet-pack": "dotnet pack src/Feliz.Plotly/ -o ."
   },
   "dependencies": {
     "@types/react": "^18.2.55",
