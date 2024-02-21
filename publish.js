@@ -1,10 +1,10 @@
 var ghPages = require("gh-pages");
 
-var packageUrl = "https://github.com/Shmew/Feliz.Plotly.git";
+var packageUrl = "https://github.com/EverybodyKurts/Feliz.Plotly.git";
 
 console.log("Publishing to ", packageUrl);
 
-ghPages.publish("public", {
+ghPages.publish("./dist", {
     repo: packageUrl
 }, function (e) {
     if (e === undefined) {

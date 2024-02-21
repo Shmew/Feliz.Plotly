@@ -2,10 +2,23 @@
 // FAKE build script
 // --------------------------------------------------------------------------------------
 #nowarn "0213"
-#r "paket: groupref FakeBuild //"
+#r "nuget: Fake.Core.Target"
+#r "nuget: Fake.DotNet.Cli"
+#r "nuget: Fake.JavaScript.Yarn"
+#r "nuget: Fake.Tools.Git"
+#r "nuget: Fake.Core.ReleaseNotes"
+#r "nuget: Fantomas.Core"
+#r "nuget: Fake.DotNet.AssemblyInfoFile"
+#r "nuget: Fake.IO.FileSystem"
+#r "nuget: Fake.DotNet.Paket"
+
+// include Fake modules, see Fake modules section
+
 #load "./tools/FSharpLint.fs"
 #load "./tools/Web.fs"
 #load "./.fake/build.fsx/intellisense.fsx"
+
+open System.IO
 
 open Fake.Core
 open Fake.Core.TargetOperators
@@ -15,8 +28,8 @@ open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.Tools
-open Fantomas.FakeHelpers
-open Fantomas.FormatConfig
+open Fantomas
+open Fantomas.Core
 open Tools.Linting
 open Tools.Web
 open System
@@ -37,7 +50,7 @@ let author = "Cody Johnson"
 let solutionFile = "Feliz.Plotly.sln"
 
 // Github repo
-let repo = "https://github.com/Shmew/Feliz.Plotly"
+let repo = "https://github.com/EverybodyKurts/Feliz.Plotly"
 
 // Files to skip Fantomas formatting
 let excludeFantomas =
@@ -47,7 +60,7 @@ let excludeFantomas =
       __SOURCE_DIRECTORY__ @@ "src/Feliz.Plotly/Plotly.fs" ]
 
 // Files that have bindings to other languages where name linting needs to be more relaxed.
-let relaxedNameLinting = 
+let relaxedNameLinting =
     [ __SOURCE_DIRECTORY__ @@ "src/Feliz.Plotly/**/*.fs"
       __SOURCE_DIRECTORY__ @@ "src/Feliz.Plotly/*.fs" ]
 
@@ -62,7 +75,7 @@ let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
     | f when f.EndsWith("vbproj") -> Vbproj
     | f when f.EndsWith("shproj") -> Shproj
     | _                           -> failwith (sprintf "Project file %s not supported. Unknown project type." projFileName)
-    
+
 let srcGlob    = __SOURCE_DIRECTORY__ @@ "src/**/*.??proj"
 let fsSrcGlob  = __SOURCE_DIRECTORY__ @@ "src/**/*.fs"
 let fsTestGlob = __SOURCE_DIRECTORY__ @@ "tests/**/*.fs"
@@ -144,7 +157,7 @@ Target.create "AssemblyInfo" <| fun _ ->
           AssemblyInfo.Configuration <| configuration()
           AssemblyInfo.InternalsVisibleTo (sprintf "%s.Tests" projectName) ]
 
-    let getProjectDetails projectPath =
+    let getProjectDetails (projectPath: string) =
         let projectName = Path.GetFileNameWithoutExtension(projectPath)
         ( projectPath,
           projectName,
@@ -214,7 +227,7 @@ Target.create "PostBuildClean" <| fun _ ->
         !! srcGlob
         -- (__SOURCE_DIRECTORY__ @@ "src/**/*.shproj")
         |> Seq.map (
-            (fun f -> (Path.getDirectory f) @@ "bin" @@ configuration()) 
+            (fun f -> (Path.getDirectory f) @@ "bin" @@ configuration())
             >> (fun f -> Directory.EnumerateDirectories(f) |> Seq.toList )
             >> (fun fL -> fL |> List.map (fun f -> Directory.EnumerateDirectories(f) |> Seq.toList)))
         |> (Seq.concat >> Seq.concat)
@@ -318,7 +331,7 @@ Target.create "PublishDotNet" <| fun _ ->
         ((fun f -> (((Path.getDirectory f) @@ "bin" @@ configuration()), f) )
         >>
         (fun f ->
-            Directory.EnumerateDirectories(fst f) 
+            Directory.EnumerateDirectories(fst f)
             |> Seq.filter (fun frFolder -> frFolder.Contains("netcoreapp"))
             |> Seq.map (fun frFolder -> DirectoryInfo(frFolder).Name), snd f))
     |> Seq.iter (fun (l,p) -> l |> Seq.iter (runPublish p))
@@ -326,18 +339,24 @@ Target.create "PublishDotNet" <| fun _ ->
 // --------------------------------------------------------------------------------------
 // Lint and format source code to ensure consistency
 
+let formatCode configIndent input =
+    async {
+        let! result = CodeFormatter.FormatDocumentAsync(false, input, configIndent)
+        printf $"%s{result.Code}"
+    }
+
 Target.create "Format" <| fun _ ->
-     let config =
-         { FormatConfig.Default with
-             PageWidth = 120
-             SpaceBeforeColon = false }
- 
-     fsSrcAndTest
-     |> (fun src -> List.fold foldExcludeGlobs src excludeFantomas)
-     |> List.ofSeq
-     |> formatCode config
-     |> Async.RunSynchronously
-     |> printfn "Formatted files: %A"
+    let config =
+        { FormatConfig.Default with
+            SpaceBeforeColon = false }
+
+    fsSrcAndTest
+    |> (fun src -> List.fold foldExcludeGlobs src excludeFantomas)
+    |> List.ofSeq
+    |> Seq.map (formatCode config)
+    |> Async.Parallel
+    |> Async.RunSynchronously
+    |> printfn "Formatted files: %A"
 
 Target.create "Lint" <| fun _ ->
     fsSrcAndTest
@@ -365,7 +384,7 @@ Target.create "RunTests" <| fun _ ->
         |> ignore)
 
 // --------------------------------------------------------------------------------------
-// Update package.json version & name    
+// Update package.json version & name
 
 Target.create "PackageJson" <| fun _ ->
     let setValues (current: Json.JsonPackage) =
@@ -374,18 +393,18 @@ Target.create "PackageJson" <| fun _ ->
             Version = release.NugetVersion |> Some
             Description = summary |> Some
             Homepage = repo |> Some
-            Repository = 
+            Repository =
                 { Json.RepositoryValue.Type = "git" |> Some
                   Json.RepositoryValue.Url = repo |> Some
                   Json.RepositoryValue.Directory = None }
                 |> Some
-            Bugs = 
-                { Json.BugsValue.Url = 
-                    @"https://github.com/Shmew/Feliz.Plotly/issues/new/choose" |> Some } |> Some
+            Bugs =
+                { Json.BugsValue.Url =
+                    @"https://github.com/EverybodyKurts/Feliz.Plotly/issues/new/choose" |> Some } |> Some
             License = "MIT" |> Some
             Author = author |> Some
             Private = true |> Some }
-    
+
     Json.setJsonPkg setValues
 
 // --------------------------------------------------------------------------------------
@@ -440,7 +459,7 @@ Target.create "NuGet" <| fun _ ->
 Target.create "NuGetPublish" <| fun _ ->
     Paket.push(fun p ->
         { p with
-            ApiKey = 
+            ApiKey =
                 match getEnvFromAllOrNone "NUGET_KEY" with
                 | Some key -> key
                 | None -> failwith "The NuGet API key must be set in a NUGET_KEY environment variable"
@@ -488,7 +507,7 @@ Target.create "Publish" ignore
   ==> "YarnInstall"
   ==> "RunGenerators"
   ==> "Build"
-  ==> "PostBuildClean" 
+  ==> "PostBuildClean"
   ==> "CopyBinaries"
 
 "Build" ==> "RunTests"
@@ -503,7 +522,7 @@ Target.create "Publish" ignore
 "Restore" ==> "Format"
 
 "Format"
-  ?=> "Lint" 
+  ?=> "Lint"
   ?=> "Build"
   ?=> "RunTests"
   ?=> "CleanDocs"
@@ -522,15 +541,15 @@ Target.create "Publish" ignore
  ==> "NuGet"
  ==> "NuGetPublish"
 
-"PrepDocs" 
+"PrepDocs"
  ==> "PublishPages"
  ==> "PublishDocs"
 
-"All" 
+"All"
   ==> "PrepDocs"
   ==> "DemoRaw"
 
-"All" 
+"All"
   ==> "PrepDocs"
   ==> "Start"
 

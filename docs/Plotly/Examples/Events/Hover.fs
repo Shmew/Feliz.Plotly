@@ -37,10 +37,10 @@ let plotElem = React.memo(fun (input: {| callback: (int * float) option -> unit 
             layout.title "Capturing hover event data"
         ]
         plot.onHover <| fun ev ->
-            ev.points 
+            ev.points
             |> List.ofSeq
             |> List.tryFind (fun datum -> datum.x.IsSome && datum.y.IsSome)
-            |> Option.iter(fun datum -> 
+            |> Option.iter(fun datum ->
                 match datum.x, datum.y with
                 | Events.Int x, Events.Float y -> (x,y) |> Some |> input.callback
                 | _ -> None |> input.callback)

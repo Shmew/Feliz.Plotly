@@ -28,7 +28,7 @@ let chart = React.functionComponent (fun () ->
         plot.onRelayout <| fun ev ->
             match ev.``xaxis.range[0]``, ev.``xaxis.range[1]`` with
             | Events.Int x, Events.Int x2 ->
-                sprintf "Xaxis Start: %i%sXaxis End: %i" 
+                sprintf "Xaxis Start: %i%sXaxis End: %i"
                     x System.Environment.NewLine x2
                 |> alert
             | _ -> ()

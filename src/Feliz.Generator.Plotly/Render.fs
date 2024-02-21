@@ -14,7 +14,7 @@ module Render =
         let singlePropRegularOverload (prop: Prop) (propOverload: RegularPropOverload) =
             let bodyCode =
                 match propOverload.BodyCode with
-                | ValueExprOnly expr -> 
+                | ValueExprOnly expr ->
                     sprintf "Interop.mk%sAttr \"%s\" %s" prop.ParentNameTree.Head prop.RealPropName expr
                 | CustomBody code -> code
 
@@ -32,13 +32,13 @@ module Render =
         let singlePropEnumOverload (prop: Prop) (propOverload: EnumPropOverload) =
             sprintf "static member %s%s %s= Interop.mk%sAttr \"%s\" %s"
                 (if propOverload.IsInline then "inline "
-                 else "") 
+                 else "")
                 propOverload.MethodName
                 (match propOverload.ParamsCode with
                  | Some s -> s + " "
-                 | None -> "") 
-                prop.ParentNameTree.Head 
-                prop.RealPropName 
+                 | None -> "")
+                prop.ParentNameTree.Head
+                prop.RealPropName
                 propOverload.ValueCode
             |> emptStringToNone
             |> List.singleton
@@ -53,7 +53,7 @@ module Render =
 
             sprintf "static member %s%s%s = %s"
                 (if propOverload.IsInline then "inline "
-                 else "") propOverload.MethodName paramsCode propOverload.BodyCode 
+                 else "") propOverload.MethodName paramsCode propOverload.BodyCode
             |> List.singleton
 
         /// Builds non-extension prop strings for a given component
@@ -138,8 +138,8 @@ module Render =
                                     >> indent (indentLevel + 2))
                         yield! singlePropEnumOverload prop overload |> List.map (indent (indentLevel + 2))
                     for overload in customOverloads do
-                        yield! 
-                            if List.isEmpty overload.DocLines then prop.DocLines 
+                        yield!
+                            if List.isEmpty overload.DocLines then prop.DocLines
                             else overload.DocLines
                             |> List.map
                                 (String.prefix "/// "
@@ -199,7 +199,7 @@ module Render =
 
             let allManualInterfaces = preludeInterfaces @ postludeInterfaces
 
-            let filterFun s = 
+            let filterFun s =
                 List.contains s allManualInterfaces
 
             let compInterop =
@@ -216,35 +216,35 @@ module Render =
             let props =
                 propType.Properties
                 |> List.map (fun value ->
-                    sprintf "static member inline %s = unbox<I%sProperty> \"%s\"" 
-                        value (String.upperFirst propType.Name) value 
+                    sprintf "static member inline %s = unbox<I%sProperty> \"%s\""
+                        value (String.upperFirst propType.Name) value
                     |> indent indentLevel)
 
-            let enums = [ 
+            let enums = [
                 for propOverload in propType.Enums do
-                    yield! propOverload.DocLines 
-                           |> List.map 
-                              (String.prefix "/// " 
-                               >> String.trim 
+                    yield! propOverload.DocLines
+                           |> List.map
+                              (String.prefix "/// "
+                               >> String.trim
                                >> indent indentLevel)
                     yield
                         sprintf "static member %s%s %s= Interop.mk%sAttr \"%s\" %s"
                             (if propOverload.IsInline then "inline "
-                             else "") 
+                             else "")
                             propOverload.MethodName
                             (match propOverload.ParamsCode with
                              | Some s -> s + " "
-                             | None -> "") 
+                             | None -> "")
                             (String.upperFirst propType.ParentNameTree.Head)
                             propType.ActualName
                             propOverload.ValueCode
-                        |> indent indentLevel 
+                        |> indent indentLevel
             ]
 
             let funcs =
                 propType.Functions
                 |> List.collect (fun (docs, value) ->
-                    [ if System.String.IsNullOrEmpty docs |> not then 
+                    [ if System.String.IsNullOrEmpty docs |> not then
                         sprintf "/// %s" docs |> indent indentLevel
                       value |> indent indentLevel ])
                 |> List.append enums
@@ -271,7 +271,7 @@ module Render =
         let makeInterop s =
             sprintf "let inline mk%sAttr (key: string) (value: obj) : I%sProperty = unbox (key, value)" s s
 
-        let preludeInterfaces = 
+        let preludeInterfaces =
             api.TypePrelude
             |> List.map fst
 
@@ -298,7 +298,7 @@ module Render =
     let typesDocument (api: ComponentApi) =
         let buildCustomInterfaceName name =
             sprintf "I%sProperty" name
-        
+
         [ sprintf "namespace %s" api.Namespace
           ""
           "(*////////////////////////////////"

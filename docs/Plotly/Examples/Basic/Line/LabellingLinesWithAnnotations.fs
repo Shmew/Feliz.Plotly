@@ -4,7 +4,7 @@ module Samples.Line.LabellingLinesWithAnnotations
 open Feliz
 open Feliz.Plotly
 
-let xData = 
+let xData =
     [2001; 2002; 2003; 2004; 2005; 2006; 2007; 2008; 2009; 2010; 2011; 2013]
     |> List.replicate 4
 
@@ -14,7 +14,7 @@ let yData =
       [ 13; 14; 20; 24; 20; 24; 24; 40; 35; 41; 43; 50]
       [ 18; 21; 18; 21; 16; 14; 13; 18; 17; 16; 19; 23] ]
 
-let plotcolor = 
+let plotcolor =
     [ color.rgba(67, 67, 67, 1.)
       color.rgba(115, 115, 115, 1.)
       color.rgba(49, 130, 189, 1.)
@@ -76,7 +76,7 @@ let tracesAnnotations =
                 font.color color.black
             ]
             annotation.showarrow false
-          ]  
+          ]
         ])
 
 let chart () =

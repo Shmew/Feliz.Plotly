@@ -15,8 +15,8 @@ type CsvData =
       Z2: float option [] }
 
     member this.AddDataSet (data: string []) =
-        let emptyToNoneFloat input = 
-            try float input |> Some 
+        let emptyToNoneFloat input =
+            try float input |> Some
             with _ -> None
 
         { this with
@@ -79,14 +79,14 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState CsvData.empty
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv"
 
-    let loadDataset() = 
+    let loadDataset() =
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
             setLoading(false)
             if statusCode = 200 then
                 let fullData =
-                    responseText.Trim().Split('\n') 
+                    responseText.Trim().Split('\n')
                     |> Array.map (fun s -> s.Split(','))
 
                 fullData
@@ -94,7 +94,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
                 |> Array.fold (fun (state: CsvData) (values: string []) -> state.AddDataSet values) content
                 |> fun newContent -> { newContent with Headers = fullData |> Array.head }
                 |> setContent
-                    
+
                 setError(None)
             else
                 setError(Some (sprintf "Status %d: could not load %s" statusCode path))

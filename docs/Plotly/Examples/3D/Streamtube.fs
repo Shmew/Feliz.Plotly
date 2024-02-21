@@ -7,14 +7,14 @@ open Feliz.Plotly
 
 let render (data: float [] []) =
     let startsX = Array.replicate 16 80
-    
-    let startsY = 
-        Array.replicate 4 [| 20 .. 10 .. 50 |] 
+
+    let startsY =
+        Array.replicate 4 [| 20 .. 10 .. 50 |]
         |> Array.concat
-    
+
     let startsZ =
-        Array.replicate 4 (Array.replicate 4 0) 
-        |> Array.mapi (fun i aList -> 
+        Array.replicate 4 (Array.replicate 4 0)
+        |> Array.mapi (fun i aList ->
             aList |> Array.map (fun _ -> i * 5))
         |> Array.concat
 
@@ -27,7 +27,7 @@ let render (data: float [] []) =
                 streamtube.u data.[0]
                 streamtube.v data.[1]
                 streamtube.w data.[2]
-                
+
                 streamtube.starts [
                     starts.x startsX
                     starts.y startsY
@@ -64,14 +64,14 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState [||]
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/streamtube-wind.csv"
 
-    let loadDataset() = 
+    let loadDataset() =
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
             setLoading(false)
             if statusCode = 200 then
                 let fullData =
-                    responseText.Trim().Split('\n') 
+                    responseText.Trim().Split('\n')
                     |> Array.map (fun s -> s.Trim().Split(','))
 
                 fullData

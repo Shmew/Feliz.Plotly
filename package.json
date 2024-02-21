@@ -1,47 +1,41 @@
 {
-  "name": "feliz.-plotly",
+  "name": "feliz-plotly",
   "version": "2.1.0",
   "description": "Fable bindings written in the Feliz-style for plotly.js",
-  "homepage": "https://github.com/Shmew/Feliz.Plotly",
+  "homepage": "https://github.com/EverybodyKurts/Feliz.Plotly",
   "bugs": {
-    "url": "https://github.com/Shmew/Feliz.Plotly/issues/new/choose"
+    "url": "https://github.com/EverybodyKurts/Feliz.Plotly/issues/new/choose"
   },
   "license": "MIT",
-  "author": "Cody Johnson",
+  "author": "Cody Johnson, Kurt Mueller",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Shmew/Feliz.Plotly"
+    "url": "https://github.com/EverybodyKurts/Feliz.Plotly"
   },
   "scripts": {
-    "build": "webpack -p",
-    "compile-demo-raw": "fable-splitter",
-    "publish-docs": "yarn build && node publish.js",
-    "start": "webpack-dev-server"
+    "build": "dotnet tool restore && dotnet fable ./docs --run vite build",
+    "compile-demo-raw": "npx fable-splitter",
+    "generate": "dotnet run --project ./src/Feliz.Generator.Plotly",
+    "publish-docs": "yarn build && gh-pages -d dist",
+    "start": "dotnet tool restore && dotnet fable watch ./docs --runFast vite",
+    "dotnet-pack": "dotnet pack src/Feliz.Plotly/ -o ."
   },
   "dependencies": {
-    "plotly.js": "^1",
-    "react": "^16",
-    "react-dom": "^16",
-    "react-highlight": "^0",
-    "react-markdown": "^4",
-    "react-plotly.js": "^2",
-    "source-map-support": "^0"
+    "@types/react": "^18.2.55",
+    "plotly.js": "^2.28.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-highlight": "^0.15.0",
+    "react-markdown": "8.0.7",
+    "react-plotly.js": "^2.6.0",
+    "source-map-support": "^0.5.21",
+    "use-sync-external-store": "^1.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7",
-    "@babel/preset-env": "^7",
-    "babel-loader": "^8",
-    "core-js": "^3",
-    "fable-compiler": "^2",
-    "fable-loader": "^2",
-    "file-loader": "^4",
-    "gh-pages": "^2",
-    "html-webpack-plugin": "^3",
-    "remotedev": "^0",
-    "resolve-url-loader": "^3",
-    "webpack": "^4",
-    "webpack-cli": "^3",
-    "webpack-dev-server": "^3"
+    "@vitejs/plugin-react": "^4.2.1",
+    "gh-pages": "^6.1.1",
+    "sass": "^1.69.7",
+    "vite": "^5.1.3"
   },
   "private": true
 }

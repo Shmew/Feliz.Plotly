@@ -9,13 +9,13 @@ module ParserUtils =
     open Fake.IO.FileSystemOperators
 
     /// The Plotly.js schema
-    let schema =
+    let schema : JsonValue =
         File.readAsString (__SOURCE_DIRECTORY__ @@ "../../paket-files/generator/plotly/plotly.js/dist/plot-schema.json")
         |> JsonValue.Parse
 
     /// Returns `true` if the `JsonValue` is a component
-    let private isComp (jVal: JsonValue) =
-        jVal
+    let private isComp (jsonValue: JsonValue) : bool =
+        jsonValue
         |> JsonValue.tryGetProp "role"
         |> Option.map (JsonValue.asString >> ((=) "object"))
         |> function
@@ -23,34 +23,35 @@ module ParserUtils =
         | None -> false
 
     /// Gets the description from the specified `JsonValue` when it is a component
-    let private getCompDoc (jVal: JsonValue) =
+    let private getCompDoc (jVal: JsonValue) : string list =
         jVal.TryGetProperty("meta")
         |> Option.bind (JsonValue.tryGetProp "description")
         |> Option.map JsonValue.asString
         |> Option.toList
 
     /// Gets the description from the specified `JsonValue` when it is a prop
-    let private getPropDoc (jVal: JsonValue) =
+    let private getPropDoc (jVal: JsonValue) : string list =
         jVal.TryGetProperty("description")
         |> Option.map JsonValue.asString
         |> Option.toList
 
     /// Gets the documentation of a specified `JsonValue`
-    let getDocs (jVal: JsonValue) =
+    let getDocs (jVal: JsonValue) : string list =
         if isComp jVal then getCompDoc jVal
         else getPropDoc jVal
         |> List.map (fun s -> s.Trim().Trim('"'))
         |> List.filter (fun s -> s <> "")
 
-    let trimBypass (s: string) =
-        if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7)
-        else s
+    let trimBypass (s: string) : string =
+        // if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7)
+        // else s
+        s.Replace("_BYPASS", "")
 
     let trimBypassWith (s: string) trueFun falseFun =
         if s.EndsWith("_BYPASS") then s.Substring(0, s.Length - 7) |> trueFun
         else falseFun s
 
-    let skips =
+    let skips : string list =
         schema?defs?metaKeys.AsArray()
         |> Array.toList
         |> List.map (JsonValue.asString >> trimJson)
@@ -58,24 +59,24 @@ module ParserUtils =
     let traceChildrenWithJson =
         schema?traces.Properties
 
-    let traceChildren =
+    let traceChildren : string list =
         traceChildrenWithJson
         |> Array.map fst
         |> List.ofArray
 
-    let transformsChildren =
+    let transformsChildren : string list =
         schema?transforms.Properties
         |> Array.map fst
         |> List.ofArray
 
-    let hasEnums (jVal: JsonValue) =
+    let hasEnums (jVal: JsonValue) : bool =
         jVal.TryGetProperty("valType")
         |> Option.map (JsonExtensions.AsString >> ((=) "enumerated"))
         |> Option.defaultValue false
-            
+
     /// Gets anchor static mapping attributes
-    let layoutAnchorMappings (compName: string) (propName: string) =
-        [ "polar"; "geo"; "mapbox"; "ternary" ] 
+    let layoutAnchorMappings (compName: string) (propName: string) : {| Array: bool; Value: string |} =
+        [ "polar"; "geo"; "mapbox"; "ternary" ]
         |> List.tryFind compName.Contains
         |> function
         | _ when propName = "xaxes" || propName = "yaxes" -> {| Value = propName; Array = true |}
@@ -88,14 +89,14 @@ module ParserUtils =
 module ApiParser =
     open ParserUtils
 
-    let manualDeprecated = 
+    let manualDeprecated =
         [ ("layout", [ "radialaxis"; "angularaxis" ]) ]
 
     let isManualDeprecated componentName (name: string) =
         match List.filter (fst >> fun n -> n = componentName) manualDeprecated with
-        | fList when fList.Length > 0 -> 
-            fList 
-            |> List.exists (snd >> List.exists (fun n -> n = name)) 
+        | fList when fList.Length > 0 ->
+            fList
+            |> List.exists (snd >> List.exists (fun n -> n = name))
         | _ -> false
 
     /// Parses a `JsonValue` with given information and returns a `Prop`
@@ -109,9 +110,9 @@ module ApiParser =
             |> List.contains propName
 
         let isExpanded =
-            let isExpandedLayout = 
+            let isExpandedLayout =
                 [ "xaxis"; "yaxis"; "geo"; "ternary"; "polar"; "mapbox"; "coloraxis"; "scene" ]
-                |> List.contains propName 
+                |> List.contains propName
 
             match (componentTree
                    |> List.rev
@@ -135,19 +136,19 @@ module ApiParser =
         let axisInt axisIdentity isArray =
             if isArray then
                 [ ValType.intSeqStrCustom "anchorIds"
-                    (sprintf "anchorIds |> Seq.map (fun anchorId -> (sprintf \"%s%s\" %s) |> ResizeArray)" 
+                    (sprintf "anchorIds |> Seq.map (fun anchorId -> (sprintf \"%s%s\" %s) |> ResizeArray)"
                         axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
                   ValType.intStrCustom "anchorId"
-                    (sprintf "(sprintf \"%s%s\" %s |> Array.singleton |> ResizeArray)" 
+                    (sprintf "(sprintf \"%s%s\" %s |> Array.singleton |> ResizeArray)"
                         axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")") ]
             else
                 ValType.intStrCustom "anchorId"
-                    (sprintf "(sprintf \"%s%s\" %s)" 
+                    (sprintf "(sprintf \"%s%s\" %s)"
                         axisIdentity "%s" "(if anchorId > 1 then (anchorId |> string) else \"\")")
                 |> List.singleton
 
         let propType =
-            let isPropAxis = 
+            let isPropAxis =
                 [ "xaxis"; "yaxis"; "subplot"; "geo"; "coloraxis"; "scene" ]
                 |> List.contains propName
 
@@ -194,7 +195,7 @@ module ApiParser =
                                 RegularPropOverload.createCustom paramsCode bodyCode)
                         else
                             expOverStrs
-                            |> List.map (fun (paramsCode, valueCode) -> 
+                            |> List.map (fun (paramsCode, valueCode) ->
                                 RegularPropOverload.create paramsCode valueCode)
 
                 ValType.getOverloadStrings componentParent mNameUpper propType
@@ -212,7 +213,7 @@ module ApiParser =
 
         let enumOverloads =
             let isAnchorOrOverlay =
-                (componentParent = "Xaxis" || componentParent = "Yaxis") 
+                (componentParent = "Xaxis" || componentParent = "Yaxis")
                     && (propName = "overlaying" || propName = "anchor" || propName = "scaleanchor")
 
             let isXAxisRef = [ "xref"; "axref" ] |> List.contains propName
@@ -268,23 +269,23 @@ module ApiParser =
 
                 match propType with
                 | ValType.EnumeratedWithCustom when (isAnchorOrOverlay || isXAxisRef || isYAxisRef ) && (v = "x" || v = "y") ->
-                    axisInt v false 
+                    axisInt v false
                     |> List.unzip
                     ||> List.map2 (fun paramsCode valueCode ->
                         EnumPropOverload.create methodName valueCode
                         |> EnumPropOverload.setParamsCode paramsCode)
                 | ValType.EnumeratedWithCustom when v = "custom" && componentParent = "Line" && propName = "dash" ->
-                    let valueCode, paramsCode = 
+                    let valueCode, paramsCode =
                         [ ValType.intSeqStr; ValType.floatSeqStr ] |> List.unzip
 
                     paramsCode
                     |> List.map2
                         (fun pCode vCode ->
-                        EnumPropOverload.create methodName vCode 
+                        EnumPropOverload.create methodName vCode
                         |> EnumPropOverload.setParamsCode pCode) valueCode
 
                 | ValType.EnumeratedWithCustom when v = "custom" ->
-                    EnumPropOverload.createStr methodName 
+                    EnumPropOverload.createStr methodName
                     |> List.singleton
                 | _ ->
                     match v with
@@ -314,7 +315,7 @@ module ApiParser =
         let parentTree = parentTree |> List.map trimBypass
 
         let rec performJumps (name: string) (j: JsonValue) =
-            if List.contains name jumpComp then j.Properties |> Array.collect (fun (name, j) -> 
+            if List.contains name jumpComp then j.Properties |> Array.collect (fun (name, j) ->
                 performJumps name j)
             else (name, j) |> Array.singleton
 
@@ -339,8 +340,8 @@ module ApiParser =
                  >> (fun prop ->
                      prop
                      |> Array.filter (fun p ->
-                         skips 
-                         |> List.filter (fun skip -> 
+                         skips
+                         |> List.filter (fun skip ->
                              List.contains skip (jumpCompIf |> List.map snd) |> not)
                          |> Array.ofList
                          |> Array.contains (fst p)
@@ -352,7 +353,7 @@ module ApiParser =
             |> Array.choose (fun (pName, pJ) ->
                 if pJ.TryGetProperty("description")
                    |> Option.map (fun j -> j.AsString().Contains("deprecated!"))
-                   |> Option.defaultValue false || pName = "_deprecated" 
+                   |> Option.defaultValue false || pName = "_deprecated"
                    || isManualDeprecated componentName pName
                 then None
                 else parseProp parentTree pName pJ |> Some)
@@ -365,12 +366,12 @@ module ApiParser =
         |> Component.addParentComponentTree parentTree
         |> addProps
 
-    /// Parses the root schema for enumerated values with the given component 
+    /// Parses the root schema for enumerated values with the given component
     /// name and enum name returning a JsonValue of the collected values.
     let getAllEnumAttributes (property: string) (enumName: string) =
         let rec getEnumValues attribList parent (jVal: JsonValue) =
             jVal.Properties
-            |> Array.partition (fun (name, j) -> 
+            |> Array.partition (fun (name, j) ->
                 name = enumName && j |> hasEnums && parent = property)
             ||> fun matches others ->
                 let addedAttribList =
@@ -389,19 +390,19 @@ module ApiParser =
         |> Array.distinct
         |> JsonValue.Array
 
-    /// Parses given JsonValue for components with the given name returning 
+    /// Parses given JsonValue for components with the given name returning
     /// a JsonValue of a collected set of properties.
     let getAttributesOf (source: JsonValue) (property: string) =
         let rec getAttributes attribList parent (jVal: JsonValue) =
             jVal.Properties
-            |> Array.partition (fun (name, j) -> 
+            |> Array.partition (fun (name, j) ->
                 name = property && j.TryGetProperty("valType").IsNone)
             ||> fun matches others ->
                 let addedAttribList =
                     matches
                     |> Array.collect (fun (_, attrib) -> [| parent, attrib |])
                     |> Array.append attribList
-                Array.append addedAttribList (Array.collect (fun (pName, j) -> 
+                Array.append addedAttribList (Array.collect (fun (pName, j) ->
                     getAttributes [||] pName j) others)
 
         getAttributes [||] property source
@@ -420,7 +421,7 @@ module ApiParser =
                 (name, jVal))
         |> JsonValue.Record
 
-    /// Parses the root schema for components with the given name returning 
+    /// Parses the root schema for components with the given name returning
     /// a JsonValue of a collected set of properties.
     let getAllAttributes (property: string) = getAttributesOf schema property
 
@@ -491,7 +492,7 @@ module ApiParser =
                 | j when j.Length > 0 -> (j |> List.head).Properties
                 | _ -> jVal.Properties
                 |> List.ofArray
-                |> List.filter (fun (name, j) -> 
+                |> List.filter (fun (name, j) ->
                     List.contains name skips |> not
                         && j.TryGetProperty("valType").IsNone)
 
@@ -692,7 +693,7 @@ module ApiParser =
                 "frKM", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-KM\"", "French (Comoros)"
                 "frCG", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-CG\"", "French (Congo - Brazzaville)"
                 "frCD", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-CD\"", "French (Congo - Kinshasa)"
-                "frCI", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-CI\"", "French (Côte d’Ivoire)"
+                "frCI", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-CI\"", "French (Cï¿½te dï¿½Ivoire)"
                 "frDJ", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-DJ\"", "French (Djibouti)"
                 "frGQ", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-GQ\"", "French (Equatorial Guinea)"
                 "frFR", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-FR\"", "French (France)"
@@ -706,8 +707,8 @@ module ApiParser =
                 "frMC", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-MC\"", "French (Monaco)"
                 "frNE", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-NE\"", "French (Niger)"
                 "frRW", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-RW\"", "French (Rwanda)"
-                "frRE", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-RE\"", "French (Réunion)"
-                "frBL", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-BL\"", "French (Saint Barthélemy)"
+                "frRE", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-RE\"", "French (Rï¿½union)"
+                "frBL", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-BL\"", "French (Saint Barthï¿½lemy)"
                 "frMF", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-MF\"", "French (Saint Martin)"
                 "frSN", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-SN\"", "French (Senegal)"
                 "frCH", "", sprintf "Interop.mk%sAttr \"locale\" \"fr-CH\"", "French (Switzerland)"
@@ -833,8 +834,8 @@ module ApiParser =
                 "ne", "", sprintf "Interop.mk%sAttr \"locale\" \"ne\"", "Nepali"
                 "ndZW", "", sprintf "Interop.mk%sAttr \"locale\" \"nd-ZW\"", "North Ndebele (Zimbabwe)"
                 "nd", "", sprintf "Interop.mk%sAttr \"locale\" \"nd\"", "North Ndebele"
-                "nbNO", "", sprintf "Interop.mk%sAttr \"locale\" \"nb-NO\"", "Norwegian Bokmål (Norway)"
-                "nb", "", sprintf "Interop.mk%sAttr \"locale\" \"nb\"", "Norwegian Bokmål"
+                "nbNO", "", sprintf "Interop.mk%sAttr \"locale\" \"nb-NO\"", "Norwegian Bokmï¿½l (Norway)"
+                "nb", "", sprintf "Interop.mk%sAttr \"locale\" \"nb\"", "Norwegian Bokmï¿½l"
                 "nnNO", "", sprintf "Interop.mk%sAttr \"locale\" \"nn-NO\"", "Norwegian Nynorsk (Norway)"
                 "nn", "", sprintf "Interop.mk%sAttr \"locale\" \"nn\"", "Norwegian Nynorsk"
                 "nynUG", "", sprintf "Interop.mk%sAttr \"locale\" \"nyn-UG\"", "Nyankole (Uganda)"
@@ -987,19 +988,19 @@ module ApiParser =
                 "zuZA", "", sprintf "Interop.mk%sAttr \"locale\" \"zu-ZA\"", "Zulu (South Africa)"
                 "zu", "", sprintf "Interop.mk%sAttr \"locale\" \"zu\"", "Zulu" ] ]
             |> Map.ofList
-            
+
         comps
         |> List.map (fun comp ->
-            { comp with 
-                Props = 
+            { comp with
+                Props =
                     comp.Props
                     |> List.map (fun p ->
                         match sugars.TryFind(p.MethodName) with
-                        | Some overloads -> 
+                        | Some overloads ->
                             { p with
                                 CustomOverloads =
                                     overloads
-                                    |> List.map (fun (methodName, pCode, bCodeFun, docLine) -> 
+                                    |> List.map (fun (methodName, pCode, bCodeFun, docLine) ->
                                         let bCode = bCodeFun (String.upperFirst comp.MethodName)
                                         CustomPropOverload.create methodName pCode bCode
                                         |> fun res ->
@@ -1009,8 +1010,8 @@ module ApiParser =
 
     let applyPropOverrides (comps: Component list) =
         let overrides =
-            [ "globalTransforms", 
-              fun (prop: Prop) -> 
+            [ "globalTransforms",
+              fun (prop: Prop) ->
                   { prop with
                       MethodName = "transforms"
                       RegularOverloads = [
@@ -1018,9 +1019,9 @@ module ApiParser =
                            "(properties |> List.map (Bindings.getKV >> snd) |> Array.ofList)")
                           ||> RegularPropOverload.create
                       ] }
-              "rangebreaks", 
-              fun (prop: Prop) -> 
-                  { prop with 
+              "rangebreaks",
+              fun (prop: Prop) ->
+                  { prop with
                       MethodName = "rangebreaks"
                       RegularOverloads = [
                           ("(properties: #IRangebreaksProperty list)",
@@ -1031,8 +1032,8 @@ module ApiParser =
 
         comps
         |> List.map (fun comp ->
-            { comp with 
-                Props = 
+            { comp with
+                Props =
                     comp.Props
                     |> List.map (fun p ->
                         match overrides.TryFind(p.MethodName) with
@@ -1084,17 +1085,17 @@ module ApiParser =
               "static member inline debug (value: bool) = Interop.mkPlotAttr \"debug\" value"
               "When true, adds a call to Plotly.Plot.resize() as a window.resize event handler.",
               "static member inline useResizeHandler (value: bool) = Interop.mkPlotAttr \"useResizeHandler\" value"
-              "Callback executed when the plot is exported.", 
+              "Callback executed when the plot is exported.",
               "static member inline onAfterExport (handler: unit -> unit) = Interop.mkPlotAttr \"onClick\" handler"
               "Callback executed when the plot is drawn.",
               "static member inline onAfterPlot (handler: unit -> unit) = Interop.mkPlotAttr \"onAfterPlot\" handler"
-              "Callback executed when the plot has been animated.", 
+              "Callback executed when the plot has been animated.",
               "static member inline onAnimated (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimated\" handler"
               "Callback executed when there is an animating frame.",
               "static member inline onAnimatingFrame (handler: Events.FrameAnimationEvent -> unit) = Interop.mkPlotAttr \"onAnimatingFrame\" handler"
               "Callback executed when an animation gets interrupted.",
               "static member inline onAnimationInterrupted (handler: unit -> unit) = Interop.mkPlotAttr \"onAnimationInterrupted\" handler"
-              "Callback executed when the plot resizes automatically.", 
+              "Callback executed when the plot resizes automatically.",
               "static member inline onAutoSize (handler: unit -> unit) = Interop.mkPlotAttr \"onAutoSize\" handler"
               "Callback executed when a plot is being exported, before the export occurs.",
               "static member inline onBeforeExport (handler: unit -> unit) = Interop.mkPlotAttr \"onBeforeExport\" handler"
@@ -1106,7 +1107,7 @@ module ApiParser =
               "static member inline onClick (handler: Events.PlotMouseEvent -> unit) = Interop.mkPlotAttr \"onClick\" handler"
               "Callback executed when an annotation is clicked.",
               "static member inline onClickAnnotation (handler: Events.ClickAnnotationEvent -> unit) = Interop.mkPlotAttr \"onClickAnnotation\" handler"
-              "Callback executed when a plot item is deselected.", 
+              "Callback executed when a plot item is deselected.",
               "static member inline onDeselect (handler: unit -> unit) = Interop.mkPlotAttr \"onDeselect\" handler"
               "Callback executed when a plot point is double clicked.",
               "static member inline onDoubleClick (handler: unit -> unit) = Interop.mkPlotAttr \"onDoubleClick\" handler"
@@ -1124,7 +1125,7 @@ module ApiParser =
               "static member inline onRelayouting (handler: Events.PlotRelayoutEvent -> unit) = Interop.mkPlotAttr \"onRelayouting\" handler"
               "Callback executed when the plot performs a restyle.",
               "static member inline onRestyle (handler: Events.PlotRestyleEvent -> unit) = Interop.mkPlotAttr \"onRestyle\" handler"
-              "Callback executed when the plot is redrawn.", 
+              "Callback executed when the plot is redrawn.",
               "static member inline onRedraw (handler: unit -> unit) = Interop.mkPlotAttr \"onRedraw\" handler"
               "Callback executed when a plot item is selected.",
               "static member inline onSelected (handler: Events.PlotSelectionEvent -> unit) = Interop.mkPlotAttr \"onSelected\" handler"
@@ -1179,7 +1180,7 @@ module ApiParser =
             let locales =
                 CustomPropertyType.create "locales"
                 |> CustomPropertyType.addFunctions [
-                    "Register a locale to be used with the plot, takes the name of the locale (such as en-US), and configuration.", 
+                    "Register a locale to be used with the plot, takes the name of the locale (such as en-US), and configuration.",
                     "static member inline locale (name: string) (properties: ILocaleProperty list) = Interop.mkLocalesAttr name (createObj !!properties)"
                 ]
 
@@ -1277,7 +1278,7 @@ module ApiParser =
               template
               toImageButtonOptions ]
 
-        let typePrelude = 
+        let typePrelude =
             [ "ModeBarButtons", "interface end" ]
 
         let typePostlude =
@@ -1291,7 +1292,7 @@ module ApiParser =
               "Template", "interface end"
               "ToImage", "interface end" ]
 
-        let api = 
+        let api =
             ComponentApi.create "Feliz.Plotly" "Plot" "Plotly" bindingsPrelude bindings typePrelude typePostlude
             |> addAllComponents
             |> ComponentApi.addCustomPropertyTypes customPropTypes

@@ -17,7 +17,7 @@ let chart () =
                 bar.y [ 12; 18; 29 ]
                 bar.name "LA Zoo"
             ]
-            
+
         ]
         plot.layout [
             layout.barmode.stack

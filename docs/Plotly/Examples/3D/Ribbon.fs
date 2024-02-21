@@ -24,7 +24,7 @@ type RibbonData =
 type RibbonJson =
     { data: RibbonData []
       layout: string }
-    
+
 let render (data: RibbonData list) =
     let plotTraces =
         data
@@ -36,9 +36,9 @@ let render (data: RibbonData list) =
                 surface.name ""
                 surface.colorscale d.colorscale
                 surface.showscale false
-            ]   
+            ]
         )
-    
+
     Plotly.plot [
         plot.traces plotTraces
         plot.layout [
@@ -71,7 +71,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
     let content, setContent = React.useState None
     let path = "https://raw.githubusercontent.com/plotly/datasets/master/3d-ribbon.json"
 
-    let loadDataset() = 
+    let loadDataset() =
         setLoading(true)
         async {
             let! (statusCode, responseText) = Http.get path
@@ -85,7 +85,7 @@ let chart' = React.functionComponent (fun (input: {| centeredSpinner: ReactEleme
                 |> SimpleJson.mapbyKey(fun k v -> if k = "layout" then Json.JString "" else v)
                 |> Json.tryConvertFromJsonAs<RibbonJson>
                 |> function
-                | Ok res -> 
+                | Ok res ->
                     res.data
                     |> List.ofArray
                     |> Some

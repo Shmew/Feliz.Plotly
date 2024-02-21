@@ -1,10 +1,10 @@
 # Feliz.Plotly [![Nuget](https://img.shields.io/nuget/v/Feliz.Plotly.svg?maxAge=0&colorB=brightgreen)](https://www.nuget.org/packages/Feliz.Plotly)
 
-Fable bindings for [plotly.js](https://github.com/plotly/plotly.js) and [react-plotly.js](https://github.com/plotly/react-plotly.js) with [Feliz](https://github.com/Zaid-Ajaj/Feliz) style api for use within React applications.
+Fable bindings for [plotly.js](https://github.com/plotly/plotly.js) and [react-plotly.js](https://github.com/plotly/react-plotly.js) with [Feliz](https://github.com/Zaid-Ajaj/Feliz) style api for use within React applications. This repo continues Shmew's excellent work, forked from [here](https://github.com/Shmew/Feliz.Plotly).
 
 Lets you build visualizations in an easy, discoverable, and safe fashion.
 
-See the full documentation with live examples [here](https://shmew.github.io/Feliz.Plotly/).
+See the full documentation with live examples [here](https://everybodykurts.github.io/Feliz.Plotly/).
 
 A quick look:
 

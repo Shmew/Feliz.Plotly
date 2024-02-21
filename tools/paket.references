@@ -1,5 +1,0 @@
-group Tooling
-	Fake.IO.FileSystem
-	FSharp.Core
-    FSharp.Json
-	FSharpLint.Core
